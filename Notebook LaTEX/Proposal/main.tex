@@ -68,20 +68,20 @@
     \par
     Our ongoing research concerns accelerated proximal gradient type method for solving (\ref{eqn:additive-comp-obj}). 
     In the expository writing by Walkington \cite{noel_nesterovs_nodate}, a variant for of accelerated gradient method for strongly convex function $f$ is discussed. 
-    We had two lingering questions after reading it. 
+    We had some lingering questions after reading it. 
     \begin{enumerate}
         \item Do there exist a unified description for the convergence for both variants of the algorithms?
-        \item Is it possible to attain faster convergence rate without knowledge about the strong convexity of function $f$?
+        \item Is it possible to attain fast convergence rate without knowledge about the strong convexity of function $f$?
         \item Is it possible to describe the convergence of function value for momentum sequences that are much weaker than the Nesterov's rule? 
     \end{enumerate}
     The good news is we have definitive answers for all questions by our own efforts of research. 
-    Section \ref{sec:unify-nes-acceleration}, \ref{sec:spectral-momentum} are our ongoing research which present the answers to the questions. 
+    Section \ref{sec:unify-nes-acceleration}, \ref{sec:free-rwapg} are our ongoing research which present the answers to the questions. 
     \par
     In Section \ref{sec:unify-nes-acceleration}, we proposed the method of ``Relaxed Weak Accelerated Proximal Gradient (R-WAPG)'' as the foundation to describe several variants of Accelerated proximal gradient method in the literatures. 
     The convergence theories of R-WAPG allows us to model convergence of accelerated proximal gradient method where the momentum sequence doesn't strictly follow the conditions presented in the literatures. 
     The descriptive power of R-WAPG allows convergence analysis for all the variants using one single theorem. 
     \par
-    In Section \ref{sec:spectral-momentum} we propose a practical algorithm that exploits a specific term in the proof of R-WAPG to achieve faster convergence for solving (\ref{eqn:additive-comp-obj}) without knowing parameter $L, \mu$ in prior. 
+    In Section \ref{sec:free-rwapg} we propose a practical algorithm that exploits a specific term in the proof of R-WAPG to achieve faster convergence for solving (\ref{eqn:additive-comp-obj}) without knowing parameter $L, \mu$ in prior. 
     Results of numerical experiments are presented. 
     \par
     Section \ref{sec:catalyst} are results of literatures review in MATH 590. 
@@ -372,10 +372,6 @@
         
 
 \section{Unifying NAG, and weakening the sequence assumption for convergences}\label{sec:unify-nes-acceleration}
-    \todoinline{\noindent
-        This section is really about stating the results of the draft paper and no proofs will be done here. 
-        Along with the content of the draft paper, we will also explain the origin and inspirations of the ideas. 
-    }
     This section is based on the theoretical aspects of our draft paper. 
     It will introduce major results and claims achieved during our research in each of the subsections. 
     All theorems and claims stated in this section have proofs in the draft paper. 
@@ -1145,18 +1141,24 @@
             F(x) + \frac{\beta}{2}\Vert x - y\Vert^2.
         \end{align*}
         We define the Moreau Envelope at $y \in \RR^n$ to be $\mathcal M^*_{F,\beta^{-1}}(y) = \min_{x\in \RR^n} \mathcal M_F^{\beta^{-1}}(x; y)$. 
-        We denote $\mathcal J_{\beta^{-1}}$ to be the resolvent operator for subgradient of $F$, and $\mathcal J_{\beta^{-1}}^\epsilon$ for any $\epsilon \ge 0$ to be the inexact resolvent operator. 
+        We denote $\mathcal J_{\beta^{-1}}$ to be the resolvent operator for subgradient of $F$. 
+    \end{assumption}
+    \begin{definition}[Absolute termination criterion C1]\label{def:catalyst-termination-c1}
+        Take $F$ as given by Assumption \ref{ass:catalyst1}.
+        Given any $\epsilon > 0, \kappa > 0$ and $x \in \RR^n$, the absolute criterion C1 characterizes the set of inexact proximal iterates as the set: 
         \begin{align*}
-            \mathcal J_{\beta^{-1}F}^\epsilon (y) &:= 
+            \mathcal J_{\kappa^{-1} F}^\epsilon (x) := 
             \left\lbrace
-                x \in \RR^n \left | \; 
-                    \mathcal M^{\beta^{-1}}_F(x; y) - 
-                    \mathcal M_{\beta^{-1}, F}^*(y) \le \epsilon
+                y \in \RR^n \left | \; 
+                        \mathcal M^{1/\kappa}_F (y; x) - 
+                        \mathcal M^*_{F, 1/\kappa}(x) \le \epsilon
                 \right.
             \right\rbrace. 
         \end{align*}
+    \end{definition}
+    \begin{remark}
         Setting $\epsilon = 0$, we have the exact definition of the exact resolvent given as $\mathcal J_{\beta^{-1}}y = \mathcal J^0_{\beta^{-1}}y$. 
-    \end{assumption}
+    \end{remark}
     \subsection{Introduction to Catalyst}
         Inspired by accelerated proximal point method from Güler \cite{guler_new_1992}, and inexact proximal point method of Rockafellar 1976 \cite{rockafellar_monotone_1976}, Lin \cite{lin_universal_2015} proposed a generic method taking inspirations from the convergence claims of Accelerated proximal point method to accelerated the convergence rate of first order variance reduced incremental method. 
         The class of variance reduced method is vast, but to use the most relevant feature of this class of first order method is that they are stochastic method that is not slower than full gradient descent in complexity. 
@@ -1167,7 +1169,7 @@
         \par
         In brief, a variance reduce method (VRM) is a type of 
         \todo{
-            $\blacksquare$ Add old Dima's paper on incremental methods here. Paper: ``Incremental gradient, subgradient, and proximal methods for convex optimization: A survey''. 
+            $\blacksquare$ Add old Bertsekas's paper on incremental methods here. Paper: ``Incremental gradient, subgradient, and proximal methods for convex optimization: A survey''. 
             \\
             $\square$ Cite them. 
         }
@@ -1194,15 +1196,17 @@
             Let $F:\RR \rightarrow \overline \RR$ be $\mu \ge 0$ strongly convex and closed. 
             Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa > 0$ and $\alpha_0 \in (0, 1]$. 
             Let $(\epsilon_k)_{k \ge 0}$ be an error sequence chosen for the evaluation for inexact proximal point method. 
-            Initialize $x_0 = y_0$. Then the algorithm generates $(x_k, y_k)_{k\ge 0}$ for all $k \ge 1$ such that: 
-            \begin{align*}
-                & \text{find } x_k \in \mathcal J_{\kappa^{-1}F}^{\epsilon_k} y_{k - 1}, 
-                \\
-                & \text{find } \alpha_k \in (0, 1) \text{ such that } \alpha_k^2 = (1 - \alpha_k)\alpha_{k - 1}^2 + (\mu/(\mu + \kappa))\alpha_k,
-                \\
-                & 
-                y_{k} = x_k + \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})}{\alpha_{k - 1}^2 + \alpha_k}(x_k - x_{k - 1}). 
-            \end{align*}
+            \begin{tcolorbox}
+                Initialize $x_0 = y_0$. Then the algorithm generates $(x_k, y_k)_{k\ge 0}$ for all $k \ge 1$ such that: 
+                \begin{align*}
+                    & \text{find } x_k \in \mathcal J_{\kappa^{-1}F}^{\epsilon_k} y_{k - 1}, 
+                    \\
+                    & \text{find } \alpha_k \in (0, 1) \text{ such that } \alpha_k^2 = (1 - \alpha_k)\alpha_{k - 1}^2 + (\mu/(\mu + \kappa))\alpha_k,
+                    \\
+                    & 
+                    y_{k} = x_k + \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})}{\alpha_{k - 1}^2 + \alpha_k}(x_k - x_{k - 1}). 
+                \end{align*}
+            \end{tcolorbox}
         \end{definition}
         \begin{remark}
             The above algorithm is Algorithm 1 from the first paper on Catalyst Acceleration by Lin et al. \cite{lin_universal_2015}. 
@@ -1232,7 +1236,7 @@
         \subsubsection{Outer loop iteration complexity}
             The error sequence $(\epsilon_k)_{k \ge 0}$ governs the convergence rate of the outer loop for $F(x_k) - F^*$ to converge. 
             Depending on either $\mu > 0$, or $\mu = 0$, the choice of $(\epsilon_k)_{k\ge 0}$ differs. 
-            The theorems that follows state the error sequence required for the outer loop to retain optimal convergence rate, they are Theorem 3.3, 3.1 in Lin et al. \cite{lin_universal_2015}. 
+            The theorems that follow state the error sequence required for the outer loop to retain optimal convergence rate, they are Theorem 3.3, 3.1 in Lin et al. \cite{lin_universal_2015}. 
             \begin{theorem}[Outer loop convergence strongly convex]\label{thm:err-seq-outer-s-cnvx}
                 For $\mathbb A$ with regularization parameter $\kappa > 0$. 
                 Assume that $F$ is $\mu > 0$ strongly convex. 
@@ -1253,7 +1257,7 @@
                 $$
             \end{theorem}
             \begin{remark}
-                Suggested by Lin t al., $\rho$ is at the discretion of the practioner, take for example $\rho = 0.9\sqrt{q}$ would work. 
+                Suggested by Lin et al., $\rho$ is at the discretion of the practitioner, take for example $\rho = 0.9\sqrt{q}$ would work. 
             \end{remark}
             \begin{theorem}[Outer loop convergence convex but not strongly convex]\label{thm:erro-seq-outer-cnvx}\;\\
                 For $\mathbb A$ with regularization parameter $\kappa > 0$. 
@@ -1295,16 +1299,16 @@
             }{\hl{Schmidt's Inexact Proximal Gradient method. }} 
             The technique of estimating sequence as defined back in Definition \ref{def:nes-est-seq} did the heavy lifting, but it results in depressingly long proof making it unsuitable for exposition here. 
             Significant pieces of theoretical innovations are covered in details in our most recent Fall Winter 2024 MATH 590 report. 
-            The parts that come will complement content in the report, filling up some of the missing content and attempts to build a bigger picture of Catalyst Acceleration. 
+            The parts that come will complement content in the report, filling up missing content and attempts to build a bigger picture of Catalyst Acceleration. 
 
         \subsubsection{Inner loop complexity}
             The iteration complexity of $M$ relates to the outer loop when warm start is used. 
-            The Catalyst Paper \cite{lin_universal_2015} sugguested the use of $z_{k, 0} = x_{k - 1}$ as the warm start condition. 
-            With Assumption \ref{ass:linear-convergence-inner-loop}, and the suggested warm start condition,  Lin et al. derived the upper bound of the iteration complexity of $\mathbb M$ (Propsotion ), which are statd in Proposition 3.2, 3.3 in their text, and \ref{prop:inner-loop-complexity-cnvx}, \ref{prop:inner-loop-complexity-s-cnvx} restates things below in our notations. 
+            The Catalyst Paper \cite{lin_universal_2015} suggested the use of $z_{k, 0} = x_{k - 1}$ as the warm start condition. 
+            With Assumption \ref{ass:linear-convergence-inner-loop}, and the suggested warm start condition,  Lin et al. derived the upper bound of the iteration complexity of $\mathbb M$, which are stated in Proposition 3.2, 3.3 in their text, and \ref{prop:inner-loop-complexity-cnvx}, \ref{prop:inner-loop-complexity-s-cnvx} restates things below in our notations. 
             These two theorems relate the convergence of $\mathbb M, \mathbb A$ and gives a convergence rate of $F(x_k) - F^*$ expressed using the total number of iteration underwent by $\mathbb M$. 
             \begin{assumption}[Linear convergence of inner loop]\label{ass:linear-convergence-inner-loop}
                 Fix any $k \in \N$, any $y \in \RR^n$. 
-                Suppose $\mathbb M$ generates iterates $(z_{k, t})_{t \ge 0}$ for the inner loop iteration such that there exists $A > 0$ and it has: 
+                Suppose $\mathbb M$ generates iterates $(z_{k, t})_{t \ge 0}$ for the inner loop iteration such that there exists $A > 0$, and it has: 
                 \begin{align*}
                     \mathcal M_F^{\kappa^{-1}}(z_{k, t}, y) - \mathcal M^*_{F, \kappa^{-1}}(y) 
                     &\le 
@@ -1324,10 +1328,10 @@
             \begin{proposition}[Inner loop complexity strongly convex]\label{prop:inner-loop-complexity-s-cnvx}
                 Under the same settings of Theorem \ref{thm:err-seq-outer-s-cnvx}, suppose that 
                 \begin{enumerate}
-                    \item method $\mathbb M$ has linear convergence rate as as specified in Assumption \ref{ass:linear-convergence-inner-loop}, 
-                    \item Method $\mathbb M$ is initialized with  $z_{k, 0} = x_{k - 1}$. 
+                    \item $\mathbb M$ has linear convergence rate as specified in Assumption \ref{ass:linear-convergence-inner-loop}, 
+                    \item $\mathbb M$ is initialized with  $z_{k, 0} = x_{k - 1}$. 
                 \end{enumerate}
-                Then, the precision $\epsilon_k$ is achived within a at most a number of iteration $T_{\mathbb M} \le \widetilde {\mathcal O}(1/ \tau_{\mathbb M})$. 
+                Then, the precision $\epsilon_k$ is achieved within at most a number of iteration $T_{\mathbb M} \le \widetilde {\mathcal O}(1/ \tau_{\mathbb M})$. 
                 Here $\widetilde{\mathcal O}$ hides logarithmic complexity in $\mu, \kappa$ and other constants. 
             \end{proposition}
             \begin{remark}
@@ -1337,13 +1341,14 @@
             \begin{proposition}[Inner loop, context but not strongly convex]\label{prop:inner-loop-complexity-cnvx}
                 Under the settings of Theorem \ref{thm:erro-seq-outer-cnvx}, suppose that:
                 \begin{enumerate}
-                    \item method $\mathbb M$ has linear convergence rate as specified in Assumption \ref{ass:linear-convergence-inner-loop}, 
+                    \item $\mathbb M$ has linear convergence rate as specified in Assumption \ref{ass:linear-convergence-inner-loop}, 
                     \item the initial guess for $\mathbb M$ is $z_{0, k} = x_{k - 1}$, 
                     \item $F$ has bounded level set.
                 \end{enumerate}
                 Then there exists $T_{\mathbb M} \le \widetilde{\mathcal O}(1 / \tau_{\mathbb M})$ such that for any $k \ge 1$. 
                 Then it requires at most\\ $T_{\mathbb M}\log(k + 2)$ iterations for $\mathbb M$ to achieve accuracy $\epsilon_k$.    
             \end{proposition}
+            For a proof of Proposition \ref{prop:inner-loop-complexity-cnvx}, \ref{prop:inner-loop-complexity-s-cnvx}, see Appendix item B1, B2 in Lin et al. \cite{lin_universal_2015}. 
             We are now ready to derive the convergence rate measured by the number of total iteration experience by $\mathbb M$. 
             If $\mu > 0$, so Proposition \ref{prop:inner-loop-complexity-s-cnvx} gives total number of inner iteration is bounded by $m \le T_{\mathbb M}k$. 
             Substituting $k \ge m/T_{\mathbb M}$ into Theorem \ref{thm:err-seq-outer-s-cnvx}, it gives description of convergence rate of the algorithm measured by the total number of iteration experience by $\mathbb M$: 
@@ -1362,10 +1367,10 @@
                     \tau_{\mathbb M}\sqrt{\mu}/(\mu + \kappa)
                 \right). 
             \end{align*}
-            The secondinequality on the first line made use of the fact that $1 + x \le (1 + x/n)^n$ for all $n \ge 1$ and $|x| \le n$. 
-            The optimal value of $\kappa$ is suggusted by choosing the best $\kappa > 0$ that minimizes the above upper bound. 
+            The second inequality on the first line made use of the fact that $1 + x \le (1 + x/n)^n$ for all $n \ge 1$ and $|x| \le n$. 
+            The optimal value of $\kappa$ is suggested by choosing the best $\kappa > 0$ that minimizes the above upper bound. 
             \par
-            If $\mu = 0$, using Propostion \ref{prop:inner-loop-complexity-cnvx} the total number of inner loop iteration executed by $\mathbb M$ at the $k$ th iteration of $\mathbb A$ is bounded via: 
+            If $\mu = 0$, using Proposition \ref{prop:inner-loop-complexity-cnvx} the total number of inner loop iteration executed by $\mathbb M$ at the $k$ th iteration of $\mathbb A$ is bounded via: 
             \begin{align*}
                 m &\le \sum_{i - 1}^{k} k T_{\mathbb M} \log(i + 2) \le k T_{\mathbb M} \log(k + 2) 
                 \le T_{\mathbb M}k(k + 2) 
@@ -1383,6 +1388,7 @@
                     \le \widetilde{\mathcal O}
                         \left(m^{-2}\tau_{\mathbb M}^{-1}\right). 
             \end{align*}
+            The last inequality is $T_{\mathbb M} < \widetilde{\mathcal O}(1/\tau_{\mathbb M})$ from Proposition \ref{prop:inner-loop-complexity-cnvx}. 
             In both cases, the convergence rate remains optimal as measure by the total number of $\mathbb M$. 
             \par 
             Lin et al.'s second paper on Catalyst Acceleration \cite{lin_catalyst_2018} describes new ideas to choose the termination criteria for the inner for evaluating $\mathcal J_{\kappa^{-1}F}^{\epsilon_k} y_k$ and gives alternatives to the error sequence $\epsilon_k$ based on those termination criteria. 
@@ -1399,40 +1405,26 @@
             \end{align*}
             By choosing $x$ such that $\dist\left(\mathbf 0, \partial \mathcal M_F^{1/\kappa}(x; y)\right) \le \sqrt{\epsilon}$, it ensures $x \in \mathcal J^\epsilon_{\kappa^{-1}F}(y)$. 
             Unfortunately, this is a difficult in practice because a full gradient evaluation on the model function $\mathcal M^{1/\kappa}_F(\cdot; y)$ is costly (compare to the small amount required for VRM, which is just the gradient of a few samples.), so Lin suggested alternatives of inner loop termination criteria, and/or upper bounds of inner loop iteration to make Catalyst Acceleration competitive in practice. 
-            \par 
-            These conflicts in the theories and practice of the Catalyst Accelerations framework are the focuses of Lin's second Catalyst paper \cite{lin_catalyst_2018}. 
-            The paper has the following new ideas: 
-            \begin{enumerate}
-                \item A relative termination criteria that bounds the gradient of the problem in the inner loop, which results in an error sequence without $F^*$, and simpler proof without using the Nesterov's estimating sequence, and getting rid of the bounded level set assumption in Proposition \ref{prop:inner-loop-complexity-cnvx}. 
-                \item A more comprehensive convergence proof, for 2 different type of error bounds with, including the smooth plus nonsmooth composite objective. 
-            \end{enumerate}
-            The list above is not exhaustive. 
+            % \par 
+            % These conflicts in the theories and practice of the Catalyst Accelerations framework are the focuses of Lin's second Catalyst paper \cite{lin_catalyst_2018}. 
+            % The paper has the following new ideas: 
+            % \begin{enumerate}
+            %     \item A relative termination criteria that bounds the gradient of the problem in the inner loop, which results in an error sequence without $F^*$, and simpler proof without using the Nesterov's estimating sequence, and getting rid of the bounded level set assumption in Proposition \ref{prop:inner-loop-complexity-cnvx}. 
+            %     \item A more comprehensive convergence proof, for 2 different type of error bounds with, including the smooth plus nonsmooth composite objective. 
+            % \end{enumerate}
+            % The list above is not exhaustive. 
 
     \subsection{The second Catalyst Acceleration paper}
-        Denote the outer loop iteration algorithm by $\mathbb A$, and inner loop iteration algorithm by $\mathbb M$. 
         This section discusses major contents in Lin's second Catalyst paper \cite{lin_catalyst_2018}. 
-        To expedite the execution of $\mathbb M$ in general given an error sequence $(\epsilon_k)_{k \ge 0}$ (or equivalently some lower bounds of it), Lin suggested two major strategies that are not necessarily mutually exclusive: 
+        To expedite the execution of $\mathbb M$ in general given an error sequence $(\epsilon_k)_{k \ge 0}$ (or equivalently some lower bounds of it), Lin suggested the following new ideas which are not  mutually exclusive: 
         \begin{enumerate}
-            \item Use a warm start strategy, i.e: take the most recent iterates produced by $\mathbb A$ as the initial guess for $\mathbb M$. 
+            \item An improved warm start strategy that improved the convergence rate under different termination criteria, and it supports smooth plus nonsmooth objective. 
             \item An absolute termination criterion C1 stated in Definition \ref{def:catalyst-termination-c1}, governed by the error sequence $(\epsilon_k)_{k \ge 0}$. 
             \item A relative termination criterion C2 stated in Definition \ref{def:catalyst-termination-c2}, governed by the error sequence $(\delta_k)_{k \ge 0}$
         \end{enumerate}
-        \par
         We now introduce the early termination criteria for $\mathbb M$. 
         In our notation, we define the absolute termination criterion, which are C1 and C2 directly taken from Lin's second Catalyst paper but in our notations. 
-        \begin{definition}[Absolute termination criterion C1]\label{def:catalyst-termination-c1}
-            Take $F$ as given by Assumption \ref{ass:catalyst1}.
-            Given any $\epsilon > 0, \kappa > 0$ and $x \in \RR^n$, the absolute criterion C1 characterizes the set of inexact proximal iterates as the set: 
-            \begin{align*}
-                \mathcal J_{\kappa^{-1} F}^\epsilon (x) := 
-                \left\lbrace
-                    y \in \RR^n \left | \; 
-                            \mathcal M^{1/\kappa}_F (y; x) - 
-                            \mathcal M^*_{F, 1/\kappa}(x) \le \epsilon
-                    \right.
-                \right\rbrace. 
-            \end{align*}
-        \end{definition}
+        
 
         \begin{definition}[Relative termination criterion C2]\label{def:catalyst-termination-c2}
             Take $F$ as given by Assumption \ref{ass:catalyst1}. 
@@ -1449,8 +1441,9 @@
                 \right\rbrace. 
             \end{align*}
         \end{definition}
+        Observe that, if we set $\epsilon_{k} = \delta\kappa/2\Vert x - z\Vert^2$ then $\widetilde{\mathcal J}_{\kappa^{-1}F}^{\delta} (x) = \mathcal J_{\kappa^{-1}F}^\epsilon (x)$. 
+        The relative inexact condition can be interpreted as an adaptive inexactness condition. 
         Stated by Lin, the following lemmas are the sufficient conditions and consequences of termination criteria C1, C2. 
-
         \begin{lemma}[Sufficient condition for C1]\label{lemma:sufficient-c1}
             Consider smooth plus nonsmooth objective $F := f + g$ with $g:\RR^n \rightarrow \overline \RR, F:\RR^n \rightarrow \RR$ closed and convex, and $F$ is $\mu\ge 0$ strongly convex and $L$-Lipschitz smooth. 
             With arbitrary $x \in \RR^n$ fixed, the model function is additive composite of the form: 
@@ -1509,7 +1502,7 @@
                 \right\Vert
                 &\le 
                 \delta' \Vert \nabla \mathcal M^*_{F, \kappa^{-1}}(x) \Vert \quad 
-                \text{with } \delta' = \sqrt{\delta}/(1 - \sqrt{\delta}). 
+                \text{with } \delta' = \sqrt{\delta}/\left(1 - \sqrt{\delta}\right). 
             \end{align*}
             \par 
             For a more general development of characterizations of inexact oracles that is more comprehensive and rigorous, see 
@@ -1520,10 +1513,54 @@
             {\hl{Devolder et al.}}
             Their works were earlier and a Nesterov accelerated algorithm using estimating sequence and inexact oracles was derived. 
             \par
-            Finally, besides C1, C2 criteria which, the ``Fixed Budget" termination criterion assesses the optimality of results produced by $\mathbb M$, we can also terminate $\mathbb M$ after a fixed number of iteration. 
-            This is the original strategy proposed by Lin et al. in their first Catalyst paper in 2015 \cite{lin_universal_2015}. 
+            Finally, besides C1, C2 criteria which, the ``Fixed Budget" termination criterion assesses the optimality of results produced by $\mathbb M$. 
+            Alternatively, terminating $\mathbb M$ after a fixed number of iteration is the original strategy proposed by Lin et al. in their first Catalyst paper in 2015 \cite{lin_universal_2015}. 
             It needs a precise bound on the complexity for $\mathbb M$ to achieve C1, or C2 of the strongly convex function $\mathcal M^{\kappa^{-1}}_F(\cdot; y)$. 
             \par
+            Developing the new relative termination criterion gives improvements on the complexity of inner loop $\mathbb M$, outer loop $\mathbb A$, and the relative error sequence $(\delta_k)_{k \ge0}$ for $\mathbb M$. 
+            The theorems and commentaries that follow will illustrate. 
+            \begin{definition}[A better Catalyst Acceleration]\label{def:catalyst-relative}
+                Suppose that $F$ is a $\mu \ge 0$ strongly smooth under Assumption \ref{ass:catalyst1}. 
+                Initialize any $x_0 \in \mathbb \RR^n$, $\kappa > 0$. 
+                Given the relative error sequence $(\delta_k)_{k \ge 0}$, or equivalently some fixed budget number of iterations $T_{\mathbb M}$, or absolute error sequence $(\epsilon_k)_{k \ge 0}$: 
+                \begin{tcolorbox}
+                    Initialize $y_0 = x_0, q = \mu/(\kappa + \mu), k = 1$, and if $\mu > 0$, set $\alpha_0 = \sqrt{q}$ otherwise $\alpha_0 = 1$.  
+                    \textbf{While} desirable accuracy is not reached, \textbf{do}: 
+                    \begin{enumerate}
+                        \item Finds $x_k \approx \mathcal J_{\kappa^{-1}F} y_{k - 1}$ using warm start. 
+                        \item Pick one of the following fixed termination criterion: 
+                        \begin{enumerate}
+                            \item Determine the number of fixed budget depending on $T_{\mathbb M}$, terminate the above subroutine if fixed budget reached.
+                            \item C1 are satisfied through $\epsilon_k$. 
+                            \item C2 are satisfied through $\delta_k$. 
+                        \end{enumerate}
+                        \item Find $\alpha_k \in (0, 1)$ such that $\alpha_k^2 = (1 - \alpha_{k})\alpha_{k - 1}^2 + q\alpha_k$. 
+                        \item Compute extrapolation $y_k = x_k + \beta_k(x_k - x_{k - 1})$ with 
+                        $$
+                            \beta_{k} = \alpha_{k - 1}(1 - \alpha_{k - 1})/(\alpha_{k - 1}^2 + \alpha_k). 
+                        $$
+                        \item Increment $k := k + 1$
+                    \end{enumerate}
+                    \textbf{End while} 
+                \end{tcolorbox}
+            \end{definition}
+
+            \begin{theorem}[Outer loop complexity under criterion C2]\label{theorem:catalyst2-outer-loop}
+                For the iterates $(x_k)_{k \ge 0}$ generated by algorithm in Definition \ref{def:catalyst-relative}, we have 
+                \begin{enumerate}
+                    \item If $\mu > 0$, choose $\alpha_0 = \sqrt{q}$, $\delta_k = \sqrt{q}/(2 - \sqrt{q})$. 
+                    Then the iterates $(x_k)_{k \ge 0}$ satisfies $F(x_k) - F^* \le \mathcal O\left(1 - \sqrt{q}/2\right)^k$. 
+                    \item If $\mu = 0$, choose $\alpha_0 = 1$, $\delta_k = 1/(k + 1)^2$ satisfies $F(x_k) - F^* \le \mathcal O(k^{-2})$. 
+                \end{enumerate}
+            \end{theorem}
+            \begin{remark}
+                This is Proposition 8, 9 in Lin et al.'s second Catalyst paper \cite{lin_catalyst_2018}.
+                For a precise description of the upper bound, see Theorem 8. 
+            \end{remark}
+            The key improvement here compared to using absolute inexactness for $\mathbb M$ as stated by Theorem \ref{thm:err-seq-outer-s-cnvx}, \ref{thm:erro-seq-outer-cnvx} is that $(\delta_k)_{k \ge0}$ doesn't require knowledge on $F^*$. 
+            Using termination criterion C2 and warm start, the inner loop complexity is stated in Corollary 16 in Lin et al.'s second Catalyst paper \cite{lin_catalyst_2018}. 
+            It's important to note that the upper complexity bounds are much better, and it doesn't require bounded level set compared to Theorem \ref{prop:inner-loop-complexity-cnvx}. 
+
             
 
 

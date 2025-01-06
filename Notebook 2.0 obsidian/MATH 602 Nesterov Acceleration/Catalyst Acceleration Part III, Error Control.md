@@ -7,7 +7,7 @@ Pre-requisite:
 
 This file's major focus is Hongzhou Lin's second paper on Catalyst Meta Acceleration Method. 
 
-We made the choice to redefine some of the notation, in hope of making things clearer. 
+We made the choice to redefine some notation, in hope of making things clearer. 
 
 #### **Assumption 1 | Catalyst simple objective**
 > Let $F: \R \rightarrow \overline \R$ be closed convex and $\mu \ge 0$ strongly convex. 
@@ -30,7 +30,7 @@ $$
 \end{aligned}
 $$
 $\mathcal M_{F}^{\kappa^{-1}}(\cdot, y)$ is a $\mu + \kappa$ strongly convex function, and $\mathcal M^*_{F, 1/\kappa}(y)$ is the Moreau Envelope of the function. 
-It exhibits smoothness and strong convexity and it's full domain: $\R^n \rightarrow \R$. 
+It exhibits smoothness and strong convexity, and it's full domain: $\R^n \rightarrow \R$. 
 
 
 ---
@@ -120,7 +120,7 @@ We Denote $\mathbb A$ to be the algorithm used for the outer loop, producing ite
 >     \text{with}\quad \eta > 0. 
 > \end{aligned}
 > $$
-> Take $x^*$ to be an minimizer of $F$. 
+> Take $x^*$ to be a minimizer of $F$. 
 > Then algorithm $\mathbb A$ generates $(x_k)_{k \ge0}$ such that it has a convergence rate of 
 > $$
 > \begin{aligned}
@@ -143,8 +143,8 @@ We now clarify on a very high level, additional key innovations in Lin's first C
 
 
 #### **Proposition 3.2 | Inner loop complexity strongly convex**
-> Under the same settings of Theorem 1.1, suppose that method $\mathbb M$ has linear convergence rate as as specified in Assumption 2. 
-> Then, when $z_{k, 0} = x_{k - 1}$, the precision $\epsilon_k$ is achived within a number of iteration $T_{\mathbb M} \le \widetilde {\mathcal O}(1/ \tau_{\mathbb M})$. 
+> Under the same settings of Theorem 1.1, suppose that method $\mathbb M$ has linear convergence rate as specified in Assumption 2. 
+> Then, when $z_{k, 0} = x_{k - 1}$, the precision $\epsilon_k$ is achieved within a number of iteration $T_{\mathbb M} \le \widetilde {\mathcal O}(1/ \tau_{\mathbb M})$. 
 > Here $\widetilde{\mathcal O}$ hides logarithmic complexity in $\mu, \kappa$ and other constants. 
 
 
@@ -154,7 +154,7 @@ We now clarify on a very high level, additional key innovations in Lin's first C
 > Assume that $F$ has bounded level set, then there exists $T_{\mathbb M} \le \widetilde{\mathcal O}(1 / \tau_{\mathbb M})$ such that for any $k \ge 1$. 
 > Then it requires at most $T_{\mathbb M}\log(k + 2)$ iterations for $\mathbb M$ to achieve accuracy $\epsilon_k$. 
 
-In Proposition 3.2, if $\mathbb A$ has $k$ iteration, then the total number of experience experiend by $\mathbb M$ upper bounded via $m \le k T_{\mathbb M}$. 
+In Proposition 3.2, if $\mathbb A$ has $k$ iteration, then the total number of experience  by $\mathbb M$ upper bounded via $m \le k T_{\mathbb M}$. 
 Therefore, the convergence rate of the objective value as measure by the total number of iteration of $m$ experience by the inner loop is bounded by: 
 
 $$
@@ -174,10 +174,10 @@ $$
     \right). 
 \end{aligned}
 $$
-The secondinequality on the first line made use of the fact that $1 + x \le (1 + x/n)^n$ for all $n \ge 1$ and $|x| \le n$. 
-The optimal value of $\kappa$ is suggusted by choosing the best $\kappa > 0$ that minimizes the above upper bound. 
+The second inequality on the first line made use of the fact that $1 + x \le (1 + x/n)^n$ for all $n \ge 1$ and $|x| \le n$. 
+By choosing the best $\kappa > 0$ that minimizes the above upper bound, it suggests the optimal value of $\kappa$ is suggested 
 
-In proposition 3.3, we can bound the iteration complexity of of $F(x_k) - F^*$ by counting the total number of iteration experience by $\mathbb M$ by the $k$ th iteration of $\mathbb A$. 
+In proposition 3.3, we can upper bound the iteration complexity of $F(x_k) - F^*$ by counting the total number of iteration experience by $\mathbb M$ by the $k$ th iteration of $\mathbb A$. 
 The total number of iteration experience by $\mathbb M$ is upper bounded by 
 $$
 \begin{aligned}
