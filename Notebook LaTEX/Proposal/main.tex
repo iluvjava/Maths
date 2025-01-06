@@ -1418,14 +1418,13 @@
         This section discusses major contents in Lin's second Catalyst paper \cite{lin_catalyst_2018}. 
         To expedite the execution of $\mathbb M$ in general given an error sequence $(\epsilon_k)_{k \ge 0}$ (or equivalently some lower bounds of it), Lin suggested the following new ideas which are not  mutually exclusive: 
         \begin{enumerate}
-            \item An improved warm start strategy that improved the convergence rate under different termination criteria, and it supports smooth plus nonsmooth objective. 
-            \item An absolute termination criterion C1 stated in Definition \ref{def:catalyst-termination-c1}, governed by the error sequence $(\epsilon_k)_{k \ge 0}$. 
-            \item A relative termination criterion C2 stated in Definition \ref{def:catalyst-termination-c2}, governed by the error sequence $(\delta_k)_{k \ge 0}$
+            \item An improved warm start strategy at the end of Section 3. 
+            It improved the convergence rate under different termination criteria, and it supports smooth plus nonsmooth objective. 
+            \item A relative termination criterion C2 stated in Definition \ref{def:catalyst-termination-c2}, governed by the error sequence $(\delta_k)_{k \ge 0}$. 
+            The sequence $\delta_k$ doesn't require knowledge on $F^*$, it simplifies the convergence proof, gives better bounds on the complexity for $\mathbb M$ without using bounded level set condition. 
+            Recall that Theorem \ref{prop:inner-loop-complexity-cnvx} requires bounded level set assumption on $F$. 
         \end{enumerate}
-        We now introduce the early termination criteria for $\mathbb M$. 
-        In our notation, we define the absolute termination criterion, which are C1 and C2 directly taken from Lin's second Catalyst paper but in our notations. 
-        
-
+        In our notation, we define relative termination criterion C2.
         \begin{definition}[Relative termination criterion C2]\label{def:catalyst-termination-c2}
             Take $F$ as given by Assumption \ref{ass:catalyst1}. 
             Given any $\delta \in (0, 1]$, $\kappa > 0$ and $x \in \RR^n$, the relative criterion C2 is characterized by the set: 
@@ -1512,12 +1511,14 @@
             }
             {\hl{Devolder et al.}}
             Their works were earlier and a Nesterov accelerated algorithm using estimating sequence and inexact oracles was derived. 
+            These results are instrumental to prove the convergence of $\mathbb M$ and giving convergence claim of $\mathbb A$ under certain assumption on $(\delta_k)_{k \ge 0}, (\epsilon_k)_{k \ge0}$. 
             \par
-            Finally, besides C1, C2 criteria which, the ``Fixed Budget" termination criterion assesses the optimality of results produced by $\mathbb M$. 
-            Alternatively, terminating $\mathbb M$ after a fixed number of iteration is the original strategy proposed by Lin et al. in their first Catalyst paper in 2015 \cite{lin_universal_2015}. 
-            It needs a precise bound on the complexity for $\mathbb M$ to achieve C1, or C2 of the strongly convex function $\mathcal M^{\kappa^{-1}}_F(\cdot; y)$. 
+            Finally, besides Definition \ref{def:catalyst-termination-c1}, \ref{def:catalyst-termination-c2}, there is the ``Fixed Budget" termination criterion. 
+            It terminates $\mathbb M$ after a fixed number of iteration. 
+            Criterion C1 used to prove the overall complexity in Lin et al. \cite{lin_universal_2015}, but the bound is deliberately loose to allow generality, making it extremely impractical. 
+            Criterion C2 places similar upper bound on the iteration complexity for $\mathbb M$, but it still remains impractical. 
             \par
-            Developing the new relative termination criterion gives improvements on the complexity of inner loop $\mathbb M$, outer loop $\mathbb A$, and the relative error sequence $(\delta_k)_{k \ge0}$ for $\mathbb M$. 
+            Interestingly, the new termination criterion C2 gives improvements on the complexity of inner loop $\mathbb M$, outer loop $\mathbb A$, and the relative error sequence $(\delta_k)_{k \ge0}$ for $\mathbb M$. 
             The theorems and commentaries that follow will illustrate. 
             \begin{definition}[A better Catalyst Acceleration]\label{def:catalyst-relative}
                 Suppose that $F$ is a $\mu \ge 0$ strongly smooth under Assumption \ref{ass:catalyst1}. 
@@ -1558,16 +1559,11 @@
                 For a precise description of the upper bound, see Theorem 8. 
             \end{remark}
             The key improvement here compared to using absolute inexactness for $\mathbb M$ as stated by Theorem \ref{thm:err-seq-outer-s-cnvx}, \ref{thm:erro-seq-outer-cnvx} is that $(\delta_k)_{k \ge0}$ doesn't require knowledge on $F^*$. 
-            Using termination criterion C2 and warm start, the inner loop complexity is stated in Corollary 16 in Lin et al.'s second Catalyst paper \cite{lin_catalyst_2018}. 
-            It's important to note that the upper complexity bounds are much better, and it doesn't require bounded level set compared to Theorem \ref{prop:inner-loop-complexity-cnvx}. 
-
-            
-
-
-    \subsection{Complexity}
-        
-        
+            This innocent detail helps to develop a nonconvex variant of Catalyst call 4WD Catalyst which is the focus of the paper by Paguette \cite{paquette_catalyst_2018}. 
+            Corollary 16 in Lin et al.'s second Catalyst paper \cite{lin_catalyst_2018} gives complexity for $\mathbb M$ Using termination criterion C2 with a warm start specialized for $C2$. 
+            It's important to note that the upper complexity bounds are much better, and it doesn't require bounded level set compared to Theorem \ref{prop:inner-loop-complexity-cnvx}.         
     \subsection{Potential future research}
+        Now, we have enough context to understand the potential future directions of research regarding the Catalyst Acceleration framework. 
 
     
 \section{Methods of inexact proximal point}\label{sec:inexact-prox}
