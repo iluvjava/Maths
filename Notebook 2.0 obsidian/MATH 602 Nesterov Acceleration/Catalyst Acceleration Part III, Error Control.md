@@ -89,10 +89,10 @@ We Denote $\mathbb A$ to be the algorithm used for the outer loop, producing ite
 > $$
 
 
-### **Theorem 1.1 | Outer loop iteration complexity, strongly convex**
+#### **Theorem 1.1 | Outer loop iteration complexity, strongly convex**
 > For $\mathbb A$ with regularization parameter $\kappa > 0$. 
 > Assume that $F$ is $\mu > 0$ strongly convex. 
-Choose $\alpha_0 = \sqrt{q}$ with $q = \mu/(\kappa + \mu)$ and the error sequence 
+> Choose $\alpha_0 = \sqrt{q}$ with $q = \mu/(\kappa + \mu)$ and the error sequence 
 > $$
 > \begin{aligned}
 >     \epsilon_k = \frac{2}{9}(F(x_0) - F^*)(1 - \rho)^k \quad \text{with }\quad 
@@ -114,29 +114,92 @@ Choose $\alpha_0 = \sqrt{q}$ with $q = \mu/(\kappa + \mu)$ and the error sequenc
 > For $\mathbb A$ with regularization parameter $\kappa > 0$. 
 > Assume that $F$ is convex but with strong convexity constant $\mu = 0$. 
 > Choose $\alpha_0 = (\sqrt{5} - 1)/2$ and the error sequence 
+> $$
+> \begin{aligned}
+>     \epsilon_k &= \frac{2(F(x_0) - F^*)}{9(k + 2)^{4 + \eta}} \quad 
+>     \text{with}\quad \eta > 0. 
+> \end{aligned}
+> $$
+> Take $x^*$ to be an minimizer of $F$. 
+> Then algorithm $\mathbb A$ generates $(x_k)_{k \ge0}$ such that it has a convergence rate of 
+> $$
+> \begin{aligned}
+>     F(x_k) - F^* &\le 
+>     \frac{8}{(k + 2)^2}\left(
+>         \left(1 + \frac{2}{\eta}\right)^2(F(x_k) - F^*)
+>         + \frac{\kappa}{2}\Vert x_0 - x^*\Vert^2
+>     \right).
+> \end{aligned}
+> $$
 
-$$
-\begin{aligned}
-    \epsilon_k &= \frac{2F(x_0) - F^*}{9(k + 2)^{4 + \eta}} \quad 
-    \text{with}\quad \eta > 0. 
-\end{aligned}
-$$
-Then algorithm $\mathbb A$ generates $(x_k)_{k \ge0}$ such that it has a convergence rate of 
 
-$$
-\begin{aligned}
-    
-\end{aligned}
-$$
+Both Theorem 1.1, 1.2 requires prior knowledge on $F^*$, which may not be accessible in a practical context. 
 
 
 
 ---
-### **Warm Starting with strongly convex objective**
-
+#### **Deriving the total complexity given the complexity of the inner iteration**
 We now clarify on a very high level, additional key innovations in Lin's first Catalyst paper, this time we focus on summarizing the complexity results of the inner loop, and the outer loop algorithm. 
 
 
+#### **Proposition 3.2 | Inner loop complexity strongly convex**
+> Under the same settings of Theorem 1.1, suppose that method $\mathbb M$ has linear convergence rate as as specified in Assumption 2. 
+> Then, when $z_{k, 0} = x_{k - 1}$, the precision $\epsilon_k$ is achived within a number of iteration $T_{\mathbb M} \le \widetilde {\mathcal O}(1/ \tau_{\mathbb M})$. 
+> Here $\widetilde{\mathcal O}$ hides logarithmic complexity in $\mu, \kappa$ and other constants. 
+
+
+#### **Proposition 3.3 | Inner loop complexity, convex but not strongly convex**
+> Under the settings of Theorem 1.2, suppose that method $\mathbb M$ has linear convergence rate as specified in Assumption 2. 
+> Suppose that the initial guess for $\mathbb M$ is $z_{0, k} = x_{k - 1}$. 
+> Assume that $F$ has bounded level set, then there exists $T_{\mathbb M} \le \widetilde{\mathcal O}(1 / \tau_{\mathbb M})$ such that for any $k \ge 1$. 
+> Then it requires at most $T_{\mathbb M}\log(k + 2)$ iterations for $\mathbb M$ to achieve accuracy $\epsilon_k$. 
+
+In Proposition 3.2, if $\mathbb A$ has $k$ iteration, then the total number of experience experiend by $\mathbb M$ upper bounded via $m \le k T_{\mathbb M}$. 
+Therefore, the convergence rate of the objective value as measure by the total number of iteration of $m$ experience by the inner loop is bounded by: 
+
+$$
+\begin{aligned}
+    F(x_k) - F^* &\le \mathcal O \left(
+        (1 - \rho)^k 
+    \right) \le 
+    \mathcal O \left(
+        (1 - \rho)^{m/ T_{\mathbb M}}
+    \right) \le 
+    \mathcal O\left(
+        \left(1 - \rho/T_{\mathbb M}\right)^{m}
+    \right)
+    \\
+    &\le \widetilde{\mathcal O}\left(
+        \tau_{\mathbb M}\sqrt{\mu}/(\mu + \kappa)
+    \right). 
+\end{aligned}
+$$
+The secondinequality on the first line made use of the fact that $1 + x \le (1 + x/n)^n$ for all $n \ge 1$ and $|x| \le n$. 
+The optimal value of $\kappa$ is suggusted by choosing the best $\kappa > 0$ that minimizes the above upper bound. 
+
+In proposition 3.3, we can bound the iteration complexity of of $F(x_k) - F^*$ by counting the total number of iteration experience by $\mathbb M$ by the $k$ th iteration of $\mathbb A$. 
+The total number of iteration experience by $\mathbb M$ is upper bounded by 
+$$
+\begin{aligned}
+    m &\le \sum_{i - 1}^{k} k T_{\mathbb M} \log(i + 2) \le k T_{\mathbb M} \log(k + 2) 
+    \le T_{\mathbb M}k(k + 2) 
+    \le 
+    \mathcal O(T_{\mathbb M} k^2). 
+\end{aligned}
+$$
+By theorem 1.2, we have the inequality 
+
+$$
+\begin{aligned}
+    F(x_k)- F^* &\le 
+    \mathcal O(k^{-2})\le 
+    \mathcal O(m^{-2}T_{\mathbb M}) \le \widetilde{\mathcal O}(m^{-2}\tau_{\mathbb M}^{-1}). 
+\end{aligned}
+$$
+
+
+---
+### **Warm Starting with strongly convex objective**
 
 
 #### **Lemma B.1 | Consequence of Warm Starting**
@@ -160,7 +223,5 @@ We now clarify on a very high level, additional key innovations in Lin's first C
 
 Before we start the discussion of the next lemma, recall that for a strongly convex objective $F$, it gives 
 
-#### **Lemma B.1 | Warm starting condition 1**
-
-
 #### **Lemma B.2 | Warm starting condition 2**
+
