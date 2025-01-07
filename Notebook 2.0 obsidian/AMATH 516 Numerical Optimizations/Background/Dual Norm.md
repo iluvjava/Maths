@@ -1,4 +1,8 @@
+Pre-req
+- [Norm, for Beginners](../../AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Norm,%20for%20Beginners.md). 
 
+
+---
 ### **Intro**
 
 Dual norm denoted as $\Vert \cdot\Vert_\star$ is defined for a norm $\Vert \cdot\Vert$ in $\mathbb E$. Here it's the definition: 
@@ -55,3 +59,7 @@ An exercise for the reader, which is likely to be myself.
 
 Source: \<First Order method in Optimizations\> By SIAM Example 1.6, they a quick example. 
 
+---
+### **Misc**
+
+To understand dual norm in a more abstract context, i.e: As the dual space of formed by linear functional of a Banach space, visit [Linear Functionals and Dual Spaces](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Linear%20Functionals%20and%20Dual%20Spaces.md). 
