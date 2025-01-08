@@ -1162,42 +1162,26 @@
     \begin{remark}
         Setting $\epsilon = 0$, we have the exact definition of the exact resolvent given as $\mathcal J_{\beta^{-1}}y = \mathcal J^0_{\beta^{-1}}y$. 
     \end{remark}
+    \textbf{Organizations now follow}. 
     \subsection{Introduction to Catalyst}
         Inspired by accelerated proximal point method from Güler \cite{guler_new_1992}, and inexact proximal point method of Rockafellar 1976 \cite{rockafellar_monotone_1976}, Lin \cite{lin_universal_2015} proposed a generic method taking inspirations from the convergence claims of Accelerated proximal point method to accelerated the convergence rate of first order variance reduced incremental method. 
         The class of variance reduced method is vast, but to use the most relevant feature of this class of first order method is that they are stochastic method that is not slower than full gradient descent in complexity. 
-        \todo{
-            $\blacksquare$ Add the bib for Mark Schmidt introductory paper RV methods.  
-            \\ $\square$ Cite it. 
-        }{\hl{See Gower's guide}} for more information on variance reduced methods in machine learning. 
+        See Gower's guide \cite{gower_variance-reduced_2020} for more information on variance reduced methods in machine learning. 
         \par
         In brief, a variance reduce method (VRM) is a type of 
-        \todo{
-            $\blacksquare$ Add old Bertsekas's paper on incremental methods here. Paper: ``Incremental gradient, subgradient, and proximal methods for convex optimization: A survey''. 
-            \\
-            $\square$ Cite them. 
-        }
-        {\hl{incremental methods}} \cite{bertsekas_incremental_2011,bertsekas_incremental_2017}
+        incremental methods
         for solving a large sum problem: $F(x) = \sum_{i = 1}^{N} f_i(x)$ in machine learning.
-        It can be deterministic, or stochastic. 
+        See Bertsekas's surveys \cite{bertsekas_incremental_2011,bertsekas_incremental_2017} on incremental method for more context. 
+        VRM can be deterministic, or stochastic. 
         When it's stochastic, the theories focuses on the expected optimality gap: $\mathbb E[F(x_k) - F^*]$, for the inner and outer loop. 
         Let's assume for simplicity of discussion that it's deterministic and focus on: $F(x_k) - F^*$. 
         \par 
         The idea of VRM is to stabilize the estimate of gradient using information of the gradient (which can be estimated, or exact) from all or a subset at previous iterates. 
-        In each iteration, only the gradient of a few samples are accessed and uses simple calculations from previously stored gradient to attain overall better complexity.
+        In each iteration, the gradient of just a few samples are used with simple calculations to attain better complexity than full gradient descent. 
         Compare to traditional stochastic gradient, a smaller variance of the estimated gradients near the minimizer gives faster convergence rate. 
         Major examples of VRMs include SVRG by Xiao, Zhang \cite{xiao_proximal_2014}, Finito by Defazio et al. \cite{defazio_finito_2014}, SAG by Schmidt et al. \cite{schmidt_minimizing_2017}, and SAGA by \cite{defazio_saga_2014}. 
-        \todoinline{\noindent
-            We can then list some citations and references to commonly known variance reduced method here. 
-            Let's list some here then. 
-            \begin{enumerate}
-                \item[$\blacksquare$] SVRG: Proximal stochastic gradient with progressive variance reduction. 
-                \item[$\blacksquare$] Finito: A faster, permutable incremental gradient method for big data problems
-                \item[$\blacksquare$] SAG: Minimizing finite sums with the stochastic average gradient
-                \item[$\blacksquare$] SAGA: A fast incremental gradient method with support for non-strongly convex composite objectives. 
-            \end{enumerate}
-        }
         \par
-        The parts coming will introduce the algorithms, explain its key innovations. 
+        The parts coming introduce the Catalyst algorithms and its key innovations. 
         The last section reviews recent literatures on the topics and gives potential future works. 
         \begin{definition}[Lin's Universal Catalyst Acceleration]\label{def:lin-catalyst-original}\; \\
             Let $F:\RR \rightarrow \overline \RR$ be $\mu \ge 0$ strongly convex and closed. 
@@ -1298,13 +1282,8 @@
             \par 
             The convergence of the outer loop made use of an inexact version of the proximal gradient inequality (similar to Theorem \ref{thm:prox-grad-ineq}) stated as Lemma A.7 in \cite{lin_universal_2015}. 
             This lemma is instrumental for deriving an inexact variant of the estimating sequence $\phi_k^* \ge F(x_k) + \xi_k$. 
-            The convergence proof (outer and inner loop together) from Lin was inspired by 
-            \todo{\noindent
-                $\blacksquare$ Add bib, the paper is 
-                \\
-                $\square$ Cite. 
-            }{\hl{Schmidt's Inexact Proximal Gradient method. }} 
-            The technique of estimating sequence as defined back in Definition \ref{def:nes-est-seq} did the heavy lifting, but it results in depressingly long proof making it unsuitable for exposition here. 
+            The convergence proof (outer and inner loop together) from Lin was inspired by Schmidt's Inexact Proximal Gradient method \cite{schmidt_convergence_2011}. 
+            The technique of estimating sequence introduced back in Definition \ref{def:nes-est-seq} did the heavy lifting, but it results in depressingly long proof making it unsuitable for exposition here. 
             Significant pieces of theoretical innovations are covered in details in our most recent Fall Winter 2024 MATH 590 report. 
             The parts that come will complement content in the report, filling up missing content and attempts to build a bigger picture of Catalyst Acceleration. 
 
@@ -1510,24 +1489,18 @@
                 \delta' \Vert \nabla \mathcal M^*_{F, \kappa^{-1}}(x) \Vert \quad 
                 \text{with } \delta' = \sqrt{\delta}/\left(1 - \sqrt{\delta}\right). 
             \end{align*}
-            \par 
-            For a more general development of characterizations of inexact oracles that is more comprehensive and rigorous, see 
-            \todo{
-                $\square$ Add paper: ``First-order methods of smooth convex optimization with inexact oracle'' \\
-                $\square$ Cite them. 
-            }
-            {\hl{Devolder et al.}}
-            Their works were earlier and a Nesterov accelerated algorithm using estimating sequence and inexact oracles was derived. 
             These results are instrumental to prove the convergence of $\mathbb M$ and giving convergence claim of $\mathbb A$ under certain assumption on $(\delta_k)_{k \ge 0}, (\epsilon_k)_{k \ge0}$. 
+            For a more general development of characterizations of inexact oracles that is more comprehensive and rigorous, see 
+            Devolder et al. \cite{devolder_first-order_2014}. 
+            It's discusses a Nesterov accelerated algorithm using estimating sequence with inexact oracles. 
             \par
-            Finally, besides Definition \ref{def:catalyst-termination-c1}, \ref{def:catalyst-termination-c2}, there is the ``Fixed Budget" termination criterion. 
-            It terminates $\mathbb M$ after a fixed number of iteration. 
+            Besides Definition \ref{def:catalyst-termination-c1}, \ref{def:catalyst-termination-c2}, the ``Fixed Budget" termination criterion terminates $\mathbb M$ after a fixed number of iteration given accuracy $\epsilon_k$. 
             Criterion C1 used to prove the overall complexity in Lin et al. \cite{lin_universal_2015}, but the bound is deliberately loose to allow generality, making it extremely impractical. 
             Criterion C2 places similar upper bound on the iteration complexity for $\mathbb M$, but it still remains impractical. 
             \par
             Interestingly, the new termination criterion C2 gives improvements on the complexity of inner loop $\mathbb M$, outer loop $\mathbb A$, and the relative error sequence $(\delta_k)_{k \ge0}$ for $\mathbb M$. 
             The theorems and commentaries that follow will illustrate. 
-            \begin{definition}[A better Catalyst Acceleration]\label{def:catalyst-relative}
+            \begin{definition}[Catalyst Acceleration with relative inexactness]\label{def:catalyst-relative}
                 Suppose that $F$ is a $\mu \ge 0$ strongly smooth under Assumption \ref{ass:catalyst1}. 
                 Initialize any $x_0 \in \mathbb \RR^n$, $\kappa > 0$. 
                 Given the relative error sequence $(\delta_k)_{k \ge 0}$, or equivalently some fixed budget number of iterations $T_{\mathbb M}$, or absolute error sequence $(\epsilon_k)_{k \ge 0}$: 
@@ -1566,7 +1539,7 @@
                 For a precise description of the upper bound, see Theorem 8. 
             \end{remark}
             The key improvement here compared to using absolute inexactness for $\mathbb M$ as stated by Theorem \ref{thm:err-seq-outer-s-cnvx}, \ref{thm:erro-seq-outer-cnvx} is that $(\delta_k)_{k \ge0}$ doesn't require knowledge on $F^*$. 
-            This innocent detail helps to develop a nonconvex variant of Catalyst call 4WD Catalyst which is the focus of the paper by Paguette \cite{paquette_catalyst_2018}. 
+            This innocent detail helps to develop a nonconvex variant of Catalyst call 4WD Catalyst which is the focus of the paper by Paquette \cite{paquette_catalyst_2018}. 
             Corollary 16 in Lin et al.'s second Catalyst paper \cite{lin_catalyst_2018} gives complexity for $\mathbb M$ Using termination criterion C2 with a warm start specialized for $C2$. 
             It's important to note that the upper complexity bounds are much better, and it doesn't require bounded level set compared to Theorem \ref{prop:inner-loop-complexity-cnvx}.         
     \subsection{Potential future research}
