@@ -75,6 +75,9 @@
         \item Is it possible to describe the convergence of function value for momentum sequences that are much weaker than the Nesterov's rule? 
     \end{enumerate}
     The good news is we have definitive answers for all questions by our own efforts of research. 
+    \todoinline{\noindent
+        $\square$ Change all the organization parts here
+    }
     Section \ref{sec:unify-nes-acceleration}, \ref{sec:free-rwapg} are our ongoing research which present the answers to the questions. 
     \par
     In Section \ref{sec:unify-nes-acceleration}, we proposed the method of ``Relaxed Weak Accelerated Proximal Gradient (R-WAPG)'' as the foundation to describe several variants of Accelerated proximal gradient method in the literatures. 
@@ -1173,23 +1176,24 @@
             \\
             $\square$ Cite them. 
         }
-        {\hl{incremental methods}}
+        {\hl{incremental methods}} \cite{bertsekas_incremental_2011,bertsekas_incremental_2017}
         for solving a large sum problem: $F(x) = \sum_{i = 1}^{N} f_i(x)$ in machine learning.
         It can be deterministic, or stochastic. 
         When it's stochastic, the theories focuses on the expected optimality gap: $\mathbb E[F(x_k) - F^*]$, for the inner and outer loop. 
         Let's assume for simplicity of discussion that it's deterministic and focus on: $F(x_k) - F^*$. 
         \par 
         The idea of VRM is to stabilize the estimate of gradient using information of the gradient (which can be estimated, or exact) from all or a subset at previous iterates. 
-        In each iteration, only the gradient of a few samples are accessed and uses simple calculations from previously stored gradient to attain overall better complexity 
-        It can achieve that because the variance of the estimated gradients are smaller when the iterates are close to the set of true minimizer. 
+        In each iteration, only the gradient of a few samples are accessed and uses simple calculations from previously stored gradient to attain overall better complexity.
+        Compare to traditional stochastic gradient, a smaller variance of the estimated gradients near the minimizer gives faster convergence rate. 
+        Major examples of VRMs include SVRG by Xiao, Zhang \cite{xiao_proximal_2014}, Finito by Defazio et al. \cite{defazio_finito_2014}, SAG by Schmidt et al. \cite{schmidt_minimizing_2017}, and SAGA by \cite{defazio_saga_2014}. 
         \todoinline{\noindent
             We can then list some citations and references to commonly known variance reduced method here. 
             Let's list some here then. 
             \begin{enumerate}
-                \item SVRG: Proximal stochastic gradient with progressive variance reduction. 
-                \item Finito: A faster, permutable incremental gradient method for big data problems
-                \item SAG: Minimizing finite sums with the stochastic average gradient
-                \item SAGA: A fast increment al gradient method with support for non-strongly convex composite objectives. 
+                \item[$\blacksquare$] SVRG: Proximal stochastic gradient with progressive variance reduction. 
+                \item[$\blacksquare$] Finito: A faster, permutable incremental gradient method for big data problems
+                \item[$\blacksquare$] SAG: Minimizing finite sums with the stochastic average gradient
+                \item[$\blacksquare$] SAGA: A fast incremental gradient method with support for non-strongly convex composite objectives. 
             \end{enumerate}
         }
         \par
