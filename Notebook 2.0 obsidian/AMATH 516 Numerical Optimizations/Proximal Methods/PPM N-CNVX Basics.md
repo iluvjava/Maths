@@ -1,5 +1,6 @@
 ---
-alias: Proximal Point Convergence in the Nonconvex case
+aliases:
+  - Basics of Proximal Point Convergence in the Nonconvex case
 ---
 Pre-req: 
 - [Limiting Subgradient](../Non-Smooth%20Calculus/Limiting%20Subgradient.md)

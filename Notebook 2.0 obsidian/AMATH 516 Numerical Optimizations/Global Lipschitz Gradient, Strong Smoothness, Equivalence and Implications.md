@@ -539,7 +539,7 @@ $$
 \end{aligned}
 $$
 
-at `[[3]]` we made use of the [Cute Formula](Background/Euclidean%20Jensen's%20Equality.md). This would produce the results when we substitute in $D_f(y, x_\alpha), D_f(x, x_\alpha)$ that 
+at `[[3]]` we made use of the [Cute Formula](AMATH%20516%20Numerical%20Optimizations/Background/Equalities,%20Inequalities%20of%20Euclidean%20Space.md). This would produce the results when we substitute in $D_f(y, x_\alpha), D_f(x, x_\alpha)$ that 
 
 $$
 {\small
@@ -564,7 +564,7 @@ To see if this still works with different type of norms, we need to know whether
 
 #### **\[4\]=> \[10\]**
 
-We prove the upper bound of the Bregman Div next as well. The story is similar to above, starting with `[[5]]` and make $D_f(x, x_\alpha)\le \frac{L}{2}\Vert y - x\Vert^2, D_f(y, x_\alpha) \le \frac{L}{2}\Vert y - x\Vert^2$, then multiple $\alpha, (1 - \alpha)$ on both inequality, adding then and use the [Cute Formula](Background/Euclidean%20Jensen's%20Equality.md) to get the result. 
+We prove the upper bound of the Bregman Div next as well. The story is similar to above, starting with `[[5]]` and make $D_f(x, x_\alpha)\le \frac{L}{2}\Vert y - x\Vert^2, D_f(y, x_\alpha) \le \frac{L}{2}\Vert y - x\Vert^2$, then multiple $\alpha, (1 - \alpha)$ on both inequality, adding then and use the [Cute Formula](AMATH%20516%20Numerical%20Optimizations/Background/Equalities,%20Inequalities%20of%20Euclidean%20Space.md) to get the result. 
 
 ----
 ### **Examples**

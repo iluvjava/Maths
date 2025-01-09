@@ -87,7 +87,7 @@ $$
 
 and observe that, on the last line, we recover the characterizations for an averaged operator. 
 And notice that all inequalities above are equivalent, hence, doing the proof in reverse means that the characterizations imply the averaged operator is the convex combination of an identity and a non-expansive operator. 
-The cute formula refers to [Euclidean Jensen's Equality](../Background/Euclidean%20Jensen's%20Equality.md). 
+The cute formula refers to [Equalities, Inequalities of Euclidean Space](AMATH%20516%20Numerical%20Optimizations/Background/Equalities,%20Inequalities%20of%20Euclidean%20Space.md). 
 
 
 **References**: 
@@ -130,7 +130,7 @@ In a sense, the none-expansive operator is damped by the identity operator.
 
 **Proof**
 
-Recall from [Euclidean Jensen's Equality](../Background/Euclidean%20Jensen's%20Equality.md): 
+Recall from [Equalities, Inequalities of Euclidean Space](AMATH%20516%20Numerical%20Optimizations/Background/Equalities,%20Inequalities%20of%20Euclidean%20Space.md): 
 
 $$
 \begin{aligned}

@@ -87,18 +87,18 @@
     In Section \ref{sec:free-rwapg} we propose a practical algorithm that exploits a specific term in the proof of R-WAPG to achieve faster convergence for solving (\ref{eqn:additive-comp-obj}) without knowing parameter $L, \mu$ in prior. 
     Results of numerical experiments are presented. 
     \par
-    Section \ref{sec:catalyst} are results of literatures review in MATH 590. 
+    Section \ref{sec:catalyst} complements report completed for MATH 590 Fall Winter 2024. 
     \todo{
         $\blacksquare$ Add Lin's papers and Paquette's papers.
     }
-    {\hl{It's based on a series of papers}} in the topic of Catalyst Meta Acceleration method for First Order Variance Reduced Methods. 
-    We will point out potential future direction of research of Catalyst acceleration. 
-    \par
-    Section \ref{sec:inexact-prox}, \ref{sec:nes-acc-ncnvx} preview literatures in nonsmooth optimization frontier research where progress and impacts can be made.  
+    {\hl{It's based on a series of recent papers}} \cite{lin_universal_2015,lin_catalyst_2018,paquette_catalyst_2018} about Catalyst Meta Acceleration for First Order Variance Reduced Methods. 
+    The end of Section \ref{sec:catalyst} points out potential future direction of research of Catalyst Acceleration. 
+    % \par
+    % Section \ref{sec:inexact-prox}, \ref{sec:nes-acc-ncnvx} preview literatures in nonsmooth optimization frontier research where progress and impacts can be made.  
     \subsection{Theme of the research}
         This section specifies a theme of the research in this proposal. 
-        Out first objective is to explore the Goldilocks zones between these topics: theories of variational analysis, design of continuous optimization algorithm and applications in sciences, engineering, and statistics.  
-        Our second objective is to identify the ``chemistry'' occurring between properties of functions and the designs of continuous optimizations algorithm and how it impacts the convergence and behaviors of the algorithms. 
+        Firstly, we explore the Goldilocks zones between these topics: Nesterov's acceleration, algorithms with inexact evaluation of the proximal point operator, and applications.  
+        In doing so, we identify the ``chemistry'' between various properties of functions and the affect it has on the designs/behaviors of first order algorithm for continuous optimization. 
 
 
     
@@ -279,35 +279,15 @@
             \end{remark}
 
     \subsection{Nesterov's estimating sequence technique}
-        The method of Nesterov's estimating sequence for accelerated gradient method, and their nonsmooth counterparts assumes a convex function $F: \RR^n \rightarrow \overline{\RR}$. 
+        The method of Nesterov's estimating was used for deriving accelerated gradient method, and their nonsmooth counterparts assuming function $F: \RR^n \rightarrow \overline{\RR}$ is convex and Lipschitz smooth. 
+        We emphasize that the techniques derives the algorithm as well as proving its convergence rate. 
         The estimating sequence is a technique searching for candidate algorithm with extrapolated momentum, and proving their convergence rate if possible. 
         \par
         The method is widespread in the literatures, and the ideas behind it are tremendously useful. 
-        \todo{
-            $\blacksquare$ Add Guler's 1992 new proximal point paper. 
-            \\ $\blacksquare$ Cite it.}
-        {\hl{Güler}} \cite{guler_new_1992}
-        used the method to design an accelerated proximal point method, which inspired and served as the foundation of Catalyst Acceleration for variance reduced method in machine learning. 
-        \todo{
-            $\blacksquare$ Add the paper: ``Accelerating the cubic regularization of Newton’s method on convex
-            problems''\\ 
-            $\blacksquare$ Cite it.
-        }
-        {\hl{Nesterov}} \cite{nesterov_accelerating_2008}
-        also used the technique to design an accelerated cubic regularized Newton's method. 
-        In 
-        \todo{
-            $\blacksquare$ Cite it. 
-        }
-        \hl{(6.1.19) of Nesterov's book }\cite{nesterov_lectures_2018}, 
-        it's also used to derive a method of accelerated mirror descent. 
-        And finally, 
-        \todo{
-            $\blacksquare$ Add paper: ``Accelerated regularized newton methods for minimizing composite convex functions'' \\ 
-            $\blacksquare$ Cite it. 
-        }
-        {\hl{Geovani N. et al}} \cite{grapiglia_accelerated_2019}
-        used the technique to derive an accelerated Newton's method for convex composite objective function. 
+        Güler \cite{guler_new_1992} used the method to design an accelerated proximal point method, which was the foundation of Catalyst Acceleration for variance reduced method in machine learning. 
+        Nesterov \cite{nesterov_accelerating_2008} used the technique to design an accelerated cubic regularized Newton's method. 
+        In (6.1.19) of Nesterov's book \cite{nesterov_lectures_2018}, it's used to derive a method of accelerated mirror descent. 
+        Finally, Geovani N. et al \cite{grapiglia_accelerated_2019} used it to derive an accelerated Newton's method for convex composite objective function. 
         \par
         The definition of the estimating sequence that follows is based on our own understanding of the estimating sequence. 
         \begin{definition}[Nesterov's estimating sequence]\label{def:nes-est-seq}
@@ -1133,8 +1113,11 @@
         
 
 \section{Catalyst accelerations and future works}\label{sec:catalyst}
-    In this section, we assume that $F: \RR^n \rightarrow \overline \RR$ is a convex function. 
-    This section introduces the ideas in Catalyst acceleration, elucidate the focuses in the research, and then discuss future research direction at the end. 
+    Section \ref{ssec:catalyst-intro} gives the main ideas behind the Catalyst Acceleration Framework. 
+    It follows Lin et al.'s first paper \cite{lin_universal_2015} on Catalyst Acceleration, the key innovations and what it can be used for together with a sketch over the complexity analysis of the entire frameworks. 
+    Section \ref{ssec:catalyst-second-paper} introduces Lin et al.'s second paper \cite{lin_catalyst_2018} on Catalyst which considers an improved relative error condition stated in \ref{def:catalyst-termination-c2} that bounds the inexactness of the gradient on the Moreau Envelope. 
+    This condition not only improves the overall complexity, but it also hints the development of nonconvex gradient based 4WD Catalyst by Paquette \cite{paquette_catalyst_2018}. 
+
     \begin{assumption}\label{ass:catalyst1}
         Given any $\beta > 0$ and $y \in \RR^n$, and $F: \RR^n\rightarrow \overline \RR$ is $\mu \ge 0$ strongly convex and closed. 
         Assume that minimizer exists for $F$ and the minimum is $F^*$. 
@@ -1163,7 +1146,8 @@
         Setting $\epsilon = 0$, we have the exact definition of the exact resolvent given as $\mathcal J_{\beta^{-1}}y = \mathcal J^0_{\beta^{-1}}y$. 
     \end{remark}
     \textbf{Organizations now follow}. 
-    \subsection{Introduction to Catalyst}
+    
+    \subsection{Introduction to Catalyst}\label{ssec:catalyst-intro}
         Inspired by accelerated proximal point method from Güler \cite{guler_new_1992}, and inexact proximal point method of Rockafellar 1976 \cite{rockafellar_monotone_1976}, Lin \cite{lin_universal_2015} proposed a generic method taking inspirations from the convergence claims of Accelerated proximal point method to accelerated the convergence rate of first order variance reduced incremental method. 
         The class of variance reduced method is vast, but to use the most relevant feature of this class of first order method is that they are stochastic method that is not slower than full gradient descent in complexity. 
         See Gower's guide \cite{gower_variance-reduced_2020} for more information on variance reduced methods in machine learning. 
@@ -1177,11 +1161,11 @@
         Let's assume for simplicity of discussion that it's deterministic and focus on: $F(x_k) - F^*$. 
         \par 
         The idea of VRM is to stabilize the estimate of gradient using information of the gradient (which can be estimated, or exact) from all or a subset at previous iterates. 
-        In each iteration, the gradient of just a few samples are used with simple calculations to attain better complexity than full gradient descent. 
+        In each iteration, the gradient of just a few samples are used to attain a new estimate of the gradient with minimum additional calculations.  It gives better complexity than full gradient descent. 
         Compare to traditional stochastic gradient, a smaller variance of the estimated gradients near the minimizer gives faster convergence rate. 
         Major examples of VRMs include SVRG by Xiao, Zhang \cite{xiao_proximal_2014}, Finito by Defazio et al. \cite{defazio_finito_2014}, SAG by Schmidt et al. \cite{schmidt_minimizing_2017}, and SAGA by \cite{defazio_saga_2014}. 
         \par
-        The parts coming introduce the Catalyst algorithms and its key innovations. 
+        The coming parts introduce the Catalyst algorithms and its key innovations. 
         The last section reviews recent literatures on the topics and gives potential future works. 
         \begin{definition}[Lin's Universal Catalyst Acceleration]\label{def:lin-catalyst-original}\; \\
             Let $F:\RR \rightarrow \overline \RR$ be $\mu \ge 0$ strongly convex and closed. 
@@ -1400,7 +1384,7 @@
             % \end{enumerate}
             % The list above is not exhaustive. 
 
-    \subsection{The second Catalyst Acceleration paper}
+    \subsection{The second Catalyst Acceleration paper}\label{ssec:catalyst-second-paper}
         This section discusses major contents in Lin's second Catalyst paper \cite{lin_catalyst_2018}. 
         To expedite the execution of $\mathbb M$ in general given an error sequence $(\epsilon_k)_{k \ge 0}$ (or equivalently some lower bounds of it), Lin suggested the following new ideas which are not  mutually exclusive: 
         \begin{enumerate}
@@ -1542,15 +1526,17 @@
             This innocent detail helps to develop a nonconvex variant of Catalyst call 4WD Catalyst which is the focus of the paper by Paquette \cite{paquette_catalyst_2018}. 
             Corollary 16 in Lin et al.'s second Catalyst paper \cite{lin_catalyst_2018} gives complexity for $\mathbb M$ Using termination criterion C2 with a warm start specialized for $C2$. 
             It's important to note that the upper complexity bounds are much better, and it doesn't require bounded level set compared to Theorem \ref{prop:inner-loop-complexity-cnvx}.         
-    \subsection{Potential future research}
+    \subsection{Potential future research}\label{ssec:catalyst-future}
         Now, we have enough context to understand the potential future directions of research regarding the Catalyst Acceleration framework. 
+        \subsubsection{Necoara et al.'s comments on Catalyst Acceleration}
+        \subsubsection{Our ideas on future works of Catalyst Acceleration}
 
     
-\section{Methods of inexact proximal point}\label{sec:inexact-prox}
-    Content of this section is primarily based on Khanh et al. \cite{duy_khanh_inexact_2023} on inexact proximal method for weakly convex functions. 
+% \section{Methods of inexact proximal point}\label{sec:inexact-prox}
+%     Content of this section is primarily based on Khanh et al. \cite{duy_khanh_inexact_2023} on inexact proximal method for weakly convex functions. 
 
 
-\section{Nestrov's acceleration in the nonconvex case}\label{sec:nes-acc-ncnvx}
+% \section{Nestrov's acceleration in the nonconvex case}\label{sec:nes-acc-ncnvx}
     % The behavior of Nesterov's acceleration for function that are nonconvex are the holy grail and the absolute frontier. 
     % The approaches are incredibly diverse and therefore, this section will only list relevant references and briefly mention the ideas involved in those literatures. 
     % \todoinline{\noindent

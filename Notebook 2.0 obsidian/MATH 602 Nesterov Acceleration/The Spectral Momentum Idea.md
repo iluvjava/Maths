@@ -1,5 +1,5 @@
 - [V-FISTA](V-FISTA.md)
-- [Cute Formula](../AMATH%20516%20Numerical%20Optimizations/Background/Euclidean%20Jensen's%20Equality.md)
+- [Cute Formula](AMATH%20516%20Numerical%20Optimizations/Background/Equalities,%20Inequalities%20of%20Euclidean%20Space.md)
 
 
 

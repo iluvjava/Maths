@@ -3,18 +3,26 @@ alias: Cute Formula
 ---
 ### **Intro**
 
-This formula is extremely useful when we are dealing with Euclidean norm (Also applicable for Hilbert space), with well defined inner products and norms. We show the proof for it and we will provide more variance for it. The cute formula is: 
+Unless specified, assume the ambient space is some Hilbert space $\mathcal H$. 
 
-$$
-\begin{aligned}
-    \Vert (1 - \theta) a + \theta b\Vert^2 = (1 - \theta)\Vert  a\Vert^2 + \theta \Vert b\Vert^2 - 
-    (\theta)(1 - \theta)\Vert a - b\Vert^2 \quad \forall \theta \in \mathbb R. 
-\end{aligned}
-$$
+This formula is extremely useful when we are dealing with Euclidean norm (Also applicable for Hilbert space), with well-defined inner products and norms. We show the proof for it, and we will provide more variance for it. The cute formula is: 
+
+
+### **Equalities**
+
+#### **Lemma | The cute equality**
+> For any $a, b \in \mathcal H$, it has for all $\theta \in \R^n$: 
+> $$
+> \begin{aligned}
+>     \Vert (1 - \theta) a + \theta b\Vert^2 = (1 - \theta)\Vert  a\Vert^2 + \theta \Vert b\Vert^2 - 
+>     (\theta)(1 - \theta)\Vert a - b\Vert^2 \quad \forall \theta \in \mathbb R. 
+> \end{aligned}
+> $$
+
 
 **Observation**
 
-The lhs is the norm of the affine combinations: $\Vert (1 - \theta) a + \theta b\Vert^2$, the first 2 terms on the RHS: $(1 - \theta)\Vert  a\Vert^2 + \theta \Vert b\Vert^2$ is the affine combination of the individual norms, and the final term is an extra term that makes the equality true. 
+The LHS is the norm of the affine combinations: $\Vert (1 - \theta) a + \theta b\Vert^2$, the first 2 terms on the RHS: $(1 - \theta)\Vert  a\Vert^2 + \theta \Vert b\Vert^2$ is the affine combination of the individual norms, and the final term is an extra term that makes the equality true. 
 
 **Proof:** 
 
@@ -68,7 +76,7 @@ $$
 \end{aligned}
 $$
 
-Therefore it yields the above equality but in a different format where the last term on the RHS is in the LHS. 
+Therefore, it yields the above equality but in a different format where the last term on the RHS is in the LHS. 
 
 **References**: 
 
@@ -76,13 +84,13 @@ Corollary 2.14 in Heinz's Monotone Operator's textbook.
 
 **Remarks**
 
-Exchaging $\langle ,\rangle$ to be $\langle ,\rangle_H$ and $\Vert \cdot\Vert$ into $\Vert \cdot\Vert_H$ with $H$ being a positive definite operator in the space would yield the same results as the above. 
+Exchanging $\langle ,\rangle$ to be $\langle ,\rangle_H$ and $\Vert \cdot\Vert$ into $\Vert \cdot\Vert_H$ with $H$ being a positive definite operator in the space would yield the same results as the above. 
 
 
 ---
 ### **A Generalized Version**
 
-In the general version of the theorem, we consider an affine combinations of vectors $\sum_{i\in I} \alpha_i = 1$ in the Euclidean space (Original statement is stated for the Hilbert spaces), and form the equality: 
+In the general version of the theorem, we consider an affine combination of vectors $\sum_{i\in I} \alpha_i = 1$ in the Euclidean space (Original statement is stated for the Hilbert spaces), and form the equality: 
 
 $$
 \begin{aligned}
@@ -121,7 +129,7 @@ Heinz's monotone operator textbook first edition, Lemma 2.13 (ii). Professor Hei
 ---
 ### **An Augmented Version**
 
-Differs from the generalized version, this rule is for convex combinations of 2 vector in Hilbert Space. 
+Differs from the generalized version, this rule is for convex combinations of 2 vectors in Hilbert Space. 
 Here we derive another version of the same formula, which is occasionally useful: 
 
 $$
@@ -153,5 +161,8 @@ and we called that the augmented version of the cute formula.
 Lemma 1.8, In professor's Heinz's Notes
 
 
+
+---
+### **Some other inequalities**
 
 

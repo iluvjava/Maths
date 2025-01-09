@@ -101,7 +101,7 @@ $$
 \end{aligned}
 $$
 
-(\[1\]): We used the [Cute Formula](Background/Euclidean%20Jensen's%20Equality.md) because of the Euclidean norm, and hence the function is $\alpha$-strongly convex in the 2 norm, if and only if $f - \alpha/2\Vert \cdot\Vert$ is a convex function. 
+(\[1\]): We used the [Cute Formula](AMATH%20516%20Numerical%20Optimizations/Background/Equalities,%20Inequalities%20of%20Euclidean%20Space.md) because of the Euclidean norm, and hence the function is $\alpha$-strongly convex in the 2 norm, if and only if $f - \alpha/2\Vert \cdot\Vert$ is a convex function. 
 
 **\[Def\] <=> \[2.\]**
 
