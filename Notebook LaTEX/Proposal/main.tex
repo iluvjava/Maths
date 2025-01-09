@@ -1109,14 +1109,24 @@
         For this specific experiment showed in the figure, the estimated value of $\mu, L$ which we feed into V-FISTA are $\mu = 7.432363627613958\times 10^{-18}$ and $L = 2321.737206983643$. 
         One of the most important feature is that the estimate $\mu$ doesn't converge to the true value, but it didn't affect the convergence of $\delta_k$. 
 
-        % \subsubsection{Logistic regression}
-        
+    \subsection{Future works for R-WAPG}
+        There is one intriguing detail in the burried in the literatures but weren't realized in it. 
+        It has the potential to include more variants of the FISTA algorithms and their convergence proof. 
+        Our future works would be to extend the frameworks and weaken it further while retaining the goal of getting some type of upper bound on the value $F(x_k) - F^*$ and show that there are choices for the momentum parameter $\alpha_k$ such that convergence is possible. 
+        \subsubsection{Nesterov's idea of strong convexity transfer}
+        \todoinline{\noindent
+            In terms of theories, it's possible to consider: 
+            \begin{enumerate}
+                \item Nesterov, 2013, ``Gradient methods for minimizing composite functions'', strong convexity transfer. 
+                \item ``An introduction to continuous optimization for imaging'', Algorithm 5, the same thing is there as well. 
+            \end{enumerate}
+        }
+        \subsubsection{Tying up some loose ends}
+        \todoinline{\noindent
+            In terms of practice, we missing convergence rate of Free-RWAPG, and the convergence of the norm of the gradient method for R-WAPG. 
+        }
 
 \section{Catalyst accelerations and future works}\label{sec:catalyst}
-    Section \ref{ssec:catalyst-intro} gives the main ideas behind the Catalyst Acceleration Framework. 
-    It follows Lin et al.'s first paper \cite{lin_universal_2015} on Catalyst Acceleration, the key innovations and what it can be used for together with a sketch over the complexity analysis of the entire frameworks. 
-    Section \ref{ssec:catalyst-second-paper} introduces Lin et al.'s second paper \cite{lin_catalyst_2018} on Catalyst which considers an improved relative error condition stated in \ref{def:catalyst-termination-c2} that bounds the inexactness of the gradient on the Moreau Envelope. 
-    This condition not only improves the overall complexity, but it also hints the development of nonconvex gradient based 4WD Catalyst by Paquette \cite{paquette_catalyst_2018}. 
 
     \begin{assumption}\label{ass:catalyst1}
         Given any $\beta > 0$ and $y \in \RR^n$, and $F: \RR^n\rightarrow \overline \RR$ is $\mu \ge 0$ strongly convex and closed. 
@@ -1146,6 +1156,10 @@
         Setting $\epsilon = 0$, we have the exact definition of the exact resolvent given as $\mathcal J_{\beta^{-1}}y = \mathcal J^0_{\beta^{-1}}y$. 
     \end{remark}
     \textbf{Organizations now follow}. 
+    Section \ref{ssec:catalyst-intro} gives the main ideas behind the Catalyst Acceleration Framework. 
+    It follows Lin et al.'s first paper \cite{lin_universal_2015} on Catalyst Acceleration, the key innovations and what it can be used for together with a sketch over the complexity analysis of the entire frameworks. 
+    Section \ref{ssec:catalyst-second-paper} introduces Lin et al.'s second paper \cite{lin_catalyst_2018} on Catalyst which considers an improved relative error condition stated in \ref{def:catalyst-termination-c2} that bounds the inexactness of the gradient on the Moreau Envelope. 
+    This condition not only improves the overall complexity, but it also hints the development of nonconvex gradient based 4WD Catalyst by Paquette \cite{paquette_catalyst_2018}. 
     
     \subsection{Introduction to Catalyst}\label{ssec:catalyst-intro}
         Inspired by accelerated proximal point method from Güler \cite{guler_new_1992}, and inexact proximal point method of Rockafellar 1976 \cite{rockafellar_monotone_1976}, Lin \cite{lin_universal_2015} proposed a generic method taking inspirations from the convergence claims of Accelerated proximal point method to accelerated the convergence rate of first order variance reduced incremental method. 
@@ -1529,6 +1543,7 @@
     \subsection{Potential future research}\label{ssec:catalyst-future}
         Now, we have enough context to understand the potential future directions of research regarding the Catalyst Acceleration framework. 
         \subsubsection{Necoara et al.'s comments on Catalyst Acceleration}
+            
         \subsubsection{Our ideas on future works of Catalyst Acceleration}
 
     

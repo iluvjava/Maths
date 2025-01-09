@@ -138,7 +138,7 @@ Therefore, we discover that $x_k, v_k, y_k$ lies on the same line.
 
 #### **Claim | Stepwise Lyapunov Claim**
 > Fix any integer $k \in \mathbb Z$.
-> Given any $v_k, x_k$ and $\gamma_k > 0$, invoke Definition \ref{def:stepwise-wapg} to obtain $v_{k + 1}, x_{k + 1}, y_k, \hat \gamma_{k + 1}$. 
+> Given any $v_k, x_k$ and $\gamma_k > 0$, invoke Algorithm 2 to obtain $v_{k + 1}, x_{k + 1}, y_k, \hat \gamma_{k + 1}$. 
 > Fix any arbitrary $R_k \in \R$.
 > Define: 
 > $$
@@ -644,8 +644,11 @@ $$
         F(x_k) - F(T_L y_k) - \langle g_k, x_k - y_k\rangle - \frac{1}{2L}\Vert g_k\Vert^2
     \right)- \langle g_k, x_k - x^*\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
     \\
-    &= F(T_L y_k) - F(x^*) + \langle g_k, x^* - y_k\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
-    + \frac{1}{2L}\Vert g_k\Vert^2 \le 0. 
+    &= 
+    \textcolor{red}{
+        F(T_L y_k) - F(x^*) + \langle g_k, x^* - y_k\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+        + \frac{1}{2L}\Vert g_k\Vert^2 \le 0
+    }. 
 \end{aligned}
 }
 \tag{4*}
@@ -671,6 +674,9 @@ Use any $0\le \mu \le D_f(x^*, y_k)/\Vert y_k - x^*\Vert^2$ also works.
 The default $\mu$ being the strong convexity modulus is a very pessimistic choice for the inequality above. 
 
 The pessimistic choice of $\mu$ being the strong convexity modulus is for claiming the convergence of all initial guess $x_0, y_0$. 
+
+
+
 
 ---
 ### **Building the R-WAPG**

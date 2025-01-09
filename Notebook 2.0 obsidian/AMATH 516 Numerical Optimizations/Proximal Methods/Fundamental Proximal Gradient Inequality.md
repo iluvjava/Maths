@@ -8,9 +8,8 @@ Pre-requisite:
 
 This section introduces a crucial inequality that is widely used for the convergence proof of the algorithm that involves the use of a proximal gradient operator. 
 
-**Assumption**
-
-1. $h = f + g$ where $g: \R \rightarrow \overline \R$, $f$ are closed convex and proper, and $f is $$L$-Lipschitz smooth. 
+#### **Assumption 0**
+> 1. $h = f + g$ where $g: \R \rightarrow \overline \R$, $f$ are closed convex and proper, and $f is $L$-Lipschitz smooth. 
 
 
 Recall from previous sections on results of the proximal gradient operator. 
@@ -232,7 +231,7 @@ In this way, the above inequality can be generalized.
 ---
 ### **The envelope approach**
 
-
+We are changing the notations a bit sorry. 
 
 **Organizations:**
 
@@ -241,35 +240,43 @@ The difference here is the absence of subgradient inequality which is not used f
 The following is the same proof adapted from [Proximal Gradient Convergence Rate](AMATH%20516%20Numerical%20Optimizations/Classics%20Algorithms/Proximal%20Gradient%20Convergence%20Rate.md).
 
 **Notations:**
-
+Let $\beta > 0$be arbitrary. 
+Denotes: 
 $$
 \begin{aligned}
-    h(x) &:= g + f, 
+    F &:= g + f, 
     \\
-    T&= [I + L^{-1}\partial h]\circ [I - L^{-1}\nabla f], 
+    T_{\beta^{-1}, f, g}&= [I + \beta^{-1}\partial g]\circ [I - \beta^{-1}\nabla f], 
     \\
-    \widetilde{\mathcal M}^{L^{-1}}
+    \widetilde{\mathcal M}^{\beta^{-1}}_F
     (x; y)
     &:= 
     g(x) + f(y) + \langle \nabla f(y), x - y\rangle
-    + \frac{L}{2}\Vert x - y\Vert^2,
+    + \frac{\beta}{2}\Vert x - y\Vert^2,
     \\
-    \mathcal M^{L^{-1}}(x; y) 
-    &:= h(x) + \frac{L}{2}\Vert x - y\Vert^2.
+    \mathcal M^{\beta^{-1}}_F(x; y) 
+    &:= F(x) + \frac{\beta}{2}\Vert x - y\Vert^2.
 \end{aligned}
 $$
 
-Unless specified, we assume that $f:\R^n \rightarrow \overline \R$ is $L$ Lipschitz smooth and $g$ is closed, proper, and convex. 
-Before the major claim we state the following lemma to the proof sleek and cool: 
+Take note that $T_{\beta^{-1, f, g}} = \argmin{x} \;\widetilde{\mathcal M}(x; y)$. 
 
-#### **Lemma | The proximal gradient envelope**
-> With $h = g + f$ as assumed in this section. 
-> Take $\widetilde{\mathcal M}^{L^{-1}}, \mathcal M^{L^{-1}}$ as defined above, we will have for all $x \in \R^n$ that: 
+
+#### **Assumption 1 | Smooth plus nonsmooth**
+> Unless specified, we assume that $f:\R^n \rightarrow \R$ differentiable and $g$ is closed, proper, and convex. 
+
+
+Before the major claim we state the following lemma to the proof sleek and cool. 
+
+#### **Lemma 1.1 | The proximal gradient envelope**
+> Take $F = g + f$, Take $\widetilde{\mathcal M}^{\beta^{-1}}_F, \mathcal M^{\beta^{-1}}_F$ as given Assumption 1. 
+> Take any arbitrary $\beta > 0$. 
+> We will have for all $x \in \R^n$ that: 
 > $$
 > \begin{aligned}
->     \widetilde{\mathcal M}^{L^{-1}}(x; y)
+>     \widetilde{\mathcal M}^{\beta^{-1}}_F(x; y)
 >     &= 
->     \mathcal M^{L^{-1}}(x; y)- D_f(x, y) \le \mathcal M^{L^{-1}}(x; y). 
+>     \mathcal M^{\beta^{-1}}_F(x; y)- D_f(x, y) \le \mathcal M^{\beta^{-1}}_F(x; y). 
 > \end{aligned}
 > $$
 
@@ -279,23 +286,22 @@ The proof for the equality is direct, we have for all $\forall x, y$:
 
 $$
 \begin{aligned}
-    \widetilde{\mathcal M}^{L^{-1}}(x; y) 
+    \widetilde{\mathcal M}^{\beta^{-1}}_F(x; y) 
     &= 
-    g(x) + f(y) + \langle \nabla f(y), x - y\rangle + \frac{L}{2}\Vert x - y\Vert^2
+    g(x) + f(y) + \langle \nabla f(y), x - y\rangle + \frac{\beta}{2}\Vert x - y\Vert^2
     \\
     &= 
     g(x) + f(x) - f(x) + f(y) 
-    + \langle \nabla f(y), x - y\rangle + \frac{L}{2}\Vert x - y\Vert^2
+    + \langle \nabla f(y), x - y\rangle + \frac{\beta}{2}\Vert x - y\Vert^2
     \\
     &= 
-    h(x) - D_f(x, y) + \frac{L}{2}\Vert x - y\Vert^2 
+    F(x) - D_f(x, y) + \frac{\beta}{2}\Vert x - y\Vert^2 
     \\
-    &= \mathcal M^{L^{-1}}(x; y) - D_f(x, y). 
+    &= \mathcal M^{\beta^{-1}}_F(x; y) - D_f(x, y). 
 \end{aligned}
 $$
 
-The inequality is by convexity of $f$ and Lipschitz property of $F$. 
-The inexact model function upper bound the actual model function. 
+
 
 
 **Remarks**
@@ -303,13 +309,14 @@ The inexact model function upper bound the actual model function.
 This should make sense since the linearizing the smooth part make the model function lower than the original model function, so it's less. 
 This is true for all $L$, the $L$ here doesn't have to be the Lipschitz smoothness constant of function $f$. 
 
-#### **Claim | The Fundamental Proximal gradient inequality**
-> Let $h = g + f$ where $f$ is convex and differentiable, and $g$ is convex. 
-> Let $T$ denote the proximal gradient operator. 
-> Fix any $y$, we have for all $x$: 
+#### **Claim 1.2 | The Fundamental Proximal gradient inequality**
+> Let $F = g + f$ where $f$ is convex and differentiable, and $g$ is convex. 
+> Let $\beta > 0$ be arbitrary. 
+> Let $T$ denote the proximal gradient operator: $T_{\beta^{-1}, f, g}$. 
+> Fix any $y$, we have for all $x \in \R^n$: 
 > $$
 > \begin{aligned}
->     h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle
+>     F(x) - F(Ty) - \langle \beta(y - Ty), x - Ty\rangle
 >     &\ge  D_f(x, y)  - D_f(Ty; y)
 > \end{aligned}
 > $$
@@ -317,53 +324,56 @@ This is true for all $L$, the $L$ here doesn't have to be the Lipschitz smoothne
 **Proof**
 
 The proof is direct. 
-The function $\widetilde{\mathcal M}(\cdot; y)$ is a $L$ strongly convex function with minimizer $Ty$ and hence it has admits quadratic growth condition around its minimizer, which gives the  strictly weaker inequality (See [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information about this property). 
-Using only this implications of strong convexity, we have for all $x \in \R^n$: 
+We can assume $F$ is $\mu \ge 0$ strongly convex, the strong convexity can come from $f$ or $g$, or both. 
+Denote $\widetilde{\mathcal M}^{\beta^{-1}}_F, \mathcal M^{\beta^{-1}}_F$ by $\mathcal M, \widetilde{\mathcal M}$ for short. 
+
+Then, the function $\widetilde{\mathcal M}(\cdot; y)$ is a $\beta + \mu$ strongly convex function with minimizer $Ty$ and hence it has admits quadratic growth condition around its minimizer, which gives the strictly weaker inequality (See [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information about this property). 
+Using only quadratic growth $\widetilde {\mathcal M}(\cdot; y)$, we have for all $x \in \R^n$: 
 
 $$
 \begin{aligned}
     0 &\le 
-    \widetilde{\mathcal M}^{L^{-1}}(x; y) - 
-    \widetilde{\mathcal M}^{L^{-1}}(Ty; y)
+    \widetilde{\mathcal M}(x; y) - 
+    \widetilde{\mathcal M}(Ty; y)
     - 
-    \frac{L}{2}\Vert x - Ty\Vert^2
+    \frac{\beta + \mu}{2}\Vert x - Ty\Vert^2
     \\
     &= 
     \left(
-        \mathcal M^{L^{-1}}(x; y) - D_f(x, y)
+        \mathcal M(x; y) - D_f(x, y)
     \right) - 
-    \mathcal M^{L^{-1}}(Ty; y) 
+    \mathcal M(Ty; y) 
     - 
-    \frac{L}{2}\Vert x - Ty\Vert^2
+    \frac{\beta + \mu}{2}\Vert x - Ty\Vert^2
     + D_f(Ty; y)
     \\
     &= 
     \left(
-        \mathcal M^{L^{-1}}(x; y)
+        \mathcal M(x; y)
         - 
-        \mathcal M^{L^{-1}}(Ty; y)
+        \mathcal M(Ty; y)
     \right)
     - 
     D_f(x, y) 
-    - \frac{L}{2}\Vert x - Ty\Vert^2
+    - \frac{\beta + \mu}{2}\Vert x - Ty\Vert^2
     + D_f(Ty; y)
     \\
     &=
     \left(
-        h(x) - h(Ty) 
+        F(x) - F(Ty) 
         + 
-        \frac{L}{2}\Vert x - y\Vert^2 - 
-        \frac{L}{2}\Vert Ty - y\Vert^2
+        \frac{\beta}{2}\Vert x - y\Vert^2 - 
+        \frac{\beta}{2}\Vert Ty - y\Vert^2
     \right)
     - D_f(x, y) 
     + D_f(Ty; y)
-    - \frac{L}{2}\Vert x - Ty\Vert^2
+    - \frac{\beta + \mu}{2}\Vert x - Ty\Vert^2
     \\
     &=
     \left(
-        h(x) - h(Ty) 
+        F(x) - F(Ty) 
         + 
-        \frac{L}{2}
+        \frac{\beta}{2}
         \left(
             \Vert x - Ty + Ty - y\Vert^2
             - 
@@ -372,13 +382,13 @@ $$
     \right)
     - D_f(x, y) 
     + D_f(Ty; y)
-    - \frac{L}{2}\Vert x - Ty\Vert^2
+    - \frac{\beta + \mu}{2}\Vert x - Ty\Vert^2
     \\
     &= 
     \left(
-        h(x) - h(Ty) 
+        F(x) - F(Ty) 
         + 
-        \frac{L}{2}
+        \frac{\beta}{2}
         \left(
             \Vert x - Ty\Vert^2 + 
             2\langle x - Ty, Ty - y\rangle
@@ -386,20 +396,27 @@ $$
     \right)
     - D_f(x, y) 
     + D_f(Ty; y)
-    - \frac{L}{2}\Vert x - Ty\Vert^2
+    - \frac{\beta + \mu}{2}\Vert x - Ty\Vert^2
     \\
     &= 
     \left(
-        h(x) - h(Ty) + \frac{L}{2}\Vert x - Ty\Vert^2 
-        - L\langle  x - Ty, y - Ty\rangle
+        F(x) - F(Ty) + \frac{\beta}{2}\Vert x - Ty\Vert^2 
+        - \beta\langle  x - Ty, y - Ty\rangle
     \right)
     - D_f(x, y) 
     + D_f(Ty; y)
-    - \frac{L}{2}\Vert x - Ty\Vert^2
+    - \frac{\beta + \mu}{2}\Vert x - Ty\Vert^2
     \\
     &=
-    h(x) - h(Ty)
-    - \langle L(y - Ty), x - Ty\rangle
+    F(x) - F(Ty)
+    - \langle \beta(y - Ty), x - Ty\rangle
+    - D_f(x, y) 
+    + D_f(Ty, y)
+    - \frac{\beta + \mu}{2}\Vert x - Ty\Vert^2
+    \\
+    &\le 
+    F(x) - F(Ty)
+    - \langle \beta(y - Ty), x - Ty\rangle
     - D_f(x, y) 
     + D_f(Ty, y). 
 \end{aligned}
@@ -416,8 +433,7 @@ The proof only used quadratic growth condition of $\widetilde {\mathcal M}^{L^{-
 The proof the follows will make use of the strong convexity assumption. 
 
 
-
-#### **Corollary | Proximal gradient inequality with smoothness**
+#### **Corollary 1.3 | Proximal gradient inequality with smoothness**
 > Assume that $h = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex. 
 > Fix any $y \in \R^n$, then for all $x\in \R^n$, the proximal gradient inequality is true: 
 > $$
@@ -440,33 +456,87 @@ $$
 \end{aligned}
 $$
 
-For all $x \in Q$: 
+Take claim 1.2, set $h = F$, $\beta = L$, $T_{L^{-1}, f, g} =: T$, then the result has, 
+for all $x \in Q$: 
 $$
 \begin{aligned}
     0 &\le 
     h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle - D_f(x, y) + D_f(Ty, y)
+    - \frac{L + \mu}{2}\Vert x - Ty\Vert^2
     & 
     \\
     &\le 
     h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle - \frac{\mu}{2}\Vert x - y\Vert^2
     + \frac{L}{2}\Vert Ty - y\Vert^2
+    - \frac{L + \mu}{2}\Vert x - Ty\Vert^2
     \\
     &= 
     h(x) - h(Ty) - \langle L(y - Ty), x -y + y - Ty\rangle 
     - \frac{\mu}{2}\Vert x - y\Vert^2
     + \frac{L}{2}\Vert Ty - y\Vert^2
+    - \frac{L + \mu}{2}\Vert x - Ty\Vert^2
     \\
     &= 
     h(x) - h(Ty) - \langle L(y - Ty), x -y \rangle - L \Vert y - Ty\Vert^2
     - \frac{\mu}{2}\Vert x - y\Vert^2
     + \frac{L}{2}\Vert Ty - y\Vert^2
+    - \frac{L + \mu}{2}\Vert x - Ty\Vert^2
     \\
     &=
-    h(x)  - h(Ty) - \langle L(y - Ty), x - y\rangle
-    - \frac{\mu}{2}\Vert x - y\Vert^2 - \frac{L}{2}\Vert y - Ty\Vert^2. 
+    \left(h(x)  - h(Ty) - \langle L(y - Ty), x - y\rangle
+    - \frac{\mu}{2}\Vert x - y\Vert^2 - \frac{L}{2}\Vert y - Ty\Vert^2\right)
+    - \frac{L + \mu}{2}\Vert x - Ty\Vert^2. 
 \end{aligned}
 $$
 
+**Remarks**
+
+There are many equivalent inequality that exists out there in the literatures which looks different, but are equivalent. 
+
+
+---
+### **Strong convexity transferred proximal gradient inequality**
+
+We consider the case where the function under proximal operator operation is a strongly convex function. 
+There should be a similar result with this new setup. 
+
+#### **Assumption | Both has strong convexity**
+
+> Let $F = f + g$ with $g$ being $\mu_g \ge0$ strongly convex, closed, and $f$ being $L$ Lipschitz smooth and $\mu_f \ge 0$ strongly convex. 
+> Therefore, $F$ is $\mu = \mu_f + \mu_g \ge 0$ strongly convex. 
+
+**Observations**
+
+We can single out the strong convexity parts from the definition of strong convexity, by doing the following things: 
+
+$$
+\begin{aligned}
+    F &= f + g
+    \\
+    &= (f - \mu_f/2\Vert \cdot\Vert^2)
+    + \underbrace{(g - \mu_g/2 \Vert \cdot\Vert^2)}_{\hat g}
+    + \mu/2\Vert \cdot\Vert^2
+    \\
+    &= f - \mu_f/2\Vert \cdot\Vert^2 + \mu/2\Vert \cdot\Vert^2 
+    + \hat g
+    \\
+    &= 
+    \underbrace{f + \mu_g/2\Vert \cdot\Vert^2}_{\hat f} + \hat g
+\end{aligned}
+$$
+
+Observe that $\hat g$ is now convex, and $\hat f$ would be, $\mu \ge 0$ strongly convex and $L$ Lipschitz smooth. 
+
+
+#### **Corollary | Proximal gradient inequality with strong convexity transferal**
+> 
+
+
+
+
+**Remarks**
+
+The same theorem with strongly convex smooth parts can be reused here. 
 
 
 ---
