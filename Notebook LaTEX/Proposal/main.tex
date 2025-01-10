@@ -75,16 +75,11 @@
         \item Is it possible to describe the convergence of function value for momentum sequences that are much weaker than the Nesterov's rule? 
     \end{enumerate}
     The good news is we have definitive answers for all questions by our own efforts of research. 
-    \todoinline{\noindent
-        $\square$ Change all the organization parts here
-    }
-    Section \ref{sec:unify-nes-acceleration}, \ref{sec:free-rwapg} are our ongoing research which present the answers to the questions. 
-    \par
-    In Section \ref{sec:unify-nes-acceleration}, we proposed the method of ``Relaxed Weak Accelerated Proximal Gradient (R-WAPG)'' as the foundation to describe several variants of Accelerated proximal gradient method in the literatures. 
+    Section \ref{sec:unify-nes-acceleration}, proposes the method of ``Relaxed Weak Accelerated Proximal Gradient (R-WAPG)'' as the foundation to describe several variants of Accelerated proximal gradient method in the literatures. 
     The convergence theories of R-WAPG allows us to model convergence of accelerated proximal gradient method where the momentum sequence doesn't strictly follow the conditions presented in the literatures. 
     The descriptive power of R-WAPG allows convergence analysis for all the variants using one single theorem. 
     \par
-    In Section \ref{sec:free-rwapg} we propose a practical algorithm that exploits a specific term in the proof of R-WAPG to achieve faster convergence for solving (\ref{eqn:additive-comp-obj}) without knowing parameter $L, \mu$ in prior. 
+    Section \ref{sec:free-rwapg} proposes a practical algorithm that exploits a specific term in the proof of R-WAPG to achieve faster convergence for solving (\ref{eqn:additive-comp-obj}) without restarting and knowing parameter $L, \mu$ in prior. 
     Results of numerical experiments are presented. 
     \par
     Section \ref{sec:catalyst} complements report completed for MATH 590 Fall Winter 2024. 
