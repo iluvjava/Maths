@@ -1114,17 +1114,35 @@
         It has the potential to include more variants of the FISTA algorithms and their convergence proof. 
         Our future works would be to extend the frameworks and weaken it further while retaining the goal of getting some type of upper bound on the value $F(x_k) - F^*$ and show that there are choices for the momentum parameter $\alpha_k$ such that convergence is possible. 
         \subsubsection{Nesterov's idea of strong convexity transfer}
-        \todoinline{\noindent
-            In terms of theories, it's possible to consider: 
+            \todoinline{\noindent
+                In terms of theories, it's possible to consider: 
+                \begin{enumerate}
+                    \item Nesterov, 2013, ``Gradient methods for minimizing composite functions'', strong convexity transfer. 
+                    \item ``An introduction to continuous optimization for imaging'', Algorithm 5, the same thing is there as well. 
+                \end{enumerate}
+                In Nesterov's, take note of Algorithm: Accelerated Method (4.9) and the convergence claim: Theorem 6. 
+            }
+            We consider the case that $F = f + g$ where, $f$ is $L$ Lipschitz smooth, $\mu_f \ge 0$ strongly convex and $g$ is closed convex. 
+            In Nesterov's 2013 paper \cite{nesterov_gradient_2013}, he consider accelerated  minimization problem $\phi = f + \Psi$ with $f$ $L_f$ smooth and $\Psi$ being $\mu_\Psi \ge 0$ strongly convex. 
+            \par
+            This detail on itself is not necessarily interesting, since without lost of generality, we can always do the splitting $f + \mu_\Psi/2 \Vert \cdot\Vert^2$ and $\Psi - \mu_\Psi/2\Vert \cdot\Vert^2$ instead so that the smooth part is $\mu_\Psi \ge 0$ strongly convex. 
+            It's an interesting detail we should consider because: 
             \begin{enumerate}
-                \item Nesterov, 2013, ``Gradient methods for minimizing composite functions'', strong convexity transfer. 
-                \item ``An introduction to continuous optimization for imaging'', Algorithm 5, the same thing is there as well. 
+                \item A strongly convex nonsmooth parts still gives linear convergence by Theorem 6 in Nesterov's 2013 \cite{nesterov_gradient_2013}. 
+                \item The strong convexity constant can be easily estimated via a routine specified as (5.14) in Nesterov 2013 \cite{nesterov_gradient_2013} and the complexity of the estimation is bounded precisely. 
             \end{enumerate}
-        }
-        \subsubsection{Tying up some loose ends}
-        \todoinline{\noindent
-            In terms of practice, we missing convergence rate of Free-RWAPG, and the convergence of the norm of the gradient method for R-WAPG. 
-        }
+            (i) indicates that our theories of R-WAPG is incomplete, since it doesn't predict linear convergence when $g$ is strongly convex. 
+            (ii) indicates that splitting the strongly convex objective so that it's with the proximal operator exposes computational advantage. 
+            \par
+            Furthermore, Nesterov was not the only person who thought about it.
+            In 
+            Chambolle, Pock \cite{chambolle_introduction_2016} Algorithm 5, several variants of the FISTA algorithm were captured together into one formulation, and it assumes that $F = f + g$ where $f, g$ has strong convexity index $\mu_f \ge 0, \mu_g \ge 0$, and $F$ is $\mu := \mu_f + \mu_g \ge 0$ strongly convex. 
+            It's not trivial on how the R-WAPG framework can be modified to include strong convexity presenting in the nonsmooth part. 
+
+        % \subsubsection{Tying up some loose ends}
+        %     \todoinline{\noindent
+        %         In terms of practice, we are missing convergence rate of Free-RWAPG, and the convergence of the norm of the gradient method for R-WAPG. 
+        %     }
 
 \section{Catalyst accelerations and future works}\label{sec:catalyst}
 
@@ -1543,8 +1561,32 @@
     \subsection{Potential future research}\label{ssec:catalyst-future}
         Now, we have enough context to understand the potential future directions of research regarding the Catalyst Acceleration framework. 
         \subsubsection{Necoara et al.'s comments on Catalyst Acceleration}
-            
+            Necoara et al. \cite{necoara_linear_2019} considered optimization problem $f^* = \min_{x \in X} f(x)$ with $f: X \subseteq \RR^n \rightarrow \RR$ and $X$ closed and convex. 
+            They extended the linear convergence results of accelerated gradient method such as Nesterov's acceleration with proximal gradient into a wider setting than strong convexity. 
+            \par
+            As a secondary objective, they introduced and stated the relations between several weakened characterizations of strong convexity on a closed convex set. 
+            Definition 1, 2, 3, 4, 5, introduced the ideas of: Quasi-strong convexity, Quadratic under approximation, Quadratic gradient growth, quadratic functional growth (recall that it was stated as a consequence of strong convexity in Lemma \ref{lemma:q-growth}), and Global error bound conditions. 
+            \par
+            The content of their paper is very in-depth hence for our interests, we focus on their comments on the first Catalyst paper by Lin et al. \cite{lin_universal_2015}. 
+            They said, and here we quote: 
+            \begin{quote}
+                It is also worth to investigate the complexity bounds obtained when wrapping linearly-convergent algorithms under the proposed conditions in an outer-loop using a generic acceleration scheme such as Catalyst \cite{lin_universal_2015}. This would allow to extend to non-strongly convex settings a wide range of incremental optimization algorithms designed for large finite-sum problems arising in machine learning and statistics.
+            \end{quote}
+            We note that, their idea of extension can be applied to inner loop $\mathbb M$, or out loop $\mathbb A$, either, or both. 
         \subsubsection{Our ideas on future works of Catalyst Acceleration}
+            One intriguingly detail in the Catalyst framework eluded us. 
+            It may not be obvious to the readers, so we shall elucidate. 
+            \par
+            The concern starts by considering the necessary assumption in VRMs. 
+            Defazio et al.\cite{defazio_saga_2014} SAGA, Finito et al. \cite{defazio_finito_2014} requires Lipschitz continuous gradient on each individual $f_i$ in the objective function $F = \sum_{i = 1}^n f_i$. 
+            Schimdt et al. \cite{schmidt_minimizing_2017} also requires Lipscthiz smoothness for the non-smooth part of a composite objective. 
+            Xiao, Zhang, SVRG \cite{xiao_proximal_2014} requires Lipscthiz gradient assumption as well. 
+            This seemingly raises a crucial question: ``Where does the Lipschitz continuous gradient of the smooth part make its presence in the Catalyst Framework?''
+
+
+            
+
+
 
     
 % \section{Methods of inexact proximal point}\label{sec:inexact-prox}
