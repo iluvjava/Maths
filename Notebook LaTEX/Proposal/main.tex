@@ -1110,20 +1110,12 @@
         One of the most important feature is that the estimate $\mu$ doesn't converge to the true value, but it didn't affect the convergence of $\delta_k$. 
 
     \subsection{Future works for R-WAPG}
-        There is one intriguing detail in the burried in the literatures but weren't realized in it. 
+        There is one intriguing detail buried in literatures but weren't realized in it. 
         It has the potential to include more variants of the FISTA algorithms and their convergence proof. 
         Our future works would be to extend the frameworks and weaken it further while retaining the goal of getting some type of upper bound on the value $F(x_k) - F^*$ and show that there are choices for the momentum parameter $\alpha_k$ such that convergence is possible. 
         \subsubsection{Nesterov's idea of strong convexity transfer}
-            \todoinline{\noindent
-                In terms of theories, it's possible to consider: 
-                \begin{enumerate}
-                    \item Nesterov, 2013, ``Gradient methods for minimizing composite functions'', strong convexity transfer. 
-                    \item ``An introduction to continuous optimization for imaging'', Algorithm 5, the same thing is there as well. 
-                \end{enumerate}
-                In Nesterov's, take note of Algorithm: Accelerated Method (4.9) and the convergence claim: Theorem 6. 
-            }
             We consider the case that $F = f + g$ where, $f$ is $L$ Lipschitz smooth, $\mu_f \ge 0$ strongly convex and $g$ is closed convex. 
-            In Nesterov's 2013 paper \cite{nesterov_gradient_2013}, he consider accelerated  minimization problem $\phi = f + \Psi$ with $f$ $L_f$ smooth and $\Psi$ being $\mu_\Psi \ge 0$ strongly convex. 
+            In Nesterov's 2013 paper \cite{nesterov_gradient_2013}, he considers accelerated  minimization problem $\phi = f + \Psi$ with $f$ $L_f$ smooth and $\Psi$ being $\mu_\Psi \ge 0$ strongly convex. 
             \par
             This detail on itself is not necessarily interesting, since without lost of generality, we can always do the splitting $f + \mu_\Psi/2 \Vert \cdot\Vert^2$ and $\Psi - \mu_\Psi/2\Vert \cdot\Vert^2$ instead so that the smooth part is $\mu_\Psi \ge 0$ strongly convex. 
             It's an interesting detail we should consider because: 
@@ -1137,8 +1129,7 @@
             Furthermore, Nesterov was not the only person who thought about it.
             In 
             Chambolle, Pock \cite{chambolle_introduction_2016} Algorithm 5, several variants of the FISTA algorithm were captured together into one formulation, and it assumes that $F = f + g$ where $f, g$ has strong convexity index $\mu_f \ge 0, \mu_g \ge 0$, and $F$ is $\mu := \mu_f + \mu_g \ge 0$ strongly convex. 
-            It's not trivial on how the R-WAPG framework can be modified to include strong convexity presenting in the nonsmooth part. 
-
+            
         % \subsubsection{Tying up some loose ends}
         %     \todoinline{\noindent
         %         In terms of practice, we are missing convergence rate of Free-RWAPG, and the convergence of the norm of the gradient method for R-WAPG. 
@@ -1506,8 +1497,7 @@
                 \text{with } \delta' = \sqrt{\delta}/\left(1 - \sqrt{\delta}\right). 
             \end{align*}
             These results are instrumental to prove the convergence of $\mathbb M$ and giving convergence claim of $\mathbb A$ under certain assumption on $(\delta_k)_{k \ge 0}, (\epsilon_k)_{k \ge0}$. 
-            For a more general development of characterizations of inexact oracles that is more comprehensive and rigorous, see 
-            Devolder et al. \cite{devolder_first-order_2014}. 
+            For a more general development of characterizations of inexact oracles that is more comprehensive and rigorous, see Devolder et al. \cite{devolder_first-order_2014}. 
             It's discusses a Nesterov accelerated algorithm using estimating sequence with inexact oracles. 
             \par
             Besides Definition \ref{def:catalyst-termination-c1}, \ref{def:catalyst-termination-c2}, the ``Fixed Budget" termination criterion terminates $\mathbb M$ after a fixed number of iteration given accuracy $\epsilon_k$. 
@@ -1579,10 +1569,31 @@
             \par
             The concern starts by considering the necessary assumption in VRMs. 
             Defazio et al.\cite{defazio_saga_2014} SAGA, Finito et al. \cite{defazio_finito_2014} requires Lipschitz continuous gradient on each individual $f_i$ in the objective function $F = \sum_{i = 1}^n f_i$. 
-            Schimdt et al. \cite{schmidt_minimizing_2017} also requires Lipscthiz smoothness for the non-smooth part of a composite objective. 
-            Xiao, Zhang, SVRG \cite{xiao_proximal_2014} requires Lipscthiz gradient assumption as well. 
+            Schmidt et al. \cite{schmidt_minimizing_2017} also requires Lipschitz smoothness for the non-smooth part of a composite objective. 
+            Xiao, Zhang, SVRG \cite{xiao_proximal_2014} requires Lipschitz gradient assumption as well. 
             This seemingly raises a crucial question: ``Where does the Lipschitz continuous gradient of the smooth part make its presence in the Catalyst Framework?''
+            \par
+            A careful reader should realize that Assumption \ref{ass:linear-convergence-inner-loop} encapsulates the Lipschitz smoothness assumption of VRMs. 
+            Furthermore, such an assumption is optimistic for the complexity of $\mathbb M$. 
+            Recall that with Lipschitz smoothness and strong convexity, a lower bound of exponential rate of convergence is established by Theorem 2.1.13 in Nesterov's book \cite{nesterov_lectures_2018}. 
+            Removing the smoothness assumption for $\mathbb M$, the lower bound on convergence rate of any first order algorithm becomes $\mathcal O(1/k)$ by Theorem 3.2.5 for nonsmooth function that is strongly convex. 
+            \par
+            From a complexity theoretical point of view, Catalyst acceleration didn't attempt at narrowing the lower complexity bound functions that are convex and nonsmooth and lack of any exact proximal oracle. 
+            It is absolutely possible that, for any black box nonsmooth optimization problem, the same lower bound convergence rate $\mathcal O\left(1/\sqrt{k}\right)$ as stated in Theorem 3.2.1 in Nesterov's book \cite{nesterov_lectures_2018}. 
+            Unfortunately it is absolutely nontrivial to see that is true because $\mathbb A$ optimizes Moreau Envelope $\mathcal M^*_{\kappa^{-1}F}(x)$ through inexact evaluation and the Moreau Envelope has Lipschitz gradient, for $\mathbb A$ Theorem 3.2.1 doesn't apply. 
+            Whatever the true answer is, it's not obvious. 
+            So, here is what we think is worth investigating: 
+            \begin{quotation}
+                What if Assumption \ref{ass:linear-convergence-inner-loop} is false in the Catalyst Acceleration Framework? 
+                Would there exists any kind of regularization parameters $(\kappa_k)_{k \ge 0}$, error sequence $\epsilon_k$ such that the overall complexity still retains convergence rate equals or faster than $\mathcal O(1/\sqrt{k})$? 
+            \end{quotation}
+            Nobody has yet answered the question in the literature, but a brief searched showed that in Nesterov 2014 \cite{nesterov_universal_2015}, he considers the method of accelerated gradient for function with Holder continuous gradient. 
+            If anything, there are some insight to be gained about Catalyst on this question on this work of his. 
+            It remains to be seemed why this detail is neglected when developing the Catalyst Acceleration framework. 
+            If the answer is that it can be faster than the lower bound, then we had extended the Catalyst Framework, otherwise, it leads to the unintuitive result that lower bound $\mathcal O(1/\sqrt{k})$ still holds. 
 
+
+            
 
             
 
@@ -1600,8 +1611,7 @@
     %     Here, is a list of early attempted research of Nesterov's acceleration method in the nonconvex case. 
     % }
 
-
-\section{Using PostGreSQL and big data analytic method for species classification on Sentinel-2 Satellite remote sensing imagery}
+% \section{Using PostGreSQL and big data analytic method for species classification on Sentinel-2 Satellite remote sensing imagery}
 
 
 \bibliographystyle{siam}
