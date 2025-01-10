@@ -1564,7 +1564,7 @@
             \end{quote}
             We note that, their idea of extension can be applied to inner loop $\mathbb M$, or out loop $\mathbb A$, either, or both. 
         \subsubsection{Our ideas on future works of Catalyst Acceleration}
-            One intriguingly detail in the Catalyst framework eluded us. 
+            One intriguing detail in the Catalyst framework eluded us. 
             It may not be obvious to the readers, so we shall elucidate. 
             \par
             The concern starts by considering the necessary assumption in VRMs. 
@@ -1578,9 +1578,10 @@
             Recall that with Lipschitz smoothness and strong convexity, a lower bound of exponential rate of convergence is established by Theorem 2.1.13 in Nesterov's book \cite{nesterov_lectures_2018}. 
             Removing the smoothness assumption for $\mathbb M$, the lower bound on convergence rate of any first order algorithm becomes $\mathcal O(1/k)$ by Theorem 3.2.5 for nonsmooth function that is strongly convex. 
             \par
-            From a complexity theoretical point of view, Catalyst acceleration didn't attempt at narrowing the lower complexity bound functions that are convex and nonsmooth and lack of any exact proximal oracle. 
-            It is absolutely possible that, for any black box nonsmooth optimization problem, the same lower bound convergence rate $\mathcal O\left(1/\sqrt{k}\right)$ as stated in Theorem 3.2.1 in Nesterov's book \cite{nesterov_lectures_2018}. 
-            Unfortunately it is absolutely nontrivial to see that is true because $\mathbb A$ optimizes Moreau Envelope $\mathcal M^*_{\kappa^{-1}F}(x)$ through inexact evaluation and the Moreau Envelope has Lipschitz gradient, for $\mathbb A$ Theorem 3.2.1 doesn't apply. 
+            From a complexity theoretical point of view, Catalyst acceleration didn't attempt at narrowing the lower complexity bound bounds for functions that are convex and nonsmooth and lack of any exact proximal oracle. 
+            It is absolutely possible that, for any black box nonsmooth optimization problem, the same lower bound convergence rate $\mathcal O\left(1/\sqrt{k}\right)$ as stated in Theorem 3.2.1 in Nesterov's book \cite{nesterov_lectures_2018} is true for Catalyst. 
+            Unfortunately it is absolutely nontrivial to see that is true because $\mathbb A$ optimizes Moreau Envelope $\mathcal M^*_{\kappa^{-1}F}(x)$ through inexact evaluation and the Moreau Envelope has Lipschitz gradient. 
+            For $\mathbb A$ Theorem 3.2.1 doesn't apply. 
             Whatever the true answer is, it's not obvious. 
             So, here is what we think is worth investigating: 
             \begin{quotation}
@@ -1592,10 +1593,6 @@
             It remains to be seemed why this detail is neglected when developing the Catalyst Acceleration framework. 
             If the answer is that it can be faster than the lower bound, then we had extended the Catalyst Framework, otherwise, it leads to the unintuitive result that lower bound $\mathcal O(1/\sqrt{k})$ still holds. 
 
-
-            
-
-            
 
 
 
