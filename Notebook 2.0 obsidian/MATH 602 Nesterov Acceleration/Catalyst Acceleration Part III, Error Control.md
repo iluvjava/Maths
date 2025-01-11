@@ -201,7 +201,7 @@ $$
 
 The proof is complicated due to two factors: 
 1. The use of $\epsilon_k$ as a termination criterion is troublesome. 
-2. The warm starting condition requires more thoughts on the complexity bounds and it's crucial for bundling the inner loop complexity with the outer loop complexity. 
+2. The warm starting condition requires more thoughts on the complexity bounds, and it's crucial for bundling the inner loop complexity with the outer loop complexity. 
 
 ---
 ### **Warm starting the inner problem**
