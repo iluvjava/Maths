@@ -425,7 +425,7 @@
             \frac{\alpha_k \gamma_k v_k + \hat \gamma_{k + 1} x_k}{\gamma_k + \alpha_k \mu}.
         \end{align*}
         On the first equality \eqref{eqn:Q1}, we multiplied both side of the equation by $\hat\gamma_{k + 1}/\alpha_k \gamma_k$ and then grouped $y_k$. 
-        The last equality comes by multiplying both the numerator and denominator by $\hat \gamma_{k + 1}$, then simplifies the numerator by rearranging \eqref{eqn:stepwise-wapg-eqn1} into $\hat \gamma_{k + 1} + \alpha_k \gamma_k = \gamma_k + \alpha_k \mu$. 
+        The last equality comes by multiplying both the numerator and denominator by $\hat \gamma_{k + 1}$, then simplifies the demoninator by rearranging \eqref{eqn:stepwise-wapg-eqn1} into $\hat \gamma_{k + 1} + \alpha_k \gamma_k = \gamma_k + \alpha_k \mu$. 
         To see the second equality \eqref{eqn:Q2}, consider \eqref{eqn:stepwise-wapg-eqn2}: 
         \begin{align*}
             y_k &= (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k)
@@ -451,10 +451,64 @@
         \end{align*}
         On the second equality that follows, we substituted $\hat\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$ given by \eqref{eqn:stepwise-wapg-eqn1}. 
         Therefore, $x_k, v_k, y_k$ lies on the same line because \eqref{eqn:Q1} indicates $y_k - v_k$ parallels to $-(y_k - x_k)$ and both vector shares the same head which anchors at $y_k$. 
-    
+    \begin{lemma}[A useful lemma]\label{lemma:ineq-q3}
+        Let $v_k, x_k, y_k, v_{k + 1}, x_{k + 1}$ and $\alpha_k, \hat \gamma_{k + 1}, \gamma_{k}$ be given by Definition \ref{def:stepwise-wapg}. 
+        Then for any $x^* \in \RR^n$ it satisfies: 
+        \begin{align}
+            - \alpha_k(v_k - x^*) - \frac{\alpha_k^2 \mu}{\hat \gamma}(y_k - v_k) - (x_k - y_k)
+            &= \alpha_k(x^* - x_k). 
+            \tag{Q3}\label{eqn:Q3}
+        \end{align}
+    \end{lemma}
+    \begin{proof}
+        % Recall \eqref{eqn:Q1}, \eqref{eqn:Q2} from 
+        % \hyperref[obs:stepwise-wapg]{Observations \ref*{obs:stepwise-wapg}} that: 
+        % \begin{align*}
+        %     (Q1): 
+        %     y_k - v_k &= 
+        %     \frac{\hat \gamma}{\alpha_k \gamma}(x_k - y_k),
+        %     \\
+        %     (Q2): 
+        %     y_k - x_k &= 
+        %     \frac{\alpha_k \gamma}{\gamma + \alpha_k \mu}(v_k - x_k). 
+        % \end{align*}
+        The proof is direct algebra: 
+        \begin{align*}
+            &  
+            - \alpha_k(v_k - x^*) - \frac{\alpha_k^2 \mu}{\hat \gamma_{k + 1}}(y_k - v_k) - (x_k - y_k)
+            \\
+            & \underset{\eqref{eqn:Q1}}{=}
+            -\alpha_k(v_k - x^*) -
+            \frac{\alpha_k^2\mu}{\hat \gamma_{k + 1}}
+            \frac{\hat \gamma_{k + 1}}{\alpha_k \gamma_k}(x_k - y_k)
+            - (x_k - y_k) 
+            \\
+            &= 
+            -\alpha_k(v_k - x^*) -
+            \frac{\alpha_k \mu}{\gamma_k}(x_k - y_k)
+            - (x_k - y_k) 
+            \\
+            &= 
+            -\alpha_k(v_k - x^*) -
+            \left(
+                1 + \frac{\alpha_k \mu}{\gamma_k}
+            \right)(x_k - y_k)
+            \\
+            &\underset{\eqref{eqn:Q2}}{=}
+            -\alpha_k(v_k - x^*) - 
+            \frac{\alpha_k \mu + \gamma_k}{\gamma_k}
+            \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}(x_k - v_k)
+            \\
+            &= 
+            -\alpha_k(v_k - x^*)
+            - \alpha_k(x_k - v_k)
+            \\
+            &= \alpha_k(x^* - x_k). 
+        \end{align*}
+    \end{proof}
     \begin{proposition}[Stepwise Lyapunov]\label{prop:stepwise-lyapunov}\;\\
         Fix any integer $k \in \mathbb Z$ and $R_k \in \RR$. 
-        Given any $v_k, x_k$ and $\gamma_k > 0$ and $v_{k + 1}, x_{k + 1}, y_k, \hat \gamma_{k + 1}$ that satisfies Definition \ref{def:stepwise-wapg}. 
+        Given any $v_k, x_k$ and $\gamma_k > 0$ and $v_{k + 1}, x_{k + 1}, y_k, \hat \gamma_{k + 1}, \alpha_k$ that satisfies Definition \ref{def:stepwise-wapg}. 
         Define: 
         \begin{align}
             R_{k + 1}
@@ -487,11 +541,11 @@
         Here we drop the subscript $k$, $k + 1$ on $\gamma_{k}, \hat \gamma_{k + 1}$ because they are fixed throughout the proof, and it makes for better readability! 
         \par 
         We started with $F(x_{k + 1}) + R_{k + 1}$ as Equation \eqref{eqn:stepwise-lya-proof-eqn1}, and $\hat \gamma/2\Vert v_{k + 1} - x^*\Vert^2$ as Equation (\ref{eqn:stepwise-lya-proof-eqn2}). 
-        In the proof that follows, we show (\ref{eqn:stepwise-lya-proof-eqn2}) equals to (2.2*). 
-        We added (\ref{eqn:stepwise-lya-proof-eqn2}), (\ref{expr:stepwise-lya-expr2.2}) to produce (3*). 
-        Then we show (3*) equals to (3.1*). 
-        The content of the entire LHS of the inequality we want to prove is in (3.2*). 
-        Going from (3.2*) to (4*) is an inequality which we used Theorem \ref{thm:prox-grad-ineq}. 
+        In the proof that follows, we show (\ref{eqn:stepwise-lya-proof-eqn2}) equals to \eqref{expr:stepwise-lya-expr2.2}. 
+        We add (\ref{eqn:stepwise-lya-proof-eqn2}), (\ref{expr:stepwise-lya-expr2.2}) to produce \eqref{eqn:stepwise-lya-proof-eqn3}. 
+        Then we show \eqref{eqn:stepwise-lya-proof-eqn3} equals to \eqref{eqn:stepwise-lya-proof-eqn3.1}. 
+        Finally, the entire LHS of \eqref{ineq:stepwise-lya-2} equals to the RHS of \eqref{ineq:stepwise-lya-proof-ineq4}. 
+        Going from \eqref{eqn:stepwise-lya-proof-eqn3.2} to \eqref{ineq:stepwise-lya-proof-ineq4}, we used \ref{thm:prox-grad-ineq} which is all we need, and it is the same as the inequality that we want to prove. 
         \par
         Start by considering the first and the third term on LHS of \eqref{ineq:stepwise-lya-2} summed up: 
         \begin{align}
@@ -659,52 +713,7 @@
         \label{expr:stepwise-lya-expr2.2}
         \end{align}
         }
-        Recall \eqref{eqn:Q1}, \eqref{eqn:Q2} from 
-        \hyperref[obs:stepwise-wapg]{Observations \ref*{obs:stepwise-wapg}} that: 
-        \begin{align*}
-            (Q1): 
-            y_k - v_k &= 
-            \frac{\hat \gamma}{\alpha_k \gamma}(x_k - y_k),
-            \\
-            (Q2): 
-            y_k - x_k &= 
-            \frac{\alpha_k \gamma}{\gamma + \alpha_k \mu}(v_k - x_k). 
-        \end{align*}
-        Then, it can simplifies the following:  
-        \begin{align}
-        \begin{split}
-            &  
-            - \alpha_k(v_k - x^*) - \frac{\alpha_k^2 \mu}{\hat \gamma}(y_k - v_k) - (x_k - y_k)
-            \\
-            & \underset{\eqref{eqn:Q1}}{=}
-            -\alpha_k(v_k - x^*) -
-            \frac{\alpha_k^2\mu}{\hat \gamma}\frac{\hat \gamma}{\alpha_k \gamma}(x_k - y_k)
-            - (x_k - y_k) 
-            \\
-            &= 
-            -\alpha_k(v_k - x^*) -
-            \frac{\alpha_k \mu}{\gamma}(x_k - y_k)
-            - (x_k - y_k) 
-            \\
-            &= 
-            -\alpha_k(v_k - x^*) -
-            \left(
-                1 + \frac{\alpha_k \mu}{\gamma}
-            \right)(x_k - y_k)
-            \\
-            &\underset{\eqref{eqn:Q2}}{=}
-            -\alpha_k(v_k - x^*) - 
-            \frac{\alpha_k \mu + \gamma}{\gamma}
-            \frac{\alpha_k \gamma}{\gamma + \alpha_k \mu}(x_k - v_k)
-            \\
-            &= 
-            -\alpha_k(v_k - x^*)
-            - \alpha_k(x_k - v_k)
-            \\
-            &= \alpha_k(x^* - x_k). 
-        \end{split}
-        \tag{Q3}\label{eqn:Q3}
-        \end{align}
+        
         Adding \eqref{expr:stepwise-lya-expr2.2} to \eqref{eqn:stepwise-lya-proof-eqn1} gives: 
         \begin{align}
         \begin{split}
@@ -864,7 +873,7 @@
             \right).         
         \end{split}
             % \tag{3.1*}
-            \label{eqn:stepwise-lya-eqn3.1}
+            \label{eqn:stepwise-lya-proof-eqn3.1}
         \end{align}
         On the first equality, coefficients of $\Vert y_k - v_k\Vert^2$ are grouped together. 
         On the second to the third equality, its coefficients simplified using: 
@@ -880,8 +889,9 @@
                 \frac{\hat \gamma}{\hat \gamma}
             \right) = \frac{\mu\alpha_k}{2}. 
         \end{align*}
-        We have \eqref{eqn:stepwise-lya-eqn3.1} = \eqref{eqn:stepwise-lya-proof-eqn1} + \eqref{expr:stepwise-lya-expr2.2}. 
-        By \eqref{eqn:stepwise-lya-proof-eqn2} = \eqref{expr:stepwise-lya-expr2.2}, \eqref{eqn:stepwise-lya-proof-eqn1} + \eqref{eqn:stepwise-lya-proof-eqn2} says: 
+        We have \eqref{eqn:stepwise-lya-proof-eqn3.1} $\impliedby$ \eqref{eqn:stepwise-lya-proof-eqn1} + \eqref{expr:stepwise-lya-expr2.2}. 
+        By \eqref{eqn:stepwise-lya-proof-eqn2} $\iff$ \eqref{expr:stepwise-lya-expr2.2},
+        \eqref{eqn:stepwise-lya-proof-eqn3.1} says: 
         \begin{align*}
             & F(x_{k + 1}) + R_{k + 1} + 
             \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^*\Vert^2
@@ -896,35 +906,41 @@
                 R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
             \right)
             \\
-            & \iff 
-            \\
-            & F(x_{k + 1}) - F(x^*) + R_{k + 1} + 
-            \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^*\Vert^2
-            \\
-            &= 
-            F(x_k) - F(x^*) - \alpha_k\left(
-                \epsilon_k + \langle g_k, x_k - x^*\rangle
-                - \frac{\mu}{2}\Vert y_k - x^*\Vert^2
-            \right)
-            + 
-            (1 - \alpha_k)\left(
-                R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
-            \right)
-            \\
-            &= (1 - \alpha_k)(F(x_k) - F(x^*))
-            + \alpha_k\left(
-                F(x_k) - F(x^*) - \epsilon_k - \langle g_k, x_k - x^*\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
-            \right)
-            \\ &\quad 
+        \end{align*}
+        Subtracting $F(x^*)$ from both side of the equation it gives: 
+        \begin{align}
+            \begin{split}
+                \\
+                & F(x_{k + 1}) - F(x^*) + R_{k + 1} + 
+                \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^*\Vert^2
+                \\
+                &= 
+                F(x_k) - F(x^*) - \alpha_k\left(
+                    \epsilon_k + \langle g_k, x_k - x^*\rangle
+                    - \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+                \right)
                 + 
                 (1 - \alpha_k)\left(
                     R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
-                \right). 
-        \tag{3.2*}
-        \end{align*}
+                \right)
+                \\
+                &= (1 - \alpha_k)(F(x_k) - F(x^*))
+                + \alpha_k\left(
+                    F(x_k) - F(x^*) - \epsilon_k - \langle g_k, x_k - x^*\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+                \right)
+                \\ &\quad 
+                    + 
+                    (1 - \alpha_k)\left(
+                        R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
+                    \right).     
+            \end{split}
+        % \tag{3.2*}
+        \label{eqn:stepwise-lya-proof-eqn3.2}
+        \end{align}
         Focusing on the second term, we simplify the multiplier inside: 
         {\small
-        \begin{align*}
+        \begin{align}
+        \begin{split}
             & F(x_k) - F(x^*) - \epsilon_k - \langle g_k, x_k - x^*\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
             \\
             &= 
@@ -933,13 +949,14 @@
             \right)- \langle g_k, x_k - x^*\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
             \\
             &= F(T_L y_k) - F(x^*) + \langle g_k, x^* - y_k\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
-            + \frac{1}{2L}\Vert g_k\Vert^2 \le 0. 
-        \tag{4*}    
-        \end{align*}
+            + \frac{1}{2L}\Vert g_k\Vert^2 \underset{\text{Theorem }\ref{thm:prox-grad-ineq}}{\le} 0.     
+        \end{split}
+        \label{ineq:stepwise-lya-proof-ineq4}
+        \end{align}
         }
-        On the last line, we expand the definition of $g_k$ and then used the
-        \hyperref[thm:prox-grad-ineq]{Theorem \ref*{thm:prox-grad-ineq}}. 
-        Therefore, we conclude that: 
+        % On the last line, we expand the definition of $g_k$ and then used the
+        % \hyperref[thm:prox-grad-ineq]{Theorem \ref*{thm:prox-grad-ineq}}. 
+        Therefore
         {\small
         \begin{align*}
             F(x_{k + 1}) - F(x^*) + R_{k + 1} + 
