@@ -123,9 +123,6 @@
         Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG'' (See Algorithm \ref{alg:free-rwapg}). 
         The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ from the Bregman divergence of $f$ with minimal computational cost. 
         We conducted ample amount of numerical experiments to show that it has a favorable convergence rate in practice and behaves similarly to the FISTA with monotone restart. 
-
-        \todoinline{This will be written once most of the contents in the paper are settled. 
-        }
         \par
         \textbf{Organizations now follow.}
         Section \ref{sec:preliminaries} introduces the proximal gradient inequality which is instrumental to developing the stepwise convergence claim in the next section. 
@@ -425,7 +422,7 @@
             \frac{\alpha_k \gamma_k v_k + \hat \gamma_{k + 1} x_k}{\gamma_k + \alpha_k \mu}.
         \end{align*}
         On the first equality \eqref{eqn:Q1}, we multiplied both side of the equation by $\hat\gamma_{k + 1}/\alpha_k \gamma_k$ and then grouped $y_k$. 
-        The last equality comes by multiplying both the numerator and denominator by $\hat \gamma_{k + 1}$, then simplifies the demoninator by rearranging \eqref{eqn:stepwise-wapg-eqn1} into $\hat \gamma_{k + 1} + \alpha_k \gamma_k = \gamma_k + \alpha_k \mu$. 
+        The last equality comes by multiplying both the numerator and denominator by $\hat \gamma_{k + 1}$, then simplifies the denominator by rearranging \eqref{eqn:stepwise-wapg-eqn1} into $\hat \gamma_{k + 1} + \alpha_k \gamma_k = \gamma_k + \alpha_k \mu$. 
         To see the second equality \eqref{eqn:Q2}, consider \eqref{eqn:stepwise-wapg-eqn2}: 
         \begin{align*}
             y_k &= (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k)
@@ -970,7 +967,7 @@
         Adding back the $k$, $k + 1$ subscript for $\gamma$, $\hat \gamma$, it's proven. 
     \end{proof}
     \begin{remark}
-        Given $y_k$, we can choose to increase $\mu_\kappa = 2D_f(x^*, y_k)/\Vert y_k - x^*\Vert^2 \ge \mu$ which also works on (4*).
+        Given $y_k$, we can choose to increase $\mu_\kappa = 2D_f(x^*, y_k)/\Vert y_k - x^*\Vert^2 \ge \mu$ which also works on \eqref{ineq:stepwise-lya-proof-ineq4}.
         This is true by the intermediate steps taken to prove Theorem \ref{thm:prox-grad-ineq}. 
         $\mu$ is a pessimistic choice for the inequality above. 
         But in general the choice of $\mu$ remains the strong convexity modulus or equivalently, any value that is smaller than the true strong convexity constant for claiming the convergence rate for all initial guesses. 
@@ -1119,7 +1116,7 @@
                 \frac{\mu\alpha_k\gamma_k}{2\hat \gamma_{k + 1}}
                 \Vert v_k - y_k\Vert^2
             \right). 
-        \end{align*} 
+        \end{align*}
         Then for all $k = 1, 2, \cdots, N$: 
         \begin{align*}
             & F(x_{k + 1}) - F(x^*) + \frac{L \alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
@@ -1136,6 +1133,7 @@
             \right). 
         \end{align*}
     \end{proposition}
+    
     \begin{proof}  
         $\hat \gamma_2 = (1 - \alpha_1)\gamma_1 + \mu \alpha_1$ is true by Observation \ref{obs:r-wapg-observation-1}. 
         Observe that $R_2$ is defined in the same manner as in Proposition \ref{prop:stepwise-lyapunov} with $k = 1$, we can invoke Proposition \ref{prop:stepwise-lyapunov}, and it gives: 
@@ -1456,15 +1454,7 @@
             To see graphical visualization on why such term is used to describe the APG algorithm in the literatures, see 
             \todo{
                 $\blacksquare$ Add these. $\blacksquare$ Cite these. 
-            }{(3.1, 4.1) in Lee et al. \cite{lee_geometric_2021} and Ahn and Sra \cite{ahn_understanding_2022}}. 
-            \todoinline{\noindent
-                The term ``Method of Similar Triangle'' specific to this particular representation of AGM. 
-                For more information, see:  
-                \begin{enumerate}
-                    \item 3.1, 4.1 in Jongmin Lee et al., ``A geometric structure of Acceleration and its role in making gradients small''
-                    \item The entirety of Ahn and Sra's paper ``PPM interpretation of Nesterov's accelerated gradient. ''. 
-                \end{enumerate}
-            }
+            }{(3.1, 4.1) in Lee et al. \cite{lee_geometric_2021} and Ahn and Sra \cite{ahn_understanding_2022}}.
 
         \end{remark}
         \begin{definition}[R-WAPG momentum form]\label{def:r-wapg-momentum-form}
@@ -2342,12 +2332,7 @@
             \end{figure}
 
         \subsubsection{LASSO}
-            This section present results of numerical experiment for solving the (least absolute shrinkage and
-            selection operator) LASSO problem proposed by 
-            \todo{
-                $\blacksquare$ Add reference ``Regression shrinkage and selection via the Lasso''
-                \\ $\blacksquare$ Cite it. 
-            }{\hl{Tibshirani}} \cite{tibshirani_regression_1996}. 
+            This section present results of numerical experiment for solving the (least absolute shrinkage and selection operator) LASSO problem proposed by \hl{Tibshirani} \cite{tibshirani_regression_1996}. 
             The problem of LASSO has smooth, nonsmooth additive and the problem is given by: 
             \begin{align*}
                 \min_x
