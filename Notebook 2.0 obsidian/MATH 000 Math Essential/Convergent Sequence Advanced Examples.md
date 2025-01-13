@@ -140,6 +140,32 @@ The sequence provided doesn't have finite sum, and therefore we showed that fini
 > 2. If $\sum_{i = 1}^k\alpha_i^{-1}$ is convergent, then the sequence $x_k$ is bounded and has a limit. 
 
 
+**Proof**
+
+With some examinations, it shows that 
+
+$$
+\begin{aligned}
+    0\le x_{k + 1 } - x_k &\le \alpha_{k - 1}/\alpha_k(x_k - x_{k - 1})
+    \\
+    &\le (\alpha_{k - 1}/\alpha_k)(\alpha_{k - 2}/\alpha_{k - 1})(x_{k - 1} - x_{k - 2})
+    \\
+    & \cdots
+    \\
+    &\le (\alpha_{1}/\alpha_{k})(x_1 - x_0). 
+\end{aligned}
+$$
+
+So obviously if $\alpha_k \rightarrow \infty$, we convergence of $x_{k +1} - x_k$. 
+Summing up the inequality for $i = 1, \cdots, k - 1$, it yields that 
+
+$$
+\begin{aligned}
+\end{aligned}
+$$
+
+
+
 ---
 ### **Example in Finite Euclidean space**
 
