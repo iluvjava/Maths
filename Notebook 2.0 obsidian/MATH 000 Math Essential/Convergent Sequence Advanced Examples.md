@@ -73,7 +73,7 @@ Since this is true for all $k, n$, the sequence is Cauchy, and therefore it also
 
 **Observations**
 
-(1.) provides a sufficient conditions for the big product $\prod_{i = 1}^{n} \left(1 - \alpha_i\right)$ to be bounded. 
+(1.) provides a sufficient conditions for the big product $\prod_{i = 1}^{n} \left(1 + \alpha_i\right)$ to be bounded. 
 (2.) Shows that the condition is stronger, and not always required for a big product of the form to converge. 
 
 **Proof**
