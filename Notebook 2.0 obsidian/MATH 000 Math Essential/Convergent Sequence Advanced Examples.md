@@ -50,7 +50,7 @@ $$
 \end{aligned}
 $$
 
-In fact, the sequence is Cauchy as well following a similar arguement. 
+In fact, the sequence is Cauchy as well following a similar argument. 
 Choose any $n \in \N$, consider telescoping partial sum 
 
 $$
@@ -63,14 +63,18 @@ $$
 $$
 
 On the RHS, from the convergence of summed $\epsilon_i$ as $n\rightarrow \infty$, it converges to zero. 
-Since this is true for all $k, n$, the sequence is Cauchy and therefore it also has a limit. 
+Since this is true for all $k, n$, the sequence is Cauchy, and therefore it also has a limit. 
 
 
 #### **Example 3 | Bounded big product sufficient but not necessary condition**
-> Suppose that sequence $\alpha_i > -1$ and $\sum_{i = 1}^{\infty}\alpha_i = A < \infty$. 
-> Then we have 
-> 1. $0 \le \prod_{i = 1}^{n} \left(1 + \alpha_i\right)\le \exp(A)$. The big product is bounded for all $n$. 
+> Suppose that sequence $\alpha_i > -1$ for all $i \in \N$, the following scenarios are true: 
+> 1. If $\sum_{i = 1}^{\infty} = A < \infty$, then $0 \le \prod_{i = 1}^{n} \left(1 + \alpha_i\right)\le \exp(A)$. The big product is bounded for all $n$. 
 > 2. There exists a sequence $\alpha_i > -1$, $\sum_{i = 1}^{n}\alpha_i$ diverges, but $\prod_{i = 1}^n (1 + \alpha_i)$ still converges. 
+
+**Observations**
+
+(1.) provides a sufficient conditions for the big product $\prod_{i = 1}^{n} \left(1 - \alpha_i\right)$ to be bounded. 
+(2.) Shows that the condition is stronger, and not always required for a big product of the form to converge. 
 
 **Proof**
 
@@ -125,9 +129,9 @@ The sequence provided doesn't have finite sum, and therefore we showed that fini
 
 
 #### **Example 4 | Bounded velocities and bounded displacement**
-> Suppose that $(\alpha_k)_{k \ge 1}, (x_k)_{k \ge 0}$ are a non-negative sequences. 
-> Assuming that $x_{k + 1} - x_k \ge 0$ for all $k \ge 0$ so it is monotone.
-> Assume for all $k \ge 1$ that: 
+> Suppose $(\alpha_k)_{k \ge 1}, (x_k)_{k \ge 0}$ are a non-negative sequences. 
+> Assuming that $x_{k + 1} - x_k \ge 0$ for all $k \ge 0$, so it is monotone.
+> If for all $k \ge 1$ they satisfies
 > $$
 > \begin{aligned}
 >     \alpha_k(x_{k + 1} - x_k) 
@@ -135,18 +139,18 @@ The sequence provided doesn't have finite sum, and therefore we showed that fini
 >     \alpha_{k - 1}(x_{k} - x_{k - 1}). 
 > \end{aligned}
 > $$
-> Then there exists the following sufficient condition for the convergence of the successive difference $x_{k + 1} - x_k$, and the convergence of the sequence itself. 
+> Then the following scenarios are true: 
 > 1. If $\alpha_k$ diverges, then successive error $x_{k + 1} - x_k$ converges to zero. 
 > 2. If $\sum_{i = 1}^k\alpha_i^{-1}$ is convergent, then the sequence $x_k$ is bounded and has a limit. 
 
 
 **Proof**
 
-With some examinations, it shows that 
+With some examinations, it shows that for all $k \ge 1$: 
 
 $$
 \begin{aligned}
-    0\le x_{k + 1 } - x_k &\le \alpha_{k - 1}/\alpha_k(x_k - x_{k - 1})
+    0\le x_{k + 1 } - x_k &\le (\alpha_{k - 1}/\alpha_k)(x_k - x_{k - 1})
     \\
     &\le (\alpha_{k - 1}/\alpha_k)(\alpha_{k - 2}/\alpha_{k - 1})(x_{k - 1} - x_{k - 2})
     \\
@@ -156,14 +160,17 @@ $$
 \end{aligned}
 $$
 
-So obviously if $\alpha_k \rightarrow \infty$, we convergence of $x_{k +1} - x_k$. 
+So obviously if $\alpha_k \rightarrow \infty$, it gives convergence of $x_{k +1} - x_k$. 
 Summing up the inequality for $i = 1, \cdots, k - 1$, it yields that 
 
 $$
 \begin{aligned}
+    \sum_{i = 1}^{k - 1} x_{i + 1} - x_i = x_k - x_1 \le
+    (x_1 - x_0)\sum_{i = 1}^{k - 1} \alpha_1/\alpha_k
 \end{aligned}
 $$
 
+The right-hand side is a convergent series by convergence of $\sum_{i = 1}^{k}\alpha_i^{-1}$. 
 
 
 ---
