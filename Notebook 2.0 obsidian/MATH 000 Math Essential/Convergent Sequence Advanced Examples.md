@@ -124,8 +124,13 @@ $$
 \end{aligned}
 $$
 
-Taking the limit as $n \rightarrow$, the big product converges to zero so it's definitely bounded. 
+Taking the limit as $n \rightarrow$, the big product converges to zero, so it's definitely bounded. 
 The sequence provided doesn't have finite sum, and therefore we showed that finite sum condition for the sequence $\alpha_i$ is not necessary. 
+
+
+**Remarks**
+
+A similar proof can use the fact that $(1 + x) \le \exp(x)$, so $(1 + \alpha_i) \le \exp(\alpha_i)$ which converts the product to the sum on the exponent. 
 
 
 #### **Example 4 | Bounded velocities and bounded displacement**
