@@ -18,7 +18,9 @@ References were from Heinz's Monotone Book.
 
 **Remarks**
 
-A general index sets $I$ can go beyond countable infinity. The sets in the topology $T$ are the open sets. Convince yourself with the fact that open intervals on $\mathbb R$ is an example of a topology. Infinite intersection of open sets can however, close an open set. 
+A general index sets $I$ can go beyond countable infinity. The sets in the topology $T$ are the open sets. 
+Convince yourself with the fact that open intervals on $\mathbb R$ is an example of a topology. 
+Infinite intersection of open sets can however, close an open set. 
 
 
 **Definition | Neighborhood**

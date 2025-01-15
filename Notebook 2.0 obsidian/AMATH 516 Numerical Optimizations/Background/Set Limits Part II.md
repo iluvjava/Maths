@@ -11,9 +11,12 @@ alias: Kuratowski Convergence Set Convergence
 
 In this section the concept of a set limit can be strengthened by the introduction of a metric space. 
 The set limit introduced in the previous section is readily available by choosing the discrete metric for the underlying metric space. 
-Recall that subsequence $\mathcal N_\infty^\#$ is the set of all subsequences of the sequence of natural numbers. 
-Denote $\mathcal N_\infty$ to be the set of subsequences of natural number such that it only differs on finite many positions. 
-Please also recall the projection operator of sets $\Pi_C(x) \ni y$ means that $\Vert y - x\Vert  = \inf_{x \in C} \Vert y - x\Vert$, $y$ is the closest vector to vector $y$ in the set $C$. 
+Recall that 
+1. Subsequence $\mathcal N_\infty^\#$ is the set of all subsequences of the sequence of natural numbers. 
+2. $\mathcal N_\infty$ to be the set of subsequences of natural number such that it only differs on finite many positions (So there exists a last element where the two sequences are different). 
+3. The projection operator in a complete metric space. $\Pi_C(x) \ni y$ means that $\Vert y - x\Vert  = \inf_{x \in C} \Vert y - x\Vert$, $y$ is the closest vector to vector $y$ in the set $C$. 
+
+
 Before we start, we define the following quantities relevant to discussion of set limits in complete metric space and Banach spaces. 
 
 **References**
