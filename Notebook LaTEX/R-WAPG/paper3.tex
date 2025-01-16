@@ -33,14 +33,12 @@
 
 \begin{abstract} 
     \noindent
-    We analyze the accelerated proximal gradient method where the sequence that controls the momentum term is much weaker than the Nesterov's rule. 
-    Our setting is the convex optimization problem $F^* = \min_x\{f(x) + g(x)\}$ where $f$ is $L$ Lipschitz smooth and $\mu\ge 0$ strongly convex and $g$ is closed and convex. 
-    A much weaker condition of extrapolation parameters in $y_{k + 1} = x_{k + 1} - \theta_k(x_{k + 1} - x_k)$ is precisely characterized to show an upper bound on the optimality gap $F(x_k) - F^*$ using a generic algorithm R-WAPG (Relaxed Weak Accelerated Proximal Gradient) we proposed. 
-    R-WAPG is a generic algorithm that has a has one convergence claim that unifies the convex and strongy convex cases. 
-    R-WAPG can describes major Euclidean variants of the FISTA. 
-    We showed convergence results for several notable variants of FISTA found in the literatures. 
-    Inspired by a small detail in the proof, explorative numerical experiments were conducted to show the convergence of R-WAPG where the extrapolation sequence is generated using Bregman Divergence of $f$ on sucessive iterate $y_{k + 1}, y_{k}$. 
-
+    We study the accelerated proximal gradient method where the sequence that controls the momentum term doesn't follow the Nesterov's rule. 
+    The paper proposed R-WAPG, a generic algorithm that unifies the convergence results for strongly convex and convex where the extrapolation constant is characterized by a sequence that is much weaker than the Nesterov's rule. 
+    The R-WAPG framework is able to describe several notable Euclidean variants of FISTA and verify their convergence. 
+    In addition we also proposed the convergence rate of strongly convex objective with a constant momentum term. 
+    Inspired by a small detail in the proof, we give a formuatlion of R-WAPG that doesn't require any parameter without using the idea of restarting which we call ``Free R-WAPG". 
+    Explorative numerical experiments were conducted to show its competitive convergence with numerical experiments. 
 \end{abstract}
 
 \noindent{\bfseries 2010 Mathematics Subject Classification:}
@@ -1094,7 +1092,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             \\
             &\le 
             \left(
-                \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
+                \prod_{i = 0}^{k - 1} \max(1, \rho_{i})
             \right)
             \left(
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
@@ -1141,7 +1139,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             &= (1 - \alpha_k)\gamma_k + \mu\alpha_k. 
         \end{align*}
         So $\gamma_k, \hat \gamma_{k + 1}, \alpha_k$ fits Definition \ref{def:stepwise-wapg}. 
-        for all $k \ge 1$, $R_k$ satisfies \eqref{eqn:stepwise-lya-1}, hence unroll recursively using Proposition \ref{prop:stepwise-lyapunov}: 
+        For all $k \ge 1$, $R_k$ satisfies \eqref{eqn:stepwise-lya-1}, hence unroll recursively using Proposition \ref{prop:stepwise-lyapunov}: 
         {\small
         \begin{align*}
             &
@@ -1170,7 +1168,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             \\
             &\le 
             \left(
-                \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
+                \prod_{i = 0}^{k - 1} \max(1, \rho_{i})
             \right)
             \left(
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
@@ -1221,7 +1219,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             \\
             &\le 
             \left(
-                \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
+                \prod_{i = 0}^{k - 1} \max(1, \rho_{i})
             \right)
             \left(
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
@@ -1863,6 +1861,54 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
     \par
     This section demonstrates that several variants of FISTA in the literatures reduces to the R-WAPG method by setting up the R-WAPG sequences with additional assumptions. 
     This section will also demonstrate that the convergence claim (Proposition \ref{prop:wagp-convergence}) holds, and it derives convergence rates consistent with results in the literatures.  
+    The table follows demonstrates the R-WAPG convergence results specialized into various settings. 
+    \begin{table}[H]
+        {\scriptsize
+        \begin{tabular}{|l|l|l|l|l|}
+        \hline
+            Algorithm & $\mu$ & $\alpha_k$ & $\rho_k$ & Convergence of $F(x_k) - F^*$ 
+        \\ \hline
+            R-WAPG in Definition \ref{def:wapg} & 
+            $\mu \ge 0$ &
+            $\alpha_k \in(\mu/L, 1)$ & 
+            $\rho_k > 0$ &  
+            \begin{tabular}{l}
+                $\mathcal O \left(\prod_{i = 0}^{k-1} \max(1, \rho_i)(1 - \alpha_{i + 1})\right)$
+                \\
+                (Proposition \ref{prop:wagp-convergence})
+            \end{tabular}
+        \\ \hline
+            Chambolle, Dossal 2015 \cite{chambolle_convergence_2015} &  
+            $\mu = 0$  &
+            $ 0< \alpha_k^{-2} \le \alpha_{k + 1}^{-1} - \alpha_{k + 1}^{-2}$ & 
+            $\rho_k \ge 1$ &  
+            \begin{tabular}{l}
+                $\mathcal O(\alpha_k^{2})$ \\ (Theorem \ref{thm:r-wapg-on-cham-doss})    
+            \end{tabular}
+        \\ \hline
+            V-FISTA Beck (10.7.7) \cite{beck_first-order_2017} &
+            $\mu > 0$&
+            $\alpha_k = \sqrt{\mu/L}$ & 
+            $\rho_k = 1$ &
+            \begin{tabular}{l}
+                $\mathcal O\left((1 - \sqrt{\mu/L})^k\right)$, 
+                \\
+                (Theorem \ref{thm:fixed-momentum-fista}, remark)
+            \end{tabular}
+        \\ \hline
+            R-WAPG in Definition \ref{def:wapg} &  
+            $\mu > 0$ &
+            $\alpha_k = \alpha \in (\mu/L, 1)$ &  
+            $\rho_k = \rho > 0$ & 
+            \begin{tabular}{l}
+                $\mathcal O \left(\max((1 - \alpha), 1 - \mu/(\alpha L))^{k} \right)$\\
+                (Theorem \ref{thm:fixed-momentum-fista})
+            \end{tabular}
+        \\ \hline
+        \end{tabular}
+        }
+    \end{table}
+    The lemma follows characterizes momentum sequences appears in the literatures using Definition \ref{def:rwapg-seq}. 
     \begin{lemma}[R-WAPG sequences as inverted FISTA sequence]\label{lemma:inverted-fista-seq}
         Let R-WAPG sequence $(\rho_k)_{k \ge 0}, (\alpha_k)_{k \ge 0}$ given by Definition \ref{def:rwapg-seq}. 
         If $\mu = 0, \rho_k \ge 1\; \forall k \ge 0$, and $\alpha_0 = 1$, then: 
@@ -2185,7 +2231,6 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         \end{align*}
         The equivalency between the momentum representation of R-WAPG (Definition \ref{def:r-wapg-momentum-form}) and the similar triangle representation (Definition \ref{def:r-wapg-st-form}) allows us to write $v_{k + 1} = x_{k + 1} + (\alpha^{-1} - 1)(x_{k + 1} - x_k)$. 
         By the initialization condition $v_1 = x_1$ specified in Proposition \ref{prop:r-wapg-momentum-repr}, we can write $v_1$ as $x_1$. 
-        
     \end{proof}
     \begin{remark}
         When $r = 1$, the algorithm described above is exactly the same as the V-FISTA algorithm specified in (10.7.7) of his book \cite{beck_first-order_2017}. 
@@ -2193,8 +2238,8 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
 
 
 \section{The method of Free R-WAPG}\label{sec:free-rwapg}
-    This section introduces an algorithm of our creation inspired by the remark of Proposition \ref{prop:stepwise-lyapunov}. 
-    Algorithm \ref{alg:free-rwapg} estimates the $\mu$ constant as the algorithm executes and pools the information using the Bregman Divergence of the smooth part function $f$. 
+    In this section, we propose Algorithm \ref{alg:free-rwapg} which estimates the $\mu$ constant as the algorithm executes, and it pools the information using the Bregman Divergence of the smooth part function $f$. 
+    It is called Free R-WAPG because it doesn't require any knowledge of $\mu, L$ in prior for the smooth part $f$, making it parameter-free. 
     \begin{algorithm}
         \begin{algorithmic}[1]
         {\footnotesize
@@ -2260,7 +2305,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
     Therefore, $\alpha_k \in (0, 1)$. 
     In the very unlikely case when $q = 1$, Algorithm \ref{alg:free-rwapg} has $\theta_k = 0$, and it performs one step of proximal gradient descent. 
     \subsection{Numerical experiments}
-        This section gives figures and visual for numerical experiments conducted using FR-WAPG algorithm (Algorithm \ref{alg:free-rwapg}), with other APG algorithms in the literatures: the V-FISTA, and M-FISTA algorithm described in Section (10.7.7, 10.7.6) by Beck \cite{beck_first-order_2017}. 
+        This section we conduct numerical experiments conducted using FR-WAPG algorithm (Algorithm \ref{alg:free-rwapg}), and compare with other APG algorithms in the literatures: the V-FISTA, and M-FISTA algorithm described in Section (10.7.7, 10.7.6) by Beck \cite{beck_first-order_2017}. 
         We implemented in Julia \cite{bezanson_julia_2017} and compare V-FISTA, M-FISTA from Beck, and Algorithm \ref{alg:free-rwapg} given this section. 
         Focusing on iteration complexities of the algorithm, the results of the experiments are visualized and the setup of the numerical experiments are described  in the sections that follows. 
         \par
@@ -2280,7 +2325,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         The $L$ can change during each iteration if it's obtained through the specified Lipschitz line search routine. 
 
         \subsubsection{Simple convex quadratic}
-            Consider the minimization problem of $\min_x \{F(x):= f(x) + 0\}$ where the objective function is given by: 
+            Consider the minimization problem of $\min_{x \in \RR^n} \{F(x):= f(x) + 0\}$ where the objective function is given by: 
             \begin{align*}
                 F(x) = (1/2)\langle x, A x\rangle. 
             \end{align*}
@@ -2339,12 +2384,12 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             This section present results of numerical experiment for solving the (least absolute shrinkage and selection operator) LASSO problem proposed by Tibshirani \cite{tibshirani_regression_1996}. 
             The problem of LASSO has smooth, nonsmooth additive and the problem is given by: 
             \begin{align*}
-                \min_x
+                \min_{x \in \RR^n}
                 \left\lbrace
                     \frac{1}{2}\Vert Ax - b\Vert^2 + \lambda\Vert x\Vert_1
                 \right\rbrace. 
             \end{align*}
-            The smooth part is $f =\frac{1}{2}\Vert Ax - b\Vert^2$ and the nonsmooth is $g = \lambda\Vert x\Vert_1$. 
+            The smooth part is $f(x) =\frac{1}{2}\Vert Ax - b\Vert^2$ and the nonsmooth is $g(x) = \lambda\Vert x\Vert_1$. 
             The objective function is coersive and the exact minimum, or minimizers are unknown. 
             We perform numerical experiments using V-FISTA, M-FISTA and R-WAPG on this problem. 
             The parameters for setting up the problem now follow. 
@@ -2399,22 +2444,36 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             One of the most important feature is that the estimate $\mu$ doesn't converge to the true value, but it didn't affect the convergence of $\delta_k$. 
 
 \section{Discussion}
-    We do not claim a strictly better performance of FR-WAPG (Algorithm \ref{alg:free-rwapg}) compared to well-established variants of APGs in literatures. 
-    Our numerical experiments are explorative and we hope to inspire. 
-    The presented theories (Proposition \ref{prop:stepwise-lyapunov}, \ref{prop:wagp-convergence}) are our best attempts at making sense of what is happening, and we did it directly with elementary algebra. 
-    In addition, we provided some helpful results on the equivalent representations of R-WAPG to illustrate the descriptive power of the R-WAPG framework. 
-    Nonetheless, two things are clear from the numerical experiments. 
-    FR-WAPG performs better than V-FISTA on the first hundreds of iterations, and it doesn't require prior knowledge on parameter $L, \mu$. 
+    This paper provides the results of an upper bound (Proposition \ref{prop:wagp-convergence}) on the optimality gap $F(x_k) - F^*$ for smooth plus nonsmooth composite optimization problem with convex objectives where under the much weaker assumption for the momentum parameter specified by Definition \ref{def:rwapg-seq}. 
+    The proposed R-WAPG unifies the convergence proof for major Euclidean variants of FISTA with strong convexity parameter $\mu \ge 0$. 
+    No analogous convergence framework had been identified yet in the literatures that proves the convergences of several variants (with and without strong convexity parameter) with momentum sequences that doesn't follow the Nesterov's rule. 
     \par
-    Our theories are somewhat relevant to FR-WAPG since it can partially describe an upper bound of the optimality gap with any sequence of $\alpha_k \in (0, 1)$. 
-    Unfortunately, it is difficult to know the sequence $(\alpha_k)_{k \ge 0}$ without running the algorithm. 
-    It would require knowledge about the trajectory taken for a specific initial guess, and the property of $D_f$, the Bregman Divergence of the smooth part. 
-    We feel that the breakthrough in understanding may not come from elementary results.  
-    \par 
-    From a practical point of view, the numerical experiments show that in the beginning of the algorithm, the estimate for $\mu$ can be overestimated.
-    This is partially explained by the remark of Proposition \ref{prop:stepwise-lyapunov}. 
-    It also showed that the algorithm performs with mixed charactercteristics of M-FISTA and V-FISTA and it's just fascinating. 
-    Finally, we observed that the convergence of gradient mapping $\mathcal G_L(y_k)$ becomes more difficult and the algorithm may not be able to terminate for certain objectives. 
+    In addition, we proposed explorative numerical experiments for Free R-WAPG (Algorithm \ref{alg:free-rwapg}) showcasing a parameter free algorithm that doesn't use the idea of restarting to achieve competitive convergence rate. 
+    Unfortunately a precise description of the convergence rate of Free R-WAPG remains a mystery. 
+    Our convergence framework gives an upper bound using the sequence $(\alpha_k)_{k \ge 0} \in (\mu/L, 1)$, but it requires knowing what the sequence would be in advanced given the initial conditions and the objective function. 
+    \par
+    From a practical perspective, Algorithm \ref{alg:free-rwapg} shows competitive results of convergence of strongly convex function.  
+    The algorithm behaves in way having characteristics of both V-FISTA and M-FISTA which is fascinating. 
+    In addition, of being parameter free, the algorithm works well with auto-differentiation framework because it requires the function value at the same point where the gradient is evaluated at $y_k$. 
+    We do note that in the case when function is not strongly convex, the function value converges without $\Vert \mathcal G_L(y_k)\Vert$ converging. 
+
+
+    % We do not claim a strictly better performance of FR-WAPG (Algorithm \ref{alg:free-rwapg}) compared to well-established variants of APGs in literatures. 
+    % Our numerical experiments are explorative and we hope to inspire. 
+    % The presented theories (Proposition \ref{prop:stepwise-lyapunov}, \ref{prop:wagp-convergence}) are our best attempts at making sense of what is happening, and we did it directly with elementary algebra. 
+    % In addition, we provided some helpful results on the equivalent representations of R-WAPG to illustrate the descriptive power of the R-WAPG framework. 
+    % Nonetheless, two things are clear from the numerical experiments. 
+    % FR-WAPG performs better than V-FISTA on the first hundreds of iterations, and it doesn't require prior knowledge on parameter $L, \mu$. 
+    % \par
+    % Our theories are somewhat relevant to FR-WAPG since it can partially describe an upper bound of the optimality gap with any sequence of $\alpha_k \in (0, 1)$. 
+    % Unfortunately, it is difficult to know the sequence $(\alpha_k)_{k \ge 0}$ without running the algorithm. 
+    % It would require knowledge about the trajectory taken for a specific initial guess, and the property of $D_f$, the Bregman Divergence of the smooth part. 
+    % We feel that the breakthrough in understanding may not come from elementary results.  
+    % \par 
+    % From a practical point of view, the numerical experiments show that in the beginning of the algorithm, the estimate for $\mu$ can be overestimated.
+    % This is partially explained by the remark of Proposition \ref{prop:stepwise-lyapunov}. 
+    % It also showed that the algorithm performs with mixed charactercteristics of M-FISTA and V-FISTA and it's just fascinating. 
+    % Finally, we observed that the convergence of gradient mapping $\mathcal G_L(y_k)$ becomes more difficult and the algorithm may not be able to terminate for certain objectives. 
 
 
             
