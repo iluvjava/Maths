@@ -60,10 +60,10 @@
     Let $\RR^n$ be the ambient space. We consider 
     \begin{align}
         \min_{x \in \RR^n} \left\lbrace
-            F(x): f(x) + g(x)
+            F(x):= f(x) + g(x)
         \right\rbrace.
     \end{align}\label{eqn:additive-comp-obj}
-    Unless specified, assume $f:\RR^n \rightarrow \RR$ is $L$-Lipscthiz smooth $\mu \ge 0$ strongly convex and $g:Q \rightarrow \overline \RR$ is convex. 
+    Unless specified, assume $f:\RR^n \rightarrow \RR$ is $L$-Lipscthiz smooth $\mu \ge 0$ strongly convex and $g:\RR^n \rightarrow \overline \RR$ is convex. 
     This type of problem is referred to as additive composite problems in the literature. 
     \par
     Our ongoing research concerns accelerated proximal gradient type method for solving (\ref{eqn:additive-comp-obj}). 
@@ -74,36 +74,32 @@
         \item Is it possible to attain fast convergence rate without knowledge about the strong convexity of function $f$?
         \item Is it possible to describe the convergence of function value for momentum sequences that are much weaker than the Nesterov's rule? 
     \end{enumerate}
-    The good news is we have definitive answers for all questions by our own efforts of research. 
-    Section \ref{sec:unify-nes-acceleration}, proposes the method of ``Relaxed Weak Accelerated Proximal Gradient (R-WAPG)'' as the foundation to describe several variants of Accelerated proximal gradient method in the literatures. 
-    The convergence theories of R-WAPG allows us to model convergence of accelerated proximal gradient method where the momentum sequence doesn't strictly follow the conditions presented in the literatures. 
-    The descriptive power of R-WAPG allows convergence analysis for all the variants using one single theorem. 
+    The good news is we have definitive answers for all questions in our complete draft paper. 
+    \par
+    In this proposal we explore the Goldilocks zones between these topics: Nesterov's acceleration, algorithms with inexact evaluation of the proximal point operator, and applications.  
+    We want to identify the ``chemistry'' between various properties of functions and the affect it has on the designs/behaviors of first order algorithm for continuous optimization. 
+    \par
+    \textbf{Organizations now follows.} 
+    Section \ref{sec:unify-nes-acceleration}, proposes the method of ``Relaxed Weak Accelerated Proximal Gradient (R-WAPG)'' as the foundation to describe several Euclidean variants of Accelerated Proximal Gradient (APG) method in the literatures. 
+    The convergence analysis of R-WAPG gives convergence of APG the momentum is much weaker compare to the Nesterov's update rule. 
+    R-WAPG can is generic and can describe well-established variants of FISTA in the literatures with alternative choices of step sizes and beyond. 
     \par
     Section \ref{sec:free-rwapg} proposes a practical algorithm that exploits a specific term in the proof of R-WAPG to achieve faster convergence for solving (\ref{eqn:additive-comp-obj}) without restarting and knowing parameter $L, \mu$ in prior. 
-    Results of numerical experiments are presented. 
+    Numerical experiments are presented which shows the competitiveness of our algorithm. 
+    Potential future direction of research is given by the end of the section for the R-WAPG framework. 
     \par
     Section \ref{sec:catalyst} complements report completed for MATH 590 Fall Winter 2024. 
     It's based on a series of recent papers \cite{lin_universal_2015,lin_catalyst_2018,paquette_catalyst_2018} about Catalyst Meta Acceleration for First Order Variance Reduced Methods. 
     The end of Section \ref{sec:catalyst} points out potential future direction of research of Catalyst Acceleration. 
-    % \par
-    % Section \ref{sec:inexact-prox}, \ref{sec:nes-acc-ncnvx} preview literatures in nonsmooth optimization frontier research where progress and impacts can be made.  
-    \subsection{Theme of the research}
-        This section specifies a theme of the research in this proposal. 
-        Firstly, we explore the Goldilocks zones between these topics: Nesterov's acceleration, algorithms with inexact evaluation of the proximal point operator, and applications.  
-        In doing so, we identify the ``chemistry'' between various properties of functions and the affect it has on the designs/behaviors of first order algorithm for continuous optimization. 
 
 
     
 \section{Preliminaries}
     This section contains the basics of contents from convex optimization, and variational analysis. 
-    \par
-    Notations. 
-    \begin{enumerate}
-        \item $\overline \RR := \RR \cup \{\infty, -\infty\}$. 
-    \end{enumerate}
+    Throughout, we adopt the notation $\overline \RR := \RR \cup \{\infty, -\infty\}$. 
     \subsection{Fundamentals in non-convex analysis}
-        Let the ambient space be $\RR^n$ equipped with inner product and 2-norm. 
-        Let $O$ be an open subset of $\RR^n$, the weakest assumption we are making for the objective function $F: O \subseteq \RR^n \rightarrow \RR$ for optimization problem is Local Lipschitz Continuity. 
+        Let the ambient space be $\RR^n$ equipped with inner product $\langle \cdot, \cdot\rangle$ and 2-norm $\Vert \cdot\Vert$. 
+        Let $O$ be an open subset of $\RR^n$, the weakest assumption we make for objective function $F: O \subseteq \RR^n \rightarrow \RR$ of an optimization problem is local Lipschitz continuity. 
         The assumption of local Lipschitz continuity is weak enough to describe most problems in applications, and strong enough to avoid most pathologies in analysis. 
 
         \begin{definition}[Local Lipschitz continuity]
@@ -159,31 +155,34 @@
     \subsection{Fundamentals in convex analysis}
         This section introduces the classics and basics of convex analysis. 
         Define $F$ to be closed, proper and convex in this section. 
-        When $F$ is convex, the limiting subgradient and the regular subgradient reduced to the following definition:
+        When $F$ is convex, the limiting subgradient and the regular subgradient reduced to the following: 
         \begin{align*}
-            \partial F(x) := \left\lbrace
+            \partial F(x) = \left\lbrace
                 v \in \RR^n \left|\; 
                     \forall y \in \RR^n\; :  F(y) - F(x)  \ge \langle v, y - x\rangle
                 \right.
             \right\rbrace. 
         \end{align*}
         A convex function is locally Lipschitz in the relative interior of its domain, denoted as $\reli(\dom(F))$. 
-        So it has $\reli(\dom F)\subseteq \dom(\partial F) \subseteq \dom F$. 
+        So it has 
+        \todo{
+            $\square$ Add Rockafellar's red book \\ $\square$ Cite Section 10 (pg 82) of that book
+        }
+        \hl{$\reli(\dom F)\subseteq \dom(\partial F) \subseteq \dom F$.} 
         \par
         When we say $F:\RR^n \rightarrow \RR$ is $L$ Lipschitz smooth function, it means that there exists $L$ such that for all $x\in \RR^n, y \in \RR^n$, it has: 
         \begin{align*}
             \Vert \nabla F(x) - \nabla F(y)\Vert \le L \Vert x - y\Vert. 
         \end{align*}
-        This condition is stronger than differentiability. 
-        When $F$ convex, it has descent lemma: 
+        When $F$ convex, then it has descent lemma: 
         \begin{align*}
             (\forall x \in \RR^n)(\forall y \in \RR^n): 0 \le 
             F(x) - F(y) - \langle \nabla f(y), x - y\rangle \le \frac{L}{2}\Vert x - y\Vert^2. 
         \end{align*}
-        When $F$ is convex, the converse holds. 
+        The converse holds under convexity as well. 
         The definitions that follow narrow things further for future discussions. 
         \begin{definition}[Strong convexity]\label{def:s-cnvx}
-            A function $F:\RR^n \rightarrow \overline \RR$ is $\mu \ge 0$ strongly convex if and only if for any fixed $y \in \dom(\partial F)$, we have for all $x\in \RR^n$: 
+            A function $F:\RR^n \rightarrow \overline \RR$ is $\mu \ge 0$ strongly convex if and only if for all $y \in \dom(\partial F)$, $x\in \RR^n$: 
             \begin{align*}
                 (\forall v \in \partial F(x))\quad 
                 F(x) - F(y) \ge \langle v, x - y\rangle + \frac{\mu}{2}\Vert x - y\Vert^2. 
@@ -198,27 +197,27 @@
         \end{lemma}
         \begin{remark}
             The minimizer is unique whenever $\mu > 0$. 
-            For contradiction, assume $x$ is another minimizer, then $F(x) \neq F(\bar x)$, which is a direct contradiction. 
-            The quadratic growth condition over a set of minimizer is much weaker than convexity. 
+            For contradiction, assume $x \neq \bar x$ is another minimizer, then $F(x) \neq F(\bar x)$, which is a direct contradiction. 
+            This condition is called quadratic growth over the set of minimizer, it is much weaker than strong convexity. 
         \end{remark}
         
         \subsubsection{Smooth, nonsmooth additive composite}\label{sssec:additive-composite}
-            In this section, we zoom in further. 
-            Suppose that $F:= f + g$ where $f:\RR^n \rightarrow \RR$ is convex, $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex and $g: \RR\rightarrow \overline \RR$ is convex. 
-            To make the discussion simpler, fix any $\beta \ge 0$ we define the following model functions as a $\RR^n \times \RR^n \rightarrow \overline \RR$: 
+            This section zooms in further into the case of additive composite objective $F:= f + g$. 
+            Assume $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex, $g: \RR\rightarrow \overline \RR$ is closed convex. 
+            For all $\beta \ge 0$, define the proximal gradient, proximal point model functions as a mapping of $\RR^n \times \RR^n \rightarrow \overline \RR$: 
             \begin{align*}
-                \widetilde{\mathcal M}^{\beta^{-1}}
+                \widetilde{\mathcal M}^{\beta^{-1}}_F
                 (x; y)
                 &:= 
                 g(x) + f(y) + \langle \nabla f(y), x - y\rangle
                 + \frac{\beta}{2}\Vert x - y\Vert^2,
                 \\
-                \mathcal M^{\beta^{-1}}(x; y) 
+                \mathcal M^{\beta^{-1}}_F(x; y) 
                 &:= F(x) + \frac{\beta}{2}\Vert x - y\Vert^2.
             \end{align*}
-            Under convexity assumption in this section, both $\widetilde {\mathcal M} (\cdot; y),  {\mathcal M}(\cdot;y )$ is at least $\beta \ge 0$ strongly convex. 
+            Under the assumptions of this section, $\widetilde {\mathcal M}_F^{\beta^{-1}} (\cdot; y),  {\mathcal M}_F^{\beta^{-1}}(\cdot;y )$ are both $\beta + \mu$ strongly convex. 
             \begin{definition}[Proximal gradient operator]\label{def:proximal-gradient-operator}
-                Take $F := f + g$ where $g: \RR^n \rightarrow \overline \RR$ as defined in this section. 
+                % Take $F := f + g$ where $g: \RR^n \rightarrow \overline \RR$ as defined in this section. 
                 Define the proximal gradient operator $T_L$ on all $y \in \RR^n$: 
                 \begin{align*}
                     T_L y := \argmin_{x \in \RR^n} \left\lbrace
@@ -228,39 +227,36 @@
                 \end{align*}
             \end{definition}
             \begin{remark}
-                Under the assumption of this section, the mapping $T_L$ is a single-valued mapping, it has domain on the entire $\RR^n$, and it's a $3/2$ averaged operator. 
+                Under the assumption of this section, the mapping $T_L$ is a single-valued mapping on $\RR^n$ and it's  a $3/2$ averaged operator. 
             \end{remark}
             \begin{definition}[Gradient mapping operator]\label{def:gradient-mapping-operator}
-                Take $F := f + g$ as defined in this section. 
+                % Take $F := f + g$ as defined in this section. 
                 Define the gradient mapping operator $\mathcal G_L$ on all $y \in \RR^n$: 
                 \begin{align*}
-                    \mathcal G_L y:= L(y - T_L y). 
+                    \mathcal G_L (y):= L(y - T_L y). 
                 \end{align*}
             \end{definition}
-
             \begin{lemma}[Proximal gradient model function]\;\\
-                Take $\widetilde{\mathcal M}^{L^{-1}}, \mathcal M^{L^{-1}}$ as defined in this section, we will have for all $x \in \RR^n$ that: 
+                % Take $\widetilde{\mathcal M}^{L^{-1}}, \mathcal M^{L^{-1}}$ as defined in this section, 
+                For all $x \in \RR^n$, $\beta > 0$, it has: 
                 \begin{align*}
-                    \widetilde{\mathcal M}^{L^{-1}}(x; y)
+                    \widetilde{\mathcal M}^{\beta^{-1}}_F(x; y)
                     &= 
-                    \mathcal M^{L^{-1}}(x; y)- D_f(x, y).
+                    \mathcal M^{\beta^{-1}}_F(x; y)- D_f(x, y).
                 \end{align*}
             \end{lemma}
             \begin{lemma}[A favorable property of gradient mapping]
-                Take $F:= f + g$ as defined in this section. 
-                Fix any $x \in \RR^n$. 
+                % Take $F:= f + g$ as defined in this section. 
+                For any $x \in \RR^n$. 
                 Then there exists $v \in \partial g(T_L x)$ such that $\mathcal G_L (x) = v + \nabla f(x)$. 
             \end{lemma}
-            \begin{remark}
-                This lemma still holds for non-convex $f$ under prox-boundedness and weak convexity and differentiability of $f$. 
-            \end{remark}
             \begin{lemma}[The proximal gradient inequality]\label{thm:prox-grad-ineq}
-                Take $F:= f + g$ as defined in this section. 
-                Fix any $y \in \RR^n$, then for all $x$, the proximal gradient inequality is true: 
+                % Take $F:= f + g$ as defined in this section. 
+                For all $y \in \RR^n$, $x \in \RR^n$, it has: 
                 \begin{align*}
                     (\forall x \in \RR^n)\quad 
-                    h(x)  - h(Ty) - \langle L(y - Ty), x - y\rangle
-                    - \frac{\mu}{2}\Vert x - y\Vert^2 - \frac{L}{2}\Vert y - Ty\Vert^2 
+                    F(x)  - F(T_Ly) - \langle L(y - T_Ly), x - y\rangle
+                    - \frac{\mu}{2}\Vert x - y\Vert^2 - \frac{L}{2}\Vert y - T_Ly\Vert^2 
                     &\ge 0. 
                 \end{align*}
             \end{lemma}
@@ -269,20 +265,19 @@
             \end{remark}
 
     \subsection{Nesterov's estimating sequence technique}
-        The method of Nesterov's estimating was used for deriving accelerated gradient method, and their nonsmooth counterparts assuming function $F: \RR^n \rightarrow \overline{\RR}$ is convex and Lipschitz smooth. 
-        We emphasize that the techniques derives the algorithm as well as proving its convergence rate. 
-        The estimating sequence is a technique searching for candidate algorithm with extrapolated momentum, and proving their convergence rate if possible. 
+        The derivation of APG was originally conceived by Nesterov's estimating sequence technique. 
+        We emphasize that the technique derives the algorithm and proves its convergence rate. 
         \par
         The method is widespread in the literatures, and the ideas behind it are tremendously useful. 
-        Güler \cite{guler_new_1992} used the method to design an accelerated proximal point method, which was the foundation of Catalyst Acceleration for variance reduced method in machine learning. 
-        Nesterov \cite{nesterov_accelerating_2008} used the technique to design an accelerated cubic regularized Newton's method. 
+        Güler \cite{guler_new_1992} used it to derive an accelerated proximal point method, which was instrumental to develop the Catalyst Acceleration framework. 
+        Nesterov \cite{nesterov_accelerating_2008} used it to conceive the accelerated cubic regularized Newton's method. 
         In (6.1.19) of Nesterov's book \cite{nesterov_lectures_2018}, it's used to derive a method of accelerated mirror descent. 
-        Finally, Geovani N. et al \cite{grapiglia_accelerated_2019} used it to derive an accelerated Newton's method for convex composite objective function. 
+        Finally, in Geovani N. et al \cite{grapiglia_accelerated_2019}, they used it to derive an accelerated Newton's method for convex composite objective function. 
         \par
         The definition of the estimating sequence that follows is based on our own understanding of the estimating sequence. 
         \begin{definition}[Nesterov's estimating sequence]\label{def:nes-est-seq}
-            Let $\phi_k : \RR^n \rightarrow\RR$ for all $k \ge 0$ be a sequence of functions. 
-            We call this sequence of function a Nesterov's estimating sequence when it satisfies the conditions: 
+            For all $k \ge 0$, let $\phi_k : \RR^n \rightarrow\RR$ be a sequence of functions. 
+            We call this sequence of functions a Nesterov's estimating sequence when it satisfies conditions: 
             \begin{enumerate}
                 \item There exists another sequence $(x_k)_{k \ge 0}$ such that for all $k \ge 0$ it has $F(x_k) \le \phi_k^*: =\min_{x}\phi_k(x)$. 
                 \item There exists a sequence of $(\alpha_k)_{k \ge 0}$ where $\alpha_k \in (0, 1)\; \forall k \ge0 $ such that for all $x \in \RR^n$ it has $\phi_{k + 1}(x) - \phi_k(x) \le - \alpha_k(\phi_k(x) - F(x))$. 
@@ -296,8 +291,8 @@
             If we define $\phi_k$, $\Delta_k(x) := \phi_k (x) - F(x)$ for all $x \in \RR^n$ and assume that $F$ has minimizer $x^*$. 
             Then observe that $\forall k \ge 0$:  
             \begin{align*}
-                \Delta_k(x) 
-                &= \phi_k(x) - F(x) \ge \phi_k^* - F(x)
+                (\forall x \in \RR^n) \; \Delta_k(x) 
+                &= \phi_k(x) - F(x) \ge \phi_k^* - F(x), 
                 \\
                 x = x_k\implies 
                 \Delta_k(x_k) 
@@ -309,15 +304,10 @@
                 &\ge \phi_k^* - F_* \ge F(x_k) - F_* \ge 0. 
             \end{align*}
             The function $\Delta_k(x)$ is non-negative at points: $x_*, x_k$.
-            We can derive the convergence rate of $\Delta_k(x^*)$ because $\forall x \in \RR^n$: 
+            We can derive the convergence rate of $\Delta_k(x^*)$ because (ii) says $\forall x \in \RR^n$: 
             \begin{align*}
-                \phi_{k + 1}(x) - \phi_k(x) 
+                \phi_{k + 1}(x) - \phi_k(x) = \phi_{k + 1}(x) - F(x) - (\phi_k(x) - F(x))
                 &\le - \alpha_k (\phi_k(x) - F(x))
-                \\
-                \iff 
-                \phi_{k + 1}(x) - F(x) - (\phi_k(x) - F(x))
-                &\le 
-                -\alpha_k(\phi_k(x) - F(x))
                 \\
                 \iff
                 \Delta_{k + 1}(x) - \Delta_k(x) &\le
@@ -336,7 +326,7 @@
                     \prod_{i = 0}^k(1 - \alpha_i)
                 \right)\Delta_0(x). 
             \end{align*}
-            Finally, by setting $x = x^*$, $\Delta_k(x^*)$ is non-negative and using the property of Nesterov's estimating sequence it gives: 
+            Finally, by setting $x = x^*$, $\Delta_k(x^*)$ is non-negative and using (i) it gives: 
             \begin{align*}
                 F(x_k) - F(x^*) \le \phi_k^* - F(x^*) \le \Delta_k(x^*) = \phi_k(x^*) - F(x^*) \le \left(\prod_{i = 0}^k(1 - \alpha_i)\right)\Delta_0(x^*).
             \end{align*} 
@@ -345,22 +335,17 @@
         
 
 \section{Unifying NAG, and weakening the sequence assumption for convergences}\label{sec:unify-nes-acceleration}
-    This section is based on the theoretical aspects of our draft paper. 
+    This section gives results of the theoretical part  of our draft paper. 
     It will introduce major results and claims achieved during our research in each of the subsections. 
-    All theorems and claims stated in this section have proofs in the draft paper. 
-    The proofs haven't been carefully verified by authoritative people other than the author yet. 
-    We will start introducing the context and ideas for our research next. 
+    All theorems and claims stated in this section are proved in the draft paper. 
+    We will start by introducing the context of our research. 
     \par
-    Assume we want to solve a convex optimization problem: $\min_{x \in \RR^n} \{F(x)\}$ and $F: \RR^n \rightarrow \RR$ is a $L$ Lipschitz smooth function. 
-    We made this assumption for now for a faster exposition. 
-    One of the prime candidate for solving the optimization problem is the Nesterov's Accelerated Gradient methods (NAG) finds extensions for nonsmooth function through the proximal gradient operator.
-    Proposed back in 1983 the original Nesterov's acceleration method \cite{nesterov_method_1983}
-    which uses the previous iterates to extrapolate the next iterate to evaluate the gradient. 
-    It's well known that if minimizer $x^*$ exists for $F$, the method achieves a $\mathcal O(1/k^2)$ convergence rate on the objective value $F(x_k)$.     
-    This convergence rate is considered optimal for all class of $L$ Lipschitz smooth convex function \cite{nesterov_lectures_2018}. 
-    The convergence rate guarantee is faster than $\mathcal O(1/k)$ exhibited by gradient descent. 
+    Assume we want to solve the convex optimization problem: $F^* = \min_{x \in \RR^n} \{F(x)\}$ and assume $F: \RR^n \rightarrow \RR$ is $L$ Lipschitz smooth for the simplicity of discussion. 
+    One appealing candidate method for solving it is the Nesterov's accelerated gradient methods (NAG) proposed back in 1983 \cite{nesterov_method_1983}. 
+    It's well known that if minimizer $x^*$ exists for $F$, the method achieves a convergence rate of $\mathcal O(1/k^2)$ for $F(x_k) - F^*$.     
+    It is considered optimal for all class of $L$ Lipschitz smooth convex function and see Chapter 2 of Nesterov \cite{nesterov_lectures_2018} for information. 
+    The guaranteed convergence rate is better than $\mathcal O(1/k)$ exhibited by gradient descent. 
     \par
-    We cover the algorithm briefly. 
     Initialize $x_1 = y_1$ and $t_0 = 1$, the algorithm finds $(x_k)_{k \ge 1}$ for all $k \ge 1$ by: 
     \begin{align}\label{eqn:nag_example}
         & x_{k + 1} = y_k - L^{-1}\nabla F(y_k), 
@@ -371,7 +356,7 @@
         \\
         & y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k). 
     \end{align}
-    Unfortunately, the algorithm sped up the convergence rate for all convex function, it becomes slower for the subset of $\mu > 0$ strongly convex function. 
+    Unfortunately, this algorithm sped up the convergence rate for the class of all convex function, it becomes slower for the subset of $\mu > 0$ strongly convex function. 
     This drawback inspired a vast amount of literatures aims at improving, extending, and analyzing NAG. 
     Restarting is a popular solution to address the issue of obtaining faster convergence rate when the objective function is strongly convex. 
     Beck and Toubelle \cite{beck_fast_2009}
@@ -379,103 +364,100 @@
     See (5.2.2) Necoara et al. \cite{necoara_linear_2019} and Aujol et al. \cite{aujol_parameter-free_2024}
     and references within for recent advancements in restarting accelerated proximal gradient algorithm.
     \par
-    Restarting the algorithm is not the entire picture. 
+    There are other alternatives to restarting if it's known in advance that $F$ would be $\mu > 0$ strongly convex. 
     Let $F:\RR^n \rightarrow \RR$ be a $L$ Lipschitz smooth and $\mu > 0$ function. 
-    As introduced previously, in 
-    Walkington's writing \cite{noel_nesterovs_nodate}, 
-    he showed that there exists a variant of the Nesterov's accelerated gradient method that achieved a linear convergence rate of $\mathcal O((1 - \sqrt{\kappa})^k)$ where $\kappa = \mu/L$. 
-    This convergence rate is strictly better than $\mathcal O((1 - \mu/L)^k)$ for the method of gradient descent. 
-    However, this variant has a fixed momentum parameter $\theta_{k + 1} = (\sqrt{\kappa} - 1)(\sqrt{\kappa} + 1)^{-1}$ back in Equation \ref{eqn:nag_example}. 
+    In Walkington's writing \cite{noel_nesterovs_nodate}, 
+    he showed that there exists a variant of NAG that achieves linear convergence rate of $\mathcal O((1 - \sqrt{\kappa})^k)$ where $\kappa = \mu/L$. 
+    This convergence rate is strictly better than $\mathcal O((1 - \mu/L)^k)$ from gradient descent. 
+    However, the variant has a fixed momentum parameter $\theta_{k + 1} = (\sqrt{\kappa} - 1)(\sqrt{\kappa} + 1)^{-1}$ in Equation \ref{eqn:nag_example} and has convergence claim for F with $\mu > 0$. 
     The same variant also appears in Beck's book as V-FISTA \cite[(10.7.7)]{beck_first-order_2017}, and \hl{Nesterov's book as (2.2.22)} \cite{nesterov_lectures_2018}.
     \par
-    One final Mystery of the algorithm is the convergence of the iterates which also has much to do with the momentum sequence $(\theta_k)_{k\ge 0}$ displayed in Equation \ref{eqn:nag_example}. 
+    Some other researches in the literatures focus on the convergence of the iterates, and it has much to do with the momentum sequence $(\theta_k)_{k\ge 0}$ displayed in Equation \ref{eqn:nag_example}. 
     Chambolle, Dossal \cite{chambolle_convergence_2015}
     showed that by choosing sequence $(t_k)_{k \ge 1}$ to be $t_k = (n + a - 1)/a$ where $a > 2$ instead would give $(x_k)_{k \ge 0}$ weak convergence in Hilbert space. 
     It's put as an open question on what happens to the iterates when $a = 2$. 
     \par
-    All of these seemingly raises a crucial question: ``Is it possible to describe something about the NAG algorithm for a set of sequence that is non-traditional?''; rephrasing it int a more technical manner: ``What is the weakest description of the momentum sequence $(\theta_k)$ such that we can still claim something of value about the NAG algorithm?''
+    The content of our draft paper answers the question: ``Is it possible to describe something about the NAG algorithm for a set of sequence that is non-traditional?''. 
 
-    \subsection{Our Contributions, organizations}
-        Our contributions are two folds, theoretical and practical. 
-        The results are based the assumption $F = f + g$ where $g:R^n \rightarrow \overline\RR$ is convex, and $f$ is an $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
-        We relax the traditional choice of the sequence $\theta_k$ in Equation \ref{eqn:nag_example} and showed an upper bound of the optimal gap. 
-        Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be two sequences that satisfy
-        \begin{align*}
-            \alpha_0 &\in (0, 1], 
+    \textbf{A summary of our contributions now follow.}
+    Our contributions are theoretical and practical. 
+    Out results are based the assumption $F = f + g$ where $g:\RR^n \rightarrow \overline\RR$ is convex, and $f$ is an $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex. 
+    We relax the traditional choice of the sequence $\theta_k$ in Equation \ref{eqn:nag_example} and showed an upper bound of the optimal gap for the sequences $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ that satisfy
+    \begin{align*}
+        \alpha_0 &\in (0, 1], 
+        \\
+        \alpha_k &\in (\mu/L, 1) \quad (\forall k \ge 1), 
+        \\
+        \rho_k &:= \frac{\alpha_{k + 1}^2 - (\mu/L)\alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2} \quad \forall (k \ge 0). 
+    \end{align*}
+    Our first main result shows that if $\theta_{k + 1} = (\rho_k\alpha_k(1 - \alpha_k)/(\rho_k\alpha_k^2 + \alpha_{k + 1}))$, using the generic algorithm R-WAPG we proposed in Definition \ref{def:wapg} with Proposition \ref{prop:wagp-convergence}, \ref{prop:r-wapg-momentum-repr}, it can show that the gap $F(x_k) - F(x^*)$ is bounded by:
+    \begin{align*}
+        \mathcal O\left(
+            \left(
+                \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
+            \right)
+            \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
+        \right). 
+    \end{align*}
+    Our second main result shows that, assuming $\mu = 0$ then there exists the choice of $(\alpha_k)_{k \ge 0}$ $\rho_k > 1$ such that our R-WAPG reduces to the variant of FISTA proposed by Chambolle, Dossal \cite{chambolle_convergence_2015}, and we are able to show the same convergence rate in Theorem \ref{thm:r-wapg-on-cham-doss}. 
+    In the special case where $(\alpha_k)_{k \ge 0}$ has $\rho_k = 1 \;\forall k \ge 0$, and assuming $\mu = 0$, R-WAPG reduces to the FISTA algorithm proposed in Beck \cite{beck_fast_2009}.
+    If $\mu > 0, \rho_k = 1\;\forall k \ge 0$, it reduces to the V-FISTA by Beck \cite{beck_first-order_2017}. 
+    In Theorem \ref{thm:fixed-momentum-fista}, we demonstrated that R-WAPG frameworks gives a linear convergence claim for all APG where $\alpha_k := \alpha \in (\mu/L, 1)$ is a fixed constant parameter and $F$ is $\mu > 0$ strongly convex. 
+    \par
+    Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG'' (See Algorithm \ref{alg:free-rwapg}). 
+    It doesn't require $L, \mu$ in prior, so it determines the value of $\theta_t$ by estimating $D_f$ on iterates $y_{k}, y_{k + 1}$ with minimal computational cost. 
+    We conducted ample amount of numerical experiments to show that it has a favorable convergence rate in practice and exposes its similarity in terms of behaviors to the FISTA with monotone restart under certain situations. 
+    \par
+    \textbf{Notations, and assumptions now follows. }
+    For all the subsection that follows, we let $F:= f + g$ to take the same assumptions as in Section \ref{sssec:additive-composite}. 
+    Recall $T_L$, $\mathcal G_L$ denotes the proximal gradient operator and the gradient mapping operator. 
+    Additional notations are defined in the assumption below: 
+    \begin{assumption}
+        Choose any integer $k\ge 0$. 
+        Given $x_k, y_k, v_k$, we define the following quantities
+        \begin{align}
+            g_k &\defeq L(y_k - T_L y_k), 
+            \label{eqn:grad-map}
             \\
-            \alpha_k &\in (\mu/L, 1) \quad (\forall k \ge 1), 
+            l_F(x; y_k) &\defeq F(T_Ly_k) + \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2, 
+            \label{eqn:lower-linearization}
             \\
-            \rho_k &:= \frac{\alpha_{k + 1}^2 - (\mu/L)\alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2} \quad \forall (k \ge 0). 
-        \end{align*}
-        Our first main result shows that if $\theta_{k + 1} = (\rho_k\alpha_k(1 - \alpha_k)/(\rho_k\alpha_k^2 + \alpha_{k + 1}))$, using the R-WAPG we proposed in Definition \ref{def:wapg} with Proposition \ref{prop:wagp-convergence}, \ref{prop:r-wapg-momentum-repr}, we can show that the gap $F(x_k) - F(x^*)$ is bounded by:
+            \epsilon_{k} &\defeq F(x_k) - l_F(x_k; y_k), 
+            \label{eqn:regret}
+        \end{align}
+        Observe that by convexity of $F$, $\epsilon_k \ge 0$ for all $x_k, L > 0$. 
+        To see, use Theorem \ref{thm:prox-grad-ineq} and let $y = y_k, x = x_k$ which gives: 
         \begin{align*}
-            \mathcal O\left(
-                \left(
-                    \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
-                \right)
-                \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
-            \right). 
+            F(x_k) - F(T_Ly_k)
+            - \langle L(y_k - T_Ly_k),x_k - y_k \rangle
+            - \frac{L}{2}\Vert y_k - T_Ly_k\Vert^2
+            - \frac{\mu}{2}\Vert x_k - y_k\Vert^2
+            &\ge 0
+            \\
+            \iff 
+            F(x_k) - F(T_Ly_k)
+            - \langle g_k,x_k - y_k \rangle
+            - \frac{1}{2L}\Vert g_k\Vert^2
+            &\ge 0. 
         \end{align*}
-        Our second main result shows that there exists $\rho_k > 1$ such that our R-WAPG reduces to a variant of FISTA proposed in 
-        Chambolle, Dossal \cite{chambolle_convergence_2015}, and we are able to show the same convergence rate in Theorem \ref{thm:r-wapg-on-cham-doss}. 
-        When $\rho_k = 1, \mu = 0$, R-WAPG reduces perfectly to FISTA by in Beck \cite{beck_fast_2009}.
-        If $\mu > 0, \rho_k = 1$, it reduces to the V-FISTA by Beck \cite{beck_first-order_2017}. 
-        In Theorem \ref{thm:fixed-momentum-fista}, it demonstrates that R-WAPG frameworks gives a linear convergence claim for all fixed momentum method where $\alpha_k := \alpha \in (\mu/L, 1)$ and  $F$ is $\mu > 0$ strongly convex. 
-        \par
-        Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG'' (See Algorithm \ref{alg:free-rwapg}). 
-        The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ with minimal computational cost. 
-        We conducted ample amount of numerical experiments to show that it has a favorable convergence rate in practice and behaves similarly to the FISTA with monotone restart. 
-        \par
-        Notations, and assumptions now follows. 
-        For all the subsection that follows, we let $F:= f + g$ to take the same assumptions as in Section \ref{sssec:additive-composite}. 
-        Recall $T_L$, $\mathcal G_L$ denotes the proximal gradient operator and the gradient mapping operator. 
-        Additional notations are defined in the assumption below: 
-        \begin{assumption}
-            Choose any integer $k\ge 0$. 
-            Given $x_k, y_k, v_k$, we define the following quantities
-            \begin{align}
-                g_k &\defeq L(y_k - T_L y_k), 
-                \label{eqn:grad-map}
-                \\
-                l_F(x; y_k) &\defeq F(T_Ly_k) + \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2, 
-                \label{eqn:lower-linearization}
-                \\
-                \epsilon_{k} &\defeq F(x_k) - l_F(x_k; y_k), 
-                \label{eqn:regret}
-            \end{align}
-            Observe that by convexity of $F$, $\epsilon_k \ge 0$ for all $x_k, L > 0$. 
-            To see, use Theorem \ref{thm:prox-grad-ineq} and let $y = y_k, x = x_k$ which gives: 
-            \begin{align*}
-                F(x_k) - F(T_Ly_k)
-                - \langle L(y_k - T_Ly_k),x_k - y_k \rangle
-                - \frac{L}{2}\Vert y_k - T_Ly_k\Vert^2
-                - \frac{\mu}{2}\Vert x_k - y_k\Vert^2
-                &\ge 0
-                \\
-                \iff 
-                F(x_k) - F(T_Ly_k)
-                - \langle g_k,x_k - y_k \rangle
-                - \frac{1}{2L}\Vert g_k\Vert^2
-                &\ge 0. 
-            \end{align*}
-        \end{assumption}
-        \par
-        \todoinline{
-            $\square$ Finish the organizations here after this section is finished. 
-            Still need to explain the numerical experiments section. 
-        }
-
-        Organization now follows. 
-        Section \ref{ssec:building-block-rwapg} provides a stepwise description of the R-WAPG iterative algorithm along with an inequality crucial to proving the convergence rate later. 
-        Section \ref{ssec:rwpag-seq-and-alg} introduce the definition of an R-WAPG sequence, which constraints all possible parameters used permitted by the algorithm.
-        The section also states the full R-WAPG algorithm and an upper bound on $F(x_k) - F(x^*)$. 
-        Here, $x_k$ is generated by the R-WAPG algorithm and $x^*$ is the minimizer. 
-        Section \ref{ssec:quiv-repr-rwapg} bring forward three equivalent forms of the R-WAPG algorithm making it more comparable with other Accelerated Proximal Gradient method appeared in the literatures. 
-        Section \ref{ssec:describe-variants-with-rwapg} gives characterizations of specific R-WAPG sequence that leads to convergence of the R-WAPG algorithm in terms of the optimality gap. 
-        The section also identifies specific instance of permissible R-WAPG sequences where it fits with the FISTA, V-FISTA, and the algorithm proposed by Chambolle Dossal \cite{chambolle_convergence_2015}. 
-        Section \ref{sec:free-rwapg} provides Algorithm \ref{alg:free-rwapg} (Free R-WAPG) which is a parameter free alternative to accelerated proximal gradient method formulated using the R-WAPG we proposed. 
-        The algorithm dynamically adjusts the R-WAPG sequence $\alpha_k$ using the Bregman Divergence of smooth part of the objective function at successive extrapolated iterate $y_{k + 1}, y_k$ from the momentum method. 
-        Numerical experiments are conducted repeatedly and statistics on the results are displayed. 
+    \end{assumption}
+    \par
+    \todoinline{
+        $\square$ Finish the organizations here after this section is finished. 
+        Still need to explain the numerical experiments section. 
+    }
+    \par
+    \textbf{Organization now follows. }
+    Section \ref{ssec:building-block-rwapg} provides a stepwise description of the R-WAPG iterative algorithm along with an inequality crucial to proving the convergence rate later. 
+    Section \ref{ssec:rwpag-seq-and-alg} introduce the definition of an R-WAPG sequence, which constraints all possible parameters used permitted by the algorithm.
+    The section also states the full R-WAPG algorithm and an upper bound on $F(x_k) - F(x^*)$. 
+    Here, $x_k$ is generated by the R-WAPG algorithm and $x^*$ is the minimizer. 
+    Section \ref{ssec:quiv-repr-rwapg} bring forward three equivalent forms of the R-WAPG algorithm making it more comparable with other Accelerated Proximal Gradient method appeared in the literatures. 
+    Section \ref{ssec:describe-variants-with-rwapg} gives characterizations of specific R-WAPG sequence that leads to convergence of the R-WAPG algorithm in terms of the optimality gap. 
+    The section also identifies specific instance of permissible R-WAPG sequences where it fits with the FISTA, V-FISTA, and the algorithm proposed by Chambolle Dossal \cite{chambolle_convergence_2015}. 
+    Section \ref{sec:free-rwapg} provides Algorithm \ref{alg:free-rwapg} (Free R-WAPG) which is a parameter free alternative to accelerated proximal gradient method formulated using the R-WAPG we proposed. 
+    The algorithm dynamically adjusts the R-WAPG sequence $\alpha_k$ using the Bregman Divergence of smooth part of the objective function at successive extrapolated iterate $y_{k + 1}, y_k$ from the momentum method. 
+    Numerical experiments are conducted repeatedly and statistics on the results are displayed. 
 
         
     \subsection{Building Blocks of R-WAPG}\label{ssec:building-block-rwapg}
@@ -909,7 +891,7 @@
         \end{align*}
         Since it's not the case that $F^*$ is always known in prior, we used the minimum of all $F(x_k)$ across all algorithms, all iterations $k$ as the surrogate for $F^*$. 
         \par 
-        For the termination conditions of the algorithm, we consider the norm of the gradient mapping $\mathcal G_L(y_k) < \epsilon$. 
+        For the termination conditions of the algorithm, we consider the norm of the gradient mapping $\Vert \mathcal G_L(y_k)\Vert < \epsilon$. 
         The $L$ can change during each iteration if it's obtained through the specified Lipschitz line search routine. 
 
     \subsubsection{Simple convex quadratic}
@@ -1034,7 +1016,7 @@
         One of the most important feature is that the estimate $\mu$ doesn't converge to the true value, but it didn't affect the convergence of $\delta_k$. 
 
     \subsection{Future works for R-WAPG}
-        There is one intriguing detail buried in literatures but weren't realized in it. 
+        The R-WAPG framework neglected one intriguing detail buried in the literatures. 
         It has the potential to include more variants of the FISTA algorithms and their convergence proof. 
         Our future works would be to extend the frameworks and weaken it further while retaining the goal of getting some type of upper bound on the value $F(x_k) - F^*$ and show that there are choices for the momentum parameter $\alpha_k$ such that convergence is possible. 
         \subsubsection{Nesterov's idea of strong convexity transfer}
@@ -1070,7 +1052,7 @@
             F(x) + \frac{\beta}{2}\Vert x - y\Vert^2.
         \end{align*}
         We define the Moreau Envelope at $y \in \RR^n$ to be $\mathcal M^*_{F,\beta^{-1}}(y) = \min_{x\in \RR^n} \mathcal M_F^{\beta^{-1}}(x; y)$. 
-        We denote $\mathcal J_{\beta^{-1}}$ to be the resolvent operator for subgradient of $F$. 
+        We denote $\mathcal J_{\beta^{-1}F}$ to be the resolvent operator for subgradient of $F$. 
     \end{assumption}
     \begin{definition}[Absolute termination criterion C1]\label{def:catalyst-termination-c1}
         Take $F$ as given by Assumption \ref{ass:catalyst1}.

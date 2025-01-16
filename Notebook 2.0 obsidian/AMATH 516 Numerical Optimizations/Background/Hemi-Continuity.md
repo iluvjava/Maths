@@ -10,6 +10,6 @@ Related to:
 
 We take references from [Hemicontinuity - Wikipedia](https://en.wikipedia.org/wiki/Hemicontinuity#Sequential_characterization). 
 Hemi-continuity considers set-valued mappings mapping between topological spaces $A, B$. 
-Let's assume that $F: A \rightarrow 2^B$ is such mutivalued mapping. 
+Let's assume that $F: A \rightarrow 2^B$ is such muti-valued mapping. 
 Under this setting, we are ready to define the concept of continuity on this mapping. 
 
