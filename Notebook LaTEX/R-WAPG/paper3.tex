@@ -1418,14 +1418,6 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             Finally, a similar triangle for formulation of FISTA with $\mu = 0$ can be found in Equation (2), (3), (4) in \cite{chambolle_convergence_2015}. 
             To see graphical visualization on why such term is used to describe the APG algorithm in the literatures, see 
             (3.1, 4.1) in Lee et al. \cite{lee_geometric_2021} and Ahn and Sra \cite{ahn_understanding_2022}. 
-            % \todoinline{\noindent
-            %     The term ``Method of Similar Triangle'' specific to this particular representation of AGM. 
-            %     For more information, see:  
-            %     \begin{enumerate}
-            %         \item 3.1, 4.1 in Jongmin Lee et al., ``A geometric structure of Acceleration and its role in making gradients small''
-            %         \item The entirety of Ahn and Sra's paper ``PPM interpretation of Nesterov's accelerated gradient. ''. 
-            %     \end{enumerate}
-            % }
 
         \end{remark}
         \begin{definition}[R-WAPG momentum form]\label{def:r-wapg-momentum-form}
@@ -1880,7 +1872,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         \\ \hline
             Chambolle, Dossal 2015 \cite{chambolle_convergence_2015} &  
             $\mu = 0$  &
-            $ 0< \alpha_k^{-2} \le \alpha_{k + 1}^{-1} - \alpha_{k + 1}^{-2}$ & 
+            $ 0< \alpha_k^{-2} \le \alpha_{k + 1}^{-1} - \alpha_{k + 1}^{-2}$ &
             $\rho_k \ge 1$ &  
             \begin{tabular}{l}
                 $\mathcal O(\alpha_k^{2})$ \\ (Theorem \ref{thm:r-wapg-on-cham-doss})    
