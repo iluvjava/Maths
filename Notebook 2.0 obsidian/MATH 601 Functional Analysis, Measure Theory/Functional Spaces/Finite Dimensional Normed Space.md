@@ -160,7 +160,7 @@ Closed and bounded doesn't necessarily mean that the space is compact, this is w
 
 We list important theorems and cite the places that they are coming from. It's in Kryzig's textbook and the info is enclosed in (). 
 
-#### **Thm (2.4-2) | Closedness and Completeness **
+#### **Thm (2.4-2) | Closedness and Completeness**
 > A finite dimensional subspace/space is complete and closed, both at the same time. 
 
 **Note**:
