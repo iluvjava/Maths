@@ -5,7 +5,7 @@ alias:Regular Subgradient
 
 ---
 ### **Intro**
-Recall from the prerequisite document that the convex subgradient is not sufficient to describe the functions when it's non convex. 
+Recall from the prerequisites of this document that the convex subgradient is not sufficient to describe the functions when it's non convex. 
 Under simple cases where the function is non-convex, the convex subgradient doesn't reduces to the ordinary gradient for differentiable functions. 
 This motivates the definition and discussion for regular subgradient. 
 
@@ -20,7 +20,7 @@ f(x) - f(\bar x) - \langle v, x - \bar x\rangle  \ge o(\Vert x - \bar x \Vert).
 $$
 
 This relaxes the definition of a convex subgradient by replacing $o(\Vert x - \bar x\Vert) = 0$. 
-Obviously any function where convex $\partial f(\bar x) \neq \mathbf \emptyset$ would mean that $\hat \partial f(\bar x) \neq \emptyset$. 
+Obviously any function where convex $\partial f(\bar x) \neq  \emptyset$ would mean that $\hat \partial f(\bar x) \neq \emptyset$. 
 The small $o$ term measures how far away is $f$ from a convex function locally. 
 But this is not the full picture. 
 Recall that 
