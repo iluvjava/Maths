@@ -31,7 +31,8 @@ We show that, any closed intervals in $\mathbb R$ can be covered using finite ma
 
 **Observations and Context**
 
-This lemma is involved in the proof for the equivalence of closed and compactness and Finite Sub Covers for all ope Covers for the set. We observe the fact that, trivially if a set of points in a topology is finite, then for every open covers for the set (finite or not), there is a finite sub cover for that set by simply choosing one set the covers each of the point. 
+This lemma is involved in the proof for the equivalence of closed and compactness and Finite Sub Covers for all ope Covers for the set. 
+We observe the fact that, trivially if a set of points in a topology is finite, then for every open covers for the set (finite or not), there is a finite sub cover for that set by simply choosing one set the covers each of the point. 
 
 **Proof**
 

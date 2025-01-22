@@ -24,8 +24,7 @@ The concept of a finite length interval, a bounded and closed set now requires t
 
 
 
-
-#### **Definition | Compact spaces in Metric spaces via Bozano Wereistrass**
+#### **Definition | Compact spaces in Metric spaces via Bozano Weierstrass**
 > All bounded sequence in the space (or set) has a convergent subsequence. 
 
 See [Bozano Weierstrass](../../MATH%20000%20Math%20Essential/Analysis/Bozano%20Weierstrass.md) in basic real analysis. 
