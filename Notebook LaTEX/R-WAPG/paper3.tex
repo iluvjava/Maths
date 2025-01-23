@@ -99,7 +99,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             \\
             \rho_k &:= \frac{\alpha_{k + 1}^2 - (\mu/L)\alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2} \quad \forall (k \ge 0). 
         \end{align*}
-        Our first main result shows that if $\theta_{k + 1} = (\rho_k\alpha_k(1 - \alpha_k)/(\rho_k\alpha_k^2 + \alpha_{k + 1}))$, using the R-WAPG we proposed in Definition \ref{def:wapg} with Proposition \ref{prop:wagp-convergence}, \ref{prop:r-wapg-momentum-repr}, we can show that the gap $F(x_k) - F(x^*)$ is bounded by:
+        Our first main result shows that if $\theta_{k + 1} = (\rho_k\alpha_k(1 - \alpha_k)/(\rho_k\alpha_k^2 + \alpha_{k + 1}))$, using the R-WAPG we proposed in Definition \ref{def:wapg} with Proposition \ref{prop:wapg-convergence}, \ref{prop:r-wapg-momentum-repr}, we can show that the gap $F(x_k) - F(x^*)$ is bounded by:
         \begin{align*}
             \mathcal O\left(
                 \left(
@@ -113,14 +113,14 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         In Theorem \ref{thm:fixed-momentum-fista}, it demonstrates that R-WAPG frameworks gives a linear convergence claim for all fixed momentum method where $\alpha_k := \alpha \in (\mu/L, 1)$ and  $F$ is $\mu > 0$ strongly convex. 
         Finally, we did the tedious work and present three equivalent forms of R-WAPG in Section \ref{sec:rwapg-equiv-repr} that are comparable to notable Euclidean variants of FISTA and beyond. This shows the descriptive power of our R-WAPG framework. 
         \par
-        Our practical contribution is an algorithm inspired by a detail in the proof of Proposition \ref{prop:wagp-convergence} which is called ``Parameter Free R-WAPG'' (See Algorithm \ref{alg:free-rwapg}). 
+        Our practical contribution is an algorithm inspired by a detail in the proof of Proposition \ref{prop:wapg-convergence} which is called ``Parameter Free R-WAPG'' (See Algorithm \ref{alg:free-rwapg}). 
         The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ from the Bregman divergence of $f$ with minimal computational cost. 
         We conducted ample amount of numerical experiments to show that it has a favorable convergence rate in practice and behaves similarly to the FISTA with monotone restart.
         \par
         \textbf{The remainder of this paper is organized as follows. }
         Section \ref{sec:stepwise-stuff} states and proves Proposition \ref{prop:stepwise-lyapunov}, an inequality based on a single generic iterative step that acts similar to a descent lemma. 
         Section \ref{sec:rwapg-formulation-convergence} formulates the full R-WAPG in Definition \ref{def:wapg} and defines the R-WAPG sequence in Definition \ref{def:rwapg-seq}. 
-        Proposition \ref{prop:wagp-convergence} states the convergence rate of R-WAPG through Proposition \ref{prop:stepwise-lyapunov} and the R-WAPG sequence. 
+        Proposition \ref{prop:wapg-convergence} states the convergence rate of R-WAPG through Proposition \ref{prop:stepwise-lyapunov} and the R-WAPG sequence. 
         Section \ref{sec:rwapg-equiv-repr} gives three equivalent representations of the R-WAPG algorithms that are comparable to instances of APG found in the literatures. 
         Section \ref{sec:rwapg-literatures} formulates FISTA, and V-FISTA sequences as instance of the R-WAPG sequences.
         The section proves the convergence rate of several variants of FISTA using the equivalent forms introduced in Section \ref{sec:rwapg-equiv-repr} and the convergence rate developed Section \ref{sec:rwapg-formulation-convergence}. 
@@ -388,11 +388,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             x_{k + 1} &= T_L y_k. \label{eqn:stepwise-wapg-eqn5}
         \end{align}
     \end{definition}
-    % \begin{observation}\label{obs:stepwise-wapg}
-    %     Let's observe Definition \ref{def:stepwise-wapg} closely. 
-    %     We make two crucial observations here.     
-    % \end{observation}
-    
+    The following lemma will simplifies the proof later on. 
     \begin{lemma}\label{lemma:ineq-q3}
         Let $v_k, x_k, y_k, v_{k + 1}, x_{k + 1}$ and $\alpha_k, \hat \gamma_{k + 1}, \gamma_{k}$ be given by Definition \ref{def:stepwise-wapg}. 
         Then for any $x^* \in \RR^n$ it satisfies: 
@@ -531,8 +527,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         We prove by induction. 
         For notation simplicity we drop the subscript $k$, $k + 1$ on $\gamma_{k}, \hat \gamma_{k + 1}$ because they are fixed throughout the proof. 
         % PROOF SUMMARIZATIONS STARTS ==================================================================================
-        \par
-        Proceeding stepwise, we show the following intermediate results: 
+        Proceeding stepwise, we will show the following intermediate results: 
         \begin{align}\tag{Step 1}\label{eqn:stepwise-lya-proof-step-1}
             \begin{split}
                 F(x_{k + 1}) + R_{k + 1}
@@ -553,10 +548,8 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         \begin{align}\tag{Step 2}\label{eqn:stepwise-lya-proof-step-2}
             \begin{split}
                 \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^* \Vert^2 
-                &= 
-                \left(
-                \frac{(1 - \alpha_k)\gamma + \mu \alpha_k}{2} 
-                \right)\Vert v_k - x^*\Vert^2
+                &=                 
+                \frac{(1 - \alpha_k)\gamma + \mu \alpha_k}{2} \Vert v_k - x^*\Vert^2
                 \\
                 & \quad 
                     + 
@@ -571,6 +564,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                     + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle,     
             \end{split}
         \end{align}
+        Simply adding both side of Equations \eqref{eqn:stepwise-lya-proof-step-1}, \eqref{eqn:stepwise-lya-proof-step-2}, it follows: 
         \begin{align}\tag{Step 3}\label{eqn:stepwise-lya-proof-step-3}
             \begin{split}
                 F(x_{k + 1}) + R_{k + 1} + 
@@ -588,15 +582,63 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                 \right), 
             \end{split}
         \end{align}
-        % \par 
-        % We started with $F(x_{k + 1}) + R_{k + 1} \iff \eqref{eqn:stepwise-lya-proof-eqn1}$, 
-        % then $\hat \gamma/2\Vert v_{k + 1} - x^*\Vert^2 = \eqref{expr:stepwise-lya-expr2.2}$ via \eqref{eqn:stepwise-lya-proof-eqn2}. 
-        % We add (\ref{eqn:stepwise-lya-proof-eqn1}), (\ref{expr:stepwise-lya-expr2.2}) to get \eqref{eqn:stepwise-lya-proof-eqn3.1}. 
-        % Finally, the entire LHS of \eqref{ineq:stepwise-lya-2} equals to the RHS of \eqref{eqn:stepwise-lya-proof-eqn3.2}. 
-        % Going from \eqref{eqn:stepwise-lya-proof-eqn3.2} to \eqref{ineq:stepwise-lya-proof-ineq4}, we used Theorem \ref{thm:prox-grad-ineq} which yields the desired inequality. 
-        
-        \par
-        Start by considering the first and the third term on LHS of \eqref{ineq:stepwise-lya-2} summed up: 
+        To show \eqref{ineq:stepwise-lya-2}, it follows by subtracting $F(x^*)$ on \eqref{eqn:stepwise-lya-proof-step-3} which gives: 
+        \begin{align}
+            \begin{split}\label{eqn:stepwise-lya-proof-eqn3.2}
+                & F(x_{k + 1}) - F(x^*) + R_{k + 1} + 
+                \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^*\Vert^2
+                \\
+                &= 
+                F(x_k) - F(x^*) - \alpha_k\left(
+                    \epsilon_k + \langle g_k, x_k - x^*\rangle
+                    - \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+                \right)
+                + 
+                (1 - \alpha_k)\left(
+                    R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
+                \right)
+                \\
+                &= (1 - \alpha_k)(F(x_k) - F(x^*))
+                + \alpha_k\left(
+                    F(x_k) - F(x^*) - \epsilon_k - \langle g_k, x_k - x^*\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+                \right)
+                \\ &\quad 
+                    + 
+                    (1 - \alpha_k)\left(
+                        R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
+                    \right).
+            \end{split}
+        \end{align}
+        Focusing on the second term, we simplify the multiplier inside: 
+        {\small
+        \begin{align}
+        \begin{split}\label{ineq:stepwise-lya-proof-ineq4}
+            & F(x_k) - F(x^*) - \epsilon_k - \langle g_k, x_k - x^*\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+            \\
+            &= 
+            F(x_k) - F(x^*) - \left(
+                F(x_k) - F(T_L y_k) - \langle g_k, x_k - y_k\rangle - \frac{1}{2L}\Vert g_k\Vert^2
+            \right)- \langle g_k, x_k - x^*\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+            \\
+            &= F(T_L y_k) - F(x^*) + \langle g_k, x^* - y_k\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+            + \frac{1}{2L}\Vert g_k\Vert^2 \underset{\text{Theorem }\ref{thm:prox-grad-ineq}}{\le} 0.     
+        \end{split}
+        \end{align}
+        }
+        Then, by $\alpha_k > 0$, it has:
+        {\small
+        \begin{align*}
+            F(x_{k + 1}) - F(x^*) + R_{k + 1} + 
+            \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^*\Vert^2
+            &\le 
+            (1 - \alpha_k)\left(
+                F(x_k) - F(x^*) + R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
+            \right). 
+        \end{align*}
+        }
+        Now, it remains to show \eqref{eqn:stepwise-lya-proof-step-1}, \eqref{eqn:stepwise-lya-proof-step-2}, \eqref{eqn:stepwise-lya-proof-step-3}. 
+        \textbf{Proof of \eqref{eqn:stepwise-lya-proof-step-1}}:
+        Consider the first and the third term on LHS of \eqref{ineq:stepwise-lya-2} summed up: 
         \begin{align}\label{eqn:stepwise-lya-proof-eqn1}
             F(x_{k + 1}) &\underset{\eqref{eqn:regret}}{=}
             F(x_k) - \epsilon_k - \langle  g_k, x_k - y_k\rangle - \frac{1}{2L}\Vert g_k\Vert^2,
@@ -632,8 +674,8 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                     \Vert v_k - y_k\Vert^2
                 \right). 
         \end{align}
-        % Coefficient of $\epsilon_k$ and $\Vert g_k\Vert^2$ are grouped. 
-        Next, we have: 
+        \textbf{Proof of \eqref{eqn:stepwise-lya-proof-step-2}}:
+        By definition of $v_{k + 1}$, it has: 
         \begin{align}\label{eqn:stepwise-lya-proof-eqn2}\begin{split}
             \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^* \Vert^2
             &= 
@@ -675,9 +717,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                 \langle v_k - x^*, \mu \alpha_k(y_k - v_k) - \alpha_k g_k\rangle
             \\
             &= 
-            \left(
-            \frac{(1 - \alpha_k)\gamma + \mu \alpha_k}{2} 
-            \right)\Vert v_k - x^*\Vert^2
+            \frac{(1 - \alpha_k)\gamma + \mu \alpha_k}{2} \Vert v_k - x^*\Vert^2
             \\ &\quad
                 + 
                 \frac{\alpha_k^2}{2\hat \gamma}
@@ -685,7 +725,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                 + 
                 \langle v_k - x^*, \mu \alpha_k(y_k - v_k) - \alpha_k g_k\rangle. 
         \end{split}\end{align}
-        On the above derivation, the first equality comes by substituting the definition of $v_{k + 1}$ given by \eqref{eqn:stepwise-wapg-eqn4}; the second equality simplifies using $\hat \gamma = (1 - \alpha_k)\gamma + \mu \alpha_k$ given by \eqref{eqn:stepwise-wapg-eqn1} and  because:
+        The first equality above comes by substituting the definition of $v_{k + 1}$ given by \eqref{eqn:stepwise-wapg-eqn4}; the second equality simplifies using $\hat \gamma = (1 - \alpha_k)\gamma + \mu \alpha_k$ given by \eqref{eqn:stepwise-wapg-eqn1} and  because:
         \begin{align*}
             \gamma(1 - \alpha_k) v_k &= 
             (\hat \gamma  - \mu \alpha_k)v_k
@@ -696,10 +736,8 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             &= 
             \hat \gamma v_k + \mu \alpha_k(y_k - v_k). 
         \end{align*}
-        Focusing on the last two terms by the end of expression \eqref{eqn:stepwise-lya-proof-eqn2}, we have  
-        \begin{align}
-         \label{eqn:stepwise-lya-proof-eqn2.1}
-        \begin{split}
+        Focusing on the last two terms by the end of expression \eqref{eqn:stepwise-lya-proof-eqn2}, they can be written as: 
+        \begin{align}\label{eqn:stepwise-lya-proof-eqn2.1}\begin{split}
             \frac{\alpha^2_k}{2\hat \gamma} 
             \Vert \mu(y_k - v_k) - g_k\Vert^2
             & = 
@@ -739,10 +777,9 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         {\small
         \begin{align}\label{expr:stepwise-lya-expr2.2}
         \begin{split}
-            & 
-            \left(
-            \frac{(1 - \alpha_k)\gamma + \mu \alpha_k}{2} 
-            \right)\Vert v_k - x^*\Vert^2
+            \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^*\Vert^2 
+            &=
+            \frac{(1 - \alpha_k)\gamma + \mu \alpha_k}{2} \Vert v_k - x^*\Vert^2
             + 
             \left\langle g_k, 
                 - \alpha_k(v_k - x^*) 
@@ -757,9 +794,10 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         %\tag{2.2*}
         \end{align}
         }
-        Adding \eqref{expr:stepwise-lya-expr2.2} to \eqref{eqn:stepwise-lya-proof-eqn1} gives: 
+        \textbf{Proof for \eqref{eqn:stepwise-lya-proof-step-3}}: 
+        Adding the RHS of \eqref{expr:stepwise-lya-expr2.2}, \eqref{eqn:stepwise-lya-proof-eqn1} gives: 
         \begin{align}\label{eqn:stepwise-lya-proof-eqn3}
-        \begin{split}
+            \begin{split}
             &
             F(x_k) - \epsilon_k - \langle  g_k, x_k - y_k\rangle
             - \frac{\alpha_k^2}{2\hat \gamma}\Vert g_k\Vert^2
@@ -772,9 +810,8 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             \\
             &\quad 
                 + 
-                \left(
                 \frac{(1 - \alpha_k)\gamma + \mu \alpha_k}{2} 
-                \right)\Vert v_k - x^*\Vert^2
+                \Vert v_k - x^*\Vert^2
                 + 
                 \left\langle g_k, 
                     - \alpha_k(v_k - x^*) 
@@ -803,9 +840,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                     \Vert v_k - y_k\Vert^2
                 \right)
                 + 
-                \left(
-                \frac{(1 - \alpha_k)\gamma + \mu \alpha_k}{2} 
-                \right)\Vert v_k - x^*\Vert^2
+                \frac{(1 - \alpha_k)\gamma + \mu \alpha_k}{2} \Vert v_k - x^*\Vert^2
             \\
             & \quad 
                 + \frac{\alpha_k^2 \mu^2}{2\hat \gamma}\Vert y_k - v_k\Vert^2
@@ -826,9 +861,8 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                     \Vert v_k - y_k\Vert^2
                 \right)
                 + 
-                \left(
                 \frac{(1 - \alpha_k)\gamma + \mu \alpha_k}{2} 
-                \right)\Vert v_k - x^*\Vert^2
+                \Vert v_k - x^*\Vert^2
             \\
             & \quad 
                 + \frac{\alpha_k^2 \mu^2}{2\hat \gamma}\Vert y_k - v_k\Vert^2
@@ -847,10 +881,9 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                 + \frac{\alpha_k^2 \mu^2}{2\hat\gamma}\Vert y_k - v_k\Vert^2
                 + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle.     
         \end{split}
-        %\tag{3*}
         \end{align}
         On the first equality, coefficients of $\Vert g_k\Vert^2$ cancels out to zero and the inner product containing $g_k$ are grouped
-        using \eqref{eqn:Q3} derived earlier. 
+        using \eqref{eqn:Q3} from Lemma \ref{lemma:ineq-q3}. 
         The last equality re-arranged terms and grouped the coefficients of $\epsilon_k$ together. 
         Continuing on \eqref{eqn:stepwise-lya-proof-eqn3} we have
         \begin{align}\label{eqn:stepwise-lya-proof-eqn3.1}
@@ -915,8 +948,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             \right).         
         \end{split} % \tag{3.1*}
         \end{align}
-        On the first equality, coefficients of $\Vert y_k - v_k\Vert^2$ are grouped together. 
-        On the second to the third equality, its coefficients simplified using: 
+        On the first equality, coefficients of $\Vert y_k - v_k\Vert^2$ are grouped together, on the second to the third equality, its coefficient is simplified via: 
         \begin{align*}
             \frac{(1 - \alpha_k)\mu\alpha_k\gamma}{2\hat \gamma} + 
             \frac{\alpha_k^2 \mu^2}{2\hat \gamma}
@@ -929,9 +961,8 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                 \frac{\hat \gamma}{\hat \gamma}
             \right) = \frac{\mu\alpha_k}{2}. 
         \end{align*}
-        We have \eqref{eqn:stepwise-lya-proof-eqn3.1} $\impliedby$ \eqref{eqn:stepwise-lya-proof-eqn1} + \eqref{expr:stepwise-lya-expr2.2}. 
-        By \eqref{eqn:stepwise-lya-proof-eqn2} $\iff$ \eqref{expr:stepwise-lya-expr2.2},
-        \eqref{eqn:stepwise-lya-proof-eqn3.1} says: 
+        We showed that \eqref{eqn:stepwise-lya-proof-eqn3.1} is the RHS of the sum \eqref{eqn:stepwise-lya-proof-step-1} + \eqref{eqn:stepwise-lya-proof-step-2}. 
+        Calling back to the LHS of the sum, it gives: 
         \begin{align*}
             & F(x_{k + 1}) + R_{k + 1} + 
             \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^*\Vert^2
@@ -944,66 +975,10 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             + 
             (1 - \alpha_k)\left(
                 R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
-            \right)
-        \end{align*}
-        Subtracting $F(x^*)$ from both side of the equation gives: 
-        \begin{align}\label{eqn:stepwise-lya-proof-eqn3.2}
-            \begin{split}
-                \\
-                & F(x_{k + 1}) - F(x^*) + R_{k + 1} + 
-                \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^*\Vert^2
-                \\
-                &= 
-                F(x_k) - F(x^*) - \alpha_k\left(
-                    \epsilon_k + \langle g_k, x_k - x^*\rangle
-                    - \frac{\mu}{2}\Vert y_k - x^*\Vert^2
-                \right)
-                + 
-                (1 - \alpha_k)\left(
-                    R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
-                \right)
-                \\
-                &= (1 - \alpha_k)(F(x_k) - F(x^*))
-                + \alpha_k\left(
-                    F(x_k) - F(x^*) - \epsilon_k - \langle g_k, x_k - x^*\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
-                \right)
-                \\ &\quad 
-                    + 
-                    (1 - \alpha_k)\left(
-                        R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
-                    \right).     
-            \end{split}
-        % \tag{3.2*}
-        \end{align}
-        Focusing on the second term, we simplify the multiplier inside: 
-        {\small
-        \begin{align}\label{ineq:stepwise-lya-proof-ineq4}
-        \begin{split}
-            & F(x_k) - F(x^*) - \epsilon_k - \langle g_k, x_k - x^*\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
-            \\
-            &= 
-            F(x_k) - F(x^*) - \left(
-                F(x_k) - F(T_L y_k) - \langle g_k, x_k - y_k\rangle - \frac{1}{2L}\Vert g_k\Vert^2
-            \right)- \langle g_k, x_k - x^*\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
-            \\
-            &= F(T_L y_k) - F(x^*) + \langle g_k, x^* - y_k\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
-            + \frac{1}{2L}\Vert g_k\Vert^2 \underset{\text{Theorem }\ref{thm:prox-grad-ineq}}{\le} 0.     
-        \end{split}
-        \end{align}
-        }
-        % On the last line, we expand the definition of $g_k$ and then used the
-        % \hyperref[thm:prox-grad-ineq]{Theorem \ref*{thm:prox-grad-ineq}}. 
-        Therefore
-        {\small
-        \begin{align*}
-            F(x_{k + 1}) - F(x^*) + R_{k + 1} + 
-            \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^*\Vert^2
-            &\le 
-            (1 - \alpha_k)\left(
-                F(x_k) - F(x^*) + R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
             \right). 
         \end{align*}
-        }
+        \eqref{eqn:stepwise-lya-proof-step-3} is now justified. 
+        
     \end{proof}
     \begin{remark}
         Given $y_k$, we can choose to increase $\mu_\kappa = 2D_f(x^*, y_k)/\Vert y_k - x^*\Vert^2 \ge \mu$ which also works on \eqref{ineq:stepwise-lya-proof-ineq4}.
@@ -1016,7 +991,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
     In this section we propose Relaxed Weak Accelerated Proximal Gradient (R-WAPG), see Definition \ref{def:wapg}.
     R-WAPG algorithm generates iterates $(x_k, y_k, v_k)$ and admits an upper bound on $F(x_k) - F^*$ described in Proposition \ref{prop:stepwise-lyapunov}. 
     Definition \ref{def:rwapg-seq} introduces the concept of an R-WAPG sequences: $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ which is crucial.
-    The sequences parameterize the R-WAPG algorithm stated in Definition \ref{def:wapg}, it connects the step-wise formulation of R-WAPG (Definition \ref{def:stepwise-wapg}) and can describe the convergence claim of R-WAPG in Proposition \ref{prop:wagp-convergence}. 
+    The sequences parameterize the R-WAPG algorithm stated in Definition \ref{def:wapg}, it connects the step-wise formulation of R-WAPG (Definition \ref{def:stepwise-wapg}) and can describe the convergence claim of R-WAPG in Proposition \ref{prop:wapg-convergence}. 
     In the next section, it continues to play a crucial role in describing several equivalent forms of the R-WAPG algorithm, and their corresponding convergence claim. 
     \begin{definition}[R-WAPG sequences]\label{def:rwapg-seq}\;\\
         Assume $0 \le \mu < L$. 
@@ -1080,7 +1055,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         The third equality from Observation \ref{obs:r-wapg-observation-1}. 
     \end{observation}
     Here is the main result of this section. 
-    \begin{proposition}[R-WAPG convergence claim]\label{prop:wagp-convergence}\; \\
+    \begin{proposition}[R-WAPG convergence claim]\label{prop:wapg-convergence}\; \\
         Fix any arbitrary $x^* \in \RR^n, N \in \mathbb N$. 
         Let vector sequence $(y_k, v_{k}, x_{k})_{k \ge 1}$ and R-WAPG sequences $\alpha_k, \rho_k$ be given by Definition \ref{def:wapg}. 
         Define $R_1 = 0$ and suppose that for $k = 1, 2, \ldots, N$, we have $R_k$ recursively given by: 
@@ -1258,7 +1233,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
     Proposition \ref{prop:wapg-first-equivalent-repr} simplifies Definition \ref{def:wapg} and finds a representation without using auxiliary sequence $\gamma_k, \hat \gamma_k$. 
     Definition \ref{def:r-wapg-intermediate} states the first simplified form of the R-WAPG algorithm which we call: ``R-WAPG intermediate form''. 
     Following a similar pattern, Proposition \ref{prop:wagp-st-form}, \ref{prop:r-wapg-momentum-repr} demonstrates two more equivalent representations of the R-WAPG intermediate form (Definition \ref{def:r-wapg-intermediate}) which are formulated into Definition \ref{def:r-wapg-st-form}, \ref{def:r-wapg-momentum-form}. 
-    Convergence results from Proposition \ref{prop:wagp-convergence} applies to all these equivalent forms of R-WAPG. 
+    Convergence results from Proposition \ref{prop:wapg-convergence} applies to all these equivalent forms of R-WAPG. 
     In brief, different equivalent reformulations are summarized as following: 
     \begin{align*}
         &\text{Definition \ref{def:wapg}}   \iff 
@@ -1460,16 +1435,15 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         \begin{proposition}[First equivalent representation of R-WAPG]\label{prop:wapg-first-equivalent-repr}\;\\
             If the sequence $(y_k, v_k, x_k)_{k \ge 1}$ is produced by R-WAPG (Definition \ref{def:wapg}), 
             then the iterates can be expressed without $(\gamma_k)_{k \ge1},(\hat \gamma_k)_{k \ge 2}$, and for all $k\ge 1$ namely
-            \begin{align*}
-                & 
-                y_{k} = 
+            \begin{align}
+                & y_{k} = 
                 \left(
                     1 + \frac{L - L\alpha_{k}}{L\alpha_{k} - \mu}
                 \right)^{-1}
                 \left(
                     v_{k} + 
                     \left(\frac{L - L\alpha_{k}}{L\alpha_{k} - \mu} \right) x_{k}
-                \right), 
+                \right), \label{eqn:rwapg-first-equiv-form-eqn-1}
                 \\
                 & x_{k + 1} = 
                 y_k - L^{-1} \mathcal G_L y_k, 
@@ -1482,9 +1456,11 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                     v_k + 
                     \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
                 \right) - \frac{1}{L\alpha_{k}}\mathcal G_L y_k. 
-            \end{align*}
+                \label{eqn:rwapg-first-equiv-form-eqn-2}
+            \end{align}
         \end{proposition}
         \begin{proof}
+            \textbf{We will show \eqref{eqn:rwapg-first-equiv-form-eqn-1} first.} 
             For all $k \ge 1$, by R-WAPG (Definition \ref{def:wapg}), it has: 
             \begin{align*}
                 y_{k} &= 
@@ -1528,7 +1504,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                     \frac{L - L \alpha_k}{L \alpha_k - \mu} x_k
                 \right). 
             \end{align*}
-            From the left to right of the second equality, we used the fact that $\hat \gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k\mu$. 
+            From the left to right of the second equality, we used $\hat \gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k\mu$ which comes from \eqref{eqn:stepwise-wapg-eqn2}. 
             Going from the left to the right of the second last equality, we did the following: 
             \begin{align*}
                 L\alpha_k^2 &= 
@@ -1554,14 +1530,9 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                 \frac{L - L\alpha_k}{L\alpha_k - \mu}. 
             \end{align*}
             On the third $\iff$, we can assume $\alpha_k \neq \mu/L\;  \forall k \ge 1$ because from Definition \ref{def:rwapg-seq}: $\alpha_k \in (\mu/L, 1)$ for all $k \ge 1$. 
-            % On the third $\iff$, we can assume $\alpha_k \neq \mu/L\; \forall k \ge 2$ because if $\alpha_k = \mu/L$ were impossible, it then has
-            % \begin{align*}
-            %     L \alpha_k^2 - \alpha_k\mu &= 
-            %     (1 - \alpha_k)L \rho_{k - 1}\alpha_{k - 1}^2 = 0 \implies \alpha_{k - 1} = 0. 
-            % \end{align*}
-            % Which contradict $\alpha_{k - 1} \in (0, 1)\; \forall k \ge 2$ because $\alpha_1 \in (0, 1)$ is given to satisfy the condition in the base case, and $\alpha_k \in (0, 1)\; \forall k \ge 2$ by justifications in Observation \ref{obs:r-wapg-observation-1}. 
-            \\
-            For all $k \ge 1$, $v_{k + 1}$ has: 
+            \par
+            \textbf{Next, we show \eqref{eqn:rwapg-first-equiv-form-eqn-2}.}
+            From the Definition \ref{def:wapg}, for all $k \ge 1$, $v_{k + 1}$ it follows that: 
             \begin{align*}
                 v_{k + 1} &= 
                 \hat \gamma_{k + 1}^{-1}
@@ -1612,7 +1583,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             Let iterates $(y_k, x_{k}, v_{k})_{k \ge 1}$ and sequence $(\alpha_k, \rho_k)_{k \ge 0}$ be given by Definition \ref{def:r-wapg-intermediate}. 
             Then for all $k \ge 1$, iterate $y_k, x_{k + 1}, v_{k + 1}$
             satisfy: 
-            \begin{align*}
+            \begin{align}
                 y_{k} &= 
                 \left(
                     1 + \frac{L - L\alpha_{k}}{L\alpha_{k} - \mu}
@@ -1621,52 +1592,30 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                     v_{k} + 
                     \left(\frac{L - L\alpha_{k}}{L\alpha_{k} - \mu} \right) x_{k}
                 \right), 
+                \label{eqn:rwapg-st-form-eqn-1}
                 \\
                 x_{k + 1} &= 
                 y_k - L^{-1} \mathcal G_L y_k, 
                 \\
                 v_{k + 1} &= x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k). 
-            \end{align*}
+                \label{eqn:rwapg-st-form-eqn-3}
+            \end{align}
         \end{proposition}
         \begin{proof}
             From Definition \ref{def:r-wapg-intermediate}, define $(\tau_k, \xi_k, \delta_k)_{k \ge 1}$ in Proposition \ref{prop:abs-st-form} to be
-            \begin{align*}
-                (\forall k \ge 1) \quad \tau_k &= \frac{L(1 - \alpha_k)}{L\alpha_k - \mu},
+            \begin{align}
+                (\forall k \ge 1) \quad 
+                \tau_k &= \frac{L(1 - \alpha_k)}{L\alpha_k - \mu}, 
+                \label{eqn:rwapg-st-form-proof-tau}
                 \\
                 (\forall k \ge 1)\quad 
                 \xi_k &= \frac{\mu}{L \alpha_k - \mu},
                 \\
                 (\forall k \ge 1)\quad 
                 \delta_k &\defeq \frac{1 + \xi_k}{L\alpha_k}. 
-            \end{align*}
-            Then this fits into the format of abstract similar triangle form. 
-            We claim that these parameters satisfy $L\delta_k = 1 + \tau_k + \xi_k$. 
-            To see this, we have for all $k\ge 1$: 
-            \begin{align*}
-                1 + \tau_k + \xi_k &= 
-                1 + \frac{L(1 - \alpha_k)}{L \alpha_k - \mu} 
-                + \frac{\mu}{L \alpha_k - \mu}
-                \\
-                &= 
-                1 + \frac{L - L \alpha_k + \mu}{L\alpha_k - \mu}
-                \\
-                &= 
-                \frac{L - L \alpha_k + \mu + L \alpha_k - \mu}{L\alpha_k - \mu}
-                \\
-                &= \frac{L}{L\alpha_k - \mu}. 
-            \end{align*}
-            Next, it also has for all $k \ge 1$: 
-            \begin{align*}
-                L\delta_k = \frac{1 + \xi_k}{\alpha_k}
-                &= 
-                \frac{1 + \frac{\mu}{L\alpha_k - \mu}}{\alpha_k}
-                = 
-                \frac{\frac{L\alpha_k - \mu + \mu}{L \alpha_k - \mu}}{\alpha_k}
-                = 
-                \frac{L}{L\alpha_k - \mu}.
-            \end{align*}
-            Hence,  $v_{k + 1} - x_{k + 1} = (1 + \xi_k)^{-1}(x_{k + 1} - x_k)\; \forall k \ge 1$ by Proposition \ref{prop:abs-st-form}.
-            Therefore, substituting $\xi_k$ gives: 
+            \end{align}
+            Then, it fits into the format of abstract similar triangle form Proposition \ref{prop:abs-st-form} and it follows that $v_{k + 1} - x_{k + 1} = (1 + \xi_k)^{-1}(x_{k + 1} - x_k)\; \forall k \ge 1$. 
+            We shall verify the hypothesis that $L\delta_k = 1 + \tau_k + \xi_k$ later, for now substituting $\xi_k$ gives: 
             \begin{align*}
                 v_{k + 1} &= 
                 x_{k + 1} + \left(
@@ -1691,85 +1640,102 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                 \\
                 &= x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k). 
             \end{align*}
+            It's easy to see that substituting $\tau_k$ as given by \eqref{eqn:rwapg-st-form-proof-tau} into $y_k = (1 + \tau_k)^{-1}(v_k + \tau_k x_k)$ as in Proposition \ref{prop:abs-st-form} produces \eqref{eqn:rwapg-st-form-eqn-1}. 
+            It remains to show that $L\delta_k = 1 + \tau_k + \xi_k$. 
+            To see this, we have for all $k\ge 1$: 
+            \begin{align*}
+                1 + \tau_k + \xi_k &= 
+                1 + \frac{L(1 - \alpha_k)}{L \alpha_k - \mu} 
+                + \frac{\mu}{L \alpha_k - \mu}
+                \\
+                &= 
+                1 + \frac{L - L \alpha_k + \mu}{L\alpha_k - \mu}
+                \\
+                &= 
+                \frac{L - L \alpha_k + \mu + L \alpha_k - \mu}{L\alpha_k - \mu}
+                \\
+                &= \frac{L}{L\alpha_k - \mu}. 
+            \end{align*}
+            Next, it also has for all $k \ge 1$: 
+            \begin{align*}
+                L\delta_k = \frac{1 + \xi_k}{\alpha_k}
+                &= 
+                \frac{1 + \frac{\mu}{L\alpha_k - \mu}}{\alpha_k}
+                = 
+                \frac{\frac{L\alpha_k - \mu + \mu}{L \alpha_k - \mu}}{\alpha_k}
+                = 
+                \frac{L}{L\alpha_k - \mu}.
+            \end{align*}
+            
         \end{proof}
     
         \begin{proposition}[Third equivalent representation of R-WAPG]\label{prop:r-wapg-momentum-repr}
             \;\\
             Let sequence $(\alpha_k, \rho_k)_{k \ge 0}$ and iterates $(x_k, v_k, y_k)_{k\ge 1}$ given by R-WAPG intermediate form (Definition \ref{def:r-wapg-st-form}). 
-            Then for all $k \ge 1$, the iterates $(x_{k + 1}, y_{k + 1})_{k \ge 1}$ satisfy: 
-            \begin{align*}
-                x_{k + 1} &= y_k - L^{-1}\mathcal G_Ly_k, 
-                \\
-                y_{k + 1} &= 
-                x_{k + 1} + 
-                \frac{\rho_k\alpha_k(1 - \alpha_k)}
-                {\rho_k\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
-            \end{align*}
-            If in addition, $v_1 = x_1$ then 
-            \begin{align*}
-                y_1 = \left(
-                    1 + \frac{L - L \alpha_1}{L\alpha_1 - \mu}
-                \right)^{-1}\left(
-                    v_1 + \left(
-                        \frac{L - L \alpha_1}{L \alpha_1 - \mu}
-                    \right)x_1
-                \right) = x_1. 
-            \end{align*}
-            If in addition $\mu = 0$, then the momentum term admits a simpler representation 
-            \begin{align*}
-                (\forall k \ge 1) \quad 
-                \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}
-                & = \alpha_{k + 1}(\alpha_k^{-1} - 1). 
-            \end{align*}
+            Then it has: 
+            \begin{enumerate}
+                \item For all $k \ge 1$, the iterates $x_{k + 1}, y_{k + 1}$ satisfy:
+                \begin{align*}
+                    x_{k + 1} &= y_k - L^{-1}\mathcal G_Ly_k, 
+                    \\
+                    y_{k + 1} &= 
+                    x_{k + 1} + 
+                    \frac{\rho_k\alpha_k(1 - \alpha_k)}
+                    {\rho_k\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
+                \end{align*}
+                \item $v_1 = x_1$ if and only if $y = x_1$.  
+                \item If in addition $\mu = 0$, then the momentum term in (i) admits a simpler representation: 
+                \begin{align*}
+                    (\forall k \ge 1) \quad 
+                    \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}
+                    & = \alpha_{k + 1}(\alpha_k^{-1} - 1). 
+                \end{align*}
+            \end{enumerate}
         \end{proposition}
         \begin{proof}
             Start by considering the update rule for $v_k$ from the Definition \ref{def:r-wapg-st-form} which has for all $k \ge 1$: 
             \begin{align}
                 v_{k + 1} &= 
                 x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k)
+                \notag
                 \\
                 \iff 
-                (L \alpha_{k + 1} - \mu)v_{k + 1} 
+                (L \alpha_{k + 1} - \mu)v_{k + 1}  
                 &= 
                 (L \alpha_{k + 1} - \mu)x_{k + 1} + (L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)(x_{k + 1} - x_k).
-                \label{eqn:third-eqv-repr-eqn1} 
+                \label{eqn:third-eqv-repr-proof-step1} 
             \end{align}
-            Next, we simplify the update $y_{k}$ by Definition \ref{def:r-wapg-st-form} for all $k \ge 1$: 
-            \begin{align*}
-                y_k &= 
-                \left(
-                    1 + \frac{L - L\alpha_k}{L\alpha_k - \mu}
-                \right)^{-1}
-                \left(
-                    v_k + 
-                    \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
-                \right)
-                \\
-                &= 
-                \left(
-                \frac{L - \mu}{L\alpha_k - \mu} 
-                \right)^{-1}
-                \left(
-                    v_k + 
-                    \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
-                \right)
-                \\
-                &= 
-                \frac{L\alpha_k - \mu}{L - \mu} v_k
-                + 
-                \frac{L - L \alpha_k}{L - \mu} x_k
-                \\
-                &= (L - \mu)^{-1}((L \alpha_k - \mu)v_k + (L - L \alpha_k)x_k). 
-            \end{align*}
-            We have $y_1 = x_1$ when $v_1 = x_1$ because
-            \begin{align*}
-                y_1 &= (L - \mu)^{-1}(L(\alpha_1 - \mu)x_1 + (L - L\alpha_1)x_1)
-                \\
-                &= (L - \mu)^{-1}(L(\alpha_1 - \mu)x_1 + (L - L \alpha_1)x_1)
-                \\
-                &= (L - \mu)^{-1}((L - \mu)x_1) = x_1. 
-            \end{align*}
-            Using RHS of \eqref{eqn:third-eqv-repr-eqn1} to substitute $L\alpha_{k + 1} - \mu$ into $y_{k + 1}$, so it has for all $k\ge 1$: 
+            The comming parts simplifies $y_k$ firstly for $k = 1$, then for all $k \ge 2$. 
+            by Definition \ref{def:r-wapg-st-form}, it follows that for all $k \ge 1$: 
+            \begin{align}\label{eqn:third-eqv-repr-proof-step2}
+                \begin{split}
+                    y_k &= 
+                    \left(
+                        1 + \frac{L - L\alpha_k}{L\alpha_k - \mu}
+                    \right)^{-1}
+                    \left(
+                        v_k + 
+                        \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
+                    \right)
+                    \\
+                    &= 
+                    \left(
+                    \frac{L - \mu}{L\alpha_k - \mu} 
+                    \right)^{-1}
+                    \left(
+                        v_k + 
+                        \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
+                    \right)
+                    \\
+                    &= 
+                    \frac{L\alpha_k - \mu}{L - \mu} v_k
+                    + 
+                    \frac{L - L \alpha_k}{L - \mu} x_k
+                    \\
+                    &= (L - \mu)^{-1}((L \alpha_k - \mu)v_k + (L - L \alpha_k)x_k). 
+                \end{split}
+            \end{align}
+            For all $k\ge 1$, substitute RHS of \eqref{eqn:third-eqv-repr-proof-step1} yields: 
             {\small
             \begin{align*}
                 y_{k + 1} &= 
@@ -1791,8 +1757,27 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                 &= x_{k + 1} + \frac{(L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)}{L - \mu}(x_{k + 1} - x_k). 
             \end{align*}
             }
-            The coefficient for $(x_{k + 1} - x_k)$ needs some works to formulate it without the parameter $\mu, L$. 
-            To do that we have: 
+            To show (ii), we show $y_1 = x_1$ when $v_1 = x_1$. 
+            Set $k = 1$ in \eqref{eqn:third-eqv-repr-proof-step1}, it follows that: 
+            \begin{align*}
+                y_1 &= (L - \mu)^{-1}(L(\alpha_1 - \mu)x_1 + (L - L\alpha_1)x_1)
+                \\
+                &= (L - \mu)^{-1}(L(\alpha_1 - \mu)x_1 + (L - L \alpha_1)x_1)
+                \\
+                &= (L - \mu)^{-1}((L - \mu)x_1) = x_1. 
+            \end{align*}
+            Observe that, if $\mu = 0$, we can prove (iii) because:
+            \begin{align*}
+                \frac{(L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)}{L - \mu} = 
+                \frac{L\alpha_{k +1}(\alpha_k^{-1} - 1)}{L} = \alpha_{k +1}(\alpha_k^{-1} - 1). 
+            \end{align*}
+            Therefore, the special case had been justified. 
+            To prove (ii), it remains to show that the coefficient of $x_{k + 1} - x_k$ can be expressed without $\mu, L$: 
+            \begin{align*}
+                \frac{(L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)}{L - \mu}
+                &= \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}. 
+            \end{align*}
+            Consider: 
             \begin{align*}
                 \frac{(L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)}{L - \mu}
                 &= \frac{(L\alpha_{k + 1} - \mu)\alpha_k(1 - \alpha_k)}{\alpha_k^2(L - \mu)}
@@ -1823,7 +1808,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                 \\
                 &= \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}.
             \end{align*}
-            Going from the left to right on the fourth equality, we used $L\alpha_{k + 1}^2 = (1 - \alpha_{k + 1})\rho_kL\alpha_k^2 + \mu \alpha_{k + 1}$ to establish: 
+            Going from the left to right on the fourth equality, we used the property of R-WAPG sequence $L\alpha_{k + 1}^2 = (1 - \alpha_{k + 1})\rho_kL\alpha_k^2 + \mu \alpha_{k + 1}$ to establish: 
             \begin{align*}
                 L \rho_k \alpha_k^2 - \mu \rho_k \alpha_k^2 
                 &= 
@@ -1839,22 +1824,22 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                 \\
                 &= (L \alpha_{k + 1} - \mu)(\alpha_{k + 1} + \rho_k \alpha_k^2). 
             \end{align*}
-            When $\mu = 0$, things simplify. 
-            Consider that $\forall k \ge 1: \alpha_{k + 1}^2 = (1 - \alpha_{k + 1})\rho_k\alpha_k^2$. 
-            \begin{align*}
-                \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}
-                &= 
-                \frac{\rho_k\alpha_{k + 1}\alpha_k(1 - \alpha_k)}
-                {\rho_k\alpha_{k + 1}\alpha_k^2 + \alpha_{k + 1}^2}
-                \\
-                &= 
-                \frac{\rho_k\alpha_{k + 1}\alpha_k(1 - \alpha_k)}
-                {\rho_k\alpha_{k + 1}\alpha_k^2 + \rho_k(1 - \alpha_{k + 1})\alpha_k^2}
-                \\
-                &= \frac{\rho_k\alpha_{k + 1}\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2}
-                \\
-                &= \alpha_{k + 1}(\alpha_k^{-1} - 1). 
-            \end{align*}
+            % When $\mu = 0$, things simplify. 
+            % Consider that $\forall k \ge 1: \alpha_{k + 1}^2 = (1 - \alpha_{k + 1})\rho_k\alpha_k^2$. 
+            % \begin{align*}
+            %     \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}
+            %     &= 
+            %     \frac{\rho_k\alpha_{k + 1}\alpha_k(1 - \alpha_k)}
+            %     {\rho_k\alpha_{k + 1}\alpha_k^2 + \alpha_{k + 1}^2}
+            %     \\
+            %     &= 
+            %     \frac{\rho_k\alpha_{k + 1}\alpha_k(1 - \alpha_k)}
+            %     {\rho_k\alpha_{k + 1}\alpha_k^2 + \rho_k(1 - \alpha_{k + 1})\alpha_k^2}
+            %     \\
+            %     &= \frac{\rho_k\alpha_{k + 1}\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2}
+            %     \\
+            %     &= \alpha_{k + 1}(\alpha_k^{-1} - 1). 
+            % \end{align*}
         \end{proof}
 
 
@@ -1863,7 +1848,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
     They generalize many existing sequences used in accelerated proximal gradient schemes. 
     \par
     This section demonstrates that several variants of FISTA in the literatures reduces to the R-WAPG method by setting up the R-WAPG sequences with additional assumptions. 
-    This section will also demonstrate that the convergence claim (Proposition \ref{prop:wagp-convergence}) holds, and it derives convergence rates consistent with results in the literatures.  
+    This section will also demonstrate that the convergence claim (Proposition \ref{prop:wapg-convergence}) holds, and it derives convergence rates consistent with results in the literatures.  
     The table below shows the R-WAPG convergence results specialized into various settings. 
     \begin{table}[H]
         {\scriptsize
@@ -1878,7 +1863,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             \begin{tabular}{l}
                 $\mathcal O \left(\prod_{i = 0}^{k-1} \max(1, \rho_i)(1 - \alpha_{i + 1})\right)$
                 \\
-                (Proposition \ref{prop:wagp-convergence})
+                (Proposition \ref{prop:wapg-convergence})
             \end{tabular}
         \\ \hline
             Chambolle, Dossal 2015 \cite{chambolle_convergence_2015} &  
@@ -2105,8 +2090,13 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         Then algorithm produces $(x_k)_{k \ge0}$ such that $F(x) - F(x^*)$ convergences at a rate of $\mathcal O(\alpha_k^2)$. 
     \end{theorem}
     \begin{proof}
-        We only need to show that $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are valid R-WAPG sequences. 
-        To do that we verify equality $\alpha_{k + 1}^2 = (1 - \alpha_{k + 1})\rho_k \alpha_k^2$ because it's assumed $\mu = 0$ in this case. 
+        Proceeding stepwise, we want to specialize the results of Proposition \ref{prop:wapg-convergence} for the above choice of sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$. 
+        \begin{enumerate}
+            \item $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are valid R-WAPG sequences, so we can use the convergence results. 
+            \item $\rho_k \ge 1$ so Lemma \ref{lemma:inverted-fista-seq} (iii) applies. 
+            \item Simplifies the conclusion of Proposition \ref{prop:wapg-convergence} by the previous two items. 
+        \end{enumerate}
+        To show (i), we verify equality $\alpha_{k + 1}^2 = (1 - \alpha_{k + 1})\rho_k \alpha_k^2$ because it's assumed $\mu = 0$ in this case. 
         For all $k \ge 0$, the right side of the equality evaluates to 
         \begin{align*}
             \alpha_k^2 \rho_k(1 - \alpha_{k + 1}) &= 
@@ -2134,7 +2124,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         So, it can be used in the R-WAPG algorithm and represent it in R-WAPG Momentum Form in Definition \ref{def:r-wapg-momentum-form}. 
         Using $\mu = 0$, it simplifies the momentum term in Definition \ref{def:r-wapg-momentum-form} and gives the rules of updates in the theorem statement. 
         \par
-        Next, we show the convergence rate of the algorithm. 
+        Next, we show (ii). 
         Observe that $(\forall k \ge 0)(\forall a \ge 2)$, $\rho_k$ has 
         \begin{align*}
             \rho_k &= \frac{(k + a)^2}{(k + 1)(k + a + 1)} = \frac{k^2 + a^2 + 2ak}{k^2 + ak + 2k + a + 1}
@@ -2144,7 +2134,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             &= (k^2 + a^2 + 2ak)(k^2 + 2ak + \underbrace{(2 - a)k + a + 1}_{\le a^2})^{-1} \ge 1. 
         \end{align*}
         Hence, (iii) in Lemma \ref{lemma:inverted-fista-seq} applies. 
-        By Proposition \ref{prop:wagp-convergence}, we have:
+        By Proposition \ref{prop:wapg-convergence}, we have:
         {\small\begin{align*}
             & F(x_{k + 1}) - F(x^*) + \frac{L\alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
             \\
@@ -2198,8 +2188,8 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
     \end{theorem}
     \begin{proof}
         The constant sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ is a valid R-WAPG sequence by Lemma \ref{lemma:constant-rwapg-seq}. 
-        The algorithm presented here is the same as the R-WAPG momentum form because the term $\theta$ from Lemma \ref{lemma:constant-rwapg-seq} matches up with Definition \ref{def:r-wapg-momentum-form}. 
-        Therefore, by Proposition \ref{prop:wagp-convergence} we have: 
+        The algorithm presented here is the same as the R-WAPG momentum form as given by Definition \ref{def:r-wapg-momentum-form} because the term $\theta$ from Lemma \ref{lemma:constant-rwapg-seq} matches up with Definition \ref{def:r-wapg-momentum-form} by (ii) in Lemma \ref{lemma:constant-rwapg-seq}. 
+        Then, Proposition \ref{prop:wapg-convergence} applies and it follows that: 
         \begin{align*}
             & F(x_{k + 1}) - F^* + \frac{L\alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
             \\
@@ -2230,8 +2220,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             \right). 
             & \text{Lemma \ref{lemma:constant-rwapg-seq} (v)}
         \end{align*}
-        The equivalency between the momentum representation of R-WAPG (Definition \ref{def:r-wapg-momentum-form}) and the similar triangle representation (Definition \ref{def:r-wapg-st-form}) allows us to write $v_{k + 1} = x_{k + 1} + (\alpha^{-1} - 1)(x_{k + 1} - x_k)$. 
-        By the initialization condition $v_1 = x_1$ specified in Proposition \ref{prop:r-wapg-momentum-repr}, we can write $v_1$ as $x_1$. 
+        Going from the second last to the last equality, we used the initialization condition $y_1 = x_1$ specified in Proposition \ref{prop:r-wapg-momentum-repr}, therefore it has $v_1 = x_1$. 
     \end{proof}
     \begin{remark}
         When $r = 1$, the algorithm described above is exactly the same as the V-FISTA algorithm specified in (10.7.7) of Beck's book \cite{beck_first-order_2017}. 
@@ -2277,7 +2266,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
     We note that $f(y_0)$ is computed before the start of the for loop. 
     And finally, it evaluates proximal of $g$ at $y_k - L^{-1}\nabla f(y_k)$ once. 
     \par 
-    From a theoretical perspective, the convergence result (Proposition \ref{prop:wagp-convergence}) of R-WAPG is relevant to some degree because the sequence $(\alpha_k)_{k \ge 0}$ generated by Algorithm \ref{alg:free-rwapg} is an R-WAPG sequence. 
+    From a theoretical perspective, the convergence result (Proposition \ref{prop:wapg-convergence}) of R-WAPG is relevant to some degree because the sequence $(\alpha_k)_{k \ge 0}$ generated by Algorithm \ref{alg:free-rwapg} is an R-WAPG sequence. 
     Let $\tilde \mu_k$ be an estimate produced by the algorithm then it satisfies that $\tilde \mu_k/ L \in (0, 1)$.
     Assuming inductively that $q = \tilde \mu_k/L$,  $\alpha_k \in (\mu/L, 1)$, then 
     \begin{align*}
@@ -2445,7 +2434,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             One of the most important feature is that the estimate $\mu$ doesn't converge to the true value, but it didn't affect the convergence of $\delta_k$. 
 
 \section{Discussion}
-    This paper provides the results of an upper bound (Proposition \ref{prop:wagp-convergence}) on the optimality gap $F(x_k) - F^*$ for smooth plus nonsmooth composite optimization problem with convex objectives where under the much weaker assumption for the momentum parameter specified by Definition \ref{def:rwapg-seq}. 
+    This paper provides the results of an upper bound (Proposition \ref{prop:wapg-convergence}) on the optimality gap $F(x_k) - F^*$ for smooth plus nonsmooth composite optimization problem with convex objectives where under the much weaker assumption for the momentum parameter specified by Definition \ref{def:rwapg-seq}. 
     The proposed R-WAPG unifies the convergence proof for major Euclidean variants of FISTA with strong convexity parameter $\mu \ge 0$. 
     To the best of our knowledge, there is no framework had been identified yet in the literatures that proves the convergences of several variants (with and without strong convexity parameter) with momentum sequences that doesn't follow the Nesterov's rule. 
     \par
