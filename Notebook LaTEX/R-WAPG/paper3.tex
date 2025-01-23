@@ -76,14 +76,12 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             They present the idea of Hessian Damping for stabilizing the Nesterov's accelerated gradient without/with restarting. 
 
     \subsection{Contributions of this paper}
-        Inspired specifically by the technique of Nestrov's estimating sequence \cite{nesterov_lectures_2018}, firstly we present a unified framework of Accelerated Proximal Gradient (APG) which we call Relaxed Weak Accelerated Proximal Gradient (R-WAPG) in Section \ref{sec:rwapg-formulation-convergence}.
-        It has the ability to upper bound $F(x_k) - F(x^*)$ for sequences $(t_k)_{k \ge 0}$ that follows a rule much weaker than Nesterov's update rule. 
-        In addition to a convergence claim of $F(x_k)- F(x^*)$ for a much more flexible choice of $(t_k)_{k \ge 1}$. 
-        Secondly, we present an alternative to restarting that performs well empirically inspired by a small detail in the convergence proof of R-WAPG. 
-        It also has descriptive power to describe several variants of FISTA in the literatures.  
-        \par
         Our contributions are two folds, theoretical and practical. 
         Our results are based the assumption $F = f + g$ where $g:\RR^n \rightarrow \overline\RR$ is convex proper and closed, and $f$ is an $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
+        \par
+        Inspired specifically by the technique of Nestrov's estimating sequence \cite{nesterov_lectures_2018}, firstly we present a unified framework of Accelerated Proximal Gradient (APG) which we call Relaxed Weak Accelerated Proximal Gradient (R-WAPG) in Section \ref{sec:rwapg-formulation-convergence}.
+        It can upper bound $F(x_k) - F(x^*)$ for sequences $(t_k)_{k \ge 0}$ that doesn't follow Nesterov's update rule and it unifies the convergence results of several Euclidean variants of FISTA. 
+        Secondly, we present an alternative to restarting that performs well empirically inspired by a detail in the convergence proof of R-WAPG with extensive numerical experiments. 
         \par
         \textbf{A summary of our main results follow. } 
         Nesterov's acceleration extrapolate $y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$ where $\theta_{k + 1} = (t_{k} - 1)/t_{k + 1} \in (0, 1)$ is the ``momentum''. 
@@ -115,18 +113,17 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         In Theorem \ref{thm:fixed-momentum-fista}, it demonstrates that R-WAPG frameworks gives a linear convergence claim for all fixed momentum method where $\alpha_k := \alpha \in (\mu/L, 1)$ and  $F$ is $\mu > 0$ strongly convex. 
         Finally, we did the tedious work and present three equivalent forms of R-WAPG in Section \ref{sec:rwapg-equiv-repr} that are comparable to notable Euclidean variants of FISTA and beyond. This shows the descriptive power of our R-WAPG framework. 
         \par
-        Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG'' (See Algorithm \ref{alg:free-rwapg}). 
+        Our practical contribution is an algorithm inspired by a detail in the proof of Proposition \ref{prop:wagp-convergence} which is called ``Parameter Free R-WAPG'' (See Algorithm \ref{alg:free-rwapg}). 
         The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ from the Bregman divergence of $f$ with minimal computational cost. 
         We conducted ample amount of numerical experiments to show that it has a favorable convergence rate in practice and behaves similarly to the FISTA with monotone restart.
         \par
-        Section \ref{sec:preliminaries} introduces the proximal gradient inequality which is instrumental to developing the stepwise convergence claim in the next section. 
-        Section \ref{sec:stepwise-stuff} states and prove an inequality based on a generic iterative algorithm for just one iteration. 
-        Section \ref{sec:rwapg-formulation-convergence} formulates the full R-WAPG algorithm and characterize sufficient conditions for R-WAPG sequence to derive the optimality upper bound in Proposition \ref{prop:wagp-convergence}. 
+        Section \ref{sec:stepwise-stuff} states and proves Proposition \ref{prop:stepwise-lyapunov}, an inequality based on a single generic iterative step that acts similar to a descent lemma. 
+        Section \ref{sec:rwapg-formulation-convergence} formulates the full R-WAPG in Definition \ref{def:wapg} and defines the R-WAPG sequence in Definition \ref{def:rwapg-seq}. 
+        Proposition \ref{prop:wagp-convergence} states the convergence rate of R-WAPG through Proposition \ref{prop:stepwise-lyapunov} and the R-WAPG sequence. 
         Section \ref{sec:rwapg-equiv-repr} gives three equivalent representations of the R-WAPG algorithms that are comparable to instances of APG found in the literatures. 
         Section \ref{sec:rwapg-literatures} formulates FISTA, and V-FISTA sequences as instance of the R-WAPG sequences.
         The section proves the convergence rate of several variants of FISTA using the equivalent forms introduced in Section \ref{sec:rwapg-equiv-repr} and the convergence rate developed Section \ref{sec:rwapg-formulation-convergence}. 
         Finally, in Section \ref{sec:free-rwapg} gives a formulation of a parameter free version of R-WAPG algorithm and showcase the numerical experiments for regression, LASSO. 
-        The numerical experiments expose very interesting behaviors of the algorithm of our own creativity. 
 
 
 \section{Preliminaries}\label{sec:preliminaries}
@@ -1365,8 +1362,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             The term ``Method of Similar Triangle" was used for Algorithm (6.1.19) in Nesterov's book \cite{nesterov_lectures_2018}, but without the necessary graphical illustrations to clarify it. 
             Equation (2), (3), (4) in \cite{chambolle_convergence_2015} is a similar triangle formulation of FISTA with $\mu = 0$. 
             To see graphical visualization on why such term is used to describe the APG algorithm in the literatures, see 
-            (3.1, 4.1) in Lee et al. \cite{lee_geometric_2021} and Ahn and Sra \cite{ahn_understanding_2022}. 
-
+            (3.1, 4.1) in Lee et al. \cite{lee_geometric_2021} and Ahn and Sra \cite{ahn_understanding_2022}.
         \end{remark}
         \begin{definition}[R-WAPG momentum form]\label{def:r-wapg-momentum-form}
             Given any $y_1 = x_1 \in \RR^n$, and sequences $(\rho_k)_{k \ge 0}, (\alpha_k)_{k\ge 0}$ Definition \ref{def:rwapg-seq}. 

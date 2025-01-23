@@ -180,7 +180,7 @@ This proof is better.
 ---
 ### **Locally Lipschitz In Higher Dimensions**
 
-Unfortunately, continuity on a line segment is not the same as continuity in a point $x$ and it's neighbour hood $\mathcal (x)$. 
+Unfortunately, continuity on a line segment is not the same as continuity in a point $x$ and it's neighborhood $\mathcal (x)$. 
 Here we define $\mathbb B$ to be the unit norm ball around $\mathbf 0$ the origin. 
 Continuity on a line segment is strictly a weaker condition. 
 Therefore we will prove a strong version of the above theorem. 
@@ -188,7 +188,7 @@ This part is taken from Prof Wang's teaching of MATH 564 at UBCO.
 The virtue of Professor Wang's proof is because he didn't use subgradient. 
 
 #### **Lemma | Convex function is Bounded if and only if It's Locally Lipschitz**
-> Let $f:\mathbb R^n \mapsto \mathbb R$ be a convex function, then the following condition is equivalent. 
+> Let $f:\mathbb R^n \rightarrow \mathbb R$ be a convex function, then the following condition is equivalent. 
 > 1. Function $f$ is locally Lipschitz $z \in \text{int.dom}(f)$. 
 > 2. Function $f$ is bounded from above around the neighbourhood $\mathbb B_\epsilon(z)$. 
 
@@ -209,12 +209,13 @@ $$
 $$
 
 The inequality holds because the distance between the 2 points in the balls is limited by the diameter of the ball. 
+No convexity is involved for this direction. 
 
 To show that (2.) implies (1.). 
 Without lose of generality, we assume that there exists $\mathbf 0 \in \text{int.dom}(f)$. 
 We also assume that $f(z) = 0$, and $z = 0$. 
 This can be done WOLG by the translational argument $g(x) = f(x - z) - z$.
-Assume that $f < \beta$ is bounded in the neighbourhood $2\epsilon \mathbb B$around the origin for some $\epsilon > 0$. 
+Assume that $f < \beta$ is bounded in the neighbourhood $2\epsilon \mathbb B$ around the origin for some $\epsilon > 0$. 
 Using the convexity we would have 
 
 $$
@@ -229,7 +230,7 @@ $$
 $$
 
 Therefore $f$ is also bounded below by $\beta$. 
-Choose $x, y \in \epsilon \mathbb B$, define $\alpha = \Vert x - y\Vert$. 
+Choose any $x, y \in \epsilon \mathbb B$, define $\alpha = \Vert x - y\Vert$. 
 Let $w = y + \epsilon \alpha^{-1}(y - x)$. 
 To visualize it, $w$ is the point starting at $x$ in side of $2\epsilon \mathbb B$, walk in the direction of $y - x$ for a distance of $\epsilon$. 
 Then obviously 
@@ -266,6 +267,11 @@ $$
 
 Since the choice of $x, y$ is arbitrary, swapping then with each other we will find $-\frac{2\beta}{\epsilon}\Vert x - y\Vert$ gives the lower bound as well. 
 Therefore $|f(y) - f(x)|\le \frac{2\beta}{\epsilon}\Vert x - y\Vert$ for all $x, y \in 2\epsilon \mathbb B$. This is the definition of Locally Lipschitz continuity around $\mathbb 0$. 
+
+
+**Remarks**
+
+Argument can be conducted for the relative interior of the function through [Accessibility Lemma](AMATH%20516%20Numerical%20Optimizations/CVX%20Analysis/Accessibility%20Lemma.md). 
 
 #### **Lemma | Convex Function on a Simplex is Bounded**
 > Let $f: \mathbb R^n\mapsto \mathbb R$ be a convex function with $\text{dom}(f) = \Delta_n$, where $\Delta_n = \{x \in \mathbb R^n_+ | \sum_{i = 1}^{n}x_i \le 1\}$. Then $f$ is lo
