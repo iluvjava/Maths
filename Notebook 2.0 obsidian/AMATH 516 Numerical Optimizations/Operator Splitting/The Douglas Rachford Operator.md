@@ -63,7 +63,7 @@ We used the property of a firmly non-expansive operator here.
 You can also see that it's a $1/2$-averaged operator too. 
 For the above reasoning we only used equivalencies and implications of non-expansive operators. 
 
-Finally, conditions (3.) can be reasoned with 
+Finally, conditions (3.) follows by
 
 $$
 \begin{aligned}
@@ -73,12 +73,10 @@ $$
     2x &= x + R_1R_2x
     \\
     \iff 
-    x &= R_2R_1x, 
+    x &= R_2R_1x. 
 \end{aligned}
 $$
-and from the last line, the result we want to show is self evident. 
-The (4.) claim is direct by the original definition of the Douglas Rachford operator. 
-Consider that 
+To show (4.), it follows from the definition of DR operator, consider: 
 
 $$
 \begin{aligned}

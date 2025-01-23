@@ -13,31 +13,30 @@
 \usepackage{enumerate}
 \usepackage{bbm}
 \usepackage{graphicx}
+% \usepackage[draft]{graphicx}  % GRAPHICS DRAFT MODE ALTERNATIVE. 
 \usepackage{subcaption}
 \usepackage{caption}
 
 % \usepackage{amsthm}
 
-
-% Hongda's packages
+% Hongda's packages ============================================================
+% \usepackage{booktabs}  % FOR TABLES WITH BOOKSTAB. 
 \usepackage{algcompatible, algorithm}
 \usepackage{mathtools}
-\usepackage[colorinlistoftodos,textsize=footnotesize, color=yellow]{todonotes} % see (https://tex.stackexchange.com/questions/9796/how-to-add-todo-notes) for more info. 
-% \usepackage[disable]{todonotes}
-\usepackage{soul} 
-% \renewcommand\hl[1]{#1}  % NULLIFY HILIGHT COMMAND.
 \usepackage{tcolorbox}
-% \usepackage{booktabs}  % FOR TABLES WITH BOOKSTAB. 
+\usepackage{soul}  % HILIGHTER
 
-% IF use the below packge, use `\printbibliography' to print out the bibliograph 
-% For this one 
-% 
-% \usepackage[
-%     backend=biber,
-%     style=numeric,
-%     sorting=nyt
-% ]{biblatex}
-% \addbibresource{references/PPM.bib}
-% \addbibresource{references/NesterovMomentum.bib}
-% \addbibresource{references/Books.bib}
-% \addbibresource{references/BregmanDiv.bib}
+% MANAGE DRAFT MODE 
+\ifthenelse{\boolean{draftmode}}{
+    \usepackage[marginal]{showlabels}
+    \usepackage[
+        colorinlistoftodos,
+        textsize=footnotesize, 
+        color=yellow
+    ]{todonotes} % see (https://tex.stackexchange.com/questions/9796/how-to-add-todo-notes) for more info. 
+    \renewcommand{\showlabelfont}{\small\slshape\color{gray}}
+}{
+    \usepackage[disable]{todonotes}  % TODO NOTES DISABLE
+    \renewcommand\hl[1]{#1}  % NULLIFY HILIGHT COMMAND.
+}
+

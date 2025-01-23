@@ -1,6 +1,8 @@
 \documentclass[12pt]{article}
 
 % \input{presets/wang_full.tex}
+
+\usepackage{ifthen}\newboolean{draftmode}\setboolean{draftmode}{true}
 \input{presets/wang/input.tex}
 \input{presets/misc.tex}
 \input{presets/julia_lstlisting.tex}
@@ -150,10 +152,10 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         (x; y) 
         &:=
         g(x) + f(y) + \langle \nabla f(y), x - y\rangle 
-        + \frac{L}{2}\Vert x - y\Vert^2,  \label{eqn:pg_model-func}
+        + \frac{L}{2}\Vert x - y\Vert^2,  \label{eqn:pg-model-func}
         \\
         \mathcal M^{L^{-1}}(x; y) &:= F(x) + \frac{L}{2}\Vert x - y\Vert^2. 
-        \label{eqn:pp_model-func}
+        \label{eqn:pp-model-func}
     \end{align}
     Define the proximal gradient operator and gradient mapping operator $T_L, \mathcal G_L$: 
     \begin{align*}
@@ -172,7 +174,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
     \end{align*}
     The following lemma provides important properties of $\mathcal M^{L^{-1}}(\cdot; y), \widetilde{\mathcal M}^{L^{-1}}(\cdot; y)$. 
     \begin{lemma}[Proximal gradient envelope]\label{lemma:pg-envelope}
-        With $\mathcal M^{L^{-1}}, \widetilde{\mathcal M}^{L^{-1}}$ as given by \eqref{eqn:pg_model-func}, \eqref{eqn:pp_model-func}, 
+        With $\mathcal M^{L^{-1}}, \widetilde{\mathcal M}^{L^{-1}}$ as given by \eqref{eqn:pg-model-func}, \eqref{eqn:pp-model-func}, 
         we have for all $x \in \RR^n$, $y \in \RR^n$:
         \begin{align*}
             \widetilde{\mathcal M}^{L^{-1}}(x; y)
