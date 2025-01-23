@@ -117,6 +117,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ from the Bregman divergence of $f$ with minimal computational cost. 
         We conducted ample amount of numerical experiments to show that it has a favorable convergence rate in practice and behaves similarly to the FISTA with monotone restart.
         \par
+        \textbf{The remainder of this paper is organized as follows. }
         Section \ref{sec:stepwise-stuff} states and proves Proposition \ref{prop:stepwise-lyapunov}, an inequality based on a single generic iterative step that acts similar to a descent lemma. 
         Section \ref{sec:rwapg-formulation-convergence} formulates the full R-WAPG in Definition \ref{def:wapg} and defines the R-WAPG sequence in Definition \ref{def:rwapg-seq}. 
         Proposition \ref{prop:wagp-convergence} states the convergence rate of R-WAPG through Proposition \ref{prop:stepwise-lyapunov} and the R-WAPG sequence. 
@@ -180,7 +181,8 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         \end{align*}
     \end{lemma}
     \begin{proof}
-        For $x \in \dom g$, by definition we have: 
+        The proof is direct using algebra and the definitions. 
+        For $x \in \dom g, y \in \RR^n$, using the definition of $\widetilde{\mathcal M}^{L^{-1}}(x; y)$ it has: 
         \begin{align*}
             \widetilde{\mathcal M}^{L^{-1}}(x; y) 
             &= 
@@ -210,7 +212,11 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
     \end{theorem}
     \begin{proof}
         For simplicity of notations, we write $T$ for $T_L$. 
-        The model function $\widetilde{\mathcal M}^{L^{-1}}(\cdot; y)$ is an $L + \mu$ strongly convex function, so it admits quadratic growth conditions over minimizer $Ty$ and for all $x \in \RR^n$: 
+        The proof is direct algebra and it starts by deriving an intermediate inequality from the quadratic growth condition of the model function.
+        Then it uses the characterization of strong convexity to simplify it to obtain the desired results. 
+        \par
+        $\widetilde{\mathcal M}^{L^{-1}}(\cdot; y)$ is $L + \mu$ strongly convex by Assumption \ref{ass:smooth-nsmooth-additive} and its definition. 
+        We see that it admits quadratic growth over the minimizer $Ty$ therefore for all $x \in \RR^n$ it follows that: 
         {\smaller
         \begin{align*}
             0 &\le 
@@ -219,7 +225,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             - 
             \frac{L + \mu}{2}\Vert x - Ty\Vert^2
             \\
-            &= 
+            &=
             \left(
                 \mathcal M^{L^{-1}}(x; y) - D_f(x, y)
             \right) - 
@@ -227,6 +233,8 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             - 
             \frac{L + \mu}{2}\Vert x - Ty\Vert^2
             + D_f(Ty; y)
+            \quad 
+            \text{By Lemma \ref{lemma:pg-envelope}}
             \\
             &=
             \left(
@@ -292,11 +300,11 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             F(x) - F(Ty)
             - \langle L(y - Ty), x - Ty\rangle
             - D_f(x, y) 
-            + D_f(Ty, y). 
+            + D_f(Ty, y). \quad \text{By $\mu \ge 0$}
         \end{align*}
         }
-        Now, consider the lower bound of $D_f(x, y) \ge \mu/2\Vert x - y\Vert^2$ which is true for all $x, y \in \RR^n$ by strong convexity of $f$. 
-        Then it has for all $x \in \RR^n, y \in \RR^n$: 
+        From $\mu \ge 0$ strong convexity of $f$, it has $D_f(x, y) \ge \mu/2\Vert x - y\Vert^2$ which is true for all $x, y \in \RR^n$. 
+        Consequently, it has for all $x \in \RR^n, y \in \RR^n$: 
         \begin{align*}
             0 &\le 
             F(x) - F(Ty)
@@ -310,13 +318,13 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             - \frac{\mu}{2}\Vert x - y\Vert^2
             + \frac{L}{2}\Vert y - Ty\Vert^2
             \\
-            &\le 
+            &=
             F(x) - F(Ty)
             - \langle L(y - Ty), x - y  + y - Ty\rangle
             - \frac{\mu}{2}\Vert x - y\Vert^2
             + \frac{L}{2}\Vert y - Ty\Vert^2
             \\
-            &\le 
+            &=
             F(x) - F(Ty) - \langle L(y - Ty), x - y\rangle - \frac{\mu}{2}\Vert x - y \Vert^2
             - \frac{L}{2}\Vert y - Ty\Vert^2. 
         \end{align*}
@@ -380,10 +388,23 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             x_{k + 1} &= T_L y_k. \label{eqn:stepwise-wapg-eqn5}
         \end{align}
     \end{definition}
-    \begin{observation}\label{obs:stepwise-wapg}
-        Let's observe Definition \ref{def:stepwise-wapg} closely. 
-        We make two crucial observations here. 
-        We have $x_k, y_k, v_k$ lie on the same line because and they have the following equivalent equalities: 
+    % \begin{observation}\label{obs:stepwise-wapg}
+    %     Let's observe Definition \ref{def:stepwise-wapg} closely. 
+    %     We make two crucial observations here.     
+    % \end{observation}
+    
+    \begin{lemma}\label{lemma:ineq-q3}
+        Let $v_k, x_k, y_k, v_{k + 1}, x_{k + 1}$ and $\alpha_k, \hat \gamma_{k + 1}, \gamma_{k}$ be given by Definition \ref{def:stepwise-wapg}. 
+        Then for any $x^* \in \RR^n$ it satisfies: 
+        \begin{align}
+            - \alpha_k(v_k - x^*) - \frac{\alpha_k^2 \mu}{\hat \gamma}(y_k - v_k) - (x_k - y_k)
+            &= \alpha_k(x^* - x_k). 
+            \tag{Q3}\label{eqn:Q3}
+        \end{align}
+    \end{lemma}
+    \begin{proof}
+        The proof starts by showing that \eqref{eqn:Q1}, \eqref{eqn:Q2} follows from \ref{eqn:stepwise-wapg-eqn2}, then the desire results follows naturally using algebra.
+        We make the following observations from Definition \ref{def:stepwise-wapg}: 
         \begin{align*}
             y_k - v_k &= 
             \frac{\hat \gamma_{k + 1}}{\alpha_k \gamma_k}(x_k - y_k), 
@@ -393,8 +414,9 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}(v_k - x_k). 
             \tag{Q2}\label{eqn:Q2}
         \end{align*}
-    \end{observation}
-        To see \eqref{eqn:Q1}, observe 
+        It says that $x_k, y_k, v_k$ lie on the same line because \eqref{eqn:Q1} indicates $y_k - v_k$ parallels to $-(y_k - x_k)$ and both vector shares the same head which anchors at $y_k$. 
+        \par
+        To see \eqref{eqn:Q1}, we show that it's equivalent to \eqref{eqn:stepwise-wapg-eqn2} by considering: 
         \begin{align*}
             y_k - v_k &= 
             \frac{\hat \gamma_{k + 1}}{\alpha_k \gamma_k}(x_k - y_k)
@@ -415,7 +437,8 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         \end{align*}
         On the first equality \eqref{eqn:Q1}, we multiplied both side of the equation by $\hat\gamma_{k + 1}/\alpha_k \gamma_k$ and then grouped $y_k$. 
         The last equality comes by multiplying both the numerator and denominator by $\hat \gamma_{k + 1}$, then simplifies the denominator by rearranging \eqref{eqn:stepwise-wapg-eqn1} into $\hat \gamma_{k + 1} + \alpha_k \gamma_k = \gamma_k + \alpha_k \mu$. 
-        To see the second equality \eqref{eqn:Q2}, consider \eqref{eqn:stepwise-wapg-eqn2}: 
+        \par
+        To see \eqref{eqn:Q2}, consider \eqref{eqn:stepwise-wapg-eqn2}: 
         \begin{align*}
             y_k &= (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k)
             \\
@@ -439,19 +462,8 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}(v_k - x_k). 
         \end{align*}
         On the second equality that follows, we substituted $\hat\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$ given by \eqref{eqn:stepwise-wapg-eqn1}. 
-        Therefore, $x_k, v_k, y_k$ lies on the same line because \eqref{eqn:Q1} indicates $y_k - v_k$ parallels to $-(y_k - x_k)$ and both vector shares the same head which anchors at $y_k$. 
-    
-        \begin{lemma}\label{lemma:ineq-q3}
-        Let $v_k, x_k, y_k, v_{k + 1}, x_{k + 1}$ and $\alpha_k, \hat \gamma_{k + 1}, \gamma_{k}$ be given by Definition \ref{def:stepwise-wapg}. 
-        Then for any $x^* \in \RR^n$ it satisfies: 
-        \begin{align}
-            - \alpha_k(v_k - x^*) - \frac{\alpha_k^2 \mu}{\hat \gamma}(y_k - v_k) - (x_k - y_k)
-            &= \alpha_k(x^* - x_k). 
-            \tag{Q3}\label{eqn:Q3}
-        \end{align}
-    \end{lemma}
-    \begin{proof}
-        The proof is direct algebra: 
+        \par
+        Finally, we start by considering the LHS of \eqref{eqn:Q3} and it follows that: 
         \begin{align*}
             &  
             - \alpha_k(v_k - x^*) - \frac{\alpha_k^2 \mu}{\hat \gamma_{k + 1}}(y_k - v_k) - (x_k - y_k)
@@ -518,12 +530,71 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
     \begin{proof}
         We prove by induction. 
         For notation simplicity we drop the subscript $k$, $k + 1$ on $\gamma_{k}, \hat \gamma_{k + 1}$ because they are fixed throughout the proof. 
-        \par 
-        We started with $F(x_{k + 1}) + R_{k + 1} \iff \eqref{eqn:stepwise-lya-proof-eqn1}$, 
-        then $\hat \gamma/2\Vert v_{k + 1} - x^*\Vert^2 = \eqref{expr:stepwise-lya-expr2.2}$ via \eqref{eqn:stepwise-lya-proof-eqn2}. 
-        We add (\ref{eqn:stepwise-lya-proof-eqn1}), (\ref{expr:stepwise-lya-expr2.2}) to get \eqref{eqn:stepwise-lya-proof-eqn3.1}. 
-        Finally, the entire LHS of \eqref{ineq:stepwise-lya-2} equals to the RHS of \eqref{eqn:stepwise-lya-proof-eqn3.2}. 
-        Going from \eqref{eqn:stepwise-lya-proof-eqn3.2} to \eqref{ineq:stepwise-lya-proof-ineq4}, we used Theorem \ref{thm:prox-grad-ineq} which yields the desired inequality. 
+        % PROOF SUMMARIZATIONS STARTS ==================================================================================
+        \par
+        Proceeding stepwise, we show the following intermediate results: 
+        \begin{align}\tag{Step 1}\label{eqn:stepwise-lya-proof-step-1}
+            \begin{split}
+                F(x_{k + 1}) + R_{k + 1}
+                &= 
+                F(x_k) - \epsilon_k - \langle  g_k, x_k - y_k\rangle
+                - \frac{\alpha_k^2}{2\hat \gamma}\Vert g_k\Vert^2
+                \\
+                &\quad 
+                    + 
+                    (1 - \alpha_k)
+                    \left(
+                        \epsilon_k + R_k + 
+                        \frac{\mu\alpha_k\gamma}{2\hat \gamma}
+                        \Vert v_k - y_k\Vert^2
+                    \right), 
+            \end{split}
+        \end{align}
+        \begin{align}\tag{Step 2}\label{eqn:stepwise-lya-proof-step-2}
+            \begin{split}
+                \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^* \Vert^2 
+                &= 
+                \left(
+                \frac{(1 - \alpha_k)\gamma + \mu \alpha_k}{2} 
+                \right)\Vert v_k - x^*\Vert^2
+                \\
+                & \quad 
+                    + 
+                    \left\langle g_k, 
+                        - \alpha_k(v_k - x^*) 
+                        - \frac{\alpha_k^2\mu}{\hat \gamma}(y_k - v_k)
+                    \right\rangle
+                \\
+                & \quad 
+                    + \frac{\alpha_k^2}{2\hat \gamma}\Vert g_k\Vert^2
+                    + \frac{\alpha_k^2 \mu^2}{2\hat \gamma}\Vert y_k - v_k\Vert^2
+                    + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle,     
+            \end{split}
+        \end{align}
+        \begin{align}\tag{Step 3}\label{eqn:stepwise-lya-proof-step-3}
+            \begin{split}
+                F(x_{k + 1}) + R_{k + 1} + 
+                \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^*\Vert^2
+                &= 
+                F(x_k) - \alpha_k\left(
+                    \epsilon_k + \langle g_k, x_k - x^*\rangle
+                    - \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+                \right)
+                \\
+                & \quad 
+                + 
+                (1 - \alpha_k)\left(
+                    R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
+                \right), 
+            \end{split}
+        \end{align}
+        % \par 
+        % We started with $F(x_{k + 1}) + R_{k + 1} \iff \eqref{eqn:stepwise-lya-proof-eqn1}$, 
+        % then $\hat \gamma/2\Vert v_{k + 1} - x^*\Vert^2 = \eqref{expr:stepwise-lya-expr2.2}$ via \eqref{eqn:stepwise-lya-proof-eqn2}. 
+        % We add (\ref{eqn:stepwise-lya-proof-eqn1}), (\ref{expr:stepwise-lya-expr2.2}) to get \eqref{eqn:stepwise-lya-proof-eqn3.1}. 
+        % Finally, the entire LHS of \eqref{ineq:stepwise-lya-2} equals to the RHS of \eqref{eqn:stepwise-lya-proof-eqn3.2}. 
+        % Going from \eqref{eqn:stepwise-lya-proof-eqn3.2} to \eqref{ineq:stepwise-lya-proof-ineq4}, we used Theorem \ref{thm:prox-grad-ineq} which yields the desired inequality. 
+        
         \par
         Start by considering the first and the third term on LHS of \eqref{ineq:stepwise-lya-2} summed up: 
         \begin{align}\label{eqn:stepwise-lya-proof-eqn1}
@@ -563,9 +634,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         \end{align}
         % Coefficient of $\epsilon_k$ and $\Vert g_k\Vert^2$ are grouped. 
         Next, we have: 
-        \begin{align}
-        \label{eqn:stepwise-lya-proof-eqn2}
-        \begin{split}
+        \begin{align}\label{eqn:stepwise-lya-proof-eqn2}\begin{split}
             \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^* \Vert^2
             &= 
             \frac{\hat \gamma}{2}\Vert 
@@ -615,8 +684,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                 \Vert \mu(y_k - v_k) - g_k\Vert^2 
                 + 
                 \langle v_k - x^*, \mu \alpha_k(y_k - v_k) - \alpha_k g_k\rangle. 
-        \end{split}
-        \end{align}
+        \end{split}\end{align}
         On the above derivation, the first equality comes by substituting the definition of $v_{k + 1}$ given by \eqref{eqn:stepwise-wapg-eqn4}; the second equality simplifies using $\hat \gamma = (1 - \alpha_k)\gamma + \mu \alpha_k$ given by \eqref{eqn:stepwise-wapg-eqn1} and  because:
         \begin{align*}
             \gamma(1 - \alpha_k) v_k &= 
@@ -877,7 +945,6 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             (1 - \alpha_k)\left(
                 R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
             \right)
-            \\
         \end{align*}
         Subtracting $F(x^*)$ from both side of the equation gives: 
         \begin{align}\label{eqn:stepwise-lya-proof-eqn3.2}
