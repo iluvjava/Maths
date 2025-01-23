@@ -8,7 +8,9 @@
 
 **Observations**
 
-Suppose that $T_1, T_2$ share a common fixed point $x$, then $x$ is also the fixed point of the DR operator because 
+1. If $\text{fix}(T_1)\cap \text{fix}(T_2) \ni x$, then $x \in \text{fix}(T)$. 
+
+To show (1.), suppose that $T_1, T_2$ share a common fixed point $x$, then $x$ is also the fixed point of the DR operator because 
 
 $$
 \begin{aligned}
@@ -22,31 +24,25 @@ $$
     \\
     &= \mathbf 0 + T_2 x 
     \\
-    &= x, 
+    &= x. 
 \end{aligned}
 $$
 
-therefore it's also the fixed point of the DR operator. 
+Hence, it's also the fixed point of the DR operator. 
 
-**Remarks**
 
-The $T_1, T_2$ usually take the form of a resolvent of a maximally monotone operator $A, B$ so $T_1 = J_A$, and $T_2 = J_B$. 
-Under the context of optimization, the resolvent is the proximal mapping, which is a resolvent of a subgradient. 
-When the original function is convex, closed and proper, then it would be maximal monotone. 
-Which suits the above format. 
-However, it remains to verify that the fixed point of the Douglas Rachford operator is relevant to the some optimization problem. 
 
 
 #### **Thm | DR has good fixed point and it's Firmly Nonexpansive**
-> Let $T$ be the DR operator of the operator $T_1, T_2$, then 
-> 1. $T = (1/2)(I + R_2 R_1)$ as well. 
+> Let $T$ be the DR operator of firmly nonexpansive operator $T_1, T_2$, then 
+> 1. $T = (1/2)(I + R_2 R_1)=I - T_1 + T_2 R_1$. 
 > 2. $T$ is firmly non-expansive. 
 > 3. $\text{fix}(T) = \text{fix}(R_2R_1)$
 > 4. $y \in \text{fix}(T) \iff T_1 y = T_2 R_1 y$. 
 
 **Proof**
 
-Consider 
+To show (1.), consider 
 
 $$
 \begin{aligned}
@@ -60,11 +56,11 @@ $$
 \end{aligned}
 $$
 
-Therefore the 2 reflectant identity representation is the equivalent to the original definition. 
+Hence, they are equivalent expressions. 
 
 Next, $T_i$ is firmly nonexpansive for $i \in \{1, 2\}$ is equivalent to $R_i$ are nonexpansive for $i \in \{1, 2\}$ which implies that $R_2R_1$ is nonexpansive which implies that $(1/2)(I + R_2 R_1)$is firmly nonexpansive. 
 We used the property of a firmly non-expansive operator here. 
-You can also see that it's an $1/2$-averaged operator too. 
+You can also see that it's a $1/2$-averaged operator too. 
 For the above reasoning we only used equivalencies and implications of non-expansive operators. 
 
 Finally, conditions (3.) can be reasoned with 
@@ -81,7 +77,6 @@ $$
 \end{aligned}
 $$
 and from the last line, the result we want to show is self evident. 
-
 The (4.) claim is direct by the original definition of the Douglas Rachford operator. 
 Consider that 
 

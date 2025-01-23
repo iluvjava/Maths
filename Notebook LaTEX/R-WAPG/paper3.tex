@@ -388,7 +388,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             x_{k + 1} &= T_L y_k. \label{eqn:stepwise-wapg-eqn5}
         \end{align}
     \end{definition}
-    The following lemma will simplifies the proof later on. 
+    The following lemma will simplify the discussion later. 
     \begin{lemma}\label{lemma:ineq-q3}
         Let $v_k, x_k, y_k, v_{k + 1}, x_{k + 1}$ and $\alpha_k, \hat \gamma_{k + 1}, \gamma_{k}$ be given by Definition \ref{def:stepwise-wapg}. 
         Then for any $x^* \in \RR^n$ it satisfies: 
@@ -524,7 +524,6 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         }
     \end{proposition}
     \begin{proof}
-        We prove by induction. 
         For notation simplicity we drop the subscript $k$, $k + 1$ on $\gamma_{k}, \hat \gamma_{k + 1}$ because they are fixed throughout the proof. 
         % PROOF SUMMARIZATIONS STARTS ==================================================================================
         Proceeding stepwise, we will show the following intermediate results: 
@@ -1091,7 +1090,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
     \end{proposition}
     
     \begin{proof}  
-        The proof is by induction. 
+        We prove by induction. 
         Let's first consider $k = 1$, $\hat \gamma_2 = (1 - \alpha_1)\gamma_1 + \mu \alpha_1$, $R_1 = 0$. 
         From the above definition, $R_2$ is the same as \eqref{eqn:stepwise-lya-1}.
         Invoking Proposition \ref{prop:stepwise-lyapunov}, we have: 
@@ -1772,7 +1771,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
                 \frac{L\alpha_{k +1}(\alpha_k^{-1} - 1)}{L} = \alpha_{k +1}(\alpha_k^{-1} - 1). 
             \end{align*}
             Therefore, the special case had been justified. 
-            To prove (ii), it remains to show that the coefficient of $x_{k + 1} - x_k$ can be expressed without $\mu, L$: 
+            To prove (ii), it remains to show that for all $k\ge 1$ the coefficient of $x_{k + 1} - x_k$ can be expressed without $\mu, L$: 
             \begin{align*}
                 \frac{(L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)}{L - \mu}
                 &= \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}. 
