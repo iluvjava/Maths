@@ -1,4 +1,6 @@
 \documentclass[12pt]{article}
+
+\usepackage{ifthen}\newboolean{draftmode}\setboolean{draftmode}{true}
 \input{presets/wang/input.tex}
 \input{presets/misc.tex}
 \input{presets/julia_lstlisting.tex}
@@ -58,12 +60,12 @@
 
 \section{Introduction}
     Let $\RR^n$ be the ambient space. We consider 
-    \begin{align}
+    \begin{align}\label{eqn:additive-comp-obj}
         \min_{x \in \RR^n} \left\lbrace
             F(x):= f(x) + g(x)
         \right\rbrace.
-    \end{align}\label{eqn:additive-comp-obj}
-    Unless specified, assume $f:\RR^n \rightarrow \RR$ is $L$-Lipscthiz smooth $\mu \ge 0$ strongly convex and $g:\RR^n \rightarrow \overline \RR$ is convex. 
+    \end{align}
+    Unless specified, assume $f:\RR^n \rightarrow \RR$ is $L$-Lipscthiz smooth $\mu \ge 0$ strongly convex and $g:\RR^n \rightarrow \overline \RR$ is closed convex and proper. 
     This type of problem is referred to as additive composite problems in the literature. 
     \par
     Our ongoing research concerns accelerated proximal gradient type method for solving (\ref{eqn:additive-comp-obj}). 
@@ -89,11 +91,11 @@
     The content complements report completed for MATH 590 Fall Winter 2024. 
     The end of Section \ref{sec:catalyst} points out potential future direction of research of Catalyst Acceleration. 
 
-
     
 \section{Preliminaries}
     This section contains the basics of contents from convex optimization, and variational analysis. 
     Throughout, we adopt the notation $\overline \RR := \RR \cup \{\infty, -\infty\}$. 
+    
     \subsection{Fundamentals in non-convex analysis}
         Let the ambient space be $\RR^n$ equipped with inner product $\langle \cdot, \cdot\rangle$ and 2-norm $\Vert \cdot\Vert$. 
         Let $O$ be an open subset of $\RR^n$, the weakest assumption we make for objective function $F: O \subseteq \RR^n \rightarrow \RR$ of an optimization problem is local Lipschitz continuity. 
@@ -149,6 +151,7 @@
                 := F(x) - F(y) - \langle \nabla F(y), x - y\rangle. 
             \end{align*}
         \end{definition}
+    
     \subsection{Fundamentals in convex analysis}
         This section introduces the classics and basics of convex analysis. 
         Define $F$ to be closed, proper and convex in this section. 
@@ -255,9 +258,8 @@
                     &\ge 0. 
                 \end{align*}
             \end{lemma}
-            \begin{remark}
-                This lemma is proved in our draft paper. 
-            \end{remark}
+            The proof of the lemma appeals to Lemma \ref{lemma:q-growth} with the $L + \mu$ strong convexity of $\widetilde {\mathcal M}^{\beta^{-1}}_F(\cdot; y)$. 
+            
 
     \subsection{Nesterov's estimating sequence technique}
         The derivation of APG was originally conceived by Nesterov's estimating sequence technique. 
@@ -431,7 +433,7 @@
             \end{align*}
         \end{assumption}
         The proposition follows provides upper bound to $F(x_{k + 1})$ in relations to $F(x_{k})$. 
-        \begin{definition}[Stepwise weak accelerated proximal gradient]\label{def:stepwise-wapg}\;\\
+        \begin{definition}[Stepwise weak accelerated proximal gradient]\;\label{def:stepwise-wapg}\\
             Assume $0 \le \mu < L$.
             Fix any $k \in \mathbb Z_+$. 
             For any $(v_k, x_k), \alpha_k \in (0, 1), \gamma_k > 0$, let $\hat \gamma_{k + 1}$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ be given by: 
@@ -449,7 +451,7 @@
                 x_{k + 1} &= T_L y_k. \label{eqn:stepwise-wapg-eqn5}
             \end{align}
         \end{definition}
-        \begin{proposition}[Stepwise Lyapunov]\label{prop:stepwise-lyapunov}\;\\
+        \begin{proposition}[Stepwise Lyapunov]\;\label{prop:stepwise-lyapunov} \\
             Let $k \in \mathbb Z_+$, $R_k \in \RR$. 
             Given any $v_k, x_k$ and $\gamma_k > 0$ and $v_{k + 1}, x_{k + 1}, y_k, \hat \gamma_{k + 1}, \alpha_k$ that satisfies Definition \ref{def:stepwise-wapg}. 
             Define: 
@@ -479,6 +481,7 @@
             \end{align}
             }
         \end{proposition}
+        The proof of the above proposition made extensive use of definition of $R_{k + 1}$, and it appeals to Theorem \ref{thm:prox-grad-ineq}. 
         
     \subsection{R-WAPG and its convergence rates}\label{sec:rwapg-formulation-convergence}
         In this section we propose Relaxed Weak Accelerated Proximal Gradient (R-WAPG), see Definition \ref{def:wapg}.
@@ -1123,7 +1126,7 @@
     \begin{remark}
         Setting $\epsilon = 0$, we have the exact definition of the exact resolvent given as $\mathcal J_{\beta^{-1}}y = \mathcal J^0_{\beta^{-1}}y$. 
     \end{remark}
-    \textbf{Organizations now follow}. 
+    \textbf{The remainder of the proposal is organized as the follow}. 
     Section \ref{ssec:catalyst-intro} gives the main ideas behind the Catalyst Acceleration Framework. 
     It follows Lin et al.'s first paper \cite{lin_universal_2015} on Catalyst Acceleration and summarizes the convergence analysis of the algorithm. 
     Section \ref{ssec:catalyst-second-paper} introduces Lin et al.'s second paper \cite{lin_catalyst_2018} on Catalyst which considers the improved relative error condition stated in Definition \ref{def:catalyst-termination-c2} and discusses its significance. 

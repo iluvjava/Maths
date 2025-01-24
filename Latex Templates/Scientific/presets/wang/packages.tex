@@ -20,7 +20,6 @@
 % \usepackage{amsthm}
 
 
-
 % Hongda's packages ============================================================
 % \usepackage{booktabs}  % FOR TABLES WITH BOOKSTAB. 
 \usepackage{algcompatible, algorithm}
@@ -30,14 +29,17 @@
 
 % MANAGE DRAFT MODE 
 \ifthenelse{\boolean{draftmode}}{
-    \usepackage[right]{showlabels}
+    \usepackage[left]{showlabels}
+    \renewcommand{\showlabelfont}{\vspace{0.4em}\small\color{gray}}
     \usepackage[
         colorinlistoftodos,
         textsize=footnotesize, 
         color=yellow
     ]{todonotes} % see (https://tex.stackexchange.com/questions/9796/how-to-add-todo-notes) for more info. 
-    \renewcommand{\showlabelfont}{\small\slshape\color{gray}}
+    
 }{
     \usepackage[disable]{todonotes}  % TODO NOTES DISABLE
     \renewcommand\hl[1]{#1}  % NULLIFY HILIGHT COMMAND.
 }
+
+

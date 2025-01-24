@@ -19,29 +19,26 @@
 % \usepackage{amsthm}
 
 
-% Hongda's packages
+% Hongda's packages ============================================================
+% \usepackage{booktabs}  % FOR TABLES WITH BOOKSTAB. 
 \usepackage{algcompatible, algorithm}
 \usepackage{mathtools}
-\usepackage[
-    colorinlistoftodos,
-    textsize=footnotesize, 
-    color=yellow, 
-    % disable % NULLIFY TODO NOTES HERE. 
-]{todonotes} % https://tug.ctan.org/macros/latex/contrib/todonotes/todonotes.pdf
-
-\usepackage{soul} 
-\renewcommand\hl[1]{#1}  % NULLIFY HILIGHT COMMAND.
 \usepackage{tcolorbox}
+\usepackage{soul}  % HILIGHTER
 
-% IF use the below packge, use `\printbibliography' to print out the bibliograph 
-% For this one 
-% 
-% \usepackage[
-%     backend=biber,
-%     style=numeric,
-%     sorting=nyt
-% ]{biblatex}
-% \addbibresource{references/PPM.bib}
-% \addbibresource{references/NesterovMomentum.bib}
-% \addbibresource{references/Books.bib}
-% \addbibresource{references/BregmanDiv.bib}
+% MANAGE DRAFT MODE 
+\ifthenelse{\boolean{draftmode}}{
+    \usepackage[left]{showlabels}
+    \renewcommand{\showlabelfont}{\vspace{0.4em}\small\color{gray}}
+    \usepackage[
+        colorinlistoftodos,
+        textsize=footnotesize, 
+        color=yellow
+    ]{todonotes} % see (https://tex.stackexchange.com/questions/9796/how-to-add-todo-notes) for more info. 
+    
+}{
+    \usepackage[disable]{todonotes}  % TODO NOTES DISABLE
+    \renewcommand\hl[1]{#1}  % NULLIFY HILIGHT COMMAND.
+}
+
+

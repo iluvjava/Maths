@@ -1,28 +1,26 @@
 \documentclass[11pt]{beamer}
+
 \usetheme{Madrid}
 \usepackage[utf8]{inputenc}
-
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\DeclareMathOperator{\argmin}{argmin}
 \usepackage{algorithmic}
 \usepackage{algorithm}
 \usepackage{wrapfig}
 \usepackage{subcaption}
 \graphicspath{{.}}
+\input{presets/wang/custom_commands.tex}
 
 \author{Hongda Li}
-\title{First Order Nonsmooth Optimization: Catalyst Acceleration and Unifying Nesterov's Acceleration}
-% Informe o seu email de contato no comando a seguir
-% Por exemplo, alcebiades.col@ufes.br
+\title[Thesis Proposal Talk]{First Order Nonsmooth Optimization: Catalyst Acceleration and Unifying Nesterov's Acceleration}
 \newcommand{\email}{lalala@lala.la}
 \setbeamercovered{transparent}
 \setbeamertemplate{navigation symbols}{}
 %\logo{}
-\institute[]{
+\institute[UBCO]{
     University of British Columbia Okanagan
 }
 \date{\today}
@@ -45,34 +43,57 @@
 \begin{frame}
     \titlepage
 \end{frame}
-
+\begin{frame}{Overview}
+    This talks will be based on the content of our draft paper and selected content of the Catalyst Meta Acceleration Framework. 
+    Our preprint: 
+    \begin{enumerate}
+        \item X. Wang and H. Li, \textit{A Parameter Free Accelerated Proximal Gradient Method Without Restarting}, preprint, (2025).
+    \end{enumerate}
+    Catalyst Meta Acceleration:  
+    \begin{enumerate}
+        \item H. Lin, J. Mairal and Z. Harchaoui, \textit{A universal catalyst for first-order optimization}, in NISP, vol. 28, (2015). 
+        \item \underline{\hspace{4em}}, \textit{Catalyst acceleration for first-order convex optimization: from theory to practice}, JMLR, 18 (2018), pp. 1–54.
+    \end{enumerate}
+\end{frame}
 \begin{frame}{ToC}
     \tableofcontents
 \end{frame}
 
-% \begin{frame}{Example Frame}
-%     Cite something \cite{nesterov_accelerating_2008}. 
-    
-% \end{frame}
 
 \section{Introduction}
-    \begin{frame}{What this talk is based on}
-
-        
-    \end{frame}
-    \subsection{Preliminaries}
-        \begin{frame}{Foundations of convex analysis}
-            
+    \subsection{Notations and preliminaries}
+        \begin{frame}{Notations and preliminaries}
+            Throughout this talk, let $\RR^n$ be the ambient space equiped with Euclidean inner product and norm. 
+            We consider 
+            \begin{align}\label{eqn:additive-comp-obj}
+                \min_{x \in \RR^n} \left\lbrace
+                    F(x):= f(x) + g(x)
+                \right\rbrace.
+            \end{align}
+            Unless specified, assume: 
+            \begin{enumerate}
+                \item $f:\RR^n \rightarrow \RR$ is $L$-Lipscthiz smooth $\mu \ge 0$ strongly convex, 
+                \item $g:\RR^n \rightarrow \overline \RR$ is closed convex proper. 
+            \end{enumerate}
         \end{frame}
         \begin{frame}{Our works on R-WAPG}
             
         \end{frame}
-        \begin{frame}{Catalyst Acceleration}
+        \begin{frame}{Introduction to Catalyst Acceleration}
             
         \end{frame}
+\section{Content of the draft paper}
+
+    \subsection{Direction of future works}
+
+\section{Selected contents from Catalyst Meta Accelerations}
+    \subsection{Direction of future works}
 
 
 \section{References}
+    \begin{frame}{Citation examples}
+        Citation examples \cite{chambolle_convergence_2015}
+    \end{frame}
     \begin{frame}[allowframebreaks]{References}
         % \bibliographystyle{apalike}
         \bibliography{references/proposal.bib}

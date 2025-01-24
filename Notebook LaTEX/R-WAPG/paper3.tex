@@ -62,7 +62,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             & \theta_{k + 1} = (t_{k} - 1)/t_{k + 1}, 
             \\
             & y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k). 
-        \end{align}\label{eqn:example_algorithm}
+        \end{align}\label{eqn:example-algorithm}
         If the minimizer $x^*$ exists, then the optimality gap $F(x_k) - F(x^*)$ decreases at a rate of $\mathcal O(1/k^2)$, a faster rate compared to gradient descent which is $\mathcal O(1/k)$. 
         It's consider optimal in some sense and see Chapter 2 of Nesterov's book \cite{nesterov_lectures_2018} for details. 
         However, things are not sunshine, rainbow and happily ever after because the above scheme is associated with the issue that if $F$ is $\mu > 0$ strongly convex, the optimality gap $F(x_k) - F(x^*)$ oscillates and converges sub-linearly, making it worse than gradient descent. See page 9 of Su et al. \cite{su_differential_2016}. 
@@ -92,7 +92,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         In Chapter 10 of Beck's Book \cite{beck_first-order_2017}, a variant called V-FISTA can achieve the faster linear convergence rate: $\mathcal O((1 - \sqrt{\mu/L})^k)$ on the optimality gap for $\mu > 0$ strongly convex $F$. 
         V-FISTA has $\theta_t = (\sqrt{\kappa} - 1)/(\sqrt{\kappa} + 1)$ where $\kappa = \mu/L$. 
         \par
-        We relax the traditional choice of the sequence $\theta_k$ in Equation \ref{eqn:example_algorithm} and showed an upper bound of the optimal gap. 
+        We relax the traditional choice of the sequence $\theta_k$ in Equation \ref{eqn:example-algorithm} and showed an upper bound of the optimal gap. 
         Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be two sequences that satisfy
         \begin{align*}
             \alpha_0 &\in (0, 1], 
@@ -2091,11 +2091,11 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         Then algorithm produces $(x_k)_{k \ge0}$ such that $F(x) - F(x^*)$ convergences at a rate of $\mathcal O(\alpha_k^2)$. 
     \end{theorem}
     \begin{proof}
-        Proceeding stepwise, we want to specialize the results of Proposition \ref{prop:wapg-convergence} for the above choice of sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$. 
+        Proceeding stepwise, we want to specialize the results of Proposition \ref{prop:wapg-convergence} for the above choice of sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$  by completing the following steps. 
         \begin{enumerate}
-            \item $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are valid R-WAPG sequences, so we can use the convergence results. 
-            \item $\rho_k \ge 1$ so Lemma \ref{lemma:inverted-fista-seq} (iii) applies. 
-            \item Simplifies the conclusion of Proposition \ref{prop:wapg-convergence} by the previous two items. 
+            \item Show that the $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ given are valid R-WAPG sequences, so we can use the convergence results. 
+            \item Show $\rho_k \ge 1$ so Lemma \ref{lemma:inverted-fista-seq} (iii) applies. 
+            \item Simplify the conclusion of Proposition \ref{prop:wapg-convergence} by the previous two items. 
         \end{enumerate}
         To show (i), we verify equality $\alpha_{k + 1}^2 = (1 - \alpha_{k + 1})\rho_k \alpha_k^2$ because it's assumed $\mu = 0$ in this case. 
         For all $k \ge 0$, the right side of the equality evaluates to 
