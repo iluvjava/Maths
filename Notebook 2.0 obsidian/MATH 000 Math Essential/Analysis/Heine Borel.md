@@ -62,7 +62,7 @@ Since $D\subseteq [a, b]$, we have $s = \sup D \le b$.
 For contradiction let $s < b$. 
 There exists $s\in G_s$ where $G_s$ is an open set by property of $\R$, then $G_s \in C_{[a, b]}$ is valid.
 Since $G_s$ is open, $\exists \delta > 0 : (s - \delta, s + \delta) \in G_s$. 
-For any $d \in G_s$, there are two cases. 
+Next we consider $d \in G_s, d' \in G_s$ where $d \le s \le d'$. 
 
 There exists $d \in (s - \delta, s]$ then $d \in [a, s] \subseteq D$ hence finite open cover exists and it follows: 
 $$
