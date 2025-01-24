@@ -5,19 +5,20 @@
 
 The theorem is rooted in topology and it defines compactness in topological spaces, and it only becomes closed and bounded in finite Euclidean spaces. 
 See [here](https://en.wikipedia.org/wiki/Heine%E2%80%93Borel_theorem) for more info. 
-In Metric space, the theorem states the equivalence between closed and bounded condition, and existence of sub-sequential convergence. 
-For information regarding the last claim, see [Compactness in Metric Spaces](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Compactness%20in%20Metric%20Spaces.md) for more details. 
+In finite dimensional Banach space, the theorem states the equivalence between closed and bounded condition, and existence of sub-sequential convergence. 
+For information regarding sequential compactness, see [Compactness in Metric Spaces](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Compactness%20in%20Metric%20Spaces.md) for more details. 
+
+This files demonstrate the principle of Heine Borel in the context of real anlaysis on the set $\R$. 
 
 **References**
 
 These materials were covered in an undergraduate friendly textbook: **Measure, Integration, and Real Analysis by Sheldon Axler.** 
 
-#### **Def-1 | Open Cover**
-> A set $A$ has open cover $C_A$ means that $C_A = \bigcup_{i\in I} G_i$, where $I$ is the index set with some type of cardinality, and $G_i, i\in I$ are all open sets. 
 
-#### **Def-2 | Finite Sub Cover**
->  Let $C_A$ be a cover of the set $A$.
->  A finite sub-cover is subset $C'_A\subseteq C_A$ such that it's a finite set and it's a cover of the set $A$. 
+#### **Def | Open cover on $\R$, finite subcover**
+> Let $A \subseteq \R$. 
+> 1. A collection of $\mathcal C$ of open subsets of $\R$ is called an **open cover** if, $A \subseteq \bigcup_{C \in \mathcal C} C$, i.e: A is contained in the union of all the sets in $\mathcal C$. 
+> 2. An open cover is said to have **finite sub cover** if there exists $|I| < \infty$ such that $C_i \in \mathcal C$ for all $i \in I$ and $A \subseteq \bigcup_{i \in I}C_i$; i.e: The set $A$ is contained within a finite subsets of open cover $\mathcal C$. 
 
 
 ---
@@ -26,70 +27,69 @@ These materials were covered in an undergraduate friendly textbook: **Measure, I
 We consider the equivalence of compactness and the Heine Borel theorem in the real line. 
 We show that, any closed intervals in $\mathbb R$ can be covered using finite many open covers, and then we use this fact to generalize the result to all closed and bounded sets. 
 
-#### **Lemma | Finite Subcover for Closed and Bounded Interval**
-> The closed and bounded interval $[a, b]\subseteq \mathbb R$  has a finite sub cover to it. 
+#### **Lemma | Closed and bounded interval has finite sub cover for all coverings**
+> The closed and bounded interval $[a, b]\subseteq \mathbb R$ has a finite sub cover to it. 
 
 **Observations and Context**
 
-This lemma is involved in the proof for the equivalence of closed and compactness and Finite Sub Covers for all ope Covers for the set. 
-We observe the fact that, trivially if a set of points in a topology is finite, then for every open covers for the set (finite or not), there is a finite sub cover for that set by simply choosing one set the covers each of the point. 
+1. If the set of points in a topology (i.e: The interval $[a, b]$) is finite, then for ever open covers of the set, will have a finite sub cover that also covers the set. 
 
 **Proof**
 
-$[a, b]$ is a closed interval, Let $C_{[a, b]}$ be any open cover of the closed interval. We define $D$, a set containing all the closed sub interval that has finite sub covers from $C_{[a, b]}$
+$[a, b]$ is a closed interval, Let $C_{[a, b]}$ be a any open cover of $[a, b]$. 
+Define $D$, a set containing all the closed sub interval that has finite sub covers from $C_{[a, b]}$, i.e: 
 
 $$
 \begin{aligned}
     D:= \left\{
-            d \in [a, b]
-            \left|
-                [a, d] \subseteq \bigcup_{i\in J \subseteq I} G_i, 
-                |J|\in \mathbb N
-            \right.
-        \right\}, 
+        d \in [a, b]
+        \left|
+            [a, d] \subseteq \bigcup_{i\in J \subseteq I} G_i, 
+            |J|\in \mathbb N
+        \right.
+    \right\}.
 \end{aligned}
 $$
 
-We make the observations that: 
+Then, the followings are true: 
 
-1. $a\in D$, because $\{a\}$ is a singleton, using $C_{[a, b]}$ there exists some $G\in C_{[a, b]}$ such that $a \in G$. Therefore, $D\neq \emptyset$. 
-2. By completeness of $\mathbb R$, there exists $s = \sup D$. 
+1. $D\neq \emptyset$ because $a\in D$. Choose any open $G$ s.t: $a \in G$, then $a \in G \in C_{[a, b]}$ so $a \in D$. 
+2. By completeness of $\mathbb R$ and $D \neq \emptyset$, there exists $s = \sup D$. 
 
+By the construction of $D$, $s \le d$. The proof follows shows that $s < d$ gives contradiction hence $s = d$. 
 
-Since $D\subseteq [a, b]$, we have $\sup D \le b$, and by closure of the closed interval and definition of $D$ we must have $s \in [a, b]$. Then, using $C_{[a, b]}$ there exists $G_s\in C_{[a, b]}$ such that $s\in G_s$. $G_s$ is open then $\exists \delta > 0 : (s - \delta, s + \delta)\subseteq G_s$. We now partition the set, cutting it from the middle with $s$, and consider some elements from these sets. Consider 
+Since $D\subseteq [a, b]$, we have $s = \sup D \le b$. 
+For contradiction let $s < b$. 
+There exists $s\in G_s$ where $G_s$ is an open set by property of $\R$, then $G_s \in C_{[a, b]}$ is valid.
+Since $G_s$ is open, $\exists \delta > 0 : (s - \delta, s + \delta) \in G_s$. 
+For any $d \in G_s$, there are two cases. 
+
+There exists $d \in (s - \delta, s]$ then $d \in [a, s] \subseteq D$ hence finite open cover exists and it follows: 
+$$
+\begin{aligned}
+    \exists n \in \N: [a, d] \subseteq \bigcup_{i = 1}^n G_i. 
+\end{aligned}
+$$
+
+There exists $d \le d'\in [s, s + \delta)$ also, and it follows: 
 
 $$
 \begin{aligned}
-    & d\in (s - \delta, s) \implies \exists d^* > d , d^* < s , d^*\in (s - \delta, s + \delta) \text{ s.t: }
-    d^* \in D
-    \\
-    & d^* \in D \implies [a, d^*] \text{ has finite open cvr from} C_{[a, b]}
-    \\
-    \implies & [a, d] \text{ has finite open cvr } C_{[a, b]}, \text{ by }d < d^*
-    \\
-    \implies & d \in D, 
+    [a, d'] \subseteq \left(
+        \bigcup_{i = 1}^n G_i
+    \right)\cup G_s. 
 \end{aligned}
 $$
 
-then, let $\bigcup_{i\in J^*}G_i$ be the finite sub cover for $[a, d]$, with $J^*$ being a countable subsets of the index $I$. Next consider another element from the other partition of the epsilon vicinity of $s$, giving us 
+Hence $d' \in D$ as well. 
+If $s < b$, then $s < d'\in D$ exists and it breaks $s = \sup D$. 
+Therefore it has to be that $s = b$. 
 
-$$
-\begin{aligned}
-    & d'\in [s, s + \delta) \implies d'\in (s - \delta, s + \delta)
-    \\
-    & \text{by }d' \in [s - \delta, s) \subseteq (s - \delta, s + \delta), d'\in G_s
-    \\
-    \implies & 
-    [a, d']  = [a, d] \cup (s - \delta, d']= 
-    G_s \cup \bigcup_{i \in J^*}G_i, \text{ has a finite cvr from }C_{[a, b]}
-    \\
-    \implies & 
-    d' \in D
-\end{aligned}
-$$
 
-finally, we exam the possibility of $d' \in D$, by $D\subseteq [a, b]$, it has to be the case that $d' \in [s, s + \delta) \cap [a, b]$, since for any $s < d'$, we have $d' \in D$, it has to be the case that $d' \ge s$, but by $s = \sup D$, it has to be that $d' = s$. By the previous argument, we can take the sup over $[s, s + \delta)\cap [a, b]$, giving us the singleton $\{d\}$, which means that $d' = s = b$, and the limit assures that $[a, d
-'] = [a, b]$ and the whole closed interval has a finite sub cover from $C_{[a, b]}$. By the fact that the open cover is arbitrary, the lemma is proven. 
+**Remarks**
+
+Proofs may be extended to finite dimensional Banach space using the construction of hypercubes. 
+Without loss of generality a unit hypercube can be used because things can be rescaled. 
 
 
 #### **Thm-1 (2.12) | Heine-Borel in Reals**
