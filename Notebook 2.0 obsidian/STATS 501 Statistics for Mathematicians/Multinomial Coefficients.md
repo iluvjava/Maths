@@ -1,7 +1,7 @@
-Given a string, how many different ways we can rearrange it with the same letters but different strings? We 
 
----
 ### **Intro**
+
+Given a string, how many different ways it can be rearrange it with the same letters? 
 
 Counting the arrangement of letters (which contains repetitions) is counting the anagram of a string. 
 Identifying the coefficient of the terms in a multi-polynomial expansion is doing algebra. 
@@ -9,8 +9,6 @@ The two things here are the same thing.
 This file aims to illustrate and clarify such concepts and provide detailed proofs for the claims involved. 
 
 
----
-### **Multi-nomial coefficients**
 
 
 
@@ -143,6 +141,9 @@ Take note that the coefficient of $xyz$ is $6$, because it counts all permutatio
 Similarly, the coefficients of $xy^2$ counts unique permutations the multiset: $\{k_1:1, k_2:2\}$ which has anagram $3!/2! = 3$, or equivalently, all possible combinations of the string "$xyy$". 
 This is true because multiplicative operation is commutative, hence the action of grouping terms $xyy, yxy, yyx$ counts all possible anagram of the string "$xyy$". 
 
+
+---
+### **Arrangements of Anagram and permultations of multisets**
 
 
 <!-- ### **Example: A Divide and Conquer Approach**

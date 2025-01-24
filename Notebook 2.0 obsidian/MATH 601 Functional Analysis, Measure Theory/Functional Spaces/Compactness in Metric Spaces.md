@@ -23,16 +23,24 @@ We eventually want convergent subsequence (metric space convergence) in proofs.
 The concept of a finite length interval, a bounded and closed set now requires the conclusion of B.W instead. 
 
 
-
-#### **Definition | Compact spaces in Metric spaces via Bozano Weierstrass**
+#### **Definition | Sequential compactness in metric space**
 > All bounded sequence in the space (or set) has a convergent subsequence. 
 
 See [Bozano Weierstrass](../../MATH%20000%20Math%20Essential/Analysis/Bozano%20Weierstrass.md) in basic real analysis. 
 The theorem states that a compact set has convergent subsequence in $\R^n$.
 
 
+**References**
+
+Compactness of metric space is covered in [UCLA Class notes](https://www.ucl.ac.uk/~ucahad0/3103_handout_2.pdf). 
+
 ---
-### **Compactness of Metric Spaces**
+### **Compactness of metric space equivalences**
+
+
+
+---
+### **Compactness and continuity**
 
 We introduce theorems that are corollaries of a compact metric spaces. 
 

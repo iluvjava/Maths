@@ -44,7 +44,7 @@
     \titlepage
 \end{frame}
 \begin{frame}{Overview}
-    This talks will be based on the content of our draft paper and selected content of the Catalyst Meta Acceleration Framework. 
+    This talk will be based on the content of our draft paper and selected content of the Catalyst Meta Acceleration Framework. 
     Our preprint: 
     \begin{enumerate}
         \item X. Wang and H. Li, \textit{A Parameter Free Accelerated Proximal Gradient Method Without Restarting}, preprint, (2025).
@@ -76,8 +76,60 @@
                 \item $g:\RR^n \rightarrow \overline \RR$ is closed convex proper. 
             \end{enumerate}
         \end{frame}
+        \begin{frame}{Notations and preliminaries}
+            \begin{definition}[Proximal gradient operator]\label{def:proximal-gradient-operator}
+                Define the proximal gradient operator $T_L$ on all $y \in \RR^n$: 
+                \begin{align*}
+                    T_L y := \argmin_{x \in \RR^n} \left\lbrace
+                        g(x) + f(y) + \langle \nabla f(y), x - y\rangle 
+                        + \frac{L}{2}\Vert x- y \Vert^2
+                    \right\rbrace. 
+                \end{align*}
+            \end{definition}
+            \begin{definition}[Gradient mapping operator]\label{def:gradient-mapping-operator}
+                % Take $F := f + g$ as defined in this section. 
+                Define the gradient mapping operator $\mathcal G_L$ on all $y \in \RR^n$: 
+                \begin{align*}
+                    \mathcal G_L (y):= L(y - T_L y). 
+                \end{align*}
+            \end{definition}
+        \end{frame}
+        \begin{frame}{Proximal gradient inequality}
+            \begin{lemma}[The proximal gradient inequality]\label{thm:prox-grad-ineq}
+                % Take $F:= f + g$ as defined in this section. 
+                For all $y \in \RR^n$, $x \in \RR^n$, it has: 
+                {\scriptsize
+                \begin{align*}
+                    (\forall x \in \RR^n)\quad 
+                    F(x)  - F(T_Ly) - \langle L(y - T_Ly), x - y\rangle
+                    - \frac{\mu}{2}\Vert x - y\Vert^2 - \frac{L}{2}\Vert y - T_Ly\Vert^2 
+                    &\ge 0. 
+                \end{align*}
+                }
+            \end{lemma}
+            This lemma is crucial to developing results in our current draft paper. 
+        \end{frame}
+        \begin{frame}{Nesterov's estimating sequence example}
+            \begin{definition}[Nesterov's estimating sequence]\label{def:nes-est-seq}
+                For all $k \ge 0$, let $\phi_k : \RR^n \rightarrow\RR$ be a sequence of functions. 
+                We call this sequence of functions a Nesterov's estimating sequence when it satisfies conditions: 
+                \begin{enumerate}
+                    \item There exists another sequence $(x_k)_{k \ge 0}$ such that for all $k \ge 0$ it has $F(x_k) \le \phi_k^*: =\min_{x}\phi_k(x)$. 
+                    \item There exists a sequence of $(\alpha_k)_{k \ge 0}$ where $\alpha_k \in (0, 1)\; \forall k \ge0 $ such that for all $x \in \RR^n$ it has $\phi_{k + 1}(x) - \phi_k(x) \le - \alpha_k(\phi_k(x) - F(x))$. 
+                \end{enumerate}
+            \end{definition}
+            The technique is widespread in the literatures and it's used to derive the convergence rate of acceleration on first order method, and the numerical algorithm itself. It is a two birds one stone technique. 
+        \end{frame}
         \begin{frame}{Our works on R-WAPG}
-            
+            Here are contributions of our draft paper. 
+            Recall the Nesterov's acceleration has momentum extrapolation updates on $y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$. 
+            We proposed the idea of R-WAPG, a generic method that: 
+            \begin{enumerate}
+                \item Describe for momentum sequences that doesn't follow Nesterov's rules.
+                \item Unifies the convergence rate analysis for several Euclidean variants of the FISTA method. 
+                \item A parameter free numerical algorithm: ``Free R-WAPG'' method that has competitive numerical performance in practical settings without restarting. 
+            \end{enumerate}
+            Our work is inspired by considering Nesterov's estimating sequence where $F(x_k) + R_k = \phi_k^*$. 
         \end{frame}
         \begin{frame}{Introduction to Catalyst Acceleration}
             

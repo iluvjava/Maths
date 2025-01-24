@@ -28,7 +28,7 @@ We consider the equivalence of compactness and the Heine Borel theorem in the re
 We show that, any closed intervals in $\mathbb R$ can be covered using finite many open covers, and then we use this fact to generalize the result to all closed and bounded sets. 
 
 #### **Lemma | Closed and bounded interval has finite sub cover for all coverings**
-> The closed and bounded interval $[a, b]\subseteq \mathbb R$ has a finite sub cover to it. 
+> For all open cover of the closed and bounded interval $[a, b]\subseteq \mathbb R$, it has a finite sub cover of $[a, b]$. 
 
 **Observations and Context**
 
@@ -56,7 +56,7 @@ Then, the followings are true:
 1. $D\neq \emptyset$ because $a\in D$. Choose any open $G$ s.t: $a \in G$, then $a \in G \in C_{[a, b]}$ so $a \in D$. 
 2. By completeness of $\mathbb R$ and $D \neq \emptyset$, there exists $s = \sup D$. 
 
-By the construction of $D$, $s \le d$. The proof follows shows that $s < d$ gives contradiction hence $s = d$. 
+By the construction of $D$, $s \le d$. The proof followed shows that $s < d$ gives contradiction hence $s = d$. 
 
 Since $D\subseteq [a, b]$, we have $s = \sup D \le b$. 
 For contradiction let $s < b$. 

@@ -124,7 +124,7 @@ $$
 \end{aligned}
 $$
 
-Taking the limit as $n \rightarrow$, the big product converges to zero, so it's definitely bounded. 
+Taking the limit as $n \rightarrow \infty$, the big product converges to zero, so it's definitely bounded. 
 The sequence provided doesn't have finite sum, and therefore we showed that finite sum condition for the sequence $\alpha_i$ is not necessary. 
 
 
