@@ -45,7 +45,20 @@ Suppose that we have a fixed a string.
 > Then a sequence of symbols is some mapping $g: \{1, \ldots, n\} \rightarrow S$. 
 
 #### **Definition | Anagram**
-> An anagram of string $g$ is a set of strings. 
+> Fix $n \in \N$. 
+> An anagram of string $g: \{1, \ldots, n\}$ is a set of strings of all possible arrangement of the string using the same symbols. 
+
+
+The idea of anagram can be formalize. 
+Since we don't care about the ordering of letters in word, define $S$ to be a set of symbols. 
+Define $f: S \rightarrow \N$ to be the frequencies of each symbols in $S$. 
+An anagram is a string $g: \N \rightarrow S$ such that it satisfies: 
+
+$$
+\begin{aligned}
+    
+\end{aligned}
+$$
 
 
 ---
@@ -61,6 +74,7 @@ Especially when we were already given a formula as the guess, it remains to veri
 >     f(s): S \rightarrow \N:= \{(s_1\mapsto k_1), (s_2\mapsto k_2), \ldots, (s_n\mapsto k_n)\}
 > $$ 
 > be a function that counts the frequencies of each symbol in the string. 
+> If $s \not \in S$, set $s\mapsto 0$. 
 > Then, the total number of anagram is: 
 > $$
 > \begin{aligned}
@@ -73,12 +87,13 @@ Especially when we were already given a formula as the guess, it remains to veri
 > \end{aligned}
 > $$
 
-**Proof**
+
+<!-- 
+**Proof (Inductive proof)**
 
 We prove by induction. 
 Let $\mathbb H(S, f)$ be the inductive hypothesis given frequencies map $f$, and the symbol set $S$ of some string of symbols. 
 The base case with $|S|=1$ is trivial to satisfy. 
-
 Inductively we assume that
 
 $$
@@ -92,7 +107,7 @@ $$
 \end{aligned}
 $$
 
-The proof proceeds by adding a new elements $u$ to give $S\cup \{u\}$ and there would be two cases
+The proof proceeds by adding a new element $u$ to give $S\cup \{u\}$ and there would be two cases
 
 1. CASE I: $u \in S$. 
 2. CASE II: $u \not \in S$. 
@@ -104,8 +119,8 @@ $$
     g(1), g(2), \ldots,g(i), u, g(i + 1), \ldots, g(n). 
 \end{aligned}
 $$
-When $i = 0$, $A[0: i]$ is an empty string and it means atatching $u$ on first position as the first element. 
-This acounts for $(n + 1) \mathbb H(S, f)$ combinations in total by inductive hypothesis because the string exluding symbol $u$ gives $\mathbb H(S, f)$ many permutations. 
+When $i = 0$, $A[0: i]$ is an empty string, and it means attaching $u$ on first position as the first element. 
+This accounts for $(n + 1) \mathbb H(S, f)$ combinations in total by inductive hypothesis because the string excluding symbol $u$ gives $\mathbb H(S, f)$ many permutations. 
 Therefore, we have
 
 $$
@@ -119,7 +134,23 @@ $$
 $$
 
 **CASE I** yields a more difficult counting procedure. 
-Let $u \in S$, define the new frequencies mapper 
+Any anagram $g_i, g_j$ has the same arrangement of $u$ if $g_i^{-1}(u) = g_j^{-1}(u)$, i.e: $u$ are on the same position for both string. 
+This equivalent relation partitions into $C_{f(u)}^n$ number of groups of size $(f(u)!)$.
+ 
+Pick any family of string that where $u$ lies in the same position and denote it by: $[G, U, u]$ where $U \subseteq \{1, \ldots, n\}$ with $|U| = f(u)$. 
+With $U$ fixed, for any string $g \in [G, U, u]$: 
+
+$$
+\begin{aligned}
+    g(1), g(2), \ldots, g(n). 
+\end{aligned}
+$$
+We insert $u$ into the string to make new string and count it. 
+The new symbol can be inserted into position between $(i, i + 1)$ for $i = 0, 1, \ldots, n$, which is a total of $n + 1$ options. 
+ -->
+
+
+<!-- Let $u \in S$, define the new frequencies mapper 
 
 $$
 \begin{aligned}
@@ -141,10 +172,10 @@ $$
 
 This accounts for $1$ more instance of a new anagram. 
 For all $i = 1, \ldots, n$ such that $g(i) \neq u$, we can swap $u$ with $g(i)$. 
-There are $n - f(u)$ possible ways of swapping it to produce a different anagram and using inductive hypothesis, it counts a total of $n - f(u)$ new anagram. 
+There are $n - f(u)$ possible ways of swapping it to produce a different anagram and using inductive hypothesis, it counts a total of $n - f(u)$ new anagram.  -->
 
 
-
+<!-- **Something is wrong with the proof, at this point.** -->
 
 
 <!-- 

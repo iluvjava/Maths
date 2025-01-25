@@ -9,6 +9,10 @@ Equivalence relation is a relation that generalizes the idea of equality.
 1. Equivalence Relation, Equivalent class. 
 2. Factor set. 
 
+**References**
+
+
+
 #### **Definition 1 (2.2.1) | Equivalence Relation**
 > For a set $R \subseteq S \times S$, where the equivalence relation is generated on, it has the properties that: 
 $$
@@ -63,7 +67,7 @@ $$
 
 We introduce some basic theorems followed from the above definitions. 
 
-#### **Prp 1 | (2.2.3 in ref)**
+#### **Prp 1 (2.2.3 in ref) | Equivalent classes partitions the set**
 
 > Let $S$ be a set, and let $\sim$ be an equivalence relation on $S$. Then each element of $S$ belongs to exactly one of the equivalence classes of $S$ determined by the relation $\sim$. 
 
