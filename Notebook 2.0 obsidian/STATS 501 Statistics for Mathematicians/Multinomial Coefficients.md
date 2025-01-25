@@ -39,10 +39,20 @@ Suppose that we have a fixed a string.
 3. Suppose that a string $S$ associates with $N$ in total, identify a function and a procedure such that it's a one-to-one map from $\{1, \cdots, N\}$ to all the anagram of the string. 
 
 
+#### **Definition | A sequence of symbols**
+> Let $S$ be a set of symbols. 
+> Let $n \in \N$ be some natural number. 
+> Then a sequence of symbols is some mapping $g: \{1, \ldots, n\} \rightarrow S$. 
+
+#### **Definition | Anagram**
+> An anagram of string $g$ is a set of strings. 
+
+
 ---
 ### **Counting Anagram**
 
 The total number of anagram given a string can be easily counted. 
+Especially when we were already given a formula as the guess, it remains to verify that it's correct. 
 
 #### **Claim | Counting Anagram**
 > Given any string consists of symbol set $S = \{s_1, s_2, \ldots, s_n\}$. 
@@ -54,9 +64,9 @@ The total number of anagram given a string can be easily counted.
 > Then, the total number of anagram is: 
 > $$
 > \begin{aligned}
->     \frac{\sum_{s \in S} f(s)}{\prod_{s\in S} f(s)!}
+>     \frac{\left(\sum_{s \in S} f(s)\right)!}{\prod_{s\in S} f(s)!}
 >     = \left(
->         \sum_{i = 1}^{n} s_n
+>         \left(\sum_{i = 1}^{n} k_i\right)!
 >     \right)\left(
 >         \prod_{i = 1}^{n} k_i!
 >     \right)^{-1}. 
@@ -64,6 +74,75 @@ The total number of anagram given a string can be easily counted.
 > $$
 
 **Proof**
+
+We prove by induction. 
+Let $\mathbb H(S, f)$ be the inductive hypothesis given frequencies map $f$, and the symbol set $S$ of some string of symbols. 
+The base case with $|S|=1$ is trivial to satisfy. 
+
+Inductively we assume that
+
+$$
+\begin{aligned}
+    |S| &= n, 
+    \\
+    \mathbb H(S, f)
+    & = n!\left(
+        \prod_{i = 1}^{n} k_i!
+    \right)^{-1}. 
+\end{aligned}
+$$
+
+The proof proceeds by adding a new elements $u$ to give $S\cup \{u\}$ and there would be two cases
+
+1. CASE I: $u \in S$. 
+2. CASE II: $u \not \in S$. 
+
+**CASE II** yields the simple proof. 
+For all $s \in S$, $s \neq u$, for each anagram of $S, f$, denotes $g: \{1, \ldots, n\}\rightarrow S$ as an instance of an anagram (i.e: a string), a new string can be composed for all $i = 1, \ldots, n + 1$ by arrangement: 
+$$
+\begin{aligned}
+    g(1), g(2), \ldots,g(i), u, g(i + 1), \ldots, g(n). 
+\end{aligned}
+$$
+When $i = 0$, $A[0: i]$ is an empty string and it means atatching $u$ on first position as the first element. 
+This acounts for $(n + 1) \mathbb H(S, f)$ combinations in total by inductive hypothesis because the string exluding symbol $u$ gives $\mathbb H(S, f)$ many permutations. 
+Therefore, we have
+
+$$
+\begin{aligned}
+    \mathbb H(S\cup\{u\}, f\cup \{(u\mapsto 1)\}) 
+    = (1 + n)\mathbb H(S, f) = 
+    (n + 1)!\left(
+        \prod_{i = 1}^{n} k_i !
+    \right)^{-1}. 
+\end{aligned}
+$$
+
+**CASE I** yields a more difficult counting procedure. 
+Let $u \in S$, define the new frequencies mapper 
+
+$$
+\begin{aligned}
+    f^+(s) := \begin{cases}
+        f(s) & s \neq u, 
+        \\
+        f(u) + 1 & s = u. 
+    \end{cases}
+\end{aligned}
+$$
+
+For any anagram $g: \{1, \ldots, n\} \rightarrow S$, we can make a new anagrams with the inclusion of $u$ by arrangement: 
+
+$$
+\begin{aligned}
+    g(1), g(2), \ldots, g(n), u. 
+\end{aligned}
+$$
+
+This accounts for $1$ more instance of a new anagram. 
+For all $i = 1, \ldots, n$ such that $g(i) \neq u$, we can swap $u$ with $g(i)$. 
+There are $n - f(u)$ possible ways of swapping it to produce a different anagram and using inductive hypothesis, it counts a total of $n - f(u)$ new anagram. 
+
 
 
 
@@ -120,6 +199,8 @@ $$
 $$
 
 Each term $x_t^{k_t}$ has coefficient that counts all possible way where, $k_1 + k_2 + \ldots + k_m = n$ and $k_i \ge 0\; \forall i = 1, \ldots, m$. 
+
+
 
 
 **Note**: 
