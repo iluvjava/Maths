@@ -9,10 +9,15 @@ In finite dimensional Banach space, the theorem states the equivalence between c
 For information regarding sequential compactness, see [Compactness in Metric Spaces](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Compactness%20in%20Metric%20Spaces.md) for more details. 
 
 This files demonstrate the principle of Heine Borel in the context of real anlaysis on the set $\R$. 
+But in general we have: 
+1. Subsequence convergence of all limit points in the space is equivalent to compactness for finite dimensional Banach spaces. 
+2. Subseqential convergence defines compactness in metric space which implies subsequential convergence of all sequence, however being closed and bounded is no longer sufficient for subsequential convergence of all sequences. 
+3. Subsequential convergence has nothing to do with compactness in non-metrizable topological spaces. 
 
 **References**
 
-These materials were covered in an undergraduate friendly textbook: **Measure, Integration, and Real Analysis by Sheldon Axler.** 
+1. an undergraduate friendly textbook: **Measure, Integration, and Real Analysis by Sheldon Axler.** 
+2. [UCLA Notes](https://www.ucl.ac.uk/~ucahad0/3103_handout_2.pdf). 
 
 
 #### **Def | Open cover on $\R$, finite subcover**
@@ -98,3 +103,31 @@ Without loss of generality a unit hypercube can be used because things can be re
 **Proof**
 
 Using the previous lemma, we are ready to prove the theorem in $\mathbb R$. 
+To show, let $F\subseteq \R$ be closed and bounded. 
+Let $\mathcal C$ be an open cover of $F$ in $\mathbb R$. 
+It remains to show that there exists a subset of $G_i \in \mathcal C \;\forall i = 1, \ldots, n$ such that $F \subseteq G_1\cup \ldots\cup G_n$.
+
+$F$ is bounded hence there exists $a, b$ such that $F \subseteq [a, b]$. 
+$F$ is closed hence $\R \setminus F$ is open. 
+Then $\mathcal C \cup \{\R \setminus F\}$ is an open cover of $\R$, therefore it's also an open cover of $[a, b]$. 
+Using the lemma there exists $G_i, i \in \{1, \ldots, n\}$ such that $[a, b] \subseteq \bigcup_{i = 1}^n G_i$. 
+Of course, this is not yet related to $F$, but it implies that 
+
+$$
+\begin{aligned}
+    F\subseteq [a, b] &\subseteq \left(
+        \bigcup_{i = 1}^n G_i
+    \right)\cup \{\R \setminus F\}
+    \implies
+    F\subseteq
+    \left(
+        \bigcup_{i = 1}^n G_i
+    \right).
+\end{aligned}
+$$
+
+Since, there is no intersection between $F, \R \setminus F$. 
+
+
+----
+### **Heine Borel in General**

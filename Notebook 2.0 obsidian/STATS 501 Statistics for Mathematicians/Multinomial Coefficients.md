@@ -44,21 +44,50 @@ Suppose that we have a fixed a string.
 > Let $n \in \N$ be some natural number. 
 > Then a sequence of symbols is some mapping $g: \{1, \ldots, n\} \rightarrow S$. 
 
+
+A sequence of symbols can be permuted. 
+Let $\sigma: \{1, \ldots, n\}\rightarrow \{1, \ldots, n\}$ be a bijective function (a permutations), then a permutation of a string $g$ is $g \circ \sigma$, a composition. 
+
+
 #### **Definition | Anagram**
 > Fix $n \in \N$. 
 > An anagram of string $g: \{1, \ldots, n\}$ is a set of strings of all possible arrangement of the string using the same symbols. 
 
 
-The idea of anagram can be formalize. 
+We now formalize the idea of an anagram. 
 Since we don't care about the ordering of letters in word, define $S$ to be a set of symbols. 
-Define $f: S \rightarrow \N$ to be the frequencies of each symbols in $S$. 
+Define $f: S \rightarrow \N$ to be the frequencies of each symbols in $S$, and it must satisfy: 
+
+$$
+\begin{aligned}
+    (\forall s \in S)\; \sum_{s \in s}^{} f(s) = n,  f(s) > 0. 
+\end{aligned}
+$$
+
 An anagram is a string $g: \N \rightarrow S$ such that it satisfies: 
 
 $$
 \begin{aligned}
-    
+    (\forall s \in S): \sum_{i = 1}^{n} \mathbf 1\{g(i) = s\} = f(s). 
 \end{aligned}
 $$
+
+I.e: The frequencies of each symbol in $g$ matches with $f$. 
+
+**Question**
+> Given $S, f$, how many anagrams are there? How can we map from an integers to a unique anagram? 
+
+**Equivalent questions**
+> Given any $n \in \N$, $S = \{1, \ldots, n\}$,  and $f: S \rightarrow \N$ such that it has $f(s) > 0 \; \forall s \in S$ and $\sum_{s \in s}^{}f(s) = N$. 
+> Then, how many functions $g: \{1, \ldots, N\} \rightarrow S$ are there such that it satsfies: 
+> $$
+> \begin{aligned}
+>     (\forall s \in S): \sum_{i = 1}^{N} \mathbf 1\{g(i) = s\} = f(s). 
+> \end{aligned}
+> $$
+> Then, find a bijection between each functions $g$ and an integer. 
+
+
 
 
 ---
@@ -86,6 +115,62 @@ Especially when we were already given a formula as the guess, it remains to veri
 >     \right)^{-1}. 
 > \end{aligned}
 > $$
+
+
+**Proof (Direct)**
+
+Let $N  = \sum_{s \in S}^{}f(s)$. 
+Denote $\mathcal A$ to be the set of all anagram of $S, f$. 
+Take any $g \in \mathcal A$. 
+Denote $\mathcal P_n$ to be the set of all permutations of $\{1, \ldots, N\}$. 
+For any $\sigma \in \mathcal P$, $g \circ \sigma$ is a permutation of $g$. 
+There are $N!$ permutations of $g$. 
+
+However, some of then are equivalent to each other as an ordered list of symbols. 
+Let $g, g'$ be two anagram, define their equivalent relations: 
+
+$$
+\begin{aligned}
+    g \equiv g' \iff \forall i \in \{1, \ldots, N\}: g(i) = g'(i). 
+\end{aligned}
+$$
+
+It partitions the set of all permutations of $g$ into equivalent classes. 
+We are going to show that: 
+1. Each of the equivalent classes has size $k_1!k_2!\ldots k_n!$. 
+
+And hence by equivalent class partitioning, the number of unique anagram after permutation is $N!/(k_1!k_2!\ldots k_n!)$. 
+
+Take any $s_j \in S$, it appears in a subset of indices in $g$, i.e: $\{i \in \{1, \ldots, N\}: g(i) = s_j\}$, and it will have size $k_j$. 
+Permutating within the subset of indices yields equivalent string and that is $k_j!$ many. 
+Doing this for all symbol yields a total of: 
+
+$$
+\begin{aligned}
+    \prod_{i= 1}^{n} k_i!. 
+\end{aligned}
+$$
+
+This is the size of all equivalent classes for any string $g$. 
+By $N!$ number of valid permutations and permutation partitioning, divide by the above to get the total number of anagrams to be: 
+
+$$
+\begin{aligned}
+    \frac{N!}{k_1!k_2! \ldots k_n!}. 
+\end{aligned}
+$$
+
+
+**Proof (Inductive)**
+
+Suppose that we have a string $g$ that is an anagram of $S, f$. 
+Denote $\mathcal A$ to be a set of strings consist of all anagrams of $S, f$.
+Pick any string $g \in \mathcal A$. 
+Let $u$ be a new symbol added to the string, if $u \not\in S$, we define assign $f(u) = 0$. 
+
+
+
+
 
 
 <!-- 
@@ -248,54 +333,15 @@ $$
 
 **Anagram in coefficients of multinomial terms**
 
-Take note that the coefficient of $xyz$ is $6$, because it counts all permutations of $x, y, z$ is the multi-set $\{k_1:1, k_2:1, k_3:1\}$. In this case, it is simply the number of available permutations on the cardinality: $3!$. 
+Take note that the coefficient of $xyz$ is $6$, because it counts all permutations of $x, y, z$ is the multi-set $\{k_1:1, k_2:1, k_3:1\}$. 
+In this case, it is simply the number of available permutations on the cardinality: $3!$. 
 
 Similarly, the coefficients of $xy^2$ counts unique permutations the multiset: $\{k_1:1, k_2:2\}$ which has anagram $3!/2! = 3$, or equivalently, all possible combinations of the string "$xyy$". 
 This is true because multiplicative operation is commutative, hence the action of grouping terms $xyy, yxy, yyx$ counts all possible anagram of the string "$xyy$". 
 
 
 ---
-### **Arrangements of Anagram and permultations of multisets**
-
-
-<!-- ### **Example: A Divide and Conquer Approach**
-
-Another way to get the same formula is to use the idea of a "Super Group" and the formula for combinatorics.  
-
-Let's say we have the string "aabbCCDD". 
-
-If I split it by letter type, then there are 2 types: Upper and Lower cased letters. 
-
-The number of such a splitting will be: 
-
-$$
-\frac{8}{4!4!}
-$$
-
-Now, 2 groups of $4$ remains, and each has 2 groups of 2 elements, because they are different letters, therefore, for each subgroup, the number of combination will be given by: 
-
-$$
-\frac{4!}{2!2!} \quad \frac{4!}{2!2!}
-$$
-
-Then, every possible permutations of the super group, we have: 
-
-$$
-\frac{4!4!}{2!2!2!2!}
-$$
-
-In total. However, re-arranging inside the sub-group doesn't change the super group, therefore, we can just multiply then together and get: 
-
-$$
-\frac{8}{4!4!}\times \frac{4!4!}{2!2!2!2!} 
-=
-\frac{8!}{2!2!2!2!}
-$$
-
-And, for this example, the above results is the same as obtained via the multinomial coefficient formula.  -->
-
----
-### **A Proof of Some Sort**
+### **Permutations of multisets**
 
 
 
