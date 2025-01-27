@@ -33,3 +33,8 @@ VRMs
 IPPM
 Hongda
 Okanagan
+Gower
+Bertsekas
+Defazio
+Finito
+FR-WAPG
