@@ -139,5 +139,7 @@ Since, there is no intersection between $F, \R \setminus F$.
 ----
 ### **Heine Borel in General**
 
+In this section we illustrate the concept of compactness for a metric space. 
 
+#### **Def | Totally Bounded**
 
