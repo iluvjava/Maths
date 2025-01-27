@@ -164,7 +164,7 @@
             Catalyst by Lin, et al. \cite{lin_catalyst_2018, lin_universal_2015} has the theoretical and practical importance: 
             \begin{enumerate}
                 \item It's an early attempt at putting accelerated inexact proximal point method into a practical setting. 
-                \item It finds application in machine learning and it accelerates the convergence of Variance Reduced Method (A type of incremental method that is not slower than the exact counter part). 
+                \item It finds application in machine learning, and it accelerates the convergence of Variance Reduced Method (A type of incremental method that is not slower than the exact counterpart). 
                 \item It demonstrates crucial ideas on how prove convergence rate where the evaluation of proximal point method is inexact in the convex settings. 
             \end{enumerate}
         \end{frame}
@@ -331,7 +331,7 @@
             {\small
             \begin{enumerate}
                 \item Equation (2), (3), (4) in \cite{chambolle_convergence_2015} is a similar triangle formulation of FISTA with $\mu = 0$. 
-                \item see (3.1, 4.1) in Lee et al. \cite{lee_geometric_2021} and Ahn and Sra \cite{ahn_understanding_2022} for graphical visualization of similar triangle form. 
+                \item See (3.1, 4.1) in Lee et al. \cite{lee_geometric_2021} and Ahn and Sra \cite{ahn_understanding_2022} for graphical visualization of similar triangle form. 
             \end{enumerate}
             }
         \end{frame}
@@ -488,7 +488,7 @@
                 \label{fig:simple-quadratic-NOG}
             \end{figure}
         \end{frame}
-        \begin{frame}{$\mu$ estimation graph by FR-WAPG}
+        \begin{frame}{FR-WAPG $\mu$ estimation graph}
             FR-WAPG estimates the following for $\mu$ during its execution: 
             \begin{figure}[H]
                 \centering
@@ -507,10 +507,10 @@
             \end{align*}
             Our setup: 
             \begin{enumerate}
-                \item $M, N$ are constants. $A \in \RR^{M\times N}$ ahs i.i.d random entries from a standard normal distribution. 
+                \item $M, N$ are constants. $A \in \RR^{M\times N}$ has i.i.d random entries from a standard normal distribution. 
                 \item $L, \mu$, are estimated by $A$ by $\mu = 1/\Vert (A^TA)^{-1}\Vert$ and $L = \Vert A^TA\Vert$. 
                 \item The synthetic solution is $x^+ = [1\; -1\; 1 \; \cdots ]^T \in \RR^N$ and $b = Ax^+ \in \RR^M$.
-                \item $x_0\in \RR^N$ is the initial guess with i.i.d randomed variable from a standard normal distributions. Same initial guess shared by FR-WAPG, V-FISTA, M-FISTA. 
+                \item $x_0\in \RR^N$ is the initial guess with i.i.d random variable from a standard normal distribution. Same initial guess shared by FR-WAPG, V-FISTA, M-FISTA. 
             \end{enumerate}
         \end{frame}
         \begin{frame}{LASSO numerical experiment results}
@@ -552,13 +552,13 @@
         \end{frame}
     \subsection{Direction of future works for R-WAPG}
         \begin{frame}{Nesterov's idea of strong convexity transfer}
-            There is one detail that our R-WAPG doesn't incorperate on all Euclidean variants of FISTA. 
+            There is one detail that our R-WAPG doesn't incorporate on all Euclidean variants of FISTA. 
             We consider this a minor augmentation for the future. 
             \begin{enumerate}
                 \item In Nesterov's 2013 paper \cite{nesterov_gradient_2013}, he considers accelerated  minimization problem $\phi = f + g$ with $f$ $L_f$ smooth and $g$ being $\mu_g \ge 0$ strongly convex. 
-                \item Algorithm 5, Chambolle, Pock \cite{chambolle_introduction_2016} captures several variants of FISTA and it assumes that $F = f + g$ where $f, g$ has strong convexity constant $\mu_f \ge 0, \mu_g \ge 0$ respective so $F$ is $\mu := \mu_f + \mu_g \ge 0$ strongly convex. 
+                \item Algorithm 5, Chambolle, Pock \cite{chambolle_introduction_2016} captures several variants of FISTA, and it assumes that $F = f + g$ where $f, g$ has strong convexity constant $\mu_f \ge 0, \mu_g \ge 0$ respective so $F$ is $\mu := \mu_f + \mu_g \ge 0$ strongly convex. 
             \end{enumerate}
-            Fast linear convergence is possible if any one of $f, g$ of the function is strongly convex but this is not yet a prediction of R-WAPG. 
+            Fast linear convergence is possible if any one of $f, g$ of the function is strongly convex, but this is not yet a prediction of R-WAPG. 
         \end{frame}
         
 \section{Selected contents from Catalyst Meta Accelerations}
@@ -658,6 +658,7 @@
             \end{assumption}
         \end{frame}
         \begin{frame}{Outer loop complexity, strong convex case}
+            Ths is Theorem 3.1 in Lin et al. \cite{lin_universal_2015}. 
             \begin{theorem}[]\label{thm:err-seq-outer-s-cnvx}
             {\small
                 For $\mathbb A$ with regularization parameter $\kappa > 0$. 
@@ -681,6 +682,7 @@
             \end{theorem}
         \end{frame}
         \begin{frame}{Outer loop complexity, convex but not strongly convex case}
+            This is Theorem 3.3 from Lin et al. \cite{lin_universal_2015}. 
             \begin{theorem}[]\label{thm:erro-seq-outer-cnvx}
             {\small
                 For $\mathbb A$ with regularization parameter $\kappa > 0$. 
@@ -703,6 +705,7 @@
             \end{theorem}
         \end{frame}
         \begin{frame}{Inner loop complexity, absolute errors}
+            The followings are Proposition 3.2, 3.4 from Lin et al. \cite{lin_universal_2015}. 
             \begin{proposition}[Inner loop complexity strongly convex]\label{prop:inner-loop-complexity-s-cnvx}
             {\footnotesize
                 Under the same settings of Theorem \ref{thm:err-seq-outer-s-cnvx}, suppose that 
@@ -714,13 +717,12 @@
                 Here $\widetilde{\mathcal O}$ hides logarithmic complexity in $\mu, \kappa$ and other constants. 
             }
             \end{proposition}
-            \begin{proposition}[Inner loop, context but not strongly convex]\label{prop:inner-loop-complexity-cnvx}
+            \begin{proposition}[Inner loop, convex but not strongly convex]\label{prop:inner-loop-complexity-cnvx}
             {\footnotesize
                 Under the settings of Theorem \ref{thm:erro-seq-outer-cnvx}, suppose that:
                 \begin{enumerate}
                     \item $\mathbb M$ has linear convergence rate as specified in Assumption \ref{ass:linear-convergence-inner-loop}, 
-                    \item the initial guess for $\mathbb M$ is $z_{0, k} = x_{k - 1}$, 
-                    \item $F$ has bounded level set.
+                    \item the initial guess for $\mathbb M$ is $z_{0, k} = x_{k - 1}$ and $F$ has bounded level set.
                 \end{enumerate}
                 Then there exists $T_{\mathbb M} \le \widetilde{\mathcal O}(1 / \tau_{\mathbb M})$ such that for any $k \ge 1$, it requires at most\\ $T_{\mathbb M}\log(k + 2)$ iterations for $\mathbb M$ to achieve accuracy $\epsilon_k$.
             }
@@ -776,14 +778,14 @@
             \begin{definition}[Catalyst Acceleration with relative error]\label{def:catalyst-relative}
             {\small
                 Let $F:\RR \rightarrow \overline \RR$ be $\mu \ge 0$ strongly convex and closed. 
-                Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa > 0$ and $\alpha_0 \in (0, 1]$. 
+                Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa > 0$ and $\alpha_0 = \sqrt{q}$ where $q = \mu/(\kappa + \mu)$. 
                 Let $(\delta_k)_{k \ge 0}$ be an absolute error sequence chosen for the evaluation for inexact proximal point method. 
                 \begin{tcolorbox}
                     Initialize $x_0 = y_0$. Then the algorithm generates $(x_k, y_k)_{k\ge 0}$ for all $k \ge 1$ such that: 
                     \begin{align*}
                         & \text{find } x_k \in \widetilde{\mathcal J}_{\kappa^{-1}F}^{\delta_k} y_{k - 1}, 
                         \\
-                        & \text{find } \alpha_k \in (0, 1) \text{ such that } \alpha_k^2 = (1 - \alpha_k)\alpha_{k - 1}^2 + (\mu/(\mu + \kappa))\alpha_k,
+                        & \text{find } \alpha_k \in (0, 1) \text{ such that } \alpha_k^2 = (1 - \alpha_k)\alpha_{k - 1}^2 + q\alpha_k,
                         \\
                         & 
                         y_{k} = x_k + \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})}{\alpha_{k - 1}^2 + \alpha_k}(x_k - x_{k - 1}). 
@@ -793,7 +795,7 @@
             \end{definition}
         \end{frame}
         \begin{frame}{Outer loop complexity under relative errors}
-            \begin{theorem}[Outer loop complexity under criterion C2]\label{theorem:catalyst2-outer-loop}
+            \begin{theorem}[Outer loop complexity under criterion C2]\label{thm:catalyst2-outer-comp}
                 For the iterates $(x_k)_{k \ge 0}$ generated by algorithm in Definition \ref{def:catalyst-relative}, we have 
                 \begin{enumerate}
                     \item If $\mu > 0$, choose $\alpha_0 = \sqrt{q}$, $\delta_k = \sqrt{q}/(2 - \sqrt{q})$. 
@@ -807,13 +809,58 @@
             \end{remark}
             Observe that it doesn't require knowledge about $F^*$. 
         \end{frame}
-        \begin{frame}{Inner loop Warm start under criterion C2}
-            
+        \begin{frame}{Inner loop warm start under criterion C2}
+            \begin{assumption}[Warm start conditions for the inner loop using C2]\label{ass:warm-start-c2}
+                For minimization sub problem $\mathcal M^{\kappa^{-1}}_F(z; y_k)$ solved by $\mathbb M$, we use the following warm start condition for $z_{k, 0}$ under termination criterion C2 (Definition \ref{def:catalyst-termination-c2}): 
+                \begin{enumerate}
+                    \item If $F$ is smooth then choose $z_k = y_k$. 
+                    \item Else it's composite, define $f_k(x) = f(x) + \frac{\kappa}{2}\Vert x - y_k\Vert^2$ and do 
+                    \begin{align*}
+                        z_{k, 0} = \hprox_{\eta g}\left(
+                            y_k - \eta\nabla f_\kappa(y_k)
+                        \right) \quad \text{with } \eta = 1/(\kappa + L). 
+                    \end{align*}
+                \end{enumerate}
+            \end{assumption}
+            \begin{remark}
+                See pg 13 of Lin et al. for more detail about warm starting strategies of $\mathbb M$ under Termination criterion C1. 
+            \end{remark}
         \end{frame}
-
-
-    \subsection{Direction of future works}
-
+        \begin{frame}{Inner loop complexity under C2}
+            \begin{theorem}[Inner loop complexity with relative error C2]\label{thm:inner-loop-comp-c2}
+                Consider $\mathbb M$ under the settings of Assumption \ref{ass:linear-convergence-inner-loop} and Assumption \ref{ass:warm-start-c2}, let the relative error sequence $(\delta_k)_{k \ge0}$ be given by Theorem \ref{thm:catalyst2-outer-comp}, and let $\mathbb A$ be defined as in Definition \ref{def:catalyst-relative}. 
+                Then the sequence $(z_{k, t})_{t \ge 0}$ generated by $\mathbb M$ has $T_{k + 1} = \min\left\lbrace t \ge 0 : z_{k, t} \in \widetilde{\mathcal J}_{\kappa^{-1}F}^\delta y_k\right\rbrace$ satisfies: 
+                \begin{align*}
+                    T_{k + 1} &\le \tau_{\mathbb M}^{-1}
+                    \log\left(
+                        4 C_{\mathbb M}\frac{L + \kappa}{\kappa}\frac{2 - \sqrt{q}}{q}
+                    \right) \quad \text{when}\quad \mu > 0, 
+                    \\
+                    T_{k + 1} &\le \tau_{\mathbb M}^{-1}
+                    \log\left(
+                        4 C_{\mathbb M}\frac{L + \kappa}{\kappa}(k + 2)^2
+                    \right) \quad \text{when}\quad \mu = 0.  
+                \end{align*}
+            \end{theorem}
+            \begin{remark}
+                This is Corollary 16 in Lin et al. \cite{lin_catalyst_2018} but phrased in our notations. 
+            \end{remark}
+        \end{frame}
+        \begin{frame}{Total complexity under C2}
+            The total number of iteration $N_{\mathbb M}$ experienced by $\mathbb M$ for $\mathbb A$ to produce $x_k$ such that $F(x_k) - F^* \le \epsilon$ when using termination criterion C2, warm start and error sequence strategies in Theorem \ref{thm:catalyst2-outer-comp} has: 
+            \begin{enumerate}
+                \item $N_{\mathbb M} \le \widetilde{\mathcal O}\left(\tau_{\mathbb M}^{-1}\sqrt{\kappa/\epsilon}\log(\epsilon^{-1})\right)$ if $\mu = 0$, 
+                \item $N_{\mathbb N}\le \widetilde{O}\left((\tau_{\mathbb M}\sqrt{q})^{-1}\log(\epsilon^{-1})\right)$ if $\mu > 0$. 
+            \end{enumerate}
+            In addition, termination criterion C2 has advantages: 
+            \begin{enumerate}
+                \item $\delta_k$ doesn't requite $F^*$. 
+                \item Doesn't require bounded level set assumption for inner loop complexity bound. 
+                \item Generalize to non-convex settings which was also the focus of Paquette's paper on Catalyst \cite{paquette_catalyst_2018}. 
+            \end{enumerate}
+        \end{frame}
+    \subsection{Future works for Catalyst Acceleration}
+        
 
 \section{References}
     \begin{frame}{Citation examples}
