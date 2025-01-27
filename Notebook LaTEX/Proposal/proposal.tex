@@ -1247,11 +1247,11 @@
             These two theorems relate the convergence of $\mathbb M, \mathbb A$ and gives a convergence rate of $F(x_k) - F^*$ expressed using the total number of iteration underwent by $\mathbb M$. 
             \begin{assumption}[Linear convergence of inner loop]\label{ass:linear-convergence-inner-loop}
                 For any $k \in \N$, $y \in \RR^n$. 
-                Suppose $\mathbb M$ generates iterates $(z_{k, t})_{t \ge 0}$ for the inner loop iteration such that there exists $A > 0$, and it has: 
+                Suppose $\mathbb M$ generates iterates $(z_{k, t})_{t \ge 0}$ for the inner loop iteration such that there exists $C_{\mathbb M} > 0$, and it has: 
                 \begin{align*}
                     \mathcal M_F^{\kappa^{-1}}(z_{k, t}, y) - \mathcal M^*_{F, \kappa^{-1}}(y) 
                     &\le 
-                    A(1 - \tau_{\mathbb M})^t
+                    C_{\mathbb M}(1 - \tau_{\mathbb M})^t
                     \left(
                         \mathcal M_{F}^{\kappa^{-1}}(z_{k,0})
                         -
@@ -1273,7 +1273,7 @@
                 Here $\widetilde{\mathcal O}$ hides logarithmic complexity in $\mu, \kappa$ and other constants. 
             \end{proposition}
             \begin{remark}
-                $T_{\mathbb M}$, an upper bound of the iteration of the inner loop, is a constant in this case. 
+                Here, $T_{\mathbb M}$ is a constant associated with just $\mathbb M$, it's not related to $k, \epsilon_k$. 
             \end{remark}
             \begin{proposition}[Inner loop, context but not strongly convex]\label{prop:inner-loop-complexity-cnvx}
                 Under the settings of Theorem \ref{thm:erro-seq-outer-cnvx}, suppose that:
@@ -1329,19 +1329,13 @@
             
 
     \subsection{The second Catalyst Acceleration paper}\label{ssec:catalyst-second-paper}
-        Lin et al.'s second paper on Catalyst Acceleration \cite{lin_catalyst_2018} describes the new option of relative termination criteria (which we stated here in Definition \ref{def:catalyst-termination-c2}) for $\mathbb M$ to evaluate the inexact solutions of $\mathcal J_{\kappa^{-1}F}^{\epsilon_k} y_k$. 
-        This condition allows the the use of relative error sequence $\delta_k$ which has advantages that: it gives easier convergence anlaysis, it doesn't need knowledge of $F^*$ and it can be generalize to the nonconvex case. 
+        Lin et al.'s second paper on Catalyst Acceleration \cite{lin_catalyst_2018} describes the new option of relative termination criterion (which we stated here in Definition \ref{def:catalyst-termination-c2}) for $\mathbb M$ to evaluate the inexact solutions of $\mathcal J_{\kappa^{-1}F}^{\epsilon_k} y_k$. 
+        The relative termination condition has advantages: it gives easier convergence analysis, it doesn't need knowledge of $F^*$, and it can generalize to the nonconvex case. 
+        In addition, they also improved warm start strategies for $\mathbb M$ at the end of Section 3. 
+        Both these ideas together provides a tighter and easier complexity analysis for the Catalyst Acceleration. 
         \par
-        This section summarizes major results in Lin et al's second Catalyst paper \cite{lin_catalyst_2018}. 
-        To expedite the execution of $\mathbb M$ in general given some error sequence $(\epsilon_k)_{k \ge 0}$ (or equivalently some lower bounds of it), Lin et al. suggested the following new ideas which are not mutually exclusive: 
-        \begin{enumerate}
-            \item They gave an improved warm start strategy at the end of Section 3 of their paper. 
-            It improved the convergence rate using relative termination criteria in Definition \ref{def:catalyst-termination-c2}, and it supports smooth plus nonsmooth objective. 
-            \item They gave a relative termination criterion C2 stated in Definition \ref{def:catalyst-termination-c2} which is controlled by the relative error sequence $(\delta_k)_{k \ge 0}$. 
-            The sequence $\delta_k$ doesn't require the knowledge of $F^*$, it simplifies the convergence proof and gives better bounds on the complexity of $\mathbb M$ without using bounded level set assumption. 
-            Recall that Theorem \ref{prop:inner-loop-complexity-cnvx} requires bounded level set assumption on $F$. 
-        \end{enumerate}
-        In our notation, we define relative termination criterion C2.
+        We summarize these innovations in Lin et al.'s second Catalyst paper \cite{lin_catalyst_2018} in this section. 
+        The following definition defines relative termination criteria for $\mathbb M$. 
         \begin{definition}[Relative termination criterion C2]\label{def:catalyst-termination-c2}
             Take $F$ as given by Assumption \ref{ass:catalyst1}. 
             Given any $\delta \in (0, 1]$, $\kappa > 0$ and $x \in \RR^n$, the relative criterion C2 of the inexact resolvent is defined by: 
@@ -1362,7 +1356,7 @@
             The relative inexact condition can be interpreted as an adaptive inexactness condition.     
             Observe that $\mathcal J_{\kappa^{-1}F} (x) \subseteq \widetilde{\mathcal J}_{\kappa^{-1}F}^{\delta}(x)$ hence the set is nonempty. 
         \end{remark}
-        Stated by Lin, the following lemmas gives the sufficient condition for evaluating inexact proximal point up to accuracy $\epsilon$. 
+        Stated by Lin, the following lemma provides the sufficient condition for evaluating inexact proximal point up to accuracy $\epsilon$. 
         \begin{lemma}[Sufficient condition for C1]\label{lemma:sufficient-c1}
             Consider smooth plus nonsmooth objective $F := f + g$ with $g:\RR^n \rightarrow \overline \RR, F:\RR^n \rightarrow \RR$ closed and convex, and $F$ is $\mu\ge 0$ strongly convex and $L$-Lipschitz smooth. 
             With arbitrary $x \in \RR^n$ fixed, the model function is additive composite of the form: 
@@ -1382,7 +1376,7 @@
                 \frac{1}{\eta}\Vert z - \bar z\Vert
                 \le \sqrt{2\kappa \epsilon} \implies 
                 \bar z \in \mathcal 
-                J_{\kappa^{-1}F}^\epsilon (x). 
+                J_{\kappa^{-1}F}^\epsilon (x).
             \end{align*}
         \end{lemma}
         \begin{remark}
@@ -1390,10 +1384,10 @@
         \end{remark}
 
         \subsubsection{Consequences of the inner loop termination criteria}
-            Lemma \ref{lemma:sufficient-c1} describes a sufficient conditions to verify the membership of $\bar z \in \mathcal J_{\kappa^{-1}F}^\epsilon (x)$ through the proximal gradient operator on $F:= f_\kappa(z) + g(z)$ which has practical importance because it translate criterion C1 into a implementable criteria in the algorithm with the proximal gradient operator. 
-            It contribute to theoretical analysis because it bounds on the true error on the gradient of Moreau Envelope at the point $x$. 
+            Lemma \ref{lemma:sufficient-c1} describes a sufficient conditions to verify the membership of $\bar z \in \mathcal J_{\kappa^{-1}F}^\epsilon (x)$ through the proximal gradient operator on $F:= f_\kappa(z) + g(z)$ which has practical importance because it translates criterion C1 into an implementable criterion in the algorithm with the proximal gradient operator. 
+            It contributes to theoretical analysis because it bounds on the true error on the gradient of Moreau Envelope at the point $x$. 
             \par 
-            The following results are proved in Lin et al second Catalyst paper \cite{lin_catalyst_2018}. 
+            The following results are proved in Lin et al. second Catalyst paper \cite{lin_catalyst_2018}. 
             Given any $\epsilon > 0$ if $z \in \mathcal J_{\kappa^{-1}F}^\epsilon (x)$, define the absolute inexact gradient mapping $\mathcal G_{\kappa^{-1}F}^\epsilon (z) := \kappa(x - z)$.
             Then
             \begin{align*}
@@ -1428,11 +1422,10 @@
             For a more general development of characterizations of inexact oracles that is more comprehensive and rigorous, see Devolder et al. \cite{devolder_first-order_2014}. 
             It's discusses a Nesterov accelerated algorithm using estimating sequence with inexact oracles. 
             \par
-            Besides Definition \ref{def:catalyst-termination-c1}, \ref{def:catalyst-termination-c2}, the ``Fixed Budget" termination criterion terminates $\mathbb M$ after a fixed number of iteration given accuracy $\epsilon_k$. 
-            Criterion C1 used to prove the overall complexity in Lin et al. \cite{lin_universal_2015}, but the bound is deliberately loose to allow generality, making it extremely impractical. 
-            Criterion C2 places similar upper bound on the iteration complexity for $\mathbb M$, but it still remains impractical. 
+            Besides Definition \ref{def:catalyst-termination-c1}, \ref{def:catalyst-termination-c2}, the ``Fixed Budget" termination criterion terminates $\mathbb M$ after a fixed number of iteration given termination criterion C1, C2. 
+            Unfortunately the bound is often too loose making it impractical. 
             \par
-            Interestingly, the new termination criterion C2 gives improvements on the complexity of inner loop $\mathbb M$, outer loop $\mathbb A$, and the relative error sequence $(\delta_k)_{k \ge0}$ for $\mathbb M$. 
+            Interestingly, the new termination criterion C2 improves the complexity of inner loop $\mathbb M$ and outer loop $\mathbb A$, and it gives a tighter bound with fewer assumptions. 
             The theorems and commentaries that follow will illustrate. 
             \begin{definition}[Catalyst Acceleration all in one]\label{def:catalyst-all-in-one}
                 Suppose that $F$ is a $\mu \ge 0$ strongly smooth under Assumption \ref{ass:catalyst1}. 
@@ -1459,13 +1452,23 @@
                     \textbf{End while} 
                 \end{tcolorbox}
             \end{definition}
-            \begin{assumption}[Warm start conditions for relative error C2]
-            \;\label{prop:warm-start-with-c2}\\ 
-            Assume 
-                
+            \begin{assumption}[Warm start conditions for the inner loop using C2]\label{ass:warm-start-c2}\;\\
+                For minimization sub problem $\mathcal M^{\kappa^{-1}}_F(z; y_k)$ solved by $\mathbb M$, we use the following warm start condition for $z_{k, 0}$ under termination criterion C2 (Definition \ref{def:catalyst-termination-c2}): 
+                \begin{enumerate}
+                    \item If $F$ is smooth then choose $z_k = y_k$. 
+                    \item Else it's composite, define $f_k(x) = f(x) + \frac{\kappa}{2}\Vert x - y_k\Vert^2$ and do 
+                    \begin{align*}
+                        z_{k, 0} = \hprox_{\eta g}\left(
+                            y_k - \eta\nabla f_\kappa(y_k)
+                        \right) \quad \text{with } \eta = 1/(\kappa + L). 
+                    \end{align*}
+                \end{enumerate}
             \end{assumption}
+            \begin{remark}
+                See pg 13 of Lin et al. for more detail about warm starting strategies of $\mathbb M$ under Termination criterion C1. 
+            \end{remark}
 
-            \begin{theorem}[Outer loop complexity under criterion C2]\; \label{theorem:catalyst2-outer-loop}\\
+            \begin{theorem}[Outer loop complexity under criterion C2]\label{thm:catalyst2-outer-comp}
                 For the iterates $(x_k)_{k \ge 0}$ generated by algorithm in Definition \ref{def:catalyst-all-in-one}, we have 
                 \begin{enumerate}
                     \item If $\mu > 0$, choose $\alpha_0 = \sqrt{q}$, $\delta_k = \sqrt{q}/(2 - \sqrt{q})$. 
@@ -1477,11 +1480,32 @@
                 This is Proposition 8, 9 in Lin et al.'s second Catalyst paper \cite{lin_catalyst_2018}.
                 For a precise description of the upper bound, see Theorem 8. 
             \end{remark}
-            \begin{theorem}{Inner loop complexity with relative error C2}
-                
+            \begin{theorem}[Inner loop complexity with relative error C2]\label{thm:inner-loop-comp-c2}\; \\
+                Consider $\mathbb M$ under the settings of Assumption \ref{ass:linear-convergence-inner-loop} and Assumption \ref{ass:warm-start-c2}, let the relative error sequence $(\delta_k)_{k \ge0}$ be given by Theomrem \ref{thm:catalyst2-outer-comp}, and let $\mathbb A$ be defined as in Definition \ref{def:catalyst-all-in-one}. 
+                Then the sequence $(z_{k, t})_{t \ge 0}$ generated by $\mathbb M$ has $T_{k + 1} = \min\left\lbrace t \ge 0 : z_{k, t} \in \widetilde{\mathcal J}_{\kappa^{-1}F}^\delta y_k\right\rbrace$ satisfies: 
+                \begin{align*}
+                    T_{k + 1} &\le \tau_{\mathbb M}^{-1}
+                    \log\left(
+                        4 C_{\mathbb M}\frac{L + \kappa}{\kappa}\frac{2 - \sqrt{q}}{q}
+                    \right) \quad \text{when}\quad \mu > 0, 
+                    \\
+                    T_{k + 1} &\le \tau_{\mathbb M}^{-1}
+                    \log\left(
+                        4 C_{\mathbb M}\frac{L + \kappa}{\kappa}(k + 2)^2
+                    \right) \quad \text{when}\quad \mu = 0.  
+                \end{align*}
             \end{theorem}
-            
-
+            \begin{remark}
+                This is Corollary 16 in Lin et al. \cite{lin_catalyst_2018} but phrased in our notations. 
+            \end{remark}
+            Using Theorem \ref{thm:inner-loop-comp-c2}, \ref{thm:inner-loop-comp-c2}, it's possible to derive the total complexity of the algorithm as counted by the total number of iterations of $\mathbb M$ at the $k$ iteration of $\mathbb A$.
+            Stated in Proposition 17, 18 in Lin et al. \cite{lin_catalyst_2018} is the following results.
+            The total number of iteration $N_{\mathbb M}$ experienced by $\mathbb M$ for $\mathbb A$ to produce $x_k$ such that $F(x_k) - F^* \le \epsilon$ when using termination criterion C2, warm start and error sequence strategies \ref{thm:catalyst2-outer-comp} has: 
+            \begin{enumerate}
+                \item $N_{\mathbb M} \le \widetilde{\mathcal O}\left(\tau_{\mathbb M}^{-1}\sqrt{\kappa/\epsilon}\log(\epsilon^{-1})\right)$ if $\mu = 0$, 
+                \item $N_{\mathbb N}\le \widetilde{O}\left((\tau_{\mathbb M}\sqrt{q})^{-1}\log(\epsilon^{-1})\right)$ if $\mu > 0$. 
+            \end{enumerate}
+            \par
             The key improvement here compared to using absolute inexactness for $\mathbb M$ as stated by Theorem \ref{thm:err-seq-outer-s-cnvx}, \ref{thm:erro-seq-outer-cnvx} is that $(\delta_k)_{k \ge0}$ doesn't require knowledge on $F^*$. 
             This innocent detail helps to develop a nonconvex variant of Catalyst call 4WD Catalyst which is the focus of the paper by Paquette \cite{paquette_catalyst_2018}. 
             Corollary 16 in Lin et al.'s second Catalyst paper \cite{lin_catalyst_2018} gives complexity for $\mathbb M$ Using termination criterion C2 with a warm start specialized for $C2$. 

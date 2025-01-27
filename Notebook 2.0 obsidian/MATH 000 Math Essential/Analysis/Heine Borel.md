@@ -8,11 +8,18 @@ See [here](https://en.wikipedia.org/wiki/Heine%E2%80%93Borel_theorem) for more i
 In finite dimensional Banach space, the theorem states the equivalence between closed and bounded condition, and existence of sub-sequential convergence. 
 For information regarding sequential compactness, see [Compactness in Metric Spaces](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Compactness%20in%20Metric%20Spaces.md) for more details. 
 
-This files demonstrate the principle of Heine Borel in the context of real anlaysis on the set $\R$. 
+#### **Def | Sequential compactness**
+> A metric space $X, d$ is sequentially compact if and only if all of the sequence in $X$ has a convergent subsequence. 
+
+#### **Def | Topological compactness**
+> A topology $X$ is compact if and only if for all open cover of $X$, there also exists a finite subcover of $X$. 
+
+We note that an open cover is simply a family of $X$ with open sets such that $X$ is contained within it. 
+This fille demonstrates the principle of Heine Borel in the context of real anlaysis on the set $\R$. 
 But in general we have: 
-1. Subsequence convergence of all limit points in the space is equivalent to compactness for finite dimensional Banach spaces. 
-2. Subseqential convergence defines compactness in metric space which implies subsequential convergence of all sequence, however being closed and bounded is no longer sufficient for subsequential convergence of all sequences. 
-3. Subsequential convergence has nothing to do with compactness in non-metrizable topological spaces. 
+1. Sequential compactness is equivalent closed and bounded in finite dimensional Banach spaces. 
+2. Sequential compactness in metric space defines compactness but being closed and bounded is no longer sufficient for sequential compactness. 
+3. sequential compactness has nothing to do with compactness in non-metrizable topological spaces. 
 
 **References**
 
@@ -131,3 +138,6 @@ Since, there is no intersection between $F, \R \setminus F$.
 
 ----
 ### **Heine Borel in General**
+
+
+
