@@ -633,12 +633,15 @@
             \end{definition}
         \end{frame}
         \begin{frame}{Notations and Variance Reduced Methods}
-            Denotes
-            \begin{enumerate}
-                \item the outer loop algorithm, i.e: Definition \ref{def:lin-catalyst-original} by $\mathbb A$, it generates $(x_k, y_k)_{k \ge 1}$; 
-                \item the inner loop algorithm by $\mathbb M$ that evaluates $x_k \in \mathcal J_{\kappa^{-1}}^{\epsilon_k} y_{k - 1}$, it generates $(z_{k, t})_{t \ge 0}$. 
-            \end{enumerate}
+            \begin{block}{Catalyst notations}
+                Denotes
+                \begin{enumerate}
+                    \item the outer loop algorithm, i.e: Definition \ref{def:lin-catalyst-original} by $\mathbb A$, it generates $(x_k, y_k)_{k \ge 1}$; 
+                    \item the inner loop algorithm by $\mathbb M$ that evaluates $x_k \in \mathcal J_{\kappa^{-1}}^{\epsilon_k} y_{k - 1}$, it generates $(z_{k, t})_{t \ge 0}$. 
+                \end{enumerate}    
+            \end{block}
             The class of variance reduced methods are often used for $\mathbb M$. 
+            They are examples of incremental methods. 
             Major examples of VRMs include SVRG by Xiao, Zhang \cite{xiao_proximal_2014}, Finito by Defazio et al. \cite{defazio_finito_2014}, SAG by Schmidt et al. \cite{schmidt_minimizing_2017}, and SAGA by \cite{defazio_saga_2014}. 
         \end{frame}
     \subsection{Complexity theories with absolute errors}
@@ -875,13 +878,13 @@
                 \item quadratic functional growth, 
                 \item and Global error bound conditions. 
             \end{enumerate}
-            Discussion at the end of their is summarized here as: 
-            \begin{block}{Future works}
-                Extend our results for variance reduced incremental methods such as the Catalyst Framework. 
-            \end{block}
+            Discussion about Catalyst future works is summarized here: 
+            \begin{alertblock}{Future works}
+                Extend linear convergence of accelerated gradient for variance reduced incremental methods such as the Catalyst Framework into a weaker settings. 
+            \end{alertblock}
             
         \end{frame}
-        \begin{frame}{Our questions on Catalyst Acceleration}
+        \begin{frame}{Our question on Catalyst Acceleration}
             \begin{block}{A key detail about Catalyst}
                 The smoothness assumption is baked into Assumption \ref{ass:linear-convergence-inner-loop}, where it states that the $\mathbb M$ needs to have linear convergence rate. 
             \end{block}
