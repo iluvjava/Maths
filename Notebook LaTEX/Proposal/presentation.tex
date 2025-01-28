@@ -18,6 +18,10 @@
 \input{presets/wang/custom_commands.tex} % IMPORT WANG'S LATEX CUSTOM COMMANDS. 
 \setbeamertemplate{theorems}[numbered] % ADD NUMBERING TO ALL AMS THEOREMS. 
 \setbeamertemplate{footline}[frame number] % ADD PAGE NUMBERS ON BOTTOM. 
+\setbeamertemplate{blocks}[rounded][shadow=true]
+% \setbeamercolor{block title}{bg=cyan,fg=black} % CHANGE THE BLOCK STYLE IN BEAMER. 
+% \setbeamercolor{block body}{bg=lime,fg=black} % CHANGE THE BLOCK STYLE IN BEAMER. 
+
 % BIB STYLES SETTINGS ----------------------------------------------------------
 \setbeamerfont{bibliography item}{size=\footnotesize}
 \setbeamerfont{bibliography entry author}{size=\footnotesize}
@@ -772,6 +776,7 @@
                 \end{align*}
                 }
             \end{enumerate}
+            These results are stated in Section 3.2 in Lin et al. \cite{lin_universal_2015}. 
         \end{frame}
     \subsection{Complexity theories with relative errors}
         \begin{frame}{Catalyst acceleration with relative errors}
@@ -860,18 +865,48 @@
             \end{enumerate}
         \end{frame}
     \subsection{Future works for Catalyst Acceleration}
-        \begin{frame}{Comments on catalyst from Necoara et al. }
+        \begin{frame}{Comments on Catalyst from Necoara et al. }
+            Necoara et al. \cite{necoara_linear_2019} considered extending the linear convergence results for problem $f^* = \min_{x \in X} f(x)$ with $f: X \subseteq \RR^n \rightarrow \RR$ and $X$ closed and convex.
+            They characterize conditions: 
+            \begin{enumerate}
+                \item Quasi-strong convexity, 
+                \item Quadratic under approximation, 
+                \item Quadratic gradient growth,
+                \item quadratic functional growth, 
+                \item and Global error bound conditions. 
+            \end{enumerate}
+            Discussion at the end of their is summarized here as: 
+            \begin{block}{Future works}
+                Extend our results for variance reduced incremental methods such as the Catalyst Framework. 
+            \end{block}
             
         \end{frame}
         \begin{frame}{Our questions on Catalyst Acceleration}
-            
+            \begin{block}{A key detail about Catalyst}
+                The smoothness assumption is baked into Assumption \ref{ass:linear-convergence-inner-loop}, where it states that the $\mathbb M$ needs to have linear convergence rate. 
+            \end{block}
+            All VRMs method in the literature requires Lipschitz smoothness and strong convexity to achieve linear convergence rate. 
+            No linear convergent first order algorithm exists for all strong convex function by Theorem 2.1.5 in Nesterov's book \cite{nesterov_lectures_2018}. 
+            Hence, here is our question: 
+            \begin{alertblock}{Our question}
+                Solving inexact proximal point doesn't necessarily need smoothness assumption on $F$ so what if we Assumption \ref{ass:linear-convergence-inner-loop} is false? 
+            \end{alertblock}
+            Next slide we explain why the answer is not trivial and why it's interesting. 
+        \end{frame}
+        \begin{frame}{The answer to our question is nontrivial}
+            Without smoothness assumption on $F$, the following considerations apply. 
+            \begin{enumerate}
+                \item $\mathbb A$ optimizes inexact Moreau Envelope $\mathcal M^*_{\kappa^{-1}, F}(y)$ which is smooth and strongly convex if $F$ is convex hence the $\mathcal O(1/\sqrt{k})$ lower bound of Theorem 3.2.1 \cite{nesterov_lectures_2018} complexity for all convex first order optimization doesn't apply for the total complexity.  
+                \item Instead, Theorem 2.1.7 \cite{nesterov_lectures_2018} applies and the lower complexity bound $\mathbb A$ is $\mathcal O(1/k^2)$. 
+                \item Linear convergence of $\mathbb M$ Theorem 2.1.17 fails instead Theorem 3.2.5 applies and the lower bound is $\mathcal O(1/k)$. 
+            \end{enumerate}
+            We note that the question has practical importance because the method of subgradient descent with Polyak stepsizes are optimal for Smooth, strongly convex, and smooth plus strongly convex function on a compact domain. See Hazan and Kakade\cite{hazan_revisiting_2022}. 
         \end{frame}
 
 \section{References}
-    \begin{frame}{Citation examples}
-        Citation examples \cite{chambolle_convergence_2015}
-    \end{frame}
-
+    % \begin{frame}{Citation examples}
+    %     Citation examples \cite{chambolle_convergence_2015}
+    % \end{frame}
     \begin{frame}[allowframebreaks]{References}
         % \bibliographystyle{apalike}
         \bibliography{references/proposal.bib}

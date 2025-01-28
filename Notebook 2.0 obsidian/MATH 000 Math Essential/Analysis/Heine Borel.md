@@ -9,17 +9,17 @@ In finite dimensional Banach space, the theorem states the equivalence between c
 For information regarding sequential compactness, see [Compactness in Metric Spaces](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Compactness%20in%20Metric%20Spaces.md) for more details. 
 
 #### **Def | Sequential compactness**
-> A metric space $X, d$ is sequentially compact if and only if all of the sequence in $X$ has a convergent subsequence. 
+> A metric space $X, d$ is sequentially compact if and only if all the sequence in $X$ has a convergent subsequence. 
 
 #### **Def | Topological compactness**
 > A topology $X$ is compact if and only if for all open cover of $X$, there also exists a finite subcover of $X$. 
 
 We note that an open cover is simply a family of $X$ with open sets such that $X$ is contained within it. 
-This fille demonstrates the principle of Heine Borel in the context of real anlaysis on the set $\R$. 
+This file demonstrates the principle of Heine Borel in the context of real analysis on the set $\R$. 
 But in general we have: 
 1. Sequential compactness is equivalent closed and bounded in finite dimensional Banach spaces. 
 2. Sequential compactness in metric space defines compactness but being closed and bounded is no longer sufficient for sequential compactness. 
-3. sequential compactness has nothing to do with compactness in non-metrizable topological spaces. 
+3. Sequential compactness has nothing to do with compactness in non-metrizable topological spaces. 
 
 **References**
 
@@ -30,7 +30,7 @@ But in general we have:
 #### **Def | Open cover on $\R$, finite subcover**
 > Let $A \subseteq \R$. 
 > 1. A collection of $\mathcal C$ of open subsets of $\R$ is called an **open cover** if, $A \subseteq \bigcup_{C \in \mathcal C} C$, i.e: A is contained in the union of all the sets in $\mathcal C$. 
-> 2. An open cover is said to have **finite sub cover** if there exists $|I| < \infty$ such that $C_i \in \mathcal C$ for all $i \in I$ and $A \subseteq \bigcup_{i \in I}C_i$; i.e: The set $A$ is contained within a finite subsets of open cover $\mathcal C$. 
+> 2. An open cover is said to have **finite sub cover** if there exists $|I| < \infty$ such that $C_i \in \mathcal C$ for all $i \in I$ and $A \subseteq \bigcup_{i \in I}C_i$; i.e: The set $A$ is contained within a finite subset of open cover $\mathcal C$. 
 
 
 ---
@@ -44,7 +44,7 @@ We show that, any closed intervals in $\mathbb R$ can be covered using finite ma
 
 **Observations and Context**
 
-1. If the set of points in a topology (i.e: The interval $[a, b]$) is finite, then for ever open covers of the set, will have a finite sub cover that also covers the set. 
+1. If the set of points in a topology (i.e: The interval $[a, b]$) is finite, then for every open covers of the set, will have a finite sub cover that also covers the set. 
 
 **Proof**
 
@@ -76,7 +76,7 @@ There exists $s\in G_s$ where $G_s$ is an open set by property of $\R$, then $G_
 Since $G_s$ is open, $\exists \delta > 0 : (s - \delta, s + \delta) \in G_s$. 
 Next we consider $d \in G_s, d' \in G_s$ where $d \le s \le d'$. 
 
-There exists $d \in (s - \delta, s]$ then $d \in [a, s] \subseteq D$ hence finite open cover exists and it follows: 
+There exists $d \in (s - \delta, s]$ then $d \in [a, s] \subseteq D$ hence finite open cover exists, and it follows: 
 $$
 \begin{aligned}
     \exists n \in \N: [a, d] \subseteq \bigcup_{i = 1}^n G_i. 
@@ -93,9 +93,9 @@ $$
 \end{aligned}
 $$
 
-Hence $d' \in D$ as well. 
-If $s < b$, then $s < d'\in D$ exists and it breaks $s = \sup D$. 
-Therefore it has to be that $s = b$. 
+Hence, $d' \in D$ as well. 
+If $s < b$, then $s < d'\in D$ exists, and it breaks $s = \sup D$. 
+Therefore, it has to be that $s = b$. 
 
 
 **Remarks**
@@ -104,8 +104,8 @@ Proofs may be extended to finite dimensional Banach space using the construction
 Without loss of generality a unit hypercube can be used because things can be rescaled. 
 
 
-#### **Thm-1 (2.12) | Heine-Borel in Reals**
-> Every open cover of a closed bounded subsets of $\mathbb R$ has a finite subcover. 
+#### **Thm-1 (2.12) | Heine Borel in Reals**
+> Every open cover of a closed bounded subset of $\mathbb R$ has a finite subcover. 
 
 **Proof**
 
