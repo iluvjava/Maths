@@ -6,11 +6,11 @@
 
 The geometric properties of function classifies them, and their properties that are relevant to optimizations. We focuses on *Finite Euclidean spaces* for real numbers with the usual p-norm as the metric (see [Topology of Metric Space](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Topology%20of%20Metric%20Space.md), [Metric Space Introduction](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Metric%20Space%20Introduction.md) for more context). We denote the epsilon in the vicinity of a point $x$ in space to be $\mathbb B_\epsilon(x)$, this is an open normal ball centered at $x$ with radius $\epsilon$. Topology of sets in $\mathbb R^n$ is particular useful for characterizing the behavior of functions that are $C1$, the ramp function. 
 
-**Definition-1 | Interior of a set**
+#### **Definition-1 | Interior of a set**
 
 > The interior of the set $Q\subseteq X$ is $\text{int}(Q):= \{x\in X|\mathbb B_\epsilon(x) \subseteq Q\}$. 
 
-**Definition-2 | An Opened Set**
+#### **Definition-2 | An Opened Set**
 
 > The set $Q\subseteq X$ is *open* if for all $x\in Q$ we have $\exists \epsilon: \mathbb B_\epsilon(x)\subseteq Q$. Or equivalently, $Q = \text{int}(Q)$. 
 
@@ -22,7 +22,7 @@ The geometric properties of function classifies them, and their properties that 
 
 The concept of interior can be relative to another subset of the background set. One prime example of this is the application of the interior relative an affine space. See [[Relative Interior And Relative Boundary]] for more. 
 
-**Definition-3 | Closure and Closed Sets**
+#### **Definition-3 | Closure and Closed Sets**
 > Let $Q\subseteq X$ then the closure of the set is $\text{cl}(Q):= \{x\in X| \; \forall \epsilon > 0:  \mathbb B_{\epsilon}\cap Q \neq \emptyset\}$. The set $Q$ is closed when $Q = \text{cl}(Q)$. 
 
 **Observation**: 
@@ -35,7 +35,7 @@ See [[Closure Topology]] for more reference. Observe that trivially, if a set is
 
 Sometimes we discuss the openness of the set relative to a subset of the whole space. For example, the use of  [[Relative Interior And Relative Boundary]] discuss the interior of a set relative to a linear subspace. Or, we can discuss some subset of $\mathbb R$'s openness relative to $\mathbb Q$. 
 
-**Definition-4 | The boundary of a set** 
+#### **Definition-4 | The boundary of a set** 
 
 > Let $Q\subseteq X$, then the boundary of $Q$, denoted as $\text{bd}(Q)$ is $\text{cl}(Q)\setminus \text{int}(Q)$. 
 
@@ -43,11 +43,13 @@ Sometimes we discuss the openness of the set relative to a subset of the whole s
 
 Observe that, direct from the definition, we know that $x\in \text{bd}(Q)$ has $x\ \in X$, but for all $\epsilon > 0$, $\mathbb B_\epsilon(x) \not\subseteq Q$, and at the same time $\mathbb B_\epsilon(x) \cap Q \neq \emptyset$, implies that $\mathbb B_\epsilon(x)\cap Q \neq \emptyset$ and $\mathbb B_\epsilon(x) \cap Q^C \neq \emptyset$ as well. And this characterize the set of all points that are at the boundary of $Q$. It's something that connects to both $Q, Q^C$ via the epsilon vicinity around elements from the set. 
 
-**Theorem-1 | Topology of the Complement**
+#### **Theorem-1 | Topology of the Complement**
 
 > $Q$ is open iff $Q^C$ is closed
 
-#UNFINISHED . 
+**Proof**
+
+A direct negation on the definition of an open set yields the results we want to prove. 
 
 **Remarks**
 * A set is closed if it has its own boundary inside of itself. 

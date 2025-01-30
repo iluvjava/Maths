@@ -141,5 +141,86 @@ Since, there is no intersection between $F, \R \setminus F$.
 
 In this section we illustrate the concept of compactness for a metric space. 
 
+
 #### **Def | Totally Bounded**
+> A metric space $(X, d)$ is totally bounded is equivalent to all of the following: 
+> 1. For every $\epsilon > 0$, there exists a cover of finite many open/closed epsilon ball for $X$. 
+> 2. For every $\epsilon > 0$, there exists a finite subset $F = \{x_i\}_{i = 1}^n$ such that $\dist(F, x) < \epsilon$ for all $x \in X$. 
+
+**Observations**
+
+These two conditions are indeed equivalent to each other. 
+
+(1.) If finite open balls forms a cover for $X$, then so does closed balls because they are super sets of the open balls. 
+The converse is argued by considering all $\epsilon\ge 0$ instead for the radius of the ball which won't really impact the conclusion. 
+
+(2.) is true when (1.) is assumed because the set $F$ being the center of all the balls would satisfy the conditions we want. 
+
+
+#### **Theorem | Equivalent characterization of compact subsets**
+> $X \subseteq M$ is compact is equivalent to all of the following: 
+> 1. For all collection of closed $C_i \subseteq X$ with $i \in I$ such that $\bigcap_{i \in I}C_i \cap X = \emptyset$, there exists a finite subcollection ofg $J \subseteq I$ such that $\bigcap_{j \in J}C_j \cap X = \emptyset$. 
+> 2. If $C_i, i \in I$ is a collection such that for all finite subcollections $J \subseteq I$ it has $\bigcap_{j \in J} C_j \cap X \neq \emptyset$ then the collection $C_i$ has $\bigcap_{i \in I} C_i \neq\emptyset$. 
+
+**Proof**
+
+We first show that (1.) and (2.) are equivalent. 
+And then we show that (1.) is equivalent to $X$ being compact by the open cover definition of compectness. 
+(1.), i.e: 
+
+$$
+\begin{aligned}
+    \left(
+        \forall C_i \subseteq X: C_i \text{ closed } \wedge \bigcap_{i \in I} C_i \cap X = \emptyset
+    \right)
+    \implies 
+    \left(
+        \exists J \subseteq I, |J| < \infty: 
+        \bigcap_{j \in J} C_j \cap X = \emptyset
+    \right), 
+\end{aligned}
+$$
+
+Taking the contrapositive it says that 
+
+$$
+\begin{aligned}
+    \forall C_i \subseteq X: C_i \text{ closed }: 
+    \left(
+        \forall J \subseteq I, |J| < \infty: 
+        \bigcap_{j \in J} C_j \cap X \neq \emptyset 
+    \right)
+    \implies \left(
+        \bigcap_{i \in I} C_i \cap X \neq \emptyset
+    \right). 
+\end{aligned}
+$$
+
+i.e: (2.). 
+
+It remains to show that compact $X$ is equivalent to (1.). 
+To show that we need to complete 2 implications relations here. 
+
+
+
+
+
+
+#### **Def | Finite intersection property**
+> A collection $\mathcal F$ of sets has finite intersection property if every finite subcollection of $\mathcal F$ has a non-empty intersection. 
+
+
+
+
+
+#### **Def | Equivalent conditions for compactness of metrizable space**
+> Let $(X, d)$ be a metric space then the following conditions about compactness are all equivalent. 
+> 1. $X$ is compact and every open covers has a finite subcovering. 
+> 2. Every collection of closed sets in $X$ with finite intersection prperty has non-empty intersection. 
+> 3. $X$ is sequentially compact. 
+> 4. $X$ is totally bounded and complete. 
+
+**Proof**
+
+
 

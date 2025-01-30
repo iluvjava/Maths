@@ -28,7 +28,7 @@ Infinite intersection of open sets can however, close an open set.
 > $\mathcal V(x)$ is a neighborhood of an element $x\in \mathcal X$ is a subset $V\subseteq \mathcal X$ such that $\exists U\in T$ with $x\in U \subseteq V$, or mathematically given as: 
 > $$
 > \begin{aligned}
->   \mathcal V(x):= \{V\subseteq \mathcal X| \exists U\in T: x\in U \subseteq V\}.
+>   \mathcal V(x):= \{V\subseteq \mathcal X |\; \exists\; U\in T: x\in U \subseteq V\}.
 > \end{aligned}
 > $$
 
