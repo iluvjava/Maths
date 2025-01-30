@@ -171,7 +171,10 @@ And then we show that (1.) is equivalent to $X$ being compact by the open cover 
 $$
 \begin{aligned}
     \left(
-        \forall C_i \subseteq X: C_i \text{ closed } \wedge \bigcap_{i \in I} C_i \cap X = \emptyset
+        \forall C_i \subseteq X: C_i \text{ closed }
+    \right): 
+    \left(
+        \bigcap_{i \in I} C_i \cap X = \emptyset
     \right)
     \implies 
     \left(
@@ -185,7 +188,9 @@ Taking the contrapositive it says that
 
 $$
 \begin{aligned}
-    \forall C_i \subseteq X: C_i \text{ closed }: 
+    \left(
+        \forall C_i \subseteq X: C_i \text{ closed }
+    \right): 
     \left(
         \forall J \subseteq I, |J| < \infty: 
         \bigcap_{j \in J} C_j \cap X \neq \emptyset 
