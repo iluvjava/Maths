@@ -32,3 +32,6 @@ subscripted
 coerciveness
 APPM
 subcover
+subcovering
+subcollection
+subcollections

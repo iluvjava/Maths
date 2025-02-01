@@ -139,11 +139,11 @@ Since, there is no intersection between $F, \R \setminus F$.
 ----
 ### **Heine Borel in General**
 
-In this section we illustrate the concept of compactness for a metric space. 
+In this section we illustrate the concept of compactness for a complete metric space $(M, d)$. 
 
 
 #### **Def | Totally Bounded**
-> A metric space $(X, d)$ is totally bounded is equivalent to all of the following: 
+> A complete metric space $(X, d)$ is totally bounded is equivalent to all the following: 
 > 1. For every $\epsilon > 0$, there exists a cover of finite many open/closed epsilon ball for $X$. 
 > 2. For every $\epsilon > 0$, there exists a finite subset $F = \{x_i\}_{i = 1}^n$ such that $\dist(F, x) < \epsilon$ for all $x \in X$. 
 
@@ -152,20 +152,21 @@ In this section we illustrate the concept of compactness for a metric space.
 These two conditions are indeed equivalent to each other. 
 
 (1.) If finite open balls forms a cover for $X$, then so does closed balls because they are super sets of the open balls. 
-The converse is argued by considering all $\epsilon\ge 0$ instead for the radius of the ball which won't really impact the conclusion. 
+Suppose that a collection of $\mathbb B_\epsilon(x_n)\;\forall n \in \N$ closed balls covers $X$. 
+Then for all $\delta > \epsilon$, the collection of $\mathbb B_\delta(x_n) \;\forall n \in \N$ covers $X$. 
 
 (2.) is true when (1.) is assumed because the set $F$ being the center of all the balls would satisfy the conditions we want. 
 
 
-#### **Theorem | Equivalent characterization of compact subsets**
-> $X \subseteq M$ is compact is equivalent to all of the following: 
-> 1. For all collection of closed $C_i \subseteq X$ with $i \in I$ such that $\bigcap_{i \in I}C_i \cap X = \emptyset$, there exists a finite subcollection ofg $J \subseteq I$ such that $\bigcap_{j \in J}C_j \cap X = \emptyset$. 
+#### **Theorem 1 | Equivalent characterization of compact subsets**
+> $X \subseteq M$ is compact is equivalent to all the following: 
+> 1. For all collection of closed $C_i \subseteq X$ with $i \in I$ such that $\bigcap_{i \in I}C_i \cap X = \emptyset$, there exists a finite subcollection of $J \subseteq I$ such that $\bigcap_{j \in J}C_j \cap X = \emptyset$. 
 > 2. If $C_i, i \in I$ is a collection such that for all finite subcollections $J \subseteq I$ it has $\bigcap_{j \in J} C_j \cap X \neq \emptyset$ then the collection $C_i$ has $\bigcap_{i \in I} C_i \neq\emptyset$. 
 
 **Proof**
 
 We first show that (1.) and (2.) are equivalent. 
-And then we show that (1.) is equivalent to $X$ being compact by the open cover definition of compectness. 
+And then we show that (1.) is equivalent to $X$ being compact by the open cover definition of compactness. 
 (1.), i.e: 
 
 $$
@@ -204,28 +205,168 @@ $$
 i.e: (2.). 
 
 It remains to show that compact $X$ is equivalent to (1.). 
-To show that we need to complete 2 implications relations here. 
+To show that we need to complete 2 implications relations: $\implies, \impliedby$. 
+To show $\implies$, we assume that $X \subseteq M$ is compact, i.e: all open cover has a finite subcover, we also assume an arbitrary collection of closed sets whose intersection with $X$ is empty; we show that there must exist a finite subset of the collection of closed set such that it also has empty intersection. 
+
+Let $C_i \subseteq X \;\forall i \in I$ be a family of closed sets such that it doesn't intersect with $X$, so 
+
+$$
+\begin{aligned}
+    \bigcap_{i \in I} C_i \cap X &= 
+    X \cap \left(
+        \bigcap_{i \in I} C_i
+    \right) = \emptyset
+    \\
+    \iff 
+    \bigcup_{i \in I} C_i^\complement \cup X^\complement &= M & \text{ Taking complement. }
+    \\
+    \implies 
+    \bigcup_{i \in I}
+    X\cap C_i^\complement\cap X^\complement &= 
+    X \cap M = X
+    \\
+    \iff 
+    \bigcup_{i \in I}
+    C_i^\complement
+    &= X, 
+\end{aligned}
+$$
+
+Because $C_i^\complement$ is open, therefore it is an open cover of $X$. 
+Using the fact that $X$ is compact, there exists a finite subcover of $X$, i.e: there exists $J \subseteq I$ with $|J|< \infty$, and it has 
+
+$$
+\begin{aligned}
+    X &\subseteq \bigcup_{j \in J} C_j^\complement
+    = \left(
+        \bigcap_{j \in J} C_j
+    \right)^\complement
+    \\
+    \iff 
+    X^\complement 
+    &\supseteq
+    \bigcap_{j \in J} C_j
+    \iff 
+    \bigcap_{j \in J} X\cap C_j = \emptyset. 
+\end{aligned}
+$$
+
+Therefore, there exists $C_j, j \in J$ such that it's a finite subset where it has empty intersection in $X$. 
+
+To show $\impliedby$, we consider any type open collection $O_i \subseteq X$ such that it covers $X$, then we use the empty intersection property of closed sets to show that there also exists a finite subcover for $X$. 
+Since we had the open cover, we have 
+
+$$
+\begin{aligned}
+    X 
+    &\subseteq \bigcup_{i \in I}O_i
+    \\
+    X^\complement 
+    &\supseteq 
+    \bigcap_{i \in I} O_i^\complement
+    \\
+    \iff
+    \emptyset  &= 
+    \bigcap_{i \in I} O_i^\complement \cap X. 
+\end{aligned}
+$$
+
+$O_i^\complement$ is always a closed set, therefore it exists a finite subset of collection indexed by $J \subseteq I$ such that they also have empty intersection. 
+Therefore, it has 
+
+$$
+\begin{aligned}
+    \emptyset &= \bigcap_{j \in J} O_j^\complement \cap X
+    = X \cap \left(
+        \bigcap_{j \in J} O_j^\complement
+    \right)
+    \\
+    \iff 
+    & X^\complement \supseteq
+    \bigcap_{j \in J} O_j^\complement
+    \\
+    \iff 
+    X 
+    &\subseteq \bigcup_{j \in J} O_j.
+\end{aligned}
+$$
+
+And therefore, we have a finite subcover for the set $X$. 
+
+
+#### **Def | Relative Finite intersection property**
+> A collection of closed set $C_i \subseteq M$ with index set $i \in I$ has finite intersection property relative to $X \subseteq M$ if and only if for all $J \subseteq I$ with $J$ finite, we have $\bigcap_{j \in J} C_j\cap X \neq \emptyset$.
+
+#### **Corollary 1 | Equivalent Characterizations of compact subsets**
+> $X \subseteq M$ is compact if and only if for all closed sets $C_i \in M$, $i \in I$ such that it has finite intersection relative to $X$ then it has $\bigcap_{i \in I} C_i\cap X \neq \emptyset$. 
+
+**Proof**
+
+This is just Theorem 1 rephrased. 
 
 
 
-
-
-
-#### **Def | Finite intersection property**
-> A collection $\mathcal F$ of sets has finite intersection property if every finite subcollection of $\mathcal F$ has a non-empty intersection. 
-
-
-
-
-
-#### **Def | Equivalent conditions for compactness of metrizable space**
+#### **Theorem 2 | Equivalent conditions for compactness of metrizable space**
 > Let $(X, d)$ be a metric space then the following conditions about compactness are all equivalent. 
-> 1. $X$ is compact and every open covers has a finite subcovering. 
-> 2. Every collection of closed sets in $X$ with finite intersection prperty has non-empty intersection. 
+> 1. $X$ is compact, and every open cover has a finite subcover. 
+> 2. Every collection of closed sets in $X$ with finite intersection property has non-empty intersection. 
 > 3. $X$ is sequentially compact. 
 > 4. $X$ is totally bounded and complete. 
 
 **Proof**
 
+Corollary 1 showed that (1.) is equivalent to (2.). 
+We will now show (2.) implies (3.). 
+
+**(2.) implies (3.)**
+
+Choose a sequence $\{x_i\}_{i \in \N}$, define the subsequence as a set $F_n = \text{cl}\{x_i : i \ge n\}$ then the set has $F_1 \supseteq F_2\supseteq F_3 \supseteq \ldots \supseteq F_n \supseteq\ldots$. 
+Proceeding stepwise, we wish to show the following key intermediate steps. 
+
+- $\exists\; \bar x \in \bigcap_{n \in \N} F_n$. 
+- $\exists k_1, k_2, \ldots: x_{k_n}\rightarrow \bar x$.
+
+Suppose that we have finite collection $k_1, k_2, \cdots, k_n$, then their intersection will be $F_{k_n}$ which is non-empty. 
+Since all $F_n$ are closed sets by definition, (2.) implies $\exists \bar x \in \bigcap_{n \in\N}F_n$. 
+
+The set $F_n$ is closed for all $n \in \N$, we have for all $\epsilon > 0$, $\mathbb B_\epsilon(\bar x) \cap F_n \neq \emptyset \; \forall n \in \N$. 
+Inductively, suppose that we have $x_{k_n}$ with $\mathbb B_{1/k}(\bar x)\ni x_{k _n}$. 
+$F_{k_n}$ is closed and $\bar x \in F_{k_n}$ then $\mathbb B_{1/(k + 1)}(\bar x)\cap F_{k_n} \neq \emptyset$ then there exists a new value of $x_{k_{n + 1}} \in \mathbb B_{1/(k + 1)}(\bar x)\cap F_{k_n}$ where $k_{n + 1} > k_n$. 
+To choose first such element, $x_{k_1}$, use closure of $F_1$. 
+Then, we constructed a subsequence $x_{k_n} \rightarrow \bar x$. 
+
+
+**(3.) implies (4.)**
+
+To complete the proof, we consider the following key intermediate steps: 
+- **Part I:** A Cauchy sequence has a limit in $X$ necessarily has a limit in $X$ hence $X$ is complete. 
+- **Part II:** Suppose that the set $X$ is not totally bounded, i.e: there is a sequence $x_n$ and $\epsilon > 0$ such that for all $i< j \in \N$, $d(x_i, x_j) > \epsilon$, then such a sequence obviously doesn't have a convergent subsequence, which is a contradiction against (3.). 
+
+Let's do **(Part I)**. 
+Let $x_n$ be Cauchy in $X$, because $X$ is sequentially compact, we have a convergent subsequence $x_{k_n}\rightarrow \bar x \in X$. 
+Because the sequence is Cauchy, the sequence has the same limit as the subsequence and hence $X$ is complete because its definition is fulfilled. 
+
+Let's do **(Part II)**. 
+Suppose that there exists $\epsilon > 0$ such that for all finite collections of $\{x_i: i = 1, \ldots, n\}$, for all $x \in X$, it has $d(x, x_n) \ge \epsilon \;\forall i= 1, \ldots, n$. 
+Suppose that we add a new $x_{n + 1}$ to the collection. 
+Since a finite cover is not possible we have $x_{n + 1} \in X$ and $x_n \not \in \mathbb B_\epsilon(x_{i})\;\forall i = 1, \ldots, n$. 
+By induction, we showed that there is a sequence $(x_n)_{n \in \N}$ such that $d(x_i, x_j) \ge \epsilon$ for all $i \neq j \in \N$. 
+Such a sequence cannot converge because for all $x \in X$, the set $\mathbb B_\epsilon(x)\cap\{x_n\}_{n \in \N}$ is a singleton, or an empty set, no cluster point can form on any such $x$. 
+Hence, it is a contradiction of compactness, therefore the set must be totally bounded and there is a finite open ball cover for all $\epsilon > 0$ on $X$. 
+
+
+**(4.) implies (1.)**
+
+The proof is achieved through a proof by contradiction. 
+For contradiction, we will assume that $X$ is totally bounded and complete, but there exists a collection of open sets $O_i, i\in I$ such that none of the finite sub collection can cover $X$. 
+We will aim for the following key intermediate steps. 
+1. **Step I**: Construct a finite epsilon ball with radius 1/2 covers for $X$ using the total boundedness of $X$, then at least one of the epsilon ball requires an infinite open cover. 
+2. **Step II**: We construct a Cauchy sequence $x_n$ using the results from **(Step I)** and it converges to a point $\bar x \in X$. 
+3. **Step III**: We derive a contradiction and show that the convergent sequence has a finite cover around $\bar x$ which contradicts (**Step I**). The epsilon ball has to be compact as well. 
+
+
+**Step I**. 
+Let $O_i, \forall i \in I$ be an open cover of $X$. 
+Since $X$ is totally bounded, for $\epsilon = 1/2$ there exists a finite cover of epsilon ball for $X$ centered at $x_{1, i}$ for $i = 1, \ldots, n_1$. 
 
 
