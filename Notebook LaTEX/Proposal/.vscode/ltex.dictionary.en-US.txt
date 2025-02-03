@@ -39,3 +39,8 @@ Defazio
 Finito
 FR-WAPG
 Ryu
+Bauchke
+stationarity
+blackbox
+Devolder
+Polyak

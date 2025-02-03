@@ -68,6 +68,8 @@ where on the last line, we use the fact that $T^{-1}B_{\epsilon}(T\bar x|Y)$ is 
 A continuous function doesn't map an open set to an open set. 
 Consider $x^2$ over the interval $(-1, 1)$, the range is $(1, 0]$. 
 That is a closed and open set. 
+---
+### **Compactness, continuity**
 
 ---
 ### **Examples 1 | Arc Length Linear Functional** 

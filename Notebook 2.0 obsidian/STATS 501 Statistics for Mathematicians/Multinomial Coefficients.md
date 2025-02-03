@@ -53,7 +53,6 @@ Let $\sigma: \{1, \ldots, n\}\rightarrow \{1, \ldots, n\}$ be a bijective functi
 > Fix $n \in \N$. 
 > An anagram of string $g: \{1, \ldots, n\}$ is a set of strings of all possible arrangement of the string using the same symbols. 
 
-
 We now formalize the idea of an anagram. 
 Since we don't care about the ordering of letters in word, define $S$ to be a set of symbols. 
 Define $f: S \rightarrow \N$ to be the frequencies of each symbols in $S$, and it must satisfy: 

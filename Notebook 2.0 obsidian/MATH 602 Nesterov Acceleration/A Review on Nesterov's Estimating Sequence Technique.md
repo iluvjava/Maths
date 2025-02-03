@@ -131,10 +131,11 @@ Here is not an exhaustive list of algorithms and ideas that made use of the Nest
 5. (6.6.63) in Nesterov's book, the method of similar triangle. 
 6. Accelerated Cubic Newton method in a paper titled "Accelerating the cubic regularization of Newton’s method on convex problems". 
 
-
 Next, we summarize the important ways they made use of the Nesterov's estimating sequence. 
 Most of the argument is very similar, we summarize the techniques, and approach where a lot of them were sharing. 
 
+
+<!-- 
 #### **Definition | A lower bounding function**
 > Fix any $y$ in the domain of $f$. 
 > Define $l_f(x; y)$ as a lower bounding function if for all $x$ it satisfies, $\psi, \Psi$ be a function the induces Bregman divergences $\Psi, \psi$. 
@@ -225,4 +226,4 @@ $$
 
 This absolutely does't seem useful. 
 
-
+ -->

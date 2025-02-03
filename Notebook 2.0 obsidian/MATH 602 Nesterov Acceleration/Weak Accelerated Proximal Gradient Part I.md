@@ -987,8 +987,3 @@ $$
 $$
 
 The convergence claim is done. 
-
-
----
-### **Next file** 
-

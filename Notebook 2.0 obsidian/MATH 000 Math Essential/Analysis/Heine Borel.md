@@ -205,8 +205,9 @@ $$
 i.e: (2.). 
 
 It remains to show that compact $X$ is equivalent to (1.). 
-To show that we need to complete 2 implications relations: $\implies, \impliedby$. 
-To show $\implies$, we assume that $X \subseteq M$ is compact, i.e: all open cover has a finite subcover, we also assume an arbitrary collection of closed sets whose intersection with $X$ is empty; we show that there must exist a finite subset of the collection of closed set such that it also has empty intersection. 
+To show that we need to complete 2 implications relations: $\implies, \impliedby$ between the compactness definition on $X$, and statement (1.). 
+
+**To show** $\implies$, we assume that $X \subseteq M$ is compact, i.e: all open cover has a finite subcover, we also assume an arbitrary collection of closed sets whose intersection with $X$ is empty; we show that there must exist a finite subset of the collection of closed set such that it also has empty intersection. 
 
 Let $C_i \subseteq X \;\forall i \in I$ be a family of closed sets such that it doesn't intersect with $X$, so 
 
@@ -228,7 +229,7 @@ $$
     \iff 
     \bigcup_{i \in I}
     C_i^\complement
-    &= X, 
+    &= X. 
 \end{aligned}
 $$
 
@@ -253,7 +254,7 @@ $$
 
 Therefore, there exists $C_j, j \in J$ such that it's a finite subset where it has empty intersection in $X$. 
 
-To show $\impliedby$, we consider any type open collection $O_i \subseteq X$ such that it covers $X$, then we use the empty intersection property of closed sets to show that there also exists a finite subcover for $X$. 
+**To show** $\impliedby$, we consider any type open collection $O_i \subseteq X$ such that it covers $X$, then we use the empty intersection property of closed sets to show that there also exists a finite subcover for $X$. 
 Since we had the open cover, we have 
 
 $$
@@ -367,6 +368,40 @@ We will aim for the following key intermediate steps.
 
 **Step I**. 
 Let $O_i, \forall i \in I$ be an open cover of $X$. 
-Since $X$ is totally bounded, for $\epsilon = 1/2$ there exists a finite cover of epsilon ball for $X$ centered at $x_{1, i}$ for $i = 1, \ldots, n_1$. 
+Fix any $\epsilon > 0$, Since $X$ is totally bounded, there exists a finite cover of epsilon ball for $X$ centered at $x_{1, i}$ for $i = 1, \ldots, n_1$. 
+Let $\mathcal U = \bigcup_{i \in I} C_i$ be an open cover of the set $X$ such that no finite subcover covers $X$. 
+By the pigeon hole principle, one of the epsilon ball: $\mathbb B_{\epsilon}(x_{1, i_1})$ cannot be covered by any finite subcover of $\mathcal U$. 
+
+**Step II**.
+Consider a new finite cover by epsilon ball of size $\epsilon /2$ centered at $x_{2, i}$ for $i= 1,\ldots, n_2$. 
+A finite subset of these balls covers $\mathbb B_\epsilon(x_{1, i_1})$ and there exists at least one of them cannot admits any finite subcover from $\mathcal U$, denote it $\mathbb B_{\epsilon/2} (x_{2, i_2})$ and it satsfies: 
+
+$$
+\mathbb B_\epsilon(x_{1, i_1}) \cap \mathbb B_{\epsilon/2} (x_{2, i_2}) \neq \emptyset. 
+$$
+Repeating the process indefinite it yields a Cauchy sequence $x_{n, i_n}$ because from the nonempty intersection property it has: 
+
+$$
+\begin{aligned}
+    d(x_{n, i_n}, x_{n + 1, i_{n + 1}}) \le 
+    \epsilon/2^n + \epsilon/2^{n + 1} \le \epsilon/2^{n - 1}. 
+\end{aligned}
+$$
+
+Using the triangle inequality it has for all $m < n$ with some basic algebra: 
+
+$$
+\begin{aligned}
+    d(x_{m, i_m}, x_{n, i_n}) &\le 1/2^{m - 2}. 
+\end{aligned}
+$$
+
+Then, the sequence is a Cauchy sequence, and it admits limit $\bar x$ because $X$ is complete/closed.
+
+**Step III**.
+Because $\bar x \in X$, there exists an open set $O_j \in \mathcal U$ such that $\bar x \in O_j$ and since it's open there exists some $\delta > 0$ with $\mathbb B_\delta(\bar x) \in O_j$. 
+Next, there exists some $k \in \N$ such that $\mathbb B_{\epsilon/2^k}(\bar x) \subseteq \mathbb B_\epsilon(\bar x)$ and therefore $O_j$ is a finite subcover in $\mathcal U$ for ball $\mathbb B_{\epsilon/2^k}(\bar x)$ which contradicts the fact that $\mathbb B_{\epsilon/2^n}(x_{n, i_i})$ cannot admit any finite subcover of $\mathcal U$ from the previous step. 
+
+Therefore, the assumption that a finite subcover cannot exist must be false hence the theorem is proven. 
 
 

@@ -69,14 +69,17 @@ This theorem has profound consequences and it's directly applicable for weak con
 ---
 ### **Proof of the Most General Hahn Banach Theorem**
 
-The proof is long and no that trivial. We prove the Hahn Banach Theorem in general vector spaces with a real field. This theorem is an application of Zorn's lemma. The proof presented here is taken from Kryzig's textbook. List of quantities used in the proof and their meaning: 
+The proof is long and no that trivial. We prove the Hahn Banach Theorem in general vector spaces with a real field. This theorem is an application of Zorn's lemma. 
+The proof presented here is taken from Kryzig's textbook. List of quantities used in the proof and their meaning: 
 
 * $X$, a generic vector space. 
 * $\{\mathbf 0\}\neq Z\subseteq X$, a linear subspace of the space $X$
 * $f:Z\mapsto \mathbb R$, the linear functional mapping from a subset $Z\in X$. 
-* $p$, a sub-linear functionals.  
-* $E$, is the set of linear functional that extends $f$, this set has a partial order. 
+* $p$ a sub-linear functional.  
+* $E$ is the set of linear functional that extends $f$ with a partial order. 
 * $C$ any chain from the set $E$. 
+
+Follwoing stepwise, the proof is consists of the following key steps. 
 
 Define 
 $$

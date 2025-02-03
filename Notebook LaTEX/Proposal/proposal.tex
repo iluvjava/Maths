@@ -1075,8 +1075,20 @@
             (ii) indicates that splitting the strongly convex objective so that it's with the proximal operator gives computational advantage. 
             \par
             Furthermore, Nesterov was not the only person who thought about it.
-            In 
-            Algorithm 5, Chambolle, Pock \cite{chambolle_introduction_2016} captures several variants of FISTA and it assumes that $F = f + g$ where $f, g$ has strong convexity constant $\mu_f \ge 0, \mu_g \ge 0$ respective so $F$ is $\mu := \mu_f + \mu_g \ge 0$ strongly convex. 
+            In Algorithm 5, Chambolle, Pock \cite{chambolle_introduction_2016} captures several variants of FISTA, and it assumes that $F = f + g$ where $f, g$ has strong convexity constant $\mu_f \ge 0, \mu_g \ge 0$ respective so $F$ is $\mu := \mu_f + \mu_g \ge 0$ strongly convex. 
+            \par
+            Upon first inspection and preliminary readings, we lay out the followings that may contribute to include strong convexity in the non-smooth part into our R-WAPG framework. 
+            The R-WAPG sequence $\alpha_k, \rho_k$ will have to describe the sequence in Chambolle, Pock \cite{chambolle_introduction_2016} Algorithm 5 which has 
+            \begin{align*}
+                q \alpha_{k + 1}^2 &= (1 - \alpha_{k + 1})q\alpha_k^2 + q \alpha_{k + 1}^2. 
+            \end{align*}
+            Where $q = L^{-1}(\mu_f + \mu_g)/(1 + L^{-1}\mu_g)$. 
+            Additionally, observe that in the special case where $f \equiv 0$, then proximal gradient becomes proximal point on the strongly convex objective $\mu_g \ge0$ alone and its convergence rate is included in the outer loop convergence analysis in the Catalyst Acceleration Framework by Lin et al. \cite{lin_universal_2015}, this provided us with a hint on an estimating sequence approach. 
+            Of course, Lemma \ref{thm:prox-grad-ineq} requires a complete rework to include $\mu_g \ge0$. 
+            The recursive quantity $R_k$ would also require a complete rework because we invented the quantity $R_k$ just so the proof of Proposition \ref{prop:stepwise-lyapunov} falls through. 
+            The quantity is obtained from the Nesterov's estimating sequence of APG, to include such a change, the estimating sequence required to engineer $R_k$, which is the recursive quantity will also require rework. 
+            The only part that may not require rework is the Definition \ref{def:stepwise-wapg} because the R-WAPG sequence is generic. 
+            We are quite certain about these required changes to achieve the open question because we invented R-WAPG. 
             
         % \subsubsection{Tying up some loose ends}
         %     \todoinline{\noindent
@@ -1508,7 +1520,8 @@
             The key improvement here compared to using absolute inexactness for $\mathbb M$ as stated by Theorem \ref{thm:err-seq-outer-s-cnvx}, \ref{thm:erro-seq-outer-cnvx} is that $(\delta_k)_{k \ge0}$ doesn't require knowledge on $F^*$. 
             This innocent detail helps to develop a nonconvex variant of Catalyst call 4WD Catalyst which is the focus of the paper by Paquette \cite{paquette_catalyst_2018}. 
             Corollary 16 in Lin et al.'s second Catalyst paper \cite{lin_catalyst_2018} gives complexity for $\mathbb M$ Using termination criterion C2 with a warm start specialized for $C2$. 
-            It's important to note that the upper complexity bounds are much better, and it doesn't require bounded level set compared to Theorem \ref{prop:inner-loop-complexity-cnvx}.         
+            It's important to note that the upper complexity bounds are much better, and it doesn't require bounded level set compared to Theorem \ref{prop:inner-loop-complexity-cnvx}.      
+            \todoinline{Show that there are other literatures that may also be relevant to this research question. }   
     \subsection{Potential future research}\label{ssec:catalyst-future}
         Now, we have enough context to understand the potential future directions of research regarding the Catalyst Acceleration framework. 
         \subsubsection{Necoara et al.'s comments on Catalyst Acceleration}
@@ -1521,15 +1534,57 @@
             The content of their paper is very in-depth hence for our interests, we focus on their comments on the first Catalyst paper by Lin et al. \cite{lin_universal_2015}. 
             They said, and here we quote: 
             \begin{quote}
-                It is also worth to investigate the complexity bounds obtained when wrapping linearly-convergent algorithms under the proposed conditions in an outer-loop using a generic acceleration scheme such as Catalyst \cite{lin_universal_2015}. This would allow to extend to non-strongly convex settings a wide range of incremental optimization algorithms designed for large finite-sum problems arising in machine learning and statistics.
+                It is also worth to investigate the complexity bounds obtained when wrapping linearly-convergent algorithms under the proposed conditions in an outer-loop using a generic acceleration scheme such as Catalyst \cite{lin_universal_2015}. 
+                This would allow to extend to non-strongly convex settings a wide range of incremental optimization algorithms designed for large finite-sum problems arising in machine learning and statistics.
             \end{quote}
             We note that, their idea of extension can be applied to inner loop $\mathbb M$, or out loop $\mathbb A$, either, or both. 
+            \par
+            Finally, it's worth noting that in the years before and after Necoara et al.'s paper and Catalyst, there were parallel developments around the ideas of extending Nesterov's accelerations and Catalyst to the nonconvex settings. 
+            Paquette et al. \cite{paquette_catalyst_2018} were inspired by \cite{ghadimi_accelerated_2016} and showed that the Catalyst algorithm with a different Termination criterion C2 that is based on the gradient (see equation (13), (14) in their paper) can adapt to nonconvex settings to convergence on the norm of the gradient. 
+            However, it's at the expense of one additional evaluation of the proximal point method, and it requires knowledge of the function value for the outer loop. 
+            They used an analogous inner loop complexity to Assumption \ref{ass:linear-convergence-inner-loop} which is stated as Equation (16) in their paper. 
+            Convergences to stationarity, convergence of iterates are not claimed. 
+            \par
+            Attaining stronger convergence results on iterates, convergence to stationarity and function value for Nesterov's accelerated gradient methods in general requires intense amount of works. 
+            In fact, these type of convergences remains nontrivial in the convex settings in general. 
+            See Bauchke et al. for example, when the minimizer of $F$ doesn't exist. 
+            To limit the scope, we focus on Nesterov's acceleration which differs from inertial momentum from Polyak.
+            The relationship between Polyak and Nesterov momentum acceleration remains a non-trivial topics. 
+            In fact, both type of acceleration can present at the same time, see 
+            \par
+            There are three pillars that supported Catalyst Accelerations: 
+            \begin{enumerate}
+                \item Variance reduced algorithm with known complexities. 
+                \item Theories of inexact proximal point method and their convergences. 
+                \item Nesterov's accelerations and with inexact gradient oracles. 
+            \end{enumerate}
+            
+            \todoinline{
+                Recent development regarding the theories of accelerated proximal point method. 
+                \begin{enumerate}
+                    \item Paquette et al. \cite{paquette_catalyst_2018}. 
+                    \item Ghadimi and Lan, ``Accelerated gradient methods for nonconvex nonlinear and stochastic programming". 
+                    \item ``Study of the behavior of Nesterov Accelerated Gradient in a nonconvex setting: the strongly quasar convex case."
+                    \item Bu, Mesbashi ``A Note on Nesterov's Accelerated Method in Nonconvex Optimization: a Weak Estimate Sequence Approach''. 
+                    \item Bauscke et al. ``Applying FISTA to optimization problems (with or) without minimizers"
+                \end{enumerate}
+            }
         \subsubsection{Our ideas on future works of Catalyst Acceleration}
-            One intriguing detail in the Catalyst framework eluded us. 
-            It may not be obvious to the readers, so we shall elucidate. 
+            Restricting ourselves to the convexity, this is our question: 
+            \begin{quote}
+                What if Assumption \ref{ass:linear-convergence-inner-loop} is false? 
+            \end{quote}
+            This is a detail in the Catalyst framework, and it may not be obvious to the readers that the complexity assumption is sufficient to accommodates objective functions $F$ to be the class of all $L$-Lipschitz smooth function. 
+            The entire section will: 
+            \begin{enumerate}
+                \item elucidate the relation of $F$ being $L$-Lipschitz smooth and Assumption \ref{ass:linear-convergence-inner-loop}; 
+                \item show that removing the assumption will yield non-trivial answers for the complexity analysis of Catalyst as a whole by existing theorems in the Nesterov's lower bound complexity results for black box smooth/nonsmooth objectives;
+                \item show that some other the existing literatures that seems to hold the answer but actually doesn't address the question; 
+                \item discuss potential relevant literatures to addressing the question. 
+            \end{enumerate}
             \par
             The concern starts by considering the necessary assumption in VRMs. 
-            Defazio et al.\cite{defazio_saga_2014} SAGA, Finito et al. \cite{defazio_finito_2014} requires Lipschitz continuous gradient on each individual $f_i$ in the objective function $F = \sum_{i = 1}^n f_i$. 
+            Defazio et al. \cite{defazio_saga_2014} SAGA, Finito et al. \cite{defazio_finito_2014} requires Lipschitz continuous gradient on each individual $f_i$ in the objective function $F = \sum_{i = 1}^n f_i$. 
             Schmidt et al. \cite{schmidt_minimizing_2017} also requires Lipschitz smoothness for the non-smooth part of a composite objective. 
             Xiao, Zhang, SVRG \cite{xiao_proximal_2014} requires Lipschitz gradient assumption as well. 
             This seemingly raises a crucial question: ``Where does the Lipschitz continuous gradient of the smooth part make its presence in the Catalyst Framework?''
@@ -1539,25 +1594,39 @@
             Recall that with Lipschitz smoothness and strong convexity, a lower bound of exponential rate of convergence is established by Theorem 2.1.13 in Nesterov's book \cite{nesterov_lectures_2018}. 
             Removing the smoothness assumption for $\mathbb M$, the lower bound on convergence rate of any first order algorithm becomes $\mathcal O(1/k)$ by Theorem 3.2.5 for nonsmooth function that is strongly convex. 
             \par
-            From a complexity theoretical point of view, Catalyst acceleration didn't attempt at narrowing the lower complexity bound bounds for functions that are convex and nonsmooth and lack of any exact proximal oracle. 
+            From a complexity theory point of view, Catalyst acceleration didn't attempt at narrowing the lower complexity bound for functions that are convex and nonsmooth and lack of any exact proximal oracle. 
             It is absolutely possible that, for any black box nonsmooth optimization problem, the same lower bound convergence rate $\mathcal O\left(1/\sqrt{k}\right)$ as stated in Theorem 3.2.1 in Nesterov's book \cite{nesterov_lectures_2018} is true for Catalyst. 
             Unfortunately it is absolutely nontrivial to see that is true because $\mathbb A$ optimizes Moreau Envelope $\mathcal M^*_{\kappa^{-1}F}(x)$ through inexact evaluation and the Moreau Envelope has Lipschitz gradient. 
             For $\mathbb A$ Theorem 3.2.1 doesn't apply. 
             Whatever the true answer is, it's not obvious. 
-            So, here is what we think is worth investigating: 
+            So, here is the refined question: 
             \begin{quotation}
-                What if Assumption \ref{ass:linear-convergence-inner-loop} is false in the Catalyst Acceleration Framework? 
-                Would there exists any kind of regularization parameters $(\kappa_k)_{k \ge 0}$, error sequence $\epsilon_k$ such that the overall complexity still retains convergence rate equals or faster than $\mathcal O(1/\sqrt{k})$? 
+                Suppose that the objective function $F$ is no $L$-Lipschitz continuous hence Assumption \ref{ass:linear-convergence-inner-loop} is false. 
+                If we assume that $F$ is any convex function (potentially nonsmooth and without any smooth parts), would there exist any kind of regularization parameters $(\kappa_k)_{k \ge 0}$, error sequence $\epsilon_k$ such that the overall complexity of Catalyst retains convergence rate equals or faster than $\mathcal O\left(1/\sqrt{k}\right)$ (The lower bound of all first order blackbox convex optimization)? 
             \end{quotation}
-            Nobody has yet answered the question in the literature, but a brief searched showed that in Nesterov 2014 \cite{nesterov_universal_2015}, he considers the method of accelerated gradient for function with Holder continuous gradient. 
-            If anything, there are some insight to be gained about Catalyst on this question on this work of his. 
-            It remains to be seemed why this detail is neglected when developing the Catalyst Acceleration framework. 
             If the answer is that it can be faster than the lower bound, then we had extended the Catalyst Framework, otherwise, it leads to the unintuitive result that lower bound $\mathcal O(1/\sqrt{k})$ still holds. 
+            \par
+            To the best of our knowledge, nobody has yet answered the question directly in the literature, but we found some relevant literatures after some preliminary research. 
+            Nesterov 2014 \cite{nesterov_universal_2015}, he considers the method of accelerated gradient for function with Holder continuous gradient.
+            Nesterov continued and expanded on the results obtained by Devolder et al. 2014 \cite{devolder_first-order_2014} on inexact oracles for blackbox optimizations which showed that the inexact oracle for Lipschitz smooth function can be viewed as exact for another perturbed function with Holder continuous gradient. 
+            He proposed three first order algorithms where the last one, a variant of accelerated gradient method that converges optimally for all functions with Holder continuous gradient without knowing the Holder continuity constant in advance. 
+            His work is not considered directly relevant to Catalyst because it's not yet obvious because it's missing an inexact accelerated proximal point, and he uses the theories of inexact oracles from a purely theoretical standpoint. 
+            \par
+            In a more recent development, 
+            \par
+            Of course, the class of holder continuous gradient doesn't encapsulate the class of all convex function where inexact proximal point can be applied. 
 
 
+            \todoinline{Add research plans and literature reviews here. }
 
+        
+        \subsubsection{Applications for Catalyst Accelerations and its variants}
+            \todoinline{
+                Considers some specific applications of the Catalyst Acceleration method in the literatures. 
+            }
 
-    
+            
+
 % \section{Methods of inexact proximal point}\label{sec:inexact-prox}
 %     Content of this section is primarily based on Khanh et al. \cite{duy_khanh_inexact_2023} on inexact proximal method for weakly convex functions. 
 

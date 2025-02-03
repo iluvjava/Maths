@@ -59,7 +59,7 @@ We can do this by standard rules of non-smooth convex analysis.
 Convexity of $f$ is not necessary for the claim to hold. 
 This is true for all non-convex but differential $f$ as well. 
 
-
+<!-- 
 #### **Lemma 0.2 | Fundamental proximal gradient lemma**
 > Suppose that $h = f + g$ where $g$ is convex and $f$ is Lipschitz smooth. 
 > Denote $D_f(x,y)$ to be the Bregman divergence $f(x) - f(y) - \langle \nabla f(y), x - y\rangle$ for all $x, y$. 
@@ -222,14 +222,10 @@ The act of using $\mathcal T_L$ instead of $\mathcal P_L$ still forges very simi
 Here, we could also assume that the function $g$ is also strongly convex. 
 In this way, the above inequality can be generalized. 
  
-
-
-
-
-
+ -->
 
 ---
-### **The envelope approach**
+### **The envelope approach for proximal gradient inequality**
 
 We are changing the notations a bit sorry. 
 
@@ -259,7 +255,7 @@ $$
 \end{aligned}
 $$
 
-Take note that $T_{\beta^{-1, f, g}} = \argmin{x} \;\widetilde{\mathcal M}(x; y)$. 
+Take note that $T_{\beta^{-1}, f, g} = \argmin{x} \;\widetilde{\mathcal M}(x; y)$. 
 
 
 #### **Assumption 1 | Smooth plus nonsmooth**
@@ -310,16 +306,23 @@ This should make sense since the linearizing the smooth part make the model func
 This is true for all $L$, the $L$ here doesn't have to be the Lipschitz smoothness constant of function $f$. 
 
 #### **Claim 1.2 | The Fundamental Proximal gradient inequality**
-> Let $F = g + f$ where $f$ is convex and differentiable, and $g$ is convex. 
+> Let $F = g + f$ where $f$ is convex and differentiable, and $g$ is convex and $F$ is $\mu \ge 0$ strongly convex. 
 > Let $\beta > 0$ be arbitrary. 
 > Let $T$ denote the proximal gradient operator: $T_{\beta^{-1}, f, g}$. 
-> Fix any $y$, we have for all $x \in \R^n$: 
+> For any $y, x \in \R^n$, we have the following equivalent inequalities: 
 > $$
 > \begin{aligned}
->     F(x) - F(Ty) - \langle \beta(y - Ty), x - Ty\rangle
->     &\ge  D_f(x, y)  - D_f(Ty; y)
+>   0 &\le F(x) - F(Ty) + D_{\beta/2\Vert \cdot\Vert^2 - f}(x, y) -
+>   D_{\beta/2\Vert \cdot\Vert^2 - f}(Ty, y) - (\beta + \mu)/2\Vert x -
+>   Ty\Vert^2
+>   \\
+>   &= F(x) - F(Ty)
+>   - \langle \beta(y - Ty), x - Ty\rangle
+>   - D_f(x, y) 
+>   + D_f(Ty, y)
+>   - \frac{\mu}{2}\Vert x - Ty\Vert^2. 
 > \end{aligned}
-> $$
+> $$ 
 
 **Proof**
 
@@ -328,37 +331,35 @@ We can assume $F$ is $\mu \ge 0$ strongly convex, the strong convexity can come 
 Denote $\widetilde{\mathcal M}^{\beta^{-1}}_F, \mathcal M^{\beta^{-1}}_F$ by $\mathcal M, \widetilde{\mathcal M}$ for short. 
 
 Then, the function $\widetilde{\mathcal M}(\cdot; y)$ is a $\beta + \mu$ strongly convex function with minimizer $Ty$ and hence it has admits quadratic growth condition around its minimizer, which gives the strictly weaker inequality (See [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information about this property). 
-Using only quadratic growth $\widetilde {\mathcal M}(\cdot; y)$, we have for all $x \in \R^n$: 
+Using only quadratic growth $\widetilde {\mathcal M}(\cdot; y)$ we can achieve (1.) by considering for all $x \in \R^n$: 
 
 $$
 \begin{aligned}
-    0 &\le 
-    \widetilde{\mathcal M}(x; y) - 
-    \widetilde{\mathcal M}(Ty; y)
-    - 
+    0 &\le \widetilde{\mathcal M}(x; y) - \widetilde {\mathcal M}(Ty; y) - 
     \frac{\beta + \mu}{2}\Vert x - Ty\Vert^2
     \\
-    &= 
-    \left(
-        \mathcal M(x; y) - D_f(x, y)
-    \right) - 
-    \mathcal M(Ty; y) 
-    - 
-    \frac{\beta + \mu}{2}\Vert x - Ty\Vert^2
-    + D_f(Ty; y)
-    \\
-    &= 
-    \left(
-        \mathcal M(x; y)
-        - 
-        \mathcal M(Ty; y)
-    \right)
-    - 
-    D_f(x, y) 
+    &= \mathcal M(x; y) - D_f(x, y) - \left(
+        \mathcal M(Ty; y) - D_f(Ty, y)
+    \right) 
     - \frac{\beta + \mu}{2}\Vert x - Ty\Vert^2
-    + D_f(Ty; y)
     \\
-    &=
+    &= F(x) - F(Ty) + 
+    \frac{\beta}{2}\Vert x - y\Vert^2 - \frac{\beta}{2}\Vert Ty - y\Vert^2
+    - D_f(x, y) + D_f(Ty, y)
+    - \frac{\beta + \mu}{2}\Vert x - Ty\Vert^2 
+    \\
+    &=  F(x) - F(Ty) + 
+    D_{\beta/2\Vert \cdot\Vert^2 - f}(x, y) - D_{\beta/2\Vert \cdot\Vert^2 - f}(Ty, y) - 
+    \frac{\beta + \mu}{2}\Vert x - Ty\Vert^2. 
+\end{aligned}
+$$
+
+(1.) is proven, based on the intermediate results we have: 
+
+$$
+{\small
+\begin{aligned}
+    0 &\le 
     \left(
         F(x) - F(Ty) 
         + 
@@ -412,38 +413,34 @@ $$
     - \langle \beta(y - Ty), x - Ty\rangle
     - D_f(x, y) 
     + D_f(Ty, y)
-    - \frac{\beta + \mu}{2}\Vert x - Ty\Vert^2
-    \\
-    &\le 
-    F(x) - F(Ty)
-    - \langle \beta(y - Ty), x - Ty\rangle
-    - D_f(x, y) 
-    + D_f(Ty, y). 
+    - \frac{\mu}{2}\Vert x - Ty\Vert^2. 
 \end{aligned}
-$$
+}
+$$ 
 
-Take note that for all $x \in \R^n$, the inequality is trivially true cause by definition it gives $h(x) = \infty$. 
+Pursuing further we have the results: 
+
 
 **Remarks**
-
-When $f$ is $\mu$ strongly convex, $\mathcal M$ is not just $L$ strongly convex, it's $L + \mu$ strongly convex. 
-The inequality above is strictly stronger than necessary in the case when $F$ is $\mu > 0$ strongly convex. 
 
 The proof only used quadratic growth condition of $\widetilde {\mathcal M}^{L^{-1}}(\cdot; y)$ around its minimizer, which is much weaker than the strong convexity of $F$. 
 The proof the follows will make use of the strong convexity assumption. 
 
 
-#### **Corollary 1.3 | Proximal gradient inequality with smoothness**
-> Assume that $h = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex. 
-> Fix any $y \in \R^n$, then for all $x\in \R^n$, the proximal gradient inequality is true: 
+#### **Theorem 1.3 | Proximal gradient inequality with smoothness**
+> Assume that $F = f + g$ where $f$ is $L$ Lipschitz smooth and convex and $F$ is $\mu \ge 0$ strongly convex. 
+> Then, for $y \in \R^n$ it has the following chain of inequalities/equalities: 
 > $$
 > \begin{aligned}
 >     (\forall x \in \R^n)\quad 
->     h(x)  - h(Ty) - \langle L(y - Ty), x - y\rangle
->     - \frac{\mu}{2}\Vert x - y\Vert^2 - \frac{L}{2}\Vert y - Ty\Vert^2 
->     &\ge 0. 
+>     \frac{\mu}{2}\Vert x - Ty\Vert^2 &\le 
+>     F(x)  - F(Ty) - \langle L(y - Ty), x - y\rangle
+>     - D_f(x, y) - \frac{L}{2}\Vert y - Ty\Vert^2
+>     \\
+>     &= F(x)  - F(Ty) + \frac{L}{2}(\Vert x - y\Vert^2 - \Vert Ty - x\Vert^2) - D_f(x, y). 
 > \end{aligned}
 > $$
+
 
 **Proof**
 
@@ -456,42 +453,136 @@ $$
 \end{aligned}
 $$
 
-Take claim 1.2, set $h = F$, $\beta = L$, $T_{L^{-1}, f, g} =: T$, then the result has, 
-for all $x \in Q$: 
+Take claim 1.2 (2.), set $\beta = L$, $T_{L^{-1}, f, g} =: T$, it has for all $x, y \in \R^n$: 
 $$
 \begin{aligned}
     0 &\le 
-    h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle - D_f(x, y) + D_f(Ty, y)
-    - \frac{L + \mu}{2}\Vert x - Ty\Vert^2
+    F(x) - F(Ty) - \langle L(y - Ty), x - Ty\rangle - D_f(x, y) + D_f(Ty, y)
+    - \frac{\mu}{2}\Vert x - Ty\Vert^2
     & 
     \\
     &\le 
-    h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle - \frac{\mu}{2}\Vert x - y\Vert^2
+    F(x) - F(Ty) - \langle L(y - Ty), x - Ty\rangle 
+    - D_f(x, y)
     + \frac{L}{2}\Vert Ty - y\Vert^2
-    - \frac{L + \mu}{2}\Vert x - Ty\Vert^2
+    - \frac{\mu}{2}\Vert x - Ty\Vert^2
     \\
     &= 
-    h(x) - h(Ty) - \langle L(y - Ty), x -y + y - Ty\rangle 
-    - \frac{\mu}{2}\Vert x - y\Vert^2
+    F(x) - F(Ty) - \langle L(y - Ty), x -y + y - Ty\rangle 
+    - D_f(x, y)
     + \frac{L}{2}\Vert Ty - y\Vert^2
-    - \frac{L + \mu}{2}\Vert x - Ty\Vert^2
+    - \frac{\mu}{2}\Vert x - Ty\Vert^2
     \\
     &= 
-    h(x) - h(Ty) - \langle L(y - Ty), x -y \rangle - L \Vert y - Ty\Vert^2
-    - \frac{\mu}{2}\Vert x - y\Vert^2
+    F(x) - F(Ty) - \langle L(y - Ty), x -y \rangle - L \Vert y - Ty\Vert^2
+    - D_f(x, y)
     + \frac{L}{2}\Vert Ty - y\Vert^2
-    - \frac{L + \mu}{2}\Vert x - Ty\Vert^2
+    - \frac{\mu}{2}\Vert x - Ty\Vert^2
     \\
     &=
-    \left(h(x)  - h(Ty) - \langle L(y - Ty), x - y\rangle
-    - \frac{\mu}{2}\Vert x - y\Vert^2 - \frac{L}{2}\Vert y - Ty\Vert^2\right)
-    - \frac{L + \mu}{2}\Vert x - Ty\Vert^2. 
+    \left(
+        F(x)  - F(Ty) - \langle L(y - Ty), x - y\rangle
+        - D_f(x, y) - \frac{L}{2}\Vert y - Ty\Vert^2
+    \right)
+    - \frac{\mu}{2}\Vert x - Ty\Vert^2
+    \\
+    &\le 
+    F(x) - F(Ty) - \langle L(y - Ty), x - y\rangle
+    - D_f(x,y) 
+    - \frac{L}{2}\Vert y - Ty\Vert^2
+    - \frac{\mu}{2}\Vert x - Ty\Vert^2. 
 \end{aligned}
 $$
 
-**Remarks**
+On the second inequality above we made use of the upper bound of the Bregman divergence $D_f$ using the smoothness assumption. 
+Our first result is claimed, proceding further it has: 
 
-There are many equivalent inequality that exists out there in the literatures which looks different, but are equivalent. 
+$$
+{\small
+\begin{aligned}
+    \frac{\mu}{2}\Vert x - Ty\Vert^2 
+    &\le 
+    F(x) - F(Ty) - \langle L(y - Ty), x - y\rangle - D_f(x, y)
+    - \frac{L}{2}\Vert y - Ty\Vert^2
+    \\
+    &=
+    F(x) - F(Ty) - 
+    \left(
+        L\langle y - Ty, x - y \rangle + \frac{L}{2}\Vert y - Ty\Vert^2
+        + \frac{L}{2}\Vert x - y\Vert^2
+    \right)
+    + \frac{L}{2}\Vert x - y\Vert^2 - D_f(x, y)
+    \\
+    &=
+    F(x) - F(Ty) - \frac{L}{2}\Vert x - Ty\Vert^2  + \frac{L}{2}\Vert x - y\Vert^2 - D_f(x, y). 
+\end{aligned}
+}
+$$
+
+Our second result is claimed. 
+
+**Remark**
+
+The claim is true for all $L$ that is larger than the real Lipscthiz modulus of $f$. 
+
+
+#### **Theorem 1.4 | Strong convexity from both smooth and nonsmooth parts**
+> Let $F = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu_f \ge 0$ strongly convex, let $g$ be $\mu_g \ge 0$ strongly convex. 
+> Then for any $x \in \R^n, y \in \R^n$, it satisfies the following inequalities: 
+>
+> $$
+> \begin{aligned}
+>     0 &\le 
+>     F(x)  - F(Ty) - \langle L(y - Ty), x - y\rangle
+>     - \frac{\mu_f}{2}\Vert x - y\Vert^2 
+>     - \frac{L}{2}\Vert y - Ty\Vert^2
+>     - \frac{\mu}{2}\Vert x - Ty\Vert^2
+>     \\
+>     & =
+>     F(x) - F(Ty) - \frac{L + \mu}{2}\Vert x - Ty\Vert^2 
+>     + \frac{L - \mu_f}{2}\Vert x - y\Vert^2. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+The presence of smoothness allows us to continues from Theorem 1.3. 
+Strong convexity has $\forall x, y \in \R^n\; D_f(x, y) \ge \frac{\mu_f}{2}\Vert x - y\Vert^2$. 
+Continuing it has for all $x \in \R^n$
+
+$$
+{\small
+\begin{aligned}
+    0 &\le 
+    F(x) - F(Ty) - \langle L(y - Ty), x - y\rangle
+    - D_f(x, y) - \frac{L}{2}\Vert y - Ty\Vert^2
+    - \frac{\mu}{2}\Vert x - Ty\Vert^2
+    \\
+    &\le 
+    F(x)  - F(Ty) - \langle L(y - Ty), x - y\rangle
+    - \frac{\mu_f}{2}\Vert x - y\Vert^2 
+    - \frac{L}{2}\Vert y - Ty\Vert^2
+    - \frac{\mu}{2}\Vert x - Ty\Vert^2
+    \\
+    &= 
+    F(x) - F(Ty) - \langle L(y - Ty), x - y\rangle
+    - \frac{L}{2}\Vert x - y\Vert^2
+    - \frac{L}{2}\Vert y - Ty\Vert^2
+    + \frac{L - \mu_f}{2}\Vert x - y\Vert^2 
+    - \frac{\mu}{2}\Vert x - Ty\Vert^2
+    \\
+    &= 
+    F(x) - F(Ty)
+    - \frac{L}{2}\Vert x - Ty\Vert^2
+    + \frac{L - \mu_f}{2}\Vert x - y\Vert^2 
+    - \frac{\mu}{2}\Vert x - Ty\Vert^2
+    \\
+    &= F(x) - F(Ty) - \frac{L + \mu}{2}\Vert x - Ty\Vert^2 + \frac{L - \mu_f}{2}\Vert x - y\Vert^2. 
+\end{aligned}
+}
+$$
+
+The second inequality and the last equality gives the desired results. 
 
 
 ---
@@ -527,16 +618,6 @@ $$
 
 Observe that $\hat g$ is now convex, and $\hat f$ would be, $\mu \ge 0$ strongly convex and $L$ Lipschitz smooth. 
 
-
-#### **Corollary | Proximal gradient inequality with strong convexity transferal**
-> 
-
-
-
-
-**Remarks**
-
-The same theorem with strongly convex smooth parts can be reused here. 
 
 
 ---
