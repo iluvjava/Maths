@@ -13,12 +13,12 @@ The content of the file is taken from chapter 5 of Boris Morducovhich book: Conv
 Lemma 5.1 in the chapter showed the convergence of the sequence of proximal point method in metric space. 
 This is a very general argument as far as we see. 
 
-Suppose $X$ is a complete metric space with metric $d$. 
-The assumption of a complete metric means that we we will be looking for the limit of some sequences. 
-
 
 ---
 ### **Convergence of the algorithm**
+
+Suppose $X$ is a complete metric space with metric $d$. 
+The assumption of a complete metric means that we we will be looking for the limit of some sequences. 
 
 > Let $f: X \rightarrow \overline \R$ be an l.s.c function that is bounded below. 
 > For any $\epsilon > 0$, select $x_0$ to be such that 
@@ -32,7 +32,7 @@ The assumption of a complete metric means that we we will be looking for the lim
 > \begin{aligned}
 >     F(x):= 
 >     \left\lbrace
->         y\in X \left| 
+>         y\in X \left| \;
 >             f(y) + \frac{\epsilon}{\lambda} d(x, y) \le f(x)
 >         \right.
 >     \right\rbrace. 
@@ -58,12 +58,19 @@ However, it has some subtle differences that we can not yet explain.
 
 **Proof**
 
-By definition of $x_1\in \text{dom}\; f$, $F(x_1) \neq \emptyset$. 
-If $x_{k + 1} \in F(x_k)$, by definition, $x_{k + 1} \in F(x_k)$ exists by the definition of $F(x_k)\neq \emptyset$, and $\inf$. 
-$F(x_{k + 1})\neq \emptyset$ because $x_{k + 1}$ is in $F(x_{k + 1})$ always. 
+Observe that: 
+1. By definition of $x_1\in \text{dom}\; f$, $F(x_1) \neq \emptyset$. 
+2. If $x_{k + 1} \in F(x_k)$, then $F(x_k)\neq \emptyset$.
+3. $F(x_{k + 1})\neq \emptyset$ because $x_{k + 1}$ is in $F(x_{k + 1})$ always. 
 
-Next we show that $F(x_k)$ is closed for all $x_k$. 
-This is true because for any $\bar x \in F(x)$, take any sequence $F(x_k) \ni z_n \rightarrow \bar x$, by completeness of the metric and lower semi-continuity of $f$, it it has: 
+Proceeding stepwise, we have the following key steps for our proof. 
+
+1. **(Step I)**: $F(x_k)$ is closed for all $x_k$. 
+2. **(Step II)**: $\forall k \in \N: F(x_{k + 1})\subseteq F(x_k)$. 
+3. **(Step III)**: Verify $\bigcap_{k \in \N}F(x_k) \neq \emptyset$ using Cantor's intersection theorem. 
+
+**(Step II)**. We show that $F(x_k)$ is closed for all $x_k$. 
+For all $x \in X$, let $\bar x \in F(x)$, take any sequence $F(x_k) \ni z_n \rightarrow \bar x$, by completeness of the metric and lower semi-continuity of $f$, it has: 
 
 $$
 \begin{aligned}
@@ -76,10 +83,9 @@ $$
     \le f(x_k). 
 \end{aligned}
 $$
-
 Therefore, $\bar x \in F(x)$. 
 
-Next, we show that for all $k \in \N: F(x_{k + 1})\subseteq F(x_k)$. 
+**(Step II)**. We show that for all $k \in \N: F(x_{k + 1})\subseteq F(x_k)$. 
 Pick any $y \in F(x_{k + 1})$ then 
 $$
 \begin{aligned}
@@ -88,15 +94,18 @@ $$
 \end{aligned}
 $$
 
-Consider how $x_{k + 1} \in F(x_k)$, it has 
+By $x_{k + 1} \in F(x_k)$, it has 
 
 $$
 \begin{aligned}
     f(x_k) &\ge 
-    f(x_{k + 1}) + \frac{\epsilon}{\lambda}d(x_{k}, x_{k + 1}) & x_{k + 1}\in f(x_k)
+    f(x_{k + 1}) + \frac{\epsilon}{\lambda}d(x_{k}, x_{k + 1}) 
+    & 
     \\
     &\ge 
-    f(y) + \frac{\epsilon}{\lambda}d(x_{k + 1}, y) + 
+    \left(
+        f(y) + \frac{\epsilon}{\lambda}d(x_{k + 1}, y)
+    \right) + 
     \frac{\epsilon}{\lambda}d(x_{k}, x_{k + 1}) & y \in F(x_{k + 1})
     \\
     &\ge 
@@ -105,8 +114,12 @@ $$
 $$
 
 Therefore, $y \in F(x_{k})$ as well. 
-Use Cantor's intersection theorem, because it has $\text{diam}\; F(x_k) \rightarrow 0$. 
-To check that claim, take any $y \in F(x_{k + 1})$, then by definition it has 
+
+**(Step III)**.
+We can use Cantor's intersection theorem, it has $\text{diam}\; F(x_k) \rightarrow 0$. 
+because we checked that $F(x_k) \neq \emptyset$ for all $n \in \N$ from **(Step I)**.
+It remains to check that $\text{diam}(F_n)\rightarrow 0$.
+To show, take any $y \in F(x_{k + 1})$, then by definition it has 
 
 $$
 \begin{aligned}
@@ -114,9 +127,16 @@ $$
     &\le 
     f(x_{k + 1}) - f(y)
     \\
-    &\le \inf_{x \in F(x_k)} f(x) + \frac{1}{k} - f(y)
+    &\le \left(
+        \inf_{x \in F(x_k)} f(x) + \frac{1}{k}
+    \right) - f(y) 
+    & x_{k + 1} \in F(x_k)
     \\
-    &\le \inf_{x \in F(x_{k + 1})} f(x) + \frac{1}{k} - f(y) 
+    &\le 
+    \left(
+        \inf_{x \in F(x_{k + 1})} f(x) + \frac{1}{k}
+    \right)
+     - f(y) 
     &  \text{by }F(x_{k + 1}) \subseteq F(x_k)
     \\
     &\le 1/k. 
@@ -130,7 +150,7 @@ Therefore, the set $F(x_k)$ indeed converges to a singleton.
 
 **Remarks**
 
-No assumptions on convexity, this one only requires a metric space, lsc and the complete metric space to handle the things with a limits. 
+No assumptions on convexity, this one only requires a complete metric space for limit of sequences, lsc to ensure the closure of the set$F(x_k)$. 
 Nothing is said about the convergence of $f(x)$ yet. 
 The convergence is possible even if the set of minimizer is non-unique. 
 
