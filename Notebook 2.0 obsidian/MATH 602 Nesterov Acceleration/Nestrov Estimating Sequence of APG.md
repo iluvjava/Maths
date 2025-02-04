@@ -410,18 +410,16 @@ The proof is now done.
 A recurrence relations based on the definition of the Nesterov's estimating sequence had been established upon the canonical form parameters: $(\phi_k^*, \gamma_k, v_k)$. 
 
 
-
-
 #### **Lemma 2 | Looking for the descent sequence**
 > Let $(y_k)_{k \in \N}$, and $(\alpha_k)_{k \in \N}, \alpha_i \in (0, 1)\;\forall i \in \N$, suppose that there exists estimating sequence $\phi_k: \R^n \mapsto \R$ defined via canonical form parameters $(\phi_k^*, v_k)_{k \in \N}, (\gamma_k)_{k \in \N}$ satisfying recurrence relations 
 > $$
 > {\small
 > \begin{aligned}
->     & \gamma_{k + 1} = (1 - \alpha_k) \gamma_k + \mu \alpha_k
+>     & \gamma_{k + 1} = (1 - \alpha_k) \gamma_k + \mu \alpha_k,
 >     \\
 >     & 
 >     v_{k + 1} = \gamma_{k + 1}^{-1}
->     (\gamma_k( - \alpha_k)v_k - \alpha_k g_k + \mu \alpha_k y_k)
+>     (\gamma_k( - \alpha_k)v_k - \alpha_k g_k + \mu \alpha_k y_k),
 >     \\
 >     & 
 >     \phi_{k + 1}^* = 

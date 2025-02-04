@@ -20,6 +20,8 @@ This is a very general argument as far as we see.
 Suppose $X$ is a complete metric space with metric $d$. 
 The assumption of a complete metric means that we we will be looking for the limit of some sequences. 
 
+#### **Def | Proximal Point Method in Metric Space**
+
 > Let $f: X \rightarrow \overline \R$ be an l.s.c function that is bounded below. 
 > For any $\epsilon > 0$, select $x_0$ to be such that 
 > $$
@@ -48,7 +50,7 @@ The assumption of a complete metric means that we we will be looking for the lim
 >     \right) + \frac{1}{k} \quad (k\in \N). 
 > \end{aligned}
 > $$
-> Then there exists $z \in X$ such that $\{z\} \in \bigcap_{k\in\N} F(x_k)$. 
+> Then there exists $z \in X$ such that $\{z\} = \bigcap_{k\in\N} F(x_k)$. 
 
 
 **Observations**
@@ -67,7 +69,7 @@ Proceeding stepwise, we have the following key steps for our proof.
 
 1. **(Step I)**: $F(x_k)$ is closed for all $x_k$. 
 2. **(Step II)**: $\forall k \in \N: F(x_{k + 1})\subseteq F(x_k)$. 
-3. **(Step III)**: Verify $\bigcap_{k \in \N}F(x_k) \neq \emptyset$ using Cantor's intersection theorem. 
+3. **(Step III)**: Verify $\{z\} = \bigcap_{k \in \N}F(x_k)$ is a singleton using Cantor's intersection theorem. 
 
 **(Step II)**. We show that $F(x_k)$ is closed for all $x_k$. 
 For all $x \in X$, let $\bar x \in F(x)$, take any sequence $F(x_k) \ni z_n \rightarrow \bar x$, by completeness of the metric and lower semi-continuity of $f$, it has: 

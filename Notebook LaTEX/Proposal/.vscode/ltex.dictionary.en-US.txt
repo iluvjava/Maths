@@ -44,3 +44,14 @@ stationarity
 blackbox
 Devolder
 Polyak
+Hermant
+Mesbashi
+Peypouquet
+Toh
+Goujaud
+Drori
+Dragomir
+Teboulle
+Hölder
+Khanh
+Halpern
