@@ -70,6 +70,9 @@ In the special case when $\theta = 0$, we adopt the conditions $0^0 = 0$ which m
 ---
 ### **Consequences of (H2), (H1)**
 
+With just **(H2)**, continuity of the function on its domain, and the fact that it's bounded below, we can gather some powerful results about the behavior of the sequence produce by the PPM. 
+The proposition below gives major results of this section. 
+
 #### **Proposition 1 | The PPM sequence**
 > Let the sequence $(x_k)_{k \ge0}$ complies with the Definition of PPM. 
 > Let $\omega(x_0)$ denotes the cluster point of the sequence. 
@@ -79,7 +82,7 @@ In the special case when $\theta = 0$, we adopt the conditions $0^0 = 0$ which m
 > - (iii): If $f$ satisfies **(H2)**, then $\omega(x_0)\subseteq \text{crit}\; f$. 
 > 
 > If in addition, the sequence is bounded then it has 
-> - (iv):  $\omega(x_0)$ is a non-empty, compact, and connected set and the sequence admits $d(x_k, \omega(x_0))\rightarrow 0$ as $k \rightarrow \infty$. 
+> - (iv): $\omega(x_0)$ is a non-empty, compact, and connected set and the sequence admits $d(x_k, \omega(x_0))\rightarrow 0$ as $k \rightarrow \infty$. 
 > - (v): If $f$ satisfies **(H2)**, then it is finite and constant on $\omega(x_0)$. 
 
 **Proof**
@@ -113,7 +116,6 @@ Read discussion from [Math Stack Exchange](https://math.stackexchange.com/questi
 > $$
 
 **Proof**
-
 
 The proof consists of following key steps. 
 Consider any $\hat x\in \text{crit} \;f$, we do: 
