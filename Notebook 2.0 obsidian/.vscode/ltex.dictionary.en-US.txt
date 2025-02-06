@@ -35,3 +35,6 @@ subcover
 subcovering
 subcollection
 subcollections
+boundedness
+nonsmooth
+coersive

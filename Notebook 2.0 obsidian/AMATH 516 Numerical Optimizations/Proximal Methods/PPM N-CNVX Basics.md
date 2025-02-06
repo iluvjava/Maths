@@ -46,7 +46,7 @@ The assumption of a complete metric means that we we will be looking for the lim
 >     x_1 & \in \text{dom}\; f, 
 >     \\
 >     x_{k + 1} &\in F(x_k): f(x_{k + 1}) \le \left(
->         \inf_{x \in F(x_k)} f(x_k)
+>         \inf_{x \in F(x_k)} f(x)
 >     \right) + \frac{1}{k} \quad (k\in \N). 
 > \end{aligned}
 > $$

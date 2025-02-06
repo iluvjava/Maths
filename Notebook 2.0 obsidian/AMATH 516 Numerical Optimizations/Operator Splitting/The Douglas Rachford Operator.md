@@ -94,7 +94,7 @@ To understand the potential of the DR operator, we need to understand what is it
 
 
 #### **Claim | Zero set is the Resolvent of the Fixed Point of DR operator**
-> For a DR operator T constructed by maximal monotone operators $A, B$, we have the following sequence equalities for its zero sets. 
+> For a DR operator T constructed by maximal monotone operators $A, B$, we have the following equalities for its zero sets. 
 > $$
 > \begin{aligned}
 >     \text{zer}(A + B) = \mathcal J_A(\text{fix }T)
@@ -157,7 +157,7 @@ $$
 \end{aligned}
 $$
 
-The $1/2$-averaged operator on $N$, a non-expansive operator, has the same fixed point set. 
+The $1/2$-averaged operator $\mathcal J_A$ on $N$, a non-expansive operator, has the same fixed point set. 
 
 ---
 ### **Some Simple Examples**

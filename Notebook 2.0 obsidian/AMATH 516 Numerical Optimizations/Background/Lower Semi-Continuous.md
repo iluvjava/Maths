@@ -83,7 +83,7 @@ Consider the previous claim
 
 $$
 \begin{aligned}
-    \forall \epsilon > 0 \exists \delta > 0: 
+    \forall \epsilon > 0 \;\exists \delta > 0: 
     \inf_{x \in \mathbb B_{\delta}(a)} f(x)\ge f(a) - \epsilon, 
 \end{aligned}
 $$
@@ -101,18 +101,18 @@ Under a metric space, sequenctial characterization of l.s.c is sufficient to the
 
 
 #### **Thm | A list of Equivalent Conditions**
-> Let $f$ be a l.s.c function then the following conditions are equivalent to l.s.c. 
+> Let $f$ be a l.s.c function then the following conditions are equivalent to l.s.c:
 > 1. The $\text{epi}(f)$ is a closed set. 
 > 2. For all $\alpha \in \mathbb R$ we have $\text{lev}_\alpha(f)$ being a closed set. 
 > 3. $\liminf_{x\rightarrow a}f(x) = \min\{\alpha \in \mathbb {\bar R} : \exists x_n \rightarrow \bar x \wedge f(\bar x) = \alpha \}$. 
 
 **Observations**
 
-For a proof about the first equivalent condition (1.)<==> (2.) visit:[Lower Semi-Continuity is Closedness of Epigraph](Lower%20Semi-Continuity%20is%20Closedness%20of%20Epigraph.md) for more information. 
-Conditions 3 is self-explainatory. 
+For (1.) iff (2.) see:[Lower Semi-Continuity is Closedness of Epigraph](Lower%20Semi-Continuity%20is%20Closedness%20of%20Epigraph.md).
+Conditions 3 is trivial. 
 Choose $\alpha \in \arg\min\{\alpha \in \mathbb{\bar R} : \exists x_n \rightarrow \bar x \wedge f(\bar x) = \alpha\}$ then $\exists (x_n)_{n\in \mathbb N}$ such that $\lim_{n\rightarrow \infty} x_n = \bar x$, at the same time for all $x_n'\rightarrow \bar x$ such that $\lim_{n\rightarrow \infty} f(x_n) = \alpha '$, we must have $\alpha \le x'$. 
-Select that specific best sequence $x_n$, then its subsequantial limit automatically equals to $\lim_{x\rightarrow a}f(x)$. 
-Therefore using the equivalence between the first 2 conditions we would have: (3.) <==> $f$ is l.s.c <==> $\text{epi}(f)$ is closed. 
+Select that specific best sequence $x_n$, then its subsequential limit automatically equals to $\lim_{x\rightarrow a}f(x)$. 
+Therefore using the equivalence between the first 2 conditions we would have: (3.) iff $f$ is l.s.c iff $\text{epi}(f)$ is closed. 
 
 **Proof of (2.) => (3.)**
 

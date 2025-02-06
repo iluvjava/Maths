@@ -1,5 +1,6 @@
 - [Kurdyka Lojasiewicz Inequality](Kurdyka%20Lojasiewicz%20Inequality.md)
 - [Mordukhovich Limiting Subdifferential](../Non-Smooth%20Calculus/Limiting%20Subgradient.md)
+- [KL Convergence Framework Part I](KL%20Convergence%20Framework%20Part%20I.md)
 
 ---
 ### **Intro**

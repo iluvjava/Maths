@@ -1,5 +1,5 @@
 - [Inexact Proximal Point Method and KL Part I](Inexact%20Proximal%20Point%20Method%20and%20KL%20Part%20I.md)
-- [KL Convergence Framework](KL%20Convergence%20Framework.md)
+- [KL Convergence Framework Part II](KL%20Convergence%20Framework%20Part%20II.md)
 
 ---
 ### **Intro**

@@ -60,3 +60,12 @@ The point wise KL condition satisfies automatically at points that are not the c
 **Proof**
 
 We prove by contradiction. 
+
+
+---
+### **Consequences**
+
+This section specializes the definition to some specific cases of the function $\phi$ and derive consequences. 
+
+
+

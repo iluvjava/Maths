@@ -23,7 +23,7 @@ But in general we have:
 
 **References**
 
-1. an undergraduate friendly textbook: **Measure, Integration, and Real Analysis by Sheldon Axler.** 
+1. An undergraduate friendly textbook: **Measure, Integration, and Real Analysis by Sheldon Axler.** 
 2. [UCLA Notes](https://www.ucl.ac.uk/~ucahad0/3103_handout_2.pdf). 
 
 
@@ -370,11 +370,11 @@ We will aim for the following key intermediate steps.
 Let $O_i, \forall i \in I$ be an open cover of $X$. 
 Fix any $\epsilon > 0$, Since $X$ is totally bounded, there exists a finite cover of epsilon ball for $X$ centered at $x_{1, i}$ for $i = 1, \ldots, n_1$. 
 Let $\mathcal U = \bigcup_{i \in I} C_i$ be an open cover of the set $X$ such that no finite subcover covers $X$. 
-By the pigeon hole principle, one of the epsilon ball: $\mathbb B_{\epsilon}(x_{1, i_1})$ cannot be covered by any finite subcover of $\mathcal U$. 
+By the pigeonhole principle, one of the epsilon ball: $\mathbb B_{\epsilon}(x_{1, i_1})$ cannot be covered by any finite subcover of $\mathcal U$. 
 
 **Step II**.
 Consider a new finite cover by epsilon ball of size $\epsilon /2$ centered at $x_{2, i}$ for $i= 1,\ldots, n_2$. 
-A finite subset of these balls covers $\mathbb B_\epsilon(x_{1, i_1})$ and there exists at least one of them cannot admits any finite subcover from $\mathcal U$, denote it $\mathbb B_{\epsilon/2} (x_{2, i_2})$ and it satsfies: 
+A finite subset of these balls covers $\mathbb B_\epsilon(x_{1, i_1})$ and there exists at least one of them cannot admit any finite subcover from $\mathcal U$, denote it $\mathbb B_{\epsilon/2} (x_{2, i_2})$ and it satisfies: 
 
 $$
 \mathbb B_\epsilon(x_{1, i_1}) \cap \mathbb B_{\epsilon/2} (x_{2, i_2}) \neq \emptyset. 
