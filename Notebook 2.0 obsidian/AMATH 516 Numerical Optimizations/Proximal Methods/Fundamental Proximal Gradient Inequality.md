@@ -251,7 +251,7 @@ $$
     + \frac{\beta}{2}\Vert x - y\Vert^2,
     \\
     \mathcal M^{\beta^{-1}}_F(x; y) 
-    &:= F(x) + \frac{\beta}{2}\Vert x - y\Vert^2.
+    &:= F(x) + \frac{\beta}{2}\Vert x - y\Vert^2
 \end{aligned}
 $$
 
@@ -267,12 +267,16 @@ Before the major claim we state the following lemma to the proof sleek and cool.
 #### **Lemma 1.1 | The proximal gradient envelope**
 > Take $F = g + f$, Take $\widetilde{\mathcal M}^{\beta^{-1}}_F, \mathcal M^{\beta^{-1}}_F$ as given Assumption 1. 
 > Take any arbitrary $\beta > 0$. 
-> We will have for all $x \in \R^n$ that: 
+> We will have for all $x \in \R^n$ the following relations: 
 > $$
 > \begin{aligned}
 >     \widetilde{\mathcal M}^{\beta^{-1}}_F(x; y)
 >     &= 
->     \mathcal M^{\beta^{-1}}_F(x; y)- D_f(x, y) \le \mathcal M^{\beta^{-1}}_F(x; y). 
+>     \mathcal M^{\beta^{-1}}_F(x; y)- D_f(x, y) 
+>     \\
+>     &= F(x) + D_{\beta/2\Vert \cdot\Vert^2 - f}(x, y)
+>     \\
+>     & \le \mathcal M^{\beta^{-1}}_F(x; y)
 > \end{aligned}
 > $$
 
