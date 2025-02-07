@@ -1011,8 +1011,8 @@
             We perform numerical experiments using V-FISTA, M-FISTA and FR-WAPG on this problem. 
             The setup of our parameters now follow. 
             \begin{enumerate}
-                \item $M, N$ are constants. They define matrix $A \in \RR^{M\times N}$ which has entires of i.i.d random variable taken from a standard normal distribution. 
-                \item $L, \mu$, are Lipschitz constant and the strong convexity constant for the smooth part of the objective which are not known prior. Hence they are estimated by $A$ by $\mu = 1/\Vert (A^TA)^{-1}\Vert$ and $L = \Vert A^TA\Vert$ prior to experiment to assist the V-FISTA algorithm. 
+                \item $M, N$ are constants. They define matrix $A \in \RR^{M\times N}$ which has entries of i.i.d random variable taken from a standard normal distribution. 
+                \item $L, \mu$, are Lipschitz constant and the strong convexity constant for the smooth part of the objective which are not known prior. Hence, they are estimated by $A$ by $\mu = 1/\Vert (A^TA)^{-1}\Vert$ and $L = \Vert A^TA\Vert$ prior to experiment to assist the V-FISTA algorithm. 
                 \item $x^+ = [1\; -1\; 1 \; \cdots ]^T \in \RR^N$, it's a vector with alternating $1, -1$ in it. 
                 \item Given $x^+$, it has $b = Ax^+ \in \RR^M$. 
                 \item Given $A$, estimations for $L,\mu$ are given by $L = \Vert A^TA\Vert$, $\mu = \Vert (A^TA)^{-1}\Vert^{-1}$. 
@@ -1109,7 +1109,7 @@
         \end{align*}
         We define the Moreau Envelope at $y \in \RR^n$ to be $\mathcal M^*_{F,\beta^{-1}}(y) := \min_{x\in \RR^n} \mathcal M_F^{\beta^{-1}}(x; y)$ and the resolvent operator for subgradient of $F$ to be $\mathcal J_{\beta^{-1}F}$, i.e: which is also called the proximal operator. 
         \par
-        We invent this notations because there are no consistent notations in the literatures and several of the Catalyst papers all use dratically different notations.  
+        We invent the notations because there are no consistent notations in the literatures and several of the Catalyst papers all use different notations.  
     \end{assumption}
     \begin{definition}[Absolute termination criterion C1]\label{def:catalyst-termination-c1}
         Take $F$ as given by Assumption \ref{ass:catalyst1}.
@@ -1125,7 +1125,7 @@
         \end{align*}
     \end{definition}
     \begin{remark}
-        Setting $\epsilon = 0$, we have the exact definition of the exact resolvent given as $\mathcal J_{\beta^{-1}}y = \mathcal J^0_{\beta^{-1}}y$. 
+        Setting $\epsilon = 0$, we have the exact definition of the exact resolvent given as $\mathcal J_{\beta^{-1}F}y = \mathcal J^0_{\beta^{-1}F}y$. 
     \end{remark}
     \textbf{The remainder of this section is organized as the follow}. 
     Section \ref{ssec:catalyst-intro} gives the main ideas behind the Catalyst Acceleration Framework. 
@@ -1134,7 +1134,7 @@
     The relative error condition improves the total complexity and inspired nonconvex gradient based 4WD Catalyst by Paquette et al. \cite{paquette_catalyst_2018}. 
     
     \subsection{Introduction to Catalyst}\label{ssec:catalyst-intro}
-        Inspired by accelerated proximal point Method (APPM) from Güler \cite{guler_new_1992}, and Inexact Proximal Point Method (IPPM) of Rockafellar 1976 \cite{rockafellar_monotone_1976}, Lin et al. \cite{lin_universal_2015} proposed a generic method taking inspirations from the convergence claims of APPM to accelerate Variance Reduced Method (VRM). 
+        Inspired by Accelerated Proximal Point Method (APPM) from Güler \cite{guler_new_1992}, and Inexact Proximal Point Method (IPPM) of Rockafellar 1976 \cite{rockafellar_monotone_1976}, Lin et al. \cite{lin_universal_2015} proposed a generic method taking inspirations from the convergence claims of APPM to accelerate Variance Reduced Method (VRM). 
         VRMs are incremental method that is not slower than full gradient descent in complexity. 
         See Gower's guide \cite{gower_variance-reduced_2020} for more information on variance reduced methods in machine learning. 
         \par
@@ -1217,9 +1217,9 @@
             \begin{remark}
                 Suggested by Lin et al., $\rho$ is at the discretion of the practitioner, take for example $\rho = 0.9\sqrt{q}$ would work. 
             \end{remark}
-            \begin{theorem}[Outer loop convergence convex but not strongly convex]\label{thm:erro-seq-outer-cnvx}\;\\
+            \begin{theorem}[Outer loop convergence not necessarily strongly convex]\label{thm:erro-seq-outer-cnvx}\;\\
                 For $\mathbb A$ with regularization parameter $\kappa > 0$. 
-                Assume that $F$ is convex but with strong convexity constant $\mu = 0$. 
+                Assume that $F$ is convex but with strong convexity constant $\mu \ge 0$. 
                 Choose $\alpha_0 = (\sqrt{5} - 1)/2$ and the error sequence 
                 \begin{align*}
                     \epsilon_k &= \frac{2(F(x_0) - F^*)}{9(k + 2)^{4 + \eta}} \quad 
@@ -1275,7 +1275,7 @@
                 \end{align*}
             \end{assumption}
             \begin{remark}
-                VRMs listed earlier statsifies this assumption. 
+                VRMs listed earlier satisfy this assumption. 
                 Details about the consequence of this assumption is in Section \ref{ssec:catalyst-future}. 
             \end{remark}
             \begin{proposition}[Inner loop complexity strongly convex]\label{prop:inner-loop-complexity-s-cnvx}
@@ -1290,7 +1290,7 @@
             \begin{remark}
                 Here, $T_{\mathbb M}$ is a constant associated with just $\mathbb M$, it's not related to $k, \epsilon_k$. 
             \end{remark}
-            \begin{proposition}[Inner loop, context but not strongly convex]\label{prop:inner-loop-complexity-cnvx}
+            \begin{proposition}[Inner loop convergence not necessarily strongly convex]\label{prop:inner-loop-complexity-cnvx}\;\\
                 Under the settings of Theorem \ref{thm:erro-seq-outer-cnvx}, suppose that:
                 \begin{enumerate}
                     \item $\mathbb M$ has linear convergence rate as specified in Assumption \ref{ass:linear-convergence-inner-loop}, 

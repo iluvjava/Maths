@@ -34,7 +34,7 @@
 
 % SLIDE INFORMATION ============================================================
 \author{Hongda Li}
-\title[Thesis Proposal Talk]{First Order Nonsmooth Optimization: Catalyst Acceleration and Unifying Nesterov's Acceleration}
+\title[Thesis Proposal Talk]{Nesterov's First Order Method Accelerations: Unifications, Applications  and Numerial Experiments}
 % \newcommand{\email}{lalala@lala.la}
 \institute[UBCO]{
     University of British Columbia Okanagan
@@ -75,6 +75,16 @@
 
 
 \section{Introduction}
+    \begin{frame}{Introduction}
+        \begin{block}{Upcoming Contents: }
+            \begin{itemize}
+                \item Notations, proximal gradient inequality, gradient mapping. 
+                \item Nesterov's estimating sequence.
+                \item Introducing R-WAPG (Content of our draft paper). 
+                \item Introducing the Catalyst metal acceleration framework. 
+            \end{itemize}
+        \end{block}
+    \end{frame}
     \subsection{Notations and preliminaries}
         \begin{frame}{Notations and preliminaries}
             Throughout this talk, let $\RR^n$ be the ambient space equipped with Euclidean inner product and norm. 
@@ -167,13 +177,27 @@
         \begin{frame}{Introducing Catalyst Part II}
             Catalyst by Lin, et al. \cite{lin_catalyst_2018, lin_universal_2015} has the theoretical and practical importance: 
             \begin{enumerate}
-                \item It's an early attempt at putting accelerated inexact proximal point method into a practical setting. 
+                \item It puts accelerated inexact proximal point method into a practical setting. 
                 \item It finds application in machine learning, and it accelerates the convergence of Variance Reduced Method (A type of incremental method that is not slower than the exact counterpart). 
                 \item It demonstrates crucial ideas on how prove convergence rate where the evaluation of proximal point method is inexact in the convex settings. 
             \end{enumerate}
         \end{frame}
 
 \section{Content of the draft paper}
+    \begin{frame}{Contents of our draft papers}
+        \begin{block}{Upcoming contents}
+            We explain results from our relaxed, weak accelerated proximal gradient (R-WAPG). 
+            \begin{enumerate}
+                \item The R-WAPG sequence and the method of R-WAPG. 
+                \item The generic convergence of R-WAPG. 
+                \item Three equivalent forms of R-WAPG. 
+                \item Specialized convergence results with for specific instances of FISTA variants in the literatures. 
+                \item A parameter free formulation of R-WAPG and the results of our preliminary numerical experiments. 
+                \item Nesterov's idea of strong convexity transfer and the R-WAPG framework. 
+            \end{enumerate}
+        \end{block}
+        
+    \end{frame}
     \subsection{The method of R-WAPG and its convergence}
         \begin{frame}{R-WAPG sequences}
             \begin{definition}[R-WAPG sequences]\label{def:rwapg-seq}
@@ -260,7 +284,8 @@
         \begin{frame}{Equivalent forms of R-WAPG}
             \begin{enumerate}
                 \item Equivalent forms of R-WAPG exists and resembles variants of FISTA in the literatures
-                \item We proved the equivalences in our draft papers and the convergence claim from previous applies to all the equivalent forms of R-WAPG which will follow. 
+                \item We proved the upcoming equivalences forms of R-WAPG in the draft papers. 
+                \item Previous claimed generic convergence results will apply to all equivalent forms of R-WAPG will now come. 
             \end{enumerate}    
         \end{frame}
         \begin{frame}{R-WAPG intermediate form}
@@ -566,6 +591,17 @@
         \end{frame}
         
 \section{Selected contents from Catalyst Meta Accelerations}
+    \begin{frame}{Selected contents from Catalyst Meta Accelerations}
+        \begin{block}{Upcoming Contents}
+            \begin{enumerate}
+                \item Notations, assumptions. 
+                \item Inexact proximal point evaluations criteria. 
+                \item Structure of Catalyst accelerations and inner/out loop complexity results from Lin et al's first Catalyst paper \cite{lin_universal_2015}. 
+                \item Catalyst acceleration with relative error crition, Lin et al's second paper \cite{lin_catalyst_2018}.
+                \item Comments on future works for Catalyst by Necoara et al. \cite{necoara_linear_2019} and our questions about the Catalyst Acceleration Framework. 
+            \end{enumerate}
+        \end{block}
+    \end{frame}
     \subsection{Introduction to Catalyst}
         \begin{frame}{Assumptions in Catalyst}
             \begin{assumption}\label{ass:catalyst1}
@@ -612,7 +648,7 @@
                 }
             \end{definition}
         \end{frame}
-        \begin{frame}{Catalyst meta acceleration}
+        \begin{frame}{Catalyst Meta Acceleration}
             \begin{definition}[Lin's Universal Catalyst Acceleration]\label{def:lin-catalyst-original}
                 Let $F:\RR \rightarrow \overline \RR$ be $\mu \ge 0$ strongly convex and closed. 
                 Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa > 0$ and $\alpha_0 \in (0, 1]$. 
