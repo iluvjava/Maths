@@ -6,7 +6,7 @@
 
 **References**
 - Wiki https://en.wikipedia.org/wiki/Kaczmarz_method for more. 
-- Paper: R. Ansorge, Hamburg 1984 "Connections Between the Cimmino-Method and the KaczmarzMethod for the Solution of Singular and Regular Systems of Equations". 
+- Paper: R. Ansorge, Hamburg 1984 "Connections Between the Cimmino-Method and the Kaczmarz Method for the Solution of Singular and Regular Systems of Equations". 
 
 
 #### **Assumption 1**
@@ -17,19 +17,20 @@
 > 4. $\e_i$ denotes the standard basis vector. 
 > 
 
-
-In the settings provided by Assumption 1. 
-For any $x_0 \in \R^m$, the Karzmac algorithm has for all $k = 1, \ldots, N$: 
-$$
-\begin{aligned}
-    x_{k + 1} = 
-    x_{k - 1} - 
-    \frac{\langle Ax_k - b, e_{i_k}\rangle}{\Vert A^T \e_{i_k}\Vert}A^T\e_{i_k}. 
-\end{aligned}
-$$
+#### **Algorithm 1 | Kaczmarz Method**
+> In the settings provided by Assumption 1. 
+> For any $x_0 \in \R^m$, the Karzmac algorithm has for all $k = 1, \ldots, N$: 
+> $$
+> \begin{aligned}
+>     x_{k + 1} = 
+>     x_{k - 1} - 
+>     \frac{\langle Ax_k - b, e_{i_k}\rangle}{\Vert A^T \e_{i_k}\Vert}A^T\e_{i_k}. 
+> \end{aligned}
+> $$
 
 There are many strategies for choosing $i_k$ given each $k$. 
 1. Choose it randomly using a uniform distribution. 
 2. Choose the $i_k$ such that it maximizes $|\langle Ax_k - b, \e_{i_k}\rangle|$. 
 
-
+#### **Lemma | Basic consequences of the algorithm**
+> 

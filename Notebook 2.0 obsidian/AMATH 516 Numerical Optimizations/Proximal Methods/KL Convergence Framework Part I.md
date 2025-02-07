@@ -87,6 +87,11 @@ The proposition below gives major results of this section.
 
 **Proof**
 
+The proof consists of the following key intermediate steps: 
+
+1. **(STEP I)**: Items (i), (ii) are direct consequences of the PPM method. 
+2. 
+
 
 
 

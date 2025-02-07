@@ -18,6 +18,7 @@ This statement can simply be characterize with fancier notation involving epsilo
 > A point $x$ is a limit point of the set $A$ if and only if there exists $(a_n)_{n\in \mathbb N}$ such that $x= \lim_{n\rightarrow \infty}a_n$ but $a_n\neq x$ for all $n\in \mathbb N$. 
 
 **Proof**
+
 The $\implies$ direction is direct by choosing an epsilon shrinking region $\mathbb B_\epsilon(x)$ with $\epsilon = 1/n$ where $n\in \mathbb N$, then there is always a point that $a_n\in \mathbb B_n(x)$ such that $a_n \in A$ by the definition of $x$being a limit point of the set $A$. 
 
 To show $\impliedby$, we can choose any $\mathbb B_\epsilon(x)$ for any $\epsilon > 0$ which then gives us a choice of $a_n\neq x$ that is in $A \cap \mathbb B_\epsilon(x)$, completing the definition of a limit point.  

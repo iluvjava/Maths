@@ -145,7 +145,7 @@ Therefore, the limits of all subsequential limit would be the entire set $\mathb
 
 
 ---
-### **Limit Point, Cluster Point**
+### **Limit Point, Cluster Point of a set**
 
 We consider real numbers, let the background set to be real number. 
 
@@ -166,16 +166,19 @@ Then it would mean that either there exists $x_j = x$ for some $j \in \mathbb N$
 **Observations**
 Cluster points are used to *described sets with uncountable infinitely many points*. 
 
-Observe that a cluster point is a limit point, but a limit point is not a cluster point. 
+Observe that a cluster point is a limit point, but a limit point is necessarily not a cluster point. 
 We call $x \in A$ to be isoloated if there exists an open interval $\mathcal N(x)= (x - \epsilon, x  + \epsilon)$ such that $\mathcal N(x)\cap A = \emptyset$. 
 A isolated point in set $A$ can't be approached indefinitely as the limit of a sequence that because $x_n \not \in A$, but it can with a limit point. 
 
 
-
 **Example, Applications:**
 
-* [[Limit, Cluster Point of a Sequence Set]]
+* [[Limit, Cluster Point of Sequence and Set]]
 * [[Closure Topology]], which can be characterized by limit point of the set. 
+
+
+#### **Definition | Cluster point of a sequence**
+
 
 
 ---
