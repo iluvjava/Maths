@@ -149,7 +149,7 @@ Therefore, the limits of all subsequential limit would be the entire set $\mathb
 
 We consider real numbers, let the background set to be real number. 
 
-#### **Definition | Limit Point**
+#### **Definition | Closure Point**
 > A point $x$ is the limit point of the set $A$ if, there exists a sequence of number $x_n\in A$ such that $\lim_{n\rightarrow \infty} x_n = x$. 
 
 **Observations**
@@ -159,11 +159,11 @@ Let $x_n \in \mathbb R$ be a sequence then let $A = \{x_n : n \in \mathbb N\}$.
 Then it would mean that either there exists $x_j = x$ for some $j \in \mathbb N$, or that there exists a subsequence $x_{n_k}$ such that its limit is $x$. 
 
 
-#### **Definition | Cluster Point**
+#### **Definition | Boundary Point**
 > A point $x$ is the cluster point of a set $A$ if, there exists a sequence of number $x_n\in A\setminus \{x\}$ such that $\lim_{n\rightarrow \infty}x_n = x$. 
 
-
 **Observations**
+
 Cluster points are used to *described sets with uncountable infinitely many points*. 
 
 Observe that a cluster point is a limit point, but a limit point is necessarily not a cluster point. 
@@ -171,14 +171,21 @@ We call $x \in A$ to be isoloated if there exists an open interval $\mathcal N(x
 A isolated point in set $A$ can't be approached indefinitely as the limit of a sequence that because $x_n \not \in A$, but it can with a limit point. 
 
 
+#### **Definition | Cluster point of a sequence**
+> A point $\bar x \in \R^n$ is the cluster point of sequence $(x_n)_{n \ge 0}$ under the following equivalent scenario: 
+> 1. For all $\epsilon > 0$, there exists $N \in \N$ such that there exists $n \ge N$ then $\Vert x_n - \bar x\Vert \le \epsilon$. 
+> 2. There exists a subsequence of $x_n$: $x_{k_n}$ such that $x_{k_n}\rightarrow \bar x$. 
+
+**Proof**
+
+(1.) implies (2.) by an inductive argument which constructs the subsequence. Otherwise, the subsequence would be infinite and the index of the subsequence manifests as (1.). 
+
+
+
 **Example, Applications:**
 
-* [[Limit, Cluster Point of Sequence and Set]]
-* [[Closure Topology]], which can be characterized by limit point of the set. 
-
-
-#### **Definition | Cluster point of a sequence**
-
+* See [[Limit, Cluster Point of Sequence]]. 
+* See [[Closure Topology]], which can be characterized by limit point of the set. 
 
 
 ---

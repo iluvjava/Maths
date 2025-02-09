@@ -15,7 +15,7 @@
 \title{
     {
         \fontfamily{ptm}\selectfont 
-        Nesterov's First Order Method Accelerations: Unifications, Applications  and Numerial Experiments
+        Nesterov's First Order Method Accelerations: Unification, Applications  and Numerical Experiments
     }
 }
 \author{
@@ -224,7 +224,7 @@
                 \end{align*}
             \end{definition}
             \begin{remark}
-                Under the assumption of this section, the mapping $T_L$ is a single-valued mapping on $\RR^n$ and it's  a $3/2$ averaged operator. 
+                Under the assumption of this section, the mapping $T_L$ is a single-valued mapping on $\RR^n$, and it's  a $3/2$ averaged operator. 
             \end{remark}
             \begin{definition}[Gradient mapping operator]\label{def:gradient-mapping-operator}
                 % Take $F := f + g$ as defined in this section. 
@@ -269,7 +269,7 @@
         In (6.1.19) of Nesterov's book \cite{nesterov_lectures_2018}, it's used to derive a method of accelerated mirror descent. 
         Finally, in Geovani N. et al \cite{grapiglia_accelerated_2019}, they used it to derive an accelerated Newton's method for convex composite objective function. 
         \par
-        The definition of the estimating sequence that follows is based on our own understanding of the estimating sequence. 
+        The definition of the estimating sequence that follows is one of the examples in the literatures. 
         \begin{definition}[Nesterov's estimating sequence]\label{def:nes-est-seq}
             For all $k \ge 0$, let $\phi_k : \RR^n \rightarrow\RR$ be a sequence of functions. 
             We call this sequence of functions a Nesterov's estimating sequence when it satisfies conditions: 
@@ -1125,7 +1125,7 @@
         \end{align*}
     \end{definition}
     \begin{remark}
-        Setting $\epsilon = 0$, we have the exact definition of the exact resolvent given as $\mathcal J_{\beta^{-1}F}y = \mathcal J^0_{\beta^{-1}F}y$. 
+        Setting $\epsilon = 0$, we have the exact definition of the exact resolvent given as $\mathcal J_{\kappa^{-1}F}y = \mathcal J^0_{\kappa^{-1}F}y$. 
     \end{remark}
     \textbf{The remainder of this section is organized as the follow}. 
     Section \ref{ssec:catalyst-intro} gives the main ideas behind the Catalyst Acceleration Framework. 
@@ -1146,7 +1146,7 @@
         \par 
         VRM stabilizes the estimate of gradient using information from all or a subset of gradients evaluated at previous iterates. 
         In each iteration, it accesses the gradient of a few samples to attain a new estimate of the gradient with minimum additional calculations.  
-        This gives better complexity than full gradient descent over all. 
+        This gives better overall complexity than full gradient descent. 
         Compare to traditional stochastic gradient, VRM produces smaller variance of the estimated gradient near the minimizer which gives faster convergence rate. 
         Major examples of VRMs include SVRG by Xiao, Zhang \cite{xiao_proximal_2014}, Finito by Defazio et al. \cite{defazio_finito_2014}, SAG by Schmidt et al. \cite{schmidt_minimizing_2017}, and SAGA by \cite{defazio_saga_2014}. 
         \par
@@ -1220,7 +1220,7 @@
             \begin{theorem}[Outer loop convergence not necessarily strongly convex]\label{thm:erro-seq-outer-cnvx}\;\\
                 For $\mathbb A$ with regularization parameter $\kappa > 0$. 
                 Assume that $F$ is convex but with strong convexity constant $\mu \ge 0$. 
-                Choose $\alpha_0 = (\sqrt{5} - 1)/2$ and the error sequence 
+                Choose $\alpha_0 = \left(\sqrt{5} - 1\right)/2$ and the error sequence 
                 \begin{align*}
                     \epsilon_k &= \frac{2(F(x_0) - F^*)}{9(k + 2)^{4 + \eta}} \quad 
                     \text{with}\quad \eta > 0. 
@@ -1404,7 +1404,7 @@
             \par 
             The following results are proved in Lin et al. second Catalyst paper \cite{lin_catalyst_2018} in Lemma 2 and the discussions that follow it. 
             Given any $\epsilon > 0$ if $z \in \mathcal J_{\kappa^{-1}F}^\epsilon (x)$, define the absolute inexact gradient mapping $\mathcal G_{\kappa^{-1}F}^\epsilon (z) := \kappa(x - z)$.
-            Then it satsifies: 
+            Then it satisfies: 
             \begin{align*}
                 \left\Vert z - \mathcal J_{\kappa^{-1}F} (x)\right\Vert
                 &\le \sqrt{\frac{2\epsilon}{\kappa}} 

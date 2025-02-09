@@ -13,9 +13,10 @@ We prove the Bozano Weierstrass theorem from first Principles. Confusions where 
 
 
 ---
-### **Proof of the Theorem**
+### **Proof of the Theorem via Monotone subsequence**
 
 Given a sequence, $x_n$, it must contains a monotone subsequence (see [Monotone Subsequence Theorem](Monotone%20Subsequence%20Theorem.md)), and in the case when $x_n \in C$, $C$ being a bounded set, we know that $\sup_{n\in \N}{x_n}$ or $\inf_{n\in \N}x_n$ must exist (bounded monotone sequence theorem) and by the fact that the sequence is monotone, it must converge to one of those point, and when the set $C$ is closed, we know that $\sup_{n\in \N}x_n, \inf_{n\in \N}x_n$ must also be a member of $C$. This completes the proof. 
+
 
 
 ---

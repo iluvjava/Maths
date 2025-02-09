@@ -19,9 +19,9 @@ $$
     \\
     & \mathcal M^{\lambda_k}(x; y) := F(x) + \frac{1}{2\lambda_k}\Vert x - y\Vert^2. 
     \\
-    & \mathcal J_{\lambda_k} :=  (1 + \lambda_k\partial F)^{-1}, 
+    & \mathcal J_{\lambda_k} :=  (I + \lambda_k\partial F)^{-1}, 
     \\
-    & \widetilde{\mathcal J}_{\lambda_k} \approx  (1 + \lambda_k\partial F)^{-1},
+    & \widetilde{\mathcal J}_{\lambda_k} \approx  (I + \lambda_k\partial F)^{-1},
     \\
     & \mathcal G_{\lambda_k} := \lambda_k^{-1}(I - \mathcal J_{\lambda_k}),
     \\
@@ -944,6 +944,6 @@ Lemma A.7 can be seemed as a variant of the proximal gradient inequality with in
 ---
 ### **Continue Next time**
 
-See [Catalyst Acceleration Part III, Error Control](Catalyst%20Acceleration%20Part%20III,%20Error%20Control.md) for more details on how claims on the estimating sequence, the error bounds on the inner algorithm are combined together to show the overall convergence of the algorithm. 
+See [Catalyst Acceleration Part III, Total Complexity](Catalyst%20Acceleration%20Part%20III,%20Total%20Complexity.md) for more details on how claims on the estimating sequence, the error bounds on the inner algorithm are combined together to show the overall convergence of the algorithm. 
 
 
