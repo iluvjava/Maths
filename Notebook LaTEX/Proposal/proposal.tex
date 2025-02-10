@@ -1621,7 +1621,7 @@
             Xiao, Zhang, SVRG \cite{xiao_proximal_2014} requires Lipschitz gradient assumption as well. 
             This seemingly raises a crucial question: ``Where does the Lipschitz continuous gradient of the smooth part make its presence in the Catalyst Framework?''
             \par
-            A careful reader will realize that Assumption \ref{ass:linear-convergence-inner-loop} encapsulates the Lipschitz smoothness assumption of VRMs because the proximal point sub-problem is smooth and strongly convex and lower bound from Theorem 2.1.13 from Nesterov's book \cite{nesterov_lectures_2018} applies and it has a linear convergence rate. 
+            A careful reader will realize that Assumption \ref{ass:linear-convergence-inner-loop} encapsulates the Lipschitz smoothness assumption of VRMs because the proximal point sub-problem is smooth and strongly convex and lower bound from Theorem 2.1.13 from Nesterov's book \cite{nesterov_lectures_2018} applies hence linear convergence rate is possible. 
             Removing the smoothness assumption of $F$, $\mathbb M$ solves subproblem $\mathcal M_{\kappa^{-1}F}(\cdot, y_k)$ which is only strongly convex.
             Then, lower bound on convergence rate of any first order algorithm becomes $\mathcal O(1/k)$ by Theorem 3.2.5 from Nesterov's book. 
             \par
@@ -1633,7 +1633,7 @@
             So, here is the refined question: 
             \begin{quotation}
                 If we assume that $F$ is any convex function (potentially nonsmooth with gradient that are not locally Lipschitz), would there exist any kind of regularization parameters $(\kappa_k)_{k \ge 0}$, error sequence $\epsilon_k$ such that the worst case total complexity of Catalyst retains convergence rate equals or faster than $\mathcal O\left(1/\sqrt{k}\right)$ (The lower bound of all first order blackbox convex optimization)? 
-                I.e: Does the idea of an inexact proximal point computational oracle lift the theoretical lower bound complexity on first order blackbox convex optimization? 
+                I.e: Does the idea of an inexact proximal point computational oracle lift the theoretical lower bound of worst case complexity on first order blackbox convex optimization? 
             \end{quotation}
             If the worst case lower bound is faster, then we had extended the Catalyst Framework to convex function without Lipschitz smooth gradient, otherwise, it leads to the unintuitive result that lower bound $\mathcal O\left(1/\sqrt{k}\right)$ still holds which will show a concept of universality of the lower bound results for blackbox convex optimizations. 
             \par

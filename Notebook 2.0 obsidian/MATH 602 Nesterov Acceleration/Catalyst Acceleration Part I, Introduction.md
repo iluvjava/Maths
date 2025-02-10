@@ -15,17 +15,18 @@ In this section, we will first standardize the notations, it helps with summariz
 
 $$
 \begin{aligned}
-    & F: \R^n \mapsto \R^n, \tilde F  \approx F, 
+    & F: \R^n \mapsto \R^n
     \\
-    & \mathcal M^{\lambda_k}(x; y) := F(x) + \frac{1}{2\lambda_k}\Vert x - y\Vert^2. 
+    & \mathcal M^{\lambda}_F(x; y) := F(x) + \frac{1}{2\lambda}\Vert x - y\Vert^2, 
     \\
-    & \mathcal J_{\lambda_k} :=  (I + \lambda_k\partial F)^{-1}, 
+    & \mathcal J_{\lambda F} :=  (I + \lambda\partial F)^{-1}
+    = \argmin{x \in \R^n}
+    \left\lbrace
+        \mathcal M_F^\lambda(x; y)
+    \right\rbrace,
     \\
-    & \widetilde{\mathcal J}_{\lambda_k} \approx  (I + \lambda_k\partial F)^{-1},
-    \\
-    & \mathcal G_{\lambda_k} := \lambda_k^{-1}(I - \mathcal J_{\lambda_k}),
-    \\
-    & \widetilde{\mathcal G}_{\lambda_k} := \lambda_k^{-1}(I - \widetilde{\mathcal J}_{\lambda_k}). 
+    & \mathcal G_{\lambda F} := 
+    \lambda^{-1}(I - \mathcal J_{\lambda F}), 
 \end{aligned}
 $$
 
@@ -41,19 +42,22 @@ To ease the notation, sometimes their subscript will become $k$ when it's clear 
 > 2. Let $(\alpha_k)_{k \ge0}$ be a sequence of $\alpha_i \in (0, 1)$, and it has $\phi_{k + 1}(x) - \phi_k(x) \le -\alpha_k(\phi_k(x) - F(x))$ for all $x \in \R^n$. 
 
 
-
-
 ---
 ### **H. Lin 2015, Universal Catalyst**
 
-Denote: 
+Equation below fefines the inexact proximal point evaluation with absolute error. 
 
 $$
 \begin{aligned}
-    x_k^* 
-    &=\mathcal J_{\kappa^{-1}} y_{k - 1}, 
-    \\
-    x_k & \approx \mathcal J_{\kappa^{-1}} y_{k - 1}. 
+    J_{\kappa F}^\epsilon (y) := 
+    \left\lbrace
+        x \in \R^n \left |\;
+            \mathcal M_{F}^{1/\kappa}(x, y) - 
+            \mathcal M^*_{F,2/\kappa}(x, y) 
+            \le 
+            \epsilon
+        \right.
+    \right\rbrace.
 \end{aligned}
 $$
 
@@ -66,8 +70,7 @@ We summarize some key points for lemmas in the Appendix:
 
 #### **Lemma A.7 | Controlling the Error on the Nesterov's Lower Estimating Sequence**
 > Let $F$ be a $\mu\ge 0$ strongly convex and fix $\kappa$. 
-> If $x_k$ is an inexact proximal point evaluation of $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ such that there exists $\epsilon_k$ where $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k - 1}, y_{k - 1}) \le \epsilon_k$. 
-> Denote $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$ it has for all $x$: 
+> If $x_k$ is an inexact proximal point evaluation of $x_k \in \mathcal J_{\kappa^{-1}}^{\epsilon_k} y_{k - 1}$, $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$ it has for all $x$: 
 > $$
 > \begin{aligned}
 >     F(x) &\ge 
