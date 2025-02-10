@@ -1622,15 +1622,14 @@
             This seemingly raises a crucial question: ``Where does the Lipschitz continuous gradient of the smooth part make its presence in the Catalyst Framework?''
             \par
             A careful reader will realize that Assumption \ref{ass:linear-convergence-inner-loop} encapsulates the Lipschitz smoothness assumption of VRMs because the proximal point sub-problem is smooth and strongly convex and lower bound from Theorem 2.1.13 from Nesterov's book \cite{nesterov_lectures_2018} applies hence linear convergence rate is possible. 
-            Removing the smoothness assumption of $F$, $\mathbb M$ solves subproblem $\mathcal M_{\kappa^{-1}F}(\cdot, y_k)$ which is only strongly convex.
+            Removing the smoothness assumption of $F$, then $\mathbb M$ solves $\mathcal M_{\kappa^{-1}F}(\cdot, y_k)$ which is $\kappa > 0$ strongly convex.
             Then, lower bound on convergence rate of any first order algorithm becomes $\mathcal O(1/k)$ by Theorem 3.2.5 from Nesterov's book. 
             \par
             From a complexity theory point of view, Catalyst acceleration didn't attempt at narrowing the lower complexity bound for functions that are convex and nonsmooth. 
             At the same time, the theories of lower bound on blackbox optimization also cannot be applied for Catalyst Accelerations because they are based on different computational oracles. 
             It is possible that, for any blackbox nonsmooth optimization problem, the same lower bound convergence rate $\mathcal O\left(1/\sqrt{k}\right)$ as stated in Theorem 3.2.1 in Nesterov's book \cite{nesterov_lectures_2018} is true. 
-            Unfortunately it is nontrivial to see it as true because $\mathbb A$ optimizes Moreau Envelope $\mathcal M^*_{\kappa^{-1}F}(x)$ through inexact evaluation and the Moreau Envelope has Lipschitz gradient. 
-            For $\mathbb A$ Theorem 3.2.1 doesn't apply. 
-            So, here is the refined question: 
+            Unfortunately it doesn't apply because $\mathbb A$ optimizes Moreau Envelope $\mathcal M^*_{\kappa^{-1}F}(x)$ through inexact evaluation and the Moreau Envelope has Lipschitz gradient. 
+            Here is the refined question: 
             \begin{quotation}
                 If we assume that $F$ is any convex function (potentially nonsmooth with gradient that are not locally Lipschitz), would there exist any kind of regularization parameters $(\kappa_k)_{k \ge 0}$, error sequence $\epsilon_k$ such that the worst case total complexity of Catalyst retains convergence rate equals or faster than $\mathcal O\left(1/\sqrt{k}\right)$ (The lower bound of all first order blackbox convex optimization)? 
                 I.e: Does the idea of an inexact proximal point computational oracle lift the theoretical lower bound of worst case complexity on first order blackbox convex optimization? 
