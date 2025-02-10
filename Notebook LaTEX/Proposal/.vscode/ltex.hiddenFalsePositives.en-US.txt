@@ -2,3 +2,4 @@
 {"rule":"CONFUSION_OF_DECENT_DESCENT","sentence":"^\\QWhen \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q convex, it has descent lemma: \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"THE_SUPERLATIVE","sentence":"^\\QThis section present results of numerical experiment for solving the (least absolute shrinkage and selection operator) LASSO problem proposed by Tibshirani \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"PRP_RB_NO_VB","sentence":"^\\QOne intriguingly detail in the Catalyst framework eluded us.\\E$"}
+{"rule":"BU","sentence":"^\\QPreprint by Bu, Mesbashi \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q discusses using an idea called weak estimating sequence to show the linear convergence of NAG for weakly quasi-strongly-convex functions.\\E$"}

@@ -76,6 +76,7 @@
 
 \section{Introduction}
     \begin{frame}{Introduction}
+        Part I: Introduction. 
         \begin{block}{Upcoming Contents: }
             \begin{itemize}
                 \item Notations, proximal gradient inequality, gradient mapping. 
@@ -179,17 +180,18 @@
             \begin{enumerate}
                 \item It puts accelerated inexact proximal point method into a practical setting. 
                 \item It finds application in machine learning, and it accelerates the convergence of Variance Reduced Method (A type of incremental method that is not slower than the exact counterpart). 
-                \item It demonstrates crucial ideas on how prove convergence rate where the evaluation of proximal point method is inexact in the convex settings. 
+                \item It demonstrates crucial ideas on convergence analysis involving nexact evaluation of proximal point method under the the convex settings. 
             \end{enumerate}
         \end{frame}
 
-\section{Content of the draft paper}
+\section{Contents of the draft paper}
     \begin{frame}{Contents of our draft papers}
+        Part II: Contents of our current draft paper. 
         \begin{block}{Upcoming contents}
             We explain results from our relaxed, weak accelerated proximal gradient (R-WAPG). 
             \begin{enumerate}
                 \item The R-WAPG sequence and the method of R-WAPG. 
-                \item The generic convergence of R-WAPG. 
+                \item A generic convergence theorem of R-WAPG. 
                 \item Three equivalent forms of R-WAPG. 
                 \item Specialized convergence results with for specific instances of FISTA variants in the literatures. 
                 \item A parameter free formulation of R-WAPG and the results of our preliminary numerical experiments. 
@@ -368,7 +370,7 @@
         \begin{frame}{R-WAPG momentum form}
             \begin{definition}[R-WAPG momentum form]\label{def:r-wapg-momentum-form}
                 Given any $y_1 = x_1 \in \RR^n$, and sequences $(\rho_k)_{k \ge 0}, (\alpha_k)_{k\ge 0}$ Definition \ref{def:rwapg-seq}. 
-                The algorithm generates iterates $x_{k + 1}, y_{k + 1}$ For $k = 1, 2, \cdots $ by the procedures: 
+                The algorithm generates iterates $x_{k + 1}, y_{k + 1}$ For $k = 1, 2, \ldots $ by the procedures: 
                 {\small
                 \begin{tcolorbox}
                     For $k=1, 2,\ldots $
@@ -392,10 +394,10 @@
 
     \subsection{Unified Convergence claim with relaxed Nesterov's sequence}
         \begin{frame}{Summary of our results}
-            With the equivalent representations and the convergence claim for relaxed sequence $(\alpha_k)_{k \ge 0}$ of the R-WAPG, we are able to unifies: 
+            With the equivalent representations and the convergence claim for relaxed sequence $(\alpha_k)_{k \ge 0}$ of the R-WAPG, we are able to unify the convergence rate of: 
             \begin{enumerate}
-                \item Several Euclidean variants of the FISTA algorithm. 
-                \item Nontraditional choices of momentum sequences. 
+                \item Three Euclidean variants of the FISTA algorithm. 
+                \item Constant momentum APG for strongly convex objective.  
             \end{enumerate}
             The table below summarizes our major results. \begin{table}[H]
             {\tiny
@@ -459,7 +461,7 @@
                 \STATE{\textbf{Compute: } $f(y_k)$; }
                 \FOR{$k = 0, 1, 2, \cdots, N$}
                     \STATE{\textbf{Compute: }$\nabla f(y_k); x^+:= [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$;}
-                    \WHILE{$L/2\Vert x^+ - y\Vert^2 < D_f(x^+, y)$}
+                    \WHILE{$L/2\Vert x^+ - y_k\Vert^2 < D_f(x^+, y_k)$}
                         \STATE{$L:= 2L$;}
                         \STATE{$x^+ = [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$; }
                     \ENDWHILE
@@ -484,8 +486,10 @@
             {\footnotesize
             \begin{align*}
                 \delta_k := \log_2\left(
-                    \NOG_k := \frac{F(x_k) - F^*}{F(x_0) - F^*}
-                \right). 
+                    \NOG
+                \right)
+                \text{ with } 
+                \NOG_k := \frac{F(x_k) - F^*}{F(x_0) - F^*}
             \end{align*}
             }
             This is our first numerical experiment is: 
@@ -494,9 +498,22 @@
             \end{align*}
             Our setup has: 
             \begin{enumerate}
-                \item Same initial guess shared by FR-WAPG from us, and  M-FISTA, V-FISTA in (10.7.7, 10.7.6) by Beck \cite{beck_first-order_2017}. It's repeated for 30 different random initial guesses. 
+                \item Same initial guess $x_0$ shared by FR-WAPG,  M-FISTA and V-FISTA in (10.7.7, 10.7.6) by Beck \cite{beck_first-order_2017} repeated with 30 different random initial guesses. 
                 \item Min, max, and median of $\delta_k$ measured for all iterative method.
-                \item $\mu, L$ were given in prior to produce diagonal matrix $A = \text{diag}(0, \mu + (L-\mu)(N - 1)^{-1}, \mu + 2(L-\mu)(N - 1)^{-1}, \cdots, \mu + (N - 2)(L - \mu)^{-1}, L)$, but M-FISTA, FR-WAPG were not fed these parameters. 
+                \item $\mu, L$ were given in prior to produce diagonal matrix 
+                {\footnotesize
+                \begin{align*}
+                    A = \text{diag}
+                    \left(0, 
+                        \mu + \frac{L - \mu}{N - 1},
+                        \mu + 2\frac{L - \mu}{N - 1}, 
+                        \ldots, 
+                        \mu + \frac{(N - 2)(L - \mu)}{N - 1}, 
+                        L
+                    \right). 
+                \end{align*}
+                }
+                M-FISTA, FR-WAPG were not fed these parameters. 
             \end{enumerate}
         \end{frame}
         \begin{frame}{Simple quadratic optimizations results}
@@ -592,12 +609,13 @@
         
 \section{Selected contents from Catalyst Meta Accelerations}
     \begin{frame}{Selected contents from Catalyst Meta Accelerations}
+        Part III: Catalyst Acceleration and future works. 
         \begin{block}{Upcoming Contents}
             \begin{enumerate}
                 \item Notations, assumptions. 
                 \item Inexact proximal point evaluations criteria. 
-                \item Structure of Catalyst accelerations and inner/out loop complexity results from Lin et al's first Catalyst paper \cite{lin_universal_2015}. 
-                \item Catalyst acceleration with relative error crition, Lin et al's second paper \cite{lin_catalyst_2018}.
+                \item Structure of Catalyst accelerations and inner/out loop complexity results from Lin et al.'s first Catalyst paper \cite{lin_universal_2015}. 
+                \item Catalyst acceleration with relative error criterion, Lin et al.'s second paper \cite{lin_catalyst_2018}.
                 \item Comments on future works for Catalyst by Necoara et al. \cite{necoara_linear_2019} and our questions about the Catalyst Acceleration Framework. 
             \end{enumerate}
         \end{block}
@@ -639,8 +657,8 @@
                     := 
                     \left\lbrace
                         z \in \RR^n \left| \;
-                            \mathcal M_F^{\kappa^{-1}}(z; x) - 
-                            \mathcal M^*_{F, \kappa^{-1}}(z; x)
+                            \mathcal M_F^{1/\kappa}(z; x) - 
+                            \mathcal M^*_{F, 1/\kappa}(z; x)
                             \le \frac{\kappa\delta}{2}\Vert x - z\Vert^2
                         \right.
                     \right\rbrace. 
@@ -685,12 +703,12 @@
             The following assumption is crucial, and we will return to it. 
             \begin{assumption}[Linear convergence of inner loop]\label{ass:linear-convergence-inner-loop}
                 For any $k \in \N$, $y \in \RR^n$. 
-                Suppose $\mathbb M$ generates iterates $(z_{k, t})_{t \ge 0}$ for the inner loop iteration such that there exists $A > 0$, and it has: 
+                Suppose $\mathbb M$ generates iterates $(z_{k, t})_{t \ge 0}$ for the inner loop iteration such that there exists $C_{\mathbb M} > 0$, and it has: 
                 {\small
                 \begin{align*}
                     \mathcal M_F^{\kappa^{-1}}(z_{k, t}, y) - \mathcal M^*_{F, \kappa^{-1}}(y) 
                     &\le 
-                    A(1 - \tau_{\mathbb M})^t
+                    C_{\mathbb M}(1 - \tau_{\mathbb M})^t
                     \left(
                         \mathcal M_{F}^{\kappa^{-1}}(z_{k,0})
                         -
@@ -700,7 +718,7 @@
                 }
             \end{assumption}
         \end{frame}
-        \begin{frame}{Outer loop complexity, strong convex case}
+        \begin{frame}{Outer loop complexity, $\mu > 0$}
             This is Theorem 3.1 in Lin et al. \cite{lin_universal_2015}. 
             \begin{theorem}[]\label{thm:err-seq-outer-s-cnvx}
             {\small
@@ -724,12 +742,12 @@
             }
             \end{theorem}
         \end{frame}
-        \begin{frame}{Outer loop complexity, convex but not strongly convex case}
+        \begin{frame}{Outer loop complexity, $\mu \ge 0$}
             This is Theorem 3.3 from Lin et al. \cite{lin_universal_2015}. 
             \begin{theorem}[]\label{thm:erro-seq-outer-cnvx}
             {\small
-                For $\mathbb A$ with regularization parameter $\kappa > 0$. 
-                Assume that $F$ is convex but with strong convexity constant $\mu = 0$. 
+                For $\mathbb A$ with regularization parameter $\kappa > 0$.
+                Assume that $F$ is convex but with strong convexity constant $\mu \ge 0$. 
                 Choose $\alpha_0 = (\sqrt{5} - 1)/2$ and the absolute error sequence 
                 \begin{align*}
                     \epsilon_k &= \frac{2(F(x_0) - F^*)}{9(k + 2)^{4 + \eta}} \quad 
@@ -748,8 +766,10 @@
             \end{theorem}
         \end{frame}
         \begin{frame}{Inner loop complexity, absolute errors}
-            The followings are Proposition 3.2, 3.4 from Lin et al. \cite{lin_universal_2015}. 
-            \begin{proposition}[Inner loop complexity strongly convex]\label{prop:inner-loop-complexity-s-cnvx}
+            The followings are Proposition 3.2, 3.4 from Lin et al. 
+            \cite{lin_universal_2015}. 
+            \begin{proposition}[Inner loop complexity $\mu > 0$]
+            \label{prop:inner-loop-complexity-s-cnvx}
             {\footnotesize
                 Under the same settings of Theorem \ref{thm:err-seq-outer-s-cnvx}, suppose that 
                 \begin{enumerate}
@@ -757,10 +777,11 @@
                     \item $\mathbb M$ is initialized with  $z_{k, 0} = x_{k - 1}$ for all $k \ge 2$. 
                 \end{enumerate}
                 Then, the precision $\epsilon_k$ is achieved within at most a number of iteration $T_{\mathbb M} \le \widetilde {\mathcal O}(1/ \tau_{\mathbb M})$. 
-                Here $\widetilde{\mathcal O}$ hides logarithmic complexity in $\mu, \kappa$ and other constants. 
+                Here $\widetilde{\mathcal O}$ hides logarithmic complexity, $\mu, \kappa$ and other constants. 
             }
             \end{proposition}
-            \begin{proposition}[Inner loop, convex but not strongly convex]\label{prop:inner-loop-complexity-cnvx}
+            \begin{proposition}[Inner loop complexity $\mu \ge 0$]
+            \label{prop:inner-loop-complexity-cnvx}
             {\footnotesize
                 Under the settings of Theorem \ref{thm:erro-seq-outer-cnvx}, suppose that:
                 \begin{enumerate}
@@ -773,7 +794,7 @@
         \end{frame}
 
         \begin{frame}{Total complexity}
-            We count $m$, the number of iteration experienced by $\mathbb M$ for the $k$ th iteration of $\mathbb A$. 
+            We count $m$, the number of iteration experienced by $\mathbb M$ up to the $k$ iteration of $\mathbb A$. 
             \begin{enumerate}
                 \item If $\mu > 0$, \ref{prop:inner-loop-complexity-s-cnvx} gives $m \le T_{\mathbb M}k$. 
                 Substituting $k \ge m/T_{\mathbb M}$ into Theorem \ref{thm:err-seq-outer-s-cnvx}: 
@@ -794,7 +815,7 @@
                     \right). 
                 \end{align*}
                 }
-                \item If $\mu = 0$, using Proposition \ref{prop:inner-loop-complexity-cnvx}, Theorem \ref{thm:erro-seq-outer-cnvx} it has 
+                \item If $\mu = 0$ so $F$ is not necessarily strongly convex, using Proposition \ref{prop:inner-loop-complexity-cnvx}, Theorem \ref{thm:erro-seq-outer-cnvx} it has 
                 {\footnotesize
                 \begin{align*}
                     m &\le \sum_{i - 1}^{k} k T_{\mathbb M} \log(i + 2) \le k T_{\mathbb M} \log(k + 2) 
@@ -894,11 +915,11 @@
             The total number of iteration $N_{\mathbb M}$ experienced by $\mathbb M$ for $\mathbb A$ to produce $x_k$ such that $F(x_k) - F^* \le \epsilon$ when using termination criterion C2, warm start and error sequence strategies in Theorem \ref{thm:catalyst2-outer-comp} has: 
             \begin{enumerate}
                 \item $N_{\mathbb M} \le \widetilde{\mathcal O}\left(\tau_{\mathbb M}^{-1}\sqrt{\kappa/\epsilon}\log(\epsilon^{-1})\right)$ if $\mu = 0$, 
-                \item $N_{\mathbb N}\le \widetilde{O}\left((\tau_{\mathbb M}\sqrt{q})^{-1}\log(\epsilon^{-1})\right)$ if $\mu > 0$. 
+                \item $N_{\mathbb N}\le \widetilde{\mathcal O}\left((\tau_{\mathbb M}\sqrt{q})^{-1}\log(\epsilon^{-1})\right)$ if $\mu > 0$. 
             \end{enumerate}
             In addition, termination criterion C2 has advantages: 
             \begin{enumerate}
-                \item $\delta_k$ doesn't requite $F^*$. 
+                \item Relative error sequence $\delta_k$ doesn't requite $F^*$. 
                 \item Doesn't require bounded level set assumption for inner loop complexity bound. 
                 \item Generalize to non-convex settings which was also the focus of Paquette's paper on Catalyst \cite{paquette_catalyst_2018}. 
             \end{enumerate}
@@ -916,7 +937,7 @@
             \end{enumerate}
             Discussion about Catalyst future works is summarized here: 
             \begin{alertblock}{Future works}
-                Extend linear convergence of accelerated gradient for variance reduced incremental methods such as the Catalyst Framework into a weaker settings. 
+                Extend linear convergence of accelerated gradient for variance reduced incremental methods such as the Catalyst Framework into a weaker setting. 
             \end{alertblock}
             
         \end{frame}
@@ -935,11 +956,14 @@
         \begin{frame}{The answer to our question is nontrivial}
             Without smoothness assumption on $F$, the following considerations apply. 
             \begin{enumerate}
-                \item $\mathbb A$ optimizes inexact Moreau Envelope $\mathcal M^*_{\kappa^{-1}, F}(y)$ which is smooth and strongly convex if $F$ is convex hence the $\mathcal O(1/\sqrt{k})$ lower bound of Theorem 3.2.1 \cite{nesterov_lectures_2018} complexity for all convex first order optimization doesn't apply for the total complexity.  
-                \item Instead, Theorem 2.1.7 \cite{nesterov_lectures_2018} applies and the lower complexity bound $\mathbb A$ is $\mathcal O(1/k^2)$. 
-                \item Linear convergence of $\mathbb M$ Theorem 2.1.17 fails instead Theorem 3.2.5 applies and the lower bound is $\mathcal O(1/k)$. 
+                \item $\mathbb A$ optimizes inexact Moreau Envelope $\mathcal M^*_{\kappa^{-1}, F}(y)$ which is smooth and strongly convex if $F$ is convex hence $\mathcal O(1/\sqrt{k})$ from Theorem 3.2.1 \cite{nesterov_lectures_2018} doesn't apply for the total complexity.  
+                \item Theorem 2.1.7 \cite{nesterov_lectures_2018} doesn't apply because the lower complexity bound $\mathbb A$ is $\mathcal O(1/k^2)$ assume exact gradient evaluations. 
+                \item Theorem 2.1.17 \cite{nesterov_lectures_2018} (Linear rate lower bound for strong convexity and smoothness) doesn't apply on $\mathbb M$. 
+                Instead Theorem 3.2.5 applies and the lower bound is $\mathcal O(1/k)$. 
             \end{enumerate}
-            We note that the question has practical importance because the method of subgradient descent with Polyak stepsizes are optimal for Smooth, strongly convex, and smooth plus strongly convex function on a compact domain. See Hazan and Kakade\cite{hazan_revisiting_2022}. 
+            Subgradient descent with Polyak step size reaches the lower bound of worst case of Strongly convex, strongly convex and smooth.
+            See Hazan et al. \cite{hazan_revisiting_2022}. 
+
         \end{frame}
 
 \section{References}
