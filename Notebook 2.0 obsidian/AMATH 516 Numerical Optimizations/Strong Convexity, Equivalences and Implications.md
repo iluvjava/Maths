@@ -4,12 +4,12 @@
 ---
 ### **Intro**
 
-Here in this file we make use the following specific references: 
+
 
 **References**: 
 * Blog Post: [here](http://xingyuzhou.org/blog/notes/strong-convexity)
 * Arxiv paper with more discussions and proofs: [here](https://arxiv.org/pdf/1803.06573.pdf)
-* Chapter of Nesterov book "Lectures on Convex Optimizations" is also a good source. However he consider smooth function. 
+* Chapter of Nesterov book "Lectures on Convex Optimizations" is also a good source. However, he considers smooth function. 
   
 #### **Def | Strongly Convex Function**
 
@@ -17,22 +17,22 @@ Here in this file we make use the following specific references:
 
 **Remarks**
 
-Be careful about the use of 2-norm here. In the general case, things might change, and there are alternative definition of strong convexity that works with different norm and vector spaces. This definition can be generalized with the energy norm. Generalizing to other norms (such as the infinity norm) will break the definition. 
+This definition can be generalized to other norms/Bregman Divergences. 
 
 **Conditions**
 
-Let $f:\mathbb E\mapsto \mathbb{\bar R}$ is a $\alpha$ strongly convex function then for any $x,y\in \mathbb E$, the following conditions are equivalent: 
+Let $f:\mathbb E\mapsto \mathbb{\bar R}$ is a $\alpha \ge 0$ strongly convex function then for any $x,y\in \mathbb E$, the following conditions are equivalent: 
 
-1. $f(y) - f(x) - \langle \partial f(x),y - x \rangle\ge \frac{\alpha}{2}\Vert y - x\Vert^2$
+1. $f(y) - f(x) - \langle \partial f(x),y - x \rangle\ge \frac{\alpha}{2}\Vert y - x\Vert^2$. 
 2. $\langle \partial f(y) - \partial f(x), y - x\rangle \ge \alpha\Vert y - x\Vert^2$. 
 3. $f(\lambda x + (1 - \lambda)y) \le \lambda f(x) + (1 - \lambda)f(y) -\alpha\frac{\lambda(1 - \lambda)}{2}\Vert y - x\Vert^2, \forall \lambda \in [0, 1]$, the stronger Jensen's inequality for strong convex function. 
 
 
 **Remarks**
 
-We abuse notation slightly and write the subgradient inside of the inner product, resulting in the inner product being a set of values. In the definition, the norm is not specified, and it doesn't have to be the Euclidean norm. 
+We abuse notation slightly and write the subgradient inside the inner product, resulting in the inner product being a set of values. In the definition, the norm is not specified, and it doesn't have to be the Euclidean norm. 
 
-1. The condition is saying that the difference between the affine minorants of the function at a given point $x$ and the function itself can is a coercive function. one immediate consequence of this formulation is that strong convex function is coercive.
+1. The condition is saying that the difference between the affine supports of the function at a given point $x$ and the function itself can is a coercive function. An immediate consequence is coerciveness.
 2. The condition is saying that the subgradient of a strongly convex function is more than monotone, and it has a lower bound to the monotonicity of the subgradient operator. 
 3. The condition is a stronger version of the Jensen's inequality for the convex case. 
 
@@ -44,12 +44,13 @@ We abuse notation slightly and write the subgradient inside of the inner product
 
 Let $f:\mathbb E\mapsto \mathbb{\bar R}, \alpha > 0$, we consider the following conditions for the function: 
 
-4. $\frac{1}{2}\text{dist}(\mathbf 0; \partial f(x))^2 \ge \alpha (f(x) - f^+)$ where $f^+$ is a minimum of the function, and this is called the Polyak-Lojasiewicz (PL) inequality.
+4. **(PL Error Bounds)**. $\frac{1}{2}\text{dist}(\mathbf 0; \partial f(x))^2 \ge \alpha (f(x) - f^+)$ where $f^+$ is a minimum of the function, and this is called the Polyak-Lojasiewicz (PL) inequality.
 	1. References, for globally Lipschitz Gradient strongly convex functions: [here](https://angms.science/doc/NCVX/PolyakLojasiewiczIQ.pdf). 
-5. $\forall x, y\in \mathbb E, u\in \partial f(x), v\in \partial f(y): \Vert u - v\Vert\ge \alpha\Vert x - y\Vert$. 
-6. $f(y) \ge f(x) + \langle u, y - x\rangle + \frac{1}{2\alpha}\Vert u - v\Vert^2, \forall u\in  \partial f(x), v\in \partial f(y)$. 
-7. $\langle \partial f(x)-\partial f(y), x - y\rangle \le \frac{1}{\alpha}\Vert u - v\Vert^2, \forall u\in \partial f(x), v\in \partial f(y)$. 
-8. if $x^+\in \arg\min_{x}f(x)$ then $f(x) - f(x^+) \ge \frac{\alpha}{2}\Vert x - x^+\Vert^2$ and $x^+$ is a unique minimizer. This is called the quadratic growth condition. 
+	2. This is also called the Error Bounds. 
+5. **(Subgradient Strong Monotonicity).** $\forall x, y\in \mathbb E, u\in \partial f(x), v\in \partial f(y): \Vert u - v\Vert\ge \alpha\Vert x - y\Vert$. 
+6. **(Dual Subgradient Inequality).** $f(y) \ge f(x) + \langle u, y - x\rangle + \frac{1}{2\alpha}\Vert u - v\Vert^2, \forall u\in  \partial f(x), v\in \partial f(y)$. 
+7. **(Co-Coersiveness)**. $\langle \partial f(x)-\partial f(y), x - y\rangle \le \frac{1}{\alpha}\Vert u - v\Vert^2, \forall u\in \partial f(x), v\in \partial f(y)$. 
+8. **(Quadratic Growth)**. If $x^+\in \arg\min_{x}f(x)$ then $f(x) - f(x^+) \ge \frac{\alpha}{2}\Vert x - x^+\Vert^2$ and $x^+$ is a unique minimizer. 
 
 **Theorem 2 |  Weaker Implications**
 

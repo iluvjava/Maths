@@ -26,7 +26,7 @@ $$
     \right\rbrace,
     \\
     & \mathcal G_{\lambda F} := 
-    \lambda^{-1}(I - \mathcal J_{\lambda F}), 
+    \lambda^{-1}(I - \mathcal J_{\lambda F}). 
 \end{aligned}
 $$
 
@@ -45,15 +45,15 @@ To ease the notation, sometimes their subscript will become $k$ when it's clear 
 ---
 ### **H. Lin 2015, Universal Catalyst**
 
-Equation below fefines the inexact proximal point evaluation with absolute error. 
+Equation below defines the inexact proximal point evaluation with absolute error. 
 
 $$
 \begin{aligned}
-    J_{\kappa F}^\epsilon (y) := 
+    J_{1/\kappa F}^\epsilon (y) := 
     \left\lbrace
         x \in \R^n \left |\;
             \mathcal M_{F}^{1/\kappa}(x, y) - 
-            \mathcal M^*_{F,2/\kappa}(x, y) 
+            \mathcal M^*_{F,1/\kappa}(x, y) 
             \le 
             \epsilon
         \right.
@@ -68,9 +68,9 @@ We summarize some key points for lemmas in the Appendix:
 4. A.9 Evaluates the consequence of inexact evaluation of proximal point method on the convergence rate implied by the Nesterov's estimating sequence frameworks. 
 
 
-#### **Lemma A.7 | Controlling the Error on the Nesterov's Lower Estimating Sequence**
+#### **Lemma A.7 | Inexact proximal point inequality**
 > Let $F$ be a $\mu\ge 0$ strongly convex and fix $\kappa$. 
-> If $x_k$ is an inexact proximal point evaluation of $x_k \in \mathcal J_{\kappa^{-1}}^{\epsilon_k} y_{k - 1}$, $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$ it has for all $x$: 
+> If $x_k$ is an inexact proximal point evaluation of $x_k \in \mathcal J_{\kappa^{-1} F}^{\epsilon_k} y_{k - 1}$, $x_k^* = \mathcal J_{\kappa^{-1} F} y_{k - 1}$ it has for all $x$: 
 > $$
 > \begin{aligned}
 >     F(x) &\ge 

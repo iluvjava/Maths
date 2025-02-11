@@ -1,0 +1,9 @@
+- [Moreau Envelope of Strongly Convex Functions](AMATH%20516%20Numerical%20Optimizations/Proximal%20Operator/M%20Env%20of%20S-CNVX%20Function.md)
+- [Strong Convexity, Equivalences and Implications](AMATH%20516%20Numerical%20Optimizations/Strong%20Convexity,%20Equivalences%20and%20Implications.md)
+
+---
+### **Intro**
+
+A comprepehsive guide for proximal 
+Inequality. 
+For Proximal Gradient inequality, a specialized type of proximal inequality with additive smooth and nonsmooth objective, visits [Fundamental Proximal Gradient Inequality](AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Fundamental%20Proximal%20Gradient%20Inequality.md). 

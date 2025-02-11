@@ -201,6 +201,7 @@ $$
     - \langle \xi_k, x - \tilde x_k\rangle
     , 
     \\
+    \implies
     F(x_k)
     \le F(\tilde x_k) 
     &\le 
