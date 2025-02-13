@@ -2,7 +2,7 @@
 
 % \input{presets/wang_full.tex}
 
-\usepackage{ifthen}\newboolean{draftmode}\setboolean{draftmode}{false}
+\usepackage{ifthen}\newboolean{draftmode}\setboolean{draftmode}{true}
 \input{presets/wang/input.tex}
 \input{presets/misc.tex}
 \input{presets/julia_lstlisting.tex}
@@ -38,14 +38,16 @@
     We study the accelerated proximal gradient method where the sequence that controls the momentum term doesn't follow the Nesterov's rule. 
     The paper proposed R-WAPG, a generic algorithm that unifies the convergence results for strongly convex and convex where the extrapolation constant is characterized by a sequence that is much weaker than the Nesterov's rule. 
     The R-WAPG provides a unified framework for several notable Euclidean variants of FISTA and verify their convergence. 
-    In addition, we also proposed the convergence rate of strongly convex objective with a constant momentum term. 
+    In addition, we also study the convergence rate of strongly convex objective with a constant momentum term. 
     We reformulate R-WAPG so that it doesn't require any parameter without using the idea of restarting which we call ``Free R-WAPG". 
     Explorative numerical experiments were conducted to show its competitive convergence. 
 \end{abstract}
 
 \noindent{\bfseries 2010 Mathematics Subject Classification:}
 Primary 90C30, 90C25, 65K10; Secondary 65Y20. 
-\noindent{\bfseries Keywords: } Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rate. 
+\noindent{\bfseries Keywords: } 
+\\
+Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rate. 
 
 \section{Introduction}
     \subsection{Motivations}
@@ -113,7 +115,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         Our second main result shows that for any $\alpha_k \ge 0$ the choice of sequence $\alpha_k = a/(a + k)$ results in $\rho_k > 1$ for all $k \in \N$ such that R-WAPG reduces to a variant of FISTA proposed in Chambolle, Dossal \cite{chambolle_convergence_2015}, and we are able to show the same convergence rate in Theorem \ref{thm:r-wapg-on-cham-doss}. 
         When $\rho_k = 1, \mu = 0$, R-WAPG reduces perfectly to FISTA by Beck \cite{beck_first-order_2017}, if $\mu > 0, \rho_k = 1$, it reduces to the V-FISTA by Beck \cite{beck_first-order_2017}. 
         In Theorem \ref{thm:fixed-momentum-fista}, it demonstrates that R-WAPG frameworks gives a linear convergence claim for all fixed momentum method where $\alpha_k := \alpha \in (\mu/L, 1)$ and  $F$ is $\mu > 0$ strongly convex. 
-        Finally, we did the tedious work and present three equivalent forms of R-WAPG in Section \ref{sec:rwapg-equiv-repr} that are comparable to notable Euclidean variants of FISTA and beyond. This shows the descriptive power of our R-WAPG framework. 
+        Finally, we did the necessary work and present three equivalent forms of R-WAPG in Section \ref{sec:rwapg-equiv-repr} that are comparable to notable Euclidean variants of FISTA and beyond. This shows the descriptive power of our R-WAPG framework. 
         \par
         Our practical contribution is an algorithm inspired by a detail in the proof of Proposition \ref{prop:wapg-convergence} which is called ``Parameter Free R-WAPG'' (See Algorithm \ref{alg:free-rwapg}). 
         The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ from the Bregman divergence of $f$ with minimal computational cost. 
@@ -126,7 +128,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         Section \ref{sec:rwapg-equiv-repr} gives three equivalent representations of the R-WAPG algorithms that are comparable to instances of APG found in the literatures. 
         Section \ref{sec:rwapg-literatures} formulates FISTA, and V-FISTA sequences as instance of the R-WAPG sequences.
         The section proves the convergence rate of several variants of FISTA using the equivalent forms introduced in Section \ref{sec:rwapg-equiv-repr} and the convergence rate developed Section \ref{sec:rwapg-formulation-convergence}. 
-        Finally, in Section \ref{sec:free-rwapg} gives a formulation of a parameter free version of R-WAPG algorithm and showcase the numerical experiments for regression, LASSO. 
+        Finally, Section \ref{sec:free-rwapg} gives a formulation of a parameter free version of R-WAPG algorithm and showcase the numerical experiments for regression, LASSO. 
 
 
 \section{Preliminaries}\label{sec:preliminaries}
@@ -141,8 +143,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         \end{enumerate}
     \end{assumption}
     The extended real is defined as $\overline \RR := \RR \cup \{\infty, - \infty\}$. 
-    Using $\overline \RR$ we model a general convex function $g: Q \rightarrow \RR$ as a function on $\RR$. 
-    If $x \in \RR^n \setminus Q$ then $g(x) = \infty$ by definition. 
+    Using $\overline \RR$ we model a general convex function $g: \RR^n \rightarrow \overline{\RR}$ as a function on $\RR$.  
     The domain has the definition $\dom(g) := \{x \in \RR^n : g(x) < \infty\}$. 
     A proper function $g$ means that there exists some $x \in \dom(g)$ such that $g(x) > -\infty$. 
     \par
@@ -340,9 +341,11 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
 \section{Stepwise formulation of weak accelerated proximal gradient}\label{sec:stepwise-stuff}
     The goal of this section is to build the R-WAPG algorithm which is described in the Definition \ref{def:wapg} of the next section. 
     \par 
-    Definition \ref{def:stepwise-wapg} which describes what happens at a single iteration of the R-WAPG algorithm. 
-    It defines a procedure of generating $x_{k + 1}, v_{k + 1}$ given any $x_k, v_k$. 
-    Proposition \ref{prop:stepwise-lyapunov} states the inequality that describes a decreasing quantity that involves $F(x_k), F(x_{k + 1})$ at each single iteration. 
+    Definition \ref{def:stepwise-wapg} describes one iteration of the R-WAPG algorithm. 
+    It defines the procedure of generating $x_{k + 1}, v_{k + 1}$ given any $x_k, v_k$. 
+    Proposition \ref{prop:stepwise-lyapunov} states the inequality \eqref{ineq:stepwise-lya-2}  of a decreasing quantity involving $F(x_k), F(x_{k + 1})$ at each iteration.
+    \par
+    The assumption below is crucial to describing the convergence rate of the R-WAPG and it requires the convexity assumption on $F$. 
     \begin{assumption}
         Given $x_k, y_k, v_k$ where $k \in \mathbb Z_+$, we define the following quantities
         \begin{align}
@@ -529,60 +532,64 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
         For notation simplicity we drop the subscript $k$, $k + 1$ on $\gamma_{k}, \hat \gamma_{k + 1}$ because they are fixed throughout the proof. 
         % PROOF SUMMARIZATIONS STARTS ==================================================================================
         Proceeding stepwise, we will show the following intermediate results: 
-        \begin{align}\tag{Step 1}\label{eqn:stepwise-lya-proof-step-1}
-            \begin{split}
-                F(x_{k + 1}) + R_{k + 1}
-                &= 
-                F(x_k) - \epsilon_k - \langle  g_k, x_k - y_k\rangle
-                - \frac{\alpha_k^2}{2\hat \gamma}\Vert g_k\Vert^2
-                \\
-                &\quad 
+        \begin{enumerate}
+            \item Step 1: 
+            \begin{align}\tag{Step 1}\label{eqn:stepwise-lya-proof-step-1}
+                \begin{split}
+                    F(x_{k + 1}) + R_{k + 1}
+                    &= 
+                    F(x_k) - \epsilon_k - \langle  g_k, x_k - y_k\rangle
+                    - \frac{\alpha_k^2}{2\hat \gamma}\Vert g_k\Vert^2
+                    \\
+                    &\quad 
+                        + 
+                        (1 - \alpha_k)
+                        \left(
+                            \epsilon_k + R_k + 
+                            \frac{\mu\alpha_k\gamma}{2\hat \gamma}
+                            \Vert v_k - y_k\Vert^2
+                        \right). 
+                \end{split}
+            \end{align}
+            \item Step 2: 
+            \begin{align}\tag{Step 2}\label{eqn:stepwise-lya-proof-step-2}
+                \begin{split}
+                    \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^* \Vert^2 
+                    &=                 
+                    \frac{(1 - \alpha_k)\gamma + \mu \alpha_k}{2} \Vert v_k - x^*\Vert^2
+                    \\
+                    & \quad 
+                        + 
+                        \left\langle g_k, 
+                            - \alpha_k(v_k - x^*) 
+                            - \frac{\alpha_k^2\mu}{\hat \gamma}(y_k - v_k)
+                        \right\rangle
+                    \\
+                    & \quad 
+                        + \frac{\alpha_k^2}{2\hat \gamma}\Vert g_k\Vert^2
+                        + \frac{\alpha_k^2 \mu^2}{2\hat \gamma}\Vert y_k - v_k\Vert^2
+                        + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle. 
+                \end{split}
+            \end{align}
+            \item Step 3: adding both side of Equations \eqref{eqn:stepwise-lya-proof-step-1}, \eqref{eqn:stepwise-lya-proof-step-2}, it follows: 
+            \begin{align}\tag{Step 3}\label{eqn:stepwise-lya-proof-step-3}
+                \begin{split}
+                    F(x_{k + 1}) + R_{k + 1} + 
+                    \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^*\Vert^2
+                    &= 
+                    F(x_k) - \alpha_k\left(
+                        \epsilon_k + \langle g_k, x_k - x^*\rangle
+                        - \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+                    \right)
+                    \\
+                    & \quad 
                     + 
-                    (1 - \alpha_k)
-                    \left(
-                        \epsilon_k + R_k + 
-                        \frac{\mu\alpha_k\gamma}{2\hat \gamma}
-                        \Vert v_k - y_k\Vert^2
-                    \right), 
-            \end{split}
-        \end{align}
-        \begin{align}\tag{Step 2}\label{eqn:stepwise-lya-proof-step-2}
-            \begin{split}
-                \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^* \Vert^2 
-                &=                 
-                \frac{(1 - \alpha_k)\gamma + \mu \alpha_k}{2} \Vert v_k - x^*\Vert^2
-                \\
-                & \quad 
-                    + 
-                    \left\langle g_k, 
-                        - \alpha_k(v_k - x^*) 
-                        - \frac{\alpha_k^2\mu}{\hat \gamma}(y_k - v_k)
-                    \right\rangle
-                \\
-                & \quad 
-                    + \frac{\alpha_k^2}{2\hat \gamma}\Vert g_k\Vert^2
-                    + \frac{\alpha_k^2 \mu^2}{2\hat \gamma}\Vert y_k - v_k\Vert^2
-                    + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle,     
-            \end{split}
-        \end{align}
-        Simply adding both side of Equations \eqref{eqn:stepwise-lya-proof-step-1}, \eqref{eqn:stepwise-lya-proof-step-2}, it follows: 
-        \begin{align}\tag{Step 3}\label{eqn:stepwise-lya-proof-step-3}
-            \begin{split}
-                F(x_{k + 1}) + R_{k + 1} + 
-                \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^*\Vert^2
-                &= 
-                F(x_k) - \alpha_k\left(
-                    \epsilon_k + \langle g_k, x_k - x^*\rangle
-                    - \frac{\mu}{2}\Vert y_k - x^*\Vert^2
-                \right)
-                \\
-                & \quad 
-                + 
-                (1 - \alpha_k)\left(
-                    R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
-                \right), 
-            \end{split}
-        \end{align}
+                    (1 - \alpha_k)\left(
+                        R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
+                    \right). 
+                \end{split}
+            \end{align}
+        \end{enumerate}
         To show \eqref{ineq:stepwise-lya-2}, it follows by subtracting $F(x^*)$ on \eqref{eqn:stepwise-lya-proof-step-3} which gives: 
         \begin{align}
             \begin{split}\label{eqn:stepwise-lya-proof-eqn3.2}
@@ -637,7 +644,9 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
             \right). 
         \end{align*}
         }
+        % PROOF SUMMARIZATION ENDS ===========================================================
         Now, it remains to show \eqref{eqn:stepwise-lya-proof-step-1}, \eqref{eqn:stepwise-lya-proof-step-2}, \eqref{eqn:stepwise-lya-proof-step-3}. 
+        \\
         \textbf{Proof of \eqref{eqn:stepwise-lya-proof-step-1}}:
         Consider the first and the third term on LHS of \eqref{ineq:stepwise-lya-2} summed up: 
         \begin{align}\label{eqn:stepwise-lya-proof-eqn1}
@@ -1225,7 +1234,7 @@ Primary 90C30, 90C25, 65K10; Secondary 65Y20.
 
 
 \section{Equivalent representations of R-WAPG}\label{sec:rwapg-equiv-repr}
-    This section reduces Definition \ref{def:wapg} into simpler forms that are comparable to what commonly appears in the literatures. 
+    The goal of this section is to reduce Definition \ref{def:wapg} into simpler forms that are comparable to what commonly appears in the literatures. 
     In the literatures, variants of Accelerated Proximal Gradient algorithm such as FISTA, V-FISTA has different representations. 
     This shows that R-WAPG provides a unified framework. 
     These equivalent representations are listed in Definition \ref{def:r-wapg-intermediate}, \ref{def:r-wapg-st-form} and \ref{def:r-wapg-momentum-form}. 

@@ -33,7 +33,7 @@ $$
 
 They are the model function, the Envelope function, and the resolvent/proximal operator. 
 
---
+---
 ### **Inexact proximal inequality**
 The lemmas that follows show the inequality proximal inequality with inexact evaluations on the resolvent operator. 
 
@@ -77,6 +77,7 @@ $$
 **Remarks**
 
 This is Lemma A.7 in Lin et al.'s 2015 Catalyst paper. 
+It remains to expands some of the squared norm terms to see they become the same. 
 
 #### **Lemma 2 | Absolute error proximal inequality**
 > Let $y \in \R^n, \tilde x \in \R^n$. 
@@ -96,6 +97,7 @@ The model function has quadratic growth conditions over the minimizer $x^*$ by $
 Let $q = \mu + \kappa$ then it has for all $x \in \R^n$: 
 
 $$
+{\small
 \begin{aligned}
     \frac{q}{2}\Vert x - x^*\Vert^2
     &\le 
@@ -125,6 +127,7 @@ $$
     - q\langle x - \tilde x, \tilde x - x^*\rangle
     + \epsilon. 
 \end{aligned}
+}
 $$
 
 Re-arranging the inequality yields the final result which proves the lemma. 
@@ -135,3 +138,11 @@ Lemma 1 only requires quadratic growth conditions while Lemma 2 requires the cha
 Lemma 2 is made on a stronger assumption on the model function $\mathcal M^{1/\kappa}_F$. 
 
 
+---
+### **Delving Deeper in to inexact oracles**
+
+The evaluation of inexact oracles has profund extension to existing theories on the convergence of algorithms, and the properties of functions. 
+
+**References**
+1. Lin et al. "Catalyst acceleration for first-order convex optimization: from theory to practice". 
+2. Devolder et al. "First-order methods of smooth convex optimization with inexact oracle". 
