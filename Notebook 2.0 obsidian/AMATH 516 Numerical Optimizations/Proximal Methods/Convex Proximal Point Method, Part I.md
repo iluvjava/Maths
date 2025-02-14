@@ -92,6 +92,45 @@ $$
 $$
 
 
+#### **Lemma 2 | Convergence rate of a sequence**
+> Let $(\sigma_t)_{t \ge 0}$, and $(\Delta_t)_{t \ge 0}$ be two sequences with the following list of conditions: 
+> - (a): $\sigma_t > 0\; \forall t \ge 0$, the sequence $\sigma_t$ is strictly positive. 
+> - (b): $\Delta_{t + 1} - \Delta_t \le 0$, i.e: $\Delta_t$ monotonically decreases. 
+> - (c): $(\sigma_{t + 1} - \sigma_t)\Delta_t \le 0$, which we call the descent lemma. 
+> 
+> Then the following scenarios are true. 
+> 1. For all $t \ge 0$, $(\sigma_{t + 1} - \sigma_t)\Delta_t = \sigma_{t + 1} \Delta_{t + 1} - \sigma_t \Delta_t - \sigma_{t + 1}(\Delta_{t + 1} - \Delta_t)$. 
+> 2. If (a), (b) are true. Then it has $\sigma_{t + 1}\Delta_{t + 1} - \sigma_t \Delta_t \le (\sigma_{t + 1} - \sigma_t)\Delta_t$. 
+> 3. If (a), (b), (c) are true, then it has: $\sigma_{t + 1}\Delta_{t + 1} - \sigma_t \Delta_{t} \le 0$. 
+
+**Proof**
+
+The proof of (1.), (2.) is direct. 
+Consider 
+
+$$
+\begin{aligned}
+    \sigma_{t + 1}\Delta_{t + 1} - \sigma_t \Delta_t
+    &= 
+    \sigma_{t + 1}(\Delta_{t + 1} - \Delta_t) - \sigma_t \Delta_t + \sigma_{t + 1} \Delta_t
+    \\
+    &= \sigma_{t + 1}(\Delta_{t + 1} - \Delta_t) 
+    + (\sigma_{t + 1} - \sigma_t) \Delta_t
+    \\
+    \iff 
+    (\sigma_{t + 1} - \sigma_t)\Delta_t 
+    &= 
+    \sigma_{t + 1}\Delta_{t + 1} - \sigma_t \Delta_t - \sigma_{t + 1}(\Delta_{t + 1} - \Delta_t)
+    \\
+    & \ge  \sigma_{t + 1}\Delta_{t + 1} - \sigma_t \Delta_t. 
+\end{aligned}
+$$
+
+To prove (c), because (c) is true, then it bounds $\sigma_{t + 1}\Delta_{t + 1} - \sigma_t \Delta_t \le 0$. 
+
+
+
+
 ---
 ### **Convergence in the convex case**
 
@@ -195,13 +234,6 @@ $$
     + 
     (1/2)\Vert x_{t + 1} - x_t\Vert^2
     \\
-    &= 
-    \sigma_{t + 1} (F(x_{t + 1}) - F(x)) 
-    - 
-    (1/2)(\Vert x - x_{t + 1}\Vert^2 - \Vert x - x_t\Vert^2)
-    + 
-    (1/2)\Vert x_{t + 1} - x_t\Vert^2
-    \\
     &\ge
     \sigma_{t + 1} (F(x_{t + 1}) - F(x)) 
     - \sigma_t(F(x_t) - F(x))
@@ -230,7 +262,7 @@ $$
 
 It remains to show **(Step I), (Step II)**. 
 
-**Proof of Step I**. 
+**Proof of (Step I)**. 
 Setting $x = x_{t}$ in the inequality from **(Step I)** it yields: 
 
 $$
@@ -321,728 +353,122 @@ $$
 Re-arranging the above inequality yields the convergence results of the PPM in the convex settings. 
 
 ---
-### **Analysis of Proximal Convex Lower Bounding Function**
+### **In connection between PPM and smooth gradient descent**
 
-Let $f$ convex differentiable and its gradient be $L$-Lipschitz smooth, then the proximal method assists with the derivation of gradient descent method. 
-Use $l_f(x; \bar x)$ to be a linearization of function $f$ at point $\bar x$: 
+This section clarifies the fact that, smooth gradient descent's convergence proof is not different to the convergence proof of the proximal point method. 
+Only a few more steps and it can prove the convergence of smooth gradient descent. 
+See [L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) for comprehensive introduction of convex function with global Lipschitz smooth gradient. 
 
-$$
-\begin{aligned}
-    l_f(x ; \bar x) &= f(\bar x) + \langle \nabla f(x), x - \bar x\rangle \le f(x) 
-    \quad \forall x \in X. 
-\end{aligned}
-$$
-
-We consider the following PPM method with undetermined step size scheme: 
-
-$$
-\begin{aligned}
-    x_{t +1} = \argmin{x\in X} \left\lbrace
-        l_f(x; x_t) + \frac{1}{2\eta_{t + 1}}\Vert x - x_t\Vert^2
-    \right\rbrace = x_t - \eta_{t + 1} \nabla f(x_t). 
-\end{aligned}
-$$
-
-Our goal is to apply the Lyapunov function derived for PPM, to the approximation above. 
-The reader should observe additional error introduced by the above approximation and how it's controlled by smoothness assumption of the gradient of $f$. 
-
-**Remark**
-
-$l_f(x; \bar x)$, can be any l.s.c., closed, convex lower bound function that is favorable for the proximal operator. 
-Proximal gradient is one fine example where $l_f(x; \bar x)$ is not necessarily a smooth function. 
-We illustrate how this property is used in the below proof for a claim. 
-
-
-#### **Theorem 2.1 | Generic Descent Lemma via PPM of Lower Bounding Function and Upper Smoothness**
-> Let $f$ be a function that has minimizer: $x_*$.
-> Let $l_f(x; x_t)$ be a convex, l.s.c, proper lower bound function. 
-> Let the lower bounding $\phi$ function satisfies inequality: 
-> $$
-> \phi_t(x) \le \eta_{t + 1}f(x) \le \phi_t(x) + \frac{L\eta_{t + 1}}{2}\Vert x - x_t\Vert^2 \quad \forall x \in X, 
-> $$ 
-> Assume an algorithm the makes: 
+#### **Theorem 2.1 | Smooth gradient descent Lyapunov quantity**
+> Let $F:\R^n \rightarrow \overline \R$ be a convex function that is $L$ Lipschitz smooth. 
+> Suppose that PPM generates sequence $(x_t)_{t \ge 0}$ given $F$, and $(\eta_t)_{t \ge 1}$. 
+> For all $x \in \R^n$, define $\Phi_0 = F(x_0) - F(x) + (1/2)\Vert x_0 - x\Vert^2$, and for all $t \in \Z_+$ the quantity
 > $$
 > \begin{aligned}
->     x_{t +1} = \argmin{x\in X} \left\lbrace
->         l_f(x; x_t) + \frac{1}{2\eta_{t + 1}}\Vert x - x_t\Vert^2
->     \right\rbrace, 
+>     \sigma_t &= \sum_{i = 1}^{t}\eta_i^{-1}, 
+>     \\
+>     \Phi_t &= \sigma_t \left(
+>         F(x_t) - F(x) + \frac{1}{2}\Vert x_t - x\Vert^2
+>     \right). 
 > \end{aligned}
 > $$
-> Then the iterates satisfies: 
+> Then, the sequence $\Phi_t$ satisfies for all $t \ge 0$
 > $$
 > \begin{aligned}
->     \eta_{t + 1}(f(x_{t + 1}) - f(x_*)) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2
->     - \frac{1}{2}\Vert x_* - x_t\Vert^2
->     & \le 
+>     0 &\le 
+>     \Phi_t - \Phi_{t + 1}
+>     + 
 >     \left(
->         \frac{L \eta_{n + 1}}{2} - \frac{1}{2}
->     \right)\Vert x_{t + 1} - x_t\Vert^2.
+>         \sigma_t \left(\frac{L}{2} - \eta_{t + 1}\right) + 
+>         \frac{1}{2}\left(
+>             \frac{L}{\eta_{t + 1}} - 1
+>         \right)
+>     \right)\Vert x_{t + 1} - x_t\Vert^2. 
 > \end{aligned}
 > $$
-> This is a result analogous to Lemma-1. 
-> Furthermore, if $\exists \epsilon > 0: \eta_i\in (\epsilon, 2L^{-1} - \epsilon)\;\forall i \in \N$ then $f(x_T) -f(x_*)$ at a rate of $\frac{L - \epsilon^{-1}}{TL\epsilon}$ where $x_*$ is the minimizer of $f$. 
 
 **Proof**
 
-By $\phi_t(x)$ be a convex function and Lemma 1, Moreau Envelope Inequality produces $\forall u$: 
+The proof contains the following key intermediate steps which will be proved at at the end. 
+1. **Step I**: Using the proximal inequality and smoothness inequality, it can be shown that for all $x \in \R^n$: 
 
 $$
-{\small
 \begin{aligned}
-    \phi_t(x_{t + 1}) - \phi_t(u) - 
-    \frac{1}{2}\Vert x_t - u\Vert^2 
+    0 &\le 
+    F(x) - F(x_{t + 1}) + \frac{\eta_{t + 1}}{2}\left(
+        \Vert x - x_t\Vert^2 - \Vert x - x_{t + 1}\Vert^2
+    \right)
     + 
-    \frac{1}{2}\Vert u - x_{t + 1}\Vert^2 
-    &\le 
-    - \frac{1}{2}\Vert x_{t + 1} - x_t \Vert^2
+    \frac{L - \eta_{t + 1}}{2}\Vert x_{t + 1} - x_t\Vert^2. 
+\end{aligned}
+$$
+2. **Step II**: Follows from the previous step we can derive 
+$$
+\begin{aligned}
+    F(x_{t + 1}) - F(x_t) \le (L/2 - \eta_{t + 1})\Vert x_t - x_{t + 1}\Vert^2. 
+\end{aligned}
+$$ 
+
+Now, using the results of (**Step I**), (**Step II**), we can derive stated inequality. 
+For all $\R^n$, considers the following equality: 
+
+$$
+\begin{aligned}
+    \eta_{t + 1}^{-1} (F(x_{t + 1}) - F(x)) &= 
+    (\sigma_{t + 1} - \sigma_{t})(F(x_{t + 1}) - F(x))
     \\
-    \left(
-        \phi_t(x_{t + 1}) + \frac{\eta_{t + 1}L}{2}\Vert x_{t+1} -x_t\Vert^2
+    &= \sigma_{t + 1}(F(x_{t + 1}) - F(x)) - \sigma_t(F(x_{t + 1}) - F(x_t)) - \sigma_t(F(x_t) - F(x)). 
+\end{aligned}
+$$
+
+Substituting the inequaity from **(Step I)**, it follows that: 
+
+$$
+\begin{aligned}
+    0 &\le 
+    - \sigma_{t + 1}(F(x_{t + 1}) - F(x)) + \sigma_t(F(x_{t + 1}) - F(x_t)) + \sigma_t(F(x_t) - F(x))
+    \\
+        & \quad 
+        + \frac{1}{2}(\Vert x - x_t\Vert^2 - \Vert x - x_{t + 1}\Vert^2) + 
+        \frac{1}{2}
+        \left(\frac{L}{\eta_{t + 1}} - 1\right)
+        \Vert x_{t +1} - x_t\Vert^2
+    \\
+    &\le 
+    - \sigma_{t + 1}(F(x_{t + 1}) - F(x)) + 
+    \sigma_t\left(\frac{L}{2} - \eta_{t + 1}\right) \Vert x_t - x_{t + 1}\Vert^2
+    + \sigma_t(F(x_t) - F(x))
+    \\
+        & \quad 
+        + \frac{1}{2}(\Vert x - x_t\Vert^2 - \Vert x - x_{t + 1}\Vert^2) + 
+        \frac{1}{2}
+        \left(\frac{L}{\eta_{t + 1}} - 1\right)
+        \Vert x_{t +1} - x_t\Vert^2
+    \\
+    & = 
+    \sigma_t \left(
+        F(x_t) - F(x) + \frac{1}{2}\Vert x - x_t\Vert^2
     \right)
-    - \phi_t(u) - \frac{1}{2}\Vert x_t - u\Vert^2 + \frac{1}{2}\Vert u - x_{t + 1} \Vert^2
-    &\le 
+    - \sigma_{t + 1}
     \left(
-        \frac{\eta_{t + 1}L}{2} - \frac{1}{2}
-    \right)\Vert x_{t+1} - x_t\Vert^2. 
-\end{aligned}\tag{$\star$}
-}
-$$
-
-Using the assumption of the lower bounding function of $f$, the hypothesis allows for 
-$$
-\begin{aligned}
-    \left(
-        \phi_t(x_{t + 1}) + 
-        \frac{\eta_{t + 1}L}{2}\Vert x_{t+1} -x_t\Vert^2
-    \right) &\ge \eta_{t + 1}f(x_{t + 1}), 
-    \\
-    - \phi_t(u) &\ge  - \eta_{t + 1}f(u), 
-\end{aligned}
-$$
-
-substituting the above inequality into the RHS of $(\star)$, we obtain $\forall u \in X$: 
-
-$$
-\begin{aligned}
-    \left(
-        \eta_{t + 1} f(x_{t + 1}) - \eta_{t + 1}f(u)
-    \right) 
-    - \frac{1}{2}\Vert x_t - u\Vert^2 + 
-    \frac{1}{2}\Vert u - x_{t + 1}\Vert^2 
-    &\le 
-    \left(
-        \frac{\eta_{t + 1}L}{2} - \frac{1}{2}
+        F(x_{t + 1}) - F(x) + \frac{1}{2}\Vert x - x_{t + 1}\Vert^2
     \right)
-    \Vert x_{t + 1} - x_t \Vert^2. 
+    \\
+        &\quad 
+        + \left(
+            \sigma_t\left(\frac{L}{2} - \eta_{t + 1}\right)
+            + 
+            \frac{1}{2}
+            \left(\frac{L}{\eta_{t + 1}} - 1\right)
+        \right)\Vert x_{t + 1} - x_t\Vert^2. 
 \end{aligned}
 $$
 
-Since this is true for all $x_t$, we claim that $\Phi_t = (\sum_{i = 1}^t \eta_i)(f(x_t) - f(x_*)) + \frac{1}{2}\Vert x_* - x_t\Vert^2$ is strictly non-increasing when $\eta_{t + 1}\le L^{-1}$. 
-Surprisingly, if $\eta_i \in (0, 2L^{-1})$, $\Phi_{t}$ still converge. 
-For simplicity, we make $\sigma_t = \sum_{i = 1}^{t}\eta_i$. 
-It starts with considerations that $(L\eta_{t + 1}/2 - 1) < 0$, so that 
+It remains to show **(Step I)**, **(Step II)**. 
 
-$$
-\begin{aligned}
-    f(x_{t + 1}) - f(x_t) &\le 
-    \left(\frac{L\eta_{t + 1}}{2} - 1\right)\Vert x_{t + 1} - x_t\Vert^2
-    \\
-    f(x_T) - f(x_0)
-    &\le 
-    \underbrace{
-    \left(
-        \frac{L\sigma_T}{2} - T
-    \right)
-    }_{< 0}
-    \sum_{t = 0}^{T - 1}\Vert x_{t + 1} - x_t\Vert^2
-    \\
-    \implies 
-    \sum_{t = 0}^{T -1}\Vert x_t - x_{t + 1}\Vert^2
-    &\le 
-    \left(
-        \frac{L}{2}\sigma_T  - T
-    \right)^{-1} 
-    (f(x_T) - f(x_0))
-\end{aligned}
-$$
+Proof of **(Step I)**. 
 
-Continue on the RHS of $\Phi_{t + 1} - \Phi_t$ so 
-$$
-\begin{aligned}
-    \sum_{t = 0}^{T - 1}\Phi_{t + 1} - \Phi_t 
-    &\le 
-    \left(
-        \frac{L}{2}\sigma_T - \frac{T}{2}
-    \right)
-    \sum_{t = 0}^{T - 1}\Vert x_{t + 1} - x_t\Vert^2
-    \\
-    \Phi_T - \Phi_0 &\le 
-    \left(
-        \frac{\frac{L}{2}\sigma_T - \frac{T}{2}}{
-            \frac{L}{2}\sigma_T - T
-        }
-    \right)
-    (f(x_T) - f(x_0))
-    \\
-    &= 
-    \left(
-        \frac{L\sigma_T - T}{L\sigma_T - 2T}
-    \right)
-    (f(x_T) - f(x_0)), 
-\end{aligned}
-$$
-implies
-$$
-\begin{aligned}
-    \sigma_T (f(x_T) - f(y)) + \frac{1}{2}\Vert y - x_t\Vert^2
-    - \frac{1}{2}\Vert y - x_0 \Vert^2 
-    &\le 
-    \left(
-        \frac{L\sigma_T - T}{L\sigma_T - 2T}
-    \right)
-    (f(x_T) - f(x_0))
-    \\
-    \iff
-    f(x_T) - f(y) + 
-    \frac{1}{2\sigma_T}(\Vert y - x_t\Vert^2 - \Vert y - x_0\Vert^2)
-    &\le 
-    \left(
-        \frac{L- T\sigma_T^{-1}}{2T - L\sigma_T}
-    \right)
-    (f(x_0) - f(x_T)), 
-\end{aligned}
-$$
-therefore, we obtain the bound: 
-$$
-\begin{align}
-    f(x_T) - f(y) &\le 
-    \left(
-        \frac{L- T\sigma_T^{-1}}{2T - L\sigma_T}
-    \right)
-    (f(x_0) - f(x_T))
-    - 
-    \frac{1}{2\sigma_T}(\Vert y - x_t\Vert^2 - \Vert y - x_0\Vert^2)
-\end{align}
-$$
-In the case where $\sup_{i\in \N} \eta_i \le 2L^{-1} - \epsilon$, and $\inf_{i\in \N}\eta_i \ge \epsilon$ with $\epsilon > 0$. 
-Then we have 
-$$
-\begin{aligned}
-    \frac{L -T\sigma_T^{-1}}{2T - L\sigma_T}
-    &\le 
-    \frac{L - \epsilon^{-1}}{2T - LT(2L^{-1} - \epsilon)}
-    \\
-    &= 
-    \frac{L - \epsilon^{-1}}{2T - T(2 - L\epsilon)}
-    \\
-    &= 
-    \frac{L - \epsilon^{-1}}{TL\epsilon}. 
-\end{aligned}
-$$
-With $y = x_*$, by $f(x_t)$ strictly monotone decreasing, we get the claimed convergence rate by 
-$$
-\begin{aligned}
-    f(x_T) - f(x_*) 
-    &\le 
-    \frac{L - \epsilon^{-1}}{TL\epsilon}(f(x_0) - f(x_T)) 
-    \le 
-    \frac{L - \epsilon^{-1}}{TL\epsilon}(f(x_0) - f(x_*)) 
-\end{aligned}
-$$
 
-
-**Remark**
-
-If, $f$ is differentiable, and $\phi_t(x) = l_f(x, x_t) = f(x_t) + \langle \nabla f(x_t), x - x_t\rangle$. 
-Then, the upper $L$-Lipschitz gradient smooth condition and convexity of $f$ are backed into the inequality: 
-
-$$
-\eta_{t + 1}l_f(x, x_t) \le 
-\eta_{t + 1} f(x) \le \eta_{t + 1}l_f(x, x_t) + \frac{\eta_{t + 1}L}{2}\Vert x - x_t\Vert^2
-\quad \forall x \in X. 
-$$
-
-we empahsize that it's the upper smoothness wrt to 2-norm. 
-In implementation of algorithms, we only need to make sure that: 
-
-$$
-\eta_{t + 1}l_f(x_{t + 1}, x_t) \le 
-\eta_{t + 1} f(x_{t + 1}) \le \eta_{t + 1}l_f(x_{t + 1}, x_t) 
-+ 
-\frac{\eta_{t + 1}L_t}{2}\Vert x_{t + 1} - x_t\Vert^2
-\quad \forall t \in \N. 
-$$
-
-for the appropriate $L_t$, this is called: "line search". 
-This is strictly weaker than what is used to prove the theorem. 
-There are some potential for generalization and creativity by considering various kind of convex $\phi_t(x)$. 
-One can imagine maximizing $\eta_{t + 1}L_t$ by appropriate choice of $x_{t + 1}$ to obtain faster convergence rate. 
-
-
-**Questions**
-
-Would a similar analysis work for strongly convex functions, or it's going to be a different story since $\Phi_t$, the Lyapunov function would change accordingly? 
-I don't have any good ideas but to use gradient descent on the envelope interpretation to asist the analysis in the strongly convex case. 
-
-#### **Thm 2.2 | Stepsize and the Convergence of the Gradient Descent Method**
-> Choose stepsize $0 < \eta_t \le L^{-1}$, then the method of PPM on convex lower bounding function (which is gradient descent) has convergence rate $\mathcal O\left(\sum_{i = 1}^{T}\eta_t^{-1}\right)$. 
-
-**Proof**
-
-Set $\eta_{t + 1} \in (0, L^{-1}]$, then we can conclude the same conclusion as theorem 1. 
-Because the inequality in claim 1 are less than zero, and that makes the exact same inequalities as proposition 2, making the results of theorem 1 follows naturally. 
-
-**Remarks**
-
-In practice, the step size is usually constant, or it's determined by some type line search algorithm. 
-
-#### **Example | Bounded Bregman Divergence**
-> In the case where $l_f(x, \bar x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle$ is the linearization of $f$ at the point $\bar x$, then the the following ineualities are be equivalent, for any norm $\Vert \cdot\Vert$. 
-> 1. $l_f(x, \bar x) \le f(x) \le l_f(x, \bar x) + (L/2)\Vert x - \bar x\Vert^2$. 
-> 2. $0 \le D_f(x, \bar x) \le (L/2)\Vert y - x\Vert^2$. 
-
-**Proof**
-
-Directly by considering 
-
-$$
-\begin{aligned}
-    & l_f(x, \bar x) \le f(x) \le l_f(x, \bar x) + (L/2)\Vert x - \bar x\Vert^2
-    \\
-    & f(x) - D_f(x, \bar x) \le f(x) \le f(x) - D_f(x, \bar x) + (L/2)\Vert x - \bar x\Vert^2 
-    \\
-    & -D_f(x, \bar x) \le 0 \le -D_f(x, \bar x) + (L/2)\Vert y - x\Vert^2 
-    \\
-    & 0 \le D_f(x, \bar x) \le (L/2)\Vert y - x\Vert^2. 
-\end{aligned}
-$$
-
-
-
-
-#### **Corollary-2.3 | Proximal Gradient Descent**
-> Consider additive composite $f = g + h$ where $g$ is convex and $h$ is convex smooth with $L$-Lipschitz gradient. 
-> Consider $l_f(x; \bar x) = g(x) + h(\bar x) + \langle \nabla h(\bar x), x - \bar x\rangle$. 
-> Then proximal point method $x_{t + 1} \in \text{prox}[l_f(\cdot, \bar x)](x_t)$ produces the proximal gradient method and the above convergence analysis.   
-
-**Proof**
-
-The proximal point on $l_f(x, \bar x)$, is proximal gradient, that part is obvious. 
-See [Proximal Gradient, Forward Backwards Envelope](Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md) for more information.
-Next, $l_f(\cdot, \bar x)$ is convex for all $\bar x \in X$, and by convexity of $g$, it is a lower bounding function for $f$. 
-The function $h$ is smooth, and therefore the upper bound
-$$
-    f(\cdot) \le l_f(\cdot | x_t) + \frac{L}{2}\Vert\cdot - x_t\Vert^2 
-$$
-applies. 
-The inequality in Theorem 2 is satisfied hence the results of theorem 2 applies. 
-
-
-#### **Theorem 2.4 | Recovery of the fundamental lemma of proximal gradient (CONTAINS MAJOR MISTAKES)**
-> With $f = h + g$ where $g$ is $L$-Lipschitz smooth, $h$ convex, consider $\phi(u) = \eta(h(u) + g(x) + \langle \nabla g(x), u - x \rangle)$ and $\eta^{-1} \ge L$ satisfies $\eta\phi \le \eta f \le \eta f + \frac{1}{2}\Vert \cdot - x\Vert^2$. 
-> Let $x^+ = \prox_{\phi}(x)$ then $\forall \;u\in \R^n, \eta \le L^{-1}$: 
-> $$
-> \begin{aligned}
->    f(u) - f(x^+) 
->     + \frac{1}{2\eta} \Vert u - x\Vert^2 
->     - \frac{1}{2\eta} \Vert x^+ - u\Vert^2 
->     \ge 
->     D_g(u, x) + \frac{1}{2\eta}\Vert x^+ - x\Vert^2. 
-> \end{aligned}
-> $$
-
-**Proof**
-<!-- 
-$$
-\begin{aligned}
-    & \phi(u) + \frac{1}{2}\Vert u - x\Vert^2 - \phi(x^+) - \frac{1}{2}\Vert x^+ - x\Vert^2 
-    \ge \frac{1}{2}\Vert x^+ - u\Vert^2
-    \\
-    \implies &
-    \eta\underbrace{
-        \left(
-            h(u) + g(x) + \langle \nabla g(x), u - x\rangle 
-        \right)
-    }_{= \phi(u)} 
-    - (\eta f + (1/2)\Vert x^+ - x\Vert^2)
-    \\
-    &\quad  
-    + \frac{1}{2} \Vert u - x\Vert^2 
-    \ge 
-    \frac{1}{2}\Vert x^+ - u\Vert^2 
-    \\
-    \iff & 
-    f(u) + \left(
-        g(x) - g(u) + \langle \nabla g(x), u -x\rangle 
-    \right)
-    - f(x^+) - \frac{1}{2\eta}\Vert x - x^+\Vert^2
-    \\
-    & \quad 
-    + 
-    \frac{1}{2}\Vert u - x\Vert^2 
-    \ge 
-    \frac{1}{2\eta}\Vert x^+ - u\Vert^2 
-    \\
-    \iff 
-    & f(u) - f(x^+) - D_g(u, x)
-    + \frac{1}{2\eta} \Vert u - x\Vert^2 - \frac{1}{2\eta}\Vert x^+ - x\Vert^2
-    \ge 
-    \frac{1}{2\eta} \Vert x^+ - u\Vert^2. 
-\end{aligned}
-$$
-
-One of the consequence of the above inequaity are
-
-$$
-\begin{aligned}
-    \implies 
-    f(u) - f(x^+) - D_g(u, x) 
-    + 
-    \frac{1}{2\eta}\Vert u - x\Vert^2 
-    - 
-    \frac{1}{2\eta}\Vert x^+ - u\Vert^2
-    &\ge 
-    0 \quad \forall u
-    \\
-    \iff 
-
-    f(u) - f(x^+) - D_g(u, x) + \eta^{-1}
-    \left(
-        \frac{1}{2}\Vert x^+ - x\Vert^2 
-        + 
-        \langle u - x^+, x^+ - x\rangle
-    \right)
-    &\ge 0 \quad \forall u. 
-\end{aligned}
-$$
-
-All we did is moving the term $-1/(2\eta)\Vert x^+ - x\Vert^2$ to the RHS since it's a non-negative quantity, it's larger than zero, which explains the $\ge 0$ for the above inequalites. 
- -->
-
-
-
-**Remarks**
-
-At the end we obtained the fundamental proximal gradient lemma in Amir Beck's writings. 
-This bound is tighter. 
-This can also be used for deriving the convergence of the gradient descent method. 
-For more information on this lemma, visits: [V-FISTA](V-FISTA.md), [Proximal Gradient, Forward Backwards Envelope](Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md), [Proximal Gradient Convergence Rate](AMATH%20516%20Numerical%20Optimizations/Classics%20Algorithms/Proximal%20Gradient%20Convergence%20Rate.md), and [A Better Proof for FISTA Convergence](A%20Better%20Proof%20for%20FISTA%20Convergence.md). 
-
-
-#### **Corollary 2.5 | Another proximal gradient lemma via Moreau Envelope**
-> Suppose that $F = f + g$ with $f, g$ convex and $f$ $L$-Lipschitz smooth. 
-> For any $\bar x$, define proximal gradient point 
-> $$
-> \begin{aligned}
->   x^+ = \argmin{x}   \left\lbrace
->       g(x) + \langle \nabla f(\bar x), x - \bar x\rangle + 
->       \frac{L}{2}\Vert x - \bar x\Vert^2
->   \right\rbrace. 
-> \end{aligned}
-> $$
-> Then it has $\forall x$
-> $$~~~~
-> \begin{aligned}
->     F(x^+) + \frac{L\Vert x^+ - x\Vert^2}{2} &\le 
->     F(x) + \frac{L\Vert x - \bar x\Vert^2}{2}
-> \end{aligned}
-> $$
-
-**Proof**
-
-This is a consequence of previous theorem. 
-To use the previous theorem, set $g:= f, f:= F, h:= g$, and $\bar x = x, \eta = L^{-1}$, then the previous theorem becomes 
-
-$$
-\begin{aligned}
-    (\forall u)
-    \quad F(u) - F(x^+) 
-    - D_f(u, \bar x) + 
-    \frac{L}{2}\Vert u - \bar x\Vert^2 - \frac{L}{2}\Vert x^+ - u\Vert^2 
-    &\ge 0, 
-    \\
-    (\forall x, u)\; D_f(u, x)\ge 0
-    \implies 
-    (\forall u)\; 
-    F(u) - F(x^+)
-    + \frac{L}{2}\Vert u - \bar x\Vert^2 
-    - \frac{L}{2}\Vert x^+ - u\Vert^2 &\ge 0. 
-\end{aligned}
-$$
-
-This is proved. 
-
-**Remark**
-
-This is a different proximal gradient lemma used in the proof of Chambolle and Dossal's variants of the accelerated proximal gradient method. 
-
-
-
----
-### **The PPM with Strongly Convex Objective**
-
-It may be counter intuitive to write things in this order, but we will see the necessity since the convergence proof for PPM for strongly convex objective function involves more theorems. 
-The proof below will be similar to proving the convergence rate of gradient descent on a strongly convex and Lipchitz smooth function. 
-To elucidate recall from [Proximal Point Method, Interpretations](Proximal%20Point%20Method,%20Interpretations.md) that, the proximal point method with a constant stepsize is equivalent to gradient descent on the Moreau Envelope of the function. 
-The only difference here is that our PPM analysis is based on varying stepsizes. 
-
-#### **Theorem 3.1 | PPM Convergence for Strongly Convex Function**
-> Let $f$ be $\beta$-strongly convex. 
-> Then the proximal point method has a linear convergence rate with a ratio of $(1 -\eta_{t + 1}\beta)$. 
-
-**Proof**
-
-With $\beta$-strong convexity of $f$, the proximal operator $P_{t + 1}=(I + \eta_{t + 1}\partial f)^{-1}$ is a contraction with constant $(1 + \beta_{t + 1})^{-1}$ where $\beta_{t+ 1} = \eta_{t + 1}\beta$ for all $t \in \N$. 
-We can conclude that $I - P_{t + 1}$ is $1 - (1 + \beta)^{-1}$ strongly monotone and Lipschitz smooth by
-
-$$
-\begin{aligned}
-    0 &\le \langle P_{t + 1} x - P_{t + 1} y, x - y\rangle 
-    \\
-    &\le \Vert P_{t + 1}x - P_{t + 1} y\Vert \Vert x - y\Vert \leftarrow \text{ Cauchy }
-    \\
-    &\le (1 + \beta_{t + 1})^{-1} \Vert x - y \Vert^2 \leftarrow \text{ Contraction} 
-    \\
-    \implies 
-    - (1 + \beta_{t + 1})^{-1} \Vert x - y\Vert^2 
-    &\le 
-    \langle -(P_{t + 1} x - P_{t + 1}y), x - y\rangle \le 0
-    \\
-    (1 - (1 + \beta_{t + 1})^{-1}) \Vert x - y\Vert^2 
-    &\le 
-    \langle (x - y) - (P_{t + 1}x - P_{t + 1}y), x - y\rangle 
-    \le \Vert x - y\Vert^2 
-    \\
-    (1 - (1 + \beta_{t + 1})^{-1}) \Vert x - y\Vert^2 
-    &\le 
-    \langle [I - P_{t + 1}]x - [I - P_{t + 1}]y, x - y\rangle 
-    \le \Vert x - y\Vert^2. 
-\end{aligned}
-$$
-
-Recall from [[Moreau Envelope and Convex Proximal Mapping]] that for any convex $g$ the gradient on the Moreau Envelope of $g$ has
-
-$$
-\begin{aligned}
-    \underbrace{\nabla \left[x \mapsto \min_{u}\left\lbrace
-        g(u) + \frac{1}{2}\Vert u - x\Vert^2
-    \right\rbrace\right](x)}_{
-        \nabla \env_{g}(x)
-    } 
-    &= 
-    x - (I + \partial g)^{-1}x, 
-\end{aligned}
-$$
-
-with $g = \eta_{t + 1}f$ then the above is 
-
-$$
-\begin{aligned}
-   \nabla \env_{\eta_{t + 1}f}(x) = 
-   x - (I + \eta_{t + 1}\partial f)^{-1}x = [I - P_t] x, 
-\end{aligned}
-$$
-
-naming $\env{\eta_{t+ 1}f}$ as $F_{t + 1}$ for short, we have $\forall t \in \Z_+: \nabla F_{t + 1} = [I - P_{t + 1}]x$ being a strongly monotone operator, which we previously derived. 
-Therefore, $F_{t + 1}$ is a strongly convex function and Lipschitz smooth function with constants: $(1 - (1 + \beta_{t + 1})^{-1}), 1$. 
-Now, we make use of the Lipschitz Smoothness and strong convexity to yield: 
-
-$$
-\begin{aligned}
-    F_{t + 1}(x_{t + 1}) - F_{t + 1}(x_t) &= 
-    F_{t + 1}(P_{t + 1} x_t)  - F_{t + 1}(x_t)
-    \\
-    &= F_{t + 1}(x_t - (x_t - P_{t + 1}x_t)) - F_{t + 1}(x_t)
-    \\
-    &= 
-    F_{t + 1}(x_t - \nabla F_{t + 1}(x_t)) - F_{t + 1}(x_t)
-    \\
-    &\le - \frac{1}{2}\Vert \nabla F_{t + 1}(x_t)\Vert^2 \leftarrow \text{ By $1$-Lipschitz Smooth}. 
-\end{aligned}
-$$
-
-Next, by strongly convexity of $F_{t + 1}$, let $x_* = \argmin{x}f(x) = \argmin{x}F_{t + 1}(x)$ (it's one of the implications stated in [Strong Convexity, Equivalences and Implications](Strong%20Convexity,%20Equivalences%20and%20Implications.md)) we would have for all $t \in \N$: 
-$$
-\begin{aligned}
-    \frac{1}{2} \Vert \nabla F_{t + 1}(x_t)\Vert^2 &\ge 
-    (1 - (1 + \beta_{t + 1})^{-1})(
-        F_{t + 1}(x_t) - F_{t + 1}(x_*)
-    ) \leftarrow \text{ Result of Strong convexity. }
-    \\
-    \implies 
-    F_{t + 1}(x_{t + 1}) - F_{t + 1}(x_t)
-    &\le 
-    -(1 - (1 + \beta_{t + 1})^{-1}) (F_{t + 1}(x_t) - F_{t + 1}(x_*))
-    \\
-    F_{t + 1}(x_{t + 1}) - F_{t + 1}(x_*)
-    &\le 
-    F_{t + 1}(x_t) - F_{t + 1}(x_*) 
-    -(1 - (1 + \beta_{t + 1})^{-1}) (F_{t + 1}(x_t) - F_{t + 1}(x_*))
-    \\
-    &= 
-    (1 + \beta_{t + 1})^{-1} (F_{t + 1}(x_t) - F_{t + 1}(x_*))
-    \\
-    \iff 
-    F_{t + 1}(x_{t + 1}) - F_{t + 1}(x_*) 
-    &\le (1 + \beta_{t + 1})^{-1}(F_{t + 1}(x_t) - F_{t + 1}(x_*))
-\end{aligned}
-$$
-
-This establishes the descent of optimality gap for one step of the iteration. 
-Amazingly, unrollowing the above would yield: 
-
-$$
-\begin{aligned}
-    F_{t + 1}(x_{t + 1}) - F_{t+1}(x_*) &\le 
-    \left(
-        \prod_{j = 0}^{t} (1 + \beta_{t + 1})^{-1} 
-    \right)(F_{1}(x_0) - F_1(x_*)). 
-\end{aligned}\tag{$[*]$}
-$$
-
-Recall the property of a Moreau Envelope and by the definition of $F_{t + 1}$ satisfies for all $x$: 
-
-$$
-\begin{aligned}
-    \eta_{t + 1} f(x)
-    &\le 
-    F_{t + 1}(x) = \eta_{t + 1} f(P_{t + 1} x) + \frac{1}{2}\Vert P_{t + 1}x - x \Vert^2 
-    \le 
-    \eta_{t + 1} f(x). 
-\end{aligned}
-$$
-
-Continuing (\[*\]), we can simplify with the above and $F_0 = f$ so 
-
-$$
-\begin{aligned}
-    f(x_{t + 1}) - f(x_*) &\le 
-    \eta_{t + 1}^{-1} 
-    \left(
-        \prod_{j = 0}^{t} (1 + \beta_{t + 1})^{-1} 
-    \right)(F_1(x_0) - f(x_*)), 
-\end{aligned}
-$$
-
-where $\beta_{t+ 1} = \eta_{t + 1}\beta$ for all $t \in \Z_+$. 
-
-
-**Comments**
-
-From a theoretical point of view, this proof is not good and it's kinda cheating since it made use of the gradient descent interpretation and theory of monotone operator, while at the same time, reusing the same old convergence proof of gradient descent instead of innovating the old ideas. 
-
-We try an alternative approach the addresses the above comment. 
-The alternative proof doesn't use the Lipschitz smoothness of the Moreau envelope. 
-
-**Alternative Proof**
-
-With $\beta$-strongly convex $f$, let $\phi = \eta_{t + 1}f$, let $E_\phi(x)$ be $\min_u \{\eta_{t + 1} f(u) + (1/2)\Vert u - x\Vert^2\}$ which is the Moreau envelope of $\phi$, let $P_\phi := [I + \eta_{t + 1}\partial f]^{-1}$. 
-For any $x_0$ let $x_{t + 1} = P_\phi(x_t)$, with $x_* \in \argmin{x} \phi(x)$, we realize these consequences:
-1. $I - P_\phi$ is a $1 - (1 + \eta_{t + 1}\beta)^{-1}$ strongly monotone operator;
-2. $\nabla E_\phi = I - P_\phi$, meaning that $E_\phi$ is $1 - (1 + \eta_{t + 1}\beta)^{-1}$ strongly convex;
-3. $P_\phi$ is a contractive mapping with constant $(1 + \beta\eta_{t + 1})^{-1}$. 
-
-Using strong convexity of the Moreau envelope it has 
-
-$$
-\begin{aligned}
-    \frac{1}{2}\Vert \nabla E_\phi(x_t)\Vert^2 
-    &\ge 
-    (1 - (1 + \beta\eta_{t + 1})^{-1}) (E_\phi(x_t) - E_\phi(x_*))
-    \\
-    &\ge 
-    (1 - (1 + \beta\eta_{t + 1})^{-1})\left(
-        \frac{1}{2}(1 - (1 + \beta\eta_{t + 1})^{-1})
-    \right)\Vert x - x_*\Vert^2
-    \\
-    &= 
-    \frac{1}{2}\left(
-        1 - (1 + \eta_{t + 1}\beta)^{-1}
-    \right)^2 \Vert x_t - x_*\Vert^2
-\end{aligned}
-$$
-
-invoke PPM descent inequality on the function $\phi$, it has 
-
-$$
-{\small
-\begin{aligned}
-    E_\phi(x_{t}) - \phi(x_*) - \frac{1}{2}\Vert x_t - x_*\Vert^2 
-    &\le 
-    -\frac{1 + \eta_{t + 1}\beta}{2}\Vert x_{t + 1} - x_*\Vert^2
-    \\
-    \iff 
-    \phi(x_{t + 1}) - \phi(x_*)
-    &\le 
-    -\frac{1}{2}(1 + \eta_{t + 1}\beta)\Vert x_{t + 1} - x_*\Vert^2
-    - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
-    + \frac{1}{2}\Vert x_t - x_*\Vert^2
-    \\
-    \implies 
-    \phi(x_{t + 1}) - \phi(x_*)
-    &\le 
-    -\frac{1}{2}(1 + \eta_{t + 1}\beta)\Vert x_{t + 1} - x_*\Vert^2
-    - \frac{1}{2}(1 - (1 + \eta_{t + 1}\beta)^{-1})^2\Vert x_t - x_*\Vert^2
-    + \frac{1}{2}\Vert x_t - x_*\Vert^2
-    \\
-    \iff
-    \phi(x_{t + 1}) - \phi(x_*)
-    &\le 
-    -\frac{1}{2}(1 + \eta_{t + 1}\beta)\Vert x_{t + 1} - x_*\Vert^2
-    + \frac{1}{2}\left(
-        1 - (1 - (1 + \eta_{t + 1}\beta)^{-1})^2
-    \right)
-    \Vert x_t - x_*\Vert^2
-    \\
-    \implies
-    \phi(x_{t + 1}) - \phi(x_*)
-    &\le 
-    -\frac{1}{2}(1 + \eta_{t + 1}\beta)\Vert x_{t + 1} - x_*\Vert^2
-    \\
-    & \quad 
-    + \frac{1}{2}\left(
-        1 - (1 - (1 + \eta_{t + 1}\beta)^{-1})^2
-    \right)
-    \left(
-        \prod_{i = 1}^{t}
-            (1 + \eta_i \beta)^{-1}
-    \right)\Vert x_0 - x_*\Vert^2. 
-\end{aligned}
-}
-$$
-
-On the last inequality, we used the property of $P_\phi$ being a $(1 + \eta_{t + 1}\beta)^{-1}$ contractive mapping. 
-Using the definition of $\phi$, we have 
-
-$$
-\begin{aligned}
-    f(x_{t + 1}) - f(x_*)
-    &\le 
-    -\frac{1}{2\eta_{t + 1}}(1 + \eta_{t + 1}\beta)\Vert x_{t + 1} - x_*\Vert^2
-    \\
-    & \quad 
-    + \frac{1}{2\eta_{t + 1}}\left(
-        1 - (1 - (1 + \eta_{t + 1}\beta)^{-1})^2
-    \right)
-    \left(
-        \prod_{i = 1}^{t}
-            (1 + \eta_i \beta)^{-1}
-    \right)\Vert x_0 - x_*\Vert^2, 
-\end{aligned}
-$$
-
-and the convergence is asymptotically $\mathcal O\left(\prod_{i = 1}^{t} (1 + \eta_i\beta)^{-1}\right)$. 
-
-**Comment:** 
-
-The convergence rate is a bit too good to be true, considering upper bounding $(1/2)\Vert x_0 - x_*\Vert^2 \le (\eta_{t + 1}\beta)(f(x_t) - f(x_*))$ applied to the middle of the inequality to derive step-wise Lyapunov function, then we are in trouble. 
-
----
-### **Analysis of Prox Convex Lower Bounding Function (Strongly Convex)**
-
-In this section, we consider lower bounding functions that are strongly convex, in which case we hope to make use of proximal point method with strongly convex objective that has a constant $\mu$. 
-
-#### **Theorem 4.1 | Approximated PPM under strong convexity**
 
 ---
 ### **Rockafellar's PPM Analysis**

@@ -765,11 +765,9 @@
 
     \subsection{R-WAPG unifies existing accelerations scheme}\label{sec:rwapg-literatures}
         In addition to various equivalent forms of the R-WAPG algorithm, the R-WAPG sequences are much more flexible. 
-        They generalize many existing sequences used in accelerated proximal gradient schemes. 
-        \par
-        This section demonstrates that several variants of FISTA in the literatures reduces to the R-WAPG method by setting up the R-WAPG sequences with additional assumptions. 
-        This section will also demonstrate that the convergence claim (Proposition \ref{prop:wagp-convergence}) holds, and it derives convergence rates consistent with results in the literatures.  
-        The table below shows the R-WAPG convergence results specialized into various settings. 
+        They generalize existing sequences used in accelerated proximal gradient schemes. 
+        Choosing the sequence $\alpha_k, \rho_k$ with some specific rules, it yields convergence results found in the literatures for Euclidean variants of FISTA. 
+        Table \ref{table:unify-nag-results} shows convergence results specialized to some FISTA variants found in the literatures. 
         \begin{table}[H]
             {\scriptsize
             \begin{tabular}{|l|l|l|l|l|}
@@ -815,6 +813,8 @@
             \\ \hline
             \end{tabular}
             }
+            \caption{Table showing the results of this section.}
+            \label{table:unify-nag-results}
         \end{table}
         The lemma follows characterizes momentum sequences in the literatures using Definition \ref{def:rwapg-seq}. 
         \begin{lemma}[R-WAPG sequences as inverted FISTA sequence]\label{lemma:inverted-fista-seq}
@@ -829,19 +829,7 @@
         \begin{remark}
             The sequence $t_k$ is exactly the same as in Theorem 3.1 of Chambolle, Dossal \cite{chambolle_convergence_2015}. 
         \end{remark}
-        \begin{lemma}[Constant R-WAPG sequences]\label{lemma:constant-rwapg-seq}
-            Suppose $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are R-WAPG sequences given by Definition \ref{def:rwapg-seq} and assume $L > \mu > 0$.
-            Define $q := \mu/L$. 
-            Then $\forall r \in \left(\sqrt{q},\sqrt{q^{-1}}\right)$, the constant sequence $\alpha_k := r \sqrt{q}$ has the following: 
-            \begin{enumerate}
-                \item For any $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$, the constant sequence $\alpha_k := \alpha \in (q, 1)$ and\\
-                $\rho_k := \rho=\left(1-r^{-1}\sqrt{q}\right)\left(1 - r \sqrt{q}\right)^{-1} > 0$, hence it's a pair of valid R-WAPG sequence. 
-                \item The momentum terms $\theta_{t + 1}$ in Definition \ref{def:r-wapg-momentum-form}, which we denoted by $\theta$ is the constant:\\ $\theta = (1 - r^{-1}\sqrt{q})(1 - r\sqrt{q})(1- q)^{-1}$
-                \item When $r = 1$, $\theta = (1- \sqrt{q})(1 + \sqrt{q})^{-1}$. 
-                \item For all $r \in \left(1, \sqrt{q^{-1}}\right)$, $\rho > 1$; for all $r \in \left(\sqrt{q}, 1\right]$ $\rho \le 1$. 
-                \item For all $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$, $\max(\rho, 1)(1 - \alpha) = \max\left(1 - r\sqrt{q}, 1 - r^{-1}q\right)$. 
-            \end{enumerate}
-        \end{lemma}
+        Using the above lemma about R-WAPG sequence, it can derive the convergence rate of a FISTA variable proposed by Chambolle, Dossal \cite{chambolle_introduction_2016}. 
         \begin{theorem}[FISTA first variant Chambolle, Dossal 2015]\label{thm:r-wapg-on-cham-doss}\;\\
             Fix arbitrary $a \ge 2$.
             Define $\forall k \ge 1$ the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ by 
@@ -871,6 +859,20 @@
         \begin{remark}
             This algorithm described here is exactly the same algorithm being analyzed in the paper by Chambolle, Dossal \cite{chambolle_convergence_2015}. 
         \end{remark}
+        Following a similar pattern, the lemma follows characterize a constant sequence of $\alpha_k, \rho_k$ for the R-WAPG sequences which enable us to characterize the linear convergence rate of all $\mu > 0$ strongly convex function with a fixed momentum parameter. 
+        \begin{lemma}[Constant R-WAPG sequences]\label{lemma:constant-rwapg-seq}
+            Suppose $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are R-WAPG sequences given by Definition \ref{def:rwapg-seq} and assume $L > \mu > 0$.
+            Define $q := \mu/L$. 
+            Then $\forall r \in \left(\sqrt{q},\sqrt{q^{-1}}\right)$, the constant sequence $\alpha_k := r \sqrt{q}$ has the following: 
+            \begin{enumerate}
+                \item For any $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$, the constant sequence $\alpha_k := \alpha \in (q, 1)$ and\\
+                $\rho_k := \rho=\left(1-r^{-1}\sqrt{q}\right)\left(1 - r \sqrt{q}\right)^{-1} > 0$, hence it's a pair of valid R-WAPG sequence. 
+                \item The momentum terms $\theta_{t + 1}$ in Definition \ref{def:r-wapg-momentum-form}, which we denoted by $\theta$ is the constant:\\ $\theta = (1 - r^{-1}\sqrt{q})(1 - r\sqrt{q})(1- q)^{-1}$
+                \item When $r = 1$, $\theta = (1- \sqrt{q})(1 + \sqrt{q})^{-1}$. 
+                \item For all $r \in \left(1, \sqrt{q^{-1}}\right)$, $\rho > 1$; for all $r \in \left(\sqrt{q}, 1\right]$ $\rho \le 1$. 
+                \item For all $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$, $\max(\rho, 1)(1 - \alpha) = \max\left(1 - r\sqrt{q}, 1 - r^{-1}q\right)$. 
+            \end{enumerate}
+        \end{lemma}
         \begin{theorem}[Fixed momentum APG]\label{thm:fixed-momentum-fista}
             Assume $L > \mu > 0$, let a pair of constant R-WAPG sequence: $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be given by Lemma \ref{lemma:constant-rwapg-seq}.
             Define $q := \mu/L$ and for any fixed $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$, let $\alpha_k := \alpha = r \sqrt{q}$ be the constant R-WAPG sequence. 
@@ -1078,9 +1080,13 @@
         \subsubsection{Nesterov's idea of strong convexity transfer}
             We consider the case that $F = f + g$ where, $f$ is $L$ Lipschitz smooth, $\mu_f \ge 0$ strongly convex and $g$ is closed convex. 
             In Nesterov's 2013 paper \cite{nesterov_gradient_2013}, he considers accelerated  minimization problem $\phi = f + \Psi$ with $f$ $L_f$ smooth and $\Psi$ being $\mu_\Psi \ge 0$ strongly convex. 
+            Here would be our question: 
+            \begin{quote}
+                Is it possible to include the a $\mu_\Psi$ into our R-WAPG framework? 
+            \end{quote}
             \par
-            This detail on itself is not necessarily interesting, since without lost of generality, we can always do the splitting $f + \mu_\Psi/2 \Vert \cdot\Vert^2$ and $\Psi - \mu_\Psi/2\Vert \cdot\Vert^2$ instead so that the smooth part is $\mu_\Psi \ge 0$ strongly convex. 
-            It's an interesting detail we should consider because: 
+            Without lost of generality, we can always do the splitting $f + \mu_\Psi/2 \Vert \cdot\Vert^2$ and $\Psi - \mu_\Psi/2\Vert \cdot\Vert^2$ instead so that the smooth part is $\mu_\Psi \ge 0$ strongly convex. 
+            It's an interesting detail we should consider including because: 
             \begin{enumerate}
                 \item A strongly convex nonsmooth parts still gives linear convergence by Theorem 6 in Nesterov's 2013 \cite{nesterov_gradient_2013}. 
                 \item The strong convexity constant can be easily estimated via a routine specified as (5.14) in Nesterov 2013 \cite{nesterov_gradient_2013} and the complexity of the estimation is bounded precisely. 
@@ -1088,8 +1094,8 @@
             (i) indicates that our theories of R-WAPG is incomplete, since it doesn't predict linear convergence when $g$ is strongly convex. 
             (ii) indicates that splitting the strongly convex objective so that it's with the proximal operator gives computational advantage. 
             \par
-            Furthermore, Nesterov was not the only person who thought about it.
-            In Algorithm 5, Chambolle, Pock \cite{chambolle_introduction_2016} captures several variants of FISTA, and it assumes that $F = f + g$ where $f, g$ has strong convexity constant $\mu_f \ge 0, \mu_g \ge 0$ respective so $F$ is $\mu := \mu_f + \mu_g \ge 0$ strongly convex. 
+            Besides Nesterov's contributions, Chambolle, Pock \cite{chambolle_introduction_2016} captures several variants of FISTA In Algorithm 5.
+            They assumed $F = f + g$ with $f, g$ being strongly convexity with constants $\mu_f \ge 0, \mu_g \ge 0$ respectively so $F$ is $\mu := \mu_f + \mu_g \ge 0$ strongly convex. 
             \par
             Upon first inspection and preliminary readings, we lay out the followings that may contribute to include strong convexity in the non-smooth part into our R-WAPG framework. 
             The R-WAPG sequence $\alpha_k, \rho_k$ will have to describe the sequence in Chambolle, Pock \cite{chambolle_introduction_2016} Algorithm 5 which has 
@@ -1547,17 +1553,20 @@
             \par
             As a secondary objective, they introduced the relations between several weaker characterizations of strong convexity on a closed convex set. 
             Definition 1, 2, 3, 4, 5, introduced the ideas of: Quasi-strong convexity, Quadratic under approximation, Quadratic gradient growth, quadratic functional growth (recall that it was stated as a consequence of strong convexity in Lemma \ref{lemma:q-growth}), and Global Error bound conditions. 
-            \par
             We focus on one of their comments on Catalyst by Lin et al. \cite{lin_universal_2015}. 
             They said, and here we quote: 
             \begin{quote}
                 It is also worth to investigate the complexity bounds obtained when wrapping linearly-convergent algorithms under the proposed conditions in an outer-loop using a generic acceleration scheme such as Catalyst \cite{lin_universal_2015}. 
                 This would allow to extend to non-strongly convex settings a wide range of incremental optimization algorithms designed for large finite-sum problems arising in machine learning and statistics.
             \end{quote}
-            Their idea of extension can be applied to inner loop $\mathbb M$, or out loop $\mathbb A$, either, or both. 
-            \par
-            Finally, it's worth noting that in the years before and after Necoara et al.'s paper and Catalyst, there were parallel developments around the ideas of extending Nesterov's accelerations and Catalyst to the nonconvex settings. 
-            Paquette et al. \cite{paquette_catalyst_2018} were inspired by \cite{ghadimi_accelerated_2016} and showed that the Catalyst algorithm based on the gradient termination criterion analogous to C2 (see equation (13), (14) in their paper) can adapt to nonconvex settings and the norm of the gradient converges. 
+            Hence, this is what we would describe the open question to be: 
+            \begin{quote}
+                Can we extend the linear convergence results of inner loop or outer loop of Catalyst Acceleration into settings weaker than strong convexity (Potentially nonconvex)? 
+            \end{quote}
+            In the coming parts, we will focus on developments in the literatures adjacent to the open question above. 
+            Objectives will be summarized at the end. 
+            There were parallel developments around the ideas of Nesterov's accelerations and Catalyst in the nonconvex settings during the years before Necoara et al.'s paper and Catalyst to current date. 
+            Paquette et al. \cite{paquette_catalyst_2018} were inspired by Ghadimi \cite{ghadimi_accelerated_2016} and showed that the Catalyst algorithm based on the gradient termination criterion analogous to C2 (see equation (13), (14) in their paper) can adapt to nonconvex settings and the norm of the gradient converges. 
             However, it's at the expense of one additional evaluation of the proximal point method, and it requires evaluating the function value once per outer loop iteration. 
             They used an analogous inner loop complexity to Assumption \ref{ass:linear-convergence-inner-loop} which is stated as Equation (16) in their paper. 
             Convergences to stationarity, convergence of iterates are not claimed. 
@@ -1570,7 +1579,9 @@
             The relationship between Polyak and Nesterov momentum acceleration remains non-trivial. 
             In fact, both type of acceleration can present at the same time, see Maulén and Peypouquet \cite{maulen_speed_2023}.
             It is sometime referred to as ``Hessian Damping" in the literatures.  
-            There are three pillars that supported Catalyst Accelerations: 
+            \par
+            Now that the scope had been settled, let's consider major components of Catalyst Acceleration where extensions to the nonconvex settings can be made. 
+            There are three pillars that support Catalyst Accelerations: 
             \begin{enumerate}
                 \item Variance reduced algorithm with known complexities. 
                 \item Theories of inexact proximal point method and their convergences. 
@@ -1586,8 +1597,14 @@
             The perspectives on how to generalize NAG to the nonconvex settings are diverse, and the issue is compounded by the fact that many variants of NAG also exist. 
             \par
             See Khanh et al. \cite{khanh_inexact_2025} for an algorithmic framework of inexact proximal point method on weakly convex function. 
-            The class of weakly convex function is particularly interesting because it has convergance claim of the gradient norm in Ghadimi and Lan \cite{ghadimi_accelerated_2016}, and in Chapter 4 of the book preprint by Recht and Wright \cite{recht_optimization_nodate}. 
-            It's unclear how their convergence theories can be combined with NAG in the non-convex case, but it's worth investigating. 
+            The class of weakly convex function is particularly interesting because it has convergence claim of the gradient norm in Ghadimi and Lan \cite{ghadimi_accelerated_2016}, and in Chapter 4 of the book preprint by Recht and Wright \cite{recht_optimization_nodate}. 
+            It's unclear how their convergence theories can be combined with NAG in the nonconvex case, but it's worth investigating. 
+            Finally, we can summarize a rough sketch of ideas to explore that will assist the open question we posed. 
+            \begin{enumerate}
+                \item Does the convergence results modestly extend to the non-strongly convex settings described by Necoara \cite{necoara_linear_2019} et al.? 
+                \item Is it possible to extend the Nesterov's acceleration to non-convex settings such as convergence of gradient norm as described in Ghadimi \cite{ghadimi_accelerated_2016} without restarting? If so, what are the trade offs here if we wish to attain stronger convergence claims on the final iterates, or the function value? 
+                \item Do there exist a way of extending inexact proximal point method to the nonconvex settings that also include Nesterov's acceleration? 
+            \end{enumerate}
             % \todoinline{
             %     Recent development regarding the theories of accelerated proximal point method. 
             %     \begin{enumerate}
