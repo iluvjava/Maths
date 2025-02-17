@@ -167,7 +167,7 @@ Following a similar idea, we are going to prove the convergence rate of proximal
 > For all $x \in \R^n$, $t \ge 0$ define: 
 > $$
 > \begin{aligned}
->     \Phi_t := \left(
+>     \Phi_{t + 1} := \left(
 >         \sum_{i = 1}^{t + 1}\eta_{i}^{-1}
 >     \right)\left(
 >         F(x_{t + 1}) - F(x) + 
@@ -210,6 +210,7 @@ Then the sequence $(\eta_t)_{t \ge 1}$ is strictly positive which makes $\sigma_
 At this point, we are ready to show the results. 
 For all $x \in \R^n, t \in \Z_+$, it has from the proximal inequality: 
 $$
+{\small
 \begin{aligned}
     0 &\ge 
     F(x_{t + 1}) - F(x) + \frac{\eta_{t + 1}}{2}
@@ -257,6 +258,7 @@ $$
     \\
     &= \Phi_{t + 1} - \Phi_t. 
 \end{aligned}
+}
 $$
 
 
@@ -352,6 +354,18 @@ $$
 $$
 
 Re-arranging the above inequality yields the convergence results of the PPM in the convex settings. 
+
+
+**Remarks**
+
+For a proof with a different mood but with the same vibe, visit [Convex Proximal Point Method, Part III](Convex%20Proximal%20Point%20Method,%20Part%20III.md). 
+This proof here is strictly better because it's constructed on Lemma 1, which only used that $M_F^{1/\eta}(\cdot;y)$ has quadratic growth. 
+This condition is strictly weaker than $F$ being convex. 
+By relaxing some of the parameters, a similar convergence result can be claimed for functions that are not necessarily convex. 
+
+The convergence we showed here is sufficient but not necessary. 
+The sequence $(\eta_t)_{t \ge 1}$ is the quadratic growth constant for the model function $\mathcal M_F$. 
+In the spacial case of convexity, it coincided with the regularization parameters for PPM. 
 
 ---
 ### **In connection between PPM and smooth gradient descent**
@@ -545,6 +559,8 @@ The same Lyapunov function were use in the convergence of the same smooth gradie
 
 
 
+
+
 #### **Theorem 2.2 | Rate of convergence and step sizes for smooth gradient**
 > Let $F: \R^n \rightarrow \overline \R$ be convex and $L$ Lipschitz smooth. 
 > Then the smooth gradient descent scheme defined by $x_{t + 1} = x_t - \eta_{t + 1}^{-1}\nabla F(x_t)$ given initial $x_0$ and step size sequence $(\eta_t)_{t \ge 1}$. 
@@ -603,7 +619,7 @@ $$
 \end{aligned}
 $$
 
-
+Solving the inequality will yield the desired constraints on $(\eta_t)_{t \ge 1}$. 
 
 ---
 ### **PPM in the Strongly Convex Settings**
