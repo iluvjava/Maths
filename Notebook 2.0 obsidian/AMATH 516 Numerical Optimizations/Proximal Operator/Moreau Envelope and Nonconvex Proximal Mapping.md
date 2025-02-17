@@ -26,7 +26,9 @@ We introduces concepts for the proximal mapping when the function is not necessa
 > $$
 
 
-**Remarks**
+**Remarks**: 
+
+
 This is just Rockafellar and Wetts definition 1.22 in our notations. 
 
 
@@ -34,3 +36,4 @@ This is just Rockafellar and Wetts definition 1.22 in our notations.
 > $f: \R^n \rightarrow \overline \R$ is prox-bounded if there exists $\lambda > 0, x \in \R^n$ such that $\env_f(x) > \infty$. 
 > The supremum of the set of all such $\lambda$, $\lambda_f$ is the prox-boundedness of $f$. 
 
+A function that is bounded below would be a sufficient condition for prox-boundedness. 

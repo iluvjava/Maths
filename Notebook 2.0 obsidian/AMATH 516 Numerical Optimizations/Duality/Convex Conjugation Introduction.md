@@ -110,7 +110,7 @@ Recall from [[../CVX Geometry/Supporting Convex Sets using Halfspaces]], we had 
 
 Here we only showed $\subseteq$, the converse is not shown but it's true. It can be proved via a contradiction, and separation of convex sets, by bearing in mind for the property of an epigraph of a convex function. 
 
-**Theorem: Conjugate is the Support Function of the Epigraph of $f$**
+#### **Theorem | Conjugate is the Support Function of the Epigraph of $f$**
 
 > The support function over the epigraph of function $f$ is the conjugate function $f^\star$, one dimension higher. More specifically: 
 > $$
@@ -162,11 +162,11 @@ $$
 \end{aligned}
 $$
 
-From the first line the the second line, we make the intuitive argument that the finite value for supremum is always attain at the boundary of the epigraph, then using that we construct $z = [y \;f(y)]^T$ to denote it. And finally we arrive at the fact that, the conjugate function is the suppotr function for $\text{epi}(f)$, along the vector $[x\; - 1]^T$. 
+From the first line the the second line, we make the intuitive argument that the finite value for supremum is always attain at the boundary of the epigraph, then using that we construct $z = [y \;f(y)]^T$ to denote it. And finally we arrive at the fact that, the conjugate function is the support function for $\text{epi}(f)$, along the vector $[x\; - 1]^T$. 
 
-**Corollary: Conjugate is Convex**
+#### **Corollary | Conjugate is Convex**
 
-Using the fact that the support function of any set is closed and convex (which is proved in: [[Support Function]]) and the above representation of conjugate function via the support function, we know that the conjugate funciton is also closed and convex. 
+Using the fact that the support function of any set is closed and convex (which is proved in: [[Support Function]]) and the above representation of conjugate function via the support function, we know that the conjugate function is also closed and convex. 
 
 **Remarks**
 
