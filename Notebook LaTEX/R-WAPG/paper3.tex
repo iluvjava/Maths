@@ -51,10 +51,24 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
 
 \section{Introduction}
     \subsection{Motivations}
+        The Nesterov's acceleration scheme originally proposed in 1983 \cite{nesterov_method_1983} is a celebrated first order method for solving the minimization problem. 
+        If the minimizer $x^*$ exists, then the optimality gap $F(x_k) - F(x^*)$ decreases at a rate of $\mathcal O(1/k^2)$, a faster rate compared to gradient descent which is $\mathcal O(1/k)$. 
+        It's consider optimal in a certain sense, see Chapter 2 of Nesterov's book \cite{nesterov_lectures_2018} for details. 
+        However, things are not sunshine, rainbow and happily ever after because the above scheme is associated with the issue that if $F$ is $\mu > 0$ strongly convex, the optimality gap $F(x_k) - F(x^*)$ oscillates and converges sub-linearly, making it worse than gradient descent. See page 9 of Su et al. \cite{su_differential_2016}. 
+        \par
+        This issue motivated a vast amount of literatures aims at improving, interpreting, and extending this method. 
+        Restarting is a popular solution to address the issue of obtaining better convergence rate when the objective function is strongly convex. 
+        Beck and Teboulle \cite{beck_fast_2009} mitigate the issue by restarting and showed that it has an $\mathcal O(1/k^2)$ convergence still, but it performs empirically better. 
+        See \cite{necoara_linear_2019}\cite{aujol_parameter-free_2024} and references within for recent advancements in restarting accelerated proximal gradient algorithm.
+        \par
+        In the convex settings, the Variants Nesterov's Accelerated Gradient optimal to for cases when $\mu \ge 0$ and $\mu > 0$ are different. 
+        In this paper, we will show a unified framework for the convergence proof of both cases with a much relaxed condition for the recurrence of the momentum parameters used to extrapolate the iterates.  
+        \todoinline{
+            $\blacksquare$: Improves the motivation parts here by starting without the math and then move onto the mathematics. 
+        }
         For simplicity consider minimizing a differentiable convex function $F: \RR^n \rightarrow \RR$. 
         Let $F$ be $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex meaning that there exists $L \in \RR$ such that for all $x \in \RR^n, y\in \RR^n$ it has $\mu\Vert x - y\Vert\le \Vert \nabla F(x) - \nabla F(y)\Vert \le L \Vert x - y \Vert$. 
-        \par 
-        The Nesterov's acceleration scheme which was originally proposed in 1983 \cite{nesterov_method_1983} is a celebrated first order method for solving the minimization problem. 
+        We will list the following example algorithm of Nesterov's Accelerated Gradient to refer to while introducing the context and prior works. 
         Initialize $x_1 = y_1$ and $t_0 = 1$, the algorithm finds $(x_k)_{k \ge 1}$ for all $k \ge 1$ by: 
         \begin{align}
             & x_{k + 1} = y_k - L^{-1}\nabla F(y_k), 
@@ -65,14 +79,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             \\
             & y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k). 
         \end{align}\label{eqn:example-algorithm}
-        If the minimizer $x^*$ exists, then the optimality gap $F(x_k) - F(x^*)$ decreases at a rate of $\mathcal O(1/k^2)$, a faster rate compared to gradient descent which is $\mathcal O(1/k)$. 
-        It's consider optimal in some sense and see Chapter 2 of Nesterov's book \cite{nesterov_lectures_2018} for details. 
-        However, things are not sunshine, rainbow and happily ever after because the above scheme is associated with the issue that if $F$ is $\mu > 0$ strongly convex, the optimality gap $F(x_k) - F(x^*)$ oscillates and converges sub-linearly, making it worse than gradient descent. See page 9 of Su et al. \cite{su_differential_2016}. 
-        \par
-        This issue motivated a vast amount of literatures aims at improving, interpreting, and extending this method. 
-        Restarting is a popular solution to address the issue of obtaining better convergence rate when the objective function is strongly convex. 
-        Beck and Teboulle \cite{beck_fast_2009} mitigate the issue by restarting and showed that it has an $\mathcal O(1/k^2)$ convergence still, but it performs empirically better. 
-        See \cite{necoara_linear_2019}\cite{aujol_parameter-free_2024} and references within for recent advancements in restarting accelerated proximal gradient algorithm. 
+        
         
         \subsection{Prior works}
             Apidopoulos et al. \cite{apidopoulos_convergence_2018} showed that a relaxed choice of the sequence that doesn't strictly follow the Nesterov's rule still leads to the convergence of the momentum algorithm. 
@@ -84,7 +91,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
         Our results are based the assumption $F = f + g$ where $g:\RR^n \rightarrow \overline\RR$ is convex proper and closed, and $f$ is an $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
         \par
         Inspired specifically by the technique of Nestrov's estimating sequence \cite{nesterov_lectures_2018}, firstly we present a unified framework of Accelerated Proximal Gradient (APG) which we call Relaxed Weak Accelerated Proximal Gradient (R-WAPG) in Section \ref{sec:rwapg-formulation-convergence}.
-        It can upper bound $F(x_k) - F(x^*)$ for sequences $(t_k)_{k \ge 0}$ that doesn't follow Nesterov's update rule and it unifies the convergence results of several Euclidean variants of FISTA. 
+        It can upper bound $F(x_k) - F(x^*)$ for sequences $(t_k)_{k \ge 0}$ that doesn't follow Nesterov's update rule, and it unifies the convergence results of several Euclidean variants of FISTA. 
         Secondly, we present an alternative to restarting that performs well empirically inspired by a detail in the convergence proof of R-WAPG with extensive numerical experiments. 
         \par
         \textbf{A summary of our main results follow. } 
@@ -590,7 +597,12 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                 \end{split}
             \end{align}
         \end{enumerate}
-        To show \eqref{ineq:stepwise-lya-2}, it follows by subtracting $F(x^*)$ on \eqref{eqn:stepwise-lya-proof-step-3} which gives: 
+        \todoinline{
+            $\blacksquare$: Make it clear that we are going to prove the end results here from the listed intermediate results. 
+        }
+        We will prove the intermediate results above later. 
+        Building upon these intermediate results, we are able to claim \eqref{ineq:stepwise-lya-2}. 
+        It follows by subtracting $F(x^*)$ on \eqref{eqn:stepwise-lya-proof-step-3} which gives: 
         \begin{align}
             \begin{split}\label{eqn:stepwise-lya-proof-eqn3.2}
                 & F(x_{k + 1}) - F(x^*) + R_{k + 1} + 
@@ -643,10 +655,9 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                 F(x_k) - F(x^*) + R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
             \right). 
         \end{align*}
-        }
-        % PROOF SUMMARIZATION ENDS ===========================================================
+        } % PROOF SUMMARIZATION ENDS ===========================================================
         Now, it remains to show \eqref{eqn:stepwise-lya-proof-step-1}, \eqref{eqn:stepwise-lya-proof-step-2}, \eqref{eqn:stepwise-lya-proof-step-3}. 
-        \\
+        \par\noindent
         \textbf{Proof of \eqref{eqn:stepwise-lya-proof-step-1}}:
         Consider the first and the third term on LHS of \eqref{ineq:stepwise-lya-2} summed up: 
         \begin{align}\label{eqn:stepwise-lya-proof-eqn1}
@@ -1003,6 +1014,9 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
     Definition \ref{def:rwapg-seq} introduces the concept of an R-WAPG sequences: $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ which is crucial.
     The sequences parameterize the R-WAPG algorithm stated in Definition \ref{def:wapg}, it connects the step-wise formulation of R-WAPG (Definition \ref{def:stepwise-wapg}) and can describe the convergence claim of R-WAPG in Proposition \ref{prop:wapg-convergence}. 
     In the next section, it continues to play a crucial role in describing several equivalent forms of the R-WAPG algorithm, and their corresponding convergence claim. 
+    \todoinline{\noindent
+        $\blacksquare$: This definition below doesn't directly contribute to the convergence proof, the recurrence relation is more important to the convergence proof. The constraints on the sequence is used to show the equivalent representations. 
+    }
     \begin{definition}[R-WAPG sequences]\label{def:rwapg-seq}\;\\
         Assume $0 \le \mu < L$. 
         The sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are valid for R-WAPG if all the following holds: 
@@ -1015,14 +1029,35 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
         \end{align*}
         We call $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ the \textbf{R-WAPG Sequences}. 
     \end{definition}
-    \begin{observation}\label{obs:r-wapg-observation-1}
-        The following is true: 
+    % \begin{observation}\label{obs:r-wapg-observation-1}
+    %     The following is true: 
+    %     \begin{enumerate}
+    %         \item $\rho_k > 0$ for all $k \ge 0$. 
+    %         \item $\forall k \ge 1: L\alpha_k^2 = (1 - \alpha_k)L\rho_{k - 1}\alpha_{k - 1}^2 +\mu\alpha_k$. 
+    %     \end{enumerate}
+    % \end{observation}
+    Not all properties of the R-WAPG sequences are used in the convergence proof, some other of its properties such as $\alpha_k \in (\mu/L, 1)$ plays a role much later on in Section \ref{sec:rwapg-equiv-repr}. 
+    The following lemma states two consequences of the definition of the R-WAPG sequences which will play a crucial role in the convergence proof immediately after. 
+    \begin{lemma}{Consequences from the definition of R-WAPG Sequences}\label{lemma:r-wapg-seq-consequences}
+        Let sequence $(\alpha_k)_{k\ge 0}$ and $(\rho_k)_{k \ge0}$ be given by Definition \ref{def:rwapg-seq}, then they have: 
         \begin{enumerate}
             \item $\rho_k > 0$ for all $k \ge 0$. 
             \item $\forall k \ge 1: L\alpha_k^2 = (1 - \alpha_k)L\rho_{k - 1}\alpha_{k - 1}^2 +\mu\alpha_k$. 
         \end{enumerate}
-        
-    \end{observation}
+    \end{lemma}
+    \begin{proof}
+        The first item is obvious by $\alpha_k \in (\mu/L, 1)$. 
+        The second item is direct by definition of $\rho_k$ which has for all $k \ge 1$: 
+        \begin{align*}
+            (1 - \alpha_k)L \rho_{k - 1}\alpha_{k - 1}^2 + \mu\alpha_k
+            &= (1 - \alpha_k)L \left(
+                \frac{\alpha_{k}^2 - (\mu/L)\alpha_{k}}{(1 - \alpha_{k})\alpha_{k - 1}^2}
+            \right)\alpha_{k - 1}^2 + \mu\alpha_k
+            \\
+            &= (L\alpha_k^2 - \mu \alpha_k) + \mu \alpha_k = L\alpha_k^2. 
+        \end{align*}
+    \end{proof}
+    \par
     We now give Relaxed Weak Accelerated Proximal Gradient in details.
     \begin{definition}[Relaxed weak accelerated proximal gradient (R-WAPG)]\label{def:wapg}\;\\
         Choose any $x_1 \in \RR^n, v_1 \in \RR^n$. 
@@ -1048,7 +1083,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             \end{align*}    
         \end{tcolorbox}
     \end{definition}
-    \begin{observation}\label{obs:r-wapg-observation-2}
+    \begin{remark}\label{remark:rwapg-def}
         Observe that if $\rho_k = 1$ for all $k\ge 0$, then the above algorithm is similar to (2.2.7) in Nesterov's book \cite{nesterov_lectures_2018} because $L\alpha_k^{2} = (1 - \alpha_k)L\alpha_{k - 1}^2 + \mu \alpha_k$. 
         \par
         For all $k \ge 1$, the algorithm chains together the sequence of $(\hat \gamma_{k+1})_{k \ge 1}$ and $(\gamma_k)_{k \ge 1}$ in Definition \ref{prop:stepwise-lyapunov} through the equalities: 
@@ -1062,8 +1097,8 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             \\
             &= (1 - \alpha_k)\rho_{k - 1}\hat \gamma_{k} + \alpha_k \mu. 
         \end{align*}
-        The third equality from Observation \ref{obs:r-wapg-observation-1}. 
-    \end{observation}
+        Therefore, the sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ fits the same recurrence relation from Lemma \ref{lemma:r-wapg-seq-consequences} (ii). 
+    \end{remark}
     Here is the main result of this section. 
     \begin{proposition}[R-WAPG convergence claim]\label{prop:wapg-convergence}\; \\
         Fix any arbitrary $x^* \in \RR^n, N \in \mathbb N$. 
@@ -1128,7 +1163,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             \right). 
         \end{align*}
         We had demonstrated the base case. 
-        Next, for all $k = 2, 3, \ldots, N$, from Observation \ref{obs:r-wapg-observation-2}: 
+        Next, for all $k = 2, 3, \ldots, N$, from Remark \ref{remark:rwapg-def}: 
         \begin{align*}
             \hat \gamma_{k + 1} = L\alpha_{k}^2 
             &=(1 - \alpha_k)\rho_{k - 1}L\alpha_{k - 1}^2 + \mu\alpha_k
@@ -1234,11 +1269,12 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
 
 
 \section{Equivalent representations of R-WAPG}\label{sec:rwapg-equiv-repr}
-    The goal of this section is to reduce Definition \ref{def:wapg} into simpler forms that are comparable to what commonly appears in the literatures. 
+    The goal of this section is to reduce Definition \ref{def:wapg} into simpler forms that are equivalent to what commonly appears in the literatures. 
     In the literatures, variants of Accelerated Proximal Gradient algorithm such as FISTA, V-FISTA has different representations. 
-    This shows that R-WAPG provides a unified framework. 
+    Sometimes the same algorithm include two iterates $(x_k, y_k)$, sometimes they inlcude three iterates $(x_k, y_k, z_k)$. 
+    In this section we simplify R-WAPG to these representations commonly found in the literatures and showed that they are equivalent.
     These equivalent representations are listed in Definition \ref{def:r-wapg-intermediate}, \ref{def:r-wapg-st-form} and \ref{def:r-wapg-momentum-form}. 
-    These forms are equivalent under a subset of initial conditions. 
+    These forms are equivalent and they are crucial for proving the convergence of existing variants found in the literatures in the upcoming Section \ref{sec:rwapg-literatures}. 
     \par 
     Proposition \ref{prop:wapg-first-equivalent-repr} simplifies Definition \ref{def:wapg} and finds a representation without using auxiliary sequence $\gamma_k, \hat \gamma_k$. 
     Definition \ref{def:r-wapg-intermediate} states the first simplified form of the R-WAPG algorithm which we call: ``R-WAPG intermediate form''. 
@@ -1347,7 +1383,6 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
         This section lists three equivalent representations of the R-WAPG algorithm. 
         They are comparable to existing APG algorithms in the literatures such as Exercise 12.1 in Ryu, Yin \cite{ryu_large-scale_2022}, Similar Triangle form from Lee et al. \cite{lee_geometric_2021}, Ahn Sra \cite{ahn_understanding_2022} and momentum form of (2.2.19) in Nesterov \cite{nesterov_lectures_2018}. 
         Specific instances of Accelerated Proximal Gradient algorithm that has the same form as the Definition \ref{def:r-wapg-intermediate}, Definition \ref{def:r-wapg-st-form} and Definition \ref{def:r-wapg-momentum-form} in the literatures are stated in the remarks that follows the definitions. 
-
         \begin{definition}[R-WAPG intermediate form]\label{def:r-wapg-intermediate}\;\\
             Assume $\mu < L$ and let $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ given by Definition \ref{def:rwapg-seq}. 
             Initialize any $x_1, v_1$ in $\RR^n$. 
@@ -1624,7 +1659,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                 (\forall k \ge 1)\quad 
                 \delta_k &\defeq \frac{1 + \xi_k}{L\alpha_k}. 
             \end{align}
-            Then, it fits into the format of abstract similar triangle form Proposition \ref{prop:abs-st-form} and it follows that $v_{k + 1} - x_{k + 1} = (1 + \xi_k)^{-1}(x_{k + 1} - x_k)\; \forall k \ge 1$. 
+            Then, it fits into the format of abstract similar triangle form Proposition \ref{prop:abs-st-form}, and it follows that $v_{k + 1} - x_{k + 1} = (1 + \xi_k)^{-1}(x_{k + 1} - x_k)\; \forall k \ge 1$. 
             We shall verify the hypothesis that $L\delta_k = 1 + \tau_k + \xi_k$ later, for now substituting $\xi_k$ gives: 
             \begin{align*}
                 v_{k + 1} &= 
@@ -1715,8 +1750,8 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                 (L \alpha_{k + 1} - \mu)x_{k + 1} + (L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)(x_{k + 1} - x_k).
                 \label{eqn:third-eqv-repr-proof-step1} 
             \end{align}
-            The comming parts simplifies $y_k$ firstly for $k = 1$, then for all $k \ge 2$. 
-            by Definition \ref{def:r-wapg-st-form}, it follows that for all $k \ge 1$: 
+            The coming parts simplifies $y_k$ firstly for $k = 1$, then for all $k \ge 2$. 
+            By Definition \ref{def:r-wapg-st-form}, it follows that for all $k \ge 1$: 
             \begin{align}\label{eqn:third-eqv-repr-proof-step2}
                 \begin{split}
                     y_k &= 
@@ -1857,10 +1892,19 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
     In addition to various equivalent forms of the R-WAPG algorithm, the R-WAPG sequences are much more flexible. 
     They generalize many existing sequences used in accelerated proximal gradient schemes. 
     \par
-    This section demonstrates that several variants of FISTA in the literatures reduces to the R-WAPG method by setting up the R-WAPG sequences with additional assumptions. 
-    This section will also demonstrate that the convergence claim (Proposition \ref{prop:wapg-convergence}) holds, and it derives convergence rates consistent with results in the literatures.  
-    The table below shows the R-WAPG convergence results specialized into various settings. 
+    Using the results from Section \ref{sec:rwapg-equiv-repr}, this section will demonstrate that several Euclidean variants of FISTA in the literatures reduce to our R-WAPG definition if a specific R-WAPG sequences with additional constraints.
+    As a result, (Proposition \ref{prop:wapg-convergence}) holds hence, substituting specialized of R-WAPG sequence $(\alpha_k)_{k \ge 0}$, we derive convergence rates consistent with results in the literatures for these variants of FISTA.  
+    \par
+    The table below shows the R-WAPG convergence results unify convergence claims for various settings. 
+    The first row shows the generic convergence results of our R-WAPG. 
+    The rows after are algorithms found in the literatures. 
+    First columns states the assumption made for parameter $\mu$, the second and third columns show the specific examples of $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ specialized from Definition \ref{def:rwapg-seq}. 
+    Last column shows the convergence rate on $F(x_k) - F^*$ which is the optimality gap and a theorem that proves the claim. 
+    \todoinline{\noindent
+        $\blacksquare$: Explain what this table shows. 
+    }
     \begin{table}[H]
+        \centering
         {\scriptsize
         \begin{tabular}{|l|l|l|l|l|}
         \hline
@@ -1973,105 +2017,6 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
         The sequence $t_k$ is exactly the same as in Theorem 3.1 of Chambolle, Dossal \cite{chambolle_convergence_2015}. 
     \end{remark}
 
-    \begin{lemma}[Constant R-WAPG sequences]\label{lemma:constant-rwapg-seq}
-        Suppose $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are R-WAPG sequences given by Definition \ref{def:rwapg-seq} and assume $L > \mu > 0$.
-        Define $q := \mu/L$. 
-        Then $\forall r \in \left(\sqrt{q},\sqrt{q^{-1}}\right)$, the constant sequence $\alpha_k := r \sqrt{q}$ has the following: 
-        \begin{enumerate}
-            \item For any $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$, the constant sequence $\alpha_k := \alpha \in (q, 1)$ and\\
-            $\rho_k := \rho=\left(1-r^{-1}\sqrt{q}\right)\left(1 - r \sqrt{q}\right)^{-1} > 0$, hence it's a pair of valid R-WAPG sequence. 
-            \item The momentum terms $\theta_{t + 1}$ in Definition \ref{def:r-wapg-momentum-form}, which we denoted by $\theta$ is the constant:\\ $\theta = (1 - r^{-1}\sqrt{q})(1 - r\sqrt{q})(1- q)^{-1}$
-            \item When $r = 1$, $\theta = (1- \sqrt{q})(1 + \sqrt{q})^{-1}$. 
-            \item For all $r \in \left(1, \sqrt{q^{-1}}\right)$, $\rho > 1$; for all $r \in \left(\sqrt{q}, 1\right]$ $\rho \le 1$. 
-            \item For all $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$, $\max(\rho, 1)(1 - \alpha) = \max\left(1 - r\sqrt{q}, 1 - r^{-1}q\right)$. 
-        \end{enumerate}
-    \end{lemma}
-    \begin{proof}
-        To see (i), fix any $\sqrt{q} < r < \sqrt{q^{-1}}$, so
-        \begin{align*}
-            r &\in \left(\sqrt{q}, \sqrt{q^{-1}}\right)
-            \iff 
-            r\sqrt{q} \in 
-            \left(
-                q, 1
-            \right). 
-        \end{align*}
-        Therefore, $\alpha_k \in (\mu/L, 1)$. 
-        To see $\rho_k$, by definition it has 
-        \begin{align*}
-            \rho_k &= \frac{\alpha_{k + 1}^2 - q \alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2} 
-            = \frac{\alpha^2 - q \alpha}{(1 - \alpha)\alpha^2} 
-            \\
-            &= \frac{1 - q\alpha^{-1}}{1 - \alpha}
-            \\
-            &= \frac{1 - q r^{-1}\sqrt{q^{-1}}}{1 - r \sqrt{q}}
-            \\
-            &= \frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}} > 0. 
-        \end{align*}
-        Simple algebra can show (ii). 
-        To start, we substitute the constant sequence $\alpha, \rho$ for $\alpha_k, \rho_k$ into the definition of $\theta$: 
-        \begin{align*}
-            \theta &= \frac{\rho\alpha(1 - \alpha)}{\rho \alpha^2 + \alpha}
-            = (\rho\alpha)\frac{1 - \alpha}{\rho \alpha^2 + \alpha} = \rho \frac{1 - \alpha}{\rho \alpha + 1}
-            \\
-            &= 
-            \frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}}
-            (1 - r\sqrt{q})
-            \left(
-                1 + r\sqrt{q}\frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}}
-            \right)^{-1}
-            \\
-            &= (1 - r^{-1} \sqrt{q})\left(
-                1 + \frac{r \sqrt{q} - q}{1 - r \sqrt{q}}
-            \right)^{-1}
-            \\
-            &= \left(1 - r^{-1} \sqrt{q}\right)\left(
-                \frac{1 - q}{1 - r \sqrt{q}}
-            \right)^{-1} = \frac{(1 - r^{-1}\sqrt{q})(1 - r \sqrt{q})}{1 - q}. 
-        \end{align*}
-        Now it's the perfect opportunity to show (iii) by substituting $r = 1$ which has 
-        \begin{align*}
-            \theta &= \frac{(1 - \sqrt{q})^2}{1 - q}
-            =
-            \frac{(1 - \sqrt{q})}{(1 - \sqrt{q})(1 + \sqrt{q})}
-            = \frac{1 - \sqrt{q}}{1 + \sqrt{q}}. 
-        \end{align*}
-        Next for (iv), we determine when $\rho$ switches from $> 1$ to $ \le 1$. 
-        For any $r \in \left(1, \sqrt{q^{-1}}\right)$, we show $\rho > 1$: 
-        \begin{align*}
-            \rho &= \frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}} 
-            > \frac{1 - \sqrt{q}}{1 - r \sqrt{q}} > \frac{1 - \sqrt{q}}{1 - \sqrt{q}} = 1
-        \end{align*}
-        The first inequality comes from $r > 1 \iff -r^{-1} > -1$, the second inequality comes from $r > 1 \iff -r < 1$. 
-        For any $r \in \left(\sqrt{q}, 1\right]$, we have $\rho \le 1$ by 
-        \begin{align*}
-            \rho &= \frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}} 
-            \le \frac{1 - \sqrt{q}}{1 - r \sqrt{q}} \le \frac{1 - \sqrt{q}}{1 - \sqrt{q}} = 1. 
-        \end{align*}
-        The first inequality comes from $-r^{-1} \le - 1$; the second inequality comes from $-r \ge -1$. 
-        \par
-        Finally, to show (v), we consider by cases: 
-        \begin{enumerate}
-            \item[Case A:] When $r \in \left(1, \sqrt{q^{-1}}\right)$, we have $\rho > 1$ by (iii), meaning that $1 - r^{-1}\sqrt{q} > 1 - r \sqrt{q}$. $\rho > 1 \implies \max(\rho, 1) = \rho$ hence 
-                \begin{align*}
-                    \max(\rho, 1)(1 - \alpha) &= \rho(1- \alpha)
-                    = \frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}}(1 - r \sqrt{q}) = 1 - r^{-1}\sqrt{q}. 
-                \end{align*}
-                In this case, the larger one of the two values: $\left\lbrace1 - \rho^{-1}\sqrt{q}, 1 - r\sqrt{q}\right\rbrace$ is taken. 
-            \item[Case B:] When $r \in \left(\sqrt{q}, 1\right]$, we have $\rho \le 1$ by (iii); hence $1 - r^{-1}\sqrt{q} \le 1 - r \sqrt{q}$ and $\max(1,\rho) = 1$ therefore: 
-            \begin{align*}
-                \max(1, \rho)(1 - \alpha) = (1 - \alpha) = 1 - r \sqrt{q}. 
-            \end{align*}
-            Once again, the larger one of the quantity: $1 - r \sqrt{q}$ among $\{1 - r^{-1}\sqrt{q}, 1 - r\sqrt{q}\}$ is taken. 
-        \end{enumerate}
-        Therefore, for all vales of $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$ are completed by cases: (A), (B).
-        The largest of the value among $\{1 - r \sqrt{q}, 1 - r^{-1}\sqrt{q}\}$ is always taken. 
-        Therefore, it has: 
-        \begin{align*}
-            \max(1, \rho)(1 - \alpha) = \max\left(1 - r\sqrt{q}, 1 - r^{-1}\sqrt{q}\right). 
-        \end{align*}
-
-    \end{proof}
 
     \begin{theorem}[FISTA first variant Chambolle, Dossal 2015]\label{thm:r-wapg-on-cham-doss}\;\\
         Fix arbitrary $a \ge 2$.
@@ -2179,6 +2124,108 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
     \begin{remark}
         This algorithm described here is exactly the same algorithm being analyzed in the paper by Chambolle, Dossal \cite{chambolle_convergence_2015}. 
     \end{remark}
+    \todoinline{
+        $\blacksquare$: Add some explanations here to brief the readers on what is about to come. 
+    }
+    Following a similar pattern, the lemma and theorem follow show linear convergence for all $\mu > 0$ strongly convex function with R-WAPG sequence $\alpha_k = \alpha \in (\mu/L, 1)$ that is a fixed constant. 
+    \begin{lemma}[Constant R-WAPG sequences]\label{lemma:constant-rwapg-seq}
+        Suppose $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are R-WAPG sequences given by Definition \ref{def:rwapg-seq} and assume $L > \mu > 0$.
+        Define $q := \mu/L$. 
+        Then $\forall r \in \left(\sqrt{q},\sqrt{q^{-1}}\right)$, the constant sequence $\alpha_k := r \sqrt{q}$ has the following: 
+        \begin{enumerate}
+            \item For any $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$, the constant sequence $\alpha_k := \alpha \in (q, 1)$ and\\
+            $\rho_k := \rho=\left(1-r^{-1}\sqrt{q}\right)\left(1 - r \sqrt{q}\right)^{-1} > 0$, hence it's a pair of valid R-WAPG sequence. 
+            \item The momentum terms $\theta_{t + 1}$ in Definition \ref{def:r-wapg-momentum-form}, which we denoted by $\theta$ is the constant:\\ $\theta = (1 - r^{-1}\sqrt{q})(1 - r\sqrt{q})(1- q)^{-1}$
+            \item When $r = 1$, $\theta = (1- \sqrt{q})(1 + \sqrt{q})^{-1}$. 
+            \item For all $r \in \left(1, \sqrt{q^{-1}}\right)$, $\rho > 1$; for all $r \in \left(\sqrt{q}, 1\right]$ $\rho \le 1$. 
+            \item For all $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$, $\max(\rho, 1)(1 - \alpha) = \max\left(1 - r\sqrt{q}, 1 - r^{-1}q\right)$. 
+        \end{enumerate}
+    \end{lemma}
+    \begin{proof}
+        To see (i), fix any $\sqrt{q} < r < \sqrt{q^{-1}}$, so
+        \begin{align*}
+            r &\in \left(\sqrt{q}, \sqrt{q^{-1}}\right)
+            \iff 
+            r\sqrt{q} \in 
+            \left(
+                q, 1
+            \right). 
+        \end{align*}
+        Therefore, $\alpha_k \in (\mu/L, 1)$. 
+        To see $\rho_k$, by definition it has 
+        \begin{align*}
+            \rho_k &= \frac{\alpha_{k + 1}^2 - q \alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2} 
+            = \frac{\alpha^2 - q \alpha}{(1 - \alpha)\alpha^2} 
+            \\
+            &= \frac{1 - q\alpha^{-1}}{1 - \alpha}
+            \\
+            &= \frac{1 - q r^{-1}\sqrt{q^{-1}}}{1 - r \sqrt{q}}
+            \\
+            &= \frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}} > 0. 
+        \end{align*}
+        Simple algebra can show (ii). 
+        To start, we substitute the constant sequence $\alpha, \rho$ for $\alpha_k, \rho_k$ into the definition of $\theta$: 
+        \begin{align*}
+            \theta &= \frac{\rho\alpha(1 - \alpha)}{\rho \alpha^2 + \alpha}
+            = (\rho\alpha)\frac{1 - \alpha}{\rho \alpha^2 + \alpha} = \rho \frac{1 - \alpha}{\rho \alpha + 1}
+            \\
+            &= 
+            \frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}}
+            (1 - r\sqrt{q})
+            \left(
+                1 + r\sqrt{q}\frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}}
+            \right)^{-1}
+            \\
+            &= (1 - r^{-1} \sqrt{q})\left(
+                1 + \frac{r \sqrt{q} - q}{1 - r \sqrt{q}}
+            \right)^{-1}
+            \\
+            &= \left(1 - r^{-1} \sqrt{q}\right)\left(
+                \frac{1 - q}{1 - r \sqrt{q}}
+            \right)^{-1} = \frac{(1 - r^{-1}\sqrt{q})(1 - r \sqrt{q})}{1 - q}. 
+        \end{align*}
+        Now it's the perfect opportunity to show (iii) by substituting $r = 1$ which has 
+        \begin{align*}
+            \theta &= \frac{(1 - \sqrt{q})^2}{1 - q}
+            =
+            \frac{(1 - \sqrt{q})}{(1 - \sqrt{q})(1 + \sqrt{q})}
+            = \frac{1 - \sqrt{q}}{1 + \sqrt{q}}. 
+        \end{align*}
+        Next for (iv), we determine when $\rho$ switches from $> 1$ to $ \le 1$. 
+        For any $r \in \left(1, \sqrt{q^{-1}}\right)$, we show $\rho > 1$: 
+        \begin{align*}
+            \rho &= \frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}} 
+            > \frac{1 - \sqrt{q}}{1 - r \sqrt{q}} > \frac{1 - \sqrt{q}}{1 - \sqrt{q}} = 1
+        \end{align*}
+        The first inequality comes from $r > 1 \iff -r^{-1} > -1$, the second inequality comes from $r > 1 \iff -r < 1$. 
+        For any $r \in \left(\sqrt{q}, 1\right]$, we have $\rho \le 1$ by 
+        \begin{align*}
+            \rho &= \frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}} 
+            \le \frac{1 - \sqrt{q}}{1 - r \sqrt{q}} \le \frac{1 - \sqrt{q}}{1 - \sqrt{q}} = 1. 
+        \end{align*}
+        The first inequality comes from $-r^{-1} \le - 1$; the second inequality comes from $-r \ge -1$. 
+        \par
+        Finally, to show (v), we consider by cases: 
+        \begin{enumerate}
+            \item[Case A:] When $r \in \left(1, \sqrt{q^{-1}}\right)$, we have $\rho > 1$ by (iii), meaning that $1 - r^{-1}\sqrt{q} > 1 - r \sqrt{q}$. $\rho > 1 \implies \max(\rho, 1) = \rho$ hence 
+                \begin{align*}
+                    \max(\rho, 1)(1 - \alpha) &= \rho(1- \alpha)
+                    = \frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}}(1 - r \sqrt{q}) = 1 - r^{-1}\sqrt{q}. 
+                \end{align*}
+                In this case, the larger one of the two values: $\left\lbrace1 - \rho^{-1}\sqrt{q}, 1 - r\sqrt{q}\right\rbrace$ is taken. 
+            \item[Case B:] When $r \in \left(\sqrt{q}, 1\right]$, we have $\rho \le 1$ by (iii); hence $1 - r^{-1}\sqrt{q} \le 1 - r \sqrt{q}$ and $\max(1,\rho) = 1$ therefore: 
+            \begin{align*}
+                \max(1, \rho)(1 - \alpha) = (1 - \alpha) = 1 - r \sqrt{q}. 
+            \end{align*}
+            Once again, the larger one of the quantity: $1 - r \sqrt{q}$ among $\{1 - r^{-1}\sqrt{q}, 1 - r\sqrt{q}\}$ is taken. 
+        \end{enumerate}
+        Therefore, for all vales of $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$ are completed by cases: (A), (B).
+        The largest of the value among $\{1 - r \sqrt{q}, 1 - r^{-1}\sqrt{q}\}$ is always taken. 
+        Therefore, it has: 
+        \begin{align*}
+            \max(1, \rho)(1 - \alpha) = \max\left(1 - r\sqrt{q}, 1 - r^{-1}\sqrt{q}\right). 
+        \end{align*}
+    \end{proof}
 
     \begin{theorem}[Fixed momentum APG]\label{thm:fixed-momentum-fista}
         Assume $L > \mu > 0$, let a pair of constant R-WAPG sequence: $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be given by Lemma \ref{lemma:constant-rwapg-seq}.
@@ -2331,7 +2378,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             \end{align*}
             $A$ is set to be a positive semi-definite diagonal matrix, so the problem admits unique minimizer $x^* = \mathbf 0$ with minimum being zero. 
             We apply Algorithm \ref{alg:free-rwapg}, M-FISTA, and V-FISTA. 
-            The following parameters are used to set up the problem: 
+            The following parameters are used to set up the numerical experiments: 
             \begin{enumerate}
                 \item $N$, the dimension of the problem which defines $A \in \RR^{N\times N}$, a diagonal matrix given by $N- 1$ linearly spaced with equal increment on the interval $[\mu, L]$, and an extra number $0$, i.e: 
                 \begin{align*}
@@ -2351,11 +2398,15 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             The parameter $L=1, \mu=10^{-5}$ are given in prior to produce the diagonal matrix $A$, and we conduct many experiments for $N = 256$ and $N = 1024$. 
             For all R-WAPG, M-FISTA and V-FISTA the same random initial guess is used for all test algorithms and 30 experiments are repeated with a different random initial guess each time. 
             The maximum, minimum and median values of $\delta_k$ are measured for all algorithms at each iteration and plotted as a ribbon. 
+            \todoinline{\noindent
+                $\blacksquare$: Another important feature of the numerical results is the hybrid behavior of the algorithm. 
+            }
+            \par
             Results are shown in Figure \ref{fig:simple-quadratic-NOG}.
             The solid line in the ribbon is the median value of $\delta_k$ across all experiment, the ribbon gives the maximum, minimum value of $\delta_k$ for each iteration across all experiments. 
-            FR-WAPG initially behaves similar to M-FISTA, but as the iteration goes on, it started to behave like V-FISTA.  
-            \par 
-            The most surprising feature here is the monotone descent, however, it's being numerical verified that the method is not monotone in general, it just looks monotone on the figure. 
+            One significant feature here is that FR-WAPG initially behaves similar to M-FISTA, but as the iteration goes on, it started to behave like V-FISTA. 
+            The second surprising feature is the monotone descent it shows on the graph visually. 
+            Unfortunately it's numerically verified that the method is not monotone in general, and it just looks monotone on the graph. 
             \begin{figure}[H]
                 \begin{subfigure}[b]{0.47\textwidth}
                     \centering
@@ -2397,8 +2448,8 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             We perform numerical experiments using V-FISTA, M-FISTA and FR-WAPG on this problem. 
             The setup of our parameters now follow. 
             \begin{enumerate}
-                \item $M, N$ are constants. They define matrix $A \in \RR^{M\times N}$ which has entires of i.i.d random variable taken from a standard normal distribution. 
-                \item $L, \mu$, are Lipschitz constant and the strong convexity constant for the smooth part of the objective which are not known prior. Hence they are estimated by $A$ by $\mu = 1/\Vert (A^TA)^{-1}\Vert$ and $L = \Vert A^TA\Vert$ prior to experiment to assist the V-FISTA algorithm. 
+                \item $M, N$ are constants. They define matrix $A \in \RR^{M\times N}$ which has entries of i.i.d random variable taken from a standard normal distribution. 
+                \item $L, \mu$, are Lipschitz constant and the strong convexity constant for the smooth part of the objective which are not known prior. Consequently, they are estimated by $A$ by $\mu = 1/\Vert (A^TA)^{-1}\Vert$ and $L = \Vert A^TA\Vert$ prior to experiment to assist the V-FISTA algorithm. 
                 \item $x^+ = [1\; -1\; 1 \; \cdots ]^T \in \RR^N$, it's a vector with alternating $1, -1$ in it. 
                 \item Given $x^+$, it has $b = Ax^+ \in \RR^M$. 
                 \item Given $A$, estimations for $L,\mu$ are given by $L = \Vert A^TA\Vert$, $\mu = \Vert (A^TA)^{-1}\Vert^{-1}$. 
