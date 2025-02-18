@@ -63,9 +63,6 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
         \par
         In the convex settings, the Variants Nesterov's Accelerated Gradient optimal to for cases when $\mu \ge 0$ and $\mu > 0$ are different. 
         In this paper, we will show a unified framework for the convergence proof of both cases with a much relaxed condition for the recurrence of the momentum parameters used to extrapolate the iterates.  
-        \todoinline{
-            $\blacksquare$: Improves the motivation parts here by starting without the math and then move onto the mathematics. 
-        }
         For simplicity consider minimizing a differentiable convex function $F: \RR^n \rightarrow \RR$. 
         Let $F$ be $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex meaning that there exists $L \in \RR$ such that for all $x \in \RR^n, y\in \RR^n$ it has $\mu\Vert x - y\Vert\le \Vert \nabla F(x) - \nabla F(y)\Vert \le L \Vert x - y \Vert$. 
         We will list the following example algorithm of Nesterov's Accelerated Gradient to refer to while introducing the context and prior works. 
@@ -597,9 +594,6 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                 \end{split}
             \end{align}
         \end{enumerate}
-        \todoinline{
-            $\blacksquare$: Make it clear that we are going to prove the end results here from the listed intermediate results. 
-        }
         We will prove the intermediate results above later. 
         Building upon these intermediate results, we are able to claim \eqref{ineq:stepwise-lya-2}. 
         It follows by subtracting $F(x^*)$ on \eqref{eqn:stepwise-lya-proof-step-3} which gives: 
@@ -1014,9 +1008,6 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
     Definition \ref{def:rwapg-seq} introduces the concept of an R-WAPG sequences: $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ which is crucial.
     The sequences parameterize the R-WAPG algorithm stated in Definition \ref{def:wapg}, it connects the step-wise formulation of R-WAPG (Definition \ref{def:stepwise-wapg}) and can describe the convergence claim of R-WAPG in Proposition \ref{prop:wapg-convergence}. 
     In the next section, it continues to play a crucial role in describing several equivalent forms of the R-WAPG algorithm, and their corresponding convergence claim. 
-    \todoinline{\noindent
-        $\blacksquare$: This definition below doesn't directly contribute to the convergence proof, the recurrence relation is more important to the convergence proof. The constraints on the sequence is used to show the equivalent representations. 
-    }
     \begin{definition}[R-WAPG sequences]\label{def:rwapg-seq}\;\\
         Assume $0 \le \mu < L$. 
         The sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are valid for R-WAPG if all the following holds: 
@@ -1900,9 +1891,6 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
     The rows after are algorithms found in the literatures. 
     First columns states the assumption made for parameter $\mu$, the second and third columns show the specific examples of $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ specialized from Definition \ref{def:rwapg-seq}. 
     Last column shows the convergence rate on $F(x_k) - F^*$ which is the optimality gap and a theorem that proves the claim. 
-    \todoinline{\noindent
-        $\blacksquare$: Explain what this table shows. 
-    }
     \begin{table}[H]
         \centering
         {\scriptsize
@@ -2124,9 +2112,6 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
     \begin{remark}
         This algorithm described here is exactly the same algorithm being analyzed in the paper by Chambolle, Dossal \cite{chambolle_convergence_2015}. 
     \end{remark}
-    \todoinline{
-        $\blacksquare$: Add some explanations here to brief the readers on what is about to come. 
-    }
     Following a similar pattern, the lemma and theorem follow show linear convergence for all $\mu > 0$ strongly convex function with R-WAPG sequence $\alpha_k = \alpha \in (\mu/L, 1)$ that is a fixed constant. 
     \begin{lemma}[Constant R-WAPG sequences]\label{lemma:constant-rwapg-seq}
         Suppose $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are R-WAPG sequences given by Definition \ref{def:rwapg-seq} and assume $L > \mu > 0$.
@@ -2398,9 +2383,6 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             The parameter $L=1, \mu=10^{-5}$ are given in prior to produce the diagonal matrix $A$, and we conduct many experiments for $N = 256$ and $N = 1024$. 
             For all R-WAPG, M-FISTA and V-FISTA the same random initial guess is used for all test algorithms and 30 experiments are repeated with a different random initial guess each time. 
             The maximum, minimum and median values of $\delta_k$ are measured for all algorithms at each iteration and plotted as a ribbon. 
-            \todoinline{\noindent
-                $\blacksquare$: Another important feature of the numerical results is the hybrid behavior of the algorithm. 
-            }
             \par
             Results are shown in Figure \ref{fig:simple-quadratic-NOG}.
             The solid line in the ribbon is the median value of $\delta_k$ across all experiment, the ribbon gives the maximum, minimum value of $\delta_k$ for each iteration across all experiments. 
