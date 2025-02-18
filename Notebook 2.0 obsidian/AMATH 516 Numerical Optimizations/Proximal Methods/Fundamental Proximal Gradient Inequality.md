@@ -687,6 +687,9 @@ $$
 
 This, recovers the same lemma as in the convex smooth case, utilizing the non-convex formulation of the proximal gradient lemma. 
 
+--- 
+### **Proximal gradient inequality as an extension of proximal inequality**
+
 
 ---
 ### **Inexact Proximal Gradient inequalities**

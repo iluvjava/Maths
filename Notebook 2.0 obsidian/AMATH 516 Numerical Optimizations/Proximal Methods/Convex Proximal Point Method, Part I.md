@@ -37,13 +37,9 @@ The following lemma gives the results of proximal inequality which is relevant t
 > $$
 > \begin{aligned}
 >     0 &\le 
->     F(x) - F(x_{t + 1}) 
->     + 
->     \frac{\eta_{t + 1}}{2}\left(
->         \Vert x - x_k\Vert^2 - \Vert x_{k + 1} - x_k\Vert^2
->         - \Vert x - x_{k + 1}\Vert^2
->     \right)
->     - \frac{\mu}{2}\Vert x - x_{t + 1}\Vert^2
+>     F(x) - F(x_t) + \frac{\eta_{t + 1}}{2}\left(
+>         \Vert x - x_t\Vert^2 - \Vert x_{t + 1} - x_t \Vert^2
+>     \right) - \frac{\eta_{t + 1} + \mu}{2}\Vert x - x_{t + 1}\Vert^2
 >     \\
 >     &= 
 >     F(x) - F(x_{t + 1}) 
@@ -73,6 +69,10 @@ $$
         - \Vert x - x_{t + 1}\Vert^2
     \right)
     - \frac{\mu}{2}\Vert x - x_{t + 1}\Vert^2
+    \\
+    &= F(x) - F(x_t) + \frac{\eta_{t + 1}}{2}\left(
+        \Vert x - x_t\Vert^2 - \Vert x_{t + 1} - x_t \Vert^2
+    \right) - \frac{\eta_{t + 1} + \mu}{2}\Vert x - x_{t + 1}\Vert^2
     \\
     &= F(x) - F(x_t) + \frac{\eta_{t + 1}}{2}\left(
         \Vert x - x_{t + 1} + x_{t + 1} - x_t\Vert^2 - \Vert x_{t + 1} - x_t \Vert^2

@@ -37,7 +37,7 @@ They are the model function, the Envelope function, and the resolvent/proximal o
 ### **Inexact proximal inequality**
 The lemmas that follows show the inequality proximal inequality with inexact evaluations on the resolvent operator. 
 
-#### **Lemma 1 | Gradient error proximal inequality**
+#### **Lemma 1.1 | Gradient error proximal inequality**
 > Let $y \in \R^n, \tilde x \in \R^n$, $w \in \partial \mathcal M(\tilde x; y)$. 
 > Then for all $x \in \R^n$: 
 > $$
@@ -74,12 +74,21 @@ $$
 \end{aligned}
 $$
 
+$\blacksquare$
+
+#### **Definition 1.2 | Relative error of Proximal inequality**
+
+
 **Remarks**
 
-This is Lemma A.7 in Lin et al.'s 2015 Catalyst paper. 
-It remains to expands some of the squared norm terms to see they become the same. 
+#### **Theorem 1.3 | A sufficient gradient condition for relative error**
 
-#### **Lemma 2 | Absolute error proximal inequality**
+
+
+#### **Examples 1.4 | Proximal gradient inequality**
+
+
+#### **Lemma 1.5 | Absolute error proximal inequality**
 > Let $y \in \R^n, \tilde x \in \R^n$. 
 > Suppose that $\tilde x$ is an approximation of $\mathcal J_{1/\kappa F}(y)$ such that there exists some $\epsilon > 0$ with $\mathcal M_F^{1/\kappa}(\tilde x) - \mathcal M^*_{F, 1/\kappa}(y) \le \epsilon$ and $x^* = \mathcal J_{1/\kappa F}(y)$ is the exact solution of the proximal point problem.
 > Then for all $x \in \R^n$ it has 
@@ -130,7 +139,12 @@ $$
 }
 $$
 
-Re-arranging the inequality yields the final result which proves the lemma. 
+Re-arranging the inequality yields the final result which proves the lemma. $\blacksquare$
+
+**Remarks**
+
+This is Lemma A.7 in Lin et al.'s 2015 Catalyst paper. 
+It remains to expands some of the squared norm terms to see they become the same. 
 
 #### **Discussions**
 
