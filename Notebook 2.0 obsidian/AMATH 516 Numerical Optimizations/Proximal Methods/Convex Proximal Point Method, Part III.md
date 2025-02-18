@@ -58,7 +58,6 @@ $$
 
 **Proof**
 
-For now assume that the sequence $$
 Consider that $0\le \sigma_{k + 1} - \sigma_k \le \epsilon_{k + 1}$ for some sequence $\sigma_{k + 1}$ representing the monotone increasing property for $\sigma_k$. 
 
 $$

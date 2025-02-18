@@ -12,7 +12,6 @@ This section introduces a crucial inequality that is widely used for the converg
 #### **Assumption 0**
 > 1. $h = f + g$ where $g: \R \rightarrow \overline \R$, $f$ are closed convex and proper, and $f is $L$-Lipschitz smooth. 
 
-
 Recall from previous sections on results of the proximal gradient operator. 
 
 **Organizations**
@@ -72,8 +71,8 @@ The difference here is the absence of subgradient inequality which is not used f
 The following is the same proof adapted from [Proximal Gradient Convergence Rate](AMATH%20516%20Numerical%20Optimizations/Classics%20Algorithms/Proximal%20Gradient%20Convergence%20Rate.md).
 
 **Notations:**
-Let $\beta > 0$be arbitrary. 
-Denotes: 
+
+Let $\beta > 0$, denote: 
 $$
 \begin{aligned}
     F &:= g + f, 
@@ -431,7 +430,7 @@ The second inequality and the last equality gives the desired results.
 We consider the case where the function under proximal operator operation is a strongly convex function. 
 There should be a similar result with this new setup. 
 
-#### **Assumption | Both has strong convexity**
+#### **Assumption 1 | Both has strong convexity**
 
 > Let $F = f + g$ with $g$ being $\mu_g \ge0$ strongly convex, closed, and $f$ being $L$ Lipschitz smooth and $\mu_f \ge 0$ strongly convex. 
 > Therefore, $F$ is $\mu = \mu_f + \mu_g \ge 0$ strongly convex. 
@@ -465,7 +464,7 @@ Observe that $\hat g$ is now convex, and $\hat f$ would be, $\mu \ge 0$ strongly
 
 Here we take the convention that $f$ is $\mu$ weakly convex if and only if $f + \mu/2\Vert \cdot\Vert^2$ is convex. 
 
-#### **Assumption | Smooth side is weakly convex**
+#### **Assumption 2 | Smooth side is weakly convex**
 > Let $F:= f + g$, let $f:\R^n \rightarrow \overline \R$ be $\mu$ weakly convex and differentiable. 
 
 Let $g:Q\rightarrow \overline \R$ be convex. 
@@ -490,7 +489,7 @@ Where $\overline L = L + \mu$ where $L > 0$.
 This function, $\widetilde {\mathcal M}^{L^+}(\cdot, y)$ is a $L$ strongly convex function. 
 This can be used to phrase a new theorem that is more general. 
 
-#### **Lemma | The Proximal Gradient Envelope**
+#### **Lemma 2.1 | The Proximal Gradient Envelope**
 > With $F := g + f$, $g:Q \rightarrow \overline \R$ is convex and $f:\R^n \rightarrow \R$ is $\mu$ weakly convex and differentiable. 
 > Fix any $y \in \R^n$, then for all $x \in Q$: 
 > $$
@@ -503,7 +502,7 @@ This can be used to phrase a new theorem that is more general.
 
 The previous proof can be reused because convexity is never involved in the previous proof for the equality. 
 
-#### **Lemma | The proximal gradient inequality**
+#### **Lemma 2.2 | The proximal gradient inequality**
 > Let $F:= f + g$ where $g: Q\rightarrow \overline \R$ is convex, $f:\R^n \rightarrow \R$ is $\mu$ weakly convex and $K$ Lipschitz upper smooth. 
 > Fix any $y \in \R^n$, assume the proximal linear model function is given by: 
 > $$
@@ -635,7 +634,7 @@ $$
 
 
 
-#### **Corollary | When smooth part is convex**
+#### **Corollary 2.3 | When smooth part is convex**
 
 
 **Proof**
@@ -689,3 +688,8 @@ $$
 This, recovers the same lemma as in the convex smooth case, utilizing the non-convex formulation of the proximal gradient lemma. 
 
 
+---
+### **Inexact Proximal Gradient inequalities**
+
+The theories are developed under the settings of Catalyst Accelerations frameworks. 
+See [Catalyst Accelerations Part IV, Inexact Oracles](../../MATH%20602%20Nesterov%20Acceleration/Catalyst%20Accelerations%20Part%20IV,%20Inexact%20Oracles.md). 

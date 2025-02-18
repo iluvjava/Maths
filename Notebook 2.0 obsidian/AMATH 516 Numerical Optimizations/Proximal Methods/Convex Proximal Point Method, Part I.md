@@ -23,7 +23,7 @@ For notational convenience, for all $y \in \R^n$ we define model function
 $$
 \begin{aligned}
     (\forall x \in \R^n)\quad 
-    \mathcal M_f^{\eta}(x; y) := f(x) + \frac{\eta}{2}\Vert x - y\Vert^2. 
+    \mathcal M_f^{1/\eta}(x; y) := f(x) + \frac{\eta}{2}\Vert x - y\Vert^2. 
 \end{aligned}
 $$
 
@@ -788,13 +788,14 @@ $$
 Easy to see that $2\mu\eta_i + \mu^2 \ge \mu \eta_i$, therefore the inverted big product can be upper bounded by $\left(\prod_{i = 1}^{t} (1 + \eta_i \mu)\right)^{-1}$, which is more simplified. 
 
 ---
-### **Breman Proximal point, extension to Non-Euclidean cases**
+### **Bregman Proximal point, extension to Non-Euclidean cases**
 
 
 
 ---
 ### **Convergence under inexact proximal oracles**
 
+The key here is the characterize the error and restate the Proximal Inequality. 
 
 
 
