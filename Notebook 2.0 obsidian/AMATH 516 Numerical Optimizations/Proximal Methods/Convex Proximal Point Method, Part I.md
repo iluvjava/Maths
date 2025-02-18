@@ -711,7 +711,6 @@ The proof will differ from the general convex case.
 **Proof**
 
 Observe that from strong convexity, $F$ always has a unique minimizer $x^*$. 
-
 Define $F^+ = F(x^*)$ to be the minimizer. 
 Because $F$ is strongly convex it has quadratic Error Bound condition which gives the inequality 
 
@@ -786,10 +785,16 @@ $$
 \end{aligned}
 $$
 
-Easy to see that $2\mu\eta_i + \mu^2 \ge \mu \eta_i$, therefore the inverted big product can be upper bounded by $(\prod_{i = 1}^{t} (1 + \eta_i \mu))^{-1}$, which is more simplified. 
+Easy to see that $2\mu\eta_i + \mu^2 \ge \mu \eta_i$, therefore the inverted big product can be upper bounded by $\left(\prod_{i = 1}^{t} (1 + \eta_i \mu)\right)^{-1}$, which is more simplified. 
+
+---
+### **Breman Proximal point, extension to Non-Euclidean cases**
+
+
 
 ---
 ### **Convergence under inexact proximal oracles**
+
 
 
 

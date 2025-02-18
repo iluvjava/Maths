@@ -19,17 +19,20 @@
 \setbeamertemplate{theorems}[numbered] % ADD NUMBERING TO ALL AMS THEOREMS. 
 \setbeamertemplate{footline}[frame number] % ADD PAGE NUMBERS ON BOTTOM. 
 \setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{navigation symbols}{} 
 % \setbeamercolor{block title}{bg=cyan,fg=black} % CHANGE THE BLOCK STYLE IN BEAMER. 
 % \setbeamercolor{block body}{bg=lime,fg=black} % CHANGE THE BLOCK STYLE IN BEAMER. 
 
 % BIB STYLES SETTINGS ----------------------------------------------------------
+\setbeamertemplate{bibliography item}{\insertbiblabel}
 \setbeamerfont{bibliography item}{size=\footnotesize}
 \setbeamerfont{bibliography entry author}{size=\footnotesize}
 \setbeamerfont{bibliography entry title}{size=\footnotesize}
 \setbeamerfont{bibliography entry location}{size=\footnotesize}
 \setbeamerfont{bibliography entry note}{size=\footnotesize}
 % \setbeamercovered{transparent}  % GREY OUT PAUSED FUTURE ITEMS IN SLID. 
-\setbeamertemplate{navigation symbols}{} 
+\bibliographystyle{siam}
+
 
 
 % SLIDE INFORMATION ============================================================
@@ -42,13 +45,12 @@
 \date{\today}
 \subject{Nesterov's acceleration and its applications}
 
-
 % SLIDES ELEMENTS CUSTOMIZATIONS ===============================================
 \theoremstyle{definition}
 \newtheorem{remark}{Remark}[section]
 \newtheorem{assumption}{Assumption}[section]
 \newtheorem{proposition}{Proposition}[section]
-\bibliographystyle{siam}
+
 
 
 % DOCUMENTS STARTS =============================================================
