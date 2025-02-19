@@ -4,6 +4,8 @@
 
 ### **Introduction**
 
+
+
 #### **Assumption 1**
 1. Let $F:\R^n \rightarrow \overline \R$ is a $\mu \ge 0$ strongly convex function. 
 
@@ -44,7 +46,7 @@ The lemmas that follows show the inequality proximal inequality with inexact eva
 > \begin{aligned}
 >     F(x) - F(\tilde x) + \frac{\kappa}{2}
 >     (
->         \Vert x - y\Vert^2 + \Vert \tilde x + y\Vert^2 
+>         \Vert x - y\Vert^2 - \Vert \tilde x - y\Vert^2 
 >         - \Vert \tilde x - x\Vert^2
 >     )
 >     - \frac{\mu}{2}\Vert x - \tilde x\Vert^2 
@@ -65,12 +67,13 @@ $$
     &= 
     F(x) - F(\tilde x) + 
     \frac{\kappa}{2}\left(
-        \Vert x - y\Vert^2 + \Vert \tilde x - y\Vert^2
+        \Vert x - y\Vert^2 - \Vert \tilde x - y\Vert^2
     \right)
     - \frac{q}{2}\Vert x - \tilde x\Vert^2
     \\
     &= 
-    F(x) - F(\tilde x) + \frac{\kappa}{2}(\Vert x - y\Vert^2 + \Vert \tilde x - y\Vert^2 - \Vert x - \tilde x\Vert^2) - \frac{\mu}{2}\Vert x - \tilde x\Vert. 
+    F(x) - F(\tilde x) + \frac{\kappa}{2}(\Vert x - y\Vert^2 
+    - \Vert \tilde x - y\Vert^2 - \Vert x - \tilde x\Vert^2) - \frac{\mu}{2}\Vert x - \tilde x\Vert. 
 \end{aligned}
 $$
 

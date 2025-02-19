@@ -123,15 +123,15 @@ Other type of admissibility conditions for the Bregman Proximal operator exists,
 
 
 #### **Thm 9.12 | The second prox lemma**
-> Based on the definition of the Bregman stated right before this theorem, we have the inequality that $\forall u \in \text{dom}(\psi)$: 
+> Based on the definition of the Bregman Divergence, it has $\forall u \in \text{dom}(\psi)$: 
 > $$
 >    a = \arg\min_{x\in \mathbb E} \{\psi(x) + D_\omega(x, b)\} \implies  \langle \nabla \omega(b) - \nabla \omega(a), u - a\rangle \le \psi(u) - \psi(a).
 > $$
-> Which is analogous to the second proximal mapping lemma when $\omega = \Vert \cdot\Vert^2/2$. 
+
 
 **Proof**
 
-From the observations based on the defintion of the Bregman proximal mapping, we have the subgradient inequality for $a\in $
+From the observations based on the defintion of the Bregman proximal mapping, we have the subgradient inequality for $a\in \text{dom}(\partial \psi)$
 
 $$
 \begin{aligned}

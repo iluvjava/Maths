@@ -568,6 +568,7 @@ The same Lyapunov function were use in the convergence of the same smooth gradie
 > If the sequence $(\eta_{t})_{t \ge 1}$ satisfies any of the following schedules: 
 > 1. $\eta_t \ge L$ for all $t \in \Z_+$. 
 > 2. $\eta_1 \ge L$ and it has $\eta_{t + 1}^{-1}\le (L/2 - 2/\sigma_t)^{-1}$ for all $t \in \N$. 
+> 
 > Then, the method has for all $x \in \R^n$ the convergence rate 
 > $$
 > \begin{aligned}
@@ -652,38 +653,20 @@ $$
 \end{aligned}
 $$
 
-Solving it yields solutions to the roots of the quadratic, which has: 
+Solving it yields solutions to the roots of the quadratic. 
+We are interested in the non-negative solution for gradient descent which gives:
 
 $$
 \begin{aligned}
-    \eta_{t + 1} = 
-    \frac{1}{2}\left(
+    |\eta_{t + 1}| = 
+    \frac{1}{2}\left|
         \frac{L}{2} - \sigma_t^{-1} \pm 
         \sqrt{
             \left(
             \frac{L}{2} - \sigma_t^{-1}
             \right)^2 + 2 \sigma_t
         }
-    \right). 
-\end{aligned}
-$$
-
-Observe that it's always the case where it has a positive, and negative solution. 
-Since the stepsize is always positive, we want the positive root of the quadratic inequality to give the lower bound of $\eta_{t + 1}$. 
-Therefore, it implies that: 
-
-$$
-\begin{aligned}
-    \eta_{t + 1} &=
-    \frac{1}{2}\left(
-        \frac{L}{2} - \sigma_t^{-1} + 
-        \sqrt{
-            \left(
-            \frac{L}{2} - \sigma_t^{-1}
-            \right)^2 + 2 \sigma_t
-        }
-    \right)
-    \\
+    \right|
     &\ge 
     \frac{1}{2}\left(
         \frac{L}{2} - \sigma_t^{-1} + 
@@ -692,7 +675,9 @@ $$
 \end{aligned}
 $$
 
-The larger $\sigma_t$, the larger stepsize $\eta_{t +1}^{-1}$ can be made. 
+Observe that it's always the case where it has a positive, and negative solution. 
+Since the stepsize is always positive, we want the positive root of the quadratic inequality, and a lower bound would be a sufficient condition to assert the convergence claim for the Lypunov. 
+
 
 
 ---

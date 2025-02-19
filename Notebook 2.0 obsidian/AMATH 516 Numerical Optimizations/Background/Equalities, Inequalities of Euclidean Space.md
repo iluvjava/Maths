@@ -76,7 +76,7 @@ $$
 \end{aligned}
 $$
 
-Therefore, it yields the above equality but in a different format where the last term on the RHS is in the LHS. 
+Therefore, it yields the above equality but in a different format where the last term on the RHS is in the LHS. $\blacksquare$
 
 **References**: 
 
@@ -165,4 +165,62 @@ Lemma 1.8, In professor's Heinz's Notes
 ---
 ### **Some other inequalities**
 
+We introduce some other basic equalities and inequalities. 
 
+1. The cosine law. It transfers inner product involving $x, y, z \in \R^n$ terms to the difference of normed squared edges on a triangle. 
+2. The useful inequality came from the proof in Catalyst second paper. It's a cute formula being spotted me. It's using the cosine law in a peculiar manner. 
+
+#### **Theorem | The cosine law**
+> For all $x, y , z \in \R^n$, it has 
+> $$
+> \begin{aligned}
+>     2\langle x - y, y - z\rangle &= 
+>     \Vert x - z\Vert^2 - \Vert x - y\Vert^2 - \Vert y - z\Vert^2. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+See exercise below. 
+
+**Exercise**
+
+Prove the above theorem, which is basic algebra like back in high school.
+
+
+#### **Lemma | A useful inequality**
+> For all $x, y , z \in \R^n$, $\theta > 0$, it has 
+> $$
+> \begin{aligned}
+>     \Vert x - y\Vert^2 &\ge 
+>     (1 - \theta)\Vert x - z\Vert^2 + (1 - \theta^{-1})\Vert z - y\Vert^2. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+$$
+\begin{aligned}
+    \Vert x - y\Vert^2 
+    &= \Vert x - z + z - y\Vert^2
+    \\
+    &= \Vert x - z\Vert ^2 + \Vert z - y\Vert^2 + 2\langle x - z, z - y\rangle
+    \\
+    &= \Vert x - z\Vert ^2 + \Vert z - y\Vert^2 + 
+    \Vert 
+        \sqrt{\theta}(x - z) + 1/\sqrt{\theta} (z - y)
+    \Vert^2
+    - \theta \Vert x - z\Vert^2 - \theta^{-1}\Vert z - y\Vert^2
+    \\
+    &= 
+    (1 - \theta)\Vert x - z\Vert^2 + (1 - \theta^{-1})\Vert z - y\Vert^2
+    + \left\Vert 
+        \sqrt{\theta} (x - z) + 1/\sqrt{\theta}(z - y)
+    \right\Vert^2
+    \\
+    &\ge 
+    (1 - \theta)\Vert x - z\Vert^2 + (1 - \theta^{-1})\Vert z - y\Vert^2. 
+\end{aligned}
+$$
+
+$\blacksquare$
