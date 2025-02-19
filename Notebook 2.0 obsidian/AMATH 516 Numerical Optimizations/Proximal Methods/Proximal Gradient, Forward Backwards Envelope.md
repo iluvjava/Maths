@@ -2,7 +2,7 @@ prereq:
 * [Subgradient Intro](../Non-Smooth%20Calculus/Subgradient%20Intro.md)
 * [[Characterizing Functions for Optimizations]], Strong convexity is used. 
 * [[Moreau Envelope and Convex Proximal Mapping]], We use the proximal operator a lot in here, and some of the important properties of the proximal operator. 
-* [[../Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications | Strong Smoothness Conditions]], We use one of the smoothness property and its relations to convexity and Lipschitz of the gradient of the convex function. 
+* [[../Properties of Functions/Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications| Strong Smoothness Conditions]], We use one of the smoothness property and its relations to convexity and Lipschitz of the gradient of the convex function. 
   [[Proximal Gradient Method]], The old notes for proximal gradient methods when Sasha was teaching for the class. 
 
 ---
@@ -392,7 +392,7 @@ This is just complex PPM descent inequality.
 > \end{aligned}
 > $$
 
-Here we use the additional fact that the Hessian for $l(x)$ has a bounded operator norm that is $< \beta$. Using the a non-trivial property of smoothness [[../Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]] of the upper envelope function $m^+(x)$ and the fact that $P(x)$ the projected gradient is the minimizer for the envelope function, we can derive the inequality 
+Here we use the additional fact that the Hessian for $l(x)$ has a bounded operator norm that is $< \beta$. Using the a non-trivial property of smoothness [[../Properties of Functions/Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]] of the upper envelope function $m^+(x)$ and the fact that $P(x)$ the projected gradient is the minimizer for the envelope function, we can derive the inequality 
 
 $$
 \begin{aligned}

@@ -1,4 +1,4 @@
-1. [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md)
+1. [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md)
 2. [Characterizing Functions for Optimizations](Characterizing%20Functions%20for%20Optimizations.md)
 3. [Strong Convexity, Equivalences and Implications](Strong%20Convexity,%20Equivalences%20and%20Implications.md)
 
@@ -345,7 +345,7 @@ I am sure that $f(x^{(t)})$ will converge to the minimum is just that the iterat
 
 **Proof**
 
-The function value is bounded by the norm of the gradient and Co-Coersivity described in [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) of the Lipschitz gradient, more specifically $1/2L \Vert \nabla f(x^{(j)})\Vert^2 \le f(x) - f(x^+)$, hence bounding the squared norm of the gradient as well. 
+The function value is bounded by the norm of the gradient and Co-Coersivity described in [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) of the Lipschitz gradient, more specifically $1/2L \Vert \nabla f(x^{(j)})\Vert^2 \le f(x) - f(x^+)$, hence bounding the squared norm of the gradient as well. 
 To show the convergence of the iterates, consult fixed point iterations and convergence of an averaged operator, see [Averaged Mapping](Operators%20Theory/Averaged%20Mapping.md) for more information. 
 
 **Remarks**

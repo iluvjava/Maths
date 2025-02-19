@@ -389,4 +389,4 @@ This is strictly better that just a Lipschitz-1 operator.
 #### **Example | Convex Lipschitz Gradient**
 
 The convex function having a global Lipschitz gradient has its gradient operator as a firmly-non-expansive operator. 
-See [L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) for more information, a lot of things a involved for this particular type of characterizations. 
+See [L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity](../Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) for more information, a lot of things a involved for this particular type of characterizations. 

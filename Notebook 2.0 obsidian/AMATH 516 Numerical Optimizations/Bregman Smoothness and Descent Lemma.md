@@ -5,7 +5,7 @@
 ### **Intro**
 
 Combining Bregman divergence and Proximal mapping, we can create a descent lemma analogous to gradient descent with globally Lipschitz smooth function. 
-See [L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity](Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) for more information about that.
+See [L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity](Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) for more information about that.
 The results and characterizations are also similar. 
 These servers as a basis for the mirror descent algorithm. 
 For this part we take heavy references from paper by Heinz et al[^1]. 
@@ -30,7 +30,7 @@ We will develop some theories for smoothness relative to a Bregman divergence.
 We will also develop descent lemma that is analogous to the $L$-Lipschitz smooth case. 
 
 #### **Philosophy of Generalizing Smoothness Relative to a Bregman Divergence**
-Recall from [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) that if function $F$ is $L$-Lipschitz smooth, then $L/2 \Vert \cdot\Vert^2 - f$ is a convex function. 
+Recall from [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) that if function $F$ is $L$-Lipschitz smooth, then $L/2 \Vert \cdot\Vert^2 - f$ is a convex function. 
 Since $L/2 \Vert \cdot\Vert^2 - f$ is convex, we have the equivalent characterization of smoothness we have for all $x, y \in \mathbb R^n$
 
 $$

@@ -137,7 +137,7 @@ $$
 \end{aligned}
 $$
 
-hence $\phi$ is a $2Q$-smooth function. Using [the co-coersivity](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) of smooth function we have 
+hence $\phi$ is a $2Q$-smooth function. Using [the co-coersivity](../Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) of smooth function we have 
 
 $$
 {\small

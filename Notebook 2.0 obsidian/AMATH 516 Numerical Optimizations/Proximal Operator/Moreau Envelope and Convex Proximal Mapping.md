@@ -126,7 +126,7 @@ See above.
 
 **Proof**
 
-To prove this, we need to use the calculus rules of Non-smooth analysis. For all $x\in \text{prox}_f(x)$, we have
+**Prove (1) $\iff$ (2)**. For all $x\in \text{prox}_f(x)$, it has: 
 
 $$
 \begin{aligned}
@@ -140,19 +140,23 @@ $$
 $$
 
 observe that one may use the singleton assumption with prox and provide us with the identity $y - \text{prox}_f(y) \in \partial f(\text{prox}_f(y))$. 
-In fact, with some set algebra, it's possible to show $\subseteq$ relation. The last identity is just the subgradient inequality followed by identity 2, by the assumption of convexity on $f$, i.e.: 
+
+**Proof of (2) $\implies$ (3)**. 
+By the assumption of convexity on $f$, we can use the subgradient inequality on $y - x \in \partial f(x)$ which gives $\forall z \in X$: 
 
 $$
 \begin{aligned}
-    y - x &\in \partial f(x), f(z) - f(x) - \langle \partial f(x),\; 
-    z - x\rangle \ge 0 \; \forall z \in X
+    0 &\le
+    f(z) - f(x) - \langle \partial f(x),\; 
+    z - x\rangle
     \\
-    \implies 
-    f(z) - f(x) - \langle y - x, z - x\rangle 
-    &\ge 0
-    \; \forall z \in X. 
+    &=
+    f(z) - f(x) - \langle y - x, z - x\rangle. 
 \end{aligned}
 $$
+
+Since this is true for all $z$, $y - x \in \partial f$.
+Hence  **(2) $\impliedby$ (3)** as well. 
 
 **Remarks**
 
@@ -174,12 +178,21 @@ Conditions 3, works for lsc continuous function in Hilbert spaces, see Heinz's m
 * \<First Order Methods for Optimizations\> by Beck. This book has detailed summarizations for the properties of proximal gradient. 
 
 ---
-### **As a Operators**
+### **As Operators**
 
-> When the function $f$ is convex closed and proper, the $\text{prox}_{\alpha, f}$ can be viewed the following operator $(I + \alpha \partial f)^{-1}$, which is also, a single valued operator that sometimes has a nice closed form solution to it.  
+Proximal operators has good properties under the convex setting.
+Let's derive some using knowledge from convex analysis. 
+
+#### **Theorem | Proximal mapping is a singled valued Resolvent of subgradient**
+> Let $f$ be convex, closed and proper. Let $\alpha > 0$. 
+> Then it has the following consequences: 
+> 1. $\text{prox}_{\alpha, f}$ is the resolvent operator of the subgradient: $(I + \alpha \partial f)^{-1}$. 
+> 2. It is a single valued operator. 
 
 **Proof**: 
-The prox has a unique solution when the function $f$ is convex with $\alpha > 0$; suppose that $y^+$ is such an optimal then using subgradient: 
+
+The proximal operator has unique minimizer when $f$ is convex because $\alpha f(\cdot) + \Vert \cdot - y\Vert$ is strongly convex (See [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more). 
+Let $y^+$ be the minimizer then using Subgradient Sum rule between a smooth and non-smooth function (See [Subgradient Sum Rule](../Non-Smooth%20Calculus/Subgradient%20Sum%20Rule.md)): 
 
 $$
 \begin{aligned}
@@ -202,34 +215,24 @@ $$
 $$
 
 Therefore, we can view the proximal gradient operator as the resolvent of the subgradient operator $\alpha \partial f$. 
-
+$\blacksquare$
 
 **Remarks**
 
-When is it invertible. 
-When is it a set-value mapping? 
-* Right from the start, we should not assume that it's invertible, and even if it is invertible, we need to know if the inverse operator is a multi-value map, or a single-value map. 
-Because we know how subgradient work, in our case we had $f$ being closed convex and proper, then the proximal operator is-singled value. 
-This is the result of $f + \frac{1}{2\alpha}\Vert \cdot - y\Vert$ being a strongly convex function. 
-To characterize when the proximal operator is single-valued is more complicated.
+**Convexity is not necessary for the single valued Property**. 
 $f$ being closed convex and proper is sufficient but unnecessary for the proximal map to be single-valued.
-For more about it, check out the comments on Dima's work at the end of chapter 3 of his textbook for math 516 at UW.
-Dima also mentioned that the proximal operator on $\alpha$ weakly convex function ($f$ is $a$ weakly convex when $f + \frac{\alpha}{2}\Vert x \Vert$ is a convex function), which will also result in the proximal operator being a singled value operator. 
-Dima's discussion on the topic can be seemed [\<The Proximal Point Method Revisited\>](https://sites.math.washington.edu/~ddrusv/proxpoint_arxiv.pdf). 
+In Dima's paper [\<The Proximal Point Method Revisited\>](https://sites.math.washington.edu/~ddrusv/proxpoint_arxiv.pdf), 
+he mentioned that the proximal operator on $\alpha$ weakly convex function ($f$ is $a$ weakly convex when $f + \frac{\alpha}{2}\Vert x \Vert$ is a convex function), which will also result in the proximal operator being a singled value operator. 
 
 
-The operator is maximal monotone: 
+**It is a maximal monotone operator.** 
 * The subgradient operator of a closed convex and proper(CCP) function has $\partial f$ as a maximal monotone operator. 
 Therefore, $x,y \in \text{gph}(\partial f)$, we have $(\bar x - x, \bar y - y)\ge 0 \implies  (\bar x, \bar y)\in \text{gph}(\partial f)$. 
 Consequently, $I + \partial f$ is single-valued and subjective, so the inverse $(I +\partial f)^{-1}$ is a singled-value operator. 
 For all $\alpha>0$, it's the same.
 * **The Surjectivity Theorem**, [Minty's Theorem, The Surjectivity Theorem](../Operators%20Theory/Minty's%20Theorem,%20The%20Surjectivity%20Theorem.md)
-* > The surjectivity theorem states, $T$ is maximal monotone iff $I + T$ is surjective. This is theorem 3.79 in Dima's work, and the proof is shown in 3.8.3.. 
+* The surjectivity theorem states, $T$ is maximal monotone iff $I + T$ is surjective. This is theorem 3.79 in Dima's work, and the proof is shown in 3.8.3.. 
 
-Monotone operators deserve their own pages. 
-We skip the details here.
-I want to highlight one essential observation. 
-When $f(x) = \delta_C(x)$, the proximal operator becomes the set projection operator onto the set. 
 
 ---
 ### **Prox is L1-Lipschitz under 2-Norm, and Firmly Non-expansive**
@@ -237,7 +240,7 @@ When $f(x) = \delta_C(x)$, the proximal operator becomes the set projection oper
 The Proximal operator can be understood as the special case of the set projection. 
 It retains one of the properties of a set projection as well. 
 A set projection onto a convex set is a L1 Lipschitz mapping. 
-The proximal operator is also a L1 Lipschitz mapping for CCP functions. 
+The proximal operator is also a L1 Lipschitz mapping for closed convex proper (CCP) functions. 
 
 #### **Thm 2.1 | The Proximal operator is Firmly Non-Expansive**
 > Let $f:\mathbb E \mapsto \mathbb{\bar R}$ be a closed, convex proper function. Then $\text{prox}_f(x)$, with $\alpha= 1$ is a singleton for every point $x\in \mathbb E$. Moreover, for any points $x, y\in \mathbb E$ the estimate holds: 
@@ -270,7 +273,7 @@ $$
     +\frac{1}{2}\Vert y^+ - x\Vert^2 - f(x) - \frac{1}{2}\Vert x^+ - x\Vert^2 & \ge 
     \frac{1}{2}\Vert x^+ - y^+\Vert^2
     \\
-    \implies 
+    \iff 
     f\left(x^+\right) + \frac{1}{2}\Vert x - x^+\Vert^2 &\le 
     f(y^+) + \frac{1}{2}\Vert y^+ - x\Vert^2 - \frac{1}{2}\Vert y^+ - x^+\Vert^2. 
     \\
@@ -352,6 +355,8 @@ This subset of Lipschitz-1 Operators.
 It helps with proving the convergence of many algorithms that uses the proximal operator. 
 For context, read [Firmly Nonexpansive Operators](../Operators%20Theory/Firmly%20Nonexpansive%20Operators.md) for more about Firmly Nonexpansive operators in general. 
 There is also a simpler version of the proof for the Firmly Nonexpansiveness of the prox operators. 
+
+Notice how, this proof didn't use subgradient at all. 
 
 #### **Corollary 2.2 | The gradient of Moreau Envelope is Firmly Nonexpansive**
 

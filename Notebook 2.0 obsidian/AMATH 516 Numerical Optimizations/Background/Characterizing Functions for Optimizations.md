@@ -261,7 +261,7 @@ For example, the function $\exp(x)$ is a strictly convex function.
 ---
 ### **Beta-Smoothness, Strong Smoothness, Lipschitz Smoothness**
 
-For more information about this characterization, [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md). 
+For more information about this characterization, [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md). 
 This characterization of convex function is absolutely essential for gradient based method in optimizations, it developed important claims about the convergence rate of the algorithm. 
 
 

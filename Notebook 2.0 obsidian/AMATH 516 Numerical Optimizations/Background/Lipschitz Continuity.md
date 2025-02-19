@@ -25,7 +25,7 @@ $||\cdot||$ here is any norm, more importantly, it can be entirely different nor
 
 A function is beta smooth if its derivative is Lipschitz Continuous.  See [Beta Smoothness](Beta%20Smoothness.md) for more information. 
 The condition of beta-smoothness is stronger than Lipschitz continuity.
-See [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) for more information about using the global Lipschitz continuity used in convex optimization methods. 
+See [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) for more information about using the global Lipschitz continuity used in convex optimization methods. 
 
 
 ---

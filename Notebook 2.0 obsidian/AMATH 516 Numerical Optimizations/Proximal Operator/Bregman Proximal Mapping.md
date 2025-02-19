@@ -131,16 +131,20 @@ Other type of admissibility conditions for the Bregman Proximal operator exists,
 
 **Proof**
 
-From the observations based on the defintion of the Bregman proximal mapping, we have the subgradient inequality for $a\in \text{dom}(\partial \psi)$
+$a\in \text{dom}(\partial \psi)$ satisfies the zero subgradient optimality condition and hence
 
 $$
 \begin{aligned}
-    \nabla \psi(a) &= \nabla \omega(b) - \nabla \omega(a)
-    \\
-    &\text{use subgradient inequality then}
-    \\
+    \partial \psi(a) &\ni \nabla \omega(b) - \nabla \omega(a). 
+\end{aligned}
+$$
+
+The subgradient inequality from $\psi$ at $a$ implies 
+
+$$
+\begin{aligned}
     \implies 
-    \langle \nabla \psi(a), u -a\rangle 
+    \langle \partial \psi(a), u -a\rangle 
     &\ge \psi(u) - \psi(a)
     \\
     \langle \nabla \omega(b) - \nabla \omega(a), u - a\rangle &\ge 
@@ -148,7 +152,7 @@ $$
 \end{aligned}
 $$
 
-The proof is complete and it's as obvious as the second proximal mapping lemma. 
+$\blacksquare$
 
 
 **Remark**
