@@ -91,6 +91,11 @@ $$
 \end{aligned}
 $$
 
+**Remarks**
+
+The inequality is equivalent to $F$ being $\mu \ge 0$ strongly convex. 
+For a discussion on the proximal mapping in the convex settings, visit: [Moreau Envelope and Convex Proximal Mapping](../Proximal%20Operator/Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md). 
+
 
 #### **Lemma 2 | Convergence rate of a sequence**
 > Let $(\sigma_t)_{t \ge 0}$, and $(\Delta_t)_{t \ge 0}$ be two sequences with the following list of conditions: 

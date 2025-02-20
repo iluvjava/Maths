@@ -118,64 +118,7 @@ See the Exercise below.
 
 See above. 
 
-#### **Theorem 0.2 | Equivalence Characterization for Proximal Point** 
-> For a convex proper, lower semi-continuous function $f$, let $x\in \text{dom} f$, and $y\in X$, then the following are equivalent: 
-> 1. $x = \text{prox}_f(y)$, 
-> 2. $y - x\in \partial f(x)$,
-> 3. $\forall z \in X, x \in \text{prox}_f(y): \langle z - x, y - x\rangle \le f(z) - f(x)$, this is the generalized obtuse angle theorem for the proximal operator. 
 
-**Proof**
-
-**Prove (1) $\iff$ (2)**. For all $x\in \text{prox}_f(x)$, it has: 
-
-$$
-\begin{aligned}
-    x &\in \text{prox}_f(y)
-    \\
-    \mathbf 0 &\in 
-    \partial f(x) + \{x - y\} \quad \textcolor{gray}{\triangleright \text{Subgradient addition rule, Prox def. }}
-    \\
-    y - x &\in \partial f(x)
-\end{aligned}
-$$
-
-observe that one may use the singleton assumption with prox and provide us with the identity $y - \text{prox}_f(y) \in \partial f(\text{prox}_f(y))$. 
-
-**Proof of (2) $\implies$ (3)**. 
-By the assumption of convexity on $f$, we can use the subgradient inequality on $y - x \in \partial f(x)$ which gives $\forall z \in X$: 
-
-$$
-\begin{aligned}
-    0 &\le
-    f(z) - f(x) - \langle \partial f(x),\; 
-    z - x\rangle
-    \\
-    &=
-    f(z) - f(x) - \langle y - x, z - x\rangle. 
-\end{aligned}
-$$
-
-Since this is true for all $z$, $y - x \in \partial f$.
-Hence  **(2) $\impliedby$ (3)** as well. 
-
-**Remarks**
-
-The second property is pivotal to understanding the proximal gradient operator.
-Recall that from [Proximal Point Method, Interpretations](../Proximal%20Methods/Proximal%20Point%20Method,%20Interpretations.md), we can interpret the proximal operator as a Backward Euler scheme. 
-Which is just another word for [Resolvent Operators](Resolvent%20Operators.md) of the subgradient operator. 
-The second condition, $y - x \in \partial f(x)$, states that, given any point $y$, the point $x$, is a point where the vector $y - x$ points along the set of directions indicated subgradient. 
-The second condition mirrors the backward Euler method. 
-The third condition results in $y - x \in \partial f(x)$, with the additional convexity assumption placed on $f$, and the third condition becomes the subgradient inequality.
-I don't have a good interpretation yet. 
-For condition 3, observe that with $y = z$, it gives $\Vert z - x\Vert^2 \le f(z) - f(x), x = \underset{f}{\text{prox}}(z)$. 
-
-Conditions 3, works for lsc continuous function in Hilbert spaces, see Heinz's monotone book proposition 12.26. 
-
-**Good References**
-
-* Dimitry's class from UW. 
-* [This](https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf) survey paper from Stanford, it also contains more practical information about the prox operator. 
-* \<First Order Methods for Optimizations\> by Beck. This book has detailed summarizations for the properties of proximal gradient. 
 
 ---
 ### **As Operators**
@@ -183,7 +126,7 @@ Conditions 3, works for lsc continuous function in Hilbert spaces, see Heinz's m
 Proximal operators has good properties under the convex setting.
 Let's derive some using knowledge from convex analysis. 
 
-#### **Theorem | Proximal mapping is a singled valued Resolvent of subgradient**
+#### **Theorem 1 | Proximal mapping is a singled valued Resolvent of subgradient**
 > Let $f$ be convex, closed and proper. Let $\alpha > 0$. 
 > Then it has the following consequences: 
 > 1. $\text{prox}_{\alpha, f}$ is the resolvent operator of the subgradient: $(I + \alpha \partial f)^{-1}$. 
@@ -234,6 +177,66 @@ For all $\alpha>0$, it's the same.
 * The surjectivity theorem states, $T$ is maximal monotone iff $I + T$ is surjective. This is theorem 3.79 in Dima's work, and the proof is shown in 3.8.3.. 
 
 
+#### **Theorem 2 | Equivalence Characterization for Proximal Point** 
+> For a convex proper, lower semi-continuous function $f$, let $x\in \text{dom} f$, and $y\in X$, then the following are equivalent: 
+> 1. $x = \text{prox}_f(y)$, 
+> 2. $y - x\in \partial f(x)$,
+> 3. $\forall z \in X, x \in \text{prox}_f(y): \langle z - x, y - x\rangle \le f(z) - f(x)$, this is the generalized obtuse angle theorem for the proximal operator. 
+
+**Proof**
+
+**Prove (1) $\iff$ (2)**. For all $x\in \text{prox}_f(y)$, it has: 
+
+$$
+\begin{aligned}
+    x &\in \text{prox}_f(y)
+    \\
+    \mathbf 0 &\in 
+    \partial f(x) + \{x - y\} \quad \textcolor{gray}{\triangleright \text{Subgradient addition rule, Prox def. }}
+    \\
+    y - x &\in \partial f(x)
+\end{aligned}
+$$
+
+observe that one may use the singleton assumption with prox and provide us with the identity $y - \text{prox}_f(y) \in \partial f(\text{prox}_f(y))$. 
+
+**Proof of (2) $\implies$ (3)**. 
+By the assumption of convexity on $f$, we can use the subgradient inequality on $y - x \in \partial f(x)$ which gives $\forall z \in X$: 
+
+$$
+\begin{aligned}
+    0 &\le
+    f(z) - f(x) - \langle \partial f(x),\; 
+    z - x\rangle
+    \\
+    &=
+    f(z) - f(x) - \langle y - x, z - x\rangle. 
+\end{aligned}
+$$
+
+Since this is true for all $z$, $y - x \in \partial f$.
+Hence  **(2) $\impliedby$ (3)** as well. 
+
+**Remarks**
+
+The second property is pivotal to understanding the proximal gradient operator.
+Recall that from [Proximal Point Method, Interpretations](../Proximal%20Methods/Proximal%20Point%20Method,%20Interpretations.md), we can interpret the proximal operator as a Backward Euler scheme. 
+Which is just another word for [Resolvent Operators](Resolvent%20Operators.md) of the subgradient operator. 
+The second condition, $y - x \in \partial f(x)$, states that, given any point $y$, the point $x$, is a point where the vector $y - x$ points along the set of directions indicated subgradient. 
+The second condition mirrors the backward Euler method. 
+The third condition results in $y - x \in \partial f(x)$, with the additional convexity assumption placed on $f$, and the third condition becomes the subgradient inequality.
+I don't have a good interpretation yet. 
+For condition 3, observe that with $y = z$, it gives $\Vert z - x\Vert^2 \le f(z) - f(x), x = \underset{f}{\text{prox}}(z)$. 
+
+Conditions 3, works for lsc continuous function in Hilbert spaces, see Heinz's monotone book proposition 12.26. 
+
+**Good References**
+
+* Dimitry's class from UW. 
+* [This](https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf) survey paper from Stanford, it also contains more practical information about the prox operator. 
+* \<First Order Methods for Optimizations\> by Beck. This book has detailed summarizations for the properties of proximal gradient. 
+
+
 ---
 ### **Prox is L1-Lipschitz under 2-Norm, and Firmly Non-expansive**
 
@@ -243,7 +246,9 @@ A set projection onto a convex set is a L1 Lipschitz mapping.
 The proximal operator is also a L1 Lipschitz mapping for closed convex proper (CCP) functions. 
 
 #### **Thm 2.1 | The Proximal operator is Firmly Non-Expansive**
-> Let $f:\mathbb E \mapsto \mathbb{\bar R}$ be a closed, convex proper function. Then $\text{prox}_f(x)$, with $\alpha= 1$ is a singleton for every point $x\in \mathbb E$. Moreover, for any points $x, y\in \mathbb E$ the estimate holds: 
+> Let $f:\mathbb E \mapsto \mathbb{\bar R}$ be a closed, convex proper. 
+> Then $\text{prox}_f(x)$ with $\alpha= 1$ is a singleton valued mapping for all $x\in \mathbb E$. 
+> In addition, for any points $x, y\in \mathbb E$, it is firmly non-expensive and it has: 
 > $$
 > \begin{aligned}
 >     \Vert \text{prox}_f(x) - \text{prox}_f(y)\Vert^2 \le 
@@ -258,89 +263,62 @@ The proximal operator is certainly continuous too.
 
 **Proof**
 
-We use [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) to prove. 
-We also use the fact that $x^+$ is the minimum solution of $\text{prox}_f(x)$ and $y^+$ is the minimum of $\text{prox}_f(y)$. 
-Define $g(z):= f(z) + \frac{1}{2}\Vert z - x\Vert^2$. 
-For simplicity, we denote $P_f(x), P_g(x)$ as the proximal operator at $x$. 
-$g(Z)$ is strongly convex.
-Let $\alpha = 1$ then $g(y^+) - g(x^+)\ge \frac{1}{2}\Vert x^+ - y^+\Vert^2$ because of strong convexity. 
-We use $x^+\in P_f(x)$, $y^+\in P_f(y)$, the strong convexity condition is
+Denote $P_f(x)$ for the proximal operator for $f$ at $x$. 
+For all $x$, it has unique $x^+\in P_f(x)$, $y^+\in P_f(y)$, by $P_f$ is single valued by Theorem 1 when $F$ is convex. 
+The proof has the following key intermediate steps. 
 
-$$
-{\scriptsize
-\begin{aligned}
-    f\left(y^+\right) 
-    +\frac{1}{2}\Vert y^+ - x\Vert^2 - f(x) - \frac{1}{2}\Vert x^+ - x\Vert^2 & \ge 
-    \frac{1}{2}\Vert x^+ - y^+\Vert^2
-    \\
-    \iff 
-    f\left(x^+\right) + \frac{1}{2}\Vert x - x^+\Vert^2 &\le 
-    f(y^+) + \frac{1}{2}\Vert y^+ - x\Vert^2 - \frac{1}{2}\Vert y^+ - x^+\Vert^2. 
-    \\
-    & = 
-    \left(
-        f(y^+) + \frac{1}{2}\Vert y^+ - y\Vert^2
-    \right) - \frac{1}{2} \Vert y^+ - y\Vert^2 + \frac{1}{2}\Vert y^+ - x\Vert^2 - \frac{1}{2}
-    \Vert x^+ - y^+\Vert^2 
-\end{aligned}
-}
-$$
-
-Then we consider the term: $f(y^+) + \frac{1}{2}\Vert y^+ - y\Vert^2$ and use strong convexity (wrt to $y^+$ in this case) again to obtain 
-$$
-\begin{aligned}
-    f(x^+) + \frac{1}{2}\Vert x^+ - y\Vert^2 - f(y^+) - \frac{1}{2}\Vert y^+ - y\Vert^2 
-    & \ge \frac{1}{2}\Vert x^+ - y^+\Vert^2
-    \\
-    \implies 
-    f(x^+) + \frac{1}{2}\Vert x^+ - y\Vert^2  
-    - \frac{1}{2}\Vert x^+ - y^+\Vert^2
-    & \ge 
-    f(y^+) + \frac{1}{2}\Vert y^+ - y\Vert^2, 
-\end{aligned}
-$$
-
-replacing the expression with this larger quantity, the HRS has upper bound: 
+We use the quadratic growth condition from [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) on $x\mapsto f(x) + \Vert x - z\Vert^2$ for all $z$ because it is $1$-strongly convex and it gives: 
 
 $$
 \begin{aligned}
-    f(x^+) + \frac{1}{2}\Vert x - x^+\Vert^2 &\le 
-    f(x^+) + \frac{1}{2}\Vert x^+ - y\Vert^2 - \frac{1}{2}\Vert y^+ - y\Vert^2
-    + \frac{1}{2}\Vert y^+ - x\Vert^2 - \Vert x^+ - y^+\Vert
-    \\
-    \implies
-    \Vert x^+ - y^+\Vert &\le 
-    \frac{1}{2}\Vert x^+ - y\Vert^2 - \frac{1}{2}\Vert y^+ - y\Vert^2
-    + \frac{1}{2}\Vert y^+ - x\Vert^2  - \frac{1}{2}\Vert x - x^+\Vert^2
-    \\
-    \implies
-    \Vert x^+ - y^+\Vert &\le 
-    \frac{1}{2}\left(
-        \Vert x^+ - y\Vert^2 - \Vert y^+ - y\Vert^2
-        + \Vert y^+ - x\Vert^2  - \Vert x - x^+\Vert^2
-    \right)
-    \\
-    & = \langle y^+ - x+^, y\rangle + \langle x^+ - y^+, x\rangle
+    0 &\le 
+    f(y^+) + \frac{1}{2}\Vert y^+ - x\Vert^2
+    - \left(
+            f(x^+)
+            + \frac{1}{2}\Vert x^+ - x\Vert^2
+    \right) - \frac{1}{2}\Vert y^+ - x^+\Vert^2
     \\
     &= 
-    \langle y^+ - x^+, y - x\rangle. 
-\end{aligned}
-$$
-
-Since $y^+ \in P_f(y), x^+ \in P_f(x)$, and the choice is arbitrary, the above expression is equivalent to 
-$$
-\begin{aligned}
-    & \Vert P_f(x) - P_f(y)\Vert^2 \le \langle P_f(y) - P_f(x), y - x\rangle \le 
-    \Vert P_f(y) - P_f(x) \Vert \Vert y - x\Vert_\star
+    \left(
+        f(y^+) + \frac{1}{2}\Vert y^+ - y\Vert^2
+    \right)
+    + \frac{1}{2}\Vert y^+ - x\Vert^2
+    - \frac{1}{2}\Vert y^+ - y\Vert^2
+    - 
+    f(x^+)
+    - \frac{1}{2}\Vert x^+ - x\Vert^2
+    - \frac{1}{2}\Vert y^+ - x^+\Vert^2
     \\
-    \implies & 
-    \Vert P_f(x) - P_f(y)\Vert \le \Vert y - x\Vert_\star .
+    &\le 
+    \left(
+        f(x^+) + \frac{1}{2}\Vert x^+ - y\Vert^2
+        - \frac{1}{2}\Vert x^+ - y^+\Vert^2
+    \right)
+    \\
+    & \quad
+        + \frac{1}{2}\Vert y^+ - x\Vert^2
+        - \frac{1}{2}\Vert y^+ - y\Vert^2
+        - f(x^+)
+        - \frac{1}{2}\Vert x^+ - x\Vert^2
+        - \frac{1}{2}\Vert y^+ - x^+\Vert^2
+    \\
+    &= 
+    \left(
+        \frac{1}{2}\Vert x^+ - y\Vert^2
+        + \frac{1}{2}\Vert y^+ - x\Vert^2
+        - \frac{1}{2}\Vert y^+ - y\Vert^2
+        - \frac{1}{2}\Vert x^+ - x\Vert^2
+    \right)
+    - \Vert y^+ - x^+\Vert^2
+    \\
+    &= \langle x^+ - y^+, y - x\rangle 
+    - \Vert y^+ - x^+\Vert^2. 
 \end{aligned}
 $$
 
-That is the observation we made from the claim. 
-Observe that redefining $\Vert \cdot\Vert$ into $\Vert \cdot\Vert_\star$ will recover the inequality we wanted to prove. 
-By properties of norm, the above inequality is sufficient for any norm in finite Euclidean spaces.
+On the last equality we used one of the lemmas from [Equalities, Inequalities of Euclidean Space](../Background/Equalities,%20Inequalities%20of%20Euclidean%20Space.md). 
+The final inequality is the claim that proximal operator is firmly-nonexpensive. 
+
 $\blacksquare$
 
 
@@ -372,7 +350,7 @@ Dimitri's AMATH 516, UW. Somewhere in the course notes I forgot where is where.
 
 The prox of the conjugate is related to the prox. Similar to how a linear subspace has its orthogonal component. 
 
-#### **Lemma 3.1| When are Subgradient Invertible**
+#### **Lemma 3.1 | When are Subgradient Invertible**
 > Let $f:\mathbb E\mapsto \mathbb{\bar R}$ be proper closed and convex and subgradient $\partial f$ is surjective, then $(\partial f)^{-1} = \partial f^\star$. 
 
 **Proof for Lemma**

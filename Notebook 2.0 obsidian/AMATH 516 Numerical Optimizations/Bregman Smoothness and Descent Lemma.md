@@ -1,3 +1,8 @@
+---
+alias: Relative Smoothness
+
+---
+### **Prerequisites**
 - [Bregman Divergence](Bregman%20Divergence.md)
 - [Bregman Proximal Mapping](Bregman%20Proximal%20Mapping.md)
 
@@ -29,7 +34,7 @@ In addition to the previous drawback of using proximal gradient, the function $g
 We will develop some theories for smoothness relative to a Bregman divergence. 
 We will also develop descent lemma that is analogous to the $L$-Lipschitz smooth case. 
 
-#### **Philosophy of Generalizing Smoothness Relative to a Bregman Divergence**
+#### **Reconceptualizing old ideas**
 Recall from [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) that if function $F$ is $L$-Lipschitz smooth, then $L/2 \Vert \cdot\Vert^2 - f$ is a convex function. 
 Since $L/2 \Vert \cdot\Vert^2 - f$ is convex, we have the equivalent characterization of smoothness we have for all $x, y \in \mathbb R^n$
 
@@ -44,7 +49,6 @@ The key idea here is to realize that the energy function $\omega(x) = \frac{\Ver
 For any $\omega$ that can induce a Bregman divergence, we say that $f$ is Bregman smooth wrt $\omega$ when $\omega(x) - f(x)$ is a convex function. 
 
 
-#### 
 
 
 [^1]: H. H. Bauschke, J. Bolte, and M. Teboulle, “A Descent Lemma Beyond Lipschitz Gradient Continuity: First-Order Methods Revisited and Applications,” Mathematics of OR, vol. 42, no. 2, pp. 330–348, May 2017, doi: 10.1287/moor.2016.0817.

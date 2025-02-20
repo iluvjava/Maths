@@ -87,11 +87,10 @@ Corollary 2.14 in Heinz's Monotone Operator's textbook.
 Exchanging $\langle ,\rangle$ to be $\langle ,\rangle_H$ and $\Vert \cdot\Vert$ into $\Vert \cdot\Vert_H$ with $H$ being a positive definite operator in the space would yield the same results as the above. 
 
 
----
-### **A Generalized Version**
+#### **A Generalized Version**
 
-In the general version of the theorem, we consider an affine combination of vectors $\sum_{i\in I} \alpha_i = 1$ in the Euclidean space (Original statement is stated for the Hilbert spaces), and form the equality: 
-
+Consider an affine combination of vectors $\sum_{i\in I} \alpha_i = 1$ and a collection of vector $\{x_i\}_{i \in I}, \{u_j\}_{j \in J}$ in Hilbert space. 
+Then it has the equality: 
 $$
 \begin{aligned}
     &
@@ -104,9 +103,13 @@ $$
     \sum_{i\in I}^{}\sum_{j\in I}^{}
         \frac{\alpha_i\alpha_j}{2}\langle x_i - x_j, u_i - u_j\rangle
     = 
-    \sum_{i \in I}^{}\alpha_i \langle x_i, u_i\rangle
-    \\
-    &
+    \sum_{i \in I}^{}\alpha_i \langle x_i, u_i\rangle. 
+\end{aligned}
+$$
+By setting the $x_i = u_i$ on the first expression, we obtain a strengthened variant of the equality which is: 
+
+$$
+\begin{aligned}
     \left\Vert \sum_{i \in I}^{}
         \alpha_ix_i
     \right\Vert^2
@@ -115,19 +118,23 @@ $$
         \sum_{i \in I}^{}
             \alpha_i\alpha_j\Vert x_i - x_j\Vert^2/2
     = 
-    \sum_{i \in I}^{}\alpha_i \Vert x_i\Vert^2, 
+    \sum_{i \in I}^{}\alpha_i \Vert x_i\Vert^2.
 \end{aligned}
 $$
 
-the first expression is a more general case of the second expression. By setting the $x_i = u_i$ on the first expression, we obtain the second expression. By setting the $I - {1, 2}$ for the second expression, we obtained the formula proved in the previous section. 
+
+By setting the $I = \{1, 2\}$ for the second expression, we obtained the formula we proved for the Cute Equality. 
+
+**Exercise**
+> The reader should attempt proving this variant of Cute Equality as an exercise. 
+> It looks hard but it's very easy. 
 
 
 **Reference**:
 
 Heinz's monotone operator textbook first edition, Lemma 2.13 (ii). Professor Heinz himself refers this formula as the cute formula. 
 
----
-### **An Augmented Version**
+#### **An Augmented Version**
 
 Differs from the generalized version, this rule is for convex combinations of 2 vectors in Hilbert Space. 
 Here we derive another version of the same formula, which is occasionally useful: 
@@ -187,6 +194,9 @@ See exercise below.
 
 Prove the above theorem, which is basic algebra like back in high school.
 
+**Remarks**
+
+This identity generalizes to the non-euclidean settings, see [Bregman Divergence](../Bregman%20Divergence.md) for more information. 
 
 #### **Lemma | A useful inequality**
 > For all $x, y , z \in \R^n$, $\theta > 0$, it has 
@@ -220,6 +230,59 @@ $$
     \\
     &\ge 
     (1 - \theta)\Vert x - z\Vert^2 + (1 - \theta^{-1})\Vert z - y\Vert^2. 
+\end{aligned}
+$$
+
+$\blacksquare$
+
+
+#### **Theorem | 4 Points equality**
+> For any pair of points $(x, y), (x', y')$ in product space $\R^n \times \R^n$, they satisfy: 
+> $$
+> \begin{aligned}
+>     2\langle x' - y', y - x\rangle
+>     &= 
+>     \Vert x' - y\Vert^2 + \Vert y' - x\Vert^2
+>     - \Vert y' - y\Vert - \Vert x' - x\Vert^2. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+We can derive the following equality individually for parts on the right hand side. 
+
+$$
+\begin{aligned}
+    \Vert x' - y\Vert^2 - \Vert x' - x\Vert^2
+    &= 
+    \Vert x' - x + x - y\Vert^2 - \Vert x' - x\Vert^2
+    \\
+    &= \Vert x - y\Vert^2 + 2\langle x' - x, x - y\rangle. 
+\end{aligned}
+$$
+
+Similarly
+
+$$
+\begin{aligned}
+    \Vert y' - x\Vert^2 - \Vert y' - y\Vert^2
+    &= \Vert x - y\Vert^2 + 2\langle y' - y, y - x\rangle. 
+\end{aligned}
+$$
+
+The sum of both equalities yields: 
+
+$$
+\begin{aligned}
+    \Vert x' - y\Vert^2 + \Vert y' - x\Vert^2
+    - 
+    \left(
+        \Vert x' - x\Vert^2 + \Vert y' - y\Vert^2
+    \right) &= 
+    2\Vert x - y\Vert^2
+    + 2\langle x' - x - y' + y , x - y\rangle
+    \\
+    &=  2 \langle x' - y', x - y \rangle. 
 \end{aligned}
 $$
 

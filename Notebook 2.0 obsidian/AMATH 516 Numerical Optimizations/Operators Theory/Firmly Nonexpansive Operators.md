@@ -46,13 +46,22 @@ The following reveals that there are some tight links between firmly nonexpansiv
 > Let $T: D\mapsto X$, where $D\subseteq X$, the the following are equivalent: 
 > 1. $T$ is firmly nonexpansive. 
 > 2. $I - T$ is firmly nonexpansive (direct from the symmetry of the definition)
-> 3. $\textcolor{red}{\forall x, y\in D}: \Vert Tx - Ty\Vert^2 \le \langle x-y, Tx - Ty\rangle$ a slightly stronger type of Monotonicity for Nonexpansive operators. (An Important Characteristics for Sure). The norm is any norm. 
+> 3. $\textcolor{red}{\forall x, y\in D}$, it has 
+> $$ 
+> \begin{aligned}
+>    \Vert Tx - Ty\Vert^2 &\le \langle x-y, Tx - Ty\rangle
+>     \\
+>     &= 1/2(\Vert Tx - y\Vert^2 + \Vert Ty - x\Vert^2 - \Vert Tx - x\Vert^2 - \Vert Ty - y\Vert^2). 
+> \end{aligned}    
+> $$ 
 > 4. $2T - I$ is nonexpansive. This operator is also known as the reflector of $T$, then $T$ is firmly non-expansive. 
 
 **Observations**:
 
 (1) if and only if (2) by a direct observations that the definition of a firmly nonexpansive operators has symmetry for $I - T$, $T$. 
 Before the proof we abbreviate things using $a: x-y, b = Tx - Ty$. 
+
+(3) is a a slightly stronger type of Monotonicity of Nonexpansive operators.
 
 **Proof: $(1)\iff (3)$** 
 
