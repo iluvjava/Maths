@@ -55,17 +55,17 @@ The definition of the $l^p$ forms subspace because linear combinations of such s
 
 To start, we show the norm defined for the $l^p$ sequence space is indeed a metric. 
 
-**Def | Conjugate Pairs**
+#### **Def | Conjugate Pairs**
 > $p, q$ are conjugate pairs if they satisfies: $p^{-1} + q^{-1} = 1$. 
 
 
-**Theorem | Fenchel's Young's Inequality (Fenchel's Inequality)**
+#### **Theorem | Fenchel's Young's Inequality (Fenchel's Inequality)**
 
 > Let $f(\beta) = \alpha\beta - q^{-1}\beta^q$ when $\alpha,\beta> 0$, $p> 1$, and $p, q$ are conjugate to each other, we have the inequality: $\alpha\beta \le p^{-1}\alpha^{p} + q^{-1}\beta^q$. 
 
 To prove, we simply take the derivative giving us $f'(\beta) = \alpha - \beta^{q - 1}$. By the assumption that $q - 1 > 0$, we know $q > 1, 0 < p < 1$ and the function $f'$ is monotone decreasing by $\beta > 0$. Meaning that the original function contains a maximum over $\mathbb R_+$. After that, we may just do some calculus to prove the inequality. 
 
-**Theorem | Holder's Inequality (Cauchy Inequality)**
+#### **Theorem | Holder's Inequality (Cauchy Inequality)**
 
 > Let $p, q > 0$ be a conjugate pairs and let $a, b \in \mathbb R^n_+$, then $\Vert a\Vert_p\Vert b\Vert_q \le \langle a, b\rangle$. 
 
@@ -109,7 +109,7 @@ Take note that this is very similar to the Cauchy Dual Norm Inequality.
 
 Reader, please make comparison with [Fenchel Identity, Inequality](../AMATH%20516%20Numerical%20Optimizations/Duality/Fenchel%20Identity,%20Inequality.md). The statement here is a one dimensional variant the Fenchel Young Inequality for Subgradient a dual in general. 
 
-**Thm | Minkowski Inequality (Triangle Inequality)**
+#### **Thm | Minkowski Inequality (Triangle Inequality)**
 
 > Here we show that the metric $\Vert x\Vert_p$ with $p \ge 1$ is satisfies the triangular inequality property of a metric space. 
 

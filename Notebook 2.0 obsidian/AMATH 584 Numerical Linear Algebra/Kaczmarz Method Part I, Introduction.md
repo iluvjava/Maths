@@ -15,7 +15,7 @@
 > 2. $b \in \text{rng}\; A$. 
 > 3. $x^* \in \text{null}(A)^\perp$ has $Ax^* = b$. 
 > 4. $\e_i$ denotes the standard basis vector. 
-> 
+> 5. Without loss of generality, rows of matrix $A$ is normalized, i.e: $\Vert A^T\e_i\Vert = 1$ for all $i = 1, \ldots, n$. 
 
 #### **Algorithm 1 | Kaczmarz Method**
 > In the settings provided by Assumption 1. 
@@ -32,5 +32,4 @@ There are many strategies for choosing $i_k$ given each $k$.
 1. Choose it randomly using a uniform distribution. 
 2. Choose the $i_k$ such that it maximizes $|\langle Ax_k - b, \e_{i_k}\rangle|$. 
 
-#### **Lemma | Basic consequences of the algorithm**
-> 
+

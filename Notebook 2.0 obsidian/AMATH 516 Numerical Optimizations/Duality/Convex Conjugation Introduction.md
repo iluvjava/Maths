@@ -2,9 +2,9 @@
 alias: Fenchel Conjugate
 ---
 Pre-requisite: 
-* [[Characterizing Functions for Optimizations]]
-* [[Support Function]]
-* [[../Non-Smooth Calculus/Subgradient Intro]]
+* [Characterizing Functions for Optimizations](Characterizing%20Functions%20for%20Optimizations.md)
+* [Support Function](Support%20Function.md)
+* [Subgradient Intro](../Non-Smooth%20Calculus/Subgradient%20Intro.md)
 
 ---
 ### **Intro**
@@ -28,7 +28,7 @@ Convex conjugate is Fenchel conjugate, It's also called the Fenchel Legendre Tra
 
 > The conjugate is closed and convex. 
 
-$y^Tx - f(x)$ is a affine function wrt to variable $y$ because $y^Tx$ is affine and $-f(x)$ is a constant. Since we are taking the $\sup$ of all such affine function changing the value of  $x$, the result is a convex function wrt to $y$ by the property that supremum over a set of function is, convex ([[../CVX Geometry/Convexity Preserving Operations for Functions]]). Therefore the conjugate is convex. 
+$y^Tx - f(x)$ is a affine function wrt to variable $y$ because $y^Tx$ is affine and $-f(x)$ is a constant. Since we are taking the $\sup$ of all such affine function changing the value of  $x$, the result is a convex function wrt to $y$ by the property that supremum over a set of function is, convex ([Convexity Preserving Operations for Functions](../CVX%20Geometry/Convexity%20Preserving%20Operations%20for%20Functions.md)). Therefore the conjugate is convex. 
 
 **Notations**
 
@@ -52,7 +52,7 @@ The conjugate function is always convex, see the next section for more info. We 
 - Conjugate encodes the maximum offset of Affine minorants of the original function. 
 - Fenchel conjugate is a special case of the support function on the epigraph of $f$. 
 
-Before we start, please see [[Fenchel Identity, Inequality]], for the inequality. It's somewhat relevant. 
+Before we start, please see [Fenchel Identity, Inequality](Fenchel%20Identity,%20Inequality.md), for the inequality. It's somewhat relevant. 
 
 #### **Claim-1 | Conjugate Encodes Affine Minorants**
 
@@ -104,7 +104,7 @@ $$
 \end{aligned}
 $$
 
-Recall from [[../CVX Geometry/Supporting Convex Sets using Halfspaces]], we had created a support for the epigraph of $f$, using the elements from the epigraph of $f^\star$. 
+Recall from [Supporting Convex Sets using Halfspaces](../CVX%20Geometry/Supporting%20Convex%20Sets%20using%20Halfspaces.md), we had created a support for the epigraph of $f$, using the elements from the epigraph of $f^\star$. 
 
 **Remarks**
 
@@ -166,7 +166,7 @@ From the first line the the second line, we make the intuitive argument that the
 
 #### **Corollary | Conjugate is Convex**
 
-Using the fact that the support function of any set is closed and convex (which is proved in: [[Support Function]]) and the above representation of conjugate function via the support function, we know that the conjugate function is also closed and convex. 
+Using the fact that the support function of any set is closed and convex (which is proved in: [Support Function](Support%20Function.md)) and the above representation of conjugate function via the support function, we know that the conjugate function is also closed and convex. 
 
 **Remarks**
 
@@ -176,7 +176,7 @@ Using this property, we can make shortcut to finding the conjugates of some func
 ---
 ### **Geometric Interpretations**
 
-![[../../fenchel_transform_interpretations.png]]
+![fenchel_transform_interpretations](../../fenchel_transform_interpretations.png)
 
 > The dual variable is the slope of the tangent line and the value of the function is the negative of the y intersect (or whatever intersect on the higher dimension). 
 
@@ -261,7 +261,7 @@ $$
 \end{aligned}
 $$
 
-See [[MinMax MaxMin Lemma]] for applications. 
+See [MinMax MaxMin Lemma](MinMax%20MaxMin%20Lemma.md) for applications. 
 
 **Corollary: The Biconjugate Theorem**
 
@@ -272,7 +272,7 @@ See [[MinMax MaxMin Lemma]] for applications.
 
 **Proof**
 
-See [[Biconjugate Theorem]] for a more detailed proof of the theorem. 
+See [Biconjugate Theorem](Biconjugate%20Theorem.md) for a more detailed proof of the theorem. 
 
 ---
 ### **Convex Conjugate Quick Maths References**
@@ -320,22 +320,18 @@ $$
 Finally we observe the cases for some of the special functions
 
 1. Support functions and indicator functions are dual to each other. 
-2. Indicator of the [[Introducing Cone]] and [[Polar Cone]] are dual to each other. 
+2. Indicator of the [Introducing Cone](Introducing%20Cone.md) and [Polar Cone](Polar%20Cone.md) are dual to each other. 
 3. Affine function and indicator function of a singletons are dual to each other. 
 
 These facts are useful for transforming between constrained optimizations and their duals. 
 
 **Remarks**: 
 
-By the bi-conjugate theorem, you should read the table back and forth to get double amount of conjugates for functions. 
+- Entry 3, second table, $g^\star$ is dualizing on both parameters $(x,z)$ for the function $g$. 
 
-Entry 3, second table, $g^\star$ is dualizing on both parameters $(x,z)$ for the function $g$. 
-
-And finally, the conjugate of the Indicator function of set $C$: $\delta_C^\star(x)$ is just the support function on the set $C$. In fact, for more special use of the conjugation, we must invoke the indicator function on epigraph of the function and use properties of the [[Support Function]] to analyze the dual. 
-
-For more, actual examples with step by step derivations regarding the convex conjugate of functions, see [[Convex Conjugate Computations Examples]] for more information. Here we summarize some of the important results from there in a nice table format. 
-
-For theorems that relates the subgradient and the Fenchel Conjugate, visits: [[Fenchel Identity, Inequality]] for more. 
+- The conjugate of the Indicator function of set $C$: $\delta_C^\star(x)$ is just the support function on the set $C$. See [Support Function](Support%20Function.md) for details. 
+- see [Convex Conjugate Computations Examples](Convex%20Conjugate%20Computations%20Examples.md) for step by step examples for taking the convex conjugates of functions. 
+-  Visits: [Fenchel Identity, Inequality](Fenchel%20Identity,%20Inequality.md) for more about Subgradient of the conjugate function. 
 
 **Source**: 
 This is coming from Prof Deimitri at UW, for AMATH 516. 

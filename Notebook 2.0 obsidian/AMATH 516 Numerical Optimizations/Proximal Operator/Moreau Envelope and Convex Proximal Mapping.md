@@ -119,6 +119,58 @@ See the Exercise below.
 See above. 
 
 
+#### **Lemma | Moreau Envelope as conjugate**
+> Let $f: \R^n \rightarrow \overline \R$ then the Moreau Envelope $\env_f^{\lambda}$ has for all $\lambda > 0$, $x \in \R^n$ the equality: 
+> $$
+> \begin{aligned}
+>     \env_f^\lambda(x) 
+>     = 
+>     \frac{1}{2\lambda}\Vert x\Vert^2
+>     -
+>     \lambda^{-1}
+>     \left[
+>         \lambda f(z) + \frac{1}{2}\Vert \cdot\Vert^2
+>     \right]^\star(x). 
+> \end{aligned}
+> $$
+
+
+**Proof**
+$$
+\begin{aligned}
+    \env_f^\lambda(x) &= \min_{z \in \R^n}\left\lbrace
+        f(z) + \frac{1}{2\lambda}\Vert x - z\Vert^2
+    \right\rbrace
+    \\
+    &= \lambda^{-1}\min_{z \in \R^n}\left\lbrace
+        \lambda f(z) + \frac{1}{2}\Vert x - z\Vert^2
+    \right\rbrace
+    \\
+    &= \lambda^{-1}\left(
+        \min_{z \in \R^n}
+        \left\lbrace
+            \lambda f(z) + \frac{1}{2}\Vert z\Vert^2 - \langle z, x\rangle
+        \right\rbrace
+        + \frac{1}{2}\Vert x\Vert^2
+    \right)
+    \\
+    &=
+    \frac{1}{2\lambda}\Vert x\Vert^2
+    -
+    \lambda^{-1}
+    \left[
+        \lambda f(z) + \frac{1}{2}\Vert \cdot\Vert^2
+    \right]^\star(x). 
+\end{aligned}
+$$
+
+**Remarks**
+
+The convex conjugate function is always convex. 
+The Squared norm is also convex. 
+The function may be nonconvex but it's a difference between two convex functions. 
+
+
 
 ---
 ### **As Operators**
