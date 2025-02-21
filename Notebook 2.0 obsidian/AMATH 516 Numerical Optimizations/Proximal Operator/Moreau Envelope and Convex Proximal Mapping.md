@@ -317,9 +317,7 @@ The proximal operator is certainly continuous too.
 
 Denote $P_f(x)$ for the proximal operator for $f$ at $x$. 
 For all $x$, it has unique $x^+\in P_f(x)$, $y^+\in P_f(y)$, by $P_f$ is single valued by Theorem 1 when $F$ is convex. 
-The proof has the following key intermediate steps. 
-
-We use the quadratic growth condition from [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) on $x\mapsto f(x) + \Vert x - z\Vert^2$ for all $z$ because it is $1$-strongly convex and it gives: 
+We use the quadratic growth condition from [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) on $x\mapsto f(x) + \Vert x - z\Vert^2$ for all $z$ at $x^+, y^+$ because it is $1$-strongly convex and it gives: 
 
 $$
 \begin{aligned}

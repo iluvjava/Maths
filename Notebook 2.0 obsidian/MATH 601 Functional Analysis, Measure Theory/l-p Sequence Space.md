@@ -60,10 +60,19 @@ To start, we show the norm defined for the $l^p$ sequence space is indeed a metr
 
 
 #### **Theorem | Fenchel's Young's Inequality (Fenchel's Inequality)**
+> If $\alpha,\beta> 0$, $p> 1$, and $p, q$ are conjugate to each other, we have the inequality: $\alpha\beta \le p^{-1}\alpha^{p} + q^{-1}\beta^q$. 
 
-> Let $f(\beta) = \alpha\beta - q^{-1}\beta^q$ when $\alpha,\beta> 0$, $p> 1$, and $p, q$ are conjugate to each other, we have the inequality: $\alpha\beta \le p^{-1}\alpha^{p} + q^{-1}\beta^q$. 
+**Proof**
 
-To prove, we simply take the derivative giving us $f'(\beta) = \alpha - \beta^{q - 1}$. By the assumption that $q - 1 > 0$, we know $q > 1, 0 < p < 1$ and the function $f'$ is monotone decreasing by $\beta > 0$. Meaning that the original function contains a maximum over $\mathbb R_+$. After that, we may just do some calculus to prove the inequality. 
+Let $f(\beta) = \alpha\beta - q^{-1}\beta^q$. 
+Observe that if $p > 1$, then $q = (1 - p)^{-1} > 1 \iff q - 1 > 0$ using the fact that $(p, q)$ is a conjugate pair with each other. 
+Here are the major intermediate results of the proof. 
+
+- **(Step I)**: $f'(\beta) = \alpha = \beta^{q - 1}$ monotone decrases and has $f'(\alpha^{1/(q - 1)}) = 0$, hence maximum at $\beta^* = \alpha^{1/(q - 1)}$. 
+- **Step (II)**: Substituting back it has $f(\beta^*) = p^{-1}\alpha^p$, which is the maximum. 
+
+$\blacksquare$
+
 
 #### **Theorem | Holder's Inequality (Cauchy Inequality)**
 
@@ -75,86 +84,105 @@ We define positive constants: $\alpha_1 = a_i/\Vert a\Vert_p, \beta_i = b_i/\Ver
 
 $$
 \begin{aligned}
-    \alpha_i\beta_i &\le \frac{\alpha_i^p}{p} + \frac{\beta_i^q}{q}
+    (\forall i = 1, \ldots, n): \alpha_i\beta_i &\le \frac{\alpha_i^p}{p} + \frac{\beta_i^q}{q}
     \\
-    \sum_{i = 1}^{n}\alpha_i\beta_i &\le 
+    \implies 
+    0
+    &\le 
     \sum_{i = 1}^{n}\frac{\alpha_i^p}{p} + 
     \sum_{n = 1}^{n} \frac{\beta_i^q}{q}
+    - \sum_{i = 1}^{n}\alpha_i\beta_i 
     \\
+    &=
+    p^{-1}\left(\sum_{i = 1}^{n} \frac{a_i^p}{\Vert a\Vert_p^p}\right) + 
+    q^{-1}\left(\sum_{i = 1}^{n}\frac{b_i^q}{\Vert b\Vert_q^q}\right) 
+    -
     \left\langle 
         \frac{a}{\Vert a\Vert_p}, \frac{b}{\Vert b\Vert_q}
     \right\rangle
-    & \le 
-    \underbrace{\left(
-        \sum_{i = 1}^{n} \frac{p^{-1} a_i^p}{\Vert a\Vert_p^p} + 
-        \frac{q^{-1}b_i}{\Vert b\Vert_q^q}
-    \right)}_{(*)}
     \\
-    (*) &= 
-    p^{-1}\left(\sum_{i = 1}^{n} \frac{a_i^p}{\Vert a\Vert_p^p}\right) + 
-    q^{-1}\left(\sum_{i = 1}^{n}\frac{b_i^q}{\Vert b\Vert_q^q}\right) = 1
-    \\
-    \implies 
-    \left\langle 
+    &= 1 -  \left\langle 
         \frac{a}{\Vert a\Vert_p}, \frac{b}{\Vert b\Vert_q}
-    \right\rangle &\le 1
+    \right\rangle
     \\
-    \Vert a\Vert_p\Vert b\Vert_q &\ge \langle a, b\rangle. 
+    &= \Vert a\Vert_p \Vert b\Vert_q \left(
+        \Vert a\Vert_p \Vert b\Vert_q - \langle a, b\rangle
+    \right)
+    \\
+    \iff 
+    0
+    &\le 
+    \Vert a\Vert_p\Vert b\Vert_q - \langle a, b\rangle
 \end{aligned}
 $$
 
 Take note that this is very similar to the Cauchy Dual Norm Inequality. 
+$\blacksquare$
 
 **Remarks**: 
 
-Reader, please make comparison with [Fenchel Identity, Inequality](../AMATH%20516%20Numerical%20Optimizations/Duality/Fenchel%20Identity,%20Inequality.md). The statement here is a one dimensional variant the Fenchel Young Inequality for Subgradient a dual in general. 
+Reader, please make comparison with [Fenchel Identity, Inequality](../AMATH%20516%20Numerical%20Optimizations/Duality/Fenchel%20Identity,%20Inequality.md). 
+The $\Vert \cdot\Vert_p, \Vert \cdot\Vert_q$ are dual norms to each other. 
 
 #### **Thm | Minkowski Inequality (Triangle Inequality)**
 
 > Here we show that the metric $\Vert x\Vert_p$ with $p \ge 1$ is satisfies the triangular inequality property of a metric space. 
 
+**Proof**
+
 Let $a, b$ be any vector in $\mathbb R^n$, then $|a_i + b_i| \le |a_i| + |b_i|$, then $(|a_i + b_i|)^p \le (|a_i| + |b_i|)^p$ by $p > 1$, hence 
 $$
 \begin{aligned}
-    \left(\sum_{i = 1}^{n}|a_i + b_i|^p\right) 
-    \le 
+    0
+    &\le 
     \left(\sum_{i = 1}^{n}
         (|a_i| + |b_i|)^p
     \right)
+    -
+    \left(\sum_{i = 1}^{n}|a_i + b_i|^p\right) 
     \\
-    \implies
-    \left(\sum_{i = 1}^{n}|a_i + b_i|^p\right)^{1/p}
-    \le 
+    \iff
+    0
+    &\le 
     \left(\sum_{i = 1}^{n}
         (|a_i| + |b_i|)^p
-    \right)^{1/p}, 
+    \right)^{1/p}
+    -
+    \left(\sum_{i = 1}^{n}|a_i + b_i|^p\right)^{1/p}. 
 \end{aligned}
 $$
 
-we used the monotonicity of raising something to the power of $1/p$ with $p > 1$. We target the RHS of the expression and seek for an upper bound on that quantity. Here we use the notation of $w^{\langle p\rangle}$ to denote taking the power of a vector element wise. We define $w_i = |a_i| + |b_i|$, then $\sum_{i= 1}^{n}w_i^p = \sum_{i = 1}^{n} w_i^{p - 1}|a_i| + \sum_{i = 1}^{n}w_i^{p-1}|b_i|$. We apply Holder's Inequality to both quantities on the RHS obtaining:
+The power of $1/p$ with $p > 1$ is a monotone mapping which preserves the above inequlity hence the above inequalities are equivalent. 
+We target the RHS of the expression and seek for an upper bound on that quantity. 
+Here we use the notation of $w^{\langle p\rangle}$ to denote taking the power of a vector element wise. 
+Define $w_i = |a_i| + |b_i|$, so it has $\sum_{i= 1}^{n}w_i^p = \sum_{i = 1}^{n} w_i^{p - 1}|a_i| + \sum_{i = 1}^{n}w_i^{p-1}|b_i|$. 
+Applying Holder's inequality on RHS yields: 
 
 $$
 \begin{aligned}
+    0
+    & \le 
+    \left\Vert w^{\langle p - 1\rangle}\right\Vert_q
+    \Vert a\Vert_p
     \left(
         \sum_{i = 1}^{n} w_i^{p-1}|a_i|
-    \right) 
-    & \le 
-    \Vert w^{\langle p - 1\rangle}\Vert_q
-    \Vert a\Vert_p
+    \right), 
     \\
+    0
+    & \le 
+    \left\Vert w^{\langle p - 1\rangle}\right\Vert_q
+    \Vert b\Vert_p
+    -
     \left(
         \sum_{i = 1}^{n}w_i^{p - 1}|b_i|
     \right)
-    & \le 
-    \Vert w^{\langle p - 1\rangle}\Vert_q
-    \Vert b\Vert_p
     \\
     \implies
     \sum_{i= 1}^{n}w_i^p
     &\le 
-    \Vert w^{\langle p - 1\rangle}\Vert_q
+    \left\Vert w^{\langle p - 1\rangle}\right\Vert_q
     \Vert a\Vert_p + 
-    \Vert w^{\langle p - 1\rangle}\Vert_q
+    \left\Vert w^{\langle p - 1\rangle}\right\Vert_q
     \Vert b\Vert_p. 
 \end{aligned}
 $$
@@ -163,13 +191,13 @@ Next we consider re-arranging $\Vert w^{\langle p - 1\rangle}\Vert_q$:
 
 $$
 \begin{aligned}
-    \Vert w^{\langle p - 1\rangle}\Vert_q &=     
+    \left\Vert w^{\langle p - 1\rangle}\right\Vert_q
+    &=
     \left(
         \sum_{i = 1}^{n}
-            (w_i^{p - 1})^q
+            \left(w_i^{p - 1}\right)^q
     \right)^{1/q}
-    \\
-    &= 
+    = 
     \left(
         \sum_{i = 1}^{n}
         w_i^{p}
@@ -177,25 +205,34 @@ $$
 \end{aligned}
 $$
 
-Going back to the calculations before the above, we have: 
+Using $pq = p + q$ being a conjugate pair it makes: 
 
 $$
 \begin{aligned}
-    \sum_{i = 1}^{n}
-        w_i^p 
-        &\le 
-        \left(\sum_{n = 1}^{n} w_i^p\right)^{1/q}
-        \Vert a\Vert_p
-        + 
-        \left(\sum_{n = 1}^{n}w_i^p\right)^{1/q}
-        \Vert b\Vert_p
+    0
+    &\le 
+    \left(\sum_{n = 1}^{n} w_i^p\right)^{1/q}
+    \Vert a\Vert_p
+    + 
+    \left(\sum_{n = 1}^{n}w_i^p\right)^{1/q}
+    \Vert b\Vert_p
+    -
+    \sum_{i = 1}^{n} w_i^p 
     \\
+    \iff 
+    0
+    &\le 
+    \Vert a\Vert_p + \Vert b\Vert_p
+    -
     \left(
         \sum_{i = 1}^{n}
         w_i^p
     \right)^{1 - 1/q}
-    &\le 
-    \Vert a\Vert_p + \Vert b\Vert_p. 
+    \\
+    &= 
+    \Vert a\Vert_p + \Vert b\Vert_p
+    -
+    \Vert a + b\Vert_p
 \end{aligned}
 $$
 
