@@ -4,8 +4,9 @@ alias: Cute Formula
 ### **Intro**
 
 Unless specified, assume the ambient space is some Hilbert space $\mathcal H$. 
+Holder, Cauchy Swchartz inequalities are basics stuff in Euclidean space. 
+See [l-p Sequence Space](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/l-p%20Sequence%20Space.md) for more information. 
 
-This formula is extremely useful when we are dealing with Euclidean norm (Also applicable for Hilbert space), with well-defined inner products and norms. We show the proof for it, and we will provide more variance for it. The cute formula is: 
 
 
 ### **Equalities**
