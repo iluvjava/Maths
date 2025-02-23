@@ -27,37 +27,6 @@ $$
 
 The proximal operator is a singleton when the function $f$ is convex, proper, and closed. 
 Observe that $\text{env}_{\alpha, f}(x) = (f\square \frac{1}{2\alpha}\Vert \cdot \Vert^2)(x)$, which by ([Convexity Preserving Operations for Functions](../CVX%20Geometry/Convexity%20Preserving%20Operations%20for%20Functions.md)) the epigraph of the envelope is the set addition between the epigraph of those two functions and it inherits properties of them. 
-For example, if we assume that the function $f$ is closed, convex, and proper, their infimal convolution is closed, proper, and convex. 
-Of course, if $p\in \text{prox}_f(x)$ then 
-
-$$
-\begin{aligned}
-    \text{env}_f^\alpha(x) = f(p) + \frac{1}{2\alpha}\Vert x - p\Vert^2 \le f(y) + 
-    \frac{1}{2\alpha}\Vert x - y\Vert^2 \quad \forall y \in \mathbb R^n
-\end{aligned}
-$$
-
-setting $y = x$, then the envelope is always below the function. 
-Moreover, with $f$ being convex, $f(\cdot) + \frac{1}{2\alpha}\Vert \cdot - x\Vert^2$ is strongly convex, since $f(\cdot) + \frac{1}{2\alpha}\Vert \cdot - x\Vert^2 - \frac{1}{2\alpha}\Vert \cdot - x\Vert^2$ is convex, the strong convexity index is $\alpha^{-1}$, recall that for any strongly convex function $g$ with convexity index $\lambda$ ([Strong Convexity, Equivalences and Implications](Strong%20Convexity,%20Equivalences%20and%20Implications.md)), we have 
-
-$$
-\begin{aligned}
-    g(x) - g(x^*) \ge \frac{\lambda}{2} \; \Vert x - x^*\Vert, x \in \argmin{x} f
-    \\
-    \implies 
-    \left(f(p) + \frac{1}{2\alpha}\Vert x - p\Vert^2\right)
-    - 
-    \left(
-        f(y) + \frac{1}{2\alpha}\Vert x - y\Vert^2 
-    \right)
-    &\le 
-    - \frac{1}{2\alpha}\Vert y - p\Vert^2 
-    \quad \forall y \in \R^n, 
-\end{aligned}
-$$
-
-because, $p$ is a minimizer of $f(\cdot) + (1/(2\alpha ))\Vert \cdot - x\Vert^2$. 
-Which is a much weaker conditions compare to descent condition imposed by just the Moreau Envelope. 
 
 
 **Notation nuance**
