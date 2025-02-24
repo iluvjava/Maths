@@ -244,7 +244,7 @@ $\blacksquare$
 >     2\langle x' - y', y - x\rangle
 >     &= 
 >     \Vert x' - y\Vert^2 + \Vert y' - x\Vert^2
->     - \Vert y' - y\Vert - \Vert x' - x\Vert^2. 
+>     - \Vert y' - y\Vert^2 - \Vert x' - x\Vert^2. 
 > \end{aligned}
 > $$
 

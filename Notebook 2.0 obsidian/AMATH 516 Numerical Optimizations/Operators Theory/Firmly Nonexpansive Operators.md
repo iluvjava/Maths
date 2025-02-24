@@ -41,9 +41,9 @@ Chapter 4 of the Mono Operator book from Heinz.
 A set of expressions are equivalent for all firmly nonexpansive operators. 
 The following reveals that there are some tight links between firmly nonexpansive operators and nonexpansive operator. 
 
-#### **Thm | Equivalences of Nonexpansiveness**
+#### **Theorem | Equivalences of Nonexpansiveness**
 
-> Let $T: D\mapsto X$, where $D\subseteq X$, the the following are equivalent: 
+> Let $T: D\mapsto X$, where $D\subseteq X$, then the following are equivalent: 
 > 1. $T$ is firmly nonexpansive. 
 > 2. $I - T$ is firmly nonexpansive (direct from the symmetry of the definition)
 > 3. $\textcolor{red}{\forall x, y\in D}$, it has 
@@ -58,10 +58,9 @@ The following reveals that there are some tight links between firmly nonexpansiv
 
 **Observations**:
 
-(1) if and only if (2) by a direct observations that the definition of a firmly nonexpansive operators has symmetry for $I - T$, $T$. 
+$(1) \iff (2)$ because the definition of firmly nonexpansive operators is the same for $I - T$, $T$. 
 Before the proof we abbreviate things using $a: x-y, b = Tx - Ty$. 
-
-(3) is a a slightly stronger type of Monotonicity of Nonexpansive operators.
+(3) is a slightly stronger type of Monotonicity of Nonexpansive operators.
 
 **Proof: $(1)\iff (3)$** 
 
@@ -79,11 +78,13 @@ $$
     (1) &\iff 
     \Vert b\Vert^2 + \Vert a - b\Vert^2 \le \Vert a\Vert^2 
     \\
-    &\iff 
-    0 \le \Vert a\Vert^2 - (\Vert b\Vert^2 + \Vert a - b\Vert^2)
-    \\
-    &\iff 
-    0 \le 2(\langle a, b\rangle - \Vert b\Vert^2)
+    &\;
+    \begin{aligned}
+        \iff 
+        0 &\le \Vert a\Vert^2 - (\Vert b\Vert^2 + \Vert a - b\Vert^2)
+        \\
+        & = 2(\langle a, b\rangle - \Vert b\Vert^2)    
+    \end{aligned}
     \\
     & \iff 
     \Vert b\Vert^2 \le \langle a, b\rangle \iff (3). 

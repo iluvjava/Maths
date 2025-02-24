@@ -115,27 +115,35 @@ This theorem generalizes to Hilbert space due to strong convergence.
 Slight modifications of a non-expansive operator makes it into a maximally monotone operator. 
 
 #### **Thm | Monotone Operator from a Nonexpansive Operator**
-> Let $N: D \mapsto D$ be a nonexpansive operator, then $I - N$ is a monotone operator, if $D = X$, then $I - N$ is a maximally monotone operator if and only if $N$ is a nonexpansive operator. 
+> Let $N: D \mapsto D$ be a nonexpansive operator. 
+> The following scenarios are true. 
+> 1. Then $I - N$ is a monotone operator, 
+> 2. if in addition $D = X$ and $N$ is maximally monotone, then $I - N$ is a maximally monotone operator if and only if $N$ is a nonexpansive operator.
 
 **Proof**
 
-The proof is direct by considering the condition of monotonicity applied to the operator $I - N$. 
-With the assumption that $N$ is a single-valued operator, we consider that 
+
+Suppose $N$ is a Lipschitz operator then: 
 
 $$
 \begin{aligned}
-    \langle x - y, x - y - (Nx - Ny)\rangle 
-    &= \Vert x - y\Vert^2 - \langle x - y, x_N, y_N\rangle 
+    \left\langle 
+        x - y, x - y - (Nx - Ny)
+    \right\rangle 
+    &= \Vert x - y\Vert^2 - \langle x - y, Nx - Ny\rangle 
     \\
     & \ge \Vert x - y\Vert^2 - \Vert x - y\Vert \Vert Nx - Ny\Vert
     \\
     &\ge 
-    \Vert x - y\Vert(\Vert x - y\Vert - \Vert Nx - Ny\Vert). 
+    \Vert x - y\Vert(\Vert x - y\Vert - \Vert Nx - Ny\Vert)
+    \\
+    &\ge 0. 
 \end{aligned}
 $$
 
-For the above condition, if $N$ is nonexpansive, then $\Vert x - y\Vert - \Vert Nx - Ny\Vert \ge 0$, therefore, it verifies that $[I - N]$ is a monotone operator. 
 
+
+$\blacksquare$
 
 
 #### **Claim | Averaged Operator and Nonexpansive Operators**

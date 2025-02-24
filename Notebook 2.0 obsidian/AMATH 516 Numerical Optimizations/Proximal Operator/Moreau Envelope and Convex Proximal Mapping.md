@@ -698,8 +698,6 @@ For more about the projection onto a convex set, see [Convex Sets Projections an
 We invoke the definition and the meaning of this, and then we examine the property of the proximal mapping and envelope from above using this example. 
 
 
-
-
 ---
 ### **Proximal Mapping and Moreau Envelope in the Nonconvex Case**
 
