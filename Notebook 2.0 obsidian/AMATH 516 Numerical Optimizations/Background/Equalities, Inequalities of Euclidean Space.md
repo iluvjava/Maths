@@ -236,6 +236,10 @@ $$
 
 $\blacksquare$
 
+**Remarks**
+
+Cosine law has generalization to Non-euclidean geometry and Bregman divergences. 
+
 
 #### **Theorem | 4 Points equality**
 > For any pair of points $(x, y), (x', y')$ in product space $\R^n \times \R^n$, they satisfy: 
@@ -254,7 +258,7 @@ We can derive the following equality individually for parts on the right hand si
 
 $$
 \begin{aligned}
-    \Vert x' - y\Vert^2 - \Vert x' - x\Vert^2
+    \Vert y - x'\Vert^2 - \Vert x' - x\Vert^2
     &= 
     \Vert x' - x + x - y\Vert^2 - \Vert x' - x\Vert^2
     \\
@@ -288,3 +292,27 @@ $$
 $$
 
 $\blacksquare$
+
+**Remarks**
+
+It feels like a cusine of Parallelogram equality immediately follows below. 
+It's heavily used in the proofs for properties of Monotone operators. 
+
+
+#### **Theorem | Paralellelogram equality**
+> For all $x, y \in \R^n$, it has 
+>
+> $$
+> \begin{aligned}
+>   \Vert a \Vert^2 + \Vert b\Vert^2=(1/2)(\Vert a + b\Vert^2 - \Vert a - b\Vert^2). 
+> \end{aligned}
+> $$
+
+**Proof**
+
+The cross term cancels out. 
+
+**Remarks**
+
+Unique to Euclidean space. 
+If this can be carried out in some Normed space, then that normed space has Euclidean geometry. 

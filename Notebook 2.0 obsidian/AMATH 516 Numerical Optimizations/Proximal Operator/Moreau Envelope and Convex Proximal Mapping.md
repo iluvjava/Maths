@@ -343,20 +343,18 @@ $\blacksquare$
 
 **Remarks**
 
-To generalize the results where $\alpha$ is not necessarily 1, we consider: $\text{prox}_{f, \alpha}(x) = \text{prox}_{f/\alpha, 1}(x)$, which doesn't affect the Lipschitz constant at all. 
-The prox has the same Lipschitz for any convex proper functions, for any parameter $\alpha > 0$. 
-I deviated from reference materials and added the generality for $\Vert \cdot\Vert$ to work with $\Vert \cdot\Vert_\star$. 
+If $\alpha$ is not necessarily 1, we consider: $\text{prox}_{f, \alpha}(x) = \text{prox}_{f/\alpha, 1}(x)$.
+See [Convex Conjugation Introduction](../Duality/Convex%20Conjugation%20Introduction.md) for information on convex conjugate formulas. 
 
-The proximal operator is also <mark style="background: #FFF3A3A6;">*firmly nonexpansive*</mark>. 
-This subset of Lipschitz-1 Operators.
-It helps with proving the convergence of many algorithms that uses the proximal operator. 
-For context, read [Firmly Nonexpansive Operators](../Operators%20Theory/Firmly%20Nonexpansive%20Operators.md) for more about Firmly Nonexpansive operators in general. 
-There is also a simpler version of the proof for the Firmly Nonexpansiveness of the prox operators. 
+The prox is firmly nonexpansive for any convex proper functions, for any parameter $\alpha > 0$.
+Read [Firmly Nonexpansive Operators](../Operators%20Theory/Firmly%20Nonexpansive%20Operators.md) for more convex on Firmly Nonexpansive operators in general. 
+Proximal operator is a Resolvent operator of subgradient, in a more general context, firmly nonexpansiveness holds for resolvent operators in general, visits [Resolvent Operators](../Operators%20Theory/Resolvent%20Operators.md) for more information. 
 
-Notice how, this proof didn't use subgradient at all. 
+If the function is strongly convex, then the proximal operator becomes a contraction. 
+Visit [Appearances of Contraction Operators in Optimizations Method](../Operators%20Theory/Appearances%20of%20Contraction%20Operators%20in%20Optimizations%20Method.md) for more information. 
+
 
 #### **Corollary 2.2 | The gradient of Moreau Envelope is Firmly Nonexpansive**
-
 > Consider the previous fact that the gradient, $\nabla \text{env}_{f, \alpha}(x)$ is $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$ will be globally Lipschitz with constant $\alpha^{-1}$, therefore, $\text{env}_{f, \alpha}(x)$ is smooth with $\beta = \alpha^{-1}$, where $\alpha$ is subscripted under the envelope. 
 
 **References**: 
@@ -367,7 +365,7 @@ Dimitri's AMATH 516, UW. Somewhere in the course notes I forgot where is where.
 ---
 ### **Proximal Decomposition and Minty Parameterization**
 
-The prox of the conjugate is related to the prox. Similar to how a linear subspace has its orthogonal component. 
+The prox of the conjugate is related to the prox through the following lemma. 
 
 #### **Lemma 3.1 | When are Subgradient Invertible**
 > Let $f:\mathbb E\mapsto \mathbb{\bar R}$ be proper closed and convex and subgradient $\partial f$ is surjective, then $(\partial f)^{-1} = \partial f^\star$. 
@@ -383,7 +381,6 @@ Hence, the domain of its subgradient is also not entire.
 The theorem here is not applicable for all values of $x$ outside the domain of the subgradient of the conjugate or outside the range of the range of the subgradient.
 Global strict convexity and coerciveness are the sufficient conditions for an invertible subgradient operator using the dual subgradient; the subgradient of these functions is surjective. 
 For more information, see [Simply Legendre Type](../Simply%20Legendre%20Type.md). 
-
 
 
 **References:**

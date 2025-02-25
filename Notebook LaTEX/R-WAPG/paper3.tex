@@ -36,10 +36,10 @@
 \begin{abstract} 
     \noindent
     We study the accelerated proximal gradient method where the sequence that controls the momentum term doesn't follow the Nesterov's rule. 
-    The paper proposed R-WAPG, a generic algorithm that unifies the convergence results for strongly convex and convex where the extrapolation constant is characterized by a sequence that is much weaker than the Nesterov's rule. 
+    The paper proposes Relaxed Weak Accelerated Proximal Gradient(R-WAPG), a generic algorithm that unifies the convergence results for strongly convex and convex problems where the extrapolation constant is characterized by a sequence that is much weaker than the Nesterov's rule. 
     The R-WAPG provides a unified framework for several notable Euclidean variants of FISTA and verify their convergence. 
-    In addition, we also study the convergence rate of strongly convex objective with a constant momentum term. 
-    We reformulate R-WAPG so that it doesn't require any parameter without using the idea of restarting which we call ``Free R-WAPG". 
+    In addition, we also provide the convergence rate of strongly convex objective with a constant momentum term. 
+    We reformulate R-WAPG so that it doesn't require any parameter, without using the idea of restarting, which we call ``Free R-WAPG". 
     Explorative numerical experiments were conducted to show its competitive convergence. 
 \end{abstract}
 
@@ -217,23 +217,23 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
         Then it uses the characterization of strong convexity to simplify it to obtain the desired results. 
         \par
         $\widetilde{\mathcal M}^{L^{-1}}(\cdot; y)$ is $L$ strongly convex by Assumption \ref{ass:smooth-nsmooth-additive} and its definition. 
-        We see that it admits quadratic growth over the minimizer $Ty$, therefore for all $x \in \RR^n$ it follows that: 
+        We see that it admits quadratic growth over the minimizer $\bar y = T(y)$, therefore for all $x \in \RR^n$ it follows that: 
         {\smaller
         \begin{align*}
             0 &\le 
             \widetilde{\mathcal M}^{L^{-1}}(x; y) - 
-            \widetilde{\mathcal M}^{L^{-1}}(Ty; y)
+            \widetilde{\mathcal M}^{L^{-1}}(\bar y; y)
             - 
-            \frac{L}{2}\Vert x - Ty\Vert^2
+            \frac{L}{2}\Vert x - \bar y\Vert^2
             \\
             &=
             \left(
                 \mathcal M^{L^{-1}}(x; y) - D_f(x, y)
             \right) - 
-            \mathcal M^{L^{-1}}(Ty; y) 
+            \mathcal M^{L^{-1}}(\bar y; y) 
             - 
-            \frac{L}{2}\Vert x - Ty\Vert^2
-            + D_f(Ty; y)
+            \frac{L}{2}\Vert x - \bar y\Vert^2
+            + D_f(\bar y; y)
             \quad 
             \text{By Lemma \ref{lemma:pg-envelope}}
             \\
@@ -241,93 +241,93 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             \left(
                 \mathcal M^{L^{-1}}(x; y)
                 - 
-                \mathcal M^{L^{-1}}(Ty; y)
+                \mathcal M^{L^{-1}}(\bar y; y)
             \right)
             - 
             D_f(x, y) 
-            - \frac{L}{2}\Vert x - Ty\Vert^2
-            + D_f(Ty; y)
+            - \frac{L}{2}\Vert x - \bar y\Vert^2
+            + D_f(\bar y; y)
             \\
             &=
             \left(
-                F(x) - F(Ty) 
+                F(x) - F(\bar y) 
                 + 
                 \frac{L}{2}\Vert x - y\Vert^2 - 
-                \frac{L}{2}\Vert Ty - y\Vert^2
+                \frac{L}{2}\Vert \bar y - y\Vert^2
             \right)
             - D_f(x, y) 
-            + D_f(Ty; y)
-            - \frac{L}{2}\Vert x - Ty\Vert^2
+            + D_f(\bar y; y)
+            - \frac{L}{2}\Vert x - \bar y\Vert^2
             \\
             &=  
             \left(
-                F(x) - F(Ty) 
+                F(x) - F(\bar y) 
                 + 
                 \frac{L}{2}
                 \left(
-                    \Vert x - Ty + Ty - y\Vert^2
+                    \Vert x - \bar y + \bar y - y\Vert^2
                     - 
-                    \Vert y - Ty\Vert^2
+                    \Vert y - \bar y\Vert^2
                 \right)
             \right)
             - D_f(x, y) 
-            + D_f(Ty; y)
-            - \frac{L}{2}\Vert x - Ty\Vert^2
+            + D_f(\bar y; y)
+            - \frac{L}{2}\Vert x - \bar y\Vert^2
             \\
             &= 
             \left(
-                F(x) - F(Ty) 
+                F(x) - F(\bar y) 
                 + 
                 \frac{L}{2}
                 \left(
-                    \Vert x - Ty\Vert^2 + 
-                    2\langle x - Ty, Ty - y\rangle
+                    \Vert x - \bar y\Vert^2 + 
+                    2\langle x - \bar y, \bar y - y\rangle
                 \right)
             \right)
             - D_f(x, y) 
-            + D_f(Ty; y)
-            - \frac{L}{2}\Vert x - Ty\Vert^2
+            + D_f(\bar y; y)
+            - \frac{L}{2}\Vert x - \bar y\Vert^2
             \\
             & = 
             \left(
-                F(x) - F(Ty) + \frac{L}{2}\Vert x - Ty\Vert^2 
-                - L\langle  x - Ty, y - Ty\rangle
+                F(x) - F(\bar y) + \frac{L}{2}\Vert x - \bar y\Vert^2 
+                - L\langle  x - \bar y, y - \bar y\rangle
             \right)
             - D_f(x, y) 
-            + D_f(Ty; y)
-            - \frac{L}{2}\Vert x - Ty\Vert^2
+            + D_f(\bar y; y)
+            - \frac{L}{2}\Vert x - \bar y\Vert^2
             \\
             &=
-            F(x) - F(Ty)
-            - \langle L(y - Ty), x - Ty\rangle
+            F(x) - F(\bar y)
+            - \langle L(y - \bar y), x - \bar y\rangle
             - D_f(x, y) 
-            + D_f(Ty, y).
+            + D_f(\bar y, y).
         \end{align*}
         }
         From $\mu \ge 0$ strong convexity of $f$, it has $D_f(x, y) \ge \mu/2\Vert x - y\Vert^2$ which is true for all $x, y \in \RR^n$. 
         Consequently, it has for all $x \in \RR^n, y \in \RR^n$: 
         \begin{align*}
             0 &\le 
-            F(x) - F(Ty)
-            - \langle L(y - Ty), x - Ty\rangle
+            F(x) - F(\bar y)
+            - \langle L(y - \bar y), x - \bar y\rangle
             - D_f(x, y) 
-            + D_f(Ty, y)
+            + D_f(\bar y, y)
             \\
             &\le 
-            F(x) - F(Ty)
-            - \langle L(y - Ty), x - Ty\rangle
+            F(x) - F(\bar y)
+            - \langle L(y - \bar y), x - \bar y\rangle
             - \frac{\mu}{2}\Vert x - y\Vert^2
-            + \frac{L}{2}\Vert y - Ty\Vert^2
+            + \frac{L}{2}\Vert y - \bar y\Vert^2
             \\
             &=
-            F(x) - F(Ty)
-            - \langle L(y - Ty), x - y  + y - Ty\rangle
+            F(x) - F(\bar y)
+            - \langle L(y - \bar y), x - y  + y - \bar y\rangle
             - \frac{\mu}{2}\Vert x - y\Vert^2
-            + \frac{L}{2}\Vert y - Ty\Vert^2
+            + \frac{L}{2}\Vert y - \bar y\Vert^2
             \\
             &=
-            F(x) - F(Ty) - \langle L(y - Ty), x - y\rangle - \frac{\mu}{2}\Vert x - y \Vert^2
-            - \frac{L}{2}\Vert y - Ty\Vert^2. 
+            F(x) - F(\bar y) - \langle L(y - \bar y), x - y\rangle - \frac{\mu}{2}\Vert x - y \Vert^2
+            - \frac{L}{2}\Vert y - \bar y\Vert^2. 
         \end{align*}
         The proof is done. 
     \end{proof}
@@ -344,7 +344,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
     Proposition \ref{prop:stepwise-lyapunov} states the inequality \eqref{ineq:stepwise-lya-2}  of a decreasing quantity involving $F(x_k), F(x_{k + 1})$ at each iteration.
     \par
     The assumption below is crucial to describing the convergence rate of the R-WAPG and it requires the convexity assumption on $F$. 
-    \begin{assumption}
+    \begin{assumption}\label{ass:regret-gap}
         Given $x_k, y_k, v_k$ where $k \in \mathbb Z_+$, we define the following quantities
         \begin{align}
             g_k &\defeq L(y_k - T_L(y_k)), 
@@ -382,12 +382,12 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             y_k &= 
             (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k), \label{eqn:stepwise-wapg-eqn2}
             \\
-            g_k &= \mathcal G_L y_k, \label{eqn:stepwise-wapg-eqn3}
+            g_k &= \mathcal G_L (y_k), \label{eqn:stepwise-wapg-eqn3}
             \\
             v_{k + 1} &= \hat\gamma^{-1}_{k + 1}
             (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), \label{eqn:stepwise-wapg-eqn4}
             \\
-            x_{k + 1} &= T_L y_k. \label{eqn:stepwise-wapg-eqn5}
+            x_{k + 1} &= T_L(y_k). \label{eqn:stepwise-wapg-eqn5}
         \end{align}
     \end{definition}
     The following lemma will simplify the discussion later. 
@@ -500,7 +500,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
     \begin{proposition}[Stepwise Lyapunov]\label{prop:stepwise-lyapunov}\;\\
         Let $k \in \mathbb Z_+$, $R_k \in \RR$. 
         Given any $v_k, x_k$ and $\gamma_k > 0$ and $v_{k + 1}, x_{k + 1}, y_k, \hat \gamma_{k + 1}, \alpha_k$ that satisfy Definition \ref{def:stepwise-wapg}. 
-        With $\epsilon_k$ given by \eqref{eqn:regret}, define: 
+        With $\epsilon_k, y_k$ given by Assumption \ref{ass:regret-gap}, define: 
         \begin{align}\label{eqn:stepwise-lya-1}
             R_{k + 1}
             \defeq
@@ -1089,7 +1089,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
     \begin{proposition}[R-WAPG convergence claim]\label{prop:wapg-convergence}\; \\
         Fix any arbitrary $x^* \in \RR^n, N \in \mathbb N$. 
         Let vector sequence $(y_k, v_{k}, x_{k})_{k \ge 1}$ and R-WAPG sequences $\alpha_k, \rho_k$ be given by Definition \ref{def:wapg}. 
-        Let $\epsilon_k$ be given by \eqref{eqn:regret}. 
+        Let $\epsilon_k, y_k$ be given by Assumption \ref{ass:regret-gap}. 
         Define $R_1 = 0$ and suppose that for $k = 1, 2, \ldots, N$, we have $R_k$ recursively given by: 
         \begin{align*}
             R_{k + 1}
@@ -1388,7 +1388,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                     \right), 
                     \\
                     & x_{k + 1} \defeq 
-                    y_k - L^{-1} \mathcal G_L y_k, 
+                    y_k - L^{-1} \mathcal G_L (y_k), 
                     \\
                     & v_{k + 1} \defeq 
                     \left(
@@ -1397,7 +1397,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                     \left(
                         v_k + 
                         \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
-                    \right) - \frac{1}{L\alpha_{k}}\mathcal G_L y_k. 
+                    \right) - \frac{1}{L\alpha_{k}}\mathcal G_L (y_k). 
                 \end{align*}
             \end{tcolorbox}
         \end{definition}
@@ -1425,7 +1425,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                     \right), 
                     \\
                     & x_{k + 1} \defeq 
-                    y_k - L^{-1} \mathcal G_L y_k, 
+                    y_k - L^{-1} \mathcal G_L (y_k), 
                     \\
                     & v_{k + 1} \defeq 
                     x_{k + 1} + (\alpha_k^{-1} -1)(x_{k + 1} - x_k). 
@@ -1445,7 +1445,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             \begin{tcolorbox}
                 For $k=1, 2,\ldots $
                 \begin{align*}
-                    & x_{k + 1} \defeq y_k - L^{-1}\mathcal G_Ly_k, 
+                    & x_{k + 1} \defeq y_k - L^{-1}\mathcal G_L (y_k), 
                     \\
                     & 
                     y_{k + 1} \defeq 
@@ -1479,7 +1479,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                 \right), \label{eqn:rwapg-first-equiv-form-eqn-1}
                 \\
                 & x_{k + 1} = 
-                y_k - L^{-1} \mathcal G_L y_k, 
+                y_k - L^{-1} \mathcal G_L (y_k), 
                 \\
                 & v_{k + 1} = 
                 \left(
@@ -1488,7 +1488,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                 \left(
                     v_k + 
                     \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
-                \right) - \frac{1}{L\alpha_{k}}\mathcal G_L y_k. 
+                \right) - \frac{1}{L\alpha_{k}}\mathcal G_L (y_k). 
                 \label{eqn:rwapg-first-equiv-form-eqn-2}
             \end{align}
         \end{proposition}
@@ -1570,14 +1570,14 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                 v_{k + 1} &= 
                 \hat \gamma_{k + 1}^{-1}
                 ((1 - \alpha_k)\gamma_k v_k + \mu\alpha_k y_k)
-                - \alpha_k\hat \gamma_{k + 1}^{-1}\mathcal G_L y_k
+                - \alpha_k\hat \gamma_{k + 1}^{-1}\mathcal G_L (y_k)
                 \\
                 &= 
                 ((1 - \alpha_k)\gamma_k + \alpha_k \mu)^{-1}
                 \left(
                     (1 - \alpha_k)\gamma_k v_k + \mu\alpha_k y_k
                 \right)
-                - \alpha_k\hat \gamma_{k + 1}^{-1}\mathcal G_L y_k
+                - \alpha_k\hat \gamma_{k + 1}^{-1}\mathcal G_L (y_k)
                 \\
                 &= 
                 \left(
@@ -1587,7 +1587,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                     v_k + 
                     \frac{\alpha_k\mu}{(1 - \alpha_k)\gamma_k} y_k
                 \right)
-                - \alpha_k\hat \gamma_{k + 1}^{-1}\mathcal G_L y_k
+                - \alpha_k\hat \gamma_{k + 1}^{-1}\mathcal G_L (y_k)
                 \\
                 &= 
                 \left(
@@ -1597,7 +1597,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                     v_k + 
                     \frac{\alpha_k \mu}{L \alpha_k^2 - \alpha_k \mu} y_k
                 \right)
-                - \frac{1}{L\alpha_{k}}\mathcal G_L y_k. 
+                - \frac{1}{L\alpha_{k}}\mathcal G_L (y_k). 
             \end{align*}
             Going from the left to the right of the second equality, we substitute $\hat \gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \mu\alpha_k$. 
             At the end, recall that for all $k \ge 1$, it has $\hat \gamma_{k + 1} = L \alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu$, so: 
@@ -1628,7 +1628,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                 \label{eqn:rwapg-st-form-eqn-1}
                 \\
                 x_{k + 1} &= 
-                y_k - L^{-1} \mathcal G_L y_k, 
+                y_k - L^{-1} \mathcal G_L (y_k), 
                 \\
                 v_{k + 1} &= x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k). 
                 \label{eqn:rwapg-st-form-eqn-3}
@@ -1710,7 +1710,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             \begin{enumerate}
                 \item For all $k \ge 1$, the iterates $x_{k + 1}, y_{k + 1}$ satisfy:
                 \begin{align*}
-                    x_{k + 1} &= y_k - L^{-1}\mathcal G_Ly_k, 
+                    x_{k + 1} &= y_k - L^{-1}\mathcal G_L (y_k), 
                     \\
                     y_{k + 1} &= 
                     x_{k + 1} + 
@@ -2233,7 +2233,8 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             \\
             Initialize $y_1 = x_1$; for $k = 1, 2, \ldots, N$, update: 
             \begin{align*}
-                &x_{k + 1} = y_k + L^{-1}\mathcal G_L y_k, 
+                &x_{k + 1} = y_k + L^{-1}\mathcal G_L (y_k)
+                , 
                 \\
                 & y_{k + 1} = x_{k + 1} + \theta(x_{k + 1} - x_k). 
             \end{align*}
@@ -2510,19 +2511,20 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             Make the important observation that $\mu_k$ didn't converge to the true value in this case, however it didn't affect the convergence of $F(x_k) - F^*$. 
 
 \section{Discussions}
-    This paper provides the results of an upper bound on the optimality gap $F(x_k) - F^*$ for smooth plus nonsmooth composite optimization problem with convex objectives where under the much weaker assumption for the momentum parameter specified by Definition \ref{def:rwapg-seq}. 
+    This paper provides the results of an upper bound on the optimality gap $F(x_k) - F^*$ for smooth plus nonsmooth composite optimization problem with convex objectives where under much weaker assumption for the momentum parameter. 
     The proposed R-WAPG unifies the convergence proof for major Euclidean variants of FISTA with strong convexity parameter $\mu \ge 0$. 
     To the best of our knowledge, there is no framework had been identified yet in the literatures that proves the convergences of several variants (with and without strong convexity parameter) with momentum sequences that doesn't follow the Nesterov's rule. 
     \par
     In addition, we proposed explorative numerical experiments for Free R-WAPG (Algorithm \ref{alg:free-rwapg}) showcasing a parameter free algorithm that doesn't use the idea of restarting to achieve competitive convergence rate. 
     Unfortunately a precise description of the convergence rate of Free R-WAPG remains a mystery. 
+    It will be interesting to explore this line of research. 
     Our convergence framework gives an upper bound using the sequence $(\alpha_k)_{k \ge 0} \in (\mu/L, 1)$, but it requires knowing what the sequence would be in advanced given the initial conditions and the objective function. 
     \par
-    From a practical perspective, Algorithm \ref{alg:free-rwapg} shows competitive results of convergence of strongly convex function.  
+    From a practical perspective, Algorithm \ref{alg:free-rwapg} shows competitive results of convergence for strongly convex function.  
     The algorithm behaves in way having characteristics of both V-FISTA and M-FISTA which is fascinating. 
     In addition, of being parameter free, the algorithm works well with auto-differentiation framework because it requires the function value at the same point where the gradient is evaluated at $y_k$. 
     We do note that in the case when function is not strongly convex, the function value converges without $\Vert \mathcal G_L(y_k)\Vert$ converging. 
-
+    This will be explored more in future work. 
 
 
 

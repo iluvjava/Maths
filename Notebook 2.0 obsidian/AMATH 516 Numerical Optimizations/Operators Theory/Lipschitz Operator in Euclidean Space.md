@@ -118,7 +118,7 @@ Slight modifications of a non-expansive operator makes it into a maximally monot
 > Let $N: D \mapsto D$ be a nonexpansive operator. 
 > The following scenarios are true. 
 > 1. Then $I - N$ is a monotone operator, 
-> 2. if in addition $D = X$ and $N$ is maximally monotone, then $I - N$ is a maximally monotone operator if and only if $N$ is a nonexpansive operator.
+<!-- > 2. if in addition $D = X$ and $N$ is maximally monotone, then $I - N$ is a maximally monotone operator if and only if $N$ is a nonexpansive operator. -->
 
 **Proof**
 

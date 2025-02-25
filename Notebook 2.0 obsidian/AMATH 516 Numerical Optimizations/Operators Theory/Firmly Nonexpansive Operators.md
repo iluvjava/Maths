@@ -59,55 +59,50 @@ The following reveals that there are some tight links between firmly nonexpansiv
 **Observations**:
 
 $(1) \iff (2)$ because the definition of firmly nonexpansive operators is the same for $I - T$, $T$. 
-Before the proof we abbreviate things using $a: x-y, b = Tx - Ty$. 
+Before the proof we abbreviate things using $z: x - y, z' = Tx - Ty$. 
 (3) is a slightly stronger type of Monotonicity of Nonexpansive operators.
 
 **Proof: $(1)\iff (3)$** 
 
-Starting with an identity for 2 norm, we have: 
+Starting with an identity for 2-norm, we have: 
 
-$$
+<!-- $$
 \begin{aligned}
     \Vert a\Vert^2 - (\Vert b\Vert^2 + \Vert a - b\Vert^2) = 2(\langle a, b\rangle - \Vert b\Vert^2), 
 \end{aligned}
-$$
+$$ -->
 
 using it we have: 
 $$
 \begin{aligned}
-    (1) &\iff 
-    \Vert b\Vert^2 + \Vert a - b\Vert^2 \le \Vert a\Vert^2 
+    \iff 
+    0 &\le \Vert z\Vert^2 - (\Vert z'\Vert^2 + \Vert z - z'\Vert^2)
     \\
-    &\;
-    \begin{aligned}
-        \iff 
-        0 &\le \Vert a\Vert^2 - (\Vert b\Vert^2 + \Vert a - b\Vert^2)
-        \\
-        & = 2(\langle a, b\rangle - \Vert b\Vert^2)    
-    \end{aligned}
+    &= \Vert z\Vert^2 - (2\Vert z'\Vert^2 + \Vert z\Vert^2 - 2\langle z, z'\rangle)
     \\
-    & \iff 
-    \Vert b\Vert^2 \le \langle a, b\rangle \iff (3). 
+    & = 2\langle z, z'\rangle - 2\Vert z'\Vert^2
+    \iff (3). 
 \end{aligned}
 $$
 
 **Proof $(3)\iff (4)$**
 
-We directly make use of the identity that: 
+It has: 
 
 $$
 \begin{aligned}
-    \Vert a\Vert^2 - \Vert 2b - a\Vert^2 &= 4(\langle a, b\rangle - \Vert b\Vert^2) \ge 0,
+    (3)\iff 
+    0 &\le 4(\langle z, z'\rangle - \Vert z'\Vert^2)
+    \\
+    &= 2\langle z, 2z'\rangle - \Vert 2z'\Vert^2
+    \\
+    &= 2\langle z, 2z'\rangle - \Vert 2z'\Vert^2 - \Vert z\Vert^2 + \Vert z\Vert^2
+    \\
+    &= - \Vert 2z' - z\Vert^2 + \Vert z\Vert^2 
+    \iff (4). 
 \end{aligned}
 $$
 
-from the definition of nonexpansiveness, we have $\Vert 2b - a\Vert \le \Vert a\Vert$, iff $0 \le \Vert a\Vert^2 - \Vert 2b - a\Vert^2$ iff $0 \le 4(\langle a, b\rangle - \Vert b\Vert^2) \iff \Vert b\Vert^2 \le \langle a, b\rangle$, and now the arguments are complete. We have $(3)\iff (4)$. 
-
-**remark**
-
-Condition (4.) is unintuitive to prove. 
-It illustrate that the error between $\Vert Tx - Ty\Vert, \langle x - y, Tx - Ty\rangle$, is exactly the same as $1/4$ of the Lipschitz upper bound error of the reflectant. 
-It is NOT the re-arrangement of the same inequality that is why this is so interesting. 
 
 
 **References**: 
@@ -119,66 +114,76 @@ Theorem 22.3, Professor Heinz's Lecture notes
 
 The convergence of fixed point would require the use of [Fejer's Monotone](Fejer's%20Monotone.md) convergence type and the assumption of finite Euclidean spaces.
 
-#### **Thm | A Fixed Point Iteration on a Firmly Nonexpansive Operator Converges Weakly**
+#### **Thm | A Fixed Point Iteration on a Firmly Nonexpansive Operator converges weakly**
 
-> Let $T: \mathcal H \mapsto \mathcal H$ be a firmly nonexpansive operator, then the fixed point iteration on the operator would converges to a point in the $\text{Fix} T$, a fixed point set of the operator. 
+> Let $T: \mathcal H \mapsto \mathcal H$ be a firmly nonexpansive operator, then the fixed point iteration converges to a point in the $\text{Fix} T$, a fixed point set of the operator. 
 
 **Proof**
 
-Let $y = \bar x \in \text{Fix} T$, and let $x = x^{(k)}$ then the firmly nonexpansive operator definition becomes: 
+The proof consists of the following intermediate steps. 
+Suppose that $\bar x \in \text{Fix}\;T$. 
+
+- **Step I**: The sequence $x_k$ has a subsequential limit $x^+$, and $\Vert x_k - \bar x\Vert \rightarrow L \le \Vert x - x_0\Vert$. 
+- **Step II**: It can also be showed that $\Vert x_{k + 1} - x_k\Vert \rightarrow 0$. Becaus of subsequential convergence $x^+ \in \text{Fix}\; T$ hence $x_k \rightarrow x^+ \in \text{Fix}\; T$. 
+
+**(Step I)**. In the definition of Firmly Nonexpansive operator, set $y = \bar x \in \text{Fix} T$, and let $x = x^{(k)}$: 
 
 $$
 \begin{aligned}
-    \Vert Tx^{(k)} - \bar x\Vert^2 + \Vert x^{(k)} - x^{(k + 1)} - \bar x + \bar x\Vert 
-    & \le \Vert x^{(k)} - \bar x\Vert^2
+    0 &\le 
+    \Vert x_{k} - \bar x\Vert^2 -
+    \Vert Tx_{k} - \bar x\Vert^2 - 
+    \Vert x_{k} - x_{k + 1} - \bar x + \bar x\Vert 
     \\
-    \implies 
-    \Vert x^{(k +1)} - \bar x\Vert^2 + \Vert x^{(k)} - x^{(k + 1)}\Vert^2
-    &\le \Vert x^{(k)} - \bar x\Vert^2 \leftarrow [ (0) ]
+    &= \Vert x_{k} - \bar x\Vert^2 
+    -
+    \Vert x_{k + 1} - \bar x\Vert^2 - \Vert x_{k} - x_{k + 1}\Vert^2
+    \\
+    &\le 
+    \Vert x_{k} - \bar x\Vert^2 
+    -
+    \Vert x_{k + 1} - \bar x\Vert^2. 
 \end{aligned}
 $$
+Therefore, the sequence $\Vert x_k - \bar x\Vert$ is monotone decreasing and bounded above by $\Vert x_0 - \bar x\Vert$ hence $\Vert x_k - \bar x\Vert$ admits a limit $L$ and has a subsequential limit $x^+$. 
 
-As a consequence of \[(0)\], we have the fact that the iteration $x^{(k)}$ is monotonically decreasing wrt to the set $\text{Fix}(T)$ (Fejer Monotonicity), giving us the claim $\Vert x^{(k + 1)} - \bar x\Vert \le \Vert x^{(k)} - \bar x\Vert$, by removing the second term on the LHS of the inequality. 
-By monotonicity and Bozano Weierstrass, we have the limit $\lim_{k\rightarrow \infty} \Vert x^{(\sigma(k))} - \bar x\Vert = L$. 
-Next we show that the limit of the sequence converges to a fixed point set of the operator $T$. 
+**(Step II)**. Performing a telescoping sum it has: 
 
 $$
 \begin{aligned}
-    {[[0]]} \implies 
-    \Vert x^{(k)} - x^{(k + 1)}\Vert^2 &\le 
-    \Vert x^{(k)} - \bar x\Vert^2 - 
-    \Vert x^{(k + 1)} - \bar x\Vert^2
+    0 &\le 
+    \Vert x_{0} - \bar x\Vert^2 - \lim_{k \rightarrow \infty}\Vert x_k - \bar x\Vert^2
+    - \sum_{i = 0}^{\infty}
+    \Vert x_i - x_{i + 1}\Vert^2 
     \\
-    \implies 
-    \sum_{i = 0}^{\infty}
-    \Vert x^{(i)} - x^{(i + 1)}\Vert^2 &\le 
-    \Vert x^{(0)} - \bar x\Vert^2 - \underbrace{\lim_{k \rightarrow \infty}\Vert x^{(k)} - \bar x\Vert^2}_{ < \Vert x^{(0)} - \bar x\Vert}
-    \\
-    \implies \sum_{i = 0}^{\infty}
-    \Vert x^{(i)} - x^{(i + 1)}\Vert^2 & \text{ has a limit}
-    \\
-    \implies \lim_{k\rightarrow \infty} \Vert x^{(i)} - x^{(i + 1)}\Vert^2 &= 0, 
+    &=
+    \Vert x_{0} - \bar x\Vert^2 - L
+    - \sum_{i = 0}^{\infty}
+    \Vert x_i - x_{i + 1}\Vert^2. 
 \end{aligned}
 $$
 
-Such a limit would imply the strong convergence of the sequence $x^{(i)} - x^{(i + 1)}$, or $x^{(i)} - Tx^{(i)}$. Therefore we have 
+The above implies bounded squared sum, hence $\Vert x_{k + 1} - x_k\Vert \rightarrow 0$. 
+It means the strong convergence of the sequence $Tx_{i + 1} - x_i \rightarrow \mathbf 0$ . 
 
 $$
 \begin{aligned}
     \lim_{i\rightarrow \infty} x^{(i)} - Tx^{(i)} &= \mathbf 0
     \\
-    \implies 
+    \iff
     \lim_{i\rightarrow \infty} x^{(i)} &= 
     \lim_{i\rightarrow \infty} Tx^{(i)}
     \\
-    T\text{ is continuous}\implies 
+    \implies 
     \lim_{i\rightarrow \infty} x^{(i)} &= 
-    T\left (\lim_{i\rightarrow \infty} x^{(i)}\right), 
+    T\left (\lim_{i\rightarrow \infty} x^{(i)}\right). & T\text{ is continuous}
 \end{aligned}
 $$
 
-Next, from the subsequential convergence of $x^{(\sigma(i))}$, there exists a cluster point $x^+$ for the sequence, and by Fejer Monotonicity, the subsequential limit equals to the limit above and therefore $\lim_{i\rightarrow\infty} x^{(\sigma(i))} = x^+ =Tx^+$. 
-Therefore, $x^+$ is also a fixed point for the operator $T$. 
+Therefore, the subsequential limit $x^+$ exists and it's in $\text{Fix}\; T$. 
+By property of Fejer Monotone convergence, the limit is the subsequential limit $x^+$ and it's a fixed point of $T$. 
+
+
 
 
 **Remarks**
@@ -194,81 +199,77 @@ It hinges on the fact that a closed and bounded sets in Hilbert space is sequent
 
 Some properties of these operators are stated. 
 
-#### **Thm | Composition of Firmly Nonexpansive Operators**
-> Let $T_1, T_2$ be firmly nonexpansive operator, then $T_2\circ T_1$, denoted as $T_2T_1$, then $T_2T_1$ is nonexpansive, and we have 
+#### **Thm | Composition of Firmly Nonexpansive Operators is 2/3 averaged**
+> Let $T_1, T_2$ be firmly nonexpansive operator, then $T_2\circ T_1$, denoted as $T_2T_1$, then $T_2T_1$ has for all $x, y \in \mathcal H$: 
 > $$
 > \begin{aligned}
->     \frac{1}{2}\Vert (I - T_2T_1)x - (I - T_2T_1y)\Vert^2 
->     &\le 
->     \Vert x - y\Vert^2 - \Vert T_2T_1x - T_2T_1y\Vert^2, 
+>     0 &\le 
+>     \Vert x - y\Vert^2 - \Vert T_2T_1x - T_2T_1y\Vert^2 - \frac{1}{2}\Vert (I - T_2T_1)x - (I - T_2T_1y)\Vert^2.
 > \end{aligned}
 > $$
 
 **Proof**
 
-With this we make $a = x -y, b = T_1x - T_1y$, and $c = T_2T_1x - T_2T_1y$. 
-$T_1$ is firmly nonexpansive therefore 
-
+Let $(x, x') \in \text{gph}\; T_1, (y, y') \in \text{gph}\; T_1$. 
+Then there exists $x'', y''$ such that $(x', x'') \in \text{gph}(T_2T_2)$ and $(y', y'')\in \text{gph}\; (T_2T_1)$. 
+For cleaner proof, define: 
 $$
 \begin{aligned}
-    \Vert T_1x - T_1 y\Vert^2 + 
-    \Vert (I - T_1)x + (I - T_1)y\Vert^2 
-    &\le 
-    \Vert x - y\Vert^2, 
+    z = x - y, z' = x' - y', z'' - x'' - y''. 
 \end{aligned}
 $$
 
-$T_2$ is firmly nonexpansive, let the firmly nonexpansive definition be defined on $T_2x, T_2y$ then it yields: 
+Because $T_1$ is firmly non expansive, it has from the definition: 
 
 $$
 \begin{aligned}
-    \Vert T_2T_1x - T_2 T_1y\Vert^2 
-    &\le 
-    \Vert T_1x - T_1y\Vert^2 -
-    \Vert (I - T_2)T_1x + (I - T_2)T_1y\Vert^2 
+    0 &\le \Vert x - y\Vert^2 - \Vert T_1x - T_1 y\Vert^2 - \Vert x - T_1x - (y - T_1y)\Vert^2
     \\
-    &\le 
-    \Vert x - y\Vert^2 - 
-    \Vert (I - T_1)x + (I - T_2)y\Vert^2 
-    - 
-    \Vert (I - T_2)T_1x + (I - T_2)T_1x\Vert^2, 
+    &= \Vert x - y\Vert^2 - \Vert x' - y'\Vert^2 - \Vert x - y - (x' - y')\Vert^2
+    \\
+    &= \Vert z\Vert^2 - \Vert z'\Vert^2 - \Vert z - z'\Vert^2. 
 \end{aligned}
 $$
 
-which we just replaced the term $\Vert T_1x - T_1 y\Vert$ from the part before the above. 
-Then the above can be summarized in form 
+From the definition that $T_2$ is a firmly nonexpansive operator it has 
+
 
 $$
 \begin{aligned}
-    \Vert c\Vert^2 &\le \Vert a\Vert^2 - \Vert a - b\Vert^2 - \Vert b - c\Vert^2
+    0 &\le 
+    \Vert x' - y'\Vert^2 
+    - \Vert T_2x' - T_2 y'\Vert^2
+    - \Vert x' - T_2x' - (y' - T_2y')\Vert^2
     \\
-    \Vert a - b\Vert^2 + \Vert b - c\Vert^2 & < \Vert a\Vert^2 - \Vert c\Vert^2, 
+    &= \Vert x' - y'\Vert^2 
+    - \Vert x'' - y''\Vert^2
+    - \Vert x' - y' - (x'' - y'')\Vert^2
+    \\
+    &= (\Vert z'\Vert^2) - \Vert z''\Vert^2 - \Vert z' - z''\Vert^2
+    \\
+    &\le (\Vert z\Vert^2 - \Vert z - z'\Vert^2) - \Vert z''\Vert^2 - \Vert z' - z''\Vert^2 
+    \quad T_1 \text{ Firmly Nonexpansive}
+    \\
+    &= \Vert z\Vert^2 - (\Vert z - z'\Vert^2 + \Vert z' - z''\Vert^2) -\Vert z''\Vert^2
+    \\
+    &= \Vert z\Vert^2 - (1/2)(\Vert z -z' - z' + z''\Vert^2 + \Vert z -z' + z' - z''\Vert^2) 
+    - \Vert z''\Vert^2
+    \\
+    &= \Vert z\Vert^2 - (1/2)(\Vert z - 2z' + z''\Vert^2 + \Vert z - z''\Vert^2) 
+    - \Vert z''\Vert^2
+    \\
+    &\le \Vert z\Vert^2 - \Vert z''\Vert^2 - (1/2)\Vert z - z''\Vert^2. 
 \end{aligned}
 $$
 
-Now recalled the parallelogram rule, we can use it on the above and get 
+$\blacksquare$
 
-$$
-\begin{aligned}
-    2 \Vert a - b\Vert^2 + 2 \Vert b - c\Vert^2 &= 
-    \Vert a - b + b - c\Vert^2 + \Vert a - b - b + c\Vert^2
-    \\
-    &= \Vert a - c\Vert^2 + \Vert a + c - 2b\Vert^2
-    \\
-    &\ge \Vert a - c\Vert^2, 
-    \\
-    \implies 
-    (1/2)\Vert a - c\Vert^2 &\le \Vert a\Vert^2 - \Vert c\Vert^2, 
-\end{aligned}
-$$
-
-and therefore the composition $T_2T_1$ is a nonexpansive operator. 
 
 **References**: Heinz's class, proposition 22.8. 
 
 **Remarks**
 
-See [Hilbert Space Introduction](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Hilbert%20Space%20Introduction.md) for more information about the parallelogram law. 
+See [Averaged Mapping](Averaged%20Mapping.md) for more about the class of averaged operators. 
 
 ---
 ### **Examples**
@@ -296,7 +297,7 @@ The matrix is definitely already symmetric, therefore, if all of its eigenvalues
 
 #### **Example | Firmly Nonexpansive Matrices**
 
-Starting directly from the nonexpansiveness of the matrix, we let $x - y = v$ for simplicity then:
+Let $x - y = v$ then the definition of firmly nonexpansive operator has:
 
 $$
 \begin{aligned}
@@ -314,7 +315,10 @@ $$
 \end{aligned}
 $$
 
-This completes the proof, and we showed that the matrix $A + A^T - 2A^TA$ is positive definite if and only if the matrix $A$ is firmly nonexpansive. Take note that a Skew Hermitian matrix satisfy the above condition. 
+This completes the proof, and we showed that the matrix $A + A^T - 2A^TA$ is positive definite if and only if the matrix $A$ is firmly nonexpansive. 
+Take note that these classes of matrices satisfy the conditions:
+1. Skew Hermitian matrix. 
+2. Symmetric matrix. 
 
 **Remarks**
 
@@ -322,41 +326,52 @@ Results can be strengthen a bit when $A$ is a symmetric matrix, and for applicat
 
 #### **Example | Projection Operator is Firmly Nonexpansive**: 
 
-The projection operator for a convex set is a firmly nonexpansive operator. 
-We denote $P$ to be the projection onto some convex set, $C$, recall [Convex Sets Projection Obtuse Angle Theorem](../CVX%20Geometry/Convex%20Sets%20Projection%20Obtuse%20Angle%20Theorem.md), the projection point can be characterized as: 
+> The projection operator for a convex set $C$ is a firmly nonexpansive operator. 
+
+**Proof**
+
+We denote $P$ to be the projection onto some convex set $C$. 
+Consider projection of $x, y \in \R^n$, denoted as $x' = Px, y' = Py$. 
+Recall [Convex Sets Projection Obtuse Angle Theorem](../CVX%20Geometry/Convex%20Sets%20Projection%20Obtuse%20Angle%20Theorem.md) the Abtuse angle characterization gives: 
 
 $$
 \begin{aligned}
-    & \forall x \in X, z\in C: 
-    \langle z - Px, x - Px\rangle \le 0
+    & 
+    \left[ (\forall z_1 \in C):
+        \langle z_1 - x', x - x'\rangle \le 0
+    \right]
+    \wedge
+    \left[(\forall z_2 \in C):
+        \langle z_2 - y', y - y'\rangle \le 0
+    \right]
     \\
-    & \forall x, y\in X: Px \in C \wedge Py \in C
-    \\
-    \implies & \forall x, y \in X: 
-    \begin{cases}
-        \langle Py - Px, x - Px\rangle \le 0
-        \\
-        \langle Px - Py, y - Py\rangle \le 0
-    \end{cases}
-    \\
-    \implies &
-    \forall x, y \in X:  \langle Py - Px, x - Px -(y - Py)\rangle\le 0
-    \\
-    \iff&
-    \forall x,y\in X: 
-    \langle Py - Px, Py - Px + x - y\rangle \le 0
-    \\
-    \iff & 
-    \forall x,y\in X: 
-    \langle Py - Px, x - y\rangle + \Vert Py - Px\Vert^2 \le 0
-    \\
-    \iff & 
-    \forall x, y\in X: 
-    \langle Py - Px, y - x\rangle \ge \Vert Py - Px\Vert^2, 
+    & \implies 
+    (\forall z_1 \in C, z_2 \in C): 
+    \langle z_1 - x', x - x'\rangle + 
+    \langle z_2 - y', y - y'\rangle 
+    \le 0
 \end{aligned}
 $$
 
-which is the third equivalence characterizations of a firmly nonexpansive operator. Therefore, a convex projection operator is a firmly nonexpansive operator. 
+Set $z_1 = y', z_2 = x'$, then:
+
+$$
+\begin{aligned}
+    0 &\ge \langle y' - x', x - x'\rangle + \langle x' - y', y - y'\rangle 
+    \\
+    &= \langle y' - x', x - x'\rangle - \langle y' - x', y - y'\rangle 
+    \\
+    &= \langle y' - x', x - x' -(y - y')\rangle
+    \\
+    &= \langle y' - x', x - y - (x' - y')\rangle
+    \\
+    &=  \Vert x' - y'\Vert^2 - \langle x ' - y', x - y\rangle. 
+\end{aligned}
+$$
+
+The above is equivalent to the definition of $P$ being a firmly nonexpansive operator by the fact that $x, y$ are arbitrarily chosen. 
+
+$\blacksquare$
 
 **Remark**: 
 
@@ -396,7 +411,9 @@ which is the definition for firmly nonexpansive operators.
 This is strictly better that just a Lipschitz-1 operator. 
 
 
-#### **Example | Convex Lipschitz Gradient**
+#### **Example | Convex functions with Lipschitz gradient**
 
-The convex function having a global Lipschitz gradient has its gradient operator as a firmly-non-expansive operator. 
+> Let $f: \R^n \rightarrow \R$ be a function with $L$ Lipschitz gradient. 
+> Then $L^{-1}\nabla f$ is a Firmly nonexpansive operator. 
+
 See [L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity](../Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) for more information, a lot of things a involved for this particular type of characterizations. 

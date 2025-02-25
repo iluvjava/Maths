@@ -95,7 +95,7 @@ The cute formula refers to [Equalities, Inequalities of Euclidean Space](AMATH%2
 Heinz's course notes, theorem 22.11. 
 
 
-#### **Corrollary | Averaged operator is Strictly Quasi Nonexpansive**
+#### **Corollary | Averaged operator is Strictly Quasi Nonexpansive**
 
 > Let $x \in X \setminus \text{fix}T$, $y \in \text{fix}(T)$ with $T$ being an $\alpha$-averaged operator, then it's strictly quansi-nonexpansive, $\Vert Tx - y\Vert^2 \le \Vert x - y\Vert^2$. 
 
@@ -113,7 +113,7 @@ $$
 \end{aligned}
 $$
 
-and this completes the proof. 
+This completes the proof. 
 This property is useful for algorithms. 
 
 
@@ -164,8 +164,9 @@ $$
 \end{aligned}
 $$
 
-at `[1](1)`, $\bar x$ is a fixed point of $F$, hence also a fixed point of $G$. immediately observe that it's decreasing monotonically wrt to the set of fixed points. 
-([Fejer's Monotone](Fejer's%20Monotone.md)), and that gives an recursion to work with, unrolling the recursion, we have: 
+at `[1](1)`, $\bar x$ is a fixed point of $F$, hence also a fixed point of $G$. 
+Immediately observe that it's decreasing monotonically WRT to the set of fixed points. 
+([Fejer's Monotone](Fejer's%20Monotone.md)), and that gives a recursion to work with, unrolling the recursion, we have: 
 
 $$
 \begin{aligned}
@@ -181,7 +182,7 @@ $$
 $$
 
 the series converges by the fact that it's positive and bounded above, therefore the limit of $Gx^{(j)} - x^{(j)}$ equals to the zero vector. 
-Therefore it converges to some point $\bar x$ satisfying $G\bar x = \bar x$. 
+Therefore, it converges to some point $\bar x$ satisfying $G\bar x = \bar x$. 
 Additionally, the rate of the convergence can be derived using the monotone convergence property of the series: 
 $$
 \begin{aligned}
@@ -258,7 +259,7 @@ By continuity of non-expansive operators, we have $G x^+ = Gx^+$, hence, a clust
 **Remarks**
 
 The assumption of the existence of a fixed point set is quite usual. 
-However this proofs hinges on the fact that we are in finite dimensions. 
+However, this proofs hinges on the fact that we are in finite dimensions. 
 In the case where the averaged operator is the gradient descent operator, a function such as $\exp(x)$ will have a gradient operator: $x - \exp(x)$ that never has a fixed point to it. 
 That is the case when things doesn't converge. 
 
@@ -272,7 +273,7 @@ This fact is useful in the analysis of optimization algorithms.
 
 #### **Thm | Composition of two Averaged Mapping**
 > Let $T_i \in \{\alpha_i-\text{Avg}\}$, for $i \in \{1, 2\}$ then the composition $T_2\circ T_1$ is $\alpha$-averaged with $\alpha = \frac{\alpha_1 + \alpha_2 - 2\alpha_1 \alpha_2}{1 - \alpha_1 \alpha_2}$. 
-> However, when $\alpha_1 = \alpha_2 = 1$, that becomes invalid and we set $\alpha = 1$. 
+> However, when $\alpha_1 = \alpha_2 = 1$, that becomes invalid, and we set $\alpha = 1$. 
 
 **Observations**
 
@@ -292,20 +293,17 @@ $$
 \end{aligned}
 $$
 
-therefore the composited ratio is still valid for an averaged operator. 
+therefore, the composited ratio is still valid for an averaged operator. 
 
 **Proof**
 
 
-#### **Thm | Composition of many Averaged Mapping**
+#### **Theorem | Composition of many Averaged Mapping**
 > Let $T_i \in \{\alpha_i-\text{Avg}\}$ , for $i \in \{1, \cdots, n\}$. 
 > Each $\alpha_i \in (0, 1)$. 
 > Then the composition $T_1\circ T_2\circ \cdots \circ T_n$ is an averaged mapping with constant $\alpha = \kappa/ (1 + \kappa)$, and $\kappa = \sum_{i = 1}^{n}\frac{\alpha_i}{1 - \alpha_i}$. 
 
 **Proof**
-
-
-
 
 
 
@@ -355,7 +353,7 @@ $$
 \end{aligned}
 $$
 
-and hence, the term is non-expansive, for all values of $\eta \in (0, 2/L)$, it maybe a contraction but it would really depends on how $\nabla f(x) - \nabla f(y)$ behaves wrt to $x - y$. 
+and hence, the term is non-expansive, for all values of $\eta \in (0, 2/L)$, it maybe a contraction, but it would depend on how $\nabla f(x) - \nabla f(y)$ behaves wrt to $x - y$. 
 At `[1](1)` we used some info from [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md), and especially the Co-coersive property. Next we show that the gradient operator is an averaged operator. 
 To do that we simply fit the form 
 
@@ -376,6 +374,6 @@ with that we have $\eta = 2\theta /L$, whenever $\eta \in (0, L/2)$, with that w
 
 A question for the reader, can $I - \eta \nabla f$ be firmly non-expansive? 
 A question for the reader, what is the sufficient conditions to assert the convergence of the gradient descent algorithm? 
-There might be other operators that are averaged and doesn't have to be a gradiet operator. 
+There might be other operators that are averaged and doesn't have to be a gradient operator. 
 Where are those operators? 
 
