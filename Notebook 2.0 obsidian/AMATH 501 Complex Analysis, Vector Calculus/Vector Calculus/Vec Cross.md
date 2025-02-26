@@ -3,13 +3,13 @@ Cross product of vectors are special to 2d vector, and it's widely used in scien
 ---
 ## Basics
 * **How to compute**
-$$a\times b = |a||b|sin(\theta)\hat{n}$$
+$$a\times b = |a||b|\sin(\theta)\hat{n}$$
 where $\theta$ is the smallest angle between 2 vectors and $\hat{n}$ is the unit vector that is perpendicular to both $a,b$ (**Right Hand Rule**), the vector can also be computed by: 
 $$det
 \begin{bmatrix}
-i & j & k\\
-a_1& a_2& a_3\\
-b_1& b_2& b_3
+	i & j & k\\
+	a_1& a_2& a_3\\
+	b_1& b_2& b_3
 \end{bmatrix}$$
 By abusing the notation, we can have the det of the matrix to be a vector in Treeman's notation, and that vector is $\perp$ to $a, b$. The matrix det abuse comes from the rules on the basis vector
 $i\times i = 0$, $j \times j =0$, $k\times k = 0$

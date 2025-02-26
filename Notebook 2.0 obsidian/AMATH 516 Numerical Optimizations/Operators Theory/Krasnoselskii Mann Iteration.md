@@ -19,14 +19,13 @@ This is a fixed point iterations that aims to find the fixed point of a non-expa
 
 **Observations**
 
-The iterations chains up a series of averaged operators,  by taking the convex combinations between $I$  the identity and the non-expansive operator $T$. 
-The fixed point set is assumed to exist. 
-Recall that if we have the condition that $D$ is a bounded set, then we can remove the existence assumption of the fixed point set. (By a theorem in [Nonexpansive Operator in Hilbert Space](Lipschitz%20Operator%20in%20Hilbert%20Space.md)). 
+When $D$ is a bounded set, theorem holds after if the existence assumption of the fixed point set is removed because fixed point set of non-expansive operator is convex (By a theorem in [Nonexpansive Operator in Hilbert Space](Lipschitz%20Operator%20in%20Hilbert%20Space.md)). 
 
 
 **Proof**
 
-To prove (1), take $y \in \text{Fix} T$ by the assumption that the fixed point set is non-empty, the consider the distance to the fixed point 
+To prove (1), take $y \in \text{Fix}\;T$ by non-empty assumption.
+Consider
 
 $$
 \begin{aligned}
@@ -35,51 +34,50 @@ $$
     \right\Vert^2
     &=  \Vert (1 - \lambda_n) x_n + \lambda_n Tx_n - y\Vert^2
     \\
-    &= \Vert (1 - \lambda_n)(x_n - y) + \lambda_n (Tx_n - y)\Vert^2 , \quad \text{ by } -1 = \lambda_n - 1 - \lambda_n
-    \\
-    \text{Use cute formula: }& 
+    &= \Vert (1 - \lambda_n)(x_n - y) + \lambda_n (Tx_n - y)\Vert^2 , \quad \text{ by } -1 = \lambda_n - 1 - \lambda_n 
     \\
     &= 
     (1 - \lambda_n)\Vert x_n - y\Vert^2 + \lambda_n\Vert Tx_n - y\Vert^2
-    - \lambda_n(1 - \lambda_n) \Vert x_n - Tx_n\Vert^2 
+    - \lambda_n(1 - \lambda_n) \Vert x_n - Tx_n\Vert^2  
+    \quad 
+    \text{Cute formula}
     \\
     &\le 
     (1 - \lambda_n)\Vert x_n - y\Vert^2
     + 
     \lambda_n\Vert x_n - y\Vert^2
     - \lambda_n(1 - \lambda_n) \Vert x_n - Tx_n\Vert^2 
+    \quad \text{Nonexpansive}
     \\
     &= 
     \Vert x_n - y\Vert^2
     - \lambda_n(1 - \lambda_n) \Vert x_n - Tx_n\Vert^2 
-    \\
-    &\le \Vert x_n - y\Vert^2, 
+    \le \Vert x_n - y\Vert^2. 
 \end{aligned}
 $$
 
-here, we used the property that the operator $T$ is non-expansive, and hence it's non-expansive wrt to the fixed point $y \in \text{Fix}(T)$ as well. 
-As a consequence of the above claim, we see that the sequence $x_n$ is F-monotone wrt to the set $\text{Fix } T$. 
-Moreover, we may re-arrange the second last line of the results, which introduce a term that describes exactly how much error we get between the distance of $x_n$ against the fixed point $y$: 
+The above says $x_n$ is F-monotone wrt to the $\text{Fix } T$. 
+Moreover: 
 
 $$
 \begin{aligned}
     \lambda_n(1 - \lambda_n) \Vert x_n - Tx_n\Vert^2 &\le 
     \Vert x_n - y\Vert^2  - \Vert x_{n +1}- y\Vert^2
     \\
-    \text{Telescoping the series: }&
-    \\
     \implies 
     \sum_{ n =0}^{N} \lambda_n(1 - \lambda_n) 
     \Vert x_n - Tx_n\Vert^2
     &\le 
-    \Vert x_0 - y\Vert^2 
-    < \infty .
+    \Vert x_0 - y\Vert^2 - \lim_{n\rightarrow \infty} \Vert x_{n + 1} - y\Vert^2
+    < \infty. 
+    \quad \text{Telescope}
 \end{aligned}
 $$
 
-The squared term summed up with weights $\lambda_n (1 - \lambda_n)$ of all the successive error is finite. 
-Which doesn't mean that the total distance of the trajectory is finite, but this is enough to show condition (2). 
-Consider the successive error between the iterates we have that: 
+Above shows $x_{n + 1} - x_n \rightarrow \mathbf 0$. 
+We had shown condition (2). 
+It remains to show $x_n \rightharpoonup \text{Fix}\; T$. 
+Consider: 
 
 $$
 \begin{aligned}
@@ -110,11 +108,9 @@ $$
     \\
     &= \Vert x_n - Tx_n\Vert. 
 \end{aligned}
-$$
-
-Here, we made use of the non-expansiveness of operator $T$, and we showed that the successive distance between each of the iterats are monotonically decreasing. 
-Since distance non-negative, this monotone decreasing sequence must be bounded below hich means that $\Vert x_n - Tx_n\Vert\searrow 0$ and let $l$ be its limit. 
-We show by contradiction that, it must be the case that $l = 0$, for a proof by contradiction we assume that $l > 0$, with that we consider the summation with $N \in \mathbb N$, we have 
+$$ 
+Therefore $\Vert x_n - Tx_n\Vert \rightarrow l \ge 0$ by monotone convergence. 
+We want to show $l = 0$, for contradicition let $l > 0$ then it has contradiction: 
 
 $$
 \begin{aligned}
@@ -124,23 +120,24 @@ $$
 \end{aligned}
 $$
 
-taking $N \rightarrow \infty$, we arrive at the contradiction. 
-Therefore it must be that $l = 0$.
-Therefore we have $\lim_{n\rightarrow \infty} \Vert Tx_n - x_n\Vert = 0$ and this condition is equivalent to the strong convergence of $Tx_n - x_n \rightarrow \mathbf 0$. 
-
-Since $x_n$ is F-Monotone wrt to the set $\text{Fix }T$, there exists a subsequence $x_{n_k}$ that has weak limit $\bar x$. 
+Therefore $\lim_{n\rightarrow \infty} \Vert Tx_n - x_n\Vert = 0$ and is equivalent to strong convergence: $Tx_n - x_n \rightarrow \mathbf 0$. Since $x_n$ is F-Monotone wrt to the $\text{Fix }T$, there exists a subsequence $x_{n_k}$ with weak limit $\bar x$. 
 This means 
 
 $$
 \begin{aligned}
     & x_{n_k}\rightharpoonup \bar x, 
     \\
-    & Tx_{n_k} - x_{n_k} \rightarrow \mathbf 0, 
+    & Tx_{n_k} - x_{n_k} \rightarrow \mathbf 0.
 \end{aligned}
 $$
 
-using the property of Demi-closure of a non-expansive operator the limit of the subsequence converges to $\bar x \in \text{Fix } T$, by F-Monotone convergence of the sequence, all the clusters point must be also in $\text{Fix }T$. 
+By Demi-closure of a non-expansive operator, $\bar x \in \text{Fix } T$.
+By F-Monotone convergence of the sequence, $x_{n}\rightarrow \bar x$. 
 
+**Remarks**
+
+$(1 - \lambda_n)x_n + \lambda_n Tx_n$ is an averaged mapping. 
+See [Averaged Mapping](Averaged%20Mapping.md) for more. 
 
 ---
 ### **Convergence rate**
@@ -153,8 +150,8 @@ We are interested in the rate of convergence for the fixed point error $Tx_n - x
 
 **Proof**
 
-Recall from monotonicity of the fixed point error, which is $\Vert x_{n + 1} - Tx_{n + 1}\Vert \le \Vert x_n - Tx_n\Vert$. 
-With that, we reconsider the telescoping sum which gives 
+Recall $\Vert x_{n + 1} - Tx_{n + 1}\Vert \le \Vert x_n - Tx_n\Vert$ from the previous proof under which is stated under the same setting. 
+Reconsider the telescoping sum: 
 
 $$
 \begin{aligned}
@@ -166,12 +163,7 @@ $$
         \sum_{n = 0}^{N}\lambda_n(1 - \lambda_n)
     \right)\Vert x_N  - Tx_N\Vert^2
     \\
-    \Vert x_0 - y\Vert^2
-    &\ge 
-    \left(
-        \sum_{n = 0}^{N}\lambda_n(1 - \lambda_n)
-    \right)\Vert x_N  - Tx_N\Vert^2
-    \\
+    \implies
     \frac{\Vert x_0 - y\Vert}{\left(
         \sum_{n = 0}^{N} \lambda_n(1 - \lambda_n)
     \right)^{1/2}} &\ge 
@@ -181,9 +173,7 @@ $$
 
 **Remarks**
 
-The convergence rate is very slow and it's always sublinear. 
-This theorem doesn't have enough descriptive power for algorithms such as the proximal point method with varying stepsizes, or gradient descent with Lipschitz smoothness and strong convexity. 
-To realize faster convergence rate, such as the case when $T$ is a contraction, it will heavily depend on the context. 
+This theorem doesn't describe the proximal point method with varying stepsizes, or gradient descent with Lipschitz smoothness and strong convexity. 
 
 
 ---

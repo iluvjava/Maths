@@ -44,50 +44,46 @@ So we have $\text{F.Nexp}\subset \text{Avg} \subset \text{Nexp}$.
 **Proof**: 
 
 Let $N$ be a firmly non-expansive operator, by definition the averaged operator $T = (1 - \alpha)I + \alpha N$, so $N = (1 - \alpha^{-1})I + \alpha^{-1}T$. 
-Write $u = x - y$ and $v = Tx - Ty$. If, $N$ is a firmly non-expansive operator, consider the following chain of equivalences
+Write $u = x - y$ and $v = Tx - Ty$. If, $N$ is nonexpansive: 
+
+For any $x, y \in \R^n$, write $x' = Tx, y' = Ty$. 
+Denote $z = x - y, z' - z - y$ for short. 
+By definition $\alpha^{-1}T - \alpha^{-1}(1 - \alpha)I = N$ and by $N$ nonexpansive it has: 
 
 $$
 \begin{aligned}
-    \alpha(\Vert u\Vert^2 - \Vert Nx - Ny\Vert^2) \ge 0 \text{ By } N \text{ non-expansive}
+    0 &\le \Vert x - y\Vert^2 - \Vert Nx - Ny\Vert^2
     \\
-    \alpha(\Vert u\Vert - \Vert 
-        \alpha^{-1}Tx + (1 - \alpha^{-1})x - 
-        \alpha^{-1}Ty - (1 + \alpha^{-1})y
-    \Vert^2)
-    &\ge 0
+    &= \Vert x - y\Vert^2 - 
+    \Vert \alpha^{-1}x' - \alpha^{-1}(1 - \alpha)x - \alpha^{-1}y' + \alpha^{-1}(1 - \alpha)y\Vert^2
     \\
-    \alpha(
-        \Vert u\Vert^2 - \Vert 
-            \alpha^{-1} (Tx - Ty) + (1 - \alpha^{-1})(x - y)
-        \Vert^2
-    )&\ge 0
+    &= \Vert x - y\Vert^2 
+    - 
+    \Vert 
+        \alpha^{-1}(x' - y') - \alpha^{-1}(1 - \alpha)(x - y)
+    \Vert^2
     \\
-    \alpha(
-        \Vert u\Vert^2 - \Vert \alpha^{-1} v + (1 - \alpha^{-1})u\Vert^2
-    ) &\ge 0
+    &= \Vert z\Vert^2 
+    - 
+    \left\Vert 
+        \alpha^{-1}z' + (1 - \alpha^{-1})z
+    \right\Vert^2
     \\
-    \alpha(
-        \textcolor{red}{\Vert u\Vert^2} - 
-        (
-            \alpha^{-1}\Vert v\Vert^2 + \textcolor{red}{(1 - \alpha^{-1}) \Vert u\Vert^2}
-            - 
-            \alpha^{-1}(1 - \alpha^{-1}) \Vert u - v\Vert^2
-        )
-    ) &\ge 0 \quad \text{ by cute formula}
+    &= \Vert z\Vert^2 - \left(
+        \alpha^{-1}\Vert z'\Vert^2 + (1 - \alpha^{-1})\Vert z\Vert^2
+        - \alpha^{-1}(1 - \alpha^{-1})\Vert z - z'\Vert^2
+    \right) \quad \text{Cute formula}
     \\
-    \alpha(
-        -\alpha^{-1}\Vert v\Vert + \textcolor{red}{\alpha^{-1}\Vert u\Vert^2}
-        - \alpha^{-1}(1 - \alpha^{-1})\Vert u - v\Vert^2
-    ) &\ge 0
+    &= \alpha^{-1} \Vert z\Vert^2 - \alpha^{-1}\Vert z'\Vert^2 
+    + \alpha^{-1}(1 - \alpha^{-1})\Vert z - z'\Vert^2
     \\
-    \Vert u\Vert^2 &\ge 
-    \Vert v\Vert^2 - (1 - \alpha^{-1}) \Vert u - v\Vert^2, 
+    &= \alpha^{-1}\left(
+        \Vert z\Vert^2 - \Vert z'\Vert^2 - (\alpha^{-1} - 1) \Vert z - z'\Vert^2
+    \right). 
 \end{aligned}
 $$
 
-and observe that, on the last line, we recover the characterizations for an averaged operator. 
-And notice that all inequalities above are equivalent, hence, doing the proof in reverse means that the characterizations imply the averaged operator is the convex combination of an identity and a non-expansive operator. 
-The cute formula refers to [Equalities, Inequalities of Euclidean Space](AMATH%20516%20Numerical%20Optimizations/Background/Equalities,%20Inequalities%20of%20Euclidean%20Space.md). 
+See [Equalities, Inequalities of Euclidean Space](AMATH%20516%20Numerical%20Optimizations/Background/Equalities,%20Inequalities%20of%20Euclidean%20Space.md) for a reference of the "Cute formula". 
 
 
 **References**: 
@@ -116,6 +112,57 @@ $$
 This completes the proof. 
 This property is useful for algorithms. 
 
+
+#### **Theorem | Equivalent Representations of Averaged Operators**
+> Let $T = (1 - \alpha)I + \alpha N$ with $N$ nonexpansive. 
+> Then $T$ is $\alpha$-averaged if and only if for all $x, y \in \R^n$ i satisfies: 
+> $$
+> \begin{aligned}
+>     0 &\le \frac{1}{2(1 - \alpha)}\left(
+>         (2\alpha - 1)\Vert x - y\Vert^2 + \Vert Tx - Ty\Vert^2
+>     \right)
+>     + \langle x - y, Tx - Ty\rangle. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+Choose any $x, y \in \R^n$ and let $x' = Tx, y' = Ty$, $z = x - y, z' = z' = y'$, then the definition of an averaged mapping becomes: 
+$$
+\begin{aligned}
+    0 &\le 
+    \Vert z\Vert^2 - \Vert z'\Vert^2 - \Vert z - z'\Vert^2 + (1 - \alpha^{-1})\Vert z - z'\Vert^2
+    \\
+    &= \Vert z\Vert^2 - \Vert z'\Vert^2 - \Vert z - z'\Vert^2 
+    + (1 - \alpha^{-1})\left(
+        \Vert z\Vert^2 + \Vert z'\Vert^2 - 2\langle z, z'\rangle
+    \right)
+    \\
+    &= (2 - \alpha^{-1 })\Vert z\Vert^2 - \alpha^{-1}\Vert z'\Vert^2
+    - 2 (1 - \alpha^{-1})\langle z, z'\rangle
+    \\
+    \iff 
+    0&\le 
+    (2\alpha - 1)\Vert z\Vert^2 - \Vert z'\Vert^2 - 2(\alpha - 1)\langle z, z'\rangle
+    \\
+    &= 2(1 - \alpha)
+    \left(
+        \frac{2\alpha - 1}{2(1 - \alpha)}\Vert z\Vert^2
+        - \frac{1}{2(\alpha - 1)}\Vert z'\Vert^2
+        - \langle z, z'\rangle
+    \right)
+    \\
+    &= 2(1 - \alpha)
+    \left(
+        \frac{(2\alpha - 1)\Vert z\Vert^2 - \Vert z'\Vert^2}{2(1 - \alpha)}
+        - \langle z, z'\rangle
+    \right)
+    \\
+    \iff 
+    0 &\le 
+    \frac{(2\alpha - 1)\Vert z\Vert^2 - \Vert z'\Vert^2}{2(1 - \alpha)} - \langle z, z'\rangle
+\end{aligned}
+$$
 
 
 ---
@@ -224,6 +271,10 @@ Finally, for a generalization of the fixed point iterations convergence on the a
 **Reference**: 
 
 See Primer on Monotone Operator for more information. [Primer on Monotone Operator](../../MATH%20999%20Paper%20Reviews%20and%20Frontier%20Mathematics/References%20Sep%202022/Primer%20on%20Monotone%20Operators.pdf%20). 
+
+The following theorem attempt shows the convergence of the averaged operators with the modulus of averageness relaxed. 
+
+
 
 
 ---

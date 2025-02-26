@@ -66,12 +66,6 @@ Before the proof we abbreviate things using $z: x - y, z' = Tx - Ty$.
 
 Starting with an identity for 2-norm, we have: 
 
-<!-- $$
-\begin{aligned}
-    \Vert a\Vert^2 - (\Vert b\Vert^2 + \Vert a - b\Vert^2) = 2(\langle a, b\rangle - \Vert b\Vert^2), 
-\end{aligned}
-$$ -->
-
 using it we have: 
 $$
 \begin{aligned}
@@ -349,7 +343,7 @@ $$
     (\forall z_1 \in C, z_2 \in C): 
     \langle z_1 - x', x - x'\rangle + 
     \langle z_2 - y', y - y'\rangle 
-    \le 0
+    \le 0.
 \end{aligned}
 $$
 
