@@ -194,8 +194,7 @@ he mentioned that the proximal operator on $\alpha$ weakly convex function ($f$ 
 Therefore, $x,y \in \text{gph}(\partial f)$, we have $(\bar x - x, \bar y - y)\ge 0 \implies  (\bar x, \bar y)\in \text{gph}(\partial f)$. 
 Consequently, $I + \partial f$ is single-valued and subjective, so the inverse $(I +\partial f)^{-1}$ is a singled-value operator. 
 For all $\alpha>0$, it's the same.
-* **The Surjectivity Theorem**, [Minty's Theorem, The Surjectivity Theorem](../Operators%20Theory/Minty's%20Theorem,%20The%20Surjectivity%20Theorem.md)
-* The surjectivity theorem states, $T$ is maximal monotone iff $I + T$ is surjective. This is theorem 3.79 in Dima's work, and the proof is shown in 3.8.3.. 
+* **The Surjectivity Theorem**, [Minty's Theorem, The Surjectivity Theorem](../Operators%20Theory/Minty's%20Theorem,%20The%20Surjectivity%20Theorem.md). The surjectivity theorem states, $T$ is maximal monotone iff $I + T$ is surjective. This is theorem 3.79 in Dima's work, and the proof is shown in 3.8.3.. 
 
 
 #### **Theorem 2 | Equivalence Characterization for Proximal Point** 
@@ -472,34 +471,40 @@ $$
 \begin{aligned}
     & z\in \partial \text{env}_{f}(x)
     \\
-    & z\in \partial \left[
+    \iff & z\in \partial \left[
         f(\cdot) \square \frac{1}{2}\Vert \cdot\Vert^2
     \right](x)
     \\
-    & x \in \partial \left[
+    \iff & x \in \partial \left[
         \left(
             f(\cdot) \square \frac{1}{2}\Vert \cdot \Vert^2
         \right)^\star
     \right](z) \quad 
     \textcolor{gray}{\triangleright \text{ Fenchel Identity}}
     \\
+    \iff 
     & x \in \partial \left[
         f^\star + \frac{1}{2}\Vert \cdot \Vert^2
     \right](z)\quad 
     \textcolor{gray}{\triangleright \text{[1]}} 
     \\
+    \iff 
     & x\in 
     \partial f^\star(z) + z
     \\
+    \iff 
     & \mathbf 0  \in \partial f^\star(z) + z - x
     \\
+    \iff 
     & \mathbf 0 \in 
     \partial \left[
         f^\star(\cdot) + \frac{1}{2}\Vert \cdot - x\Vert
     \right](z)
     \\
+    \iff
     & z\in \text{prox}_{f^\star}(x)
     \\
+    \iff
     & z \in x - \text{prox}_{f}(x) \quad
     \textcolor{gray}{\triangleright \text{[2]}}
 \end{aligned}

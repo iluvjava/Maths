@@ -12,7 +12,7 @@ This part will follow the works of Rockafellar^[R. T. Rockafellar, “Monotone O
 
 #### **Proposition 5.1 | PPM and Monotone Operators**
 > With $P_k:= (1 + c_kT)^{-1}$, where $T$ is a maximally monotone operator. 
-> Consider for all $k$, $c_k > 0$. 
+> Consider for all $k$, $c_k > 0$.
 > Define $Q_k = I - P_k = (I - (c_kT)^{-1})^{-1}$. 
 > Then $0\in T(z) \iff P_k(z) = z \iff Q_k(z) = 0$. 
 > And the following are all true for all $k$: 
@@ -29,6 +29,7 @@ $$
     c_k TP_kz + P_kz 
     &\ni z
     \\
+    \iff
     c_k TP_kz 
     &\ni z - P_k z = Q_kz, 
 \end{aligned}
@@ -38,17 +39,22 @@ For 2., consider monotonicity of $T$, by abusing the notation:
 
 $$
 \begin{aligned}
-    \langle Tz - T z', z - z'\rangle &\ge 0\;  \forall z, z'
+    (\forall z, z') \;
+    0 &\le \langle Tz - T z', z - z'\rangle
+    \quad 
     \\
-    \text{let }(z, z') &= (P_kz, P_kz'); 
+    \text{let }(z, z') &= (P_kz, P_kz')
     \\
-    \langle TP_kz - TP_kz', P_kz - P_kz'\rangle &\ge 0
+    \implies
+    0 &\le 
+    \langle TP_kz - TP_kz', P_kz - P_kz'\rangle 
     \\
-    \langle Q_kz - Q_kz', P_kz - P_kz'\rangle &\ge 0. 
+    &=
+    \langle Q_kz - Q_kz', P_kz - P_kz'\rangle. 
 \end{aligned}
 $$
 
-For the last item, it's just the firmly non-expansiveness of the resolvent operator. 
+For (3.), it's the firmly non-expansiveness of the resolvent operator. 
 For more information, visits [Firmly Nonexpansive Operators](../Operators%20Theory/Firmly%20Nonexpansive%20Operators.md). 
 
 **Remarks**

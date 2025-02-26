@@ -42,7 +42,7 @@ Hence, it's also the fixed point of the DR operator.
 
 **Proof**
 
-To show (1.), consider 
+**Showing (1.)**, consider 
 
 $$
 \begin{aligned}
@@ -58,12 +58,10 @@ $$
 
 Hence, they are equivalent expressions. 
 
-Next, $T_i$ is firmly nonexpansive for $i \in \{1, 2\}$ is equivalent to $R_i$ are nonexpansive for $i \in \{1, 2\}$ which implies that $R_2R_1$ is nonexpansive which implies that $(1/2)(I + R_2 R_1)$is firmly nonexpansive. 
-We used the property of a firmly non-expansive operator here. 
-You can also see that it's a $1/2$-averaged operator too. 
-For the above reasoning we only used equivalencies and implications of non-expansive operators. 
+**Showing (2.)**. 
+Next, $T_i$ is firmly nonexpansive for $i \in \{1, 2\}$ is equivalent to $R_i$ are nonexpansive for $i \in \{1, 2\}$ which implies that $R_2R_1$ is nonexpansive which implies that $(1/2)(I + R_2 R_1)$is firmly nonexpansive (Or 1/2 averaged) because it's an equivalent conditions of firmly non-expansiveness.
 
-Finally, conditions (3.) follows by
+**Showing (3.)**. Consider: 
 
 $$
 \begin{aligned}
