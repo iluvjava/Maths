@@ -84,7 +84,7 @@ $$
     \Vert x_{n + 1} - Tx_{n + 1}\Vert 
     &= 
     \Vert 
-        (1 - \lambda)x_n - \lambda_n Tx_n - Tx_{n + 1}
+        (1 - \lambda_n)x_n - \lambda_n Tx_n - Tx_{n + 1}
     \Vert
     \\
     &= 

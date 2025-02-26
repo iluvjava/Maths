@@ -160,7 +160,7 @@ $$
     \\
     \iff 
     0 &\le 
-    \frac{(2\alpha - 1)\Vert z\Vert^2 - \Vert z'\Vert^2}{2(1 - \alpha)} - \langle z, z'\rangle
+    \frac{(2\alpha - 1)\Vert z\Vert^2 - \Vert z'\Vert^2}{2(1 - \alpha)} - \langle z, z'\rangle. 
 \end{aligned}
 $$
 
@@ -177,7 +177,7 @@ In a sense, the none-expansive operator is damped by the identity operator.
 
 **Proof**
 
-Recall from [Equalities, Inequalities of Euclidean Space](AMATH%20516%20Numerical%20Optimizations/Background/Equalities,%20Inequalities%20of%20Euclidean%20Space.md): 
+Recall the [Cute formula](AMATH%20516%20Numerical%20Optimizations/Background/Equalities,%20Inequalities%20of%20Euclidean%20Space.md) that for all $a, b \in \R^n, \theta \in \R$ it has: 
 
 $$
 \begin{aligned}
@@ -312,7 +312,7 @@ By continuity of non-expansive operators, we have $G x^+ = Gx^+$, hence, a clust
 The assumption of the existence of a fixed point set is quite usual. 
 However, this proofs hinges on the fact that we are in finite dimensions. 
 In the case where the averaged operator is the gradient descent operator, a function such as $\exp(x)$ will have a gradient operator: $x - \exp(x)$ that never has a fixed point to it. 
-That is the case when things doesn't converge. 
+That is the case when things don't converge. 
 
 ---
 ### **Composition of Averaged Operators**
@@ -320,7 +320,7 @@ That is the case when things doesn't converge.
 The composition of averaged operator is still an averaged operator. 
 Composition of nonexpansive operator would still be non-expansive too. 
 Composition of firmly nonexpansive operator is not firmly nonexpansive anymore, it becomes an averaged operator. 
-This fact is useful in the analysis of optimization algorithms. 
+They are useful for analyzing the convergences of algorithms. 
 
 #### **Thm | Composition of two Averaged Mapping**
 > Let $T_i \in \{\alpha_i-\text{Avg}\}$, for $i \in \{1, 2\}$ then the composition $T_2\circ T_1$ is $\alpha$-averaged with $\alpha = \frac{\alpha_1 + \alpha_2 - 2\alpha_1 \alpha_2}{1 - \alpha_1 \alpha_2}$. 
@@ -340,11 +340,11 @@ $$
     \\
     &= -(1 - \alpha_1)(1 - \alpha_2) + 1 - \alpha_1\alpha_2 
     \\
-    &\le 1 - \alpha_1 \alpha_2, 
+    &\le 1 - \alpha_1 \alpha_2.
 \end{aligned}
 $$
 
-therefore, the composited ratio is still valid for an averaged operator. 
+Therefore, the parameter of avergedness is still valid after composition. 
 
 **Proof**
 
@@ -378,34 +378,21 @@ $$
     \\
     &= 
     \Vert x - y\Vert^2 + \eta^2 \Vert \nabla f(x) - \nabla f(y)\Vert^2
-    - 
-    2 \eta \langle x - y, \nabla f(x) - \nabla f(y)\rangle, 
-    \\
-    &  \textcolor{gray}{\triangleright {[1](1)}:\text{Using Co-coersive property :}}
-    \\
-    &\quad\quad
-    {\small
-    \begin{aligned}
-        \langle x - y, \nabla f(x) - \nabla f(y)\rangle &\ge \frac{1}{L}  
-        \Vert \nabla f(x) - \nabla f(y)\Vert^2
-        \\
-        -2\eta \langle x - y, \nabla f(x) - \nabla f(y)\rangle 
-        & \le 
-        - \frac{2\eta}{L}\Vert \nabla f(x) - \nabla f(y)\Vert^2
-    \end{aligned}
-    }
+    -
+    2 \eta \langle x - y, \nabla f(x) - \nabla f(y)\rangle
     \\
     &\le 
-    \Vert x - y\Vert^2 + \eta^2 \Vert \nabla f(x) - \nabla f(y)\Vert^2 - 
-    \frac{2\eta}{L}\Vert \nabla f(x) - \nabla f(y)\Vert^2
+    \Vert x - y\Vert^2 + \eta^2 \Vert \nabla f(x) - \nabla f(y)\Vert^2
+    -
+    \frac{2 \eta }{L}\Vert \nabla f(x) - \nabla f(y)\Vert^2 \quad \text{Use [1]}
     \\
     &\le \Vert x - y\Vert^2 + 
-    \eta(\eta - 2/L)\Vert \nabla f(x) - \nabla f(y)\Vert^2, 
+    \eta(\eta - 2/L)\Vert \nabla f(x) - \nabla f(y)\Vert^2. 
 \end{aligned}
 $$
 
-and hence, the term is non-expansive, for all values of $\eta \in (0, 2/L)$, it maybe a contraction, but it would depend on how $\nabla f(x) - \nabla f(y)$ behaves wrt to $x - y$. 
-At `[1](1)` we used some info from [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md), and especially the Co-coersive property. Next we show that the gradient operator is an averaged operator. 
+For all values of $\eta \in (0, 2/L)$, $[I - \eta \nabla f(x)]$ is nonexpansive. 
+At `(1)` we used some info from [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md), and especially the Co-coersive property. Next we show that the gradient operator is an averaged operator. 
 To do that we simply fit the form 
 
 $$
@@ -414,11 +401,11 @@ $$
     \\
     I - \eta \nabla f 
     &= 
-    I - \theta 2/L \nabla f, 
+    I - \theta 2/L \nabla f.
 \end{aligned}
 $$
 
-with that we have $\eta = 2\theta /L$, whenever $\eta \in (0, L/2)$, with that we conclude $\theta = \eta L /2\in (0, 1)$, and hence it's an averaged operator. Therefore, the gradient descent on Lipschitz smooth function will admit Fejer Monotone convergence. 
+If $\eta \in (0, L/2)$, with that we conclude $\theta = \eta L /2\in (0, 1)$, and hence it's an averaged operator. Therefore, the gradient descent on Lipschitz smooth function will admit Fejer Monotone convergence. 
 
 
 **Remarks**
