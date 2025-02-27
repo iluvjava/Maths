@@ -1,16 +1,20 @@
 \documentclass[11pt]{beamer}
 % PACKAGES =====================================================================
 \usepackage[utf8]{inputenc}
-\usepackage{hyperref}
+\usepackage{algorithmic}
+\usepackage{algorithm}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage{algorithmic}
-\usepackage{algorithm}
-\usepackage{wrapfig}
+\usepackage{hyperref}
+\usepackage{mathtools}
 \usepackage{subcaption}
 \usepackage{tcolorbox}
+\usepackage{wrapfig}
+
+
+
 
 % THEMES AND BEAMER SETTINGS ===================================================
 % \usetheme{Madrid}
@@ -151,7 +155,7 @@
             Recall the Nesterov's acceleration has momentum extrapolation updates on $y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$. 
             We proposed the idea of R-WAPG, a generic method that: 
             \begin{enumerate}
-                \item Describe for momentum sequences that doesn't follow Nesterov's rules.
+                \item Gives upper bound for $F(x_k) - \inf_{x \in \RR^n} F(x)$ for momentum sequences that doesn't follow Nesterov's rules.
                 \item Unifies the convergence rate analysis for several Euclidean variants of the FISTA method. 
                 \item A parameter free numerical algorithm: ``Free R-WAPG'' method that has competitive numerical performance in practical settings without restarting. 
             \end{enumerate}
@@ -222,6 +226,7 @@
                 Choose any $x_1 \in \RR^n, v_1 \in \RR^n$. 
                 Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be given by Definition \ref{def:rwapg-seq}. 
                 The algorithm generates a sequence of vector $(y_k, x_{k + 1}, v_{k + 1})_{k \ge 1}$ for $k\ge 1$ by the procedures:  
+                {\small
                 \begin{tcolorbox}
                     For $k=1, 2, 3, \ldots$
                     \begin{align*}
@@ -241,7 +246,23 @@
                         x_{k + 1} &= T_L y_k. 
                     \end{align*}    
                 \end{tcolorbox}
+                }
             \end{definition}
+        \end{frame}
+        \begin{frame}{R-WAPG Assumptions and Notations}
+            \begin{assumption}\label{ass:regret-gap}
+                Given $x_k, y_k, v_k$ where $k \in \mathbb Z_+$, we define the following quantities
+                \begin{align}
+                    g_k &\defeq L(y_k - T_L(y_k)), 
+                    \label{eqn:grad-map}
+                    \\
+                    l_F(x; y_k) &\defeq F(T_L(y_k)) + \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2, 
+                    \label{eqn:lower-linearization}
+                    \\
+                    \epsilon_{k} &\defeq F(x_k) - l_F(x_k; y_k). 
+                    \label{eqn:regret}
+                \end{align}
+            \end{assumption}
         \end{frame}
         \begin{frame}{Convergence of R-WAPG}
             The convergence claim of the method follows. 
@@ -454,30 +475,29 @@
     \subsection{A parameter free formulation of R-WAPG}
         \begin{frame}{Free R-WAPG}
             We proposed the following implementation of R-WAPG which doesn't require parameters $\mu, L$ in advance. 
-            
             \begin{algorithm}[H]
-            {\scriptsize
-                \begin{algorithmic}
-                \STATE{\textbf{Input: } $f, g, x_0, L > \mu \ge 0, \in \RR^n, N \in \N$}
-                \STATE{\textbf{Initialize: }$y_0 := x_0;L := 1; \mu := 1/2; \alpha_0 = 1;$}
+                \begin{algorithmic}[1]
+                {\scriptsize
+                \STATE{\textbf{Input: } $f, g, L > \mu \ge 0, x_0 \in \RR^n, N \in \N$}
+                \STATE{\textbf{Initialize: }$y_0 := x_0;L_0 := 1; \mu_0 := 1/2; \alpha_0 = 1$;}
                 \STATE{\textbf{Compute: } $f(y_k)$; }
                 \FOR{$k = 0, 1, 2, \cdots, N$}
-                    \STATE{\textbf{Compute: }$\nabla f(y_k); x^+:= [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$;}
-                    \WHILE{$L/2\Vert x^+ - y_k\Vert^2 < D_f(x^+, y_k)$}
-                        \STATE{$L:= 2L$;}
-                        \STATE{$x^+ = [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$; }
+                    \STATE{\textbf{Compute: }$\nabla f(y_k); x^+:= [I + L_k^{-1}\partial g]^{-1}(y_k - L_k^{-1}\nabla f(y_k))$;}
+                    \WHILE{$L_k/2\Vert x^+ - y_k\Vert^2 < D_f(x^+, y_k)$}
+                        \STATE{$L_k:= 2L_k$;}
+                        \STATE{$x^+ = [I + L_k^{-1}\partial g]^{-1}(y_k - L_k^{-1}\nabla f(y_k))$; }
                     \ENDWHILE
                     \STATE{$x_{k + 1} := x^+$;}
-                    \STATE{$\alpha_{k + 1} := (1/2)\left(\mu/L - \alpha_{k}^2 + \sqrt{(\mu/L - \alpha_{k}^2)^2 + 4\alpha_{k}^2}\right)$;}
+                    \STATE{$\alpha_{k + 1} := (1/2)\left(\mu_k/L_k - \alpha_{k}^2 + \sqrt{(\mu_k/L_k - \alpha_{k}^2)^2 + 4\alpha_{k}^2}\right)$;}
                     \STATE{$\theta_{k + 1} := \alpha_k(1 - \alpha_k)/(\alpha_k^2 + \alpha_{k + 1})$;}
                     \STATE{$y_{k + 1}:= x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$; }
                     \STATE{\textbf{Compute: } $f(y_{k + 1})$}
-                    \STATE{$\mu := (1/2)(2D_f(y_{k + 1}, y_{k})/\Vert y_{k + 1} - y_k\Vert^2) + (1/2)\mu$;}
+                    \STATE{$\mu_k := D_f(y_{k + 1}, y_{k})/\Vert y_{k + 1} - y_k\Vert^2 + (1/2)\mu_k$;}
                 \ENDFOR
+                }
                 \end{algorithmic}
                 \caption{Free R-WAPG}
                 \label{alg:free-rwapg}
-            }
             \end{algorithm}
         \end{frame}
     
@@ -488,16 +508,13 @@
             {\footnotesize
             \begin{align*}
                 \delta_k := \log_2\left(
-                    \NOG
+                    \NOG_k
                 \right)
                 \text{ with } 
-                \NOG_k := \frac{F(x_k) - F^*}{F(x_0) - F^*}
+                \NOG_k := \frac{F(x_k) - F^*}{F(x_0) - F^*}.
             \end{align*}
             }
-            This is our first numerical experiment is: 
-            \begin{align*}
-                F(x) = (1/2)\langle x, A x\rangle. 
-            \end{align*}
+            Consider objective function: $F(x) = (1/2)\langle x, A x\rangle$. 
             Our setup has: 
             \begin{enumerate}
                 \item Same initial guess $x_0$ shared by FR-WAPG,  M-FISTA and V-FISTA in (10.7.7, 10.7.6) by Beck \cite{beck_first-order_2017} repeated with 30 different random initial guesses. 
@@ -524,20 +541,20 @@
                 \begin{subfigure}[b]{0.47\textwidth}
                     \centering 
                     \includegraphics[width=\textwidth]{assets/simple_regression_batched-256.png}
-                    \caption{$N = 256$, simple convex quadratic.}
+                    \caption{$N = 256$.}
                 \end{subfigure}
                 \hfill
                 \begin{subfigure}[b]{0.47\textwidth}
                     \centering
                     \includegraphics[width=\textwidth]{assets/simple_regression_batched-1024.png}
-                    \caption{$N = 1024$, simple convex quadratic. }
+                    \caption{$N = 1024$.}
                 \end{subfigure}
                 \caption{Simple convex quadratic experiments results for V-FISTA, M-FISTA, and R-WAPG. }
                 \label{fig:simple-quadratic-NOG}
             \end{figure}
         \end{frame}
         \begin{frame}{FR-WAPG $\mu$ estimation graph}
-            FR-WAPG estimates the following for $\mu$ during its execution: 
+            FR-WAPG estimates the following for $\mu_k$: 
             \begin{figure}[H]
                 \centering
                 \includegraphics[width=0.64\textwidth]{assets/simple_regression_loss_sc_estimates_1024.png}

@@ -69,196 +69,31 @@ We summarize some key points for lemmas in the Appendix:
 
 
 #### **Lemma A.7 | Inexact proximal point inequality**
-> Let $F$ be a $\mu\ge 0$ strongly convex and fix $\kappa$. 
-> If $x_k$ is an inexact proximal point evaluation of $x_k \in \mathcal J_{\kappa^{-1} F}^{\epsilon_k} y_{k - 1}$, $x_k^* = \mathcal J_{\kappa^{-1} F} y_{k - 1}$ it has for all $x$: 
+> Let $y \in \R^n, x \in \R^n$. 
+> Suppose that $\tilde x$ approximates $\mathcal J_{1/\kappa F}(y)$ such that there exists some $\epsilon > 0$ with $\mathcal M_F^{1/\kappa}(\tilde x) - \mathcal M^*_{F, 1/\kappa}(y) \le \epsilon$ and $x^* = \mathcal J_{1/\kappa F}(y)$ is exact.
+> Then for all $x \in \R^n$ it has 
 > $$
 > \begin{aligned}
->     F(x) &\ge 
->     F(x_k) + \kappa \langle y_{k - 1} - x_k, x - x_k\rangle
->     + \frac{\mu}{2}\Vert x - x_k\Vert^2 
->     + (\kappa + \mu)\langle  x_k - x_k^*, x - x_k\rangle 
->     - \epsilon_k.
+>   & F(x) - F(\tilde x) + \frac{\kappa}{2}(\Vert x - y\Vert^2 - \Vert \tilde x - y\Vert^2 - \Vert x - \tilde x\Vert^2) - \frac{\mu}{2}\Vert x - \tilde x\Vert^2
+>   \\
+>   &=
+>   F(x) - F(\tilde x) + \kappa\langle x - \tilde x, \tilde x - y\rangle - \frac{\mu}{2}\Vert x - \tilde x\Vert^2
+>   \\
+>   &\ge - \epsilon + (\kappa + \mu)/2\Vert \tilde x - x^*\Vert^2 + (\kappa + \mu)\langle x - \tilde x, \tilde x - x^*\rangle. 
 > \end{aligned}
 > $$
 
-**Observations**
-
-Set $\epsilon_k = 0$ so $x_k = x_k^*$ by strong convexity of $\mathcal M^{\kappa^{-1}}(\cdot\; ; y_{k - 1})$ (See [Strong Convexity, Equivalences and Implications](../AMATH%20516%20Numerical%20Optimizations/Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information here) so it gives the usual proximal inequality: 
-$$
-\begin{aligned}
-    F(x) \ge F(x_k) + \kappa\langle y_{k - 1} - x_k, x - x_k \rangle + 
-    \frac{\mu}{2} \Vert x - x_k\Vert^2. 
-\end{aligned}
-$$
-
-Replacing $x_k = x_k^*$, this inequality is the same as the exact evaluation of the proximal point method. 
 
 **Proof**
 
-Define $G_k := \mathcal M_F^{\kappa^{-1}}(\cdot, y_{k - 1}), G_k^* = \mathcal M_F^{\kappa^{-1}}(x_k^*, y_{k - 1})$. 
-$G_k$ is a $\mu + \kappa$ convex function which implies quadratic growth over minimizer $x_k^*$: 
-
-$$
-\begin{aligned}
-    (\forall x)\quad G_k(x) &\ge G_k^* + \frac{\kappa + \mu}{2}\Vert x - x_k^*\Vert^2. 
-\end{aligned}
-$$
-
-Substituting definitions:
-
-$$
-{\small
-\begin{aligned}
-    F(x) &\ge 
-    G_k(x_k) + (G_k^* - G_k(x_k)) + 
-    \frac{\mu + \kappa}{2}\Vert x - x_k^*\Vert^2 
-    - \frac{\kappa}{2}\Vert x - y_{k - 1}\Vert^2
-    \\
-    &\ge 
-    G(x_k) - \epsilon_k + \frac{\kappa + \mu}{2}\Vert x - x_k^*\Vert^2
-    - \frac{\kappa}{2}\Vert x - y_{k - 1}\Vert^2
-    \\
-    &= G_k(x_k) - \epsilon_k + \frac{\kappa + \mu}{2}
-    \left(
-        \Vert x - x_k - x_k + x_k^*\Vert^2
-    \right)
-    - \frac{\kappa}{2}\Vert x - y_{k - 1}\Vert^2
-    \\
-    &= G_k(x_k) - \epsilon_k + \frac{\kappa + \mu}{2}
-    \left(
-        \Vert x - x_k\Vert^2 + \Vert x_k - x_k^*\Vert^2
-        + 
-        2\langle x - x_k, x_k - x_k^*\rangle
-    \right)
-    - \frac{\kappa}{2}\Vert x - y_{k - 1}\Vert^2
-    \\
-    &= 
-    \left(
-        G_k(x_k) + \frac{\kappa}{2}\Vert x - x_k\Vert^2 - \frac{\kappa}{2}\Vert x - y_{k - 1}\Vert^2
-    \right)
-    - \epsilon_k
-    + \frac{\mu}{2}\Vert x - x_k\Vert^2
-    + \frac{\kappa + \mu}{2}\Vert x_k - x_k^*\Vert^2
-    + (\kappa + \mu)\langle x - x_k, x_k - x_k^*\rangle. 
-\end{aligned}
-}
-$$
-
-Focusing on the terms inside parenthesis we have 
-
-$$
-\begin{aligned}
-    &
-    G_k(x_k) 
-    + \frac{\kappa}{2}\Vert x - x_k\Vert^2 - \frac{\kappa}{2}\Vert x - y_{k - 1}\Vert^2
-    \\
-    &= 
-    F(x_k) + \frac{\kappa}{2}\Vert x_k - y_{k - 1}\Vert^2
-    + \frac{\kappa}{2}\Vert x - x_k\Vert^2 - \frac{\kappa}{2}\Vert x - y_{k - 1}\Vert^2
-    \\
-    &= 
-    F(x_k) + 
-    \frac{\kappa}{2}\left(
-        \Vert x_k - y_{k - 1}\Vert^2 - \Vert x - y_{k - 1}\Vert^2
-    \right)
-    + \frac{\kappa}{2} \Vert x - x_k\Vert^2
-    \\
-    &= 
-    F(x_k) + 
-    \frac{\kappa}{2}\left(
-        \Vert x_k - x\Vert^2 
-        + 
-        2\langle x_k - x, x - y_{k - 1} \rangle
-    \right)
-    + 
-    \frac{\kappa}{2} \Vert x - x_k\Vert^2
-    \\
-    &= 
-    F(x_k) + 
-    \kappa\Vert x_k - x\Vert^2
-    + 
-    \kappa\langle x_k - x, x - y_{k - 1}\rangle
-    \\
-    &= 
-    F(x_k) + 
-    \kappa\langle x_k - x, x - y_{k - 1} + x_k - x\rangle
-    \\
-    &= F(x_k) + \kappa\langle x_k - x, x_k - y_{k - 1} \rangle. 
-\end{aligned}
-$$
-
-Therefore, have the inequality: 
-
-$$
-\begin{aligned}
-    F(x) 
-    &\ge 
-    F(x_k) + \kappa\langle x_k - x, x_k - y_{k - 1} \rangle
-    - \epsilon_k
-    + \frac{\mu}{2}\Vert x - x_k\Vert^2
-    + \frac{\kappa + \mu}{2}\Vert x_k - x_k^*\Vert^2
-    + (\kappa + \mu)\langle x - x_k, x_k - x_k^*\rangle
-    \\
-    & \ge
-    F(x_k) + \kappa\langle x_k - x, x_k - y_{k - 1} \rangle
-    - \epsilon_k
-    + \frac{\mu}{2}\Vert x - x_k\Vert^2
-    + (\kappa + \mu)\langle x - x_k, x_k - x_k^*\rangle. 
-\end{aligned}
-$$
-
-Re-arranging it to a form I personally like: 
-
-$$
-\begin{aligned}
-    F(x) - F(x_k) - \kappa\langle x_k - x, x_k - y_{k - 1} \rangle
-    - \frac{\mu}{2}\Vert x - x_k\Vert^2
-    &\ge 
-    - \epsilon_k
-    + (\kappa + \mu)\langle x - x_k, x_k - x_k^*\rangle. 
-\end{aligned}
-$$
-
-Now we have the RHS to be exclusively about the inexact evaluation $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$, and $G_k(x_k) - G^*_k \le \epsilon_k$. 
-
+See [Catalyst Accelerations Part IV, Inexact Oracles](Catalyst%20Accelerations%20Part%20IV,%20Inexact%20Oracles.md) for more information. 
 
 **Remarks**
 
-Key points: 
-1. The theorem based on a weaker consequence of strong convexity. 
-2. The inequality only similar to the fundamental proximal gradient inequality for the LHS of the inequality. 
-3. Set $\epsilon_k = 0$ will make the inequality the same as the subgradient inequality used in accelerated proximal point method, trivially. 
+When $\epsilon = 0$, this is the proximal gradient inequality. 
+See [Moreau Envelope and Convex Proximal Mapping](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Operator/Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md). 
 
-Finally, compare the results to the proximal gradient inequality derived in our notations, we assume that $F = f + g$ with $f$ $L$-smooth and $g$ convex. 
-Fix any $y\in \R^n$ then we have $\forall x \in \R^n$: 
-
-$$
-\begin{aligned}
-    & F = g + h
-    \\
-    & 
-    \widetilde {\mathcal J}_{L^{-1}} 
-    = [I + L^{-1}\partial g]^{-1}\circ[I - L^{-1}\nabla f]
-    \\
-    & 
-    F(x) - F\left(\widetilde{\mathcal J}_{L^{-1}}y\right) 
-    - 
-    \left\langle 
-        \widetilde{\mathcal G}_{L^{-1}}(y), 
-        x - \widetilde{\mathcal J}_{L^{-1}}y
-    \right\rangle
-    \ge 
-    D_f(x, y) - \frac{L}{2}
-    \left\Vert 
-        y - \widetilde{\mathcal J}_{L^{-1}}y
-    \right\Vert^2
-\end{aligned}
-$$
-
-
-
-
-
+Under the context of the Catalyst Acceleration, the inequality is used with $y = y_{k - 1}, \tilde x = x_k \approx J_{\kappa F}(y_{k - 1})$. 
 
 #### **Theorem A.6 | Nesterov's estimating sequence results with inexact PPM**
 > Define the sequence $(y_k)_{k\ge0}$ for the estimating sequence. 

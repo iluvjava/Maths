@@ -2,17 +2,18 @@
 
 % \input{presets/wang_full.tex}
 
-\usepackage{ifthen}\newboolean{draftmode}\setboolean{draftmode}{true}
+\usepackage{ifthen}\newboolean{draftmode}\setboolean{draftmode}{false}
 \input{presets/wang/input.tex}
-\input{presets/misc.tex}
-\input{presets/julia_lstlisting.tex}
+% \input{presets/misc.tex}
+% \input{presets/julia_lstlisting.tex}
 
 
 \begin{document}
 
 
 \title{{\fontfamily{ptm}\selectfont 
-        A Parameter Free Accelerated Proximal Gradient Method Without Restarting
+        % A Parameter Free Accelerated Proximal Gradient Method Without Restarting
+        Relaxed Weak Accelerated Proximal Gradient method: a unified framework for Nesterov's acceleration
     }}
 
 \author{
@@ -172,13 +173,13 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
         \defeq (x, y)\mapsto f(x) - f(y) - \langle \nabla f(y), x - y\rangle. 
     \end{align*}
     The following lemma provides important properties of $\mathcal M^{L^{-1}}(\cdot; y), \widetilde{\mathcal M}^{L^{-1}}(\cdot; y)$. 
-    \begin{lemma}[Proximal gradient envelope]\label{lemma:pg-envelope}
+    \begin{lemma}\label{lemma:pg-envelope}
         With $\mathcal M^{L^{-1}}, \widetilde{\mathcal M}^{L^{-1}}$ as given by \eqref{eqn:pg-model-func}, \eqref{eqn:pp-model-func}, 
         we have for all $x \in \RR^n$, $y \in \RR^n$:
         \begin{align*}
             \widetilde{\mathcal M}^{L^{-1}}(x; y)
             &= 
-            \mathcal M^{L^{-1}}(x; y)- D_f(x, y) \le \mathcal M^{L^{-1}}(x; y). 
+            \mathcal M^{L^{-1}}(x; y)- D_f(x, y). 
         \end{align*}
     \end{lemma}
     \begin{proof}
@@ -353,7 +354,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             l_F(x; y_k) &\defeq F(T_L(y_k)) + \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2, 
             \label{eqn:lower-linearization}
             \\
-            \epsilon_{k} &\defeq F(x_k) - l_F(x_k; y_k), 
+            \epsilon_{k} &\defeq F(x_k) - l_F(x_k; y_k). 
             \label{eqn:regret}
         \end{align}
         % To see $\epsilon_k \ge 0$, use Theorem \ref{thm:prox-grad-ineq} and let $y = y_k, x = x_k$, by the definition $g_k = L(y_k - T_L(y_k))$ it has: 
@@ -2244,7 +2245,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
     \begin{proof}
         The constant sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ is a valid R-WAPG sequence by Lemma \ref{lemma:constant-rwapg-seq}. 
         The algorithm presented here is the same as the R-WAPG momentum form as given by Definition \ref{def:r-wapg-momentum-form} because the term $\theta$ from Lemma \ref{lemma:constant-rwapg-seq} matches up with Definition \ref{def:r-wapg-momentum-form} by (ii) in Lemma \ref{lemma:constant-rwapg-seq}. 
-        Then, Proposition \ref{prop:wapg-convergence} applies,and it follows that: 
+        Then, Proposition \ref{prop:wapg-convergence} applies, and it follows that: 
         \begin{align*}
             & F(x_{k + 1}) - F^* + \frac{L\alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
             \\
@@ -2279,7 +2280,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
     \end{proof}
     \begin{remark}
         When $r = 1$, the algorithm described above is exactly the same as the V-FISTA algorithm specified in (10.7.7) of Beck's book \cite{beck_first-order_2017}. 
-        The above theorem gives convergence rate for a much relax choice of momentum parameter $\theta$ generalizing the convergence of constant step size FISTA to all convex stronlgy convex function and all possible $\alpha_k \in (\mu/L, 1)$. 
+        The above theorem gives convergence rate for a much relax choice of momentum parameter $\theta$ generalizing the convergence of constant step size FISTA to all convex and strongly convex function and all possible $\alpha_k \in (\mu/L, 1)$. 
         In addition, the convergence claim of R-WAPG holds for any $\mu$ smaller than the strong convexity modulus of $f$ that is not zero making the bounds $r \in (\sqrt{q}, \sqrt{q^{-1}})$ looser. 
     \end{remark}
 
@@ -2355,7 +2356,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
     $q \in (0, 1)$ by assumption $\mu < L$ so $4q - 4 < 0$ always. 
     It is not hard to see that $\alpha_{k + 1} > \mu/L$ as well. 
     Therefore, $\alpha_k \in (0, 1)$. 
-    To prvent the case $\alpha_k = 1$, we may always force the esimate $\mu = L/2$ whenever $\mu > L/2$. 
+    To prevent the case $\alpha_k = 1$, we may always force the estimate $\mu = L/2$ whenever $\mu > L/2$. 
     % In the very unlikely case when $q = 1$, Algorithm \ref{alg:free-rwapg} has $\theta_k = 0$, and it performs one step of proximal gradient descent. 
     \subsection{Numerical experiments}
         This section showcases results for the numerical experiments conducted using FR-WAPG algorithm (Algorithm \ref{alg:free-rwapg}), and compare with other APG algorithms in the literatures: the V-FISTA, and M-FISTA algorithm described in Section (10.7.7, 10.7.6) by Beck \cite{beck_first-order_2017}. 
@@ -2428,7 +2429,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             \end{figure}
             Another quantity that maybe interesting other than $\delta_k$ would be the estimated value of $\mu$ during at each iteration $k$. 
             One individual experiment is carried out for the R-WAPG algorithm and the value of $\mu$ at each iteration is being recorded as well. 
-            Figure \ref{fig:simple-quadratic-r-wapg-mu-estimates} shows the estimated $\mu_k$ of FR-WAPG on the left and the convergence rate of the test algorithms on the right for one specifice initial condition. 
+            Figure \ref{fig:simple-quadratic-r-wapg-mu-estimates} shows the estimated $\mu_k$ of FR-WAPG on the left and the convergence rate of the test algorithms on the right for one specific initial condition. 
             It shows the values of $\mu_k$ oscillates and converges to the true value of $\mu$. 
             Observe that the initial fast descent slows and FR-WAPG diverges from M-FISTA as $\mu_k$ converged. 
             \begin{figure}[H]
@@ -2491,7 +2492,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                 \label{fig:batched-lasso}
             \end{figure}
             The experiment results shows faster convergence rate of FR-WAPG relative to V-FISTA, and it also shows that it behaves similarly to M-FISTA. 
-            In addition, an experiment were conducted to show the estimate $\mu_k$ and optimality gaph $F(x_k) - F^*$ in Figure \ref{fig:single-lass-mu-estimates}. 
+            In addition, an experiment were conducted to show the estimate $\mu_k$ and optimality gap $F(x_k) - F^*$ in Figure \ref{fig:single-lass-mu-estimates}. 
             \begin{figure}[H]
                 \begin{subfigure}[b]{0.47\textwidth}
                     \includegraphics[width=\textwidth]{assets/lasso_loss_256.png}
@@ -2504,7 +2505,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                     \includegraphics[width=\textwidth]{assets/lasso_sc_estimates_256.png}
                     \caption{The $\mu_k$ estimated by FR-WAPG for one LASSO experiment. }
                 \end{subfigure}
-                \caption{A single LASSO experiment results, with $M = 64, N=256$. }
+                \caption{A single LASSO experiment results, with $M = 64, N=256$. f}
                 \label{fig:single-lass-mu-estimates}
             \end{figure}
             For this specific experiment showed in the figure, the estimated value of $\mu, L$ which we feed into V-FISTA are $\mu = 7.432363627613958\times 10^{-18}$ and $L = 2321.737206983643$. 
@@ -2525,8 +2526,6 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
     In addition, of being parameter free, the algorithm works well with auto-differentiation framework because it requires the function value at the same point where the gradient is evaluated at $y_k$. 
     We do note that in the case when function is not strongly convex, the function value converges without $\Vert \mathcal G_L(y_k)\Vert$ converging. 
     This will be explored more in future work. 
-
-
 
             
             

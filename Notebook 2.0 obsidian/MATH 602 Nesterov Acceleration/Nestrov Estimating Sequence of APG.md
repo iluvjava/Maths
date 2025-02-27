@@ -122,6 +122,8 @@ There are several categories of quantities in the analysis for the convergence o
 During the analysis, the recurrence form of the estimating sequence establishes relations between all the quantities: $\phi_k^*, v_k, \gamma_k, v_k, \alpha_k$. 
 When searching for the implicit descent sequence, $x_k = T_L y_k$ turns out to be solution and the proximal gradient inequality plays a key role in the proof. 
 
+The lemma that follows consider a list of equalities, and equality transform that will be useful later for the convergence proof. 
+
 #### **Lemma 1 | Closed form recurrence**
 > Let $(y_k)_{k \in \N}, \alpha_k$ be any sequenced used to parameterize the estimating sequence $\phi_k: \R^n \mapsto \R$, then the recursive definition of $\phi_k$ in canonical form satisfies recurrence relationship for all $k \in \N$: 
 > $$
@@ -152,6 +154,7 @@ When searching for the implicit descent sequence, $x_k = T_L y_k$ turns out to b
 
 **Proof**
 
+**Showing the first equality**. 
 Substitution to the recursive definition of $\phi_k$ yields: 
 
 $$
@@ -169,7 +172,6 @@ $$
     \left(
         l_h(x; y_k) + \mu/2\Vert x - y_k\Vert^2
     \right), 
-    \rightarrow \textcolor{red}{(\text{eqn1})}
     \\
     \implies 
     \nabla \phi_{k + 1}(x) 
@@ -180,9 +182,12 @@ $$
     \nabla^2 \phi_{k + 1}(x) &= 
     \underbrace{((1 - \alpha_k)\gamma_k + \alpha_k \mu)}_{=\gamma_{k + 1}}I; 
 \end{aligned}
+\tag{eqn1}
 $$
 
 The recurrence relations for $\gamma_k$ is verified by considering the second order derivative to $\phi_k$. 
+
+**Showing the second equality**. 
 To see the recurrence relations for $v_{k + 1}$, we consider setting the gradient to $\mathbf 0$ and then solve for it. 
 It's giving us: 
 
@@ -203,6 +208,7 @@ $$
 \end{aligned}
 $$
 
+**Showing the third equality**. 
 Substituting the canonical form of $\phi_{k + 1}$ back to `eqn1`, choose $x = y_k$, it gives the following 
 
 $$
@@ -216,13 +222,12 @@ $$
     \alpha_k\left(
         h(T_k y_k) + 
         \frac{1}{2L} \Vert g_k\Vert^2
-    \right). 
-    \rightarrow 
-    \textcolor{red}{(\text{eqn2})}
+    \right).
 \end{aligned}
+\tag{eqn2}
 $$
 
-Next move from Nesterov was to simplify the term $\Vert v_{k + 1} - y_k\Vert^2$. 
+Next move from Nesterov was to simplify the term $\Vert v_{k + 1} - y_k\Vert^2$ away. 
 With that it produces: 
 
 $$
@@ -364,7 +369,6 @@ $$
         \end{aligned}
     }
     \\
-    \iff 
     &= 
         (1 - \alpha)\phi_k^* + 
         \alpha_k
@@ -470,7 +474,6 @@ $$
         \frac{\mu}{2}\Vert v_k - y_k\Vert^2 + \langle v_k - y_k, g_k\rangle
     \right)
     \\
-    \implies 
     &\ge 
     (1 - \alpha_k)h(x_k)
     + 
@@ -484,7 +487,6 @@ $$
         \frac{\mu}{2}\Vert v_k - y_k\Vert^2 + \langle v_k - y_k, g_k\rangle
     \right)
     \\
-    \implies
     &\ge 
     (1 - \alpha_k)h(x_k)
     + 

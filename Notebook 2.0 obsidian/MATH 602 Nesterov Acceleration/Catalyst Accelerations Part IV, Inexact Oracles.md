@@ -79,31 +79,24 @@ $$
 
 $\blacksquare$
 
-#### **Definition 1.2 | Relative error of Proximal inequality**
-
-
-**Remarks**
-
-#### **Theorem 1.3 | A sufficient gradient condition for relative error**
-
-
-
-#### **Examples 1.4 | Proximal gradient inequality**
-
 
 #### **Lemma 1.5 | Absolute error proximal inequality**
-> Let $y \in \R^n, \tilde x \in \R^n$. 
-> Suppose that $\tilde x$ is an approximation of $\mathcal J_{1/\kappa F}(y)$ such that there exists some $\epsilon > 0$ with $\mathcal M_F^{1/\kappa}(\tilde x) - \mathcal M^*_{F, 1/\kappa}(y) \le \epsilon$ and $x^* = \mathcal J_{1/\kappa F}(y)$ is the exact solution of the proximal point problem.
+> Let $y \in \R^n, x \in \R^n$. 
+> Suppose that $\tilde x$ approximates $\mathcal J_{1/\kappa F}(y)$ such that there exists some $\epsilon > 0$ with $\mathcal M_F^{1/\kappa}(\tilde x) - \mathcal M^*_{F, 1/\kappa}(y) \le \epsilon$ and $x^* = \mathcal J_{1/\kappa F}(y)$ is exact.
 > Then for all $x \in \R^n$ it has 
 > $$
 > \begin{aligned}
->   & F(x) - F(\tilde x) + \frac{\kappa}{2}(\Vert x - y\Vert^2 + \Vert \tilde x - y\Vert^2 - \Vert x - \tilde x\Vert^2) - \frac{\mu}{2}\Vert x - \tilde x\Vert^2
-> \\
-> &\ge - \epsilon + (\kappa + \mu)/2\Vert \tilde x - x^*\Vert^2 + (\kappa + \mu)\langle x - \tilde x, \tilde x - x^*\rangle. 
+>   & F(x) - F(\tilde x) + \frac{\kappa}{2}(\Vert x - y\Vert^2 - \Vert \tilde x - y\Vert^2 - \Vert x - \tilde x\Vert^2) - \frac{\mu}{2}\Vert x - \tilde x\Vert^2
+>   \\
+>   &=
+>   F(x) - F(\tilde x) + \kappa\langle x - \tilde x, \tilde x - y\rangle - \frac{\mu}{2}\Vert x - \tilde x\Vert^2
+>   \\
+>   &\ge - \epsilon + (\kappa + \mu)/2\Vert \tilde x - x^*\Vert^2 + (\kappa + \mu)\langle x - \tilde x, \tilde x - x^*\rangle. 
 > \end{aligned}
 > $$
 
 **Proof**
+
 
 The model function has quadratic growth conditions over the minimizer $x^*$ by $F$ $\mu \ge 0$ strongly convex. 
 Let $q = \mu + \kappa$ then it has for all $x \in \R^n$: 

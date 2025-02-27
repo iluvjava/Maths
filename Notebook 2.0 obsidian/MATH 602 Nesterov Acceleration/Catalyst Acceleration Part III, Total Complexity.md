@@ -202,7 +202,7 @@ $$
 The proof is complicated due to two factors: 
 1. The use of $\epsilon_k$ as a termination criterion is troublesome. 
 2. The warm starting condition requires more thoughts on the complexity bounds, and it's crucial for bundling the inner loop complexity with the outer loop complexity. 
-
+<!-- 
 ---
 ### **Warm starting the inner problem**
 
@@ -230,4 +230,8 @@ Warm start refers to taking $z_{k, 0} = x_{k - 1}$ for inner loop $\mathbb M$.
 Before we start the discussion of the next lemma, recall that for a strongly convex objective $F$, it gives 
 
 #### **Lemma B.2 | Warm starting condition 2**
+ -->
+
+---
+### **Lin, et al. The second Catalyst paper**
 

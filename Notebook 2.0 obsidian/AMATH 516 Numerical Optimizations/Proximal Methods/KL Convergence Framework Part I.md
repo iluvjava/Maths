@@ -167,7 +167,7 @@ For a proof, see Lemma 1.
 The error bound conditions of (H3) allows us to give some generalized local error bound conditions around the limiting points from the set $\text{crit}\; f$. 
 
 #### **Fact 1 | Locally constant function on a connected set**
-> A locally constant function on a connected set will be a constant function on the connected set. 
+> A locally constant function on a connected set is a constant function on the entire connected set. 
 
 **Proof**
 
