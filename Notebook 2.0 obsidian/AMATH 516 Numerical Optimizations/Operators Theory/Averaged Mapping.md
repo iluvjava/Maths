@@ -348,6 +348,17 @@ Therefore, the parameter of avergedness is still valid after composition.
 
 **Proof**
 
+The proof has the following key steps. 
+
+**(Step I)**: The averagedness parameters have the following relations. 
+If $\kappa_1 = \alpha_1/(1 - \alpha_1), \kappa_2 = \alpha_2/(1 - \alpha_2)$, define $\kappa = \kappa_1 + \kappa_2$, then it has $\alpha = \kappa/(1 + \kappa), \kappa = \alpha/(1 - \alpha)$. 
+**Step (II)**: 
+
+
+
+
+
+
 
 #### **Theorem | Composition of many Averaged Mapping**
 > Let $T_i \in \{\alpha_i-\text{Avg}\}$ , for $i \in \{1, \cdots, n\}$. 

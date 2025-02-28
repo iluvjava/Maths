@@ -316,3 +316,36 @@ The cross term cancels out.
 
 Unique to Euclidean space. 
 If this can be carried out in some Normed space, then that normed space has Euclidean geometry. 
+
+
+#### **Lemma | Subtle Jensen's inequality for Norms**
+> Let $\Vert \cdot\Vert$ be any norm, or semi-norm. 
+> Then for all $x, y \in \R^n$ and $\lambda \in (0, 1)$, we have the inequality
+> $$
+> \begin{aligned}
+>     \Vert x + y\Vert^2 
+>     &\le \frac{1}{\lambda}\Vert x\Vert^2 + \frac{1}{1 - \lambda}\Vert y\Vert^2.
+> \end{aligned}
+> $$
+
+**Proof**
+
+It's a direct proof. 
+Consider 
+
+$$
+\begin{aligned}
+    \Vert x + y\Vert^2 &= 
+    \left\Vert 
+        \lambda(\lambda^{-1}x) + (1 - \lambda)(1 - \lambda)^{-1}y
+    \right\Vert^2
+    \\
+    & \le\lambda\Vert \lambda^{-1}x \Vert^2 + (1 - \lambda)\Vert (1 - \lambda)^{-1} y\Vert^2
+    \\
+    &= \lambda^{-1}\Vert x\Vert^2 + (1 - \lambda)^{-1}\Vert y\Vert^2. 
+\end{aligned}
+$$
+
+The constants $\lambda, (1 - \lambda)$ takes out because of Jensen's inequality. 
+It applies by $\lambda \in (0, 1)$. 
+The constant $\lambda^{-1}, (1 - \lambda)^{-1}$ takes out because of the Homogeneity of $\Vert \cdot \Vert$, and no absolute value because $\lambda \in (0, 1)$. 
