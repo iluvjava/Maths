@@ -272,7 +272,7 @@ Finally, for a generalization of the fixed point iterations convergence on the a
 
 See Primer on Monotone Operator for more information. [Primer on Monotone Operator](../../MATH%20999%20Paper%20Reviews%20and%20Frontier%20Mathematics/References%20Sep%202022/Primer%20on%20Monotone%20Operators.pdf%20). 
 
-The following theorem attempt shows the convergence of the averaged operators with the modulus of averageness relaxed. 
+The following theorem attempt shows the convergence of the averaged operators with the modulus of averagedness relaxed. 
 
 
 
@@ -299,11 +299,11 @@ $$
 \begin{aligned}
     \lim_{j\rightarrow \infty}\Vert Gx^{(j)}- x^{(j)}\Vert &= 0
     \\
-    \lim_{j\rightarrow \infty}Gx^{(j)} - x^{(j)} &= \mathbf 0
+    \lim_{j\rightarrow \infty}Gx^{(j)} - x^{(j)} &= \mathbf 0. 
 \end{aligned}
 $$
 
-since the sequence is also bounded, choosing a subsequential limit $x^{(k_j)}$ would yield some kind of limit, say $x^+$, such that $\lim_{j\rightarrow \infty}Gx^{(k_j)} = \lim_{j\rightarrow \infty} x^{(k_j)}$. 
+Since the sequence is also bounded, choosing a subsequential limit $x^{(k_j)}$ would yield some kind of limit, say $x^+$, such that $\lim_{j\rightarrow \infty}Gx^{(k_j)} = \lim_{j\rightarrow \infty} x^{(k_j)}$. 
 The existence of the limit allows us to split the above limit apart and move it to the RHS.
 By continuity of non-expansive operators, we have $G x^+ = Gx^+$, hence, a cluster point is formed in the fixed point set of $G$, by [Fejer's Monotone](Fejer's%20Monotone.md) convergence, the limit of the sequence must also be the cluster point $x^+$, and the cluster point will belong to the set. 
 
@@ -322,8 +322,8 @@ Composition of nonexpansive operator would still be non-expansive too.
 Composition of firmly nonexpansive operator is not firmly nonexpansive anymore, it becomes an averaged operator. 
 They are useful for analyzing the convergences of algorithms. 
 
-#### **Thm | Composition of two Averaged Mapping**
-> Let $T_i \in \{\alpha_i-\text{Avg}\}$, for $i \in \{1, 2\}$ then the composition $T_2\circ T_1$ is $\alpha$-averaged with $\alpha = \frac{\alpha_1 + \alpha_2 - 2\alpha_1 \alpha_2}{1 - \alpha_1 \alpha_2}$. 
+#### **Theorem | Composition of two Averaged Mapping**
+> Let $T_i \in \{\alpha_i-\text{Avg}\}$, for $i \in \{1, 2\}$ then the composition $T := T_2\circ T_1$ is $\alpha$-averaged with $\alpha = \frac{\alpha_1 + \alpha_2 - 2\alpha_1 \alpha_2}{1 - \alpha_1 \alpha_2}$. 
 > However, when $\alpha_1 = \alpha_2 = 1$, that becomes invalid, and we set $\alpha = 1$. 
 
 **Observations**
@@ -344,7 +344,7 @@ $$
 \end{aligned}
 $$
 
-Therefore, the parameter of avergedness is still valid after composition. 
+Therefore, the parameter of averagedness is still valid after composition. 
 
 **Proof**
 
@@ -352,12 +352,141 @@ The proof has the following key steps.
 
 **(Step I)**: The averagedness parameters have the following relations. 
 If $\kappa_1 = \alpha_1/(1 - \alpha_1), \kappa_2 = \alpha_2/(1 - \alpha_2)$, define $\kappa = \kappa_1 + \kappa_2$, then it has $\alpha = \kappa/(1 + \kappa), \kappa = \alpha/(1 - \alpha)$. 
-**Step (II)**: 
+**Step (II)**: Using a Euclidean inequality we show: 
 
+$$
+\begin{aligned}
+    (\forall x, y \in \R^n)\; 
+    \Vert (I - T)x - (I - T)y
+    \Vert^2 &\le 
+    \alpha(1 - \alpha)^{-1}(
+        \Vert x - y\Vert^2 - \Vert Tx - Ty\Vert^2
+    ). 
+\end{aligned}
+$$
+The above inequality is equivalent to the definition of a $\alpha$-averaged operator. 
 
+**Completing (Step I).**
 
+We first show $\alpha = \kappa/(1 + \kappa)$ which is direct, and it goes: 
 
+$$
+\begin{aligned}
+    \alpha &= (\kappa_1 + \kappa_2)/(1 + \kappa_1 + \kappa_2)
+    \\
+    &= \frac{
+        \frac{\alpha_1}{1 - \alpha_1} + \frac{\alpha_2}{1 - \alpha_2}
+    }{
+        1 + \frac{\alpha_1}{1 - \alpha_1} + \frac{\alpha_2}{1 - \alpha_2}
+    }
+    \\
+    &= 
+    \frac{(1 - \alpha_2)\alpha_1 + (1 - \alpha_1)\alpha_2}{
+        (1 - \alpha_1)(1 - \alpha_2) 
+        + \alpha_1(1 - \alpha_2) + \alpha_2(1 - \alpha_1)
+    }
+    \\
+    &= 
+    \frac{\alpha_1 - \alpha_1\alpha_2 + \alpha_2 - \alpha_1\alpha_2}{
+        1 - \alpha_1 - \alpha_2 + \alpha_1\alpha_2
+        + \alpha_1 - \alpha_1\alpha_2
+        + \alpha_2 - \alpha_1\alpha_2
+    }
+    \\
+    &= 
+    \frac{\alpha_1 + \alpha_2 - 2\alpha_1\alpha_2}{1 - \alpha_1\alpha_2} = \alpha. 
+\end{aligned}
+$$
 
+To show $\kappa = \alpha/(1 - \alpha)$, consider 
+
+$$
+\begin{aligned}
+    \frac{\alpha}{1 - \alpha} &= 
+    \left(
+        \frac{\alpha_1 + \alpha_2 - 2 \alpha_1\alpha_2}{1 - \alpha_1\alpha_2}
+    \right)
+    \left(
+        1 - \frac{\alpha_1 + \alpha_2 - 2\alpha_1\alpha_2}{1 - \alpha_1 \alpha_2}
+    \right)^{-1}
+    \\
+    &= 
+    \left(
+        \frac{\alpha_1 + \alpha_2 - 2 \alpha_1\alpha_2}{1 - \alpha_1\alpha_2}
+    \right)
+    \left(
+        \frac{1 - \alpha_1\alpha_2 - \alpha_1 - \alpha_2 + 2\alpha_1\alpha_2}{1 - \alpha_1\alpha_2}
+    \right)^{-1}
+    \\
+    &= 
+    \left(
+        \frac{\alpha_1 + \alpha_2 - 2 \alpha_1\alpha_2}{1 - \alpha_1\alpha_2}
+    \right)
+    \left(
+        \frac{1 - \alpha_1 - \alpha_2 + \alpha_1\alpha_2}{1 - \alpha_1 \alpha_2}
+    \right)^{-1}
+    \\
+    &= \frac{\alpha_1 + \alpha_2 - 2\alpha_1\alpha_2}{
+        1 - \alpha_1 - \alpha_2 + \alpha_1\alpha_2. 
+    }
+    \\
+    &= \frac{\alpha_1(1 - \alpha_1) + \alpha_2(1 - \alpha_1)}{(1 - \alpha_1)(1 - \alpha_2)}
+    \\
+    &= 
+    \frac{\alpha_1}{1 - \alpha_2} + \frac{\alpha_2}{1 - \alpha_2} = \kappa_1 + \kappa_2 = \kappa. 
+\end{aligned}
+$$
+
+**Completing (Step II)**. 
+
+For all $x, y \in \R^n$, make the notations $x' = T_1x, y' = T_1y$ and $x'' = Tx, y'' = Ty$. 
+Define $z = x - y, z' = x' - y', z'' = z'' - y''$ for simpler notations as well. 
+Consider 
+
+$$
+\begin{aligned}
+    \Vert (I - T)x - (I - T)y\Vert^2 
+    &= 
+    \Vert x - y - (x'' - y'')\Vert^2
+    \\
+    &= \Vert z - z''\Vert^2
+    \\
+    &= 
+    \Vert z - z' + z' - z''\Vert^2
+    \\
+    &\le 
+    \frac{\kappa_1 + \kappa_2}{\kappa_1}
+    \Vert z - z'\Vert^2
+    + \frac{\kappa_1 + \kappa_2}{\kappa_2}\Vert z' - z''\Vert^2
+    \\
+    &= 
+    \left(
+        \kappa_1 + \kappa_2
+    \right)
+    \left(
+        \left(
+            \frac{1 - \alpha_1}{\alpha_1}
+        \right)\Vert z - z'\Vert^2
+        + \left(
+            \frac{1 - \alpha_2}{\alpha_2}
+        \right)
+        \Vert z' - z''\Vert^2
+    \right)
+    \\
+    &\le  
+    \kappa\left(
+        \Vert z\Vert^2 - \Vert z'\Vert^2
+        + 
+        \Vert z'\Vert^2 - \Vert z''\Vert^2
+    \right)
+    \\
+    &= \kappa(\Vert z\Vert^2 - \Vert z''\Vert^2). 
+\end{aligned}
+$$
+
+And this reduces to the $k$-averagedness of $T$ after dividing it by $\kappa$. 
+The first inequality used a Euclidean inequality and the second inequality used the $\kappa_1,\kappa_2$ averagedness of $T_1, T_2$. 
+$\blacksquare$
 
 
 #### **Theorem | Composition of many Averaged Mapping**

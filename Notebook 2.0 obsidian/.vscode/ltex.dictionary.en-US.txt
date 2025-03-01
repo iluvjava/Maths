@@ -40,3 +40,4 @@ nonsmooth
 coersive
 Kaczmarz
 Monotonicity
+averagedness

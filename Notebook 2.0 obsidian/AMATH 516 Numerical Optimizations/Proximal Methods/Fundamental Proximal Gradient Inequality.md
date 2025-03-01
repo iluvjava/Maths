@@ -506,7 +506,6 @@ The model function admits quadratic growth condition over minimizer $T_Ly$.
 Therefore, for all $x \in Q$ it has: 
 
 $$
-
 \begin{aligned}
     0 &\le 
     \widetilde{\mathcal M}(x; y) - \widetilde{\mathcal M}(Ty; y) - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 

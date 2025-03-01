@@ -41,7 +41,7 @@
 
 % SLIDE INFORMATION ============================================================
 \author{Hongda Li}
-\title[Thesis Proposal Talk]{Nesterov's First Order Method Accelerations: Unifications, Applications  and Numerial Experiments}
+\title[Thesis Proposal Talk]{Nesterov's First Order Method Accelerations: Unifications, Applications and Numerical Experiments}
 % \newcommand{\email}{lalala@lala.la}
 \institute[UBCO]{
     University of British Columbia Okanagan
@@ -79,16 +79,15 @@
     \tableofcontents
 \end{frame}
 
-
 \section{Introduction}
     \begin{frame}{Introduction}
-        Part I: Introduction. 
+        Part I: Introduction to Relaxed Weak Accelerated Proximal Gradient (R-WAPG). 
         \begin{block}{Upcoming Contents: }
             \begin{itemize}
                 \item Notations, proximal gradient inequality, gradient mapping. 
                 \item Nesterov's estimating sequence.
                 \item Introducing R-WAPG (Content of our draft paper). 
-                \item Introducing the Catalyst metal acceleration framework. 
+                \item Introducing the Catalyst meta acceleration framework. 
             \end{itemize}
         \end{block}
     \end{frame}
@@ -164,7 +163,7 @@
         \begin{frame}{Introducing Catalyst Part I}
             \begin{block}{Introducing Catalyst}
                 Let $F:\RR \rightarrow \overline \RR$ be $\mu \ge 0$ strongly convex and closed. 
-                Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa > 0$ and $\alpha_0 \in (0, 1]$. 
+                Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa > 0$ and $\alpha_0 \in (0, 1]$.
                 {\small 
                 \begin{tcolorbox}
                     Initialize $x_0 = y_0$. Then the algorithm generates $(x_k, y_k)_{k\ge 0}$ for all $k \ge 1$ such that: 
@@ -194,17 +193,16 @@
     \begin{frame}{Contents of our draft papers}
         Part II: Contents of our current draft paper. 
         \begin{block}{Upcoming contents}
-            We explain results from our relaxed, weak accelerated proximal gradient (R-WAPG). 
+            We explain results from our draft paper on relaxed, weak accelerated proximal gradient (R-WAPG). 
             \begin{enumerate}
-                \item The R-WAPG sequence and the method of R-WAPG. 
+                \item The R-WAPG sequence and the method of R-WAPG.
                 \item A generic convergence theorem of R-WAPG. 
                 \item Three equivalent forms of R-WAPG. 
-                \item Specialized convergence results with for specific instances of FISTA variants in the literatures. 
+                \item Specialized convergence results of Euclidean FISTA variants in the literatures. 
                 \item A parameter free formulation of R-WAPG and the results of our preliminary numerical experiments. 
                 \item Nesterov's idea of strong convexity transfer and the R-WAPG framework. 
             \end{enumerate}
         \end{block}
-        
     \end{frame}
     \subsection{The method of R-WAPG and its convergence}
         \begin{frame}{R-WAPG sequences}
@@ -237,11 +235,11 @@
                         y_k &= 
                         (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k), 
                         \\
-                        g_k &= \mathcal G_L y_k, 
-                        \\
+                        % g_k &= , 
+                        % \\
                         v_{k + 1} &= 
                         \hat\gamma^{-1}_{k + 1}
-                        (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), 
+                        (\gamma_k(1 - \alpha_k) v_k - \alpha_k \mathcal G_L y_k + \mu \alpha_k y_k), 
                         \\
                         x_{k + 1} &= T_L y_k. 
                     \end{align*}    
@@ -263,6 +261,7 @@
                     \label{eqn:regret}
                 \end{align}
             \end{assumption}
+            \eqref{eqn:lower-linearization} Comes from Lemma \ref{thm:prox-grad-ineq}. 
         \end{frame}
         \begin{frame}{Convergence of R-WAPG}
             The convergence claim of the method follows. 
@@ -327,7 +326,7 @@
                             1 + \frac{L - L\alpha_{k}}{L\alpha_{k} - \mu}
                         \right)^{-1}
                         \left(
-                            v_{k + 1} + 
+                            v_{k} + 
                             \left(\frac{L - L\alpha_{k}}{L\alpha_{k} - \mu} \right) x_{k}
                         \right), 
                         \\
@@ -427,7 +426,7 @@
             \begin{tabular}{|l|l|l|l|}
             \hline
                 Algorithm & $\mu$ & $\alpha_k, \rho_k$ & $F(x_k) - F^* \le \mathcal O(\cdot)$ 
-            \\ \hline
+            \\  \hline
                 Definition \ref{def:wapg} & 
                 $\mu \ge 0$ &
                 $\alpha_k \in(\mu/L, 1)$, $\rho_k > 0$ & 
@@ -436,7 +435,7 @@
                     \\
                     (Proposition \ref{prop:wagp-convergence})
                 \end{tabular}
-            \\ \hline
+            \\  \hline
                 FISTA \cite{chambolle_convergence_2015} &  
                 $\mu = 0$  &
                 $ 0< \alpha_k^{-2} \le \alpha_{k + 1}^{-1} - \alpha_{k + 1}^{-2}$, $\rho_k \ge 1$ &
@@ -445,7 +444,7 @@
                     % \\ 
                     % (Theorem \ref{thm:r-wapg-on-cham-doss})    
                 \end{tabular}
-            \\ \hline
+            \\  \hline
                 \hspace{-1em}\begin{tabular}{l}
                     V-FISTA \\ (10.7.7) \cite{beck_first-order_2017} 
                 \end{tabular} &
@@ -457,7 +456,11 @@
                     % (Theorem \ref{thm:fixed-momentum-fista}, remark)
                 \end{tabular}
             \\ \hline
-                Definition \ref{def:wapg} &  
+                \hspace{-1em}
+                \begin{tabular}{l}
+                    Constant\\ Momentum
+                \end{tabular}
+                &  
                 $\mu > 0$ &
                 $\alpha_k = \alpha \in (\mu/L, 1)$, $\rho_k = \rho > 0$ &  
                 \begin{tabular}{l}
@@ -470,7 +473,7 @@
             }
             \end{table}
             These results are consistent of literatures. 
-            To the best of our knowledge, the last variant is, and we have the convergence claim for it using R-WAPG. 
+            To the best of our knowledge, the last variant is new, and we have the convergence claim for it using R-WAPG. 
         \end{frame}
     \subsection{A parameter free formulation of R-WAPG}
         \begin{frame}{Free R-WAPG}
@@ -492,7 +495,7 @@
                     \STATE{$\theta_{k + 1} := \alpha_k(1 - \alpha_k)/(\alpha_k^2 + \alpha_{k + 1})$;}
                     \STATE{$y_{k + 1}:= x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$; }
                     \STATE{\textbf{Compute: } $f(y_{k + 1})$}
-                    \STATE{$\mu_k := D_f(y_{k + 1}, y_{k})/\Vert y_{k + 1} - y_k\Vert^2 + (1/2)\mu_k$;}
+                    \STATE{$\mu_{k + 1} := D_f(y_{k + 1}, y_{k})/\Vert y_{k + 1} - y_k\Vert^2 + (1/2)\mu_k$;}
                 \ENDFOR
                 }
                 \end{algorithmic}
@@ -557,8 +560,18 @@
             FR-WAPG estimates the following for $\mu_k$: 
             \begin{figure}[H]
                 \centering
-                \includegraphics[width=0.64\textwidth]{assets/simple_regression_loss_sc_estimates_1024.png}
-                \caption{$N = 1024$, the $\mu$ estimates produced by Algorithm \ref{alg:free-rwapg} (R-WAPG) is recorded. }
+                \begin{subfigure}[b]{0.47\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/simple_regression_loss_sc_estimates_1024.png}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[b]{0.47\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/simple_regression_loss_1024.png}
+                \end{subfigure}
+                \caption{
+                    $N = 1024$, the $\mu$ estimates produced by Algorithm \ref{alg:free-rwapg} (R-WAPG) is recorded.
+                }
                 \label{fig:simple-quadratic-r-wapg-mu-estimates}
             \end{figure}
         \end{frame}
@@ -617,7 +630,7 @@
         \end{frame}
     \subsection{Direction of future works for R-WAPG}
         \begin{frame}{Nesterov's idea of strong convexity transfer}
-            There is one detail that our R-WAPG doesn't incorporate on all Euclidean variants of FISTA. 
+            There is one detail in the literatures that our R-WAPG doesn't incorporate.  
             We consider this a minor augmentation for the future. 
             \begin{enumerate}
                 \item In Nesterov's 2013 paper \cite{nesterov_gradient_2013}, he considers accelerated  minimization problem $\phi = f + g$ with $f$ $L_f$ smooth and $g$ being $\mu_g \ge 0$ strongly convex. 

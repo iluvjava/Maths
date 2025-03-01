@@ -77,7 +77,6 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             & y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k).
         \end{align}\label{eqn:example-algorithm}
 
-
         \subsection{Prior works}
             Apidopoulos et al. \cite{apidopoulos_convergence_2018} showed that a relaxed choice of the sequence that doesn't strictly follow the Nesterov's rule still leads to the convergence of the momentum algorithm.
             Besides restarting, See Attouch, et al. \cite{attouch_first-order_2022}, Maulen and Peypouquet \cite{maulen_speed_2023} and references within.
@@ -2316,7 +2315,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             \STATE{$\theta_{k + 1} := \alpha_k(1 - \alpha_k)/(\alpha_k^2 + \alpha_{k + 1})$;}
             \STATE{$y_{k + 1}:= x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$; }
             \STATE{\textbf{Compute: } $f(y_{k + 1})$}
-            \STATE{$\mu_k := D_f(y_{k + 1}, y_{k})/\Vert y_{k + 1} - y_k\Vert^2 + (1/2)\mu_k$;}
+            \STATE{$\mu_{k + 1} := D_f(y_{k + 1}, y_{k})/\Vert y_{k + 1} - y_k\Vert^2 + (1/2)\mu_k$;}
         \ENDFOR
         }
         \end{algorithmic}
@@ -2537,8 +2536,6 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
     In addition, of being parameter free, the algorithm works well with auto-differentiation framework because it requires the function value at the same point where the gradient is evaluated at $y_k$.
     We do note that in the case when function is not strongly convex, the function value converges without $\Vert \mathcal G_L(y_k)\Vert$ converging.
     This will be explored more in future work.
-
-
 
 
 

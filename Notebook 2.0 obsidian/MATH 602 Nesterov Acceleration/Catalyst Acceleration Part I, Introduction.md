@@ -226,7 +226,7 @@ $$
     \phi_k^* &= 
     (1 - \alpha_{k - 1})\phi_{k - 1}+ \alpha_{k - 1}F(x_k)
     + 
-    \frac{(1 - \alpha_{k - 1})\gamma_{k - 1}}{2}\Vert x - v_{k - 1}\Vert^2
+    \frac{(1 - \alpha_{k - 1})\gamma_{k - 1}}{2}\Vert x_k - v_{k - 1}\Vert^2
     - 
     \frac{(1 - \alpha_{k - 1})^{2}\gamma_{k - 1}^{2}}{2\gamma_k}\Vert x_k - v_{k - 1}\Vert^2
     \\
