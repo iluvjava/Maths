@@ -79,7 +79,7 @@ We Denote $\mathbb A$ to be the algorithm used for the outer loop, producing ite
 > \begin{aligned}
 >     \mathcal M_F^{\kappa^{-1}}(z_{k, t}, y) - \mathcal M^*_{F, \kappa^{-1}}(y) 
 >     &\le 
->     A(1 - \tau_{\mathbb M})^t
+>     C_{\mathbb M}(1 - \tau_{\mathbb M})^t
 >     \left(
 >         \mathcal M_{F}^{\kappa^{-1}}(z_{k,0})
 >         -
@@ -148,7 +148,7 @@ We now clarify on a very high level, additional key innovations in Lin's first C
 > Here $\widetilde{\mathcal O}$ hides logarithmic complexity in $\mu, \kappa$ and other constants. 
 
 
-#### **Proposition 3.3 | Inner loop complexity, convex but not strongly convex**
+#### **Proposition 3.4 | Inner loop complexity, convex but not strongly convex**
 > Under the settings of Theorem 1.2, suppose that method $\mathbb M$ has linear convergence rate as specified in Assumption 2. 
 > Suppose that the initial guess for $\mathbb M$ is $z_{0, k} = x_{k - 1}$. 
 > Assume that $F$ has bounded level set, then there exists $T_{\mathbb M} \le \widetilde{\mathcal O}(1 / \tau_{\mathbb M})$ such that for any $k \ge 1$. 
@@ -170,10 +170,13 @@ $$
     \right)
     \\
     &\le \widetilde{\mathcal O}\left(
-        \tau_{\mathbb M}\sqrt{\mu}/(\mu + \kappa)
+        \left(
+            1 - \tau_{\mathbb M}\sqrt{\mu/(\mu + \kappa)}
+        \right)^m
     \right). 
 \end{aligned}
 $$
+
 The second inequality on the first line made use of the fact that $1 + x \le (1 + x/n)^n$ for all $n \ge 1$ and $|x| \le n$. 
 By choosing the best $\kappa > 0$ that minimizes the above upper bound, it suggests the optimal value of $\kappa$ is suggested 
 
@@ -181,7 +184,9 @@ In proposition 3.3, we can upper bound the iteration complexity of $F(x_k) - F^*
 The total number of iteration experience by $\mathbb M$ is upper bounded by 
 $$
 \begin{aligned}
-    m &\le \sum_{i - 1}^{k} k T_{\mathbb M} \log(i + 2) \le k T_{\mathbb M} \log(k + 2) 
+    m 
+    &\le \sum_{i - 1}^{k} T_{\mathbb M} \log(i + 2) 
+    \le k T_{\mathbb M} \log(k + 2) 
     \le T_{\mathbb M}k(k + 2) 
     \le 
     \mathcal O(T_{\mathbb M} k^2). 
@@ -230,7 +235,8 @@ Warm start refers to taking $z_{k, 0} = x_{k - 1}$ for inner loop $\mathbb M$.
 Before we start the discussion of the next lemma, recall that for a strongly convex objective $F$, it gives 
 
 #### **Lemma B.2 | Warm starting condition 2**
- -->
+
+-->
 
 ---
 ### **Lin, et al. The second Catalyst paper**

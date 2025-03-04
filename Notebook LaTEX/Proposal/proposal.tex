@@ -329,73 +329,87 @@
         
 
 \section{Unifying NAG, and weakening the sequence assumption for convergences}\label{sec:unify-nes-acceleration}
-    This section is based on our unpublished draft paper. 
-    The Nesterov's acceleration scheme which was originally proposed in 1983 \cite{nesterov_method_1983} is a celebrated first order method for solving the minimization problem. 
-    Here, NAG stands for Nesterov's Accelerated Gradient. 
-    It refers to a general class of momentum method where the gradient are evaluated on an extrapolated iterate using the previous two iterates. 
-    Initialize $x_1 = y_1$ and $t_0 = 1$, the algorithm finds $(x_k)_{k \ge 1}$ for all $k \ge 1$ by: 
-    \begin{align}
-        & x_{k + 1} = y_k - L^{-1}\nabla F(y_k), 
-        \\
-        & t_{k + 1} = 1/2\left(1 + \sqrt{1 + 4t_{k}^2}\right), 
-        \\
-        & \theta_{k + 1} = (t_{k} - 1)/t_{k + 1}, 
-        \\
-        & y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k). 
-    \end{align}\label{eqn:example-algorithm}
-    If the minimizer $x^*$ exists, then the optimality gap $F(x_k) - F(x^*)$ decreases at a rate of $\mathcal O(1/k^2)$, a faster rate compared to gradient descent which is $\mathcal O(1/k)$. 
-    It's consider optimal in some sense and see Chapter 2 of Nesterov's book \cite{nesterov_lectures_2018} for details. 
-    \subsection{Contributions}
+        The Nesterov acceleration scheme, originally proposed in 1983 \cite{nesterov_method_1983}, is a celebrated first order method for solving the minimization problem.
+        If the minimizer $x^*$ exists, then the optimality gap sequence $(F(x_k) - F(x^*))_{k\geq 1}$ decreases at a rate of $\mathcal O(1/k^2)$, a faster rate compared to gradient descent which is $\mathcal O(1/k)$.
+        It's consider optimal in a certain sense, see Chapter 2 of Nesterov's book \cite{nesterov_lectures_2018} for details.
+        However, things are not sunshine, rainbow and happily ever after because the above scheme is associated with the issue that if $F$ is $\mu > 0$ strongly convex, the optimality gap sequence $(F(x_k) - F(x^*))_{k\geq 1}$ oscillates and converges sub-linearly, making it worse than the gradient descent. See page 9 of Su et al. \cite{su_differential_2016}.
+        \par
+        This issue motivated a vast amount of literatures aims at improving, interpreting, and extending this method.
+        Restarting is a popular solution to address the issue of obtaining better convergence rate when the objective function is strongly convex.
+        Beck and Teboulle \cite{beck_fast_2009} mitigate the issue by restarting and showed that it has an $\mathcal O(1/k^2)$ convergence still, but it performs empirically better.
+        See \cite{aujol_parameter-free_2024}, \cite{necoara_linear_2019} and references therein for recent advancements in restarting accelerated proximal gradient algorithms.
+        \par
+        In the convex setting, the variants that Nesterov's Accelerated Gradient are optimal to for cases when $\mu \ge 0$ and $\mu > 0$ are different.
+        In this paper, we will show a unified framework for the convergence proof of both cases with a much relaxed condition for the recurrence of the momentum parameters used to extrapolate the iterates.
+        For simplicity consider minimizing a differentiable convex function $F: \RR^n \rightarrow \RR$.
+        Let $F$ be $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex meaning that there exists $L \in \RR$ such that for all $x \in \RR^n, y\in \RR^n$ it has $\mu\Vert x - y\Vert\le \Vert \nabla F(x) - \nabla F(y)\Vert \le L \Vert x - y \Vert$.
+        We will list the following example algorithm of Nesterov's Accelerated Gradient to refer to while introducing the context and prior works.
+        Initialize $x_1 = y_1$ and $t_0 = 1$, the algorithm finds $(x_k)_{k \ge 1}$ for all $k \ge 1$ by:
+        \begin{align}
+            & x_{k + 1} := y_k - L^{-1}\nabla F(y_k),
+            \\
+            & t_{k + 1} := 1/2\left(1 + \sqrt{1 + 4t_{k}^2}\right),
+            \\
+            & \theta_{k + 1} := (t_{k} - 1)/t_{k + 1}, \label{eqn:example-algorithm}
+            \\
+            & y_{k + 1} := x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k).
+        \end{align}
+        \subsection{Contributions}
+        Our are concerned with the composite model
+        $\min_{x\in\RR^n}\{F(x)= f(x) + g(x)\},$ 
+        where $g:\RR^n \rightarrow \overline\RR$ is a proper,  closed and convex function, and $f$ is an $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex function.
+        Our contributions are two folds: theoretical and practical.
+        \par
         Inspired specifically by the technique of Nestrov's estimating sequence \cite{nesterov_lectures_2018}, firstly we present a unified framework of Accelerated Proximal Gradient (APG) which we call Relaxed Weak Accelerated Proximal Gradient (R-WAPG) in Section \ref{sec:rwapg-formulation-convergence}.
-        It has the ability to upper bound $F(x_k) - F(x^*)$ for sequences $(t_k)_{k \ge 0}$ that follows a rule much weaker than Nesterov's update rule. 
-        In addition to a convergence claim of $F(x_k)- F(x^*)$ for a much more flexible choice of $(t_k)_{k \ge 1}$. 
-        Secondly, we present an alternative to restarting that performs well empirically inspired by a small detail in the convergence proof of R-WAPG. 
-        It also has descriptive power to describe several variants of FISTA in the literatures.  
+        It can upper bound $F(x_k) - F(x^*)$ for sequences $(t_k)_{k \ge 0}$ that doesn't follow Nesterov's update rule, and it unifies the convergence results of several Euclidean variants of FISTA.
+        Secondly, as an alternative to restarting, we present the method of Free R-WAPG which estimates the modulus of convexity as the algorithm executes. Extensive numerical experiments illustrate that our method performs well empirically.
         \par
-        Our contributions are two folds, theoretical and practical. 
-        Our results are based the assumption $F = f + g$ where $g:\RR^n \rightarrow \overline\RR$ is convex proper and closed, and $f$ is an $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
+        \textbf{A summary of our main results follows. }
+        Nesterov's acceleration extrapolates $y_{k + 1} := x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$ where $\theta_{k + 1} := (t_{k} - 1)/t_{k + 1} \in (0, 1)$ is the ``momentum''.
+        The choices for $\theta_k$ vary for different variants of the accelerated proximal gradient algorithm.
+        In Chambolle and Dossal \cite{chambolle_convergence_2015}, it has $t_k := (k + a - 1)/a$ for all $a > 2$ which gives weak convergence of the iterates $x_k$ in Hilbert space.
+        In Chapter 10 of Beck's Book \cite{beck_first-order_2017}, a variant called V-FISTA can achieve the faster linear convergence rate: $\mathcal O((1 - \sqrt{\mu/L})^k)$ on the optimality gap for $\mu > 0$ strongly convex $f$.
+        V-FISTA has $\theta_k := (\sqrt{\kappa} - 1)/(\sqrt{\kappa} + 1)$ where $\kappa := L/\mu$.
         \par
-        \textbf{A summary of our main results follow. } 
-        Nesterov's acceleration extrapolate $y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$ where $\theta_{k + 1} = (t_{k} - 1)/t_{k + 1} \in (0, 1)$ is the ``momentum''. 
-        The choices for $\theta_k$ varies for different variants of the accelerated proximal gradient algorithm. 
-        In Chambolle, Dossal \cite{chambolle_convergence_2015}, it has $t_k = (n + a - 1)/a$ for all $a > 2$ which gives weak convergence of the iterates $x_k$ in Hilbert space. 
-        In Chapter 10 of Beck's Book \cite{beck_first-order_2017}, a variant called V-FISTA can achieve the faster linear convergence rate: $\mathcal O((1 - \sqrt{\mu/L})^k)$ on the optimality gap for $\mu > 0$ strongly convex $F$. 
-        V-FISTA has $\theta_t = (\sqrt{\kappa} - 1)/(\sqrt{\kappa} + 1)$ where $\kappa = \mu/L$. 
-        \par
-        We relax the traditional choice of the sequence $\theta_k$ in Equation \ref{eqn:example-algorithm} and showed an upper bound of the optimal gap. 
+        We relax the traditional choice of the sequence $(\theta_k)_{k\geq 1}$ in equation \eqref{eqn:example-algorithm} and give an upper bound of the optimal gap.
         Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be two sequences that satisfy
         \begin{align*}
-            \alpha_0 &\in (0, 1], 
+            \alpha_0 &\in (0, 1],
             \\
-            \alpha_k &\in (\mu/L, 1) \quad (\forall k \ge 1), 
+            \alpha_k &\in (\mu/L, 1) \quad (\forall k \ge 1),
             \\
-            \rho_k &:= \frac{\alpha_{k + 1}^2 - (\mu/L)\alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2} \quad \forall (k \ge 0). 
+            \rho_k &:= \frac{\alpha_{k + 1}^2 - (\mu/L)\alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2} \quad \forall (k \ge 0).
         \end{align*}
-        Our first main result shows that if $\theta_{k + 1} = (\rho_k\alpha_k(1 - \alpha_k)/(\rho_k\alpha_k^2 + \alpha_{k + 1}))$, using the R-WAPG we proposed in Definition \ref{def:wapg} with Proposition \ref{prop:wagp-convergence}, \ref{prop:r-wapg-momentum-repr}, we can show that the gap $F(x_k) - F(x^*)$ is bounded by:
+        Our first main result shows that if $\theta_{k + 1} := (\rho_k\alpha_k(1 - \alpha_k)/(\rho_k\alpha_k^2 + \alpha_{k + 1}))$, using the R-WAPG we proposed in Definition \ref{def:wapg} with Proposition \ref{prop:wapg-convergence}, \ref{prop:r-wapg-momentum-repr}, we can show that the gap $F(x_k) - F(x^*)$ is bounded by:
         \begin{align*}
             \mathcal O\left(
                 \left(
-                    \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
+                    \prod_{i = 0}^{k - 1} \max(1, \rho_{i})
                 \right)
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
-            \right). 
+            \right).
         \end{align*}
-        Our second main result shows that for any $\alpha_k \ge 0$ the choice of sequence $\alpha_k = a/(a + k)$ results in $\rho_k > 1$ for all $k \in \N$ such that R-WAPG reduces to a variant of FISTA proposed in Chambolle, Dossal \cite{chambolle_convergence_2015}, and we are able to show the same convergence rate in Theorem \ref{thm:r-wapg-on-cham-doss}. 
-        When $\rho_k = 1, \mu = 0$, R-WAPG reduces perfectly to FISTA by Beck \cite{beck_first-order_2017}, if $\mu > 0, \rho_k = 1$, it reduces to the V-FISTA by Beck \cite{beck_first-order_2017}. 
-        In Theorem \ref{thm:fixed-momentum-fista}, it demonstrates that R-WAPG frameworks gives a linear convergence claim for all fixed momentum method where $\alpha_k := \alpha \in (\mu/L, 1)$ and  $F$ is $\mu > 0$ strongly convex. 
-        Finally, we did the tedious work and present three equivalent forms of R-WAPG in Section \ref{sec:rwapg-equiv-repr} that are comparable to notable Euclidean variants of FISTA and beyond. This shows the descriptive power of our R-WAPG framework. 
+        Our second main result shows that for any $a \ge 2$ the choice of sequence $\alpha_k := a/(a + k)$ results in $\rho_k \geq 1$ for all $k \in \N$ such that R-WAPG reduces to a variant of FISTA proposed in Chambolle and Dossal \cite{chambolle_convergence_2015}, and we are able to show the same convergence rate in Theorem \ref{thm:r-wapg-on-cham-doss}.
+        When $\mu := 0, \rho_k := 1$, R-WAPG reduces perfectly to FISTA by Beck \cite{beck_first-order_2017}; when $\mu > 0, \rho_k := 1$, it reduces to the V-FISTA by Beck \cite{beck_first-order_2017}.
+        In Theorem \ref{thm:fixed-momentum-fista}, we demonstrate that R-WAPG framework gives a linear convergence claim for all fixed momentum method where $\alpha_k := \alpha \in (\mu/L, 1)$ and  $F$ is $\mu > 0$ strongly convex.
+        Finally, we present three equivalent forms of R-WAPG in Section \ref{sec:rwapg-equiv-repr} that are comparable to notable Euclidean variants of FISTA and beyond. This shows the enormous flexibility of our R-WAPG framework.
         \par
-        Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG'' (See Algorithm \ref{alg:free-rwapg}). 
-        The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ from the Bregman divergence of $f$ with minimal computational cost. 
-        We conducted ample amount of numerical experiments to show that it has a favorable convergence rate in practice and behaves similarly to the FISTA with monotone restart.
+        Our practical contribution is an algorithm called ``Parameter Free R-WAPG'' (See Algorithm \ref{alg:free-rwapg}), and is is inspired by the proof of Proposition \ref{prop:wapg-convergence}.
+        The algorithm is parameter free because it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_k$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ from the Bregman divergence of $f$ with minimal computational cost.
+        We conduct ample amount of numerical experiments to show that it has a favorable convergence rate in practice and behaves similarly to the FISTA with monotone restart.
         \par 
-        Section \ref{sec:stepwise-stuff} states and proves Proposition \ref{prop:stepwise-lyapunov}, an inequality based on a single generic iterative step that acts similar to a descent lemma. 
-        Section \ref{sec:rwapg-formulation-convergence} formulates the full R-WAPG in Definition \ref{def:wapg} and defines the R-WAPG sequence in Definition \ref{def:rwapg-seq}. 
-        Proposition \ref{prop:wagp-convergence} states the convergence rate of R-WAPG through Proposition \ref{prop:stepwise-lyapunov} and the R-WAPG sequence. 
-        Section \ref{sec:rwapg-equiv-repr} gives three equivalent representations of the R-WAPG algorithms that are comparable to instances of APG found in the literatures. 
-        Section \ref{sec:rwapg-literatures} formulates FISTA, and V-FISTA sequences as instance of the R-WAPG sequences.
-        The section proves the convergence rate of several variants of FISTA using the equivalent forms introduced in Section \ref{sec:rwapg-equiv-repr} and the convergence rate developed Section \ref{sec:rwapg-formulation-convergence}. 
-        Finally, in Section \ref{sec:free-rwapg} gives a formulation of a parameter free version of R-WAPG algorithm and showcase the numerical experiments for regression, LASSO. 
+        \textbf{The remainder of this paper is organized as follows. }
+        Section \ref{sec:stepwise-stuff} proves 
+        %Proposition \ref{prop:stepwise-lyapunov}, 
+        a key inequality based on a single generic iterative step that acts similar to a descent lemma; see Proposition \ref{prop:stepwise-lyapunov}. It is crucial for the convergence analysis of relaxed weak accelerated proximal gradient (R-WAPG) studied later.
+        Section \ref{sec:rwapg-formulation-convergence} formulates the full R-WAPG and defines the R-WAPG sequence. Using Proposition \ref{prop:stepwise-lyapunov} from Section~\ref{sec:stepwise-stuff} and the R-WAPG sequence, 
+        %Proposition \ref{prop:wapg-convergence} states 
+        we provide the convergence rate of R-WAPG.
+        Section \ref{sec:rwapg-equiv-repr} focuses on three equivalent representations of the R-WAPG algorithm that are comparable to instances of APG found in the literatures.
+        Section \ref{sec:rwapg-literatures} formulates FISTA, and V-FISTA sequences as the instances of R-WAPG sequences.
+        This section proves the convergence rate of several variants of FISTA using the equivalent forms introduced in Section \ref{sec:rwapg-equiv-repr} and the convergence rate developed in Section \ref{sec:rwapg-formulation-convergence}.
+        In Section \ref{sec:free-rwapg} we give a parameter free version of R-WAPG algorithm and showcase its numerical experiments for regression, LASSO. 
+        % We conclude with some discussions and perspectives of our results in Section~\ref{s:discussion}. 
 
         
     \subsection{Stepwise formulation of weak accelerated proximal gradient}\label{sec:stepwise-stuff}
@@ -404,80 +418,65 @@
         Definition \ref{def:stepwise-wapg} which describes what happens at a single iteration of the R-WAPG algorithm. 
         It defines a procedure of generating $x_{k + 1}, v_{k + 1}$ given any $x_k, v_k$. 
         Proposition \ref{prop:stepwise-lyapunov} states the inequality that describes a decreasing quantity that involves $F(x_k), F(x_{k + 1})$ at each single iteration. 
-        \begin{assumption}
-            Given $x_k, y_k, v_k$ where $k \in \mathbb Z_+$, we define the following quantities
+        \begin{assumption}\label{ass:regret-gap}
+            Given $x_k, y_k, v_k$ where $k \in \mathbb \NN$, we define the following quantities:
             \begin{align}
-                g_k &\defeq L(y_k - T_L y_k), 
+                g_k &\defeq L(y_k - T_L(y_k)),
                 \label{eqn:grad-map}
                 \\
-                l_F(x; y_k) &\defeq F(T_Ly_k) + \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2, 
+                l_F(x; y_k) &\defeq F(T_L(y_k)) + \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2,
                 \label{eqn:lower-linearization}
                 \\
-                \epsilon_{k} &\defeq F(x_k) - l_F(x_k; y_k), 
+                \epsilon_{k} &\defeq F(x_k) - l_F(x_k; y_k).
                 \label{eqn:regret}
             \end{align}
-            Observe that by convexity of $F$, $\epsilon_k \ge 0$ for all $x_k, L > 0$. 
-            To see, use Theorem \ref{thm:prox-grad-ineq} and let $y = y_k, x = x_k$ which gives: 
-            \begin{align*}
-                F(x_k) - F(T_Ly_k)
-                - \langle L(y_k - T_Ly_k),x_k - y_k \rangle
-                - \frac{L}{2}\Vert y_k - T_Ly_k\Vert^2
-                - \frac{\mu}{2}\Vert x_k - y_k\Vert^2
-                &\ge 0
-                \\
-                \iff 
-                F(x_k) - F(T_Ly_k)
-                - \langle g_k,x_k - y_k \rangle
-                - \frac{1}{2L}\Vert g_k\Vert^2
-                &\ge 0. 
-            \end{align*}
         \end{assumption}
         The proposition follows provides upper bound to $F(x_{k + 1})$ in relations to $F(x_{k})$. 
-        \begin{definition}[Stepwise weak accelerated proximal gradient]\;\label{def:stepwise-wapg}\\
+        \begin{definition}[stepwise weak accelerated proximal gradient]\label{def:stepwise-wapg}
             Assume $0 \le \mu < L$.
-            Fix any $k \in \mathbb Z_+$. 
-            For any $(v_k, x_k), \alpha_k \in (0, 1), \gamma_k > 0$, let $\hat \gamma_{k + 1}$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ be given by: 
+            Fix any $k \in \NN$.
+            For any $(v_k, x_k), \alpha_k \in (0, 1), \gamma_k > 0$, let $\hat \gamma_{k + 1}$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ be given by:
             \begin{align}
-                \hat \gamma_{k + 1} &= (1 - \alpha_k)\gamma_k + \mu \alpha_k, \label{eqn:stepwise-wapg-eqn1}
+                \hat \gamma_{k + 1} &:= (1 - \alpha_k)\gamma_k + \mu \alpha_k, \label{eqn:stepwise-wapg-eqn1}
                 \\
-                y_k &= 
+                y_k &:=
                 (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k), \label{eqn:stepwise-wapg-eqn2}
                 \\
-                g_k &= \mathcal G_L y_k, \label{eqn:stepwise-wapg-eqn3}
+                g_k &:= \mathcal G_L (y_k), \label{eqn:stepwise-wapg-eqn3}
                 \\
-                v_{k + 1} &= \hat\gamma^{-1}_{k + 1}
+                v_{k + 1} &:= \hat\gamma^{-1}_{k + 1}
                 (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), \label{eqn:stepwise-wapg-eqn4}
                 \\
-                x_{k + 1} &= T_L y_k. \label{eqn:stepwise-wapg-eqn5}
+                x_{k + 1} &:= T_L(y_k). \label{eqn:stepwise-wapg-eqn5}
             \end{align}
         \end{definition}
-        \begin{proposition}[Stepwise Lyapunov]\;\label{prop:stepwise-lyapunov} \\
-            Let $k \in \mathbb Z_+$, $R_k \in \RR$. 
-            Given any $v_k, x_k$ and $\gamma_k > 0$ and $v_{k + 1}, x_{k + 1}, y_k, \hat \gamma_{k + 1}, \alpha_k$ that satisfies Definition \ref{def:stepwise-wapg}. 
-            Define: 
+        \begin{proposition}[stepwise Lyapunov]
+            Let $k \in \mathbb Z_+$, $R_k \in \RR$. \label{prop:stepwise-lyapunov}
+            Given any $v_k, x_k$ and $\gamma_k > 0$ and $v_{k + 1}, x_{k + 1}, y_k, \hat \gamma_{k + 1}, \alpha_k$ that satisfy Definition \ref{def:stepwise-wapg}.
+            With $\epsilon_k, y_k$ given by Assumption \ref{ass:regret-gap}, define:
             \begin{align}\label{eqn:stepwise-lya-1}
                 R_{k + 1}
                 \defeq
                 \frac{1}{2}\left(
                     L^{-1} - \frac{\alpha_k^2}{\hat \gamma_{k + 1}}
                 \right)\Vert g_k\Vert^2
-                + 
+                +
                 (1 - \alpha_k)
                 \left(
-                    \epsilon_k + R_k + 
+                    \epsilon_k + R_k +
                     \frac{\mu\alpha_k\gamma_k}{2\hat \gamma_{k + 1}}
                     \Vert v_k - y_k\Vert^2
-                \right). 
+                \right).
             \end{align}
             Then for all $x^* \in \RR^n$, we have:
             {\small
             \begin{align}\label{ineq:stepwise-lya-2}
                 F(x_{k + 1}) - F(x^*) + R_{k + 1} + \frac{\hat \gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
-                &\le 
+                &\le
                 (1 - \alpha_k)
                 \left(
                     F(x_k) - F(x^*) + R_k + \frac{\gamma_{k}}{2}\Vert v_k - x^*\Vert^2
-                \right). 
+                \right).
             \end{align}
             }
         \end{proposition}
@@ -487,7 +486,7 @@
         In this section we propose Relaxed Weak Accelerated Proximal Gradient (R-WAPG), see Definition \ref{def:wapg}.
         R-WAPG algorithm generates iterates $(x_k, y_k, v_k)$ and admits an upper bound on $F(x_k) - F^*$ described in Proposition \ref{prop:stepwise-lyapunov}. 
         Definition \ref{def:rwapg-seq} introduces the concept of an R-WAPG sequences: $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ which is crucial.
-        The sequences parameterize the R-WAPG algorithm stated in Definition \ref{def:wapg}, it connects the step-wise formulation of R-WAPG (Definition \ref{def:stepwise-wapg}) and can describe the convergence claim of R-WAPG in Proposition \ref{prop:wagp-convergence}. 
+        The sequences parameterize the R-WAPG algorithm stated in Definition \ref{def:wapg}, it connects the step-wise formulation of R-WAPG (Definition \ref{def:stepwise-wapg}) and can describe the convergence claim of R-WAPG in Proposition \ref{prop:wapg-convergence}. 
         In the next section, it continues to play a crucial role in describing several equivalent forms of the R-WAPG algorithm, and their corresponding convergence claim. 
         \begin{definition}[R-WAPG sequences]\label{def:rwapg-seq}\;\\
             Assume $0 \le \mu < L$. 
@@ -502,54 +501,55 @@
             We call $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ the \textbf{R-WAPG Sequences}. 
         \end{definition}
         We now give Relaxed Weak Accelerated Proximal Gradient in details.
-        \begin{definition}[Relaxed weak accelerated proximal gradient (R-WAPG)]\label{def:wapg}\;\\
-            Choose any $x_1 \in \RR^n, v_1 \in \RR^n$. 
-            Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be given by Definition \ref{def:rwapg-seq}. 
-            The algorithm generates a sequence of vector $(y_k, x_{k + 1}, v_{k + 1})_{k \ge 1}$ for $k\ge 1$ by the procedures:  
+        \begin{definition}[relaxed weak accelerated proximal gradient (R-WAPG)]\label{def:wapg}\;\\
+            Choose any $x_1 \in \RR^n, v_1 \in \RR^n$.
+            Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be given by Definition \ref{def:rwapg-seq}.
+            The algorithm generates a sequence of vector $(y_k, x_{k + 1}, v_{k + 1})_{k \ge 1}$ for $k\ge 1$ by the procedures:
             \begin{tcolorbox}
-                For $k=1, 2, 3, \cdots$
+                For $k=1, 2, 3, \ldots$
                 \begin{align*}
-                    \gamma_k &:= \rho_{k -1}L\alpha_{k - 1}^2, 
+                    \gamma_k &\defeq \rho_{k -1}L\alpha_{k - 1}^2,
                     \\
-                    \hat \gamma_{k + 1} & := (1 - \alpha_k)\gamma_k + \mu \alpha_k = L\alpha_k^2, 
+                    \hat \gamma_{k + 1} & \defeq (1 - \alpha_k)\gamma_k + \mu \alpha_k = L\alpha_k^2,
                     \\
-                    y_k &= 
-                    (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k), 
+                    y_k &\defeq
+                    (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k),
                     \\
-                    g_k &= \mathcal G_L y_k, 
+                    g_k &\defeq \mathcal G_L (y_k),
                     \\
-                    v_{k + 1} &= 
+                    v_{k + 1} &\defeq
                     \hat\gamma^{-1}_{k + 1}
-                    (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), 
+                    (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k),
                     \\
-                    x_{k + 1} &= T_L y_k. 
-                \end{align*}    
+                    x_{k + 1} &\defeq T_L y_k.
+                \end{align*}
             \end{tcolorbox}
         \end{definition}
         Here is the main result of this section. 
-        \begin{proposition}[R-WAPG convergence claim]\label{prop:wagp-convergence}\; \\
-            Fix any arbitrary $x^* \in \RR^n, N \in \mathbb N$. 
-            Let vector sequence $(y_k, v_{k}, x_{k})_{k \ge 1}$ and R-WAPG sequences $\alpha_k, \rho_k$ be given by Definition \ref{def:wapg}. 
-            Define $R_1 = 0$ and suppose that for $k = 1, 2, \ldots, N$, we have $R_k$ recursively given by: 
+        \begin{proposition}[R-WAPG convergence]\label{prop:wapg-convergence}
+            Fix any arbitrary $x^* \in \RR^n, N \in \mathbb N$.
+            Let vector sequence $(y_k, v_{k}, x_{k})_{k \ge 1}$ and R-WAPG sequences $\alpha_k, \rho_k$ be given by Definition \ref{def:wapg}.
+            Let $\epsilon_k, y_k$ be given by Assumption \ref{ass:regret-gap}.
+            Define $R_1 = 0$ and suppose that for $k = 1, 2, \ldots, N$, we have $R_k$ recursively given by:
             \begin{align*}
                 R_{k + 1}
-                := 
+                :=
                 \frac{1}{2}\left(
                     L^{-1} - \frac{\alpha_k^2}{\hat \gamma_{k + 1}}
                 \right)\Vert g_k\Vert^2
-                + 
+                +
                 (1 - \alpha_k)
                 \left(
-                    \epsilon_k + R_k + 
+                    \epsilon_k + R_k +
                     \frac{\mu\alpha_k\gamma_k}{2\hat \gamma_{k + 1}}
                     \Vert v_k - y_k\Vert^2
-                \right). 
+                \right).
             \end{align*}
-            Then for all $k = 1, 2, \ldots, N$: 
+            Then for all $k = 1, 2, \ldots, N$:
             \begin{align*}
                 & F(x_{k + 1}) - F(x^*) + \frac{L \alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
                 \\
-                &\le 
+                &\le
                 \left(
                     \prod_{i = 0}^{k - 1} \max(1, \rho_{i})
                 \right)
@@ -558,131 +558,125 @@
                 \right)
                 \left(
                     F(x_1) - F(x^*) + \frac{L\alpha_0^2}{2}\Vert v_1 - x^*\Vert^2
-                \right). 
+                \right).
             \end{align*}
         \end{proposition}
         
     \subsection{Equivalent representations of R-WAPG}\label{sec:rwapg-equiv-repr}
-        This section reduces Definition \ref{def:wapg} into simpler forms that are comparable to what commonly appears in the literatures. 
-        In the literatures, variants of Accelerated Proximal Gradient algorithm such as FISTA, V-FISTA has different representations. 
-        This shows that R-WAPG provides a unified framework. 
-        These equivalent representations are listed in Definition \ref{def:r-wapg-intermediate}, \ref{def:r-wapg-st-form} and \ref{def:r-wapg-momentum-form}. 
-        These forms are equivalent under a subset of initial conditions. 
-        \par
-        They are comparable to existing APG algorithms in the literatures such as Exercise 12.1 in Ryu, Yin \cite{ryu_large-scale_2022}, Similar Triangle from Lee et al. \cite{lee_geometric_2021}, Ahn Sra \cite{ahn_understanding_2022} and momentum form of (2.2.19) in Nesterov \cite{nesterov_lectures_2018}. 
-        Specific instances of Accelerated Proximal Gradient algorithm that has the same form as the Definition \ref{def:r-wapg-intermediate}, Definition \ref{def:r-wapg-st-form} and Definition \ref{def:r-wapg-momentum-form} in the literatures are stated in the remarks that follows the definitions. 
-
+        This section lists three equivalent representations of the R-WAPG algorithm.
+        They are comparable to existing APG algorithms in the literature such as Exercise 12.1 in Ryu, Yin \cite{ryu_large-scale_2022}, similar triangle form in Lee et al. \cite{lee_geometric_2021} and Ahn Sra \cite{ahn_understanding_2022}, and momentum form of (2.2.19) in Nesterov \cite{nesterov_lectures_2018}.
+        Specific instances of Accelerated Proximal Gradient algorithm that has the same form as the Definition \ref{def:r-wapg-intermediate}, Definition \ref{def:r-wapg-st-form} and Definition \ref{def:r-wapg-momentum-form} in the literature are stated in the remarks that follow the definitions.
         \begin{definition}[R-WAPG intermediate form]\label{def:r-wapg-intermediate}\;\\
-            Assume $\mu < L$ and let $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ given by Definition \ref{def:rwapg-seq}. 
-            Initialize any $x_1, v_1$ in $\RR^n$. 
-            For $k \ge 1$, the algorithm generates sequence of vector iterates $(y_{k}, v_{k + 1}, x_{k + 1})_{k \ge 1}$ by the procedures: 
+            Assume $\mu < L$ and let $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ given by Definition \ref{def:rwapg-seq}.
+            Initialize any $x_1, v_1$ in $\RR^n$.
+            For $k \ge 1$, the algorithm generates sequence of vector iterates $(y_{k}, v_{k + 1}, x_{k + 1})_{k \ge 1}$ by the procedures:
             \begin{tcolorbox}
                 For $k = 1, 2, \ldots$
-                \begin{align*} 
-                    & y_{k} = 
+                \begin{align*}
+                    & y_{k} \defeq
                     \left(
                         1 + \frac{L - L\alpha_{k}}{L\alpha_{k} - \mu}
                     \right)^{-1}
                     \left(
-                        v_{k} + 
+                        v_{k} +
                         \left(\frac{L - L\alpha_{k}}{L\alpha_{k} - \mu} \right) x_{k}
-                    \right), 
+                    \right),
                     \\
-                    & x_{k + 1} = 
-                    y_k - L^{-1} \mathcal G_L y_k, 
+                    & x_{k + 1} \defeq
+                    y_k - L^{-1} \mathcal G_L (y_k),
                     \\
-                    & v_{k + 1} = 
+                    & v_{k + 1} \defeq
                     \left(
                         1 + \frac{\mu}{L \alpha_k - \mu}
                     \right)^{-1}
                     \left(
-                        v_k + 
+                        v_k +
                         \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
-                    \right) - \frac{1}{L\alpha_{k}}\mathcal G_L y_k. 
+                    \right) - \frac{1}{L\alpha_{k}}\mathcal G_L (y_k).
                 \end{align*}
             \end{tcolorbox}
         \end{definition}
         \begin{remark}
-            This form of APG is rarely identified in the literatures. 
-            The closest algorithm that fits the form but with $\mu = 0$ is Chapter 12 of in Ryu and Yin's Book \cite{ryu_large-scale_2022}, right after Theorem 17. 
-            We created this form which makes the math that follows simpler. 
-            The inspiration of using this as an intermediate representation was inspired by solving Exercise 12.1 in the same Ryu and Yin's Book. 
+            This form of APG is rarely identified in the literatures.
+            The closest algorithm that fits the form but with $\mu = 0$ is Chapter 12 of in Ryu and Yin's Book \cite{ryu_large-scale_2022}, right after Theorem 17.
+            We created this form which makes the math that follows simpler.
+            The inspiration of using this as an intermediate representation was inspired by solving Exercise 12.1 in the same Ryu and Yin's Book.
         \end{remark}
         \begin{definition}[R-WAPG similar triangle form]\label{def:r-wapg-st-form} \; \\
-            Given any $(x_1, v_1)$ in $\RR^n$. 
+            Given any $(x_1, v_1)$ in $\RR^n$.
             Assume $\mu < L$.
-            Let the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k\ge 0}$ be given by Definition \ref{def:rwapg-seq}. 
-            For $k \ge 1$, the algorithm generates sequences of vector iterates $(y_k, v_{k + 1}, x_{k + 1})_{k \ge 1}$ by the procedures: 
+            Let the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k\ge 0}$ be given by Definition \ref{def:rwapg-seq}.
+            For $k \ge 1$, the algorithm generates sequences of vector iterates $(y_k, v_{k + 1}, x_{k + 1})_{k \ge 1}$ by the procedures:
             \begin{tcolorbox}
                 For $k=1, 2, \ldots $
                 \begin{align*}
-                    & y_k = 
+                    & y_k \defeq
                     \left(
                         1 + \frac{L - L\alpha_k}{L\alpha_k - \mu}
                     \right)^{-1}
                     \left(
-                        v_k + 
+                        v_k +
                         \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
-                    \right), 
+                    \right),
                     \\
-                    & x_{k + 1} = 
-                    y_k - L^{-1} \mathcal G_L y_k, 
+                    & x_{k + 1} \defeq
+                    y_k - L^{-1} \mathcal G_L (y_k),
                     \\
-                    & v_{k + 1} = 
-                    x_{k + 1} + (\alpha_k^{-1} -1)(x_{k + 1} - x_k). 
-                \end{align*}    
+                    & v_{k + 1} \defeq
+                    x_{k + 1} + (\alpha_k^{-1} -1)(x_{k + 1} - x_k).
+                \end{align*}
             \end{tcolorbox}
         \end{definition}
         \begin{remark}
-            The word similar triangle form can be traced back to several literatures. 
-            The term ``Method of Similar Triangle" was used for Algorithm (6.1.19) in Nesterov's book \cite{nesterov_lectures_2018}, but without the necessary graphical illustrations to clarify it. 
-            Equation (2), (3), (4) in \cite{chambolle_convergence_2015} is a similar triangle formulation of FISTA with $\mu = 0$. 
-            To see graphical visualization on why such term is used to describe the APG algorithm in the literatures, see 
-            (3.1, 4.1) in Lee et al. \cite{lee_geometric_2021} and Ahn and Sra \cite{ahn_understanding_2022}. 
+            The word similar triangle form can be traced back to several literatures.
+            The term ``Method of Similar Triangle" was used for Algorithm (6.1.19) in Nesterov's book \cite{nesterov_lectures_2018}, but without the necessary graphical illustrations to clarify it.
+            Equation (2), (3), (4) in \cite{chambolle_convergence_2015} is a similar triangle formulation of FISTA with $\mu = 0$.
+            To see graphical visualization on why such term is used to describe the APG algorithm in the literatures, see
+            Sections (3.1), (4.1) in Lee et al. \cite{lee_geometric_2021} and Ahn and Sra \cite{ahn_understanding_2022}.
         \end{remark}
         \begin{definition}[R-WAPG momentum form]\label{def:r-wapg-momentum-form}
-            Given any $y_1 = x_1 \in \RR^n$, and sequences $(\rho_k)_{k \ge 0}, (\alpha_k)_{k\ge 0}$ Definition \ref{def:rwapg-seq}. 
-            The algorithm generates iterates $x_{k + 1}, y_{k + 1}$ For $k = 1, 2, \cdots $ by the procedures: 
+            Given any $y_1 = x_1 \in \RR^n$, and sequences $(\rho_k)_{k \ge 0}, (\alpha_k)_{k\ge 0}$ Definition \ref{def:rwapg-seq}.
+            The algorithm generates iterates $x_{k + 1}, y_{k + 1}$ For $k = 1, 2, \cdots $ by the procedures:
             \begin{tcolorbox}
                 For $k=1, 2,\ldots $
                 \begin{align*}
-                    & x_{k + 1} = y_k - L^{-1}\mathcal G_Ly_k, 
+                    & x_{k + 1} \defeq y_k - L^{-1}\mathcal G_L (y_k),
                     \\
-                    & 
-                    y_{k + 1} = 
-                    x_{k + 1} + 
-                    \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
-                \end{align*}    
+                    &
+                    y_{k + 1} \defeq
+                    x_{k + 1} +
+                    \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k).
+                \end{align*}
             \end{tcolorbox}
-            In the special case where $\mu = 0$, the momentum term can be represented without relaxation parameter $\rho_k$: 
+            In the special case where $\mu = 0$, the momentum term can be represented without relaxation parameter $\rho_k$:
             $$
-                (\forall k \ge 1)\quad \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}} 
-                = \alpha_{k + 1}(\alpha_k^{-1} - 1). 
+                (\forall k \ge 1)\quad \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}
+                = \alpha_{k + 1}(\alpha_k^{-1} - 1).
             $$
         \end{definition}
         \begin{remark}
-            This format fits with (2.2.19) in Nesterov's book \cite{nesterov_lectures_2018}, however, the sequence $(\alpha_k)_{k \ge 0}$ would be given by a different rule. 
-            See Theorem \ref{thm:r-wapg-on-cham-doss} and Lemma \ref{lemma:inverted-fista-seq} to see a specific choice of $(\alpha_k)_{k \ge0}, (\rho_k)_{ k\ge 0}$ such this equivalent form of R-WAPG is in fact two possible variants of the FISTA algorithm.
+            This format fits with (2.2.19) in Nesterov's book \cite{nesterov_lectures_2018}, however, the sequence $(\alpha_k)_{k \ge 0}$ would be given by a different rule.
+            See Theorem \ref{thm:r-wapg-on-cham-doss} and Lemma \ref{lemma:inverted-fista-seq} for a specific choice of $(\alpha_k)_{k \ge0}, (\rho_k)_{ k\ge 0}$ such that this equivalent form of R-WAPG is in fact two possible variants of the FISTA algorithm.
         \end{remark}
 
         The following propositions state the relations between the three representation of R-WAPG and R-WAPG as stated in Definition \ref{def:wapg}. 
         \par
-        Proposition \ref{prop:wapg-first-equivalent-repr} simplifies Definition \ref{def:wapg} and finds a representation without using auxiliary sequence $\gamma_k, \hat \gamma_k$. 
-        Definition \ref{def:r-wapg-intermediate} states the first simplified form of the R-WAPG algorithm which we call: ``R-WAPG intermediate form''. 
-        Following a similar pattern, Proposition \ref{prop:wagp-st-form}, \ref{prop:r-wapg-momentum-repr} demonstrates two more equivalent representations of the R-WAPG intermediate form (Definition \ref{def:r-wapg-intermediate}) which are formulated into Definition \ref{def:r-wapg-st-form}, \ref{def:r-wapg-momentum-form}. 
-        Convergence results from Proposition \ref{prop:wagp-convergence} applies to all these equivalent forms of R-WAPG. 
-        In brief, different equivalent reformulations are summarized as following: 
+        Proposition \ref{prop:wapg-first-equivalent-repr} simplifies Definition \ref{def:wapg} and finds a representation without using auxiliary sequence $\gamma_k, \hat \gamma_k$.
+        Definition \ref{def:r-wapg-intermediate} states the first simplified form of the R-WAPG algorithm which we call: ``R-WAPG intermediate form''.
+        Following a similar pattern, Proposition \ref{prop:wagp-st-form}, \ref{prop:r-wapg-momentum-repr} demonstrates two more equivalent representations of the R-WAPG intermediate form (Definition \ref{def:r-wapg-intermediate}) which are formulated into Definition \ref{def:r-wapg-st-form}, \ref{def:r-wapg-momentum-form}.
+        Convergence results from Proposition \ref{prop:wapg-convergence} applies to all these equivalent forms of R-WAPG.
+        In brief, different equivalent reformulations are summarized as following:
         \begin{align*}
-            &\text{Definition \ref{def:wapg}}   \iff 
-            \text{Definition \ref{def:r-wapg-intermediate}}  & \text{By Proposition \ref{prop:wapg-first-equivalent-repr}.}
+            &\text{Definition \ref{def:wapg}}   \iff
+            \text{Definition \ref{def:r-wapg-intermediate}}  & \text{(By Proposition \ref{prop:wapg-first-equivalent-repr}).}
             \\
             & \text{Definition \ref{def:r-wapg-intermediate}}
-            \iff \text{Definition \ref{def:r-wapg-st-form}} & \text{By Proposition \ref{def:r-wapg-st-form}.}
+            \iff \text{Definition \ref{def:r-wapg-st-form}} & \text{(By Proposition \ref{def:r-wapg-st-form}).}
             \\
-            & 
-            \text{Definition \ref{def:r-wapg-st-form}}\implies 
-            \text{Definition }\ref{def:r-wapg-momentum-form}. 
-            & \text{By Proposition }\ref{prop:r-wapg-momentum-repr}.
+            &
+            \text{Definition \ref{def:r-wapg-st-form}}\implies
+            \text{Definition }\ref{def:r-wapg-momentum-form}.
+            & \text{(By Proposition \ref{prop:r-wapg-momentum-repr})}.
         \end{align*}
         \begin{proposition}[First equivalent representation of R-WAPG]\label{prop:wapg-first-equivalent-repr}\;\\
             If the sequence $(y_k, v_k, x_k)_{k \ge 1}$ is produced by R-WAPG (Definition \ref{def:wapg}), 
@@ -761,8 +755,6 @@
             \end{align*}
         \end{proposition}
 
-    
-
     \subsection{R-WAPG unifies existing accelerations scheme}\label{sec:rwapg-literatures}
         In addition to various equivalent forms of the R-WAPG algorithm, the R-WAPG sequences are much more flexible. 
         They generalize existing sequences used in accelerated proximal gradient schemes. 
@@ -781,7 +773,7 @@
                 \begin{tabular}{l}
                     $\mathcal O \left(\prod_{i = 0}^{k-1} \max(1, \rho_i)(1 - \alpha_{i + 1})\right)$
                     \\
-                    (Proposition \ref{prop:wagp-convergence})
+                    (Proposition \ref{prop:wapg-convergence})
                 \end{tabular}
             \\ \hline
                 Chambolle, Dossal 2015 \cite{chambolle_convergence_2015} &  
@@ -893,29 +885,28 @@
             When $r = 1$, the algorithm described above is exactly the same as the V-FISTA algorithm specified in (10.7.7) of Beck's book \cite{beck_first-order_2017}. 
         \end{remark}
 
-
-    
 \section{The method of Free R-WAPG}\label{sec:free-rwapg}
     This section introduces an algorithm of our creation inspired by the remark of Proposition \ref{prop:stepwise-lyapunov}. 
-    Algorithm \ref{alg:free-rwapg} estimates the $\mu$ constant as the algorithm executes and pools the information using the Bregman Divergence of the smooth part function $f$. 
+    In this section, we propose Algorithm \ref{alg:free-rwapg} which estimates the $\mu$ constant as the algorithm executes using the Bregman divergence of $f$ estimated by previous iterates.
+    It is called \emph{Free R-WAPG} because it doesn't require any knowledge of $\mu, L$ in prior for the smooth part $f$, making it parameter-free.
     \begin{algorithm}
         \begin{algorithmic}[1]
         {\footnotesize
-        \STATE{\textbf{Input: } $f, g, x_0, L > \mu \ge 0, \in \RR^n, N \in \N$}
-        \STATE{\textbf{Initialize: }$y_0 := x_0;L := 1; \mu := 1/2; \alpha_0 = 1;$}
+        \STATE{\textbf{Input: } $f, g, L > \mu \ge 0, x_0 \in \RR^n, N \in \N$}
+        \STATE{\textbf{Initialize: }$y_0 := x_0;L_0 := 1; \mu_0 := 1/2; \alpha_0 = 1$;}
         \STATE{\textbf{Compute: } $f(y_k)$; }
         \FOR{$k = 0, 1, 2, \cdots, N$}
-            \STATE{\textbf{Compute: }$\nabla f(y_k); x^+:= [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$;}
-            \WHILE{$L/2\Vert x^+ - y_k\Vert^2 < D_f(x^+, y_k)$}
-                \STATE{$L:= 2L$;}
-                \STATE{$x^+ = [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$; }
+            \STATE{\textbf{Compute: }$\nabla f(y_k); x^+:= [I + L_k^{-1}\partial g]^{-1}(y_k - L_k^{-1}\nabla f(y_k))$;}
+            \WHILE{$L_k/2\Vert x^+ - y_k\Vert^2 < D_f(x^+, y_k)$}
+                \STATE{$L_k:= 2L_k$;}
+                \STATE{$x^+ = [I + L_k^{-1}\partial g]^{-1}(y_k - L_k^{-1}\nabla f(y_k))$; }
             \ENDWHILE
             \STATE{$x_{k + 1} := x^+$;}
-            \STATE{$\alpha_{k + 1} := (1/2)\left(\mu/L - \alpha_{k}^2 + \sqrt{(\mu/L - \alpha_{k}^2)^2 + 4\alpha_{k}^2}\right)$;}
+            \STATE{$\alpha_{k + 1} := (1/2)\left(\mu_k/L_k - \alpha_{k}^2 + \sqrt{(\mu_k/L_k - \alpha_{k}^2)^2 + 4\alpha_{k}^2}\right)$;}
             \STATE{$\theta_{k + 1} := \alpha_k(1 - \alpha_k)/(\alpha_k^2 + \alpha_{k + 1})$;}
             \STATE{$y_{k + 1}:= x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$; }
             \STATE{\textbf{Compute: } $f(y_{k + 1})$}
-            \STATE{$\mu := (1/2)(2D_f(y_{k + 1}, y_{k})/\Vert y_{k + 1} - y_k\Vert^2) + (1/2)\mu$;}
+            \STATE{$\mu_{k + 1} := D_f(y_{k + 1}, y_{k})/\Vert y_{k + 1} - y_k\Vert^2 + (1/2)\mu_k$;}
         \ENDFOR
         }
         \end{algorithmic}
@@ -923,67 +914,103 @@
         \label{alg:free-rwapg}
     \end{algorithm}
     \par
-    Line 5-8 estimates upper bound for the Lipschitz constant and find $x^+$, the next iterates produced by proximal gradient descent on previous $y_k$; 
-    Line 9 updates $x_{k + 1}$ to be $x^+$, a successful iterate identified by the Lipschitz line search routine;
-    Line 10 updates the R-WAPG sequence $\alpha_k$ for the iterates $y_{k + 1}$;
-    Line 13 updates $\mu$ using the Bregman Divergence of $f$ from iterates $y_{k + 1}, y_k$. 
+    In Algorithm \ref{alg:free-rwapg}, lines 5-8 estimate
+    upper bound for the Lipschitz constant and find $x^+$, the next iterates produced by proximal gradient descent on previous $y_k$;
+    Line 8 updates $x_{k + 1}$ to be $x^+$, a successful iterate identified by the Lipschitz line search routine;
+    Line 11 updates the R-WAPG sequence $\alpha_k$ for the iterates $y_{k + 1}$;
+    Line 15 updates $\mu$ using the Bregman Divergence of $f$ from iterates $y_{k + 1}, y_k$.
     \par
-    Assume $L$ given is an upper bound of the Lipschitz smoothness constant of $f$, then the algorithm calls $f(\cdot)$ two times, and $\nabla f(\cdot)$ once per iteration. 
-    The algorithm computes $\nabla f(y_k)$ once for $x^+$, $f(y_{k + 1})$ once for Bregman Divergence because $f(y_{k})$ is evaluated from the previous iteration, and $f(x^+)$ once for Lipschitz constant line search condition. 
-    We note that $f(y_0)$ is computed before the start of the for loop. 
-    And finally, it evaluates proximal of $g$ at $y_k - L^{-1}\nabla f(y_k)$ once. 
+    Assume $L$ given to initialize the R-WAPG is an upper bound of the Lipschitz smoothness constant of $f$ hence preventing the line search subroutine to be triggered.
+    Then the algorithm calls $f(\cdot)$ two times, and $\nabla f(\cdot)$ once per iteration.
+    The algorithm computes $\nabla f(y_k)$ once for $x^+$, $f(y_{k + 1})$ once for Bregman Divergence because $f(y_{k})$ is evaluated from the previous iteration, and $f(x^+)$ once for Lipschitz constant line search condition.
+    We note that $f(y_0)$ is computed before the start of the for loop.
+    And finally, it evaluates proximal of $g$ at $y_k - L^{-1}\nabla f(y_k)$ once.
+    \par
+    Suppose that initial $L$ given as input to Algorithm \ref{alg:free-rwapg} satisfies $L/2 \ge D_f(x, y)/\Vert x - y\Vert^2\;\forall x, y \in \RR^n$.
+    Then, the Lipschitz line search is not triggered and $L_k = L$ for all $k = 1, \ldots, N$.
+    Initialize $\mu = (1/2)L$ which it may not be a lower bound on the strong convexity constant for $f$.
+    With the additional assumption that the estimated $\mu_k < L$, the sequence $(\alpha_k)_{k \ge 0}$ generated by Algorithm \ref{alg:free-rwapg}.
+    Let's verify that $(\alpha_k)_{k \ge 0}$ is an R-WAPG sequence hence the convergence result (Proposition \ref{prop:wapg-convergence}) of R-WAPG applies.
+    \par
+    Let $\mu_k$ be an estimate produced by the algorithm and assume that it satisfies that $\mu_k/ L \in [0, 1)$ and $\alpha_k \in (\mu/L, 1)$.
+    Assuming inductively that $q = \mu_k/L$,  $\alpha_k \in (\mu/L, 1)$, we have
+    \begin{align*}
+        \alpha_{k + 1}
+        &=
+        (1/2)\left(
+            q - \alpha_k^2 + \sqrt{(q - \alpha_k^2)^2 + 4 \alpha_k^2}
+        \right)
+        \\
+        &=
+        (1/2)\left(
+            q - \alpha_k^2 + \sqrt{
+                (\alpha_k^2 - q + 2)^2 + 4q - 4
+            }
+        \right)
+        \\
+        &<
+        (1/2)\left(
+            q - \alpha_k^2 + \sqrt{
+                (\alpha_k^2 - q + 2)^2
+            }
+        \right) \le 1.
+    \end{align*}
+    $q \in (0, 1)$ by assumption $\mu < L$ so $4q - 4 < 0$ always.
+    It is not hard to see that $\alpha_{k + 1} > \mu/L$ as well.
+    Therefore, $\alpha_k \in (0, 1)$.
+    To prevent the case $\alpha_k = 1$, we may always force the estimate $\mu = L/2$ whenever $\mu > L/2$.
 
     \subsection{Numerical experiments}
-        This section showcases results for the numerical experiments conducted using FR-WAPG algorithm (Algorithm \ref{alg:free-rwapg}), and compare with other APG algorithms in the literatures: the V-FISTA, and M-FISTA algorithm described in Section (10.7.7, 10.7.6) by Beck \cite{beck_first-order_2017}. 
-        We implemented in Julia \cite{bezanson_julia_2017} and FR-WAPG (Algorithm \ref{alg:free-rwapg}) with V-FISTA, M-FISTA. 
-        The equivalences highlighted in Proposition \ref{prop:r-wapg-momentum-repr} allows us to compare the sequence of iterates $(x_k)_{k \ge 1}, (y_k)_{k \ge0}$ for R-WAPG, VISTA and M-FISTA. 
+        This section showcases results for the numerical experiments conducted using FR-WAPG algorithm (Algorithm \ref{alg:free-rwapg}), and compare with other APG algorithms in the literatures: the V-FISTA, and M-FISTA algorithm described in Section (10.7.7, 10.7.6) by Beck \cite{beck_first-order_2017}.
+        We implemented in Julia \cite{bezanson_julia_2017}.
+        The equivalences highlighted in Proposition \ref{prop:r-wapg-momentum-repr} allows us to compare the sequence of iterates $(x_k)_{k \ge 1}, (y_k)_{k \ge0}$ for R-WAPG, V-FISTA and M-FISTA.
         \par
         We measure the aggregate statistics of the base two logarithms of the normalized optimality gap (NOG), at each iteration $k$ with the same initialization conditions given for all algorithms.
-        Given $x_k$, and minimum $F^*$, we define the normalized optimality gap: 
+        Given $x_k$, and minimum $F^*$, we define the normalized optimality gap:
         \newcommand{\NOG}{\text{\textbf{NOG}}}
         \begin{align*}
             \delta_k := \log_2\left(
-                \NOG
+                \NOG_k
             \right)
-            \text{ with } 
-            \NOG_k := \frac{F(x_k) - F^*}{F(x_0) - F^*}
+            \text{ with }
+            \NOG_k := \frac{F(x_k) - F^*}{F(x_0) - F^*}.
         \end{align*}
-        Since it's not the case that $F^*$ is always known in prior, we will the minimum of all $F(x_k)$ across all algorithms, all iterations $k$ as the surrogate for $F^*$ when the true value is unavailable. 
-        \par 
-        We consider the norm of the gradient mapping $\Vert \mathcal G_L(y_k)\Vert < \epsilon$ as a termination conditions for all test algorithms. 
-        The $L$ can change during each iteration if it's obtained through the specified Lipschitz line search routine. 
+        Since it's not the case that $F^*$ is always known in prior, we will use the minimum of all $F(x_k)$ across all algorithms, all iterations $k$ as the surrogate for $F^*$ when the true value is unavailable.
+        \par
+        We consider the norm of the gradient mapping $\Vert \mathcal G_L(y_k)\Vert < \epsilon$ as a termination conditions for all test algorithms.
+        The $L$ can change during each iteration if it's obtained through the specified Lipschitz line search routine.
         \subsubsection{Simple convex quadratic}
-            Consider $\min_{x \in \RR^n} \{F(x):= f(x) + 0\}$ where 
+            Consider $\min_{x \in \RR^n} \{F(x):= f(x) + 0\}$ where
             \begin{align*}
-                f(x) = (1/2)\langle x, A x\rangle. 
+                f(x) = (1/2)\langle x, A x\rangle.
             \end{align*}
-            $A$ is set to be a positive semi-definite diagonal matrix, so the problem admits unique minimizer $x^* = \mathbf 0$ with minimum being zero. 
-            We apply Algorithm \ref{alg:free-rwapg}, M-FISTA, and V-FISTA. 
-            The following parameters are used to set up the problem: 
+            $A$ is set to be a positive semi-definite diagonal matrix, so the problem admits the minimizer $x^* = \mathbf 0$ (which is not unique) with minimum being zero.
+            We apply Algorithm \ref{alg:free-rwapg}, M-FISTA, and V-FISTA.
+            The following parameters are used to set up the numerical experiments:
             \begin{enumerate}
-                \item $N$, the dimension of the problem which defines $A \in \RR^{N\times N}$, a diagonal matrix given by $N- 1$ linearly spaced with equal increment on the interval 
+                \item $N$, the dimension of the problem which defines $A \in \RR^{N\times N}$, a diagonal matrix given by $N- 1$ linearly spaced with equal increment on the interval $[\mu, L]$, and an extra number $0$, i.e.,
                 \begin{align*}
                     A = \text{diag}
-                    \left(0, 
+                    \left(0,
                         \mu + \frac{L - \mu}{N - 1},
-                        \mu + 2\frac{L - \mu}{N - 1}, 
-                        \ldots, 
-                        \mu + \frac{(N - 2)(L - \mu)}{N - 1}, 
+                        \mu + 2\frac{L - \mu}{N - 1},
+                        \ldots,
+                        \mu + \frac{(N - 2)(L - \mu)}{N - 1},
                         L
-                    \right). 
+                    \right).
                 \end{align*}
-                \item The strong convexity and Lipschitz smoothness constant has $0 < \mu < L$. They are given in prior to construct the problem. 
-                \item $\epsilon > 0$ is the tolerance value, and it's set to be $10^{-10}$. 
-                \item $x_0 \sim \mathcal N(I, \mathbf 0)$ is a vector, and it's the initial condition for all the algorithm. In this case the initial guess is fixed for all R-WAPG, M-FISTA and M-FISTA, but it's randomly generated by the zero mean standard normal distribution for each element in the vector. 
+                \item The strong convexity and Lipschitz smoothness constant has $0 < \mu < L$. They are given in prior to construct the problem.
+                \item $\epsilon > 0$ is the tolerance value, and it's set to be $10^{-10}$.
+                \item $x_0 \sim \mathcal N(I, \mathbf 0)$ is a vector, and it's the initial condition for all the algorithm. In this case the initial guess is fixed for all R-WAPG, V-FISTA and M-FISTA, but it's randomly generated by the zero mean standard normal distribution for each element in the vector.
             \end{enumerate}
-            The parameter $L=1, \mu=10^{-5}$ are given in prior to produce the diagonal matrix $A$, and we conduct many experiments for $N = 256$ and $N = 1024$. 
-            For all R-WAPG, M-FISTA and V-FISTA the same random initial guess is used for all test algorithms and 30 experiments are repeated with a different random initial guess each time. 
-            The maximum, minimum and median values of $\delta_k$ are measured for all algorithms at each iteration and plotted as a ribbon. 
+            The parameter $L=1, \mu=10^{-5}$ are given in prior to produce the diagonal matrix $A$, and we conduct many experiments for $N = 256$ and $N = 1024$.
+            For all R-WAPG, M-FISTA and V-FISTA the same random initial guess is used for all test algorithms and 30 experiments are repeated with a different random initial guess each time.
+            The maximum, minimum and median values of $\delta_k$ are measured for all algorithms at each iteration and plotted as a ribbon.
+            \par
             Results are shown in Figure \ref{fig:simple-quadratic-NOG}.
-            The solid line in the ribbon is the median value of $\delta_k$ across all experiment, the ribbon gives the maximum, minimum value of $\delta_k$ for each iteration across all experiments. 
-            FR-WAPG initially behaves similar to M-FISTA, but as the iteration goes on, it started to behave like V-FISTA.  
-            \par 
-            The most surprising feature here is the monotone descent, however, it's being numerical verified that the method is not monotone in general, it just looks monotone on the figure. 
+            The solid line in the ribbon is the median value of $\delta_k$ across all experiment, the ribbon gives the maximum, minimum value of $\delta_k$ for each iteration across all experiments.
+            This numerical experiment shows that FR-WAPG initially behaves similar to M-FISTA, but it then started to behave like V-FISTA.
+            It's numerically verified that the method is not monotone in general, and it just looks monotone in this experiment on this plot.
             \begin{figure}[H]
                 \begin{subfigure}[b]{0.47\textwidth}
                     \centering
@@ -996,49 +1023,60 @@
                     \includegraphics[width=\textwidth]{assets/simple_regression_batched-1024.png}
                     \caption{$N = 1024$, simple convex quadratic. }
                 \end{subfigure}
-                \caption{Simple convex quadratic experiments results for V-FISTA, M-FISTA, and R-WAPG. }
+                \caption{
+                    Statistics for experiments with simple convex quadratic for V-FISTA, M-FISTA, and R-WAPG.
+                }
                 \label{fig:simple-quadratic-NOG}
             \end{figure}
-            \par
-            Another quantity that maybe interesting other than $\delta_k$ would be the estimated value of $\mu$ during at each iteration $k$. 
-            One individual experiment is carried out for the R-WAPG algorithm and the value of $\mu$ at each iteration is being recorded as well. 
-            Figure \ref{fig:simple-quadratic-r-wapg-mu-estimates} showcases the results. 
-            In this experiment, the values oscillate and converges to the true $\mu$ value. 
-            Observe that the iteration when the estimates are nearing the true value corresponds to the iteration when the algorithm plateau away from its initial fast descent. 
+            Another quantity that maybe interesting other than $\delta_k$ would be the estimated value of $\mu$ during at each iteration $k$.
+            One individual experiment is carried out for the R-WAPG algorithm and the value of $\mu$ at each iteration is being recorded as well.
+            Figure \ref{fig:simple-quadratic-r-wapg-mu-estimates} shows the estimated $\mu_k$ of FR-WAPG on the left and the convergence rate of the test algorithms on the right for one specific initial condition.
+            It shows the values of $\mu_k$ oscillates and converges to the true value of $\mu$.
+            Observe that the initial fast descent slows and FR-WAPG diverges from M-FISTA as $\mu_k$ converged.
             \begin{figure}[H]
                 \centering
-                \includegraphics[width=0.64\textwidth]{assets/simple_regression_loss_sc_estimates_1024.png}
-                \caption{$N = 1024$, the $\mu$ estimates produced by Algorithm \ref{alg:free-rwapg} (R-WAPG) is recorded. }
+                \begin{subfigure}[b]{0.47\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/simple_regression_loss_sc_estimates_1024.png}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[b]{0.47\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/simple_regression_loss_1024.png}
+                \end{subfigure}
+                \caption{
+                    $N = 1024$, the $\mu$ estimates produced by Algorithm \ref{alg:free-rwapg} (R-WAPG) is recorded.
+                }
                 \label{fig:simple-quadratic-r-wapg-mu-estimates}
             \end{figure}
         \subsubsection{LASSO}
-            This section present results of numerical experiment for solving the (least absolute shrinkage and selection operator) LASSO problem proposed by Tibshirani \cite{tibshirani_regression_1996}. 
-            The problem of LASSO has smooth, nonsmooth additive parts given by: 
+            This section present results of numerical experiment for solving the LASSO (least absolute shrinkage and selection operator) problem proposed by Tibshirani \cite{tibshirani_regression_1996}.
+            The problem of LASSO has smooth and nonsmooth additive parts given by:
             \begin{align*}
                 \min_{x \in \RR^n}
                 \left\lbrace
                     \frac{1}{2}\Vert Ax - b\Vert^2 + \lambda\Vert x\Vert_1
-                \right\rbrace. 
+                \right\rbrace.
             \end{align*}
-            The smooth part is $f(x) =\frac{1}{2}\Vert Ax - b\Vert^2$ and the nonsmooth is $g(x) = \lambda\Vert x\Vert_1$. 
-            The objective function is coersive and the exact minimum, or minimizers are unknown. 
-            We perform numerical experiments using V-FISTA, M-FISTA and FR-WAPG on this problem. 
-            The setup of our parameters now follow. 
+            The smooth part is $f(x) :=\frac{1}{2}\Vert Ax - b\Vert^2$ and the nonsmooth is $g(x) := \lambda\Vert x\Vert_1$.
+            The objective function is coersive and the exact minimum, or minimizers are unknown.
+            We perform numerical experiments using V-FISTA, M-FISTA and FR-WAPG on this problem.
+            The setup of our parameters now follow.
             \begin{enumerate}
-                \item $M, N$ are constants. They define matrix $A \in \RR^{M\times N}$ which has entries of i.i.d random variable taken from a standard normal distribution. 
-                \item $L, \mu$, are Lipschitz constant and the strong convexity constant for the smooth part of the objective which are not known prior. Hence, they are estimated by $A$ by $\mu = 1/\Vert (A^TA)^{-1}\Vert$ and $L = \Vert A^TA\Vert$ prior to experiment to assist the V-FISTA algorithm. 
-                \item $x^+ = [1\; -1\; 1 \; \cdots ]^T \in \RR^N$, it's a vector with alternating $1, -1$ in it. 
-                \item Given $x^+$, it has $b = Ax^+ \in \RR^M$. 
-                \item Given $A$, estimations for $L,\mu$ are given by $L = \Vert A^TA\Vert$, $\mu = \Vert (A^TA)^{-1}\Vert^{-1}$. 
-                \item $x_0\in \RR^N$ denotes the initial guess consist of i.i.d random variable realized from the standard normal distribution. 
-                \item $\epsilon = 10^{-6} > 0$ sets the tolerance for all test algorithm on $\Vert \mathcal G_L(x_k)\Vert$. 
+                \item $M, N$ are constants. They define matrix $A \in \RR^{M\times N}$ which has entries of i.i.d random variable taken from a standard normal distribution.
+                \item $L, \mu$, are Lipschitz constant and the strong convexity constant for the smooth part of the objective which are not known prior. Consequently, they are estimated by $A$ by $\mu = 1/\Vert (A^TA)^{-1}\Vert$ and $L = \Vert A^TA\Vert$ prior to experiment to assist the V-FISTA algorithm.
+                \item $x^+ = [1,\; -1,\; 1, \; \cdots ]^T \in \RR^N$, it's a vector with alternating $1, -1$ in it.
+                \item Given $x^+$, it has $b = Ax^+ \in \RR^M$.
+                \item Given $A$, estimations for $L,\mu$ are given by $L = \Vert A^TA\Vert$, $\mu = \Vert (A^TA)^{-1}\Vert^{-1}$.
+                \item $x_0\in \RR^N$ denotes the initial guess consist of i.i.d random variable realized from the standard normal distribution.
+                \item $\epsilon = 10^{-6} > 0$ sets the tolerance for all test algorithm on $\Vert \mathcal G_L(y_k)\Vert$.
             \end{enumerate}
-            Experiments were conducted using V-FISTA, M-FISTA and FR-WAPG with $(M, N) = (64, 256)$ and $(M, N) = (64, 128)$ respectively. 
-            A random matrix $A$ is realized and is fixed and the for all test algorithms and all repetitions. 
-            The same experiment are repeated 30 times on all algorithms with a fixed random initial condition $x_k$ realized from the distribution. 
-            The aggregate statistics of $\delta_k$ are collected for all repetitions, and then grouped by the respective algorithm. 
-            The results are showcased in Figure \ref{fig:batched-lasso}. 
-            The bump on the curve is due to a subset of test instances of the 30 repetition where the algorithms take larger number of iterations to terminate. 
+            Experiments were conducted using V-FISTA, M-FISTA and FR-WAPG with $(M, N) = (64, 256)$ and $(M, N) = (64, 128)$ respectively.
+            A random matrix $A$ is realized and is fixed for all test algorithms and all repetitions.
+            The same experiment are repeated 30 times on all algorithms with a fixed random initial condition $x_k$ realized from the distribution.
+            The aggregate statistics of $\delta_k$ are collected for all repetitions, and then grouped by the respective algorithm.
+            Figure \ref{fig:batched-lasso} shows the results of the two experiments.
+            The bump on the curve is due to a subset of test instances of the 30 repetition where the algorithms take larger number of iterations to terminate.
             \begin{figure}[H]
                 \begin{subfigure}[b]{0.47\textwidth}
                     \centering
@@ -1051,28 +1089,28 @@
                     \includegraphics[width=\textwidth]{assets/lasso_batched_statistics_64-128.png}
                     \caption{LASSO experiment with $M = 64, N = 128$. Plots of minimum, maximum, and median $\delta_k$ with estimated $F^*$. }
                 \end{subfigure}
-                \caption{LASSO experiments. }
+                \caption{LASSO experiments statistics for test algorithms. }
                 \label{fig:batched-lasso}
             \end{figure}
-            \par
-            Another quantity of interest is the estimates of $\mu$ on each iteration of the algorithm. 
-            A single experiment were conducted and the estimates and $\delta_k$ are in Figure \ref{fig:single-lass-mu-estimates}
+            The experiment results shows faster convergence rate of FR-WAPG relative to V-FISTA, and it also shows that it behaves similarly to M-FISTA.
+            In addition, an experiment were conducted to show the estimate $\mu_k$ and optimality gap $F(x_k) - F^*$ in Figure \ref{fig:single-lass-mu-estimates}.
             \begin{figure}[H]
                 \begin{subfigure}[b]{0.47\textwidth}
                     \includegraphics[width=\textwidth]{assets/lasso_loss_256.png}
-                    \caption{Single lasso experiment plot of $\delta_k$ with.  }
+                    \caption
+                    {A single run of LASSO experiment displaying $F(x_k) - F^*$ for several test algorithms.
+                    }
                 \end{subfigure}
                 \hfill
                 \begin{subfigure}[b]{0.47\textwidth}
                     \includegraphics[width=\textwidth]{assets/lasso_sc_estimates_256.png}
-                    \caption{The $\mu$ estimated by test algorithms for one LASSO experiment. }
+                    \caption{The $\mu_k$ estimated by FR-WAPG for one LASSO experiment. }
                 \end{subfigure}
-                \caption{A single LASSO experiment results, with $M = 64, 256$. }
+                \caption{A single LASSO experiment results, with $M = 64, N=256$.}
                 \label{fig:single-lass-mu-estimates}
             \end{figure}
-            For this specific experiment showed in the figure, the estimated value of $\mu, L$ which we feed into V-FISTA are $\mu = 7.432363627613958\times 10^{-18}$ and $L = 2321.737206983643$. 
-            One of the most important feature is that the estimate $\mu$ doesn't converge to the true value, but it didn't affect the convergence of $\delta_k$. 
-
+            For this specific experiment showed in the figure, the estimated value of $\mu, L$ which we feed into V-FISTA are $\mu = 7.432363627613958\times 10^{-18}$ and $L = 2321.737206983643$.
+            An important observation is that $(\mu_k)_{k\geq 1}$ didn't converge to the true value in this case, however it didn't affect the convergence of $(F(x_k) - F^*)_{k\geq 1}$.
     
     \subsection{Future works for R-WAPG}
         The R-WAPG framework neglected a detail in the literatures. 
@@ -1082,7 +1120,7 @@
             In Nesterov's 2013 paper \cite{nesterov_gradient_2013}, he considers accelerated  minimization problem $\phi = f + \Psi$ with $f$ $L_f$ smooth and $\Psi$ being $\mu_\Psi \ge 0$ strongly convex. 
             Here would be our question: 
             \begin{quote}
-                Is it possible to include the a $\mu_\Psi$ into our R-WAPG framework? 
+                Is it possible to include the $\mu_\Psi$ into our R-WAPG framework? 
             \end{quote}
             \par
             Without lost of generality, we can always do the splitting $f + \mu_\Psi/2 \Vert \cdot\Vert^2$ and $\Psi - \mu_\Psi/2\Vert \cdot\Vert^2$ instead so that the smooth part is $\mu_\Psi \ge 0$ strongly convex. 
@@ -1110,10 +1148,6 @@
             The only part that may not require rework is the Definition \ref{def:stepwise-wapg} because the R-WAPG sequence is generic. 
             We are quite certain about these required changes to achieve the open question because we invented R-WAPG. 
             
-        % \subsubsection{Tying up some loose ends}
-        %     \todoinline{\noindent
-        %         In terms of practice, we are missing convergence rate of Free-RWAPG, and the convergence of the norm of the gradient method for R-WAPG. 
-        %     }
 
 \section{Catalyst accelerations}\label{sec:catalyst}
     We introduce assumptions and notations for the Catalyst Meta Acceleration Frameworks. 
@@ -1333,8 +1367,11 @@
                     \left(1 - \rho/T_{\mathbb M}\right)^{m}
                 \right)
                 \\
-                &\le \widetilde{\mathcal O}\left(
-                    \tau_{\mathbb M}\sqrt{\mu}/(\mu + \kappa)
+                &\le 
+                \widetilde{\mathcal O}\left(
+                    \left(
+                        1 - \tau_{\mathbb M}\sqrt{\mu/(\mu + \kappa)}
+                    \right)^m
                 \right). 
             \end{align*}
             The second inequality on the first line made use of the fact that $1 + x \le (1 + x/n)^n$ for all $n \ge 1$ and $|x| \le n$. 
@@ -1342,7 +1379,7 @@
             \par
             If $\mu = 0$, using Proposition \ref{prop:inner-loop-complexity-cnvx} the total number of inner loop iteration executed by $\mathbb M$ at the $k$ th iteration of $\mathbb A$ is bounded via: 
             \begin{align*}
-                m &\le \sum_{i - 1}^{k} k T_{\mathbb M} \log(i + 2) \le k T_{\mathbb M} \log(k + 2) 
+                m &\le \sum_{i - 1}^{k} T_{\mathbb M} \log(i + 2) \le k T_{\mathbb M} \log(k + 2) 
                 \le T_{\mathbb M}k(k + 2) 
                 \le 
                 \mathcal O(T_{\mathbb M} k^2). 
@@ -1602,7 +1639,7 @@
             Finally, we can summarize a rough sketch of ideas to explore that will assist the open question we posed. 
             \begin{enumerate}
                 \item Does the convergence results modestly extend to the non-strongly convex settings described by Necoara \cite{necoara_linear_2019} et al.? 
-                \item Is it possible to extend the Nesterov's acceleration to non-convex settings such as convergence of gradient norm as described in Ghadimi \cite{ghadimi_accelerated_2016} without restarting? If so, what are the trade off here if we wish to attain stronger convergence claims on the final iterates, or the function value? 
+                \item Is it possible to extend the Nesterov's acceleration to non-convex settings such as convergence of gradient norm as described in Ghadimi \cite{ghadimi_accelerated_2016} without restarting? If so, what are the trade-off here if we wish to attain stronger convergence claims on the final iterates, or the function value? 
                 \item Do there exist a way of extending inexact proximal point method to the nonconvex settings that also include Nesterov's acceleration? 
             \end{enumerate}
             % \todoinline{

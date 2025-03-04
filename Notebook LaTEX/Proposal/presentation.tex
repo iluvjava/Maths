@@ -66,7 +66,7 @@
     This talk will be based on the content of our draft paper and selected content of the Catalyst Meta Acceleration Framework. 
     Our preprint: 
     \begin{enumerate}
-        \item H. Li and X. Wang, \textit{A Parameter Free Accelerated Proximal Gradient Method Without Restarting}, preprint, (2025).
+        \item H. Li and X. Wang, \textit{Relaxed Weak Accelerated Proximal Gradient Method: a Unified Framework for Nesterov's Accelerations}, preprint, (2025).
     \end{enumerate}
     Catalyst Meta Acceleration:  
     \begin{enumerate}
@@ -81,7 +81,7 @@
 
 \section{Introduction}
     \begin{frame}{Introduction}
-        Part I: Introduction to Relaxed Weak Accelerated Proximal Gradient (R-WAPG). 
+        Part I: Introduction to Relaxed Weak Accelerated Proximal Gradient (R-WAPG) and Catalyst Acceleration. 
         \begin{block}{Upcoming Contents: }
             \begin{itemize}
                 \item Notations, proximal gradient inequality, gradient mapping. 
@@ -232,16 +232,16 @@
                         \\
                         \hat \gamma_{k + 1} & := (1 - \alpha_k)\gamma_k + \mu \alpha_k = L\alpha_k^2, 
                         \\
-                        y_k &= 
+                        y_k &:= 
                         (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k), 
                         \\
                         % g_k &= , 
                         % \\
-                        v_{k + 1} &= 
+                        v_{k + 1} &:= 
                         \hat\gamma^{-1}_{k + 1}
                         (\gamma_k(1 - \alpha_k) v_k - \alpha_k \mathcal G_L y_k + \mu \alpha_k y_k), 
                         \\
-                        x_{k + 1} &= T_L y_k. 
+                        x_{k + 1} &:= T_L y_k. 
                     \end{align*}    
                 \end{tcolorbox}
                 }
@@ -309,7 +309,7 @@
             \begin{enumerate}
                 \item Equivalent forms of R-WAPG exists and resembles variants of FISTA in the literatures
                 \item We proved the upcoming equivalences forms of R-WAPG in the draft papers. 
-                \item Previous claimed generic convergence results will apply to all equivalent forms of R-WAPG will now come. 
+                \item Previous claimed generic convergence results will apply to all equivalent forms of R-WAPG. 
             \end{enumerate}    
         \end{frame}
         \begin{frame}{R-WAPG intermediate form}
@@ -321,7 +321,7 @@
                 \begin{tcolorbox}
                     For $k = 1, 2, \ldots$
                     \begin{align*} 
-                        & y_{k} = 
+                        & y_{k} := 
                         \left(
                             1 + \frac{L - L\alpha_{k}}{L\alpha_{k} - \mu}
                         \right)^{-1}
@@ -330,10 +330,10 @@
                             \left(\frac{L - L\alpha_{k}}{L\alpha_{k} - \mu} \right) x_{k}
                         \right), 
                         \\
-                        & x_{k + 1} = 
+                        & x_{k + 1} := 
                         y_k - L^{-1} \mathcal G_L y_k, 
                         \\
-                        & v_{k + 1} = 
+                        & v_{k + 1} := 
                         \left(
                             1 + \frac{\mu}{L \alpha_k - \mu}
                         \right)^{-1}
@@ -361,7 +361,7 @@
                     For $k=1, 2, \ldots $
                     {\scriptsize
                     \begin{align*}
-                        & y_k = 
+                        & y_k := 
                         \left(
                             1 + \frac{L - L\alpha_k}{L\alpha_k - \mu}
                         \right)^{-1}
@@ -370,10 +370,10 @@
                             \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
                         \right), 
                         \\
-                        & x_{k + 1} = 
+                        & x_{k + 1} := 
                         y_k - L^{-1} \mathcal G_L y_k, 
                         \\
-                        & v_{k + 1} = 
+                        & v_{k + 1} := 
                         x_{k + 1} + (\alpha_k^{-1} -1)(x_{k + 1} - x_k). 
                     \end{align*}   
                     } 
@@ -397,10 +397,10 @@
                 \begin{tcolorbox}
                     For $k=1, 2,\ldots $
                     \begin{align*}
-                        & x_{k + 1} = y_k - L^{-1}\mathcal G_Ly_k, 
+                        & x_{k + 1} := y_k - L^{-1}\mathcal G_Ly_k, 
                         \\
                         & 
-                        y_{k + 1} = 
+                        y_{k + 1} := 
                         x_{k + 1} + 
                         \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
                     \end{align*}    
@@ -527,6 +527,7 @@
                 \begin{align*}
                     A = \text{diag}
                     \left(0, 
+                        \mu, 
                         \mu + \frac{L - \mu}{N - 1},
                         \mu + 2\frac{L - \mu}{N - 1}, 
                         \ldots, 
@@ -587,7 +588,7 @@
             \begin{enumerate}
                 \item $M, N$ are constants. $A \in \RR^{M\times N}$ has i.i.d random entries from a standard normal distribution. 
                 \item $L, \mu$, are estimated by $A$ by $\mu = 1/\Vert (A^TA)^{-1}\Vert$ and $L = \Vert A^TA\Vert$. 
-                \item The synthetic solution is $x^+ = [1\; -1\; 1 \; \cdots ]^T \in \RR^N$ and $b = Ax^+ \in \RR^M$.
+                \item The synthetic solution is $x^+ = [1\;, -1\;, 1 \;, \cdots ]^T \in \RR^N$ and $b = Ax^+ \in \RR^M$.
                 \item $x_0\in \RR^N$ is the initial guess with i.i.d random variable from a standard normal distribution. Same initial guess shared by FR-WAPG, V-FISTA, M-FISTA. 
             \end{enumerate}
         \end{frame}
@@ -622,7 +623,7 @@
                     \caption{The $\mu$ estimated by test algorithms for one LASSO experiment. }
                 \end{subfigure}
                 \caption{
-                    A single LASSO experiment results, with $M = 64, 256$. 
+                    A single LASSO experiment results, with $M = 64, N = 256$. 
                     We had $\mu = 7.432363627613958\times 10^{-18}$ and $L = 2321.737206983643$.
                 }
                 \label{fig:single-lass-mu-estimates}
@@ -631,10 +632,10 @@
     \subsection{Direction of future works for R-WAPG}
         \begin{frame}{Nesterov's idea of strong convexity transfer}
             There is one detail in the literatures that our R-WAPG doesn't incorporate.  
-            We consider this a minor augmentation for the future. 
+            We consider this a minor augmentation in the future. 
             \begin{enumerate}
-                \item In Nesterov's 2013 paper \cite{nesterov_gradient_2013}, he considers accelerated  minimization problem $\phi = f + g$ with $f$ $L_f$ smooth and $g$ being $\mu_g \ge 0$ strongly convex. 
-                \item Algorithm 5, Chambolle, Pock \cite{chambolle_introduction_2016} captures several variants of FISTA, and it assumes that $F = f + g$ where $f, g$ has strong convexity constant $\mu_f \ge 0, \mu_g \ge 0$ respective so $F$ is $\mu := \mu_f + \mu_g \ge 0$ strongly convex. 
+                \item In Nesterov's 2013 paper \cite{nesterov_gradient_2013}, he considered accelerated minimization problem $\phi = f + g$ where $f$ is $L_f$ smooth and $g$ is $\mu_g \ge 0$ strongly convex. 
+                \item Algorithm 5, Chambolle and Pock \cite{chambolle_introduction_2016} captured some variants of FISTA, and they assumed that $F = f + g$ where $f, g$ has strong convexity constant $\mu_f \ge 0, \mu_g \ge 0$ respective so $F$ is $\mu := \mu_f + \mu_g \ge 0$ strongly convex. 
             \end{enumerate}
             Fast linear convergence is possible if any one of $f, g$ of the function is strongly convex, but this is not yet a prediction of R-WAPG. 
         \end{frame}
@@ -719,6 +720,7 @@
             \end{definition}
         \end{frame}
         \begin{frame}{Notations and Variance Reduced Methods}
+            Notations for inner loop, outer loop of Catalyst Acceleration. 
             \begin{block}{Catalyst notations}
                 Denotes
                 \begin{enumerate}
@@ -735,16 +737,16 @@
             The following assumption is crucial, and we will return to it. 
             \begin{assumption}[Linear convergence of inner loop]\label{ass:linear-convergence-inner-loop}
                 For any $k \in \N$, $y \in \RR^n$. 
-                Suppose $\mathbb M$ generates iterates $(z_{k, t})_{t \ge 0}$ for the inner loop iteration such that there exists $C_{\mathbb M} > 0$, and it has: 
+                Suppose $\mathbb M$ generates iterates $(z_{k, t})_{t \ge 0}$ for the inner loop iteration such that there exists $C_{\mathbb M} > 0, \tau_{\mathbb M} \in (0, 1)$, and it has: 
                 {\small
                 \begin{align*}
-                    \mathcal M_F^{\kappa^{-1}}(z_{k, t}, y) - \mathcal M^*_{F, \kappa^{-1}}(y) 
+                    \mathcal M_F^{1/\kappa}(z_{k, t}, y) - \mathcal M^*_{F, 1/\kappa}(y) 
                     &\le 
                     C_{\mathbb M}(1 - \tau_{\mathbb M})^t
                     \left(
-                        \mathcal M_{F}^{\kappa^{-1}}(z_{k,0})
+                        \mathcal M_{F}^{1/\kappa}(z_{k,0})
                         -
-                        \mathcal M^*_{F, \kappa^{-1}}(y)
+                        \mathcal M^*_{F, 1/\kappa}(y)
                     \right). 
                 \end{align*}
                 }
@@ -763,7 +765,7 @@
                     \rho < \sqrt{q}. 
                 \end{aligned}
                 $$
-                Then the $\mathbb A$ generates $(x_{k})_{k \ge 0}$ such that 
+                Then $\mathbb A$ generates $(x_{k})_{k \ge 0}$ such that 
                 $$
                 \begin{aligned}
                     F(x_k) - F^* &\le 
@@ -790,7 +792,7 @@
                 \begin{align*}
                     F(x_k) - F^* &\le 
                     \frac{8}{(k + 2)^2}\left(
-                        \left(1 + \frac{2}{\eta}\right)^2(F(x_k) - F^*)
+                        \left(1 + \frac{2}{\eta}\right)^2(F(x_0) - F^*)
                         + \frac{\kappa}{2}\Vert x_0 - x^*\Vert^2
                     \right).
                 \end{align*}
@@ -826,7 +828,7 @@
         \end{frame}
 
         \begin{frame}{Total complexity}
-            We count $m$, the number of iteration experienced by $\mathbb M$ up to the $k$ iteration of $\mathbb A$. 
+            We count $m$, the number of total iterations experienced by $\mathbb M$ up to the $k$ iteration of $\mathbb A$. 
             \begin{enumerate}
                 \item If $\mu > 0$, \ref{prop:inner-loop-complexity-s-cnvx} gives $m \le T_{\mathbb M}k$. 
                 Substituting $k \ge m/T_{\mathbb M}$ into Theorem \ref{thm:err-seq-outer-s-cnvx}: 
@@ -843,15 +845,20 @@
                     \right)
                     \\
                     &\le \widetilde{\mathcal O}\left(
-                        \tau_{\mathbb M}\sqrt{\mu}/(\mu + \kappa)
-                    \right). 
+                        \left(
+                            1 - \tau_{\mathbb M}\sqrt{\mu/(\mu + \kappa)}
+                        \right)^m
+                    \right)
                 \end{align*}
                 }
                 \item If $\mu = 0$ so $F$ is not necessarily strongly convex, using Proposition \ref{prop:inner-loop-complexity-cnvx}, Theorem \ref{thm:erro-seq-outer-cnvx} it has 
                 {\footnotesize
                 \begin{align*}
-                    m &\le \sum_{i - 1}^{k} k T_{\mathbb M} \log(i + 2) \le k T_{\mathbb M} \log(k + 2) 
-                    \le T_{\mathbb M}k(k + 2) 
+                    m 
+                    &\le 
+                    \sum_{i = 1}^{k} T_{\mathbb M} \log(i + 2) 
+                        \le k T_{\mathbb M} \log(k + 2) 
+                    \le T_{\mathbb M}k(k + 2)
                     \le 
                     \mathcal O(T_{\mathbb M} k^2). 
                 \end{align*}
@@ -876,7 +883,7 @@
             {\small
                 Let $F:\RR \rightarrow \overline \RR$ be $\mu \ge 0$ strongly convex and closed. 
                 Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa > 0$ and $\alpha_0 = \sqrt{q}$ where $q = \mu/(\kappa + \mu)$. 
-                Let $(\delta_k)_{k \ge 0}$ be an absolute error sequence chosen for the evaluation for inexact proximal point method. 
+                Let $(\delta_k)_{k \ge 0}$ be an relative error sequence chosen for the evaluation for inexact proximal point method. 
                 \begin{tcolorbox}
                     Initialize $x_0 = y_0$. Then the algorithm generates $(x_k, y_k)_{k\ge 0}$ for all $k \ge 1$ such that: 
                     \begin{align*}
@@ -910,7 +917,7 @@
             \begin{assumption}[Warm start conditions for the inner loop using C2]\label{ass:warm-start-c2}
                 For minimization sub problem $\mathcal M^{\kappa^{-1}}_F(z; y_k)$ solved by $\mathbb M$, we use the following warm start condition for $z_{k, 0}$ under termination criterion C2 (Definition \ref{def:catalyst-termination-c2}): 
                 \begin{enumerate}
-                    \item If $F$ is smooth then choose $z_k = y_k$. 
+                    \item If $F$ is smooth then choose $z_{k, 0} = y_k$. 
                     \item Else it's composite, define $f_k(x) = f(x) + \frac{\kappa}{2}\Vert x - y_k\Vert^2$ and do 
                     \begin{align*}
                         z_{k, 0} = \hprox_{\eta g}\left(
@@ -947,7 +954,7 @@
             The total number of iteration $N_{\mathbb M}$ experienced by $\mathbb M$ for $\mathbb A$ to produce $x_k$ such that $F(x_k) - F^* \le \epsilon$ when using termination criterion C2, warm start and error sequence strategies in Theorem \ref{thm:catalyst2-outer-comp} has: 
             \begin{enumerate}
                 \item $N_{\mathbb M} \le \widetilde{\mathcal O}\left(\tau_{\mathbb M}^{-1}\sqrt{\kappa/\epsilon}\log(\epsilon^{-1})\right)$ if $\mu = 0$, 
-                \item $N_{\mathbb N}\le \widetilde{\mathcal O}\left((\tau_{\mathbb M}\sqrt{q})^{-1}\log(\epsilon^{-1})\right)$ if $\mu > 0$. 
+                \item $N_{\mathbb M}\le \widetilde{\mathcal O}\left((\tau_{\mathbb M}\sqrt{q})^{-1}\log(\epsilon^{-1})\right)$ if $\mu > 0$. 
             \end{enumerate}
             In addition, termination criterion C2 has advantages: 
             \begin{enumerate}
@@ -975,10 +982,10 @@
         \end{frame}
         \begin{frame}{Our question on Catalyst Acceleration}
             \begin{block}{A key detail about Catalyst}
-                The smoothness assumption is baked into Assumption \ref{ass:linear-convergence-inner-loop}, where it states that the $\mathbb M$ needs to have linear convergence rate. 
+                The smoothness assumption is used in Assumption \ref{ass:linear-convergence-inner-loop}, where it states that the $\mathbb M$ needs to have linear convergence rate. 
             \end{block}
             All VRMs method in the literature requires Lipschitz smoothness and strong convexity to achieve linear convergence rate. 
-            No linear convergent first order algorithm exists for all strong convex function by Theorem 2.1.5 in Nesterov's book \cite{nesterov_lectures_2018}. 
+            No linear convergent first order algorithm exists for all strongly convex function by Theorem 2.1.5 in Nesterov's book \cite{nesterov_lectures_2018}. 
             Hence, here is our question: 
             \begin{alertblock}{Our question}
                 Solving inexact proximal point doesn't necessarily need smoothness assumption on $F$ so what if we Assumption \ref{ass:linear-convergence-inner-loop} is false? 
@@ -991,7 +998,7 @@
                 \item $\mathbb A$ optimizes inexact Moreau Envelope $\mathcal M^*_{\kappa^{-1}, F}(y)$ which is smooth and strongly convex if $F$ is convex hence $\mathcal O(1/\sqrt{k})$ from Theorem 3.2.1 \cite{nesterov_lectures_2018} doesn't apply for the total complexity.  
                 \item Theorem 2.1.7 \cite{nesterov_lectures_2018} doesn't apply because the lower complexity bound $\mathbb A$ is $\mathcal O(1/k^2)$ assume exact gradient evaluations. 
                 \item Theorem 2.1.17 \cite{nesterov_lectures_2018} (Linear rate lower bound for strong convexity and smoothness) doesn't apply on $\mathbb M$. 
-                Instead Theorem 3.2.5 applies and the lower bound is $\mathcal O(1/k)$. 
+                Instead, Theorem 3.2.5 applies and the lower bound is $\mathcal O(1/k)$. 
             \end{enumerate}
             Subgradient descent with Polyak step size reaches the lower bound of worst case of Strongly convex, strongly convex and smooth.
             See Hazan et al. \cite{hazan_revisiting_2022}. 
