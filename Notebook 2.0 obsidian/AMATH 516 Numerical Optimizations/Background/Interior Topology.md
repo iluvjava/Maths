@@ -1,3 +1,7 @@
+---
+alias: Open Topology
+
+---
 [Topological Basics for Optimizations](Topological%20Basics%20for%20Optimizations.md)
 
 
@@ -24,6 +28,19 @@ If $C_1 \subseteq C_2$, then it's interior still preserves this relation
 
 We call a set $C$ is open if $\text{int}(C) = C$, for notation simplicity we make $\text{int}C = C^\circ$. 
 
+#### **Definition | Relatively open**
+> Let $(M,d)$ be a metric space. 
+> Let $X \subseteq M$.
+> The set $O_X$ is relatively open in $X$, if there exists open set $O \subseteq M$ such that $O \cap X = O_X$. 
+
+**Examples**
+
+Suppose $M = \R$, and let $X = [0, 1]$. 
+Then the set $O_X = [0, 1)$ is relatively open in $X$. 
+Consider any $\epsilon > 0$ and $O = (-\epsilon, 1)$ then $O \cap X = (-\epsilon, 1)\cap [0, 1] = [0, 1) = O_X$. 
+Therefore, the set $[0, 1)$ is relatively open in $[0, 1]$. 
+
+
 
 #### **Thm | Maximal Open set Subset is the Interior of the Set**
 > The interior of the set $C$ is the union of all open set that is contained in $C$, meaning that $\text{int}(C) = \bigcup\{S\subseteq C | S^\circ = S\}$
@@ -32,4 +49,5 @@ We call a set $C$ is open if $\text{int}(C) = C$, for notation simplicity we mak
 **Proof**
 
 If $x \in C^\circ$ then exists open ball $\mathbb = \{x : \Vert x\Vert < 1\}$, $\epsilon > 0$ where $x + \epsilon \mathbb B \subseteq C$, since $x + \epsilon \mathbb B$ is an open set, it belongs to the maximal open subsets of $C$. Choose any $x \in \bigcup\{S\subseteq C | S^\circ = S\}$, then by some type of axiom (maybe the axiom of choice) we have $x \in S \subseteq S$, and by the axiom of topology, there exists $\epsilon > 0$ such that $s + \epsilon \subseteq S \subseteq C$, and hence by the above definition of interior we have $x \in C^\circ$. 
+
 
