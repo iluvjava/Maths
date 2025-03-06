@@ -16,4 +16,4 @@ We don't think it's wise to procrastinate this matter, hence we are going to bra
 ### **Misc random stuff**
 
 - [Linear Convergence From PL Condition](../Linear%20Convergence%20From%20PL%20Condition.md), Polyak Lojawiesz and smoothness gives linear convergence of gradient descent and proximal point method. 
-- [The Spectral Momentum Idea](../MATH%20602%20Nesterov%20Acceleration/The%20Spectral%20Momentum%20Idea.md), I had been involved with this one, this item is probably more productive because it has something to do with the up coming paper. 
+- [The Spectral Momentum Idea](../MATH%20602%20Nesterov%20Acceleration/Scratch%20Paper%20Ideas/The%20Spectral%20Momentum%20Idea.md), I had been involved with this one, this item is probably more productive because it has something to do with the up coming paper. 

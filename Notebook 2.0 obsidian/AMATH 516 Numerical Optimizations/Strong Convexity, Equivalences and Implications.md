@@ -5,7 +5,6 @@
 ### **Intro**
 
 
-
 **References**: 
 * Blog Post: [here](http://xingyuzhou.org/blog/notes/strong-convexity)
 * Arxiv paper with more discussions and proofs: [here](https://arxiv.org/pdf/1803.06573.pdf)
