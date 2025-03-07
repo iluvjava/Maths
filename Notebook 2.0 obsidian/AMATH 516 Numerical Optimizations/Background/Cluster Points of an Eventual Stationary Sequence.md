@@ -4,10 +4,10 @@
 ---
 ### **Intro**
 
-We introduce the special properties of the cluster point of a a type of sequences where it gets zero velocity. 
+We introduce the special properties of the cluster point of a type of sequences where it gets zero velocity. 
 
 #### **Definition | Disconnected close subsets**
-> Let the embient space be a metric space $(M, d)$. 
+> Let the ambient space be a metric space $(M, d)$. 
 > Let $E \subseteq M$ be a closed set. 
 > $E$ is disconnected if $E = S \dot\cup T$ where $S, T$ are relatively open in E. 
 
@@ -15,8 +15,8 @@ We introduce the special properties of the cluster point of a a type of sequence
 
 $E$ is closed, $S, T$ are disjoint, then $S, T$ are closed sets. 
 For any sequence $(x_n)_{n \in \N}$ converging in $E$, it either falls into $S$ or $T$, mutually exclusive. 
-WLOG let $x_n$ converges in $S$ to $\bar x$. 
-Hence the limit of the sequence is in $S$ because $\bar x \in C = S\;\dot\cup\; T$. 
+WLOG, let $x_n$ converges in $S$ to $\bar x$. 
+Hence, the limit of the sequence is in $S$ because $\bar x \in C = S\;\dot\cup\; T$. 
 
 
 #### **Theorem | Connected cluster point**
@@ -32,18 +32,34 @@ We prove the equivalent contrapositive statement.
 If $C$ is not a connected set, then it has $\lim_{n\rightarrow \infty} \Vert x_{n + 1} - x_n\Vert > \epsilon > 0$. 
 Here are the key intermediate steps for the proof. 
 
-**(Step I)**: From $C$ being disconnected so there exists $S, T$ none empty such that $C \subseteq S \dot\cup T$ and it has $\inf_{x \in T}\dist(x, S) > \epsilon > 0$. 
+**(Step I)**: From $C$ being disconnected so there exists $S, T$ none empty such that $C \subseteq S \dot\cup T$,and it has $\inf_{x \in T}\dist(x, S) > \epsilon > 0$. 
 **(Step II)**: It can be shown that for all $N \in \N$ there exists some $n \ge N$ such that it has $\Vert x_{n + 1} - x_n\Vert > \epsilon$ so $\lim_{n\rightarrow \infty} \Vert x_{n + 1} - x_n\Vert \ge \epsilon$. 
 
 **Showing (Step I)**. 
 By definition of $\inf$, there exists $z_n \in T$ such that $\dist(z_n, S)\rightarrow 0$. 
 There exists $z_{k_n} \rightarrow z$ by compactness of $S$. 
-Therefore $\dist(z_{k_n}, S)\rightarrow 0$ implies $z \in S$ by closure of $S$. 
+Therefore, $\dist(z_{k_n}, S)\rightarrow 0$ implies $z \in S$ by closure of $S$. 
 By closure of $T$, $z \in S$ as well. 
 This contradicts $S\cap T = \emptyset$. 
-Therefore no such sequence exists and $\inf_{x\in T}\dist(x, S) > \epsilon > 0$. 
+Therefore, no such sequence exists and $\inf_{x\in T}\dist(x, S) > \epsilon > 0$. 
 
 **Showing (Step II)**. 
 $S \subseteq C, T\subseteq C$ therefore for all $N \in \N$, there exists some $n\ge N$ such that $x_n \in S$ because $C$ is the set of cluster points, therefore it has $k =\inf_{n \ge N} \{x_n \in S\}\neq \emptyset$. 
 Therefore, $x_{k + 1}\in T$ by definition. 
 Applying results from the previous set it has $\Vert x_k - x_{k + 1}\Vert > \epsilon$ which concludes the proof. 
+
+**Remarks**
+
+There should be a counter example for the case when compactness of the cluster point property is removed.
+
+
+#### **Theorem | Finite many cluster point**
+> Let $(x_n)_{n \in \N}$ be a sequence in $\R^n$ that is bounded. 
+> If $\lim_{n\rightarrow \infty} \Vert x_{n + 1} - x_n\Vert = 0$, and it has finitely many cluster points, then the sequence has a limit.
+
+**Proof**
+
+The proof is direct using previous theorem. 
+The sequence is bounded implies compactness of the set of cluster point (name it $C$) of $x_n$. 
+Any discrete set of finitely singletons in $\R^n$ is never connected except the case when there is only one singleton. 
+

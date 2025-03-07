@@ -744,3 +744,41 @@ $$
     = 0 \not\ge  \lim_{n\rightarrow\infty}\Vert \mathbf e_n\Vert = 1
 \end{aligned}
 $$
+
+
+Convex function with $\beta$ Lipschitz gradient has equivalent characterization: 
+
+$$
+\begin{aligned}
+    (\forall x, y \in \R^n)\;
+    0 \le f(y) - f(x) - \langle \nabla f(x), y - x\rangle 
+    &\le \frac{\beta}{2}\Vert x - y\Vert^2. 
+\end{aligned}
+$$
+
+Which implies for all $x, y$
+
+$$
+\begin{aligned}
+    0 \le \langle x - y, \nabla f(x) - \nabla f(y)\rangle \le 
+    \beta\Vert x - y\Vert^2. 
+\end{aligned}
+$$
+If you take the integral and use Lipschitz continuity of the gradient this statement goes back to the previous one, hence it's also equivalent. 
+
+
+So it has: 
+$$
+\begin{aligned}
+    - \Vert x - y\Vert^2 &\le 
+    \langle x - y, - \beta^{-1}\nabla f(x) + \beta^{-1}\nabla f(y)\rangle
+    \le 0
+    \\
+    0 &\le 
+    \langle x - y, x - \beta^{-1}\nabla f(x) - (y - \beta^{-1}\nabla f(y))\rangle 
+    \le \Vert x - y\Vert^2. 
+\end{aligned}
+$$
+
+So the convex function $\Vert \cdot\Vert^2/2 - \beta^{-1} f$ is convex and has a gradient that is also $1$ Lipschitz continuous. 
+So it's gradient must be non-expensive around it's fixed point (which is the minimizer). 

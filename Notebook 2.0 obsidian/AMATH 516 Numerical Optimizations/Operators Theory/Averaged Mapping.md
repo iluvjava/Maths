@@ -119,7 +119,7 @@ This property is useful for algorithms.
 > $$
 > \begin{aligned}
 >     0 &\le \frac{1}{2(1 - \alpha)}\left(
->         (2\alpha - 1)\Vert x - y\Vert^2 + \Vert Tx - Ty\Vert^2
+>         (2\alpha - 1)\Vert x - y\Vert^2 - \Vert Tx - Ty\Vert^2
 >     \right)
 >     + \langle x - y, Tx - Ty\rangle. 
 > \end{aligned}
