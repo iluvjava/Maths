@@ -4,7 +4,7 @@ alias: Moreau Envelope of Strongly Convex Functions
 
 Pre-requisite: 
 - [Moreau Envelope and Convex Proximal Mapping](Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md)
-- [Strong Convexity, Equivalences and Implications](../Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md)
+- [Strong Convexity](../Properties%20of%20Functions/Strong%20Convexity.md)
 
 ---
 ### **Intro**

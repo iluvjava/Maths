@@ -377,7 +377,7 @@ In the spacial case of convexity, it coincided with the regularization parameter
 
 This section clarifies the fact that, smooth gradient descent's convergence proof is not different to the convergence proof of the proximal point method. 
 Only a few more steps and it can prove the convergence of smooth gradient descent. 
-See [L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity](../Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) for comprehensive introduction of convex function with global Lipschitz smooth gradient. 
+See [L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity](../Properties%20of%20Functions/Convex%20Function%20with%20Global%20Lipschitz%20Gradient.md) for comprehensive introduction of convex function with global Lipschitz smooth gradient. 
 
 #### **Theorem 2.1 | Smooth gradient descent Lyapunov quantity**
 > Let $F:\R^n \rightarrow \overline \R$ be a convex function that is $L$ Lipschitz smooth. 

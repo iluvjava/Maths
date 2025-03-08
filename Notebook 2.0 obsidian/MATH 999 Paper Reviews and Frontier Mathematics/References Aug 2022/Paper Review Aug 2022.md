@@ -9,7 +9,7 @@ $$
     f(x) = l(x) + \phi(x)
 \end{aligned},
 $$
-and we are interested in minimization of $f$, where $l(x)$ is convex with Lipschitz Gradient and $\phi(x)$ is convex, but could be non-smooth with subgradient oracle. For implications and equivalences for function with globally Lipschitz gradient, visit: [[../../AMATH 516 Numerical Optimizations/Properties of Functions/Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]]. This paper focuses on the use of following methods on penalties and composite penalties models (with $\phi(Bx)$ instead of $\phi(x)$): 
+and we are interested in minimization of $f$, where $l(x)$ is convex with Lipschitz Gradient and $\phi(x)$ is convex, but could be non-smooth with subgradient oracle. For implications and equivalences for function with globally Lipschitz gradient, visit: [[../../AMATH 516 Numerical Optimizations/Properties of Functions/Convex Function with Global Lipschitz Gradient]]. This paper focuses on the use of following methods on penalties and composite penalties models (with $\phi(Bx)$ instead of $\phi(x)$): 
 * ADMM. Related topics are now in [[Introduction ADMM]], some of them taken from this paper. 
 * Proximal Methods .
 	* Proximal Methods as a minimum on the majorizing functions.

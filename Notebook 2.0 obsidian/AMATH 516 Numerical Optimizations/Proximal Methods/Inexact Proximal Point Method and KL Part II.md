@@ -117,7 +117,7 @@ Which is a weaker condition than the (3.) condition stated for the inexact proxi
 
 **Proof**
 
-See [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) for more information on this lemma. 
+See [Convex Function with Global Lipschitz Gradient](../Properties%20of%20Functions/Convex%20Function%20with%20Global%20Lipschitz%20Gradient.md) for more information on this lemma. 
 
 #### **Claim | Generic FBS Has Decent Property Satisfied**
 > The FBS algorithm's conditions implies conditions in the inexact proximal point method. 

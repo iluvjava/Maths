@@ -2,7 +2,7 @@ prereq:
 * [Subgradient Intro](../Non-Smooth%20Calculus/Subgradient%20Intro.md)
 * [[Characterizing Functions for Optimizations]], Strong convexity is used. 
 * [[Moreau Envelope and Convex Proximal Mapping]], We use the proximal operator a lot in here, and some of the important properties of the proximal operator. 
-* [[../Properties of Functions/Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications| Strong Smoothness Conditions]], We use one of the smoothness property and its relations to convexity and Lipschitz of the gradient of the convex function. 
+* [[../Properties of Functions/Convex Function with Global Lipschitz Gradient| Strong Smoothness Conditions]], We use one of the smoothness property and its relations to convexity and Lipschitz of the gradient of the convex function. 
   [[Proximal Gradient Method]], The old notes for proximal gradient methods when Sasha was teaching for the class. 
 
 ---
@@ -45,7 +45,7 @@ Here, we derive the proximal gradient algorithm using the idea of upper Envelope
 
 **Observations**
 
-$\mathcal M_\beta(\cdot ; x)$ is $\beta$ strongly convex, recall content from ([[../Properties of Functions/Strong Convexity, Equivalences and Implications]]). 
+$\mathcal M_\beta(\cdot ; x)$ is $\beta$ strongly convex, recall content from ([[../Properties of Functions/Strong Convexity]]). 
 
 **Remarks**
 
@@ -363,7 +363,7 @@ The minimum of the envelope is always less than or equal to the function value a
 
 **Proof**
 
-$\mathcal M_\beta(\cdot, x)$ is strongly convex with a constant of $\beta$, using the quadratic growth property (see [Strong Convexity, Equivalences and Implications](../Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md)), the minimizer $y^+$ exists and satisfies: 
+$\mathcal M_\beta(\cdot, x)$ is strongly convex with a constant of $\beta$, using the quadratic growth property (see [Strong Convexity](../Properties%20of%20Functions/Strong%20Convexity.md)), the minimizer $y^+$ exists and satisfies: 
 
 $$
 \begin{aligned}
@@ -392,7 +392,7 @@ This is just complex PPM descent inequality.
 > \end{aligned}
 > $$
 
-Here we use the additional fact that the Hessian for $l(x)$ has a bounded operator norm that is $< \beta$. Using the a non-trivial property of smoothness [[../Properties of Functions/Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]] of the upper envelope function $m^+(x)$ and the fact that $P(x)$ the projected gradient is the minimizer for the envelope function, we can derive the inequality 
+Here we use the additional fact that the Hessian for $l(x)$ has a bounded operator norm that is $< \beta$. Using the a non-trivial property of smoothness [[../Properties of Functions/Convex Function with Global Lipschitz Gradient]] of the upper envelope function $m^+(x)$ and the fact that $P(x)$ the projected gradient is the minimizer for the envelope function, we can derive the inequality 
 
 $$
 \begin{aligned}

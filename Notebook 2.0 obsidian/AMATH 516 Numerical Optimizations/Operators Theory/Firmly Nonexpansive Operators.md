@@ -410,4 +410,4 @@ This is strictly better that just a Lipschitz-1 operator.
 > Let $f: \R^n \rightarrow \R$ be a function with $L$ Lipschitz gradient. 
 > Then $L^{-1}\nabla f$ is a Firmly nonexpansive operator. 
 
-See [L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity](../Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) for more information, a lot of things a involved for this particular type of characterizations. 
+See [L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity](../Properties%20of%20Functions/Convex%20Function%20with%20Global%20Lipschitz%20Gradient.md) for more information, a lot of things a involved for this particular type of characterizations. 

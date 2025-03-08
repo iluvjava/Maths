@@ -6,7 +6,7 @@
 
 Let $f:\R^n\rightarrow \R$ be a differentiable function with $\nabla f: \R^n \rightarrow \R^n$. 
 There are sets of theorems and properties characterized for the function to prove the convergence of the algorithms. 
-In this file, we fix, and improve previous writings in the same topics: [L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity](Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md). 
+In this file, we fix, and improve previous writings in the same topics: [L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity](Convex%20Function%20with%20Global%20Lipschitz%20Gradient.md). 
 This file will derive some of the previous results under the convex assumptions. 
 Most contents of this file can be found in chapter 2 "Lectures in Convex Optimizations" by Yurri Nesterov. 
 
@@ -352,10 +352,20 @@ $$
     &= \left(
         f(y) - f(x) - \langle \nabla f(y), y - x\rangle
     \right) + 
-    \frac{L\Vert x\Vert^2}{2}
-    - 
-    \frac{L\Vert y\Vert^2}{2}
-    - \langle Ly, x - y\rangle
+    \left(
+        \frac{L\Vert x\Vert^2}{2}
+        - 
+        \frac{L\Vert y\Vert^2}{2}
+        - \langle Ly, x - y\rangle
+    \right)
+    \\
+    &= - D(x, y) + 
+    \left(
+        \frac{L\Vert x\Vert^2}{2}
+        +
+        \frac{L\Vert y\Vert^2}{2}
+        - \langle Ly, x\rangle
+    \right)
     \\
     &= - D_f(x, y) + \frac{L}{2}\Vert x - y \Vert^2. 
     \\
@@ -467,9 +477,7 @@ For all $x, y \in \R^n$, let $\alpha \in [0, 1]$ and define:
 $$
     x_\alpha = x_0 + \alpha(x_1 - x_0). 
 $$
-
 The proof ahead has the following key intermediate steps.
-
 1. **Step (I)**: We show **(C5) implies (C7)**. It has for all $\alpha \in [0, 1]$: 
 $$
 \begin{aligned}
@@ -495,11 +503,9 @@ $$
 \end{aligned}
 $$
 Using the properties of Bregman Divergences. 
-
 Which is more straightforward to show. 
 Using the results of **Step (I), Step (II)**, it yields the inequality for condition **(C7)**. 
-
-1. **Step (II):** 
+2. **Step (II):** 
 Going back we need to show **(C7)** implies **(C5)** by taking $\alpha \rightarrow 0$. 
 
 **Showing Step (I)**. 

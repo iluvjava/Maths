@@ -1,5 +1,5 @@
 - [[Convexity Preserving Operations for Functions]]
-- [[../Properties of Functions/Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]]
+- [[../Properties of Functions/Convex Function with Global Lipschitz Gradient]]
 
 ---
 ### **Intro**

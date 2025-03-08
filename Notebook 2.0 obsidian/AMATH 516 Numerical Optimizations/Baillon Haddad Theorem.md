@@ -12,7 +12,7 @@ The gradient of some functions, if it's nonexpansive if and only if it's firmly 
 
 **Proof**
 
-See conditions **(C6)** in [Convex Function with Globally Lipschitz Gradient](Properties%20of%20Functions/Convex%20Function%20with%20Globally%20Lipschitz%20Gradient.md). 
+See conditions **(C6)** in [Convex Function with Global Lipschitz Gradient](Properties%20of%20Functions/Convex%20Function%20with%20Global%20Lipschitz%20Gradient.md)
 It's proved there. 
 
 **References**: 

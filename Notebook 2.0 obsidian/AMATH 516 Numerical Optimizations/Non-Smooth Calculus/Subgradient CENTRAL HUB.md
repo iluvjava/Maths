@@ -16,19 +16,21 @@ Properties, and geometric interpretations of Subgradient.
 * [Subgradient is Convex](../CVX%20Analysis/Convex%20Subgradient%20is%20Convex.md). 
 	* $\partial f(x)$ is a convex set. 
 * [Bounded Subgradient Lemma](Bounded%20Subgradient%20Lemma.md)
-	* In the interior of the domain of a convex proper function, the subgradient is always bounded. 
+	* Subgradient is a bounded set in the relative interior of a convex function. 
 * [Nonempty Subdifferential Implies Convexity](Nonempty%20Subdifferential%20Implies%20Convexity.md)
-	* If the subdifferential is nonempty throughout the domain of the function, then the function is convex. 
+	* If the subgradient is nonempty in the domain of the function, then the function is convex. 
 * [Subgradient and Level Sets](Subgradient%20and%20Level%20Sets.md)
 	* The subgradient is in the normal cone at the level set of the function value at that point. 
 * [Monotonicity of Subgradient](Monotonicity%20of%20Subgradient.md)
-	* The subgradient operator is a monotone operator. Additionally it's also a maximally monotone operator when the function is proper and convex. 
+	* The subgradient operator is a Maximally monotone cyclic operator. 
+	* If the subgradient $\partial f$ is maximally monotone, then $f$ it's convex. 
 * [Subdifferentials Subgradient Computations](Subdifferentials%20Subgradient%20Computations.md). 
-	* Basic calculus rules for the convex subgradient. 
+	* Sum rule of subgradient holds under regularity conditions. 
 * [Subgradient and Subdifferential Examples](Subgradient%20and%20Subdifferential%20Examples.md),
 	* Examples of subgradient for enlightenment and applications. 
 * [Epigraphical Normal Cone Interpretation of Subgradient](Epigraphical%20Normal%20Cone%20Interpretation%20of%20Subgradient.md). 
-	* Specifically offered from UW, by Jame Burkes and Sasha, and probably rooted in Rockafellar. 
+	* A standard geometric interpretation of subgradient via normal cone and epigraph of functions. 
+	* This feature generalizes to the non-convex settings. 
 
 ### **Other Properties that I haven't had time to write**
 

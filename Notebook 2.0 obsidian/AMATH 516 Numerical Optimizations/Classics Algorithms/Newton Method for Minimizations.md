@@ -1,5 +1,5 @@
 - [Newton's Method 1D](../../MATH%20464%20Numerical%20Analysis/Newton's%20Method%201D.md)
-- [Strong Convexity, Equivalences and Implications](../Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md)
+- [Strong Convexity](../Properties%20of%20Functions/Strong%20Convexity.md)
 
 ---
 ### **Intro**
@@ -208,5 +208,5 @@ dividing both sides by the RHS norm establish the quadratic convergence of the n
 
 **Remarks**
 
-From [Strong Convexity, Equivalences and Implications](../Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md) one can estabish that $\Vert \nabla f(x)\Vert^2 \ge 2\beta(f(x) - f(x_*))$, hence the objective value is also converging quadratically. 
+From [Strong Convexity](../Properties%20of%20Functions/Strong%20Convexity.md) one can estabish that $\Vert \nabla f(x)\Vert^2 \ge 2\beta(f(x) - f(x_*))$, hence the objective value is also converging quadratically. 
 

@@ -1,6 +1,6 @@
-1. [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md)
+1. [Convex Function with Global Lipschitz Gradient](Properties%20of%20Functions/Convex%20Function%20with%20Global%20Lipschitz%20Gradient.md)
 2. [Characterizing Functions for Optimizations](Characterizing%20Functions%20for%20Optimizations.md)
-3. [Strong Convexity, Equivalences and Implications](Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md)
+3. [Strong Convexity](Properties%20of%20Functions/Strong%20Convexity.md)
 
 ---
 ### **Tof for VS-code**
@@ -345,7 +345,7 @@ I am sure that $f(x^{(t)})$ will converge to the minimum is just that the iterat
 
 **Proof**
 
-The function value is bounded by the norm of the gradient and Co-Coersivity described in [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) of the Lipschitz gradient, more specifically $1/2L \Vert \nabla f(x^{(j)})\Vert^2 \le f(x) - f(x^+)$, hence bounding the squared norm of the gradient as well. 
+The function value is bounded by the norm of the gradient and Co-Coersivity described in [Convex Function with Global Lipschitz Gradient](Properties%20of%20Functions/Convex%20Function%20with%20Global%20Lipschitz%20Gradient.md) of the Lipschitz gradient, more specifically $1/2L \Vert \nabla f(x^{(j)})\Vert^2 \le f(x) - f(x^+)$, hence bounding the squared norm of the gradient as well. 
 To show the convergence of the iterates, consult fixed point iterations and convergence of an averaged operator, see [Averaged Mapping](Operators%20Theory/Averaged%20Mapping.md) for more information. 
 
 **Remarks**
@@ -355,7 +355,7 @@ Without convexity, I don't have the proof to assert the convergence of the itera
 ---
 ### **Gradient descent with strong convexity**
 
-We present results on smooth gradient descent when the objective function is $\beta$-strongly convex. For a definition and the consequences of a function $f$ being strongly convex, see [Strong Convexity, Equivalences and Implications](Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information. 
+We present results on smooth gradient descent when the objective function is $\beta$-strongly convex. For a definition and the consequences of a function $f$ being strongly convex, see [Strong Convexity](Properties%20of%20Functions/Strong%20Convexity.md) for more information. 
 
 When a function has Lipschitz smooth gradient and strong convexity, the gradient operator $I - \eta \nabla f$  is a contraction for values of $\eta \in (0, 2/L)$. Read [Appearances of Contraction Operators in Optimizations Method](Operators%20Theory/Appearances%20of%20Contraction%20Operators%20in%20Optimizations%20Method.md) for a more detailed proof. That results presented there will show that $\Vert x^{(k)} - x^+\Vert$ contracts linearly with a ratio $\min(|1 - \eta L|, |1 - \eta \beta|)$. 
 
@@ -402,7 +402,7 @@ PL means Polyak Inequalities, it's a relation between the norm of the gradient a
 **Observations**
 
 A strongly convex function would satisfy PL conditions. 
-See [Strong Convexity, Equivalences and Implications](Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information. 
+See [Strong Convexity](Properties%20of%20Functions/Strong%20Convexity.md) for more information. 
 PL doesn't imply convexity. 
 
 

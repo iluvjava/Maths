@@ -4,8 +4,8 @@ alias: Nesterov Acceleration Sequence Method, Nesterov Estimating Sequence
 
 ---
 - [Smooth Gradient Descend The Basics](Smooth%20Gradient%20Descend%20The%20Basics.md)
-- [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../AMATH%20516%20Numerical%20Optimizations/Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md)
-- [Strong Convexity, Equivalences and Implications](../AMATH%20516%20Numerical%20Optimizations/Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md)
+- [Convex Function with Global Lipschitz Gradient](../AMATH%20516%20Numerical%20Optimizations/Properties%20of%20Functions/Convex%20Function%20with%20Global%20Lipschitz%20Gradient.md)
+- [Strong Convexity](../AMATH%20516%20Numerical%20Optimizations/Properties%20of%20Functions/Strong%20Convexity.md)
 
 ### **Toc for VS Code**
 

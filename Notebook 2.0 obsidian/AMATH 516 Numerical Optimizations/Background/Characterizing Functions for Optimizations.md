@@ -255,13 +255,13 @@ For example, the function $\exp(x)$ is a strictly convex function.
 
 * Any strongly convex function is going to be a coercive function, but the converse is definitely not true. 
 * The function $\exp(x)$ is alpha strongly convex but the function is not strictly convex because it's not coercive. We cannot long lower "hug" the function using any type of quadratic function. 
-* For more about it see [Strong Convexity, Equivalences and Implications](../Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md)
+* For more about it see [Strong Convexity](../Properties%20of%20Functions/Strong%20Convexity.md)
 
 
 ---
 ### **Beta-Smoothness, Strong Smoothness, Lipschitz Smoothness**
 
-For more information about this characterization, [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md). 
+For more information about this characterization, [Convex Function with Global Lipschitz Gradient](../Properties%20of%20Functions/Convex%20Function%20with%20Global%20Lipschitz%20Gradient.md). 
 This characterization of convex function is absolutely essential for gradient based method in optimizations, it developed important claims about the convergence rate of the algorithm. 
 
 

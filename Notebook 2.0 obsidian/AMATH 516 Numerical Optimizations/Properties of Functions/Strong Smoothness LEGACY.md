@@ -10,6 +10,8 @@ tags:
 ---
 ### **Intro**
 
+> This file had been orphanated and it's now replaced by successor [Convex Function with Global Lipschitz Gradient](Convex%20Function%20with%20Global%20Lipschitz%20Gradient.md). 
+
 We introduce $f:\mathbb E \mapsto \mathbb{\bar R}$, which has a Lipchitz continuous gradient, and we wish to see what is implied, and adding convexity shows a stronger equivalences between 3 different conditions. Please take note that, the inner product is not defining the norm, nor is the norm defined by the inner product. The norm is arbitrary in our context, and we use dual norm formulations instead. The inner product is the standard Euclidean space inner product, and we use Holder's inequality. 
 
 **References:** 

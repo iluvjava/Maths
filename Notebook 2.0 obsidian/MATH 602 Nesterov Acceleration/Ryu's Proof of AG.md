@@ -1,4 +1,4 @@
-[L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity](../AMATH%20516%20Numerical%20Optimizations/Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md)
+[L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity](../AMATH%20516%20Numerical%20Optimizations/Properties%20of%20Functions/Convex%20Function%20with%20Global%20Lipschitz%20Gradient.md)
 
 
 ---

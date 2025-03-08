@@ -609,7 +609,7 @@ The upper bound is proved.
 **Remarks**
 
 Whe is proved here is just the PL conditions from strong convexity. 
-To see that compare the above proof with the PL condition from [Strong Convexity, Equivalences and Implications](../AMATH%20516%20Numerical%20Optimizations/Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md). 
+To see that compare the above proof with the PL condition from [Strong Convexity](../AMATH%20516%20Numerical%20Optimizations/Properties%20of%20Functions/Strong%20Convexity.md). 
 
 
 #### **Example | Proximal gradient**

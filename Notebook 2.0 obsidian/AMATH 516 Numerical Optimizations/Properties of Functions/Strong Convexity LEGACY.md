@@ -4,6 +4,8 @@
 ---
 ### **Intro**
 
+> [!info]
+> This file had been replaced by successor [Strong Convexity](Strong%20Convexity.md). 
 
 **References**: 
 * Blog Post: [here](http://xingyuzhou.org/blog/notes/strong-convexity)

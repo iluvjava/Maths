@@ -532,7 +532,7 @@ $$
 $$
 
 For all values of $\eta \in (0, 2/L)$, $[I - \eta \nabla f(x)]$ is nonexpansive. 
-At `(1)` we used some info from [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md), and especially the Co-coersive property. Next we show that the gradient operator is an averaged operator. 
+At `(1)` we used some info from [Convex Function with Global Lipschitz Gradient](../Properties%20of%20Functions/Convex%20Function%20with%20Global%20Lipschitz%20Gradient.md), and especially the Co-coersive property. Next we show that the gradient operator is an averaged operator. 
 To do that we simply fit the form 
 
 $$

@@ -33,8 +33,6 @@ Therefore, the subgradient of summed function is not the sum of the subgradient 
 
 The subgradient sum rule is true when functions are convex. 
 
-
-
 **References**
-- Rockafellar's convex book theorem 23.8. 
+- Rockafellar's "Convex Analysis" theorem 23.8. 
 - Heinz Combette's Monotone convex book, see Corollary 16.48 for more information. 

@@ -6,7 +6,7 @@ This file is a supplement for [Smooth Gradient Descend The Basics](AMATH%20516%2
 
 A convergence proof for smooth gradient descent hinges on the PL conditions generalizes the convergence results for a bigger class of functions that are not necessarily convex. 
 PL conditions is one of the weaker consequence of strong convexity. 
-Recall contents from [Strong Convexity, Equivalences and Implications](AMATH%20516%20Numerical%20Optimizations/Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md) that for a $\mu$ strongly convex function $f$, it satisfies the PL conditions: 
+Recall contents from [Strong Convexity](AMATH%20516%20Numerical%20Optimizations/Properties%20of%20Functions/Strong%20Convexity.md) that for a $\mu$ strongly convex function $f$, it satisfies the PL conditions: 
 
 $$
 \begin{aligned}

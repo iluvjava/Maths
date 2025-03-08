@@ -1,4 +1,4 @@
-- [Convex Function with Globally Lipschitz Gradient](Convex%20Function%20with%20Globally%20Lipschitz%20Gradient.md)
+- [Convex Function with Global Lipschitz Gradient](Convex%20Function%20with%20Global%20Lipschitz%20Gradient.md)
 - [Lipschitz Continuity](../Background/Lipschitz%20Continuity.md)
 
 ---

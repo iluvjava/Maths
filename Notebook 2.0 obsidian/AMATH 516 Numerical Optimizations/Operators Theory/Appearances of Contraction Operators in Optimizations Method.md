@@ -1,7 +1,7 @@
 - [Banach Contraction in Metric Space](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Banach%20Contraction%20in%20Metric%20Space.md), 
 - [Characterizing Functions for Optimizations](../Background/Characterizing%20Functions%20for%20Optimizations.md). 
 - [Subgradient Intro](../Non-Smooth%20Calculus/Subgradient%20Intro.md)
-- [Strong Convexity, Equivalences and Implications](../Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md)
+- [Strong Convexity](../Properties%20of%20Functions/Strong%20Convexity.md)
 ---
 ### **Intro**
 
@@ -137,7 +137,7 @@ $$
 \end{aligned}
 $$
 
-hence $\phi$ is a $2Q$-smooth function. Using [the co-coersivity](../Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) of smooth function we have 
+hence $\phi$ is a $2Q$-smooth function. Using [the co-coersivity](../Properties%20of%20Functions/Convex%20Function%20with%20Global%20Lipschitz%20Gradient.md) of smooth function we have 
 
 $$
 {\small
