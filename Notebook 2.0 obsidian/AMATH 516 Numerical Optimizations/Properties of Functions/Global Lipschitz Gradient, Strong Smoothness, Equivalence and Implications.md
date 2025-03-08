@@ -1,4 +1,4 @@
----
+3---
 aliases:
   - L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity
 ---
