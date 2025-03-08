@@ -1,6 +1,9 @@
-3---
+---
 aliases:
   - L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity
+tags:
+  - LEGACY
+  - CRINGE
 ---
 * [Dual Norm](Background/Dual%20Norm.md)
 * [Gradient, Hessian Characterization of Convex Functions](CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convex%20Functions.md)

@@ -255,7 +255,7 @@ For example, the function $\exp(x)$ is a strictly convex function.
 
 * Any strongly convex function is going to be a coercive function, but the converse is definitely not true. 
 * The function $\exp(x)$ is alpha strongly convex but the function is not strictly convex because it's not coercive. We cannot long lower "hug" the function using any type of quadratic function. 
-* For more about it see [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md)
+* For more about it see [Strong Convexity, Equivalences and Implications](../Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md)
 
 
 ---

@@ -1,5 +1,5 @@
 - [Characterizing Functions for Optimizations](../Background/Characterizing%20Functions%20for%20Optimizations.md)
-
+- [Lipschitz Continuity](../Background/Lipschitz%20Continuity.md)
 
 ---
 ### **Intro**
@@ -319,6 +319,7 @@ $$
 \end{aligned}
 $$
 
+$\blacksquare$
 
 #### **Theorem 3.1 | smoothness group is equivalent**
 > **(C1), (C2), (C3), (C4)** are equivalent. 
@@ -393,9 +394,11 @@ $$
 \end{aligned}
 $$
 
+The above indicates convexity of $f$ via Lemma 1. 
+
 **We now show $(C3) \iff (C4)$.**
 
-The function $\phi$ is convex iff it satsfies the Jensen's inequality for all $\alpha \in (0, 1)$: 
+The function $\phi$ is convex iff it satisfies the Jensen's inequality for all $\alpha \in (0, 1)$: 
 
 $$
 \begin{aligned}
@@ -578,7 +581,7 @@ $$
     \\
     &= \alpha D_f(x, y)
     \\
-    \alpha > 0 \implies
+    \implies
     \frac{(1 - \alpha)}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2
     &\le D_f(x, y). 
 \end{aligned}
@@ -645,5 +648,5 @@ $\blacksquare$
 ---
 ### **Discussion**
 
-
+Basic stuff, nothing to discuss. 
 

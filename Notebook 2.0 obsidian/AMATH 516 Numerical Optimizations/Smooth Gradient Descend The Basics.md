@@ -1,6 +1,6 @@
 1. [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Properties%20of%20Functions/Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md)
 2. [Characterizing Functions for Optimizations](Characterizing%20Functions%20for%20Optimizations.md)
-3. [Strong Convexity, Equivalences and Implications](Strong%20Convexity,%20Equivalences%20and%20Implications.md)
+3. [Strong Convexity, Equivalences and Implications](Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md)
 
 ---
 ### **Tof for VS-code**
@@ -355,7 +355,7 @@ Without convexity, I don't have the proof to assert the convergence of the itera
 ---
 ### **Gradient descent with strong convexity**
 
-We present results on smooth gradient descent when the objective function is $\beta$-strongly convex. For a definition and the consequences of a function $f$ being strongly convex, see [Strong Convexity, Equivalences and Implications](Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information. 
+We present results on smooth gradient descent when the objective function is $\beta$-strongly convex. For a definition and the consequences of a function $f$ being strongly convex, see [Strong Convexity, Equivalences and Implications](Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information. 
 
 When a function has Lipschitz smooth gradient and strong convexity, the gradient operator $I - \eta \nabla f$  is a contraction for values of $\eta \in (0, 2/L)$. Read [Appearances of Contraction Operators in Optimizations Method](Operators%20Theory/Appearances%20of%20Contraction%20Operators%20in%20Optimizations%20Method.md) for a more detailed proof. That results presented there will show that $\Vert x^{(k)} - x^+\Vert$ contracts linearly with a ratio $\min(|1 - \eta L|, |1 - \eta \beta|)$. 
 
@@ -402,7 +402,7 @@ PL means Polyak Inequalities, it's a relation between the norm of the gradient a
 **Observations**
 
 A strongly convex function would satisfy PL conditions. 
-See [Strong Convexity, Equivalences and Implications](Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information. 
+See [Strong Convexity, Equivalences and Implications](Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information. 
 PL doesn't imply convexity. 
 
 

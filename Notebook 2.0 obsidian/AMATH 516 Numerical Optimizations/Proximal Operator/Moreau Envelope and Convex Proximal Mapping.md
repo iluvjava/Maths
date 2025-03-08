@@ -155,7 +155,7 @@ Let's derive some using knowledge from convex analysis.
 
 **Proof**: 
 
-The proximal operator has unique minimizer when $f$ is convex because $\alpha f(\cdot) + \Vert \cdot - y\Vert$ is strongly convex (See [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more). 
+The proximal operator has unique minimizer when $f$ is convex because $\alpha f(\cdot) + \Vert \cdot - y\Vert$ is strongly convex (See [Strong Convexity, Equivalences and Implications](../Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more). 
 Let $y^+$ be the minimizer then using Subgradient Sum rule between a smooth and non-smooth function (See [Subgradient Sum Rule](../Non-Smooth%20Calculus/Subgradient%20Sum%20Rule.md)): 
 
 $$
@@ -285,7 +285,7 @@ The proximal operator is certainly continuous too.
 
 Denote $P_f(x)$ for the proximal operator for $f$ at $x$. 
 For all $x$, it has unique $x^+\in P_f(x)$, $y^+\in P_f(y)$, by $P_f$ is single valued by Theorem 1 when $F$ is convex. 
-We use the quadratic growth condition from [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) on $x\mapsto f(x) + \Vert x - z\Vert^2$ for all $z$ at $x^+, y^+$ because it is $1$-strongly convex and it gives: 
+We use the quadratic growth condition from [Strong Convexity, Equivalences and Implications](../Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md) on $x\mapsto f(x) + \Vert x - z\Vert^2$ for all $z$ at $x^+, y^+$ because it is $1$-strongly convex and it gives: 
 
 $$
 \begin{aligned}

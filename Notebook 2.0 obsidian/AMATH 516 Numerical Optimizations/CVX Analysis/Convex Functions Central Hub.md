@@ -79,5 +79,5 @@ When a function closed and convex and is strictly convex, it will have a unique 
 
 **Strong Convexity**
 
-This is a very useful concept and it has its own file, see [here](../Strong%20Convexity,%20Equivalences%20and%20Implications%20), and some old notes from about the foundations of the 
+This is a very useful concept and it has its own file, see [here](../Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md), and some old notes from about the foundations of the 
 

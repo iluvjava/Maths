@@ -45,7 +45,7 @@ Here, we derive the proximal gradient algorithm using the idea of upper Envelope
 
 **Observations**
 
-$\mathcal M_\beta(\cdot ; x)$ is $\beta$ strongly convex, recall content from ([[Strong Convexity, Equivalences and Implications]]). 
+$\mathcal M_\beta(\cdot ; x)$ is $\beta$ strongly convex, recall content from ([[../Properties of Functions/Strong Convexity, Equivalences and Implications]]). 
 
 **Remarks**
 
@@ -363,7 +363,7 @@ The minimum of the envelope is always less than or equal to the function value a
 
 **Proof**
 
-$\mathcal M_\beta(\cdot, x)$ is strongly convex with a constant of $\beta$, using the quadratic growth property (see [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md)), the minimizer $y^+$ exists and satisfies: 
+$\mathcal M_\beta(\cdot, x)$ is strongly convex with a constant of $\beta$, using the quadratic growth property (see [Strong Convexity, Equivalences and Implications](../Properties%20of%20Functions/Strong%20Convexity,%20Equivalences%20and%20Implications.md)), the minimizer $y^+$ exists and satisfies: 
 
 $$
 \begin{aligned}
