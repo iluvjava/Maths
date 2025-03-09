@@ -160,7 +160,7 @@ This statement is true for all $x$, equivalent to statement **(2)**.
 Taking the supreme of all $x$ we obtain:
 
 $$
-f(y) \ge \sup_{z\in \text{dom}\; \nabla f}\{ f(x) + \nabla f(z)^T(y - z)\},
+f(y) = \sup_{z\in \text{dom}\; \nabla f}\{ f(x) + \nabla f(z)^T(y - z)\},
 $$
 
 The above says $f(y)$ is the supremum of a collection of affine functions therefore by [[Convexity Preserving Operations for Functions]], $f(y)$ is a convex function. 

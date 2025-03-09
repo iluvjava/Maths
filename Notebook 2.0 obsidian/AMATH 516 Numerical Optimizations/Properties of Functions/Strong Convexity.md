@@ -13,7 +13,7 @@ Some of the contents will be re-written and stated in a clear manner.
 Recall the following results from ???
 
 #### **Theorem | Subgradient Characterization of convexity**
-> 
+
 
 ---
 ### 

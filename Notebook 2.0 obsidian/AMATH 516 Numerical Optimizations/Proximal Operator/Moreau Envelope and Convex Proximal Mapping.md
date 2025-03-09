@@ -547,7 +547,7 @@ $$
         f^\star + \alpha^{-1}\left(\frac{1}{2}\Vert \alpha(\cdot)\Vert^2\right)
     \right](z)
     \\
-    x &\in \partial f^\star + \alpha z
+    x &\in \partial f^\star(z) + \alpha z
     \\
     \mathbf 0 
     &\in \partial f^\star(z) + \alpha z - x

@@ -6,6 +6,7 @@
 
 The resolvent operators are important objects optimizations due to its favorable properties. 
 It makes multivalued mapping such as a monotone operator into an, singled valued mapping for study. 
+Recall Minty's Theorem. 
 
 ### **Def 1.0 | Resolvent Operators**
 
@@ -43,30 +44,23 @@ See [Firmly Nonexpansive Operators](Firmly%20Nonexpansive%20Operators.md) for mo
 
 **Proof**
 
-If $x \in \mathcal J_A(u)$ and $y \in \mathcal J_A(v)$ then we have $u - x \in Au$ and $v - y \in Ay$. 
+If $x = \mathcal J_Au$ and $y = \mathcal J_Av$ then we have $u - x \in Ax$ and $v - y \in Ay$. 
 By $A$ being monotone we have 
 
 $$
 \begin{aligned}
-    \langle x - y, (u - x) - (v - y)\rangle & \ge 0 
+    0&\le 
+    \langle x - y, (u - x) - (v - y)\rangle 
     \\
-    \langle  x -y, -(x - y) + (u - v)\rangle &\ge 0
+    &= \langle  x -y, -(x - y) + (u - v)\rangle
     \\
-    \langle x - y, u - v\rangle &\ge \Vert x - y\Vert^2. 
+    0&\le 
+    \langle x - y, u - v\rangle
+    - \Vert x - y\Vert^2. 
 \end{aligned}
 $$
 
-However, we would also have 
-
-$$
-\begin{aligned}
-    v - y &\in A y \iff y \in [I + A]^{-1}v =\mathcal J_A v, 
-    \\
-    u - x &\in Ax \iff x \in [I + A]^{-1} u =\mathcal  J_A u. 
-\end{aligned}
-$$
-
-and therefore, we would have 
+Therefore, we would have 
 
 $$
 \begin{aligned}
@@ -75,10 +69,7 @@ $$
 \end{aligned}
 $$
 
-which is equivalent to that $J_A$ is a firmly non-expansive operator by one equivalent characterization of firmly nonexpansive operators. 
-In addition, a firmly non-expansive operator is a single-valued operator because it's already non-expansive. 
-It's evident from above by setting $u = v$, then $x = y$ from the inequality. 
-To see that $T$ is a full domain operator, apply the observations we made about resolvent operators at the start of the file. 
+$\blacksquare$
 
 **Remarks**
 
@@ -87,7 +78,6 @@ Using the equivalent characterizations of a firmly non-expansive operators, we o
 1. $I - \mathcal J_A$ is a firmly non-expansive operator as well. 
 2. $\mathcal R_A = 2\mathcal J_A - I$ is non-expansive and a full domain operator. 
 3. The resolvent operator is obviously monotone as well because it's already firmly non-expansive. 
-
 
 ---
 ### **The Resolvent of a Strongly Monotone Operator**
