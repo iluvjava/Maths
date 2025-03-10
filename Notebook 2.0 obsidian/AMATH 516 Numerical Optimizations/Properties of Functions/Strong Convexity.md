@@ -204,3 +204,12 @@ $$
 $\blacksquare$
 
 
+---
+### **Co-coersiveness of strong convexity**
+
+Strong convexity mirrors some of the properties of Lipschitz smoothness of a function. 
+This is true because the inverse of $\partial f$ is a nonexpansive operator. 
+
+
+#### **Theorem 3.1 | The inverse is nonexpansive**
+
