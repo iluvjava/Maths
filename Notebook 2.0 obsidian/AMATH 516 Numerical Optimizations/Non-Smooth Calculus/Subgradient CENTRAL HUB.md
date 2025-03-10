@@ -12,8 +12,8 @@ We list everything that is directly related to subgradient in this file so that 
 ### **Properties of the Convex Subgradient**
 
 Properties, and geometric interpretations of Subgradient. 
-
-* [Subgradient is Convex](../CVX%20Analysis/Convex%20Subgradient%20is%20Convex.md). 
+* [Subgradient Characterizations of Convexity](../Properties%20of%20Functions/Subgradient%20Characterizations%20of%20Convexity.md)
+* [Subgradient is Convex](../CVX%20Analysis/Convex%20Subgradient%20is%20Convex.md)
 	* $\partial f(x)$ is a convex set. 
 * [Bounded Subgradient Lemma](Bounded%20Subgradient%20Lemma.md)
 	* Subgradient is a bounded set in the relative interior of a convex function. 
@@ -24,11 +24,11 @@ Properties, and geometric interpretations of Subgradient.
 * [Monotonicity of Subgradient](Monotonicity%20of%20Subgradient.md)
 	* The subgradient operator is a Maximally monotone cyclic operator. 
 	* If the subgradient $\partial f$ is maximally monotone, then $f$ it's convex. 
-* [Subdifferentials Subgradient Computations](Subdifferentials%20Subgradient%20Computations.md). 
+* [Subdifferentials Subgradient Computations](Subdifferentials%20Subgradient%20Computations.md)
 	* Sum rule of subgradient holds under regularity conditions. 
-* [Subgradient and Subdifferential Examples](Subgradient%20and%20Subdifferential%20Examples.md),
+* [Subgradient and Subdifferential Examples](Subgradient%20and%20Subdifferential%20Examples.md)
 	* Examples of subgradient for enlightenment and applications. 
-* [Epigraphical Normal Cone Interpretation of Subgradient](Epigraphical%20Normal%20Cone%20Interpretation%20of%20Subgradient.md). 
+* [Epigraphical Normal Cone Interpretation of Subgradient](Epigraphical%20Normal%20Cone%20Interpretation%20of%20Subgradient.md)
 	* A standard geometric interpretation of subgradient via normal cone and epigraph of functions. 
 	* This feature generalizes to the non-convex settings. 
 

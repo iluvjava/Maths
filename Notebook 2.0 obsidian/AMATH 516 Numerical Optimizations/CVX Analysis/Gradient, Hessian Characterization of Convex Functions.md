@@ -116,12 +116,12 @@ Therefore, the gradient operator is a monotone operator.
 
 $\blacksquare$
 
-**Proof (3) --> (1)**: 
-> If for all $x, y \in \text{dom}\; \nabla f$: 
-> $$
->	\langle \nabla f(y) - \nabla f(x),y - x\rangle \geq 0. 
-> $$ 
-> Then $f$ is a convex function. 
+**Proof (3) --> (1)**:
+If for all $x, y \in \text{dom}\; \nabla f$: 
+$$
+	\langle \nabla f(y) - \nabla f(x),y - x\rangle \geq 0. 
+$$ 
+Then $f$ is a convex function. 
 
 **Proof**:
 
@@ -160,7 +160,8 @@ This statement is true for all $x$, equivalent to statement **(2)**.
 Taking the supreme of all $x$ we obtain:
 
 $$
-f(y) = \sup_{z\in \text{dom}\; \nabla f}\{ f(x) + \nabla f(z)^T(y - z)\},
+f(y) = \sup_{z\in \text{dom}\; \nabla f}
+\left\lbrace f(x) + \langle \nabla f(z), y - z\rangle\right\rbrace,
 $$
 
 The above says $f(y)$ is the supremum of a collection of affine functions therefore by [[Convexity Preserving Operations for Functions]], $f(y)$ is a convex function. 

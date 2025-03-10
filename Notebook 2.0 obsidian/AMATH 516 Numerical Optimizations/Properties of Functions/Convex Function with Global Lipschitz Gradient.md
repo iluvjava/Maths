@@ -91,7 +91,7 @@ $$
     \right|
     \\
     &= \left|
-        \int_{t = 0}^{1} \langle \nabla f(z(t)), z'(t)\rangle dt
+        \int_{t = 0}^{1} \langle \nabla f(z(t)), z'(t)\rangle
         - \langle \nabla f(y), x - y\rangle dt
     \right|
     \\
@@ -131,7 +131,8 @@ $\blacksquare$
 The converse of the statement is true and it will be explained later. 
 
 #### **Lemma 2.2 | Gradient nom error bound**
-> Let $f: \R^n \rightarrow \R$ satisfies (A1), (A2).
+> Let $f: \R^n \rightarrow \R$ satisfies (A1). 
+> If $f$ is also bounded below. 
 > Then for any $x$, it satisfies: 
 > $$
 > \begin{aligned}
@@ -143,7 +144,7 @@ The converse of the statement is true and it will be explained later.
 
 **Proof**
 
-Let $y \in \R^n$, then by convexity it has for all $x \in \R^n$: 
+Let $y \in \R^n$, then by Lemma 2.1 it has for all $x \in \R^n$: 
 
 $$
 \begin{aligned}
@@ -246,6 +247,12 @@ $$
 
 Which is just completing the square. 
 $\blacksquare$
+
+**Remarks**
+
+Any function with $L$ Lipschitz gradient has this property, if it's bounded below. 
+It doesn't have to be convex. 
+
 
 ---
 ### **Groups of Equivalences**
