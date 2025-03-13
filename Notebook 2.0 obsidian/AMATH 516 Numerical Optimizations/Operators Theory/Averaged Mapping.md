@@ -90,6 +90,20 @@ See [Equalities, Inequalities of Euclidean Space](AMATH%20516%20Numerical%20Opti
 
 Heinz's course notes, theorem 22.11. 
 
+**Remarks**
+
+It's not difficult to verify that if $\alpha \le \alpha'$, then any $\alpha$ averaged operator is also $\alpha'$ averaged operator because 
+
+$$
+\begin{aligned}
+    \frac{1 - \alpha}{\alpha} \ge \frac{1 - \alpha'}{\alpha} \ge \frac{1 - \alpha'}{\alpha'}
+    \implies 
+    - \frac{1 - \alpha}{\alpha} \le - \frac{1 - \alpha'}{\alpha}. 
+\end{aligned}
+$$
+
+Then it's obvious from the definitions of averaged mapping. 
+
 
 #### **Corollary | Averaged operator is Strictly Quasi Nonexpansive**
 

@@ -163,3 +163,8 @@ See [Convexity Preserving Operations of Sets](../CVX%20Geometry/Convexity%20Pres
 
 
 $\blacksquare$
+
+
+**Remarks**
+
+For the last part of the proof see Theorem 22.18 in Heinz's book as well. 

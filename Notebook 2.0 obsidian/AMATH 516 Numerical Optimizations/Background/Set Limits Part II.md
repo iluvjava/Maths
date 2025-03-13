@@ -13,8 +13,8 @@ In this section the concept of a set limit can be strengthened by the introducti
 The set limit introduced in the previous section is readily available by choosing the discrete metric for the underlying metric space. 
 Recall that 
 1. Subsequence $\mathcal N_\infty^\#$ is the set of all subsequences of the sequence of natural numbers. 
-2. $\mathcal N_\infty$ to be the set of subsequences of natural number such that it only differs on finite many positions (So there exists a last element where the two sequences are different). 
-3. The projection operator in a complete metric space. $\Pi_C(x) \ni y$ means that $\Vert y - x\Vert  = \inf_{x \in C} \Vert y - x\Vert$, $y$ is the closest vector to vector $y$ in the set $C$. 
+2. $\mathcal N_\infty$ to be the set of subsequences of natural number such that it only differs on finite many positions (For any sequence in $\mathcal N_\infty$, there exists a last element where the sequences are different from the sequence of natural number, after that they are the same). 
+3. The projection operator in a complete metric space. $\Pi_C(x) \ni y$ means that $\Vert y - x\Vert  = \inf_{x \in C} \Vert y - x\Vert$, $y$ is the closest vector to vector $y$ in the set $C$. This exists for all non-empty closed set and the set of closest point is compact and nonempty (See Rockafellar's Example 1.20 for this theorem) This is not true in general Hilbert space (See [Projection in Hilbert Spaces](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Projection%20in%20Hilbert%20Spaces.md)). 
 
 
 Before we start, we define the following quantities relevant to discussion of set limits in complete metric space and Banach spaces. 
@@ -81,7 +81,7 @@ This is crucially important and it will be leveraged in the proofs that follow.
 #### **Observation 0 | Did you see the sequence?**
 > Let the ambient metric space be $\R^n$ here. 
 > If $x \in \Limsup{n\rightarrow \infty} C_n$, then all following are items are true. 
-> 1. There exists a sequence $x_k \in \overline C_{n_k}$ such that $x_n\rightarrow x$. Conversely, if there exists a sequence $x_n \in C_n$ such that $x_n\rightarrow \bar x$, then $\bar x \in \Limsup{n\rightarrow \infty} C_n$. 
+> 1. There exists a sequence $x_k \in \overline C_{n_k}$ such that $x_k\rightarrow x$. Conversely, if there exists a sequence $x_n \in C_{k_n}$ such that $x_n\rightarrow \bar x$, then $\bar x \in \Limsup{n\rightarrow \infty} C_n$. 
 > 2. For all $n \in \N$, there exists $m \ge n$ such that $C_m \neq \emptyset$. 
 >
 > If $x \in \Liminf{n \rightarrow\infty} C_n$, then all following items are true: 
@@ -92,30 +92,20 @@ This is crucially important and it will be leveraged in the proofs that follow.
 **Proof:**
 
 For the convention, if $C_n = \emptyset$ then define $d_{C_n}(x) = \infty$. 
-Define $d_n = d_{C_n}(x)$ for simpler notation. 
+Define $d_n(x) = d_{C_n}(x)$. 
 
-(1.): Assume that $x \in \Limsup{n \rightarrow\infty} C_n$, by definition it has $\liminf_{n \rightarrow \infty} d_n = 0$. 
-Therefore, there exists subsequence $d_{n_k} \rightarrow 0$. 
-This implies that it's impossible to have $C_{m}$ for some $m \ge n$, because it would contradict with the existence of subsequential limit. 
+**Showing (1.):** If $x \in \Limsup{n \rightarrow\infty} C_n$, by definition $\liminf_{n \rightarrow \infty} d_n(x) = 0$. 
+Hence, there exists subsequence $d_{n_k}(x) \rightarrow 0$. 
+Hence there exists sequence $x_k \in \overline C_{n_k}$ such that $x_k \rightarrow x$. 
+To show the converse, suppose that $x_n \in C_{k_n}$ and $x_n \rightarrow \bar x$. 
+Then subsequence $d_{n_k}(\bar x)\rightarrow 0$ hence $\liminf_{k\rightarrow \infty} d_{k}(\bar x) = 0$ so $x \in \Limsup{n\rightarrow \infty} C_n$. 
 
-(2.): 
-Since $d_{n_k} \rightarrow 0$, there exists sequence $x_k \in \overline C_{n_k}$ such that $x_k \rightarrow 0$.
-Conversely, let $x_n \in C_n$ be such that $x_n \rightarrow \bar x$ (Here we implicitly assumed that $C_n \neq \emptyset$ for all $n \in \N$). 
-Then it has
+**Showing (2.):**
+If there all $C_n =\emptyset$ for some $n \ge m \in \N$, then it contradicts $\liminf_{n\rightarrow \infty} d_{n}(x) = 0$. 
 
-$$
-\begin{aligned}
-    0 \leftarrow \Vert x_n - \bar x\Vert \ge d(\bar x, C_n) \ge 0. 
-\end{aligned}
-$$
+**Showing (3):** It's impossible that $C_n = \emptyset$ infinitely many often, because if it is, then it directly contradicts $\limsup_{n\rightarrow \infty} d_{C_n}(x) = 0$. 
 
-Taking limit on both side, it yields $\lim_{n\rightarrow \infty} d(\bar x, C_n) = \liminf_{n\rightarrow \infty} d(\bar x, C_n) = 0$. 
-Hence, $\bar x \in \Limsup{n\rightarrow \infty} C_n$. 
-Therefore, the point is in the outer set limit. 
-
-(3): It's impossible that $C_n = \emptyset$ infinitely many often, because if it is, then it directly contradicts $\limsup_{n\rightarrow \infty} d_{C_n}(x) = 0$. 
-
-(4): Without loss of generality, we may let the sequence $C_n$ starts at the set last $C_{m + k}$ where $C_m = \emptyset$ is the last occurrence, so all $C_n$ can be assumed to be non-empty. 
+**Showin (4):** Without loss of generality, we may let the sequence $C_n$ starts at the set last $C_{m + k}$ where $C_m = \emptyset$ is the last occurrence, so all $C_n$ can be assumed to be non-empty. 
 Define $d_n = d_{C_n}(x)$, then the monotone decreasing sequence $\sup_{m\ge n} d_n$ converges to zero. 
 This is equivalent to say that $x_n$ gets to $C_n$ infinitely close. 
 
@@ -162,7 +152,7 @@ This is obviously true since if we have $x$ such that $\lim_{n\rightarrow \infty
 
 #### **Observations 3 | Monotone Convergence of Sets means Limits**
 > Let $K_n$ be a sequence of set that is monotone expanding, or monotone shrinking, i.e: $K_n\subseteq K_{n + 1}, K_n\supseteq K_{n + 1}$, for all $n \in \mathbb N$. 
-> Then we have the upper and the lower to be the same, and they equal to $\bigcap_{n\in \mathbb N} \overline K_n$. 
+> Then we have the outer and inner set limit equals to $\bigcap_{n\in \mathbb N} \overline K_n$. 
 
 
 **Proof**
@@ -176,11 +166,14 @@ $$
 \end{aligned}
 $$
 
-Because the sequence is monotone and bounded below, it must has a limit, it naturally has $\liminf_{n\rightarrow \infty} d_{C_n}(x) = \limsup_{n \rightarrow \infty} d_{C_n}(x)$. 
+The sequence is monotone and bounded below, it has a limit and $\liminf_{n\rightarrow \infty} d_{C_n}(x) = \limsup_{n \rightarrow \infty} d_{C_n}(x)$. 
+If $x \in \bigcap_{n\in \N} \overline K_n$ then $d_{C_n}(x) = 0 \; \forall n \in \N$ hence the zero is limit therefore $x$ belongs to the inner/outer limit of the set sequence. 
 
-When $K_n \supseteq K_{n + 1}$, the distance function is monotonically increasing. 
-Assuming that there exists $m \in \N$ such that $K_n \neq \emptyset$ for all $n \ge m$, then for all $n \in \N$, $d_{C_{m + n}}(x) \le d_{C_m}(x) < \infty$. The sequence would be bounded above. 
-A monotone increasing function bounded above has a limit, and naturally, $\limsup_{n\rightarrow \infty}d_{C_n}(x) = \lim_{n\rightarrow \infty} d_{C_{m + n}}(x) = \liminf_{n\rightarrow \infty} d_{C_n}(x)$. 
+If $K_n \supseteq K_{n + 1}$, then $d_{C_n}(x)$ monotonically increases $\forall x \in X$. 
+Assume there exists $m \in \N$ such that $K_n \neq \emptyset$ for all $n \ge m$, then for all $n \in \N$, $d_{C_{m + n}}(x) \le d_{C_m}(x) < \infty$. 
+The monotone increasing sequence $d_{C_{m _ n}}$ is bounded above hence it has a limit. 
+Therefore, $\limsup_{n\rightarrow \infty}d_{C_n}(x) = \lim_{n\rightarrow \infty} d_{C_{m + n}}(x) = \liminf_{n\rightarrow \infty} d_{C_n}(x)$. 
+Any element from $x \in \bigcap_{n\in \N}\overline K_n$ has $\lim_{n\rightarrow \infty}d_n(x) = 0$ hence it belongs to the inner and outer limit of set sequence $K_n$. 
 
 
 
@@ -200,51 +193,49 @@ We characterize the limits stated above using other mathematical entities.
 
 #### **Thm | Equivalent definition of the set outer limit**
 > Consider the ambient space to be $\R^n$. 
-> The following sets are the same. 
+> Then outer limit of sets admits equivalent definition:  
 > $$
 > \begin{aligned}
 >     \Limsup{n\rightarrow \infty} C_n 
 >     &= 
 >     \left\lbrace
 >         x | \; \exists x_n \rightarrow x, (k)_{n \in \N} \in \mathcal N^\#_\infty: 
->         x_{k_n} \in C_{k_n}
+>         x_{n} \in C_{k_n}
 >     \right\rbrace
 >     = \left\lbrace
->         x \; | \liminf_{n\rightarrow \infty} d_{C_n}(x) = 0
+>         x \left|\; \liminf_{n\rightarrow \infty} d_{C_n}(x) = 0 \right.
 >     \right\rbrace. 
 > \end{aligned}
 > $$
 
 **Proof**
 
+Denote $d_n(x) = d_{C_n}(x)$
 
-To see $\supseteq$: 
-
-Take any $x \in \{ x \; | \liminf_{n\rightarrow \infty} d_{C_n}(x) = 0\}$. 
-By the observation of there exists a subsequence, $\lim_{k\rightarrow \infty} d_{C_{n_k}}(x) = 0$, we have the existence of a sequence $x_k \in \overline C_{n_k}$ such that $x_k \rightarrow x$ by definition of the distance function. 
+**We show $\supseteq$**: 
+Take any $x \in \{ x \; | \liminf_{n\rightarrow \infty} d_{n}(x) = 0\}$. 
+By the Observation 0 there exists subsequence $\lim_{k\rightarrow \infty} d_{n_k}(x) = 0$, hence $\exists x_k \in \overline C_{n_k}$ such that $x_k \rightarrow x$. 
 By definition of closure, for all $\epsilon > 0$, $\mathbb B_\epsilon(x_k)\cap C_{n_k} \neq \emptyset$. 
-Therefore, choose any sequence with $0 < \epsilon_k\rightarrow 0$, then we have another sequence $x'_k \in \mathbb B_{\epsilon_k}(x_k') \cap C_{n_k}$ from the definition of closure. 
-The sequence $x'_k, x_k$ shares the same limit $x$. 
-Therefore, we have: 
+Choose any sequence $0 < \epsilon_k\searrow 0$, construct $x'_k \in \mathbb B_{\epsilon_k}(x_k') \cap C_{n_k}$. 
+The sequence $x'_k, x_k$ shares the same limit $x$ so: 
 
 $$
 \begin{aligned}
-    \exists x_k \rightarrow x, x_k \in C_{n_k}. 
+    \exists x_k' \rightarrow x, x_k' \in C_{n_k}. 
 \end{aligned}
 $$
 
-To see $\subseteq$: 
-There exists a generic subsequence $k_n \in \mathcal N_\infty^\#$ such that we have a sequence $x_{k_n} \in C_{k_n}$. 
-We are only interested in the subsequence, define $x'_n = x_{k_n}$ then: 
-And the sequence has $x_n' \rightarrow x$, therefore by definition it has 
+**We show $\subseteq$:**
+Let $k_n \in \mathcal N_\infty^\#$ such that $x_{k_n} \in C_{k_n}$. 
+We are only interested in the subsequence, define $x'_n = x_{k_n}$ and it has $x_n' \rightarrow x$, therefore by definition it has 
 
 $$
 \begin{aligned}
-    0 \leftarrow \Vert x_n' - x\Vert \ge d_{C_{k_n}}(x) \ge 0. 
+    0 \leftarrow \Vert x_n' - x\Vert \ge d_{k_n}(x) \ge 0. 
 \end{aligned}
 $$
 
-Therefore, $\lim_{n\rightarrow \infty} d_{C_{k_n}}(x) = 0$, and therefore, the original sequence satisfies $\liminf_{n\rightarrow \infty}d_{C_n}(x) = 0$, and therefore it belongs to the other set as well. 
+Therefore, $\lim_{n\rightarrow \infty} d_{k_n}(x) = 0$, and therefore, the original sequence satisfies $\liminf_{n\rightarrow \infty}d_{n}(x) = 0$. 
 
 #### **Thm | Equivalent definition of the set inner limit**
 > Consider the ambient space $\R^n$ with a sequence of $C_n \subseteq \R^n$, then the following sets are equivalent: 
@@ -253,20 +244,20 @@ Therefore, $\lim_{n\rightarrow \infty} d_{C_{k_n}}(x) = 0$, and therefore, the o
 >     \Liminf{n\rightarrow \infty} C_n  = 
 >     \left\lbrace
 >         x |\; 
->         \exists x_n \rightarrow x, (k_n)_{n \in \N} \in \mathcal N_\infty: x_{k_n} \in C_{k_n}
+>         \exists x_n \rightarrow x, (k_n)_{n \in \N} \in \mathcal N_\infty: x_{n} \in C_{k_n}
 >     \right\rbrace = \left\lbrace
->         x \left | \limsup_{n\rightarrow \infty} d_{C_n}(x) = 0 \right. 
+>         x \left |\; \limsup_{n\rightarrow \infty} d_{C_n}(x) = 0 \right. 
 >     \right\rbrace. 
 > \end{aligned}
 > $$
 
 **Proof**
 
-Let's show that $\subseteq$. 
-The subsequence $(k_n)_{n \in \N} \in \mathcal N_\infty$ means that the difference between $k_n$ and $\N$ is finite. 
+**Let's show that $\subseteq$.** 
+If $(k_n)_{n \in \N} \in \mathcal N_\infty$ then the difference between $\{k_n:n \in \N\}$ and $\N$ is finite. 
 Hence, there exists $m \in \N$ such that for all $n \ge m$, it has $x_{n} \in C_n$. 
 Equivalently it says $x_{m + n} \in C_{m + n}$ for all $n \in \N$. 
-The sequence $x_{m + n} \rightarrow x$ still and therefore by the convergence we have 
+The sequence $x_{m + n} \rightarrow x$ still and therefore: 
 $$
 \begin{aligned}
     0 \leftarrow \Vert x_{m + n} - x\Vert \ge 
@@ -274,13 +265,13 @@ $$
 \end{aligned}
 $$
 
-Therefore, $\limsup_{n\rightarrow \infty} d_{C_n}(x) = 0$ is true. 
+Therefore, $\limsup_{n\rightarrow \infty} d_{C_n}(x) = 0$. 
 
-To see $\supseteq$, the limit implies that there exists $m \in N$ such that the sequence $\sup_{n \ge m} d_{C_n}(x) = 0$ is bounded and monotone converging to $0$. 
-Therefore, there exists a sequence $x_{n} \in \overline C_{m + n}$ such that $x_n \rightarrow x$, by the definition of the distance function and the limit. 
-From the closure, we can choose any $\epsilon_n \rightarrow 0$ and another sequence $x_n' \in \mathbb B_{\epsilon_n}(x_n)\cap C_{m + n}$ such that $x_n'\rightarrow x$ also, and $x_n'\in C_{m + n}$. 
-Therefore, there exists the subsequence $(m + n)_{n \in N} \in \mathcal N_\infty$ such that we have the sequence $x_n'\in C_{m + n}$ and $x_n' \rightarrow x$. 
-This concludes the proof. 
+**Let's show $\supseteq$**, $\limsup_{n\rightarrow \infty}d_n(x) = 0$ implies there exists $m \in \N$ such that $\sup_{n \ge m} d_{n}(x) = 0$. 
+Therefore, there exists a $x_{n} \in \overline C_{m + n}$ such that $x_n \rightarrow x$, by the definition of the distance function and the limit supremum. 
+By closure, for all $\epsilon_n \searrow 0$ there exists $x_n' \in \mathbb B_{\epsilon_n}(x_n)\cap C_{m + n}$ such that $x_n'\rightarrow x$ and $x_n'\in C_{m + n}$. 
+Therefore, there exists the subsequence $(m + n)_{n \in N} \in \mathcal N_\infty$ with $x_n'\in C_{m + n}$ and $x_n' \rightarrow x$ because $x'$ is close to $x_n$. 
+$\blacksquare$
 
 
 
@@ -296,20 +287,20 @@ This concludes the proof.
 >     \left\lbrace
 >          x 
 >         \left|
->             \forall V \in \mathcal N(x)\;
+>             \; \forall V \in \mathcal N(x)\;
 >             \exists (k_n)_{n \in \mathbb N} \in \mathcal N_\infty^\# : 
 >             C_{k_n} \cap V \neq \emptyset 
 >         \right.
 >     \right\rbrace
 >     \\
 >     &= \left\lbrace
->         x | \delta > 0 \implies 
+>         x | \;\delta > 0 \implies 
 >         \exists (k_n)_{n\in \mathbb N} \in \mathcal N_\infty^\#: C_{k_n}\cap \mathbb B_\delta \neq \emptyset
 >     \right\rbrace
 > \end{aligned}
 > $$
 
-**Observations**
+**Proof**
 
 
 
@@ -320,14 +311,19 @@ This concludes the proof.
 > $$
 > \begin{aligned}
 >     \Liminf{n \rightarrow \infty} C_n
->     = 
+>     &= 
 >     \left\lbrace
 >         x 
 >         \left|
->             \forall v \in \mathcal N(x), \exists (k_n)_{n \in \mathbb N} \in \mathcal N_\infty : 
+>             \;\forall v \in \mathcal N(x), \exists (k_n)_{n \in \mathbb N} \in \mathcal N_\infty : 
 >             C_{k_n} \cap V \neq \emptyset 
 >         \right.
->     \right\rbrace. 
+>     \right\rbrace
+>   \\
+>   &= \left\lbrace
+>     x |\; 
+>     \exists x_n \rightarrow x, (k_n)_{n \in \N} \in \mathcal N_\infty: x_{n} \in C_{k_n}
+>   \right\rbrace
 > \end{aligned}
 > $$
 
@@ -373,31 +369,7 @@ This is Rockafellar and Wets, Exercise 4.2 (b).
 Limit of sets described above is able to describe, characterize the limit of a set value map. 
 
 
-#### **Def | Outer, inner limits of a Set-Valued Mapping**
-> Consider $S : \mathbb R^n \rightarrow 2^{\mathbb R^n}$. 
-> The outer limit and the inner limit of the multivalued mapping $S$ as
-> $$
-> \begin{aligned}
->     \Limsup{x\rightarrow \bar x} S(x)
->     &= \left\lbrace
->         u \left | \;
->             \exists x_n \rightarrow \bar x, \exists u_n \rightarrow u: 
->             u_n \in S(x_n)
->         \right.
->     \right\rbrace, 
->     \\
->     \Liminf{x\rightarrow \bar x}S(x)&=  
->     \left\lbrace
->         u \left| 
->             \; \forall x_n \rightarrow \bar x, \exists N \in \mathcal N_\infty, 
->             u_n \underset{u\in N}{\longrightarrow} u, 
->             u_n \in S(x_n)
->         \right.
->     \right\rbrace.
-> \end{aligned}
-> $$
-
-#### **Observation 0 | An alternative definition**
+#### **Definition 0 | An alternative definition**
 > The set limit of a multivalued mapping generalizes the idea of a set limit to continuous limit. 
 > Alternatively, the limit of the set value mapping can be 
 > $$
@@ -456,3 +428,28 @@ $$
 > This is called the Kuratowski convergence. 
 > Read Chapter 5 B of Rockafellar Wett's Variational Analysis. 
 
+
+
+#### **Observation | Outer, inner limits of a Set-Valued Mapping**
+> Consider $S : \mathbb R^n \rightarrow 2^{\mathbb R^n}$. 
+> The outer limit and the inner limit of the multivalued mapping $S$ as
+> $$
+> \begin{aligned}
+>     \Limsup{x\rightarrow \bar x} S(x)
+>     &= \left\lbrace
+>         u \left | \;
+>             \exists x_n \rightarrow \bar x, \exists u_n \rightarrow u: 
+>             u_n \in S(x_n)
+>         \right.
+>     \right\rbrace, 
+>     \\
+>     \Liminf{x\rightarrow \bar x}S(x)&=  
+>     \left\lbrace
+>         u \left| 
+>             \; \forall x_n \rightarrow \bar x, \exists N \in \mathcal N_\infty, 
+>             u_n \underset{u\in N}{\longrightarrow} u, 
+>             u_n \in S(x_n)
+>         \right.
+>     \right\rbrace.
+> \end{aligned}
+> $$
