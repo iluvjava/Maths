@@ -10,3 +10,6 @@ The class of Quasi-strongly convex function is a generalizations of the class of
 
 The targets of relaxations on the ideas of strong convexity focuses on the error bound and quadratic growth conditions. 
 
+---
+### **Global Settings of the theories**
+
