@@ -230,7 +230,7 @@ $$
 	&\ge 0
 	\\
 	\liminf_{\substack{x\rightarrow \bar x \\ x \neq \bar x}}  \frac{
-			f(\bar x + \tau w') - f(\bar x) - \langle v, \tau w'\rangle
+			f(\bar x + \tau w') - f(\bar x) 
 		}
 	{\tau}
 	- \langle v, w'\rangle &\ge 0

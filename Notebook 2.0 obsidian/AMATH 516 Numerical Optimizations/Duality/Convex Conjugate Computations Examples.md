@@ -50,7 +50,7 @@ $$
 $$
 
 **Demonstration:**
-> [!details]-
+> [!tip]-
 > $$
 > \begin{aligned}
 >     [\langle c, x\rangle + d|x]^\star (z) &= 
@@ -92,7 +92,7 @@ $$
 
 **Demonstration**
 
-> [!details]-
+> [!tip]-
 > 
 > From the definition of Fenchel Conjugate of a convex function, we have: 
 > $$
@@ -132,7 +132,7 @@ $$
 \end{aligned}
 $$
 
-> [!details]-
+> [!tip]-
 > 
 > **Demonstrations**
 > This is direct from the definition because $\sup_{x\in X}\{\langle x, y\rangle - \delta_Q(x)\} = \sup_{x\in Q}\{\langle x, y\rangle\} = \sigma_Q(y)$ by the definition of a support function. See [Support Function](../CVX%20Analysis/Support%20Function.md) for more context for it. 
@@ -157,7 +157,7 @@ $$
 
 **Demonstration**
 
-> [!details]-
+> [!tip]-
 > $$
 > \begin{aligned}
 >     \exp^\star(y) &= \sup_{z\in \mathbb R}
@@ -207,7 +207,7 @@ $$
 **Demonstrations**: 
 Using the definition of the Convex Conjugate, we consider evaluating the expression: 
 
-> [!details]-
+> [!tip]-
 > $$
 > \begin{aligned}
 >     \sup_{x}\left\lbrace
@@ -249,7 +249,7 @@ $$
 
 **Demonstrations**: 
 
-> [!details]-
+> [!tip]-
 > 
 > By definition we have:  
 > $$
@@ -277,7 +277,7 @@ $$
 $$
 
 **Demonstrations**: 
-> [!details]-
+> [!tip]-
 > $$
 > \begin{aligned}
 >     \delta^\star_\mathbb B (y) &= 
@@ -330,7 +330,7 @@ $$
 
 **Demonstration:**
 
-> [!details]-
+> [!tip]-
 > $$
 > \begin{aligned}
 >     \left(
@@ -376,7 +376,7 @@ $$
 $$
 
 **Justification:**
-> [!details]-
+> [!tip]-
 > $$
 > \begin{aligned}
 >     \left(
@@ -414,7 +414,7 @@ $$
 Let $\alpha > 0$, and let $\lambda \in \mathbb R$, and let $f:X\mapsto \mathbb{\bar R}$, then, $(\alpha f)^\star = \alpha f^\star(y/\alpha)$. 
 
 **Demonstrations**: 
-> [!details]-
+> [!tip]-
 > Directly from the definition we have: 
 > 
 > $$
@@ -457,7 +457,7 @@ $$
 Observe that the linear offset wedge out a linear term in the dual. other type of transformation won't introduce extra terms for the resulting conjugate.
 
 **Demonstrations**
-> [!details]-
+> [!tip]-
 > $$
 > \begin{aligned}
 >     & \quad \sup_{x\in X}\left\lbrace
@@ -513,7 +513,7 @@ Let $f: \mathbb R^n \mapsto \mathbb{\bar R}$, then the conjugate of the function
 
 **Demonstrations**
 
-> [!details]-
+> [!tip]-
 > Use the previous rule, setting $\alpha = 1 = \lambda$ and $a = \mathbf 0$. 
 
 
@@ -538,7 +538,7 @@ $$
 where $x\in \mathbb R^n$, assume we are in finite Euclidean space, and $z\in \mathbb R^n$ too. 
 
 **Demonstrations**: 
-> [!details]-
+> [!tip]-
 > 
 > Note that this is a function that is multi-variable scalar function for the sum, and $g(x)$ is simply a $\mathbb{R}\mapsto \mathbb{R}$ function, then by definition of the Fenchel Conjugate we have: 
 > 

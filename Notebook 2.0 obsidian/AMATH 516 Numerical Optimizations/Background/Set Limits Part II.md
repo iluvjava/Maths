@@ -94,18 +94,18 @@ This is crucially important and it will be leveraged in the proofs that follow.
 For the convention, if $C_n = \emptyset$ then define $d_{C_n}(x) = \infty$. 
 Define $d_n(x) = d_{C_n}(x)$. 
 
-**Showing (1.):** If $x \in \Limsup{n \rightarrow\infty} C_n$, by definition $\liminf_{n \rightarrow \infty} d_n(x) = 0$. 
+**Showing(1):** If $x \in \Limsup{n \rightarrow\infty} C_n$, by definition $\liminf_{n \rightarrow \infty} d_n(x) = 0$. 
 Hence, there exists subsequence $d_{n_k}(x) \rightarrow 0$. 
 Hence there exists sequence $x_k \in \overline C_{n_k}$ such that $x_k \rightarrow x$. 
 To show the converse, suppose that $x_n \in C_{k_n}$ and $x_n \rightarrow \bar x$. 
 Then subsequence $d_{n_k}(\bar x)\rightarrow 0$ hence $\liminf_{k\rightarrow \infty} d_{k}(\bar x) = 0$ so $x \in \Limsup{n\rightarrow \infty} C_n$. 
 
-**Showing (2.):**
+**Showing(2):**
 If there all $C_n =\emptyset$ for some $n \ge m \in \N$, then it contradicts $\liminf_{n\rightarrow \infty} d_{n}(x) = 0$. 
 
-**Showing (3):** It's impossible that $C_n = \emptyset$ infinitely many often, because if it is, then it directly contradicts $\limsup_{n\rightarrow \infty} d_{C_n}(x) = 0$. 
+**Showing(3):** It's impossible that $C_n = \emptyset$ infinitely many often, because if it is, then it directly contradicts $\limsup_{n\rightarrow \infty} d_{C_n}(x) = 0$. 
 
-**Showin (4):** Without loss of generality, we may let the sequence $C_n$ starts at the set last $C_{m + k}$ where $C_m = \emptyset$ is the last occurrence, so all $C_n$ can be assumed to be non-empty. 
+**Showing(4):** Without loss of generality, we may let the sequence $C_n$ starts at the set last $C_{m + k}$ where $C_m = \emptyset$ is the last occurrence, so all $C_n$ can be assumed to be non-empty. 
 Define $d_n = d_{C_n}(x)$, then the monotone decreasing sequence $\sup_{m\ge n} d_n$ converges to zero. 
 This is equivalent to say that $x_n$ gets to $C_n$ infinitely close. 
 
@@ -420,9 +420,6 @@ $$
 \end{aligned}
 $$
 
-
-
-**Remark**
 
 > [!note]- Remark
 > This is called the Kuratowski convergence. 
