@@ -10,7 +10,8 @@ When a function is continuous over a closed interval $[a, b]$ on the real line. 
 
 **Proof**
 
-Without lost of generality, we assume $f(a) < y < f(b)$. Let $S:= \{x\in [a, b]| f(x) < y\}$. $a \in S \implies S \neq \emptyset \implies \bar x:=\sup S \in [a, b]$. We consider 2 sequences that approaches the point $\bar x$ in different ways. 
+Without lost of generality, we assume $f(a) < y < f(b)$. Let $S:= \{x\in [a, b]| f(x) < y\}$. $a \in S \neq \emptyset$, so let $\bar x:=\sup S \in [a, b]$. 
+We consider 2 sequences that approaches the point $\bar x$ in different ways. 
 - construct $(x_n)_{n\in \N}$ with $\lim_{n\rightarrow \infty} x_n = \bar x$, where $x_n < \bar x$, then $x_n\in S$, hence $f(x_n) < y$, taking the limit of the sequence yield: $f(\bar x) = \lim_{n\rightarrow \infty}f(x_n) \le y$ by $x_n \in S$. For concrete argument, the sequence can simply be: $x_n = \bar x - 1/n$. 
 - Other wise we can make $x_n'$ approaching $\bar x$ from above, then $x_n\not \in S$, hence $\lim_{n\rightarrow \infty}f(x_n) = f(\bar x) \ge y$. 
 

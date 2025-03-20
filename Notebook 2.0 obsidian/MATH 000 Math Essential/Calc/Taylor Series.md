@@ -1,14 +1,16 @@
-Hi, this is some Super basic high school maths. 
+- [Mean Value Theorem](../Analysis/Mean%20Value%20Theorem.md)
 
 ---
 ### **Taylor Theorem**
-Taylor's theorem approximates some function around a point, using differential information of the function at the point, and a series (finite or not) of polynomials. In the case when the function is finitely differentiable, a reminder can be put at the end to model the error of the approximation. 
 
-#### **Formula for Single Variable**
+Taylor's series approximates mapping $\R \rightarrow \R$ using polynomials: $1, x, x^2, x^3, \ldots$. 
 
-> Let $f$ k-th differentiable at a point $x_0$ ($f^{(k)}(x)$ is a continuous function $\delta$ region around $x_0$), then the Taylor's expansion is: 
-> $$T_n(f|x_0)
-> =\left(\sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!}(x - x_0)^k \right)+ \mathcal{O}((x - x_0)^{n + 1}),$$
+#### **Theorem | Taylor series Formula for Single Variable**
+> Let $f$ k-th differentiable at a point $x_0$ ($f^{(k)}(x)$ is a continuous function around $x_0$), then there exists constant $C$ such that: 
+> $$
+>   T_n(f|x_0)
+>   =\left(\sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!}(x - x_0)^k \right)+ C(x - x_0)^{n + 1},
+> $$
 > when the function is smooth enough to be infinitely differentiable, then we have: 
 > $$
 > f(x) = \sum_{k = 0}^\infty 
@@ -16,133 +18,74 @@ Taylor's theorem approximates some function around a point, using differential i
 > $$
 > For some value of $x$ near $x_0$. 
 
-**Note**: 
-
-We won't be talking too much about the radius of convergence yet. This would requires some comlex analysis and knowledge of power series. 
-
-**Def | The Big O**
-
-> A function $f \in O(g)$, if there exists a constant $C < \infty$ such that $f(x) < g(x)$ for all $x$ in $\mathbb R$. 
-
----
-### **The remainder of Taylor's Expansion**
-
-Different mathematicians have different things to say about the remainder of Taylor's theorem. 
-
-#### **Riemann Integral Remainder**:
-> 
-> $$
-> \varphi(x) = \left(
->     \sum_{k = 0}^{n} \frac{f^{(k)}(a)(x - a)^k}{k!} 
-> \right) + \int_{a}^{x} \frac{f^{(n + 1)}(t)(x - t)^n}{n!}dt,
-> $$
-> Which requires understanding in Lesbgue integrals to understand the proof for this one. 
-
-
-#### **Lagrange Differential Remainder, Exact**:
-
-> Let $f$ be $n + 1$ differentiable, i.e: $f^{(n + 1)}$ is continuous the open interval $(a, x)$, and $f^{(n)}$ is continuous on the closed interval $[a, x]$, then: 
-> 
-> $$
-> \exists \; t \in (x, c) : f(x) = \left(
->     \sum_{k = 0}^{n} \frac{f^{(k)}(c)(x - c)^k}{k!}
-> \right) + 
-> \frac{f^{(n + 1)}(t)(x -c)^{n + 1}}{(n + 1)!}.
-> $$
-
-#### **Peano Remainder Form**
-
-> Let $f(x)$  be a k-th differentiable function on a closed interval, $[a, b]$, then
-> 
-> $$
-> \begin{aligned}
->     &f(x) = f(a) + f'(a)(x - a) + \frac{f''(a)(x - a)^2}{2} + \cdots + 
->     \frac{f^{(k)}(x)(x - a)^k}{k!} + h_k (x)(x - a)^k 
->     \\
->     & \text{Where: }
->     \lim_{x \rightarrow a} h_k(x) = 0, f^{(k)} \text{ is continuous}.
-> \end{aligned}
-> $$
-
-It's saying that the coefficients of the $k^\text{th}$ remainder is going to zero as $x\rightarrow a$. Peano remainder can be expressed using the $\mathcal{o}(|x - a|^k)$, and in that case, the remainder is paramaterized by $k$, say $R_k(x)$, and it's a function such that $\lim_{x \rightarrow a} R_k(x)/(x - a)^k = 0$. 
-
-**Upper Bound For the Remainder**
-
-Assuming that the function is infinitely differentiable at every points in the real, then it's continuous for any of its derivative, which implies that given any point $x_0, x$, the following is true:
-
-> $$\exists M =\left| \sup_{x \in [\min(x_0, x), \max(x_0, x)]} f^{(n + 1)}(x) \right| \le \infty$$
-
-And this will give us an upper bound for the error of approximation by Taylor series: 
-> $$|T_n(f| x_0) - f(x)| \le  \left| 
-> \frac{M}{(n + 1)!}(x - x_0)^{n + 1}
-> \right| \quad \forall x \in [\min(x_0, x), \max(x, x_0)]$$
 
 
 ---
 
 ### **Complex Analysis And Taylor Series**
 
-[[Laurent Series]] For more info, and it needs a lot more to deal with than in the real case. 
+Read [[Laurent Series]] for more info, and it needs a lot more to deal with than in the real case. 
 
 ---
 ### **Analysis Flavor of Taylor's Theorem**
 
-We are interested in looking for the different forms for the remainders of Taylor's Series. Wiki Link: [here](https://en.wikipedia.org/wiki/Taylor%27s_theorem)
-
-
+Different forms for the remainders of Taylor's Series are in: [here](https://en.wikipedia.org/wiki/Taylor%27s_theorem)
 
 
 #### **Taylor's Remainder Form:** 
 
-> Suppose $f:[a, b] \mapsto \mathbb{R}$ and $f^{(n + 1)}$ is differentiable in $(a, b)$ and $f^{(k)}$ is continuous and differentiable for $k \le n$, given $x\neq x_0 \in [a,b]$, $c \in [x_0, x]$ we have: 
+> Suppose $f:[a, b] \mapsto \mathbb{R}$ and $f^{(n + 1)}$ is differentiable in $(a, b)$ and $f^{(k)}$ is continuous and differentiable for $k \le n$, given $x, x_0 \in [a,b], x > x_0$. 
+> Then there exists $c \in [x_0, x]$ such that: 
 > 
 > $$
 > f(x) = 
 >     \left(
 >         \sum_{k = 0}^{n}
 >         \frac{f^{(k)}(x_0)(x - x_0)^k}{k!}
->     \right) + \frac{f^{n + 1}(c)}{(n + 1)!}(x - x_0)^{n + 1}
+>     \right) + \frac{f^{(n + 1)}(c)}{(n + 1)!}(x - x_0)^{n + 1}
 > $$
 
 **Proof**
 
-Consider $P_n(x|x_0) =\sum_{k = 0}^{n}(f^{(k)}(x_0)(x - x_0))/k!$, then: 
+Define $P_n(x|x_0) =\sum_{k = 0}^{n}(f^{(k)}(x_0)(x - x_0))/k!$, then: 
 
 $$
 \begin{aligned}
-    \partial_x[P_n(x|x_0)](x_0) &= f(x_0)
-    \\
-    \partial_x^2[P_n(x|x_0)](x_0) &= f''(x_0)
-    \\
-    & \hspace{0.5em}\vdots
-    \\
-    \partial_x^n[P_n(x|x_0)](x_0) &= f^{(n)}(x_0)
+    (\forall k = 0, \ldots, n)\;[x\mapsto P_k(x|x_0)]'(x_0) &= f^{(k)}(x_0). 
 \end{aligned}
 $$
 
-Define $g(x):= f(x) - P_n(x|x_0) - M_{x, x_0}(x - x_0)^{n + 1}$. Fixing the value of $x$, then: 
-
+Note that for all $x > x_0, k = 1, \ldots, n$: 
 $$
-\exists M_{x, x_0}: 0 = f(x) - P_n(x|x_0) - M_{x, x_0}(x - x_0)^{n + 1}, 
+\begin{aligned}
+    \left(
+        \exists M_{x, x_0} = \frac{f(x) - P_n(x | x_0)}{(x - x_0)^{n + 1}}
+    \right)
+    :\;
+    0 = f(x) - P_n(x|x_0) - M_{x, x_0}(x - x_0)^{n + 1}. 
+\end{aligned}
 $$
 
-For the value of $x$. Take note that $M_{x, x_0}$ exists, but it's just not in the form that we like it, and it can be solved by solving the equation directly. Finally observe that using intermediate value theorem: 
+Define $g(z):= f(z) - P_n(z|x_0) - M_{x, x_0}(z - x_0)^{n + 1}$ for $z \in [x_0, x]$. 
+The continuous differentiability of $f$ and remainder $M_{x, x_0}(z - x_0)^{n + 1}$ allows: 
 
 $$
 \begin{aligned}
-    & g(x_0) = 0 = g(x) \implies \exists x_1 \in [x_0, x]: g'(x_1) = 0
+    & g(x_0) = 0 = g(x) \implies \exists x_1 \in [x_0, x]: g'(x_1) = 0, 
     \\
-    & g'(x_1) = 0 =g'(x_0) \implies \exists x_2\in[x_0, x_1]: g''(x_2) = 0
+    & g'(x_1) = 0 =g'(x_0) \implies \exists x_2\in[x_0, x_1]: g''(x_2) = 0, 
     \\
-    & \quad \vdots 
+    & (\cdots)
     \\
-    & g^{(n)}(x_{n}) = 0 = g^{(n)}(x_n) \implies \exists x_{n + 1}\in [x_0, x_{n}]: g^{(n + 1)}(x_{n + 1}) = 0,
+    & g^{(n)}(x_{n}) = 0 = g^{(n)}(x_n) \implies \exists x_{n + 1}\in [x_0, x_{n}]: g^{(n + 1)}(x_{n + 1}) = 0.
 \end{aligned}
 $$
 
-Letting $c = x_{n + 1}$, then $g^{(n + 1)}(c) = f^{(n + 1)}(c) - (n + 1)! M_{x, x_0}$ which means that $M_{x, x_0} = f^{(n + 1)}(c) (n + 1)!$, this is the remainder. The use of mean value theorem requires that, $f^{(n)}$ is differentiable on the closed interval $[x_0, x]$. 
+Letting $c = x_{n + 1}$, then $0 = g^{(n + 1)}(c) = f^{(n + 1)}(c) - (n + 1)! M_{x, x_0}$ which means that $M_{x, x_0} = f^{(n + 1)}(c) (n + 1)!$. 
+The use of mean value theorem requires $f^{(n)}$ is differentiable on the closed interval $[x_0, x]$. 
 
 **Remarks**
+
 We can use the continuity of $g^{(n)}$ and Intermediate Value theorem instead to derive an error term on the scale of $(x - x_0)^n$. 
 
 **Integral Form of the Remainder**

@@ -1,5 +1,7 @@
 - [Topological Spaces](../Topological%20Spaces.md). 
 - [Real Analysis Basics](Real%20Analysis%20Basics.md). 
+- [Metric Space Introduction](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Metric%20Space%20Introduction.md)
+
 ---
 ### **Intro**
 

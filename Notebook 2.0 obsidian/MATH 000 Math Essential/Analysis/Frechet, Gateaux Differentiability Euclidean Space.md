@@ -3,8 +3,8 @@
 ----
 ### **Intro**
 
-We introduce the concepts of Frechet and Gataux differentiability for $\mathbb R^m\mapsto \mathbb R$ functions. 
-The concept itself is more generalized and it can present it self in variational calculus. 
+We introduce the concepts of Frechet and Gâteaux differentiability for $\mathbb R^m\mapsto \mathbb R$ functions. 
+The concept itself is more generalized and, it can present itself in variational calculus. 
 See [Frechet Derivative](Frechet%20Derivative.md) for the same concept but in a much more generalized context. 
 
 #### **Def | Frechet Derivative**
@@ -14,7 +14,7 @@ See [Frechet Derivative](Frechet%20Derivative.md) for the same concept but in a 
 >     f(x) = f(\bar x) + \langle v, x - \bar x\rangle + o(\Vert x - \bar x\Vert). 
 > \end{aligned}
 > $$
-> Where the little-o notation has the property $\lim_{x\rightarrow \bar x}\frac{o(\Vert x - \bar x\Vert)}{\Vert x = \bar x\Vert} = 0$. 
+> Where the little-o notation promises the existence of a function $h(\Vert x - \bar x\Vert) = o(\Vert x - \bar x\Vert)$ in the expression such that $\lim_{x\rightarrow \bar x}\frac{h(\Vert x - \bar x\Vert)}{\Vert x - \bar x\Vert} = 0$. 
 
 **Observations**
 
@@ -26,8 +26,9 @@ $$
 \end{aligned}
 $$
 
-#### **Def | Gateaux Differentiable**
-> A function $f: \mathbb R^n \mapsto \mathbb{\bar R}$ is Gateaux differentiable when there exists $v \in \mathbb R^n$ such that for all $w$ the limit satisfies 
+
+#### **Def | Gâteaux Differentiable**
+> A function $f: \mathbb R^n \mapsto \mathbb{\bar R}$ is Gâteaux differentiable when there exists $v \in \mathbb R^n$ such that for all $w$ the limit satisfies 
 > $$
 > \begin{aligned}
 >     \lim_{\tau \rightarrow 0}
@@ -132,7 +133,8 @@ $$
 \end{aligned}
 $$
 
-The absolute value gives upper bound to zero and nullifing the sign introduced from $\tau$. 
+The absolute value gives upper bound to zero and nullifying the sign introduced from $\tau$. 
+We had demonstrated the conditions where Gateaux derivatives is equivalent to Frechet Derivative. 
 
 #### **Example | A continuous function that is G-Differentiable but not F-Differentiable**
 > The function 
@@ -145,7 +147,7 @@ The absolute value gives upper bound to zero and nullifing the sign introduced f
 >     \end{cases}
 > \end{aligned}
 > $$
-> It is Gataux differentiable but not Frechet Differentiable.
+> It is Gâteaux differentiable but not Frechet Differentiable.
 
 **Demonstrations**
 
@@ -205,12 +207,12 @@ $$
     \right| = \frac{1}{2}\Vert (t, t^2)\Vert
     \\
     \implies
-    \frac{f(t, t^2) - 0}{\Vert (t, t^2) - (0, 0)\Vert} 
+    \frac{|f(t, t^2) - 0|}{\Vert (t, t^2) - (0, 0)\Vert} 
     &= 
     \frac{1}{2}. 
 \end{aligned}
 $$
 
-And therefore, on the last line, it shows that the differential quotient doesn't converges uniformly for all $x$ near $\bar x$. 
+And therefore, on the last line, it shows that the differential quotient doesn't converge uniformly for all $x$ near $\bar x$. 
 
 

@@ -5,9 +5,10 @@ alias:Regular Subgradient
 
 ---
 ### **Intro**
-Recall from the prerequisites of this document that the convex subgradient is not sufficient to describe the functions when it's non convex. 
+
 Under simple cases where the function is non-convex, the convex subgradient doesn't reduces to the ordinary gradient for differentiable functions. 
-This motivates the definition and discussion for regular subgradient. 
+For example $x^3$ doesn't have any convex subgradient but it's a differentiable function. 
+This motivates the definition and discussion for regular subgradient for non-convex functions. 
 
 Let $f : \mathbb R^n \mapsto \mathbb{\bar R}$. 
 Let $v \in \hat \partial f(\bar x)$. 
