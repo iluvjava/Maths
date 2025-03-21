@@ -20,13 +20,17 @@
 \theoremstyle{plain}{\theorembodyfont{\rmfamily}
 \newtheorem{condition}[theorem]{Condition}}
 \theoremstyle{plain}{\theorembodyfont{\rmfamily}
-\newtheorem{algorithm}[theorem]{Algorithm}}
+
+% Removed due conflict with the algorithm environment. 
+% \newtheorem{algorithm}[theorem]{Algorithm}}
+
 \theoremstyle{plain}{\theorembodyfont{\rmfamily}
 \newtheorem{example}[theorem]{Example}}
 \theoremstyle{plain}{\theorembodyfont{\rmfamily}
 \newtheorem{remark}[theorem]{Remark}}
 \theoremstyle{plain}{\theorembodyfont{\rmfamily}
 \newtheorem{application}[theorem]{Application}}
+
 \def\proof{\noindent{\it Proof}. \ignorespaces}
 %\def\endproof{\vbox{\hrule height0.6pt\hbox{\vrule height1.3ex%
 %width0.6pt\hskip0.8ex\vrule width0.6pt}\hrule height0.6pt}}
@@ -37,3 +41,5 @@
 \renewcommand\theenumii{(\alph{enumii})}
 \renewcommand{\labelenumi}{\rm (\roman{enumi})}
 \renewcommand{\labelenumii}{\rm (\alph{enumii})}
+
+\numberwithin{equation}{section}

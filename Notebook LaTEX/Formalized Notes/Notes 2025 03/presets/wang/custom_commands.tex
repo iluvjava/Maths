@@ -8,7 +8,7 @@
 \newcommand{\paver}{\ensuremath{\mathcal{P}}}
 \newcommand{\ZZZ}{\ensuremath{{X \times X^*}}}
 \newcommand{\RRR}{\ensuremath{{\RR \times \RR}}}
-\newcommand{\todo}{\hookrightarrow\textsf{TO DO:}}
+% \newcommand{\todo}{\hookrightarrow\textsf{TO DO:}}
 
 \newcommand{\emp}{\ensuremath{\varnothing}}
 %\newcommand{\la}{\ensuremath{\langle}}
@@ -20,7 +20,7 @@
 \newcommand{\XX}{\ensuremath{\mathcal X}}
 \newcommand{\HH}{\ensuremath{\mathcal H}}
 \newcommand{\XP}{\ensuremath{\mathcal X}^*}
-\newcommand{\st}{\ensuremath{\;|\;}}
+% \newcommand{\st}{\ensuremath{\;|\;}}  % CONFLICT WITH STRIKE THROUGH FROM PACKAGE{SOUL}
 \newcommand{\zeroun}{\ensuremath{\left]0,1\right[}}
 
 \newcommand{\lev}[1]{\ensuremath{\mathrm{lev}_{\leq #1}\:}}
@@ -138,8 +138,8 @@
 
 \newcommand{\minf}{\ensuremath{-\infty}}
 \newcommand{\pinf}{\ensuremath{+\infty}}
-\renewcommand{\iff}{\ensuremath{\Leftrightarrow}}
-% \renewcommand{\phi}{\ensuremath{\varphi}}
+% \renewcommand{\iff}{\ensuremath{\Leftrightarrow}}
+% \renewcommand{\phi}{\ensuremath{\varphi}} % The hell who added this? 
 %\newcommand{\Real}{\ensuremath{\mathrm{Re}\,}}
 \newcommand{\negent}{\ensuremath{\operatorname{negent}}}
 \newcommand{\neglog}{\ensuremath{\operatorname{neglog}}}
@@ -170,3 +170,11 @@ height6pt}}\hskip5pt}}
 \newcommand{\im}{\mathrm{Im}}
 \newcommand{\multival}{\ensuremath{X\to 2^{X^*}}}
 \newcommand{\SX}{\ensuremath{2^{X^*}}}
+
+
+% Hongda's Stuff: 
+\newcommand{\N}{\ensuremath{\mathbb N}}
+% REQURES MATH TOOLS PACKAGE
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+\newcommand{\todoinline}[1]{\todo[inline, caption={}]{#1}}
