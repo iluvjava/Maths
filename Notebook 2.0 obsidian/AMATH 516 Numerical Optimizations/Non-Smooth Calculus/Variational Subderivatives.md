@@ -107,7 +107,7 @@ To illustrate, we consider the following claims that proposed an equivalent char
 > 	\right)
 > \end{aligned}
 > $$
-> On the compact set $\mathbb B(\mathbf 0)$. 
+> on the compact set $\mathbb B(\mathbf 0)$. 
 
 **Proof**
 
@@ -237,7 +237,7 @@ $$
 	\frac{f(x + \lambda w) - f(\bar x)}{\lambda}
 	\\
 	&= 0 + 
-	\liminf_{\substack{\lambda\searrow 0\\ w'\rightarrow w}}
+	\liminf_{\substack{\lambda\searrow 0}}
 	\frac{f(x + \lambda w) - f(\bar x)}{\lambda}
 \end{aligned}
 $$

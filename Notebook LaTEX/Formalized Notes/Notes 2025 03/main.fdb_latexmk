@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1742513041.83287 "main.aux" "main.bbl" "main" 1742513189.98036 0
+["bibtex main"] 1742546600.28524 "main.aux" "main.bbl" "main" 1742546641.54658 0
   "./references/Books.bib" 1737688388.39333 27383 c23c45e8b7451cd8d3d3ce42846f24a4 ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/siam.bst" 1292289607 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1742513189.6893 897 49e0a5eb49173d1ff75e88d2d55dda70 "pdflatex"
+  "main.aux" 1742546641.2476 897 5c7685ddb5f79d0c04be4187551e0ceb "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1742513188.85857 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" "main.pdf" "main" 1742513189.98054 0
-  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" 1742513188.64573 985 835e887703baea1f4b185cb4b1d4eaf8 ""
+["pdflatex"] 1742546640.40825 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" "main.pdf" "main" 1742546641.54679 0
+  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" 1742546640.2095 1001 479a11888b20fd45425515b05c2f8e8f ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -194,10 +194,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1716844513.00476 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1716844504 8221424 900989947c23303b742a586f0df8c087 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "main.aux" 1742513189.6893 897 49e0a5eb49173d1ff75e88d2d55dda70 "pdflatex"
-  "main.bbl" 1742513041.94368 249 cc137f79774c032f18db1934ad5001ed "bibtex main"
-  "main.out" 1742513189.47364 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.tex" 1742513188.64573 985 835e887703baea1f4b185cb4b1d4eaf8 ""
+  "main.aux" 1742546641.2476 897 5c7685ddb5f79d0c04be4187551e0ceb "pdflatex"
+  "main.bbl" 1742546600.40313 249 cc137f79774c032f18db1934ad5001ed "bibtex main"
+  "main.out" 1742546641.03174 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.tex" 1742546640.2095 1001 479a11888b20fd45425515b05c2f8e8f ""
   "presets/julia_lstlisting.tex" 1734912471.75532 795 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1734912471.75575 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1737688388.3909 8751 43b1f87d5e2ad43f60c8e67f03e69d1f ""
