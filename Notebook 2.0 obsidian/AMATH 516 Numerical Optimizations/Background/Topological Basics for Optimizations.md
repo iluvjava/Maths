@@ -4,7 +4,8 @@
 ---
 ### **Intro**
 
-The geometric properties of function classifies them, and their properties that are relevant to optimizations. We focuses on *Finite Euclidean spaces* for real numbers with the usual p-norm as the metric (see [Topology of Metric Space](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Topology%20of%20Metric%20Space.md), [Metric Space Introduction](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Metric%20Space%20Introduction.md) for more context). We denote the epsilon in the vicinity of a point $x$ in space to be $\mathbb B_\epsilon(x)$, this is an open normal ball centered at $x$ with radius $\epsilon$. Topology of sets in $\mathbb R^n$ is particular useful for characterizing the behavior of functions that are $C1$, the ramp function. 
+The geometric properties of function classifies them, and their properties that are relevant to optimizations. We focuses on *Finite Euclidean spaces* for real numbers with the usual p-norm as the metric (see [Topology of Metric Space](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Topology%20of%20Metric%20Space.md), [Metric Space Introduction](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Metric%20Space%20Introduction.md) for more context). 
+We denote the epsilon in the vicinity of a point $x$ in space to be $\mathbb B_\epsilon(x)$, this is an open normal ball centered at $x$ with radius $\epsilon$. Topology of sets in $\mathbb R^n$ is particular useful for characterizing the behavior of functions that are $C1$, the ramp function. 
 
 #### **Definition-1 | Interior of a set**
 
@@ -61,7 +62,7 @@ A direct negation on the definition of an open set yields the results we want to
 
 
 ---
-### **Topologicaly Defined Limit Inf and Sup**
+### **Topologically Defined Limit Inf and Sup**
 
 We define the generalized definition of a Limit Infimum and Limit Supremum in the Euclidean spaces. 
 

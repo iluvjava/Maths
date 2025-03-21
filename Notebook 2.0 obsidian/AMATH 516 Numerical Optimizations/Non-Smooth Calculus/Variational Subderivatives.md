@@ -2,9 +2,9 @@
 alias: Variational Directional Derivatives, Dini Hadamard Subderivatives
 
 ---
-- [[Subgradient Intro]], [Fechet Regular Subgradient](Fechet%20Regular%20Subgradient.md)
-- [[Epigraph, Level Sets]], 
-- [[Support Function]], 
+- [Subgradient Intro](Subgradient%20Intro.md), [Fechet Regular Subgradient](Fechet%20Regular%20Subgradient.md)
+- [Epigraph, Level Sets](Epigraph,%20Level%20Sets.md), 
+- [Support Function](Support%20Function.md), 
 
 ---
 ### **Intro**
@@ -32,24 +32,31 @@ Dini-Hadmard variational sub-derivative tells us how a function behaves near a g
 > Consider any augmented real function $f$ at a point $x$ where $f(x)$ is finite, the direction derivative in the direction of $u$ is given as: 
 > $$
 > \begin{aligned}
->   d[f](x|u) = \lim\inf_{\substack{\tau \searrow 0 \\ v\rightarrow u}}
+>   df(x)(u) = \liminf_{\substack{\tau \searrow 0 \\ v\rightarrow u}}
 >     \frac{f(x + \tau v) - f(x)}{\tau}
 > \end{aligned}
 > $$
-
-**Notations**
-
-For more complex expression such as $f(Ax + b)$ in the direction of $u$, we use the notation $[x \mapsto f(Ax + b)]'(x|u)$. 
-There will be less ambiguity regarding which single vector variable that we are taking the derivative with. 
+ 
 
 **Obesrvations**
 
-When $u = \mathbf 0$, we would have $df(x | \mathbf 0 ) = 0$ for all $f$, for all $x$. 
-This is by the definiton. 
+The limit is saying: 
+
+$$
+\begin{aligned}
+	df(x)(u) := 
+	\lim_{\substack{\tau \searrow 0 \\ \epsilon \searrow 0}}
+	\inf_{w}
+	\left\lbrace
+		\left. \frac{f(x + \tau w) - f(x)}{\tau} \right|
+		\Vert w - u\Vert \le \epsilon
+	\right\rbrace
+\end{aligned}
+$$
 
 **Remarks**:
 
-Immediately Observe the Equivalence to the tangent cone definitions [[../Background/Tangent Cone]] on the epigraph of the function: 
+Immediately Observe the Equivalence to the tangent cone definitions [Tangent Cone](../Background/Tangent%20Cone.md) on the epigraph of the function: 
 
 $$
 \begin{aligned}
@@ -59,12 +66,10 @@ $$
 
 
 #### **Def-2 | Classic Directional Derivative Locally Lipschitz Functions**
-
-
 > Consider any $f$ that is an augmented real function and it's Lipschitz continuous around the point $x$, then the directional derivative in the direction of $u$ is: 
 > $$
 > \begin{aligned}
->      f'(x|u) = \liminf_{\tau \searrow 0}\frac{f(x + \tau u) - f(x)}{\tau}
+>      f'(x, u) = \liminf_{\tau \searrow 0}\frac{f(x + \tau u) - f(x)}{\tau}
 > \end{aligned}
 > $$
 
@@ -72,7 +77,7 @@ We skip the proof.
 Function that is locally Lipschitz is true for all close, convex, lsc function at the $\text{ri}.\text{dom}(f)$. 
 Hence, under this case, we have the subderivative equals to above. 
 The classical directional derivative simplifies further to just $\lim$ when the function is convex. 
-See [[Convex Directional Derivatives]] for more information. 
+See [Convex Directional Derivatives](Convex%20Directional%20Derivatives.md) for more information. 
 
 **Remarks**
 
@@ -90,55 +95,111 @@ The definition of Dini-Hadmard variational subderivatives breaks the definition 
 To illustrate, we consider the following claims that proposed an equivalent characterizations of the Fenchet Differentiability. 
 
 #### **Claim | Sufficient for Fenchet Differentiability**
-> $F$ is differentiable if and only if 
+> Suppose $f:\R^n \rightarrow \R$ is continuous. 
+> Then it is differentiable if and only if $\exists v \in \R^n$ such that: 
 > $$
->   \forall w \in \mathbb R^n\quad  h(w)= 
->   \lim_{\substack{\lambda\searrow 0 \\ w' \rightarrow \bar w}}
->   \frac{f(\bar x - \lambda w') - f(\bar x)}{\Vert x - \bar x \Vert}. 
+> \begin{aligned}
+> 	\left(
+> 		w \mapsto \lim_{w' \rightarrow w}\frac{f(\bar x + \tau w') - f(\bar x)}{\tau}
+> 	\right)\underset{\substack{\tau \searrow 0 \\ \text{uniformly}}}{\longrightarrow}
+> 	\left(
+> 		w \mapsto \langle v, w\rangle
+> 	\right)
+> \end{aligned}
 > $$
-> And $h(w)$ is a linear function. 
+> On the compact set $\mathbb B(\mathbf 0)$. 
 
 **Proof**
 
-If $f$ is Frenchet differentiable, then the above conditions are true since it's just much stronger by the definition. 
-Let $f$ bt non-differentiable, then the definition of Fenchet derivative is false. 
-For contradiction let's assume that we have $h(x) = \langle v, w\rangle$ for all $w \in \mathbb R^n$ and we have: 
+By the definition of uniform convergence it means: 
 
 $$
 \begin{aligned}
-    \forall w \in \mathbb R^n : 
-    \lim_{\substack{\tau\searrow 0 \\ w' \rightarrow \bar w}}
-    \frac{f(\bar x + \tau) - f(\bar x)}{\tau}
-    &= \langle v, w\rangle. 
+	0 &= 
+	\lim_{\tau \searrow 0}
+	\sup_{w \in \mathbb B(\mathbf 0)}
+	\left|
+		\left(
+			\lim_{w' \rightarrow w}\frac{f(\bar x + \tau w') - f(\bar x)}{\tau}
+		\right)
+		- \langle v, w\rangle
+	\right| 
+	\\
+	&= 
+	\lim_{\tau \searrow 0}
+	\sup_{w \in \mathbb B(\mathbf 0)}
+	\left|
+		\lim_{w' \rightarrow w}
+		\frac{
+			f(\bar x + \tau w') - f(\bar x) - \langle v, \tau w\rangle
+		}{\tau}
+	\right| 
+	\\
+	&=
+	\lim_{\tau \searrow 0}
+	\sup_{w \in \mathbb B(\mathbf 0)}
+	\left|
+		\frac{
+			f(\bar x + \tau w) - f(\bar x) - \langle v, \tau w\rangle
+		}{\tau}
+	\right| 
+	& \text{Continuity}
+	\\
+	&= 
+	\lim_{\tau \searrow 0}
+	\sup_{x}
+	\left\lbrace
+		\left|
+			\frac{
+				f(x) - f(\bar x) - \langle v, x - \bar x\rangle
+			}{\tau}
+		\right|: 
+		\Vert x - \bar x\Vert \le \tau
+	\right\rbrace  
+	\quad  
+	& x = \bar x + \tau w
+	\\
+	&\ge
+	\lim_{\tau \searrow 0}
+	\sup_{x}
+	\left\lbrace
+		\left|
+			\frac{
+				f(x) - f(\bar x) - \langle v, x - \bar x\rangle
+			}{\tau}
+		\right|: 
+		\Vert x - \bar x\Vert = \tau
+	\right\rbrace 
+	\\
+	&=
+	\lim_{\tau \searrow 0}
+	\sup_{x}
+	\left\lbrace
+		\left|
+			\frac{
+				f(x) - f(\bar x) - \langle v, x - \bar x\rangle
+			}{\Vert x - \bar x\Vert}
+		\right|: 
+		\Vert x - \bar x\Vert = \tau
+	\right\rbrace
+	\\
+	&= \limsup_{x \rightarrow \bar x}
+	\left|
+		\frac{
+			f(x) - f(\bar x) - \langle v, x - \bar x\rangle
+		}{\Vert x - \bar x\Vert}
+	\right|
+	\\
+	&\ge \lim_{x \rightarrow \bar x}
+	\left | 
+		\frac{
+			f(x) - f(\bar x) - \langle v, x - \bar x\rangle
+		}{\Vert x - \bar x\Vert}
+	\right| \ge 0. 
 \end{aligned}
 $$
 
-Assuming the $f$ is not Fenchet differentiable, there exists sequence $(x^{(\gamma)})_{\gamma\in \mathbb N}$ such that 
-
-$$
-\begin{aligned}
-  \frac{f(x^{(\gamma)}) - f(\bar x) - \langle v, x^{(\gamma)} - \bar x\rangle}{
-    \Vert x^{(\gamma)} - \bar x\Vert
-  } \rightarrow 
-  \beta &\neq 0, 
-\end{aligned}
-$$
-
-By the fact that $f$ is not differentiable at $\bar x$. 
-Set $\tau_\gamma = \Vert x^{(\gamma)} - \bar x\Vert$, then $w^{(\gamma)} = (x^{(\gamma)} - \bar x) / \tau_{\gamma}$, and therefore the limit simplifies to 
-
-$$
-\begin{aligned}
-    \frac{f(\bar x + \tau_\gamma w^{(\gamma)}) - f(\bar x)}{
-        \tau_\gamma
-    } - \langle v, w^{(\gamma)}\rangle \rightarrow \beta. 
-\end{aligned}
-$$
-By definition, we have $\Vert w^{(\gamma)}\Vert = 1$, since we are in $\mathbb R^n$, there exists some subsequential limit say $w^{(\rho)}$ such that it converges. 
-Therefore, the above claim won't be equal to zero. 
-This contradiction the assumption we made, therefore the converse is proven and the limit is sufficient for Frenchet differentiability. 
-
-
+$\square$
 
 ---
 ### **Local Lipschitz Continuity**
@@ -147,7 +208,7 @@ Lipschitz continuous function simplifies the definition of the Dini-Hadamard sub
 It simplifies so it only has one limit occurring and it's sufficient to discover the derivative based on only the behaviors of the function along the direction of the ray. 
 
 #### **Thm | Dini Hadamard under Locally Lipschitz Conditions**
-> The dini Hamdamard Subderivative would is equivalent to 
+> The dini Hamdamard Subderivative if exists, would be equivalent to 
 > $$
 >   \liminf_{\lambda \searrow 0} \frac{f(\bar x + \lambda w) - f(\bar x)}{\lambda}, 
 > $$
@@ -173,12 +234,16 @@ $$
 	\frac{f(\bar x + \lambda w') -f(\bar x + \lambda w)}{\lambda}
 	+ 
 	\liminf_{\substack{\lambda\searrow 0\\ w'\rightarrow w}}
-	\frac{f(x + \lambda w) - f(\bar x)}{\lambda}. 
+	\frac{f(x + \lambda w) - f(\bar x)}{\lambda}
+	\\
+	&= 0 + 
+	\liminf_{\substack{\lambda\searrow 0\\ w'\rightarrow w}}
+	\frac{f(x + \lambda w) - f(\bar x)}{\lambda}
 \end{aligned}
 $$
 
-On the last line, we can do this because the term on the left has a limit. 
-It has a limit because $f$ is Locally Lipschitz at $\bar x$ therefore 
+We can split the limit on the secnd equality because the first term has a limit to it. 
+$f$ is Locally Lipschitz at $\bar x$ has: 
 
 $$
 \begin{aligned}
@@ -193,8 +258,7 @@ $$
 \end{aligned}
 $$
 
-Since the limit exists, then $\liminf$ would be the same as the limt and therefore, the first term in the sum is zero. 
-Additioanlly, the second term in the sum only has $w$ which is not dependent on the variable $w'$ therefore the claim is proven. 
+$\square$
 
 
 ---

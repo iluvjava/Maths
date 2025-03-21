@@ -1,4 +1,4 @@
-[Real Analysis Basics](Real%20Analysis%20Basics.md)
+- [Real Analysis Basics](Real%20Analysis%20Basics.md)
 
 
 ---
@@ -78,4 +78,86 @@ Therefore $L = \inf C$.
 
 
 ---
-### **Some properties of Limit Infimum and Limit Supremum**
+### **Some properties of Limit Infimum and Limit Supremum of Sequences**
+
+
+
+---
+### **Limit Supremum, Limit Infimum of functions**
+
+
+
+#### **Definition | Limit Supremum, Infimum of a function**
+> Let $f: \R^n \rightarrow \R$ be a function. 
+> Then we define limit infimum, and limit supremum at some point $\bar x \in \R^n$ to be: 
+> $$
+> \begin{aligned}
+>     \liminf_{x\rightarrow \bar x}
+>     f(x)
+>     &= 
+>     \lim_{\epsilon \searrow 0}
+>     \left(
+>         \inf_{x} 
+>         \left\lbrace
+>             f(x) \left| \;
+>                 0 < \Vert x - \bar x\Vert \le \epsilon
+>             \right.
+>         \right\rbrace
+>     \right)
+>     \\
+>     &= 
+>     \lim_{\epsilon \searrow 0}
+>     \left(
+>         \inf_{x \in \epsilon \mathbb B(\bar x)\setminus \{\bar x\}} f(x) 
+>     \right), 
+>     \\
+>     \limsup_{x\rightarrow \bar x}
+>     f(x)
+>     &= 
+>     \lim_{\epsilon \searrow 0}
+>     \left(
+>         \sup_{x} 
+>         \left\lbrace
+>             f(x) \left| \;
+>                 0 < \Vert x - \bar x\Vert \le \epsilon
+>             \right.
+>         \right\rbrace
+>     \right)
+>     \\
+>     &= \lim_{\epsilon \searrow 0}
+>     \left(
+>         \sup_{x \in \epsilon \mathbb B(\bar x)\setminus \{\bar x\}} f(x) 
+>     \right). 
+> \end{aligned}
+> $$
+
+**Notes**
+
+Take note that, when the function $f$ is lower semi-continuous, it has: 
+
+$$
+\begin{aligned}
+    \liminf_{x \rightarrow \bar x} f(x)
+    &= 
+    \lim_{\epsilon \rightarrow 0}\inf_{x \in \epsilon \mathbb B(\bar x)\setminus \{\bar x\}}
+    f(x)
+    \ge 
+    \lim_{\epsilon \rightarrow 0}\inf_{x \in \epsilon \mathbb B(\bar x)}
+    f(x) \ge f(\bar x). 
+\end{aligned}
+$$
+
+Analogous results for limit supremum exists. 
+Similarly, this definition defines lower semi-continuity of a function. 
+
+
+
+#### **Definition | Lower semi-continuity of function**
+> A function $f: \mathbf{E}\mapsto \mathbb{\bar{R}}$, then the function is lower semi-continuous if: 
+> $$
+>   \forall x \in \mathbf{E}: \liminf_{y\rightarrow x} f(y)\ge f(x). 
+> $$
+
+
+See [Lower Semi-Continuous](../../AMATH%20516%20Numerical%20Optimizations/Background/Lower%20Semi-Continuous.md) for lot more information. 
+
