@@ -79,6 +79,8 @@ The variational subgradient is consistent with the gradient definition for ordin
 
 The definition for convex subgradient comes from: \<First Order Methods in Optimizations\> by SIAM, the second definition (regular subgradient) comes from \<Variational Analysis\> Definition 8.3 by Rockafellar, it's consistent with Dimitri's AMATH 516 FALL 2021
 
+Read [Regular Subgradient](Subgradient%20Intro.md) for more information. 
+
 ---
 ### **Notations**
 

@@ -5,7 +5,7 @@
 
 We introduce the concepts of Frechet and Gâteaux differentiability for $\mathbb R^m\mapsto \mathbb R$ functions. 
 The concept itself is more generalized and, it can present itself in variational calculus. 
-See [Frechet Derivative](Frechet%20Derivative.md) for the same concept but in a much more generalized context. 
+See [Frechet Derivative in Banach Space](Frechet%20Derivative%20in%20Banach%20Space.md) for the same concept but in a much more generalized context. 
 
 #### **Def | Frechet Derivative**
 > Let $f: \mathbb R^n\mapsto \mathbb {\bar R}$ be differentiable at $\bar x \in \mathbb R^n$ if there exists $v \in \mathbb R^n$ such that 
