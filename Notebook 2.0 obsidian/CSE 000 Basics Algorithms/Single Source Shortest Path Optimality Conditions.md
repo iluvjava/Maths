@@ -212,9 +212,15 @@ This helps with making the algrithm deterministic when the optimal paths are not
 > Start with $d^{(0)}: V \times V \rightarrow \R$ with $d^{(0)}(s) = 0$, and $d^{(0)}(v) = \infty$ for all $V \ni v \neq s$. 
 > Start with $p^{(0)}: V \rightarrow V$ with $p^{(0)}(v) = s$ for all $v \in V$. 
 > For $k = 1, \ldots, |V|$. 
-> Define distance path measure for all $v\in V$: $d^{(k)}(v) := \min\{d^{(k-1)}(u) + c(u, v): u \in V\}$.
-> Define path predecessor map $p^{(k)}(v) := \min\{u : d^{(k)}(v) = d^{(k - 1)}(v) + (u, v): u\in V\}$. 
-> Then, this algorithm produce shortest path to $s$ in $p^{(|V|)}$, and shortest distance in $d^{(|V|)}$. 
+> Define distance path measure for all 
+> $$
+>   d^{(k)}(v) := \min\left(d^{(k - 1)}(v),\min\left\lbrace d^{(k-1)}(u) + c(u, v): u \in V\right\rbrace\right). 
+> $$
+> Redefine path predecessor map if $d^{(k)}(v) < d^{(k - 1)}(v)$ by 
+> $$
+>   p^{(k)}(v) := \min\left\lbrace u : d^{(k)}(v) = d^{(k - 1)}(v) + (u, v): u\in V\right\rbrace. 
+> $$
+> Then, this algorithm produce the shortest path to $s$ in $p^{(|V|)}$, and shortest distance in $d^{(|V|)}$. 
 
 **Proof**
 
