@@ -27,6 +27,7 @@ Subderivative is a number, not a vector. It tells how the function changes given
 ### **Dini-Hadamard Variational Subderivative**
 
 Dini-Hadmard variational sub-derivative tells us how a function behaves near a given ray. 
+We denote $\mathbb B = \{x : \Vert x\Vert < 1\}$. 
 
 #### **Def-1 | Dini-Hadamard Variational Subderivative**
 > Consider any augmented real function $f$ at a point $x$ where $f(x)$ is finite, the direction derivative in the direction of $u$ is given as: 
@@ -49,7 +50,7 @@ $$
 	\inf_{w}
 	\left\lbrace
 		\left. \frac{f(x + \tau w) - f(x)}{\tau} \right|
-		\Vert w - u\Vert \le \epsilon
+		0 < \Vert w - u\Vert \le \epsilon
 	\right\rbrace
 \end{aligned}
 $$
@@ -74,7 +75,7 @@ $$
 > $$
 
 We skip the proof. 
-Function that is locally Lipschitz is true for all close, convex, lsc function at the $\text{ri}.\text{dom}(f)$. 
+Function that is locally Lipschitz is true for all close, convex, l.s.c function at the $\text{ri}.\text{dom}(f)$. 
 Hence, under this case, we have the subderivative equals to above. 
 The classical directional derivative simplifies further to just $\lim$ when the function is convex. 
 See [Convex Directional Derivatives](Convex%20Directional%20Derivatives.md) for more information. 
@@ -83,8 +84,8 @@ See [Convex Directional Derivatives](Convex%20Directional%20Derivatives.md) for 
 
 The Dini-Hadamard definition of directional derivative is suitable for all kinds of real-valued functions.
 Prof Dimitri pointed out that, the Dini-Hadamard definition of subderivative is more generalized. 
-Observe that replacing $\liminf$ with $\lim$, then **this becomes directional Gataux Derivative**. 
-Allow $\eta\rightarrow 0$ from both direction will yield Gataux derivative definition. 
+Observe that replacing $\liminf$ with $\lim$, then **this becomes directional Gâteaux Derivative**. 
+Allow $\eta\rightarrow 0$ from both direction will yield Gâteaux derivative definition. 
 
 Under the condition that $f$ is *Lipchitz Continuous* on a neighborhood of points (A characterization of convex functions as well), the above definition is equivalent to the usual calculus definition of a directional derivative introduced to second year undergraduate students. 
 
@@ -92,7 +93,7 @@ Under the condition that $f$ is *Lipchitz Continuous* on a neighborhood of point
 ### **Recovering Fenchet Differentiability**
 
 The definition of Dini-Hadmard variational subderivatives breaks the definition of other type of variational derivatives down to small components. 
-To illustrate, we consider the following claims that proposed an equivalent characterizations of the Fenchet Differentiability. 
+To illustrate, we consider the following claims that proposed an equivalent characterization of the Fenchet Differentiability. 
 
 #### **Claim | Sufficient for Fenchet Differentiability**
 > Suppose $f:\R^n \rightarrow \R$ is continuous. 
@@ -205,19 +206,19 @@ $\square$
 ### **Local Lipschitz Continuity**
 
 Lipschitz continuous function simplifies the definition of the Dini-Hadamard subderivatives. 
-It simplifies so it only has one limit occurring and it's sufficient to discover the derivative based on only the behaviors of the function along the direction of the ray. 
+It simplifies, so it only has one limit occurring, and it's sufficient to discover the derivative based on only the behaviors of the function along the direction of the ray. 
 
-#### **Thm | Dini Hadamard under Locally Lipschitz Conditions**
-> The dini Hamdamard Subderivative if exists, would be equivalent to 
+#### **Thm | Dini-Hadamard under Locally Lipschitz Conditions**
+> The Dini Hamdamard Subderivative if exists, would be equivalent to 
 > $$
->   \liminf_{\lambda \searrow 0} \frac{f(\bar x + \lambda w) - f(\bar x)}{\lambda}, 
+>   df(\bar x)(w) = \lim_{\lambda \searrow 0} \frac{f(\bar x + \lambda w) - f(\bar x)}{\lambda}, 
 > $$
 > if $f$ is locally Lipschitz at $\bar x$. 
 
 **Proof**
 
 Let $f$ be locally Lipschitz at $\bar x$. 
-Consider the definition of the directional dervative then 
+Consider the definition of the directional derivative then 
 
 $$
 \begin{aligned}
@@ -239,24 +240,42 @@ $$
 	&= 0 + 
 	\liminf_{\substack{\lambda\searrow 0}}
 	\frac{f(x + \lambda w) - f(\bar x)}{\lambda}
+	\\
+	&= 
+	\lim_{\substack{\lambda\searrow 0}}
+	\frac{f(x + \lambda w) - f(\bar x)}{\lambda} . 
+	& \text{$f$ is continuous}
 \end{aligned}
 $$
 
-We can split the limit on the secnd equality because the first term has a limit to it. 
-$f$ is Locally Lipschitz at $\bar x$ has: 
+We can split the limit on the second equality because the first term has a limit of zero. 
+$f$ is $K(\bar x)$ Locally Lipschitz at $\bar x$, let $\lambda > 0$ be fixed, then: 
+
 
 $$
 \begin{aligned}
-	\left|
-		\frac{f(\bar x + \lambda w') -f(\bar x + \lambda w)}{\lambda}
-	\right| 
-	&\le K_{\bar x} \Vert w' - w\Vert
+	0 \le \left|
+		\liminf_{\substack{\lambda \searrow 0 \\ w' \rightarrow w}}
+		\lambda^{-1}(f(\bar x + \lambda w') - f(\bar x + \lambda w))
+	\right|
+	&= 
+	\lim_{\substack{\epsilon \searrow 0 \\ \lambda \searrow 0}}
+	\inf_{w' \in w + \epsilon \mathbb B}
+	\lambda^{-1}|f(\bar x + \lambda w') - f(\bar x + \lambda w)|
 	\\
-	\implies  \lim_{w'\rightarrow w} \left|
-		\frac{f(\bar x + \lambda w') -f(\bar x + \lambda w)}{\lambda}
-	\right|  &= 0. 
+	&\le 
+	\lim_{\substack{\epsilon \searrow 0 \\ \lambda \searrow 0}}
+	\inf_{w' \in w + \epsilon \mathbb B}
+	\lambda^{-1} K(\bar x) \Vert \lambda w' - \lambda w\Vert
+	\\
+	&= 
+	\lim_{\substack{\epsilon \searrow 0 \\ \lambda \searrow 0}}
+	\inf_{w' \in w + \epsilon \mathbb B}
+	K(\bar x)\Vert w' - w\Vert = 0. 
 \end{aligned}
 $$
+
+
 
 $\square$
 
@@ -264,7 +283,7 @@ $\square$
 ---
 ### **Subgradient Dini-Hadarmard Subderivative**
 
-The following theorem is introduced in Professor's wang Lecture of MATH 564 at UBCO. 
+The following theorem is introduced in Professor Wang's Lecture of MATH 564 at UBCO. 
 This theorem is in fact an exercise in Rockafellar and Wett's textbook. 
 
 #### **Thm | Regular Subgradient and Dini-Hadarmard Subderivative**
@@ -272,96 +291,56 @@ This theorem is in fact an exercise in Rockafellar and Wett's textbook.
 
 **Proof**
 
-Start with $v \in \hat \partial f(\bar x)$. 
-$$
-\begin{aligned}
-	\liminf_{\substack{x\rightarrow \bar x \\ x \neq \bar x}}
-	\frac{f(x) - f(\bar x) - \langle v, x - \bar x\rangle}{\Vert x - \bar x\Vert}
-	&\ge 0
-	\\
-	\text{let } x = \bar x + \tau w', & \text{ assuming } w \neq \mathbf 0
-	\\
-	\liminf_{\substack{x\rightarrow \bar x \\ x \neq \bar x}}
-	\frac{f(\bar x + \tau w') - f(\bar x) - \langle v, \tau w'\rangle}{\Vert \tau w'\Vert}
-	&\ge 0
-	\\
-	\tau \ge 0 \implies 
-	\liminf_{\substack{x\rightarrow \bar x \\ x \neq \bar x}} 
-	\frac{
-			f(\bar x + \tau w') - f(\bar x) - \langle v, \tau w'\rangle
-		}
-	{\tau}
-	&\ge 0
-	\\
-	\liminf_{\substack{x\rightarrow \bar x \\ x \neq \bar x}}  \frac{
-			f(\bar x + \tau w') - f(\bar x) 
-		}
-	{\tau}
-	- \langle v, w'\rangle &\ge 0
-	\\
-	df(x | w) &\ge \langle  v, w'\rangle. 
-\end{aligned}
-$$
-
-We made the assumption that $w' \neq 0$, this evade the division by zero problem. 
-We can split the parts inside of the limit because the second term has a well defined limit to it. 
-However, the convergence $x \rightarrow \bar x$ may not be limited to the mode of convergence under just $\bar x + \lambda w$ with $\lambda \searrow 0$ and $w \neq 0$. 
-Let's consider the case where $w = \mathbf 0$. 
-From definition we always have $df(\bar x | \mathbf 0) = 0$ if $v \in \hat \partial f(\bar x)$. 
-Assuming $v \in \hat \partial f(\bar x)$
 Consider substitution $x = \bar x + \tau w'$
 $$
 \begin{aligned}
-	f(\bar x + \tau w') &\ge 
-	f(\bar x) + \langle v, x - \bar x\rangle + o(\Vert x - \bar x\Vert)
-	\\
-	\frac{f(\bar x + \tau w') - f(\bar x)}{\tau} &\ge 
-	\langle  v, w'\rangle + \frac{o(\Vert x - \bar x\Vert)}{\tau}
-	\\
-	\frac{f(\bar x + \tau w') - f(\bar x)}{\tau} &\ge 
-	\langle  v, w'\rangle + 
-	\frac{o(\Vert x - \bar x\Vert)}{\tau}.
+	0 &\le 
+	f(\bar x + \tau w') 
+	- f(\bar x) 
+	- \langle v, x - \bar x\rangle - o(\Vert x - \bar x\Vert). 
 \end{aligned}
 $$
 
-Also consider $\tau w' = x - \bar x$ so $w' = \frac{x - \bar x}{\tau}$ so $o(\Vert x - \bar x\Vert) = o(\tau \Vert w'\Vert)$ and therefore continuing we have 
+Let $\tau w' = x - \bar x$ with $\tau > 0$ hence $w' = \frac{x - \bar x}{\tau}$ and $o(\Vert x - \bar x\Vert) = o(\tau \Vert w'\Vert)$ therefore: 
 
 $$
 \begin{aligned}
-	\frac{f(\bar x + \tau w') - f(\bar x)}{\tau} &\ge 
-	\langle  v, w'\rangle + 
-	\frac{o(\Vert x - \bar x\Vert)}{\tau}
+	\frac{f(\bar x + \tau w') - f(\bar x)}{\tau} 
+	&\ge
+	\langle  v, w'\rangle
+	+ \frac{o(\Vert x - \bar x\Vert)}{\tau}
 	\\
 	&= \langle v, w'\rangle + \frac{o(\tau \Vert w'\Vert)}{\tau}
 	\\
 	&= \langle v, w'\rangle + \frac{o(\tau \Vert w'\Vert)}{\tau \Vert w'\Vert}
-	\Vert w'\Vert, 
+	\Vert w'\Vert. 
 \end{aligned}
 $$
 
-now takingthe liminf on both sides with $\tau \searrow 0$ and $w \rightarrow \mathbf 0$, we have the limit of RHS equals to zero. 
-The LHS is $d(\bar x | w) \ge 0$. 
-Therefore we have $df(\bar x | \mathbf 0 ) \le 0$. 
+Taking limit on both sides with $\tau \searrow 0$ and $w \rightarrow \mathbf 0$, we can eliminate the little-0 term. 
+
+
+
 
 **Remarks**
 
-Obviously, the set $\hat \partial f(\bar x)$ is an intersection of all the halfe spaces that satisfies the conditions where, it supports the dini-hadamard subderivative. 
+Obviously, the set $\hat \partial f(\bar x)$ is an intersection of all the half spaces that satisfies the conditions where, it supports the Dini-hadamard subderivative. 
 Therefore, the set $\hat \partial f (\bar x)$ will have to be a convex set. 
 
 
 
 ---
-### **Lack of Closedness of Classical Directional Derivative**
+### **Lack of Closeness of Classical Directional Derivative**
 
 Observe that the above definition involves the use of $\liminf$ instead of just $\lim$. 
-This choice is intentional and it's used to preserves the lower semi-continuity of a function in the Dini-Hadamard subderivative. 
+This choice is intentional, and it's used to preserves the lower semi-continuity of a function in the Dini-Hadamard subderivative. 
 Consider the indicator function of a closed unit disk in $\mathbb R^2$. 
 Let $\delta(x)$ be the function, then we consider its directional derivative at the point $x = (1, 0)$ along the direction of $(0, 1)$. 
-Let $\bar x$ be the point that we are taking the derivative and $u$ be the direction, then the limit: $\lim_{\tau \searrow 0}(f(\bar x + \tau u) - f(\bar x))/\tau = \infty$ because the ray: $\bar x + \mathbb R_+(u)$ just lay outside of the disk which is always infinity. 
+Let $\bar x$ be the point that we are taking the derivative and $u$ be the direction, then the limit: $\lim_{\tau \searrow 0}(f(\bar x + \tau u) - f(\bar x))/\tau = \infty$ because the ray: $\bar x + \mathbb R_+(u)$ just lay outside the disk which is always infinity. 
 Therefore, we consider a different definition of a subderivative with $\liminf$, where, the ray itself is also converging to $u$ in addition to taking the infimum on the sequence of limit points. 
-Then, the derivative of function would be lower semi-continuous at a the point $(1, 0)$. 
+Then, the derivative of function would be lower semi-continuous at the point $(1, 0)$. 
 
-**Why closedness is a concern here for the subderivative of Non-Lipschitz function in Dimitry's writing?**
+**Why closeness is a concern here for the subderivative of Non-Lipschitz function in Dimitry's writing?**
 
 He didn't say and I don't know. 
 
@@ -382,7 +361,7 @@ He didn't say and I don't know.
 
 **Remarks**:
 
-Observe that the theorem is only limited to closed and convex function. For other types of functions this is not true and we will need new theories for them. 
+Observe that the theorem is only limited to closed and convex function. For other types of functions this is not true, and we will need new theories for them. 
 
 **Source**:
 There are multiple sources talking about this thing under different names. Dimintry's AMATH 516 course note it's in: Theorem: 3.50, Page 72. In \<First Order Methods in Optimizations\> it's referred to as *The Max Formula* for theorem 3.26 at pg: 47. 

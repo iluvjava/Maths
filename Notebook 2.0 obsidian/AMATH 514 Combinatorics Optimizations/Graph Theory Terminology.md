@@ -2,13 +2,13 @@
 
 A graph is a set of vertices and edges. $G = (V, E)$; at set of edges can be direct or undirected. When undirected, $E$ is a set of set, else, $E$ is a relations on the set $V$. 
 
-An undirected graph has: 
+**Undirected Graph**: 
 1. Edges as unordered pair, usually denoted as $\{v_i, v_j\}$, which is the edge between vertex $v_i, v_j$. 
-2. Vertices. Which we obviously know what it is. 
+2. Vertices. 
 
-An directed graph has: 
+**Directed Graph**: 
 1. Arcs as directed edges linking between vertices. An arc going from $v_i$ to $v_j$ is denoted as $(v_i, v_j)$. 
-2. Vertices just like an undirected graph. 
+2. Vertices. 
 
 ----
 ### **Walk**
@@ -23,14 +23,13 @@ $$
 \end{aligned}
 $$
 
-**Directed Walk**
-
+**A directed walk**:
 A directed walk on the graph $(V, E)$ is a sequence of vertices $v_1, v_2, \cdots, v_n$ such that all $(v_i, v_{i + 1})$ are arcs on the graph. 
 
-**Remark:**
-When the graph is directed, it's possible that we are walking over edges in the wrong direction, and we would still classify a sequence of vertices as a walk over the graph. 
+**A close walk:** It's a walk that start and end on the same vertex. The edge and the vertices have the freedom to repeat. 
 
-**Close Walk:**It's a walk that start and end on the same vertex. The edge and the vertices have the freedom to repeat. 
+> [!note]- 
+> When the graph is directed, it's possible that we are walking over edges in the wrong direction, and we would still classify a sequence of vertices as a walk over the graph. 
 
 ----
 ### **Path**

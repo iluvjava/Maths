@@ -1,4 +1,5 @@
-[[Reduced Costs and Potentials]], [[../../CSE 000 Basics Algorithms/Single Source Shortest Path Optimality Conditions]], 
+- [[Reduced Costs and Potentials]], 
+- [[../../CSE 000 Basics Algorithms/Single Source Shortest Path Optimality Conditions]]
 
 ---
 ### **Intro**

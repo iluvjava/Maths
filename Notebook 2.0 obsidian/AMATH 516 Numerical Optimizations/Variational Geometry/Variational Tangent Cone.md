@@ -20,7 +20,7 @@ We introduce some definitions and basic properties for the tangent cone along wi
 > \begin{aligned}
 >     T_C(\bar x) 
 >     & = 
->     \underset{\tau \searrow 0}{\text{Limsup}}
+>     \Limsup{\tau \searrow 0}
 >     \frac{C - \bar x}{\tau} 
 >       = \bigcap_{k = 1}^\infty\text{cl}
 >       \left(
@@ -31,9 +31,9 @@ We introduce some definitions and basic properties for the tangent cone along wi
 >     \left\lbrace
 >         d \in \mathbb R^n 
 >         \left | \; 
->             d = \lim_{m \rightarrow \infty} \frac{x^{(m)} - \bar x}{\tau_m}, 
->             \exists\; x^{(m)} \in C, 
->             x^{(m)}\rightarrow \bar x, 
+>             d = \lim_{m \rightarrow \infty} \frac{x_{m} - \bar x}{\tau_m}, 
+>             \exists\; x_{m} \in C, 
+>             x_{m}\rightarrow \bar x, 
 >             \tau_m \searrow 0
 >         \right.
 >     \right\rbrace
@@ -49,7 +49,6 @@ Let $d \in T_C(\bar x)$.
 If we "zoom in" into the point $\mathbf 0$ with a sequence of vector $x^{(n)} \in C$, then it converges to the vector $d$. 
 
 #### **Prop | Some Basics Properties of the Tangent Cone**
-
 > $T_C(\bar x)$ is a closed cone and therefore $\mathbf 0 \in T_C(\bar x)$. 
 
 **Proof** 
@@ -59,7 +58,6 @@ the closure of a union of sets as $\gamma \searrow 0$.
 Intersection of closed set is always a closed set. 
 
 #### **Prop | Distance Function and Normal Cone**
-
 > Let $C \subseteq \mathbb R^n$, be a closed set and $x \in C$, then $v \in T_C(x)$ is equivalent to the condition that the direcitonal derivative on the function $d_C(x)$ in the direction of $v$ equals to zero. 
 > Mathematically we have the representation that 
 > $$
