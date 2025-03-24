@@ -14,7 +14,7 @@ The tangent cone and normal cone a tightly connected via the tangent normal pola
 
 We introduce some definitions and basic properties for the tangent cone along with some observations. 
 
-#### **Def | The BouliGand Tangent Cone**
+#### **Def | The Bouligand Tangent Cone**
 > Let $C \subseteq \mathbb R^n$ a closed set, let $\bar x \in C$, define Bouligran tangent cone of $C$ at $\bar x$ as 
 > $$
 > \begin{aligned}

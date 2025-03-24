@@ -782,3 +782,4 @@ $$
 
 So the convex function $\Vert \cdot\Vert^2/2 - \beta^{-1} f$ is convex and has a gradient that is also $1$ Lipschitz continuous. 
 So it's gradient must be non-expensive around it's fixed point (which is the minimizer). 
+

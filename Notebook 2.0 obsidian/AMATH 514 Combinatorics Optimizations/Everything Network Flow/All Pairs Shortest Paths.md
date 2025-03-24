@@ -1,5 +1,5 @@
-- [[Reduced Costs and Potentials]], 
-- [[../../CSE 000 Basics Algorithms/Single Source Shortest Path Optimality Conditions]]
+- [Reduced Costs and Potentials](Reduced%20Costs%20and%20Potentials.md), 
+- [Single Source Shortest Path Optimality Conditions](../../CSE%20000%20Basics%20Algorithms/Single%20Source%20Shortest%20Path%20Optimality%20Conditions.md)
 
 ---
 ### **Intro**
@@ -27,7 +27,7 @@ This is literally the metric space inequality.
 
 **Proof**: 
 
-Following the same idea as [[../../CSE 000 Basics Algorithms/Single Source Shortest Path Optimality Conditions]]. We skip the proof here because they are really similar. 
+Following the same idea as [Single Source Shortest Path Optimality Conditions](../../CSE%20000%20Basics%20Algorithms/Single%20Source%20Shortest%20Path%20Optimality%20Conditions.md). We skip the proof here because they are really similar. 
 
 **The Generic Labeling Algorithms**
 > One algorithm that asserts the optimality path conditions repeatedly will terminate and achieve optimality at the end. 

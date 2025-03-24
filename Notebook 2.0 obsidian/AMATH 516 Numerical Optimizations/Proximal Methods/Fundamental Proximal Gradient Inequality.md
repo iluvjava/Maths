@@ -10,7 +10,7 @@ Pre-requisite:
 This section introduces a crucial inequality that is widely used for the convergence proof of the algorithm that involves the use of a proximal gradient operator. 
 
 #### **Assumption 0**
-> 1. $h = f + g$ where $g: \R \rightarrow \overline \R$, $f$ are closed convex and proper, and $f is $L$-Lipschitz smooth. 
+> 1. $h = f + g$ where $g: \R \rightarrow \overline \R$, $f$ are closed convex and proper, and $f$ is $L$-Lipschitz smooth. 
 
 Recall from previous sections on results of the proximal gradient operator. 
 
