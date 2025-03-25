@@ -12,9 +12,9 @@ Because they are math taught by computer scientists, unreliable.
 > Let graph $G = (V, A)$ be a graph consists of vertices $V$ and arcs $A$. 
 > The arcs are tuples of vertices from $V$. 
 > We make the following assumptions: 
-> 1. There is a cost function $c: V\times V \rightarrow \overline\R$. Let $c_{i, j}$ denote the cost of arc $(i, j)$. If arc $(i, j)\notin A$ , set $c_{i, j} = \infty$. 
+> 1. There is a cost function $c: V\times V \rightarrow \overline\R$. Let $c_{i, j}$ denote the cost of arc $(i, j)$. If arc $(i, j)\notin A$, set $c_{i, j} = \infty$. 
 > 2. $G$ is connected. For all $v_0, v_n \in V$, there exists sequence $(v_{i}, v_{i + 1}) \in A$ for $i = 0, \ldots, n - 1$. 
-> 3. There is no directed cycle with a total negative cost. 
+> 3. There is no directed cycle with a total of negative cost. 
 
 
 #### **Definition | A walk with fixed length**
@@ -35,15 +35,15 @@ $$
 
 
 ---
-### **Subpaths of Shortest Paths**
+### **Subpaths of the Shortest Paths**
 
 #### **Definition | Path, Cycle**
 > Let $u, v \in V$ and $n \in \N$, define: 
 > 1. $P_{v_0, v_n}^n = (v_0, \ldots, v_n) \in V^{n + 1}$ is a path of vertices going from $u$ to $v$ with $n$ number of arcs in total, ordering matters and all $v_0,\ldots, v_n$ are unique. 
-> 2. $P_{a_1, a_n}^n = (a_1, \ldots, a_n) \in A^n$ is a path of arcs going from $u$ to $v$ such that odering matters, it's an element of $A^{n}$ and all arcs $a_1, \ldots, a_n$ are unique. 
+> 2. $P_{a_1, a_n}^n = (a_1, \ldots, a_n) \in A^n$ is a path of arcs going from $u$ to $v$ such that ordering matters, it's an element of $A^{n}$ and all arcs $a_1, \ldots, a_n$ are unique. 
 > 
 > If no subscript is provided, assume that it's a path of vertices. 
-> If $u = v$, and it's known in the contex, then it's called a "cycle". 
+> If $u = v$, and it's known in the context, then it's called a "cycle". 
 
 
 **Remarks**
@@ -91,13 +91,13 @@ It's not necessary for it to be unique.
 #### **Lemma 1 | No negative cycles**
 > Fix any $u, v \in V$ with $u \neq v$. 
 > Let $W_{u, v} \in \bigcup_{i \in \N} (\{u\}\times V^{i} \times \{v\})$ be any $u, v$ walk. 
-> If there is no negative cycles, then there exists a unique $P_{u, v}$ path in $W_{u, v}$ which has a lower costs. 
+> If there is no negative cycles, then there exists a unique $P_{u, v}$ path in $W_{u, v}$ which has a lower cost. 
 
 **Proof**
 
 Suppose $W_{u, v}^n = (u, w_1, w_2, \ldots, w_{n - 1}, v)$, if it's a path, then there is nothing to prove. 
 Else it's a walk then there admit smallest $i\in \{1, \ldots, n -1\}$ and largest $j\in \{1, \ldots, n - 1\}$ such that $w_i = w_j$ and $i < j$.
-This divides the walk into parts: a unique $P_{u, v}= (u,\ldots, w_{i}, w_{j + 1}, \ldots, v)$ without repeatition hence it's a path, and $W_{i, j} = (w_i, w_{i + 1}, \ldots, w_{j})$ which is a walk ending in the same vertices and it has 
+This divides the walk into parts: a unique $P_{u, v}= (u,\ldots, w_{i}, w_{j + 1}, \ldots, v)$ without repetition hence it's a path, and $W_{i, j} = (w_i, w_{i + 1}, \ldots, w_{j})$ which is a walk ending in the same vertices, and it has 
 $$
 \begin{aligned}
     c(W_{u, v}) = c(W_{i,j}) + c(P_{u, v}). 
@@ -138,15 +138,15 @@ $\square$
 #### **Theorem 2 | arc optimality condition is sufficient**
 > Fix $s \in V$. 
 > Let $d: V \rightarrow \overline \R$. 
-> Under **Assumption set 1**, $d(j)$ is the least cost directed path function from $s$ to $j$ if and only if $d(j) = \min \{d(i) + c_{i, j}: (i, j)\in V\times V\}$. 
+> Under **Assumption set 1**, and in addition we must assume that all cycles are of strictly negative costs then $d(j)$ is the least cost directed path function from $s$ to $j$ if and only if $d(j) = \min \{d(i) + c_{i, j}: (i, j)\in V\times V\}$. 
 
 **Proof**
 
 We show: $\implies$.
-Let $d(j)$ be least cost on all $s, j$ path. 
-Hence there exists a path $p = s, \ldots, i, j$ with costs $d(j)$. 
+Let $d(j)$ be the least cost on all $s, j$ path. 
+Hence, there exists a path $p = s, \ldots, i, j$ with costs $d(j)$. 
 Then the subpath $p' = s, \ldots, i$ is optimal by **Theorem 1** so $c(p') = d(i)$. 
-Arc $(i, j)$ is a subset of all $i, j$ paths so $d(i) + c_{i, j} \ge d(j)$, it will always has greater cost. 
+Arc $(i, j)$ is a subset of all $i, j$ paths so $d(i) + c_{i, j} \ge d(j)$, it will always have greater cost. 
 
 We show $\impliedby$. 
 Fix any $n \in \{1, \ldots, |V|\}$ and $v_0 \in V$. 
@@ -176,21 +176,52 @@ $$
 \end{aligned}
 $$
 
-Furthermore, if $d(v_n) \neq \infty$, then there exists $m \in \{1, \ldots, |V|\}$ and path $p^+ = (v_0, v_2, \ldots, v_m)$ such that the arc optimality condition achieves equality: 
+Choose any $v \in V$, $d(v)\neq \infty$ then $d(v) = \min\{d(u) + c(u, v): u \in V\}$ hence the arc optimality implies $\exists w \in V$ such that $d(v) = d(w) + c(w, v)$ hence unrolling recursively it yields: 
+$$
+\begin{aligned}
+    d(v) &= d(w_1) + c(w_1, v) 
+    \\
+    &= d(w_2) + c(w_2, w_1) + c(w_1, v)
+    \\
+    &\quad (\cdots)
+    \\
+    &= d(w_{m}) + \left(
+        \sum_{k = 1}^{m} c(w_{k + 1}, w_{k})
+    \right) + c(w_1, v). 
+\end{aligned}
+$$
+We claim that all $w_i$ is unique because assume otherwise smallest $i$ and largest $j$ such that $w_i = w_j$ so $i < j$ then the sum has 
 
 $$
 \begin{aligned}
-    d(v_m) &= d(v_{m - 1}) + c(v_{m - 1}, v_m) 
+    d(v) &= d(w_m) + \left(
+        \sum_{k = 1}^{i - 1} c(w_{k + 1}, w_k)
+    \right) + 
+    \underbrace{
+    \left(
+        \sum_{k = i}^{j-1} c(w_{k + 1}, w_{k})
+    \right)}_{> 0} + 
+    \left(
+        \sum_{k = j}^{m}
+        c(w_{k + 1}, w_{k})
+    \right) + c(w_1, v)
     \\
-    &= d(v_{m - 2}) + c(v_{m - 2}, v_{m - 1}) + c(v_{m - 1}, v_m) 
-    \\
-    & \quad (\cdots)
-    \\
-    &= \sum_{k = 1}^{m- 1} c(v_{k}, v_{k + 1}). 
+    &> 
+    d(w_m) + 
+    \left(
+        \sum_{k = 1}^{i - 1} c(w_{k + 1}, w_k)
+    \right) + 
+    \left(
+        \sum_{k = j}^{m}
+        c(w_{k + 1}, w_{k})
+    \right)+ c(w_1, v)
 \end{aligned}
 $$
 
-Therefore, there exists at least one path $p^+$, such that it's distance is shorter than all other paths $p$. 
+This is a contradiction of we just proved, hence the sequence of vertices $v, w_1, \ldots, w_m$ is a path. 
+For all $v_n \in V$, if $d(v_n) \neq \infty$, then there exists $m \in \{1, \ldots, |V|\}$ and walk $W^+ = (v_0, v_2, \ldots, v_m)$ such that the walk is a path and that path would be the optimal path. 
+
+
 $\square$
 
 **Remarks**
@@ -205,7 +236,7 @@ Chapter 4 of the book: Network Flows, theory, Algorithms and Applications. Short
 ### **Bellman Ford Shortest Path**
 
 Here, we assume that the graph vertices $V$ has total order. 
-This helps with making the algrithm deterministic when the optimal paths are not necessarily unique. 
+This helps with making the algorithm deterministic when the optimal paths are not necessarily unique. 
 
 #### **Algorithm | Bellman Ford Shortest Path**
 > Choose $s \in V$. 
@@ -225,6 +256,21 @@ This helps with making the algrithm deterministic when the optimal paths are not
 **Proof**
 
 We prove it inductively. 
+For $k \in \{0, \ldots, |V|\}$, the inductive hypothesis $\mathbb H(k)$ is: 
+$$
+\begin{aligned}
+    (\forall v \in V): 
+    d^{(k)}(v) = \min \left\lbrace
+        c(p) \left|\; 
+            p \in \bigcup_{j = 1}^{k} \Pi(s, v, j)
+        \right.
+    \right\rbrace. 
+\end{aligned}
+$$
+
+i.e: $d^{(k)}(v)$ is the shortest cost of all path with length less than or equal to $k$. 
+Our goal is to show that the algorithm updates it correctly and $d^{(k + 1)}(v)$ is the shortest path among all paths with length less than or equal to $k + 1$. 
+
 
 
 
