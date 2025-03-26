@@ -74,6 +74,9 @@ The theorems that follow will be given the same numberings as it appeared in the
 #### **Theorem 1 | Quasi-strongly convex implies quadratic under approximations**
 > It has $\mathbb S'\subseteq \mathbb U$. 
 
+**Proof**
+
+
 #### **Theorem 2 | Quasi-strongly convex implies Quadratic Gradient Growth**
 > $\mathbb S' \subseteq \mathbb G$. 
 
