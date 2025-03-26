@@ -27,20 +27,222 @@
     It may accelerate the process of writing my thesis for my PhD degree. 
     \todo{
         This is just pseudo text. This is just pseudo text. 
-        This is just pseudo text. This is just pseudo text \cite{clarke_optimization_1990}. 
+        This is just pseudo text. This is just pseudo text \cite{necoara_linear_2019}. 
     }
     \todoinline{This paper is currently in draft mode. Check source to change options. }
 \end{abstract}
 \chapter{The Basics of Optimization Theories}
     
 \chapter{Linear Convergence of First Order Method}
+    In this chapter, we are specifically interested in characterizing linear convergence of well known first order optimization algorithms. 
+    \section{Necoara's et al's Paper}
+        \subsection{The Settings}
+            The assumption follows give the same setting as Necoara et al. \cite{necoara_linear_2019}. 
+            % NECOARA ASSUMPTIONS 
+            \begin{assumption}\label{ass:necoara-2019-settings}
+                Consider optimization problem: 
+                \begin{align}
+                    -\infty < f^+ = \min_{x \in X} f(x) . 
+                \end{align}\label{problem:necoara-2019}
+                $X\subseteq \RR^n$ is a closed convex set. 
+                Assume projection onto $X$, denoted by $\Pi_X$ is easy. 
+                Denote $X^+ = \argmin_{x \in X}f(x) \neq \emptyset$, assume it's a closed set. 
+                Assume $f$ has $L_f$ Lipschitz continuous gradient, i.e: for all $x, y\in X$: 
+                \begin{align*}
+                    \Vert \nabla f(x) - \nabla f(y)\Vert \le L_f\Vert x - y\Vert. 
+                \end{align*}
+            \end{assumption}
+            % BREGMAN DIV DEFINITION
+            \begin{definition}[Bregman Divergence]
+                Let $f:\RR^n \rightarrow \overline \RR$ be a differentiable function. 
+                Define Bregman Divergence: 
+                \begin{align*}
+                    D_f: \RR^n \times \dom \nabla f \rightarrow \overline \RR:= 
+                    (x, y) \mapsto f(x) - f(y) - \langle \nabla f(y), x - y\rangle. 
+                \end{align*}
+            \end{definition}
+            Some immediate consequences of Assumption \ref{ass:necoara-2019-settings} now follows. 
+            The variational inequality characterizing optimal solution has: 
+            \begin{align*}
+                x^+ \in X^+ \implies 
+                (\forall x \in X)\; \langle \nabla f(x^+), x - x^+\rangle \ge 0. 
+            \end{align*}
+            The converse is true if $f$ is convex. 
+            The gradient mapping in this case is: 
+            \begin{align*}
+                \mathcal G_{L_f}x = L_f(x - \Pi_{X}x). 
+            \end{align*}
+            % STRONG CONVEXITY DEFINITION
+            \begin{definition}[Strong convexity]\label{def:necoara-scnvx}
+                Suppose $f$ satisfies Assumption \ref{ass:necoara-2019-settings}. 
+                Then $f \in \mathbb S(L_f, \kappa_f, X)$ is strongly convex iff 
+                \begin{align*}
+                    (\forall x, y\in X)\; 
+                    \kappa_f \Vert x - y\Vert^2 \le 
+                    D_f(x, y) \le L_f \Vert x - y\Vert^2. 
+                \end{align*}
+            \end{definition}
+            Then it's not hard to imagine the following natural relaxation of the above conditions. 
+            % DEFINITION OF WEAKER STRONG CONVEXITY
+            \begin{definition}[Relaxations of Strong convexity]\label{def:necoara-weaker-scnvx}
+                Suppose $f$ satisfies Assumption \ref{ass:necoara-2019-settings}. 
+                Let $L_f \ge \kappa_f \ge 0$ such that for all $x \in X$, $\bar x = \Pi_{X^+} x$. 
+                We define the following: 
+                \begin{enumerate}
+                    \item\label{def:neocara-qscnvx} Quasi-strong convexity (Q-SCNVX): $0 \le D_f(\bar x, x) - \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2$. Denoeted by $\mathbb S'(L_f, \kappa_f, X)$. 
+                    \item\label{def:necoara-qup} Quadratic under approximation (QUA): $0 \le D_f(x, \bar x) - \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2$. Denoeted by $\mathbb U(L_f, \kappa_f, X)$. 
+                    \item\label{def:necoara-qgg} Quadratic Gradient Growth (QGG): $0\le D_f(x, \bar x) + D_f(\bar x, x) - \kappa_f/2\Vert x - \bar x\Vert^2$. Denoted by $\mathbb G(L_f, \kappa_f, X)$. 
+                    \item\label{def:necoara-qfg} Quadratic Function Growth (QFG): $0 \le f(x) - f^* - \kappa_f/2\Vert x - \bar x\Vert^2$. Denoted by $\mathbb F(L_f, \kappa_f, X)$. 
+                    \item\label{def:necoara-eb} Error Bound (EB): $\Vert \mathcal G_{L_f}x\Vert \ge \Vert x - \bar x\Vert$. Denoted by $\mathbb E(L_f, \kappa_f, X)$. 
+                \end{enumerate}
+            \end{definition}
+
+        \subsection{Major Results in the paper}
+            In Necoara's et al, major results assume convexity of $f$. 
+            \begin{theorem}(Q-SCNVX implies QUA)\label{thm:qscnvx-means-qua}
+                Let $f$ satisfies Assumption \ref{ass:necoara-2019-settings} and assume $f$ is convex: 
+                \begin{align*}
+                    \mathbb S'(L_f, \kappa_f, X) \subseteq \mathbb U(L_f, \kappa_f, X). 
+                \end{align*}
+            \end{theorem}
+            \begin{proof}
+                We proof by induction. 
+                Convexity of $f$ makes $X^+$ convex and $\Pi_{X^+}X$ unique for all $x \in X$. 
+                Make inductive hypothesis that there exists $\kappa^{(k)} \ge 0$ such that 
+                \begin{align*}
+                    (\forall x \in X)\quad
+                    f(x) \ge f^+ + \langle \nabla f(\Pi_{X^+}x), x - \Pi_{X^+}x\rangle 
+                    + \kappa^{(k)}/2\Vert x - \Pi_{X^+}x \Vert^2. 
+                \end{align*}
+                The base case is true by convexity of $f$ with $\kappa_f^{(0)} = 0$. 
+                Choose any $x \in X$ define $\bar x = \Pi_{X^+}x$. 
+                Consider $x_\tau = \bar x + \tau(x - \bar x)$ for $\tau \in [0, 1]$. 
+                Calculus rule has 
+                \begin{align*}
+                    f(x) &= 
+                    f(\bar x) + \int_0^1 \langle \nabla f(x_\tau), x - \bar x\rangle d\tau
+                    \\
+                    &= 
+                    f(\bar x) + \int_0^1 \tau^{-1}\langle \nabla f(x_\tau), \tau(x - \bar x)\rangle d\tau
+                    \\
+                    &= 
+                    f(\bar x) + \int_0^1 \tau^{-1}\langle \nabla f(x_\tau), x_\tau - \bar x\rangle d\tau.
+                \end{align*}
+                $f$ is Q-SCNVX so
+                \begin{align*}
+                    f^+ - f(x_\tau) &\ge \langle \nabla f(x_\tau), \Pi_{X^+}x_\tau - x_\tau\rangle + 
+                    \kappa_f/2 \Vert x_\tau - \Pi_{X^+}x_\tau\Vert^2
+                    \\
+                    &= 
+                    \langle \nabla f(x_\tau), \bar x - x_\tau\rangle + 
+                    \kappa_f/2 \Vert x_\tau - \bar x\Vert^2
+                    \\
+                    \iff 
+                    \langle \nabla f(x_\tau), x_\tau - \bar x\rangle
+                    &\ge f(x_\tau) - f^+ + \kappa_f/2\Vert x_\tau -\bar x\Vert^2. 
+                \end{align*}
+                We used $\Pi_{X^+}x_\tau = \bar x$ by convexity of $f$. 
+                Therefore:
+                {\footnotesize
+                \begin{align*}
+                    f(x) &\ge 
+                    f(\bar x) + 
+                    \int_0^1 \tau^{-1} \left(
+                        f(x_\tau) - f^+ + \frac{\kappa_f}{2}\Vert x_\tau - \bar x\Vert^2
+                    \right) d\tau
+                    \\
+                    &= 
+                    f(\bar x) + 
+                    \int_0^1 
+                    \tau^{-1} \left(
+                            f(x_\tau) - f^+ 
+                        \right)
+                        + \frac{\tau\kappa_f}{2}\Vert x - \bar x\Vert^2
+                    d\tau
+                    \\
+                    &\ge 
+                    f(\bar x) + 
+                    \int_0^1 
+                    \tau^{-1} \left(
+                            \langle 
+                                \nabla f(\Pi_{X^+}x_\tau), x_\tau - \Pi_{X^+}x_\tau
+                            \rangle
+                            + \frac{\kappa_f^{(k)}}{2} \Vert x_\tau - \Pi_{X^+}x_\tau\Vert^2
+                        \right)
+                        + \frac{\tau\kappa_f}{2}\Vert x - \Pi_{X^+}x_\tau\Vert^2
+                    d\tau
+                    \\
+                    &= 
+                    f(\bar x) + 
+                    \int_0^1 
+                    \tau^{-1} \left(
+                            \langle 
+                                \nabla f(\bar x), x_\tau - \bar x
+                            \rangle
+                            + \frac{\kappa_f^{(k)}}{2} \Vert x_\tau - \bar x\Vert^2
+                        \right)
+                        + \frac{\tau\kappa_f}{2}\Vert x - \bar x\Vert^2
+                    d\tau
+                    \\
+                    &= 
+                    f(\bar x) + 
+                    \int_0^1 
+                        \langle 
+                            \nabla f(\bar x), x - \bar x
+                        \rangle
+                        + \frac{\tau\kappa_f^{(k)}}{2} \Vert x - \bar x\Vert^2
+                        + \frac{\tau\kappa_f}{2}\Vert x - \bar x\Vert^2
+                    d\tau
+                    \\
+                    &= 
+                    f(\bar x) + 
+                    \langle 
+                        \nabla f(\bar x), x - \bar x
+                    \rangle
+                    +
+                    \frac{\kappa^{(k)}_f + \kappa_f}{4}
+                    \Vert x - \bar x\Vert^2. 
+                \end{align*}
+                }
+                This is the new inductive hypothesis, and it has $\kappa_f^{(k + 1)} = (\kappa_f^{(k)} + \kappa_f)/2$. 
+                The induction admits recurrence: 
+                \begin{align*}
+                    \kappa_f^{(n)} = (1/2^n)(\kappa_f^{(0)} + (2^n - 1)\kappa_f). 
+                \end{align*}
+                Inductive hypothesis is true for $\kappa_f^{(0)} = 0$ and $f$ being convex is sufficient. 
+                It has $\lim_{n\rightarrow \infty} \kappa_f^{(n)} = \kappa_f$. 
+            \end{proof}
+            \begin{remark}
+                This is Theorem 1 in the paper. 
+                Convexity assumption of $f$ makes $X^+$ convex, so the projection is unique, and it has $\Pi_{X^+}x_\tau = \bar x$ for all $\tau \in [0, 1]$. 
+                In addition, the inductive hypothesis has $\kappa_f^{(n)} \ge 0$, which is not sufficient for convexity, but necessary. 
+                The projectin property remains true for nonconvex $X^+$, however the base case require rethinking. 
+            \end{remark}
+            \begin{theorem}[Q-SCNVX implies QGG]
+                Under Assumption \ref{ass:necoara-2019-settings} and convexity of $f$, it has 
+                \begin{align*}
+                    \mathbb S'(L_f, \kappa_f, X) \subseteq \mathbb G(L_f, \kappa_f, X). 
+                \end{align*}
+            \end{theorem}
+            \begin{proof}
+                If $f \in \mathbb S'(L_f, \kappa_f, X)$ then Theorem \ref{thm:qscnvx-means-qua} has $f \in \mathbb U(L_f, \kappa_f, X)$. 
+                Then, add \ref{def:necoara-qup}, \ref{def:neocara-qscnvx} in Definition \ref{def:necoara-weaker-scnvx} yield the results. 
+            \end{proof}
+            \begin{remark}
+                This is Theorem 2 in the Necoara et al. \cite{necoara_linear_2019}, right after it claims $\mathbb U(L_f, \kappa_f, X)\subseteq \mathbb G(L_f, \kappa_f/2, X)$ under convexity. 
+            \end{remark}
+            \begin{theorem}[sufficiency of QFG]\label{thm:qfg-suff}
+                
+            \end{theorem}
+
+        
 
 
 % ==============================================================================
 
 \bibliographystyle{siam}
 
-\bibliography{references/Books.bib}
+\bibliography{references/refs.bib}
 
 
 \end{document}
