@@ -428,6 +428,79 @@ $$
 $\blacksquare$
 
 ---
+### **Variants of proofs for the same claim**
+
+We will prove the same claim with different approaches. 
+This is sometimes useful. 
+
+#### **Claim 2.1 | The Fundamental Proximal Gradient Inequality**
+> Let $F = f + g$. 
+> Let $f$ be differentiable, assume there exists $q \in \R$ be the largest value such that $g - q\Vert \cdot\Vert^2/2$ is convex. 
+> For any $x \in \R^n$, define $\bar x = T_{\beta^{-1}, f, g}$, it has $\forall z \in \R^n$
+> $$
+> \begin{aligned}
+>     \frac{q}{2}\Vert z - x^+\Vert^2 
+>     &\le 
+>     F(z) - F(\bar x) - \langle \beta(x - \bar x), z - \bar x\rangle 
+>     + D_f(x, \bar x ) - D_f(z, x). 
+> \end{aligned}
+> $$
+
+**Proof**
+
+By definition, it has 
+
+$$
+\begin{aligned}
+    \bar x &\in \argmin{z} \left\lbrace
+        g(z) + \langle \nabla f(x), z\rangle + \frac{L}{2}\Vert z - x\Vert^2
+    \right\rbrace
+    \\
+    \implies
+    \mathbf 0 
+    &\in \partial g(x^+) + \nabla f(x) + L(x^+ - x)
+    \\
+    \iff 
+    \partial g(x^+) &\ni
+    - \nabla f(x) - L(x^+ - x). 
+\end{aligned}
+$$
+
+Here $\partial g$ would be the limiting subgradient. 
+Since $g - q \Vert \cdot\Vert^2/2$ is convex it has for all $z\in \R^n$: 
+
+$$
+\begin{aligned}
+    \frac{q}{2}\Vert z - \bar x\Vert^2 
+    &\le 
+    g(z) - g(\bar x) + \langle \nabla f(x) + \beta(\bar x - x), z - \bar x\rangle
+    \\
+    &= 
+    g(z) - g(\bar x) + \langle \nabla f(x), z - \bar x\rangle + \langle \beta(\bar x - x), z - \bar x\rangle
+    \\
+    &= g(z) - g(\bar x) + \langle \nabla f(x), z - x\rangle
+    + \langle \nabla f(x), x - \bar x\rangle
+    + \langle \beta(\bar x - x), z - \bar x\rangle
+    \\
+    &= 
+    g(z) - g(\bar x) 
+    + (-D_f(z, x) + f(z) - f(x))
+    + (D_f(\bar x, x) - f(\bar x) + f(x))
+    + \langle \beta(\bar x - x), z - \bar x\rangle
+    \\
+    &= F(z) - F(\bar x) - D_f(z, x) + D_f(\bar x, x) 
+    - \langle \beta(x - \bar x), z - \bar x\rangle. 
+\end{aligned}
+$$
+
+**Remarks**
+
+It's a different proof, a different setup for $g$, but the results remains similar. 
+
+
+
+
+---
 ### **Proximal gradient inequality with weak convexity**
 
 Here we take the convention that $f$ is $\mu$ weakly convex if and only if $f + \mu/2\Vert \cdot\Vert^2$ is convex. 

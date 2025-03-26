@@ -93,9 +93,12 @@
                     \item\label{def:necoara-qup} Quadratic under approximation (QUA): $0 \le D_f(x, \bar x) - \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2$. Denoeted by $\mathbb U(L_f, \kappa_f, X)$. 
                     \item\label{def:necoara-qgg} Quadratic Gradient Growth (QGG): $0\le D_f(x, \bar x) + D_f(\bar x, x) - \kappa_f/2\Vert x - \bar x\Vert^2$. Denoted by $\mathbb G(L_f, \kappa_f, X)$. 
                     \item\label{def:necoara-qfg} Quadratic Function Growth (QFG): $0 \le f(x) - f^* - \kappa_f/2\Vert x - \bar x\Vert^2$. Denoted by $\mathbb F(L_f, \kappa_f, X)$. 
-                    \item\label{def:necoara-eb} Error Bound (EB): $\Vert \mathcal G_{L_f}x\Vert \ge \Vert x - \bar x\Vert$. Denoted by $\mathbb E(L_f, \kappa_f, X)$. 
+                    \item\label{def:necoara-eb} Error Bound (EB): $\Vert \mathcal G_{L_f}x\Vert \ge \kappa_f\Vert x - \bar x\Vert$. Denoted by $\mathbb E(L_f, \kappa_f, X)$. 
                 \end{enumerate}
             \end{definition}
+            \begin{remark}
+                The error bound condition in Necoara et al. is sometimes referred to as the "Proximal Error Bound". 
+            \end{remark}
 
         \subsection{Major Results in the paper}
             In Necoara's et al, major results assume convexity of $f$. 
@@ -232,11 +235,41 @@
                 This is Theorem 2 in the Necoara et al. \cite{necoara_linear_2019}, right after it claims $\mathbb U(L_f, \kappa_f, X)\subseteq \mathbb G(L_f, \kappa_f/2, X)$ under convexity. 
             \end{remark}
             \begin{theorem}[sufficiency of QFG]\label{thm:qfg-suff}
-                
+                Let $f$ satisfies Assumption \ref{ass:necoara-2019-settings}. 
+                For all $0 < \beta < 1$, $x \in X$, let $x^+ = \Pi_{X}(x - L^{-1}_f \nabla f(x))$. 
+                If 
+                \begin{align*}
+                    \Vert x^+ - \Pi_{X^+}x^+\Vert \le \beta \Vert x - \Pi_{X^+}x \Vert, 
+                \end{align*}
+                then $f$ satisfies the QFG condition with $\kappa_f = L_f(1 - \beta)^2$. 
             \end{theorem}
-            \begin{theorem}[error bounds and QFG]
-                
-            \end{theorem}
+            \begin{proof}
+                The proof is direct. 
+                \begin{align}
+                    \Vert x - \Pi_{X^+}x\Vert 
+                    &\le \Vert x - \Pi_{X^+}x^+\Vert
+                    \\
+                    &\le \Vert x - x^+\Vert + \Vert x^+ - \Pi_{X^+}x^+\Vert
+                    \\
+                    &\le \Vert x - x^+\Vert + \beta \Vert x - \Pi_{X^+}x\Vert
+                    \\
+                    \iff 
+                    0 &\le \Vert x - x^+\Vert - (1 - \beta) \Vert x - \Pi_{X^+}x\Vert. 
+                \end{align}
+                $x^+$ has descent lemma hence we have 
+                \begin{align*}
+                    f^+ - f(X) \le f(x^+) - f(x) 
+                    \le - \frac{L_f}{2}\Vert x^+ - x\Vert^2 
+                    \le - \frac{L_f}{2}(1 - \beta)^2 \Vert x - \Pi_{X^+}\Vert^2. 
+                \end{align*}
+                Hence it gives the quadratic growth condition. 
+            \end{proof}
+            \begin{remark}
+                It's unclear where convexity is used. 
+                However, it' still assumed in Necoara et al paper. 
+            \end{remark}
+            A few more words are needed before the theorem for the Error bound conditions and the quadratic growth condition. 
+
 
         
 
