@@ -497,9 +497,15 @@ $$
 
 It's a different proof, a different setup for $g$, but the results remains similar. 
 
+#### **Corollary 2.2 | Fundamental Proximal Gradient Inequality under weak convexity**
+> Let $F = f + g$. 
+> Assume that $f$ is differentiable with $L_f$ Lipschitz continuous and $\mu_f \ge -L_f$ strongly convex.  
+> Suppose that there exists smallest $\mu_f\in \R$ such that $g + \mu_f\Vert \cdot\Vert^2/2$ are convex. 
 
 
 
+
+<!-- 
 ---
 ### **Proximal gradient inequality with weak convexity**
 
@@ -726,11 +732,7 @@ $$
 $$
 
 This, recovers the same lemma as in the convex smooth case, utilizing the non-convex formulation of the proximal gradient lemma. 
-
---- 
-### **Proximal gradient inequality as an extension of proximal inequality**
-
-
+ -->
 
 
 ---

@@ -245,7 +245,7 @@ Cosine law has generalization to Non-euclidean geometry and Bregman divergences.
 > For any pair of points $(x, y), (x', y')$ in product space $\R^n \times \R^n$, they satisfy: 
 > $$
 > \begin{aligned}
->     2\langle x' - y', y - x\rangle
+>     2\langle x' - y', x - y\rangle
 >     &= 
 >     \Vert x' - y\Vert^2 + \Vert y' - x\Vert^2
 >     - \Vert y' - y\Vert^2 - \Vert x' - x\Vert^2. 

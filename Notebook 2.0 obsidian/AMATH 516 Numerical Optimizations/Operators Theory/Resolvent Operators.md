@@ -28,6 +28,10 @@ Recall from multivalued mapping that, $\text{gph}(A^{-1})$ and $\text{gph}(I - A
 The transformation is in $X \times X$. 
 
 
+#### **Theorem | Resolvent of monotone operators**
+
+
+
 ---
 ### **Firmly Non-expansiveness of the Resolvent Operators**
 

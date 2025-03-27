@@ -11,3 +11,13 @@ For Proximal Gradient inequality, a specialized type of proximal inequality with
 The following theorem restated the proximal inequality for a convex function $f: \R^n \rightarrow \overline \R$. 
 
 #### **Theorem | Proximal inequality**
+
+
+
+---
+### **Quadratic function growth of the Model function**
+
+Proximal inequality is an inequality that relates the output of the proximal operators to the subgradient.
+It can be generalize to other nonconvex settings. 
+
+

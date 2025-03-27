@@ -70,7 +70,7 @@ Lemma 3.8.2 in Dimitry's textbook for 516.
 
 ---
 ### **Lemma 3.8.3 (Subdifferential of Fitzpatrick Functions)**
-> Let $T: \mathbb E \mapsto 2^{\mathbb E}$ be a *maximal monotone* opreator, fix $(x, y)\in \mathbb E \times \mathbb E$ and $(x_2, y_2)\in \partial F_T(x_1, y_1)$ then $\langle y_1 - x_2, x_1 - y_2\rangle\le 0$, and equality is true whenever $x_2 \in Ty_2$. 
+> Let $T: \mathbb E \mapsto 2^{\mathbb E}$ be a *maximal monotone* opreator, fix $(x_1, y_1)\in \mathbb E \times \mathbb E$ and $(x_2, y_2)\in \partial F_T(x_1, y_1)$ then $\langle y_1 - x_2, x_1 - y_2\rangle\le 0$, and equality is true whenever $x_2 \in Ty_2$. 
 
 **Proof**
 

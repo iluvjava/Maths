@@ -329,7 +329,7 @@ $$
     \right)
     - \Vert y^+ - x^+\Vert^2
     \\
-    &= \langle x^+ - y^+, y - x\rangle 
+    &= \langle x^+ - y^+, x - y\rangle 
     - \Vert y^+ - x^+\Vert^2. 
 \end{aligned}
 $$
