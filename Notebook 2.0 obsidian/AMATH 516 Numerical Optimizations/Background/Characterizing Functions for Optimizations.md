@@ -245,7 +245,7 @@ For example, the function $\exp(x)$ is a strictly convex function.
 ---
 ### **Strong Convexity**
 
-> Let $f$ be a augmented real function, then the function $f$ is strongly convex if there exists a $\alpha\ge 0$ such that: 
+> Let $f$ be an augmented real function, then the function $f$ is strongly convex if there exists a $\alpha\ge 0$ such that: 
 > 
 > $$
 > f(y) \ge f(x) + \langle \partial[f](x), y - x\rangle + \frac{\alpha}{2}\Vert y - x\Vert^2
@@ -254,8 +254,15 @@ For example, the function $\exp(x)$ is a strictly convex function.
 **Remarks**: 
 
 * Any strongly convex function is going to be a coercive function, but the converse is definitely not true. 
-* The function $\exp(x)$ is alpha strongly convex but the function is not strictly convex because it's not coercive. We cannot long lower "hug" the function using any type of quadratic function. 
+* The function $\exp(x)$ is alpha strongly convex, but the function is not strictly convex because it's not coercive. We cannot long lower "hug" the function using any type of quadratic function. 
 * For more about it see [Strong Convexity](../Properties%20of%20Functions/Strong%20Convexity.md)
+
+
+---
+### **Weak Convexity**
+> Function $f: \R^n \rightarrow \overline \R$ is $q > 0$ weakly convex if and only if $f+ 1/2\Vert \cdot\Vert^2$ is convex. 
+
+See [Weakly Convex Function](AMATH%20516%20Numerical%20Optimizations/Weakly%20Convex%20Function.md) for more information. 
 
 
 ---

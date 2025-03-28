@@ -432,11 +432,13 @@ $\blacksquare$
 
 We will prove the same claim with different approaches. 
 This is sometimes useful. 
+In this section we consider the [Mordukhovich Limiting Subdifferential](AMATH%20516%20Numerical%20Optimizations/Non-Smooth%20Calculus/Limiting%20Subgradient.md) due nonconvexity. 
+The proofs based on subgradient inequality will be simpler compared to using Quadratic growth conditions over minimizers. 
 
 #### **Claim 2.1 | The Fundamental Proximal Gradient Inequality**
 > Let $F = f + g$. 
 > Let $f$ be differentiable, assume there exists $q \in \R$ be the largest value such that $g - q\Vert \cdot\Vert^2/2$ is convex. 
-> For any $x \in \R^n$, define $\bar x = T_{\beta^{-1}, f, g}$, it has $\forall z \in \R^n$
+> For any $x \in \R^n$, define $\bar x = T_{\beta^{-1}, f, g}x$, it has $\forall z \in \R^n$
 > $$
 > \begin{aligned}
 >     \frac{q}{2}\Vert z - x^+\Vert^2 
@@ -453,16 +455,16 @@ By definition, it has
 $$
 \begin{aligned}
     \bar x &\in \argmin{z} \left\lbrace
-        g(z) + \langle \nabla f(x), z\rangle + \frac{L}{2}\Vert z - x\Vert^2
+        g(z) + \langle \nabla f(x), z\rangle + \frac{\beta}{2}\Vert z - x\Vert^2
     \right\rbrace
     \\
     \implies
     \mathbf 0 
-    &\in \partial g(x^+) + \nabla f(x) + L(x^+ - x)
+    &\in \partial g(x^+) + \nabla f(x) + \beta(x^+ - x)
     \\
     \iff 
     \partial g(x^+) &\ni
-    - \nabla f(x) - L(x^+ - x). 
+    - \nabla f(x) - \beta(x^+ - x). 
 \end{aligned}
 $$
 
@@ -493,247 +495,94 @@ $$
 \end{aligned}
 $$
 
+$\blacksquare$
+
 **Remarks**
 
 It's a different proof, a different setup for $g$, but the results remains similar. 
 
-#### **Corollary 2.2 | Fundamental Proximal Gradient Inequality under weak convexity**
-> Let $F = f + g$. 
-> Assume that $f$ is differentiable with $L_f$ Lipschitz continuous and $\mu_f \ge -L_f$ strongly convex.  
-> Suppose that there exists smallest $\mu_f\in \R$ such that $g + \mu_f\Vert \cdot\Vert^2/2$ are convex. 
-
-
-
-
-<!-- 
----
-### **Proximal gradient inequality with weak convexity**
-
-Here we take the convention that $f$ is $\mu$ weakly convex if and only if $f + \mu/2\Vert \cdot\Vert^2$ is convex. 
-
-#### **Assumption 2 | Smooth side is weakly convex**
-> Let $F:= f + g$, let $f:\R^n \rightarrow \overline \R$ be $\mu$ weakly convex and differentiable. 
-
-Let $g:Q\rightarrow \overline \R$ be convex. 
-This assumption is more general than it first seems. 
-For any $F$ that is the sum of a smooth $f$ and a non-smooth part $g$ such that exactly one of $f$ or $g$ is $\mu$ weakly convex, then we may assume without loss generality that the smooth part is $\mu$ weakly convex. 
-
-**Without Loss of Generality**
-
-For any $F: = f + g$, in the case where $g: Q \rightarrow \overline \R$ is $\mu$ weakly convex, and $f$ is convex. 
-Then $F = (g + \mu/2\Vert \cdot\Vert^2) + (f - \mu/2\Vert \cdot\Vert^2)$; and in this case $\hat f:= f - \mu/2\Vert \cdot\Vert^2$ is $\mu$ weakly convex, and $\hat g = g + \mu/2\Vert \cdot\Vert^2$ is convex. 
-Therefore, without loss of generality, we only need to assume one of either $f$ or $g$ is $\mu$ weakly convex, this can be conducted as long as we know which one is $\mu$ weakly convex. 
-
-#### **The key exploit**
-So, if $F$ is $\mu$ weakly convex, then the linearized model function has for all $y \in Q$:
-$$
-    \widetilde{\mathcal M}^{\overline L^{-1}}(x, y) = 
-    g(x) + \langle \nabla f(y),x - y \rangle
-    + \frac{\overline L}{2}\Vert x - y\Vert^2. 
-$$
-
-Where $\overline L = L + \mu$ where $L > 0$. 
-This function, $\widetilde {\mathcal M}^{L^+}(\cdot, y)$ is a $L$ strongly convex function. 
-This can be used to phrase a new theorem that is more general. 
-
-#### **Lemma 2.1 | The Proximal Gradient Envelope**
-> With $F := g + f$, $g:Q \rightarrow \overline \R$ is convex and $f:\R^n \rightarrow \R$ is $\mu$ weakly convex and differentiable. 
-> Fix any $y \in \R^n$, then for all $x \in Q$: 
+#### **Theorem 2.2 | Inexact proximal gradient inequality**
+> Let $F = f + g$. Let $f$ be differentiable and suppose that there exists $q \in \R$ such that $g - q \Vert \cdot\Vert^2/2$ is convex. 
+> Suppose that there exists $\bar x$, $\epsilon > 0$ such that $\Vert w\Vert \le \epsilon$ satisfying the variational inequality: 
 > $$
 > \begin{aligned}
->     \widetilde{\mathcal M}^{\overline L^{-1}}(x; y) = \widetilde{\mathcal M}^{\overline L^{-1}}(x; y) - D_f(x, y). 
+>     w \in \partial g(\bar x) + \nabla f(x) + \beta(\bar x - x). 
 > \end{aligned}
 > $$
-
-**Proof**
-
-The previous proof can be reused because convexity is never involved in the previous proof for the equality. 
-
-#### **Lemma 2.2 | The proximal gradient inequality**
-> Let $F:= f + g$ where $g: Q\rightarrow \overline \R$ is convex, $f:\R^n \rightarrow \R$ is $\mu$ weakly convex and $K$ Lipschitz upper smooth. 
-> Fix any $y \in \R^n$, assume the proximal linear model function is given by: 
-> $$
-> \begin{aligned}
->     \mathcal M(\cdot; y) = 
->     g(x) + f(y) + \langle \nabla f(y), x - y\rangle + \frac{\overline L}{2}\Vert x - y\Vert^2, 
-> \end{aligned}
-> $$
-> Where $\overline L > \mu$. 
-> Then for all $x \in \R^n$, we have the inequality: 
+> Then the inexact proximal gradient inequality has for all $z \in \R^n$: 
 > $$
 > \begin{aligned}
 >     0 &\le 
->     F(x) - F(Ty) 
->     - \overline L\langle x - y, y - Ty\rangle
->     + \frac{\mu}{2}\Vert x - Ty\Vert^2
->     + \left(
->         \frac{K}{2} - \overline L
->     \right)\Vert y - Ty\Vert^2 + \frac{\mu}{2}\Vert x - y\Vert^2. 
+>     F(z) - F(\bar x) - D_f(z, x) - D_f(\bar x, x) 
+>     - \langle w, z - \bar x\rangle - \beta \langle \bar x - x, z - \bar x\rangle 
+>     \\
+>     &\le 
+>     F(z) - F(\bar x) - D_f(z, x) - D_f(\bar x, x) 
+>     + \Vert w\Vert\Vert z - \bar x\Vert
+>     - \beta \langle \bar x - x, z - \bar x\rangle. 
 > \end{aligned}
 > $$
 
 
 **Proof**
 
-For notation simplicity, we consider $\widetilde{\mathcal M}(\cdot; y)$ instead of $\widetilde{\mathcal{M}}^{\overline L^{-1}}(\cdot; y)$, and $T$ denotes the proximal gradient operator. 
-
-By assumption that $F$ is $\mu$ weakly convex. 
-Choose any $\overline L > \mu$. 
-Define $L := \overline L - \mu > 0$. 
-Then $\widetilde{\mathcal M}(\cdot; y)$ becomes $\overline L - \mu$ strongly convex. 
-The model function admits quadratic growth condition over minimizer $T_Ly$. 
-Therefore, for all $x \in Q$ it has: 
+The proof uses the subgradient inequality of weakly/strongly convex functions. 
+Let $v = w - \nabla f(x) - \beta(\bar x - x)$. 
+Then for all $z \in \R^n$ the subgradient inequality has: 
 
 $$
 \begin{aligned}
-    0 &\le 
-    \widetilde{\mathcal M}(x; y) - \widetilde{\mathcal M}(Ty; y) - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 
-    \\
-    &= 
-    \left(\mathcal M(x; y) - D_f(x, y)\right) - \mathcal M(Ty; y) + D_f(Ty, y) 
-    - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2
-    \\
-    &=
-    \left(
-        F(x) - F(Ty) 
-        + \frac{\overline L}{2}\Vert x - y\Vert^2
-        - \frac{\overline L}{2}\Vert y - Ty\Vert^2 
-    \right)
-    - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 
-    +
-    D_f(Ty, y) - D_f(x, y)
-    \\
-    & =
-    \left(
-        F(x) - F(Ty) 
-        + \frac{\overline L}{2}\Vert x - Ty + Ty - y\Vert^2
-        - \frac{\overline L}{2}\Vert y - Ty\Vert^2 
-    \right)
-    - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 
-    + D_f(Ty, y) - D_f(x, y)
-    \\
-    & =
-    \left(
-        F(x) - F(Ty) 
-        - \overline L\langle x - Ty, y - Ty\rangle
-        + \frac{\overline L}{2}\Vert x - Ty\Vert^2
-    \right)
-    - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2
-    + D_f(Ty, y) - D_f(x, y)
-    \\
-    & =
-    \left(
-        F(x) - F(Ty) 
-        - \overline L\langle x - Ty, y - Ty\rangle
-    \right)
-    + \frac{\mu}{2}\Vert x - Ty\Vert^2
-    + D_f(Ty, y) - D_f(x, y). 
-\end{aligned}
-
-$$
-
-The chain of equivalent inequalities ends here, re-organizing it this is what we get: 
-
-$$
-\begin{aligned}
-    0 &\le 
-    F(x) - F(Ty) 
-    - \overline L\langle x - Ty, y - Ty\rangle
-    + \frac{\mu}{2}\Vert x - Ty\Vert^2
-    + D_f(Ty, y) - D_f(x, y)
+    & \frac{q}{2}\Vert z - \bar x\Vert^2
     \\
     &\le 
-    F(x) - F(Ty) 
-    - \overline L\langle x - Ty, y - Ty\rangle
-    + \frac{\mu}{2}\Vert x - Ty\Vert^2
-    + D_f(Ty, y) + \frac{\mu}{2}\Vert x - y\Vert^2. 
-\end{aligned}
-$$
-
-On the last inequality, we used the fact that $f$ is $\mu$ weakly strongly convex, $D_f(x, y) \ge - \mu/2\Vert x - y\Vert^2$. 
-Let's assume that the Upper Lipschitz smoothness constant $K$ exists so $D_f(x, y) \le K/2\Vert x - y\Vert^2$ for all $x$, which completes an upper bound: 
-
-$$
-\begin{aligned}
-    0
-    &\le 
-    F(x) - F(Ty) 
-    - \overline L\langle x - Ty, y - Ty\rangle
-    + \frac{\mu}{2}\Vert x - Ty\Vert^2
-    + \frac{K}{2}\Vert y - Ty\Vert^2 + \frac{\mu}{2}\Vert x - y\Vert^2
+    g(z) - g(\bar x) - \langle v, z - \bar x\rangle
     \\
     &= 
-    F(x) - F(Ty) 
-    - \overline L\langle x - y + y - Ty, y - Ty\rangle
-    + \frac{\mu}{2}\Vert x - Ty\Vert^2
-    + \frac{K}{2}\Vert y - Ty\Vert^2 + \frac{\mu}{2}\Vert x - y\Vert^2
+    g(z) - g(\bar x) - \langle w - \nabla f(x) - \beta(\bar x - x), z - \bar x\rangle
     \\
     &= 
-    F(x) - F(Ty) 
-    - \overline L\langle x - y, y - Ty\rangle
-    + \frac{\mu}{2}\Vert x - Ty\Vert^2
-    + \left(
-        \frac{K}{2} - \overline L
-    \right)\Vert y - Ty\Vert^2 + \frac{\mu}{2}\Vert x - y\Vert^2. 
-\end{aligned}
-$$
-
-
-
-#### **Corollary 2.3 | When smooth part is convex**
-
-
-**Proof**
-
-With the assumption that $F$ is $\sigma$ strongly convex and $K$ Lipschitz smooth, its Bregman Divergence has for all $x, y \in \R^n$: 
-
-$$
-\begin{aligned}
-    \frac{\sigma}{2}\Vert x - y\Vert^2 
-    \le D_f(x, y) \le \frac{K}{2}\Vert x - y\Vert^2. 
-\end{aligned}
-$$
-
-Substituting $\mu = - \sigma$, the inequality becomes 
-
-$$
-\begin{aligned}
-    0 &\le 
-    F(x) - F(Ty) 
-    - \overline L\langle x - y, y - Ty\rangle
-    - \frac{\mu}{2}\Vert x - Ty\Vert^2
-    + \left(
-        \frac{K}{2} - \overline L
-    \right)\Vert y 
-    - Ty\Vert^2 
-    - \frac{\mu}{2}\Vert x - y\Vert^2. 
-\end{aligned}
-$$
-
-Now, we may choose $\overline L = K$, so with that: 
-
-$$
-\begin{aligned}
-    0 &\le 
-    F(x) - F(Ty) 
-    - K\langle x - y, y - Ty\rangle
-    - \frac{\mu}{2}\Vert x - Ty\Vert^2
-    -
-    \frac{K}{2}\Vert y - Ty\Vert^2 
-    - \frac{\mu}{2}\Vert x - y\Vert^2
+    g(z) - g(\bar x) + \langle\nabla f(x) + \beta(\bar x - x), z - \bar x\rangle
+    - \langle w, z - \bar x\rangle
+    \\
+    &= 
+    g(z) - g(\bar x) + (\langle\nabla f(x), z - \bar x\rangle) 
+    + \langle \beta(\bar x - x), z - \bar x\rangle
+    - \langle w, z - \bar x\rangle
+    \\
+    &= 
+    g(z) - g(\bar x) + (\langle \nabla f(x), z - x\rangle - \langle \nabla f(x), x - \bar x\rangle) 
+    + \langle \beta(\bar x - x), z - \bar x\rangle
+    - \langle w, z - \bar x\rangle
+    \\
+    &= 
+    g(z) - g(\bar x) + 
+    (- D_f(z, x) + f(z) - f(x) + D_f(\bar x, x) - f(\bar x) + f(x)) 
+    + \langle \beta(\bar x - x), z - \bar x\rangle
+    - \langle w, z - \bar x\rangle
+    \\
+    &= 
+    g(z) - g(\bar x) + 
+    (- D_f(z, x) + f(z) + D_f(\bar x, x) - f(\bar x)) 
+    + \langle \beta(\bar x - x), z - \bar x\rangle
+    - \langle w, z - \bar x\rangle
+    \\
+    &= 
+    F(z) - F(\bar x)
+    - D_f(z, x) + D_f(\bar x, x)
+    + \langle \beta(\bar x - x), z - \bar x\rangle
+    - \langle w, z - \bar x\rangle
     \\
     &\le 
-    F(x) - F(Ty) 
-    - K\langle x - y, y - Ty\rangle
-    -
-    \frac{K}{2}\Vert y - Ty\Vert^2 
-    - \frac{\mu}{2}\Vert x - y\Vert^2. 
+    F(z) - F(\bar x)
+    - D_f(z, x) + D_f(\bar x, x)
+    + \langle \beta(\bar x - x), z - \bar x\rangle
+    + \Vert w\Vert\Vert z - \bar x\Vert. 
 \end{aligned}
 $$
 
-This, recovers the same lemma as in the convex smooth case, utilizing the non-convex formulation of the proximal gradient lemma. 
- -->
+#### **Discussion**
 
+The proofs may look different from before, but the underlying mechanism is the same. 
 
 ---
 ### **Inexact Proximal Gradient inequalities**

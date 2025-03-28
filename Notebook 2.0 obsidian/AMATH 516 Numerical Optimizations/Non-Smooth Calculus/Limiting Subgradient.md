@@ -15,21 +15,21 @@ To start we define F-attentative convergence of a sequence.
 This is required for the limiting subgradient definition, which is based on the regular subgradient. 
 
 #### **Def | F-Attentative Convergence**
-> Define let $x_n \in \mathbb R^n$ be a sequence that converges to $\bar x$, then $x_n \rightarrow_f \bar x$ to be $f$-attentative convergence if and only if the following conditions are true for the sequence: 
+> Define let $x_n \in \mathbb R^n$ be a sequence that converges to $\bar x$, then $x_n \rightarrow_f \bar x$ to be $f$-attentive convergence if and only if the following conditions are true for the sequence: 
 > 1. $x\rightarrow \bar x.$
 > 2. $f(x_n)\rightarrow f(\bar x).$
 > Take note that if function is continuous at $\bar x$, then would be true trivially. 
 
 #### **Def | Mordukhovich Limiting Subdifferential**
 > Let $f: \mathbb R^n \rightarrow \bar {\mathbb R}$ and $\bar x \in \text{dom}(f)$. 
-> Let $x_\gamma \rightarrow_f \bar x$ be attentative convergence. 
+> Let $x_\gamma \rightarrow_f \bar x$ be attentive convergence. 
 > We define the limiting subgradient: 
 > $$
 > \begin{aligned}
 >     \partial f(\bar x) &= 
 >     \left\lbrace
->         v \in \mathbb R^n | 
->         \exists v_\gamma \in \hat \partial f(x_\gamma), x_\gamma \rightarrow_f \bar x, 
+>         v \in \mathbb R^n | \;
+>         \exists v_\gamma \in \hat \partial f(x_\gamma), x_\gamma \underset{f}{\longrightarrow} \bar x, 
 >         v_\gamma \rightarrow v
 >     \right\rbrace. 
 > \end{aligned}
@@ -41,7 +41,7 @@ Take note that, if we have $\hat \partial f(\bar x) = \emptyset$, it won't mean 
 As long as $f$ is lower semi-continuous at $\bar x$, there exists some choice of $x_\gamma \rightarrow_f \bar x$ such that, $v_\gamma \in \hat \partial f(x)$ exist. 
 As long as the sequence of set $\hat \partial f(x_\gamma)$ share some points in common when $x\rightarrow_f \bar x$. 
 
-
+Recall [Set Limits Part II](AMATH%20516%20Numerical%20Optimizations/Background/Set%20Limits%20Part%20II.md). 
 
 #### **Thm | Outer Limit Characterizations**
 > The limiting sub-differential can be characterized by Kuratowski convergence of the regular subgradient over all sequences that attains $f$-attentative convergence around $\bar x$. 
@@ -49,29 +49,29 @@ As long as the sequence of set $\hat \partial f(x_\gamma)$ share some points in 
 > Define Kuratowski convergence of a set value operator, which in this case is $\partial f(x)$ to be 
 > $$
 > \begin{aligned}
->     \Limsup{x\rightarrow_f \bar x} \hat \partial f(x) &= 
+>     \Limsup{x\underset{f}{\longrightarrow} \bar x} \hat \partial f(x) &= 
 >     \left\lbrace
 >         v \in \mathbb R^n 
 >         \left | 
->         \exists x_\gamma \rightarrow_f \bar x, v_\gamma \in \hat \partial f(x_\gamma), v_\gamma \rightarrow v\right.
+>         \exists x_\gamma \underset{f}{\longrightarrow} \bar x, v_\gamma \in \hat \partial f(x_\gamma), v_\gamma \rightarrow v\right.
 >     \right\rbrace. 
 > \end{aligned}
 > $$
 > Then the limiting subgradient will admit representation 
 > $$
 > \begin{aligned}
->     \partial f(\bar x) &= \Limsup{x\rightarrow_f \bar x} \hat \partial f(x)
+>     \partial f(\bar x) &= \Limsup{x\underset{f}{\longrightarrow}\bar x} \hat \partial f(x)
 >     = \bigcap_{\delta > 0} \overline{
 >         \hat \partial f(U(f, \bar x, \delta))
 >     }. 
 > \end{aligned}
 > $$
-> Which is the set inversection of all the closed range of regular subgradient over the $f$-attentative region around $\bar x$ for all values of $\delta > 0$. 
+> Which is the set intersection of all the closed range of regular subgradient over the $f$-attentative region around $\bar x$ for all values of $\delta > 0$. 
 
 **Observations**
 
 Intersection of infinitely many closed set is still a closed set, and therefore, limiting subgradient $\partial f(\bar x)$ is a closed set. 
-Observe that $f$ is L.S.C, if and only if there there exists a sequence $\{x\}_{n\in \mathbb N} \cap U(f, \bar x, \delta) \neq \emptyset$ for all $\delta > 0$. 
+Observe that $f$ is L.S.C, if and only if there exists a sequence $\{x\}_{n\in \mathbb N} \cap U(f, \bar x, \delta) \neq \emptyset$ for all $\delta > 0$. 
 The closure of the regular gradient is related to the convergence of the sequence $v_\gamma \rightarrow v$. 
 Which may not be a member of the regular subgradient $\hat \partial f(\bar x)$. 
 

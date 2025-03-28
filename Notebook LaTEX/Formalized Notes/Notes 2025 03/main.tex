@@ -39,7 +39,7 @@
     \section{Necoara's et al's Paper}
         \subsection{The Settings}
             The assumption follows give the same setting as Necoara et al. \cite{necoara_linear_2019}. 
-            % NECOARA ASSUMPTIONS 
+            % NECOARA's ASSUMPTIONS ====================================================================================
             \begin{assumption}\label{ass:necoara-2019-settings}
                 Consider optimization problem: 
                 \begin{align}
@@ -53,7 +53,7 @@
                     \Vert \nabla f(x) - \nabla f(y)\Vert \le L_f\Vert x - y\Vert. 
                 \end{align*}
             \end{assumption}
-            % BREGMAN DIV DEFINITION
+            % BREGMAN DIV DEFINITION ===================================================================================
             \begin{definition}[Bregman Divergence]
                 Let $f:\RR^n \rightarrow \overline \RR$ be a differentiable function. 
                 Define Bregman Divergence: 
@@ -73,7 +73,7 @@
             \begin{align*}
                 \mathcal G_{L_f}x = L_f(x - \Pi_{X}x). 
             \end{align*}
-            % STRONG CONVEXITY DEFINITION
+            % STRONG CONVEXITY DEFINITION ==============================================================================
             \begin{definition}[Strong convexity]\label{def:necoara-scnvx}
                 Suppose $f$ satisfies Assumption \ref{ass:necoara-2019-settings}. 
                 Then $f \in \mathbb S(L_f, \kappa_f, X)$ is strongly convex iff 
@@ -84,17 +84,22 @@
                 \end{align*}
             \end{definition}
             Then it's not hard to imagine the following natural relaxation of the above conditions. 
-            % DEFINITION OF WEAKER STRONG CONVEXITY
+            % DEFINITION OF WEAKER STRONG CONVEXITY ====================================================================
             \begin{definition}[Relaxations of Strong convexity]\label{def:necoara-weaker-scnvx}
                 Suppose $f$ satisfies Assumption \ref{ass:necoara-2019-settings}. 
                 Let $L_f \ge \kappa_f \ge 0$ such that for all $x \in X$, $\bar x = \Pi_{X^+} x$. 
                 We define the following: 
                 \begin{enumerate}
-                    \item\label{def:neocara-qscnvx} Quasi-strong convexity (Q-SCNVX): $0 \le D_f(\bar x, x) - \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2$. Denoeted by $\mathbb S'(L_f, \kappa_f, X)$. 
-                    \item\label{def:necoara-qup} Quadratic under approximation (QUA): $0 \le D_f(x, \bar x) - \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2$. Denoeted by $\mathbb U(L_f, \kappa_f, X)$. 
-                    \item\label{def:necoara-qgg} Quadratic Gradient Growth (QGG): $0\le D_f(x, \bar x) + D_f(\bar x, x) - \kappa_f/2\Vert x - \bar x\Vert^2$. Denoted by $\mathbb G(L_f, \kappa_f, X)$. 
-                    \item\label{def:necoara-qfg} Quadratic Function Growth (QFG): $0 \le f(x) - f^* - \kappa_f/2\Vert x - \bar x\Vert^2$. Denoted by $\mathbb F(L_f, \kappa_f, X)$. 
-                    \item\label{def:necoara-eb} Error Bound (EB): $\Vert \mathcal G_{L_f}x\Vert \ge \kappa_f\Vert x - \bar x\Vert$. Denoted by $\mathbb E(L_f, \kappa_f, X)$. 
+                    \item\label{def:neocara-qscnvx} Quasi-strong convexity (Q-SCNVX): $0 \le D_f(\bar x, x) - \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2$. 
+                    Denoeted by $\mathbb S'(L_f, \kappa_f, X)$. 
+                    \item\label{def:necoara-qup} Quadratic under approximation (QUA): $0 \le D_f(x, \bar x) - \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2$. 
+                    Denoeted by $\mathbb U(L_f, \kappa_f, X)$. 
+                    \item\label{def:necoara-qgg} Quadratic Gradient Growth (QGG): $0\le D_f(x, \bar x) + D_f(\bar x, x) - \kappa_f/2\Vert x - \bar x\Vert^2$. 
+                    Denoted by $\mathbb G(L_f, \kappa_f, X)$. 
+                    \item\label{def:necoara-qfg} Quadratic Function Growth (QFG): $0 \le f(x) - f^* - \kappa_f/2\Vert x - \bar x\Vert^2$. 
+                    Denoted by $\mathbb F(L_f, \kappa_f, X)$. 
+                    \item\label{def:necoara-peb} Proximal Error Bound (PEB): $\Vert \mathcal G_{L_f}x\Vert \ge \kappa_f\Vert x - \bar x\Vert$. 
+                    Denoted by $\mathbb E(L_f, \kappa_f, X)$. 
                 \end{enumerate}
             \end{definition}
             \begin{remark}
@@ -103,6 +108,7 @@
 
         \subsection{Major Results in the paper}
             In Necoara's et al, major results assume convexity of $f$. 
+            % THEOREM | Q-SCNVX IMPLIES QUA ============================================================================
             \begin{theorem}(Q-SCNVX implies QUA)\label{thm:qscnvx-means-qua}
                 Let $f$ satisfies Assumption \ref{ass:necoara-2019-settings} and assume $f$ is convex: 
                 \begin{align*}
@@ -222,6 +228,49 @@
                 In addition, the inductive hypothesis has $\kappa_f^{(n)} \ge 0$, which is not sufficient for convexity, but necessary. 
                 The projectin property remains true for nonconvex $X^+$, however the base case require rethinking. 
             \end{remark}
+            % THEOREM | QGG IMPLIES QUA ================================================================================
+            \begin{theorem}[QGG implies QUA]
+                Let $f$ satisfies Assumption \ref{ass:necoara-2019-settings}, under convexity it has 
+                \begin{align*}
+                    \mathbb G(L_f, \kappa_f, X)\subseteq \mathbb U(L_f, \kappa_f, X). 
+                \end{align*}
+            \end{theorem}
+            \begin{proof}
+                For all $x \in X$, define $\bar x = \Pi_{X^+}x$, $x_\tau = \bar x + \tau(x - \bar x)\; \forall \tau \in [0, 1]$. 
+                Observe that $\frac{d}{d\tau}x_\tau = x - \bar x$ and $\Pi_{X^+}x_\tau = \bar x\; \forall \tau \in [0, 1]$. 
+                Using calculus and Theorem \ref{def:necoara-weaker-scnvx} \ref{def:necoara-qgg}: 
+                \begin{align*}
+                    f(x) &= f(\bar x) + \int_0^1 \langle \nabla f(x_\tau), x - \bar x\rangle d\tau  
+                    \\
+                    &= f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle + 
+                    \int_0^1 \langle \nabla f(x_\tau) - \nabla f(\bar x), x - \bar x\rangle d \tau
+                    \\
+                    &= 
+                    f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle + 
+                    \int_0^1 \tau^{-1}\langle \nabla f(x_\tau) - \nabla f(\bar x), \tau(x - \bar x)\rangle d \tau
+                    \\
+                    &= 
+                    f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle + 
+                    \int_0^1 \tau^{-1}\langle \nabla f(x_\tau) - \nabla f(\bar x), x_\tau - \bar x\rangle d \tau
+                    \\
+                    &\ge
+                    f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle + 
+                    \int_0^1 \tau^{-1}\kappa_f\Vert \tau(x - \bar x)\Vert^2 d \tau
+                    \\
+                    &= 
+                    f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle + 
+                    \int_0^1 \tau\kappa_f\Vert x - \bar x \Vert^2 d \tau
+                    \\
+                    &= 
+                    f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle + 
+                    \frac{\kappa}{2}\Vert x - \bar x\Vert^2. 
+                \end{align*}
+            \end{proof}
+            \begin{remark}
+                This is Theorem 3 in Neocara et al. \cite{necoara_linear_2019}. 
+                There is no immediaet use of convexity besides that the projection $\bar x = \Pi_{X^+}x$ is a singleton.
+            \end{remark}
+            % THEOREM | QFC IMPLIES QGG  ===============================================================================
             \begin{theorem}[Q-SCNVX implies QGG]
                 Under Assumption \ref{ass:necoara-2019-settings} and convexity of $f$, it has 
                 \begin{align*}
@@ -235,6 +284,7 @@
             \begin{remark}
                 This is Theorem 2 in the Necoara et al. \cite{necoara_linear_2019}, right after it claims $\mathbb U(L_f, \kappa_f, X)\subseteq \mathbb G(L_f, \kappa_f/2, X)$ under convexity. 
             \end{remark}
+            % THEOREM | SUFFICIENCY OF QFG =============================================================================
             \begin{theorem}[sufficiency of QFG]\label{thm:qfg-suff}
                 Let $f$ satisfies Assumption \ref{ass:necoara-2019-settings}. 
                 For all $0 < \beta < 1$, $x \in X$, let $x^+ = \Pi_{X}(x - L^{-1}_f \nabla f(x))$. 
@@ -269,7 +319,11 @@
                 It's unclear where convexity is used. 
                 However, it' still assumed in Necoara et al paper. 
             \end{remark}
-            The following theorems are about the relation between EB and QFG. 
+            The following theorems are about the relation between PEB and QFG. 
+            \begin{theorem}{equivalence between QFG and PEB}
+                
+                
+            \end{theorem}
 
 
         
