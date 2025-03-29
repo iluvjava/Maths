@@ -32,14 +32,156 @@
     \todoinline{This paper is currently in draft mode. Check source to change options. }
 \end{abstract}
 \chapter{The Basics of Optimization Theories}
-    Notations in this chapter are not shared and they are for this chapter only. 
+    Notations in this chapter are not shared, and they are for this chapter only. 
+    % BREGMAN DIV DEFINITION ===================================================================================
+    \begin{definition}[Bregman Divergence]\label{def:bregman-div}
+        Let $f:\RR^n \rightarrow \overline \RR$ be a differentiable function. 
+        Define Bregman Divergence: 
+        \begin{align*}
+            D_f: \RR^n \times \dom \nabla f \rightarrow \overline \RR:= 
+            (x, y) \mapsto f(x) - f(y) - \langle \nabla f(y), x - y\rangle. 
+        \end{align*}
+    \end{definition}
+    \begin{assumption}[smooth plus nonsmooth]\label{ass:smooth-add-nonsmooth}
+        Let $F = f+ g$ where $f:\RR^n \rightarrow \overline \RR$ is differentiable and there exists $q\in \RR$ such that $g - q/2\Vert \cdot\Vert^2$ is convex.
+    \end{assumption}
+    \begin{definition}[proximal gradient operator]
+        Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth}. 
+        Define the proximal gradient operator by: 
+        \begin{align*}
+            T_{\beta^{-1}, f, g}(x) &= \hprox_{\beta^{-1}g} \left(
+                x - \beta^{-1} \nabla f(x)
+            \right)
+            \\
+            &= \argmin_{z}\left\lbrace
+                g(z) + f(x) + \langle \nabla f(x), z - x\rangle
+                + \frac{L}{2}\Vert x - z\Vert^2
+            \right\rbrace. 
+        \end{align*}
+    \end{definition}
+    % =================================================
+    % WEAKLY CONVEX GENERIC PROXIMAL GRADIENT INEQUALITY
+    % ==================================================
+    \begin{theorem}[weakly convex generic proximal gradient inequality]\label{thm:pg-ineq-wcnvx-generic}\;\\
+        Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth} with $\beta > 0$ and $q \in \RR$. 
+        Then for all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{\beta^{-1}, f, g}(x)$, it has: 
+        \begin{align*}
+            \frac{q}{2}\Vert z - x^+\Vert^2 
+            &\le 
+            F(z) - F(\bar x) - \langle \beta(x - \bar x), z - \bar x\rangle 
+            + D_f(x, \bar x ) - D_f(z, x).  
+        \end{align*}
+    \end{theorem}
+    \begin{proof}
+        Nonsmooth analysis calculus rules has 
+        \begin{align*}
+            \bar x &\in \argmin{z} \left\lbrace
+                g(z) + \langle \nabla f(x), z\rangle + \frac{\beta}{2}\Vert z - x\Vert^2
+            \right\rbrace
+            \\
+            \implies
+            \mathbf 0 
+            &\in \partial g(x^+) + \nabla f(x) + \beta(x^+ - x)
+            \\
+            \iff 
+            \partial g(x^+) &\ni
+            - \nabla f(x) - \beta(x^+ - x). 
+        \end{align*}
+        The subgradient inequality for weak convexity has 
+        \begin{align*}
+            \frac{q}{2}\Vert z - \bar x\Vert^2 
+            &\le 
+            g(z) - g(\bar x) + \langle \nabla f(x) + \beta(\bar x - x), z - \bar x\rangle
+            \\
+            &= 
+            g(z) - g(\bar x) + \langle \nabla f(x), z - \bar x\rangle + \langle \beta(\bar x - x), z - \bar x\rangle
+            \\
+            &= g(z) - g(\bar x) + \langle \nabla f(x), z - x\rangle
+            + \langle \nabla f(x), x - \bar x\rangle
+            + \langle \beta(\bar x - x), z - \bar x\rangle
+            \\
+            &= 
+            g(z) - g(\bar x) 
+            + (-D_f(z, x) + f(z) - f(x))
+            \\
+            & \quad 
+            + (D_f(\bar x, x) - f(\bar x) + f(x))
+            + \langle \beta(\bar x - x), z - \bar x\rangle
+            \\
+            &= F(z) - F(\bar x) - D_f(z, x) + D_f(\bar x, x) 
+            - \langle \beta(x - \bar x), z - \bar x\rangle. 
+        \end{align*}
+    \end{proof}
+    \begin{theorem}[convex proximal gradient inequality]\label{theorem:pg-ineq}
+        Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth} such that $q = \mu_g \ge 0$, $\beta \ge L_f$. 
+        In addition, suppose that $f:\RR^n\rightarrow \RR$ has $L_f$ Lipschitz continuous gradient, and it's $\mu_f \ge 0$ strongly convex. 
+        For all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{\beta^{-1}, f, g}(x)$ it has 
+        \begin{align*}
+            0 &\le 
+            F(z) - F(\bar x) + 
+            \frac{\beta - \mu_f}{2}\Vert z - x\Vert^2
+            - \frac{\beta + \mu_g}{2}\Vert z - \bar x\Vert^2. 
+        \end{align*}
+    \end{theorem}
+    \begin{proof}
+        The Bregman Divergence of $f$ has inequality 
+        \begin{align*}
+            \left(\forall x \in \RR^n, y \in \RR^n\right)\; 
+            \frac{\mu_f}{2}\Vert x - y\Vert^2 \le D_f(x, y) \le \frac{L_f}{2}\Vert x - y\Vert^2. 
+        \end{align*}
+        Specializing Theorem \ref{thm:pg-ineq-wcnvx-generic}, let $x \in \RR^n$ and define $\bar x = T_{\beta^{-1}, f, g}(x)$ it has $\forall z \in \RR^n:$
+        \begin{align*}
+            \frac{\mu_g}{2}\Vert z - \bar x \Vert^2 
+            &\le 
+            F(z) - F(\bar x) 
+            - D_f(z, x) + D_f(\bar x, x) 
+            - \langle \beta(x - \bar x), z - \bar x\rangle
+            \\
+            &\le 
+            F(z) - F(\bar x) 
+            - \frac{\mu_f}{2}\Vert z - x\Vert^2 
+            + \frac{L_f}{2}\Vert x - \bar x\Vert^2
+            - \langle \beta(x - \bar x), z - x + x - \bar x\rangle
+            \\
+            &= 
+            F(z) - F(\bar x) 
+            - \frac{\mu_f}{2}\Vert z - x\Vert^2 
+            + \left(
+                \frac{L_f}{2} - \beta
+            \right)\Vert x - \bar x\Vert^2
+            - \langle \beta(x - \bar x), z - x\rangle
+            \\
+            &\le 
+            F(z) - F(\bar x) 
+            - \frac{\mu_f}{2}\Vert z - x\Vert^2 
+            - \frac{\beta}{2}\Vert x - \bar x\Vert^2
+            - \langle \beta(x - \bar x), z - x\rangle
+            \\
+            &= 
+            F(z) - F(\bar x) 
+            - \frac{\mu_f}{2}\Vert z - x\Vert^2 
+            - \frac{\beta}{2}
+            \left(
+                \Vert x - \bar x\Vert^2
+                + 2\langle x - \bar x, z - x\rangle
+            \right)
+            \\
+            &= 
+            F(z) - F(\bar x) 
+            + \frac{\beta - \mu_f}{2}\Vert z - x\Vert^2 
+            - \frac{\beta}{2}\Vert z - \bar x\Vert^2. 
+        \end{align*}
+    \end{proof}
     
 \chapter{Linear Convergence of First Order Method}
     In this chapter, we are specifically interested in characterizing linear convergence of well known first order optimization algorithms. 
+    In this section, $D_f$ will denote the Bregman Divergence as defined in Definition \ref{def:bregman-div}. 
     \section{Necoara's et al's Paper}
         \subsection{The Settings}
             The assumption follows give the same setting as Necoara et al. \cite{necoara_linear_2019}. 
-            % NECOARA's ASSUMPTIONS ====================================================================================
+            % =======================
+            % NECOARA's ASSUMPTIONS 
+            % =======================
             \begin{assumption}\label{ass:necoara-2019-settings}
                 Consider optimization problem: 
                 \begin{align}
@@ -53,15 +195,6 @@
                     \Vert \nabla f(x) - \nabla f(y)\Vert \le L_f\Vert x - y\Vert. 
                 \end{align*}
             \end{assumption}
-            % BREGMAN DIV DEFINITION ===================================================================================
-            \begin{definition}[Bregman Divergence]
-                Let $f:\RR^n \rightarrow \overline \RR$ be a differentiable function. 
-                Define Bregman Divergence: 
-                \begin{align*}
-                    D_f: \RR^n \times \dom \nabla f \rightarrow \overline \RR:= 
-                    (x, y) \mapsto f(x) - f(y) - \langle \nabla f(y), x - y\rangle. 
-                \end{align*}
-            \end{definition}
             Some immediate consequences of Assumption \ref{ass:necoara-2019-settings} now follows. 
             The variational inequality characterizing optimal solution has: 
             \begin{align*}
@@ -73,7 +206,9 @@
             \begin{align*}
                 \mathcal G_{L_f}x = L_f(x - \Pi_{X}x). 
             \end{align*}
-            % STRONG CONVEXITY DEFINITION ==============================================================================
+            % ==============================
+            % STRONG CONVEXITY DEFINITION
+            % ==============================
             \begin{definition}[Strong convexity]\label{def:necoara-scnvx}
                 Suppose $f$ satisfies Assumption \ref{ass:necoara-2019-settings}. 
                 Then $f \in \mathbb S(L_f, \kappa_f, X)$ is strongly convex iff 
@@ -268,7 +403,7 @@
             \end{proof}
             \begin{remark}
                 This is Theorem 3 in Neocara et al. \cite{necoara_linear_2019}. 
-                There is no immediaet use of convexity besides that the projection $\bar x = \Pi_{X^+}x$ is a singleton.
+                There is no immediate use of convexity besides that the projection $\bar x = \Pi_{X^+}x$ is a singleton.
             \end{remark}
             % THEOREM | QFC IMPLIES QGG  ===============================================================================
             \begin{theorem}[Q-SCNVX implies QGG]
@@ -313,14 +448,20 @@
                     \le - \frac{L_f}{2}\Vert x^+ - x\Vert^2 
                     \le - \frac{L_f}{2}(1 - \beta)^2 \Vert x - \Pi_{X^+}\Vert^2. 
                 \end{align*}
-                Hence it gives the quadratic growth condition. 
+                Hence, it gives the quadratic growth condition. 
             \end{proof}
             \begin{remark}
                 It's unclear where convexity is used. 
-                However, it' still assumed in Necoara et al paper. 
+                However, it' still assumed in Necoara et al. paper. 
             \end{remark}
+            Before we start, we will specialize Theorem \ref{theorem:pg-ineq} in our context because it will be used in later proofs. 
+            In Assumption \ref{ass:necoara-2019-settings}, it can be seemed as $F = f + g$ in Assumption \ref{ass:smooth-add-nonsmooth} with $g = \delta_{X}$. 
+            In this case $\mu_g = 0$ and assuming $f$ is convex we have only $\mu_f = 0$. 
+            Therefore the theorem specializes into the following inequality. 
+            
+            \par
             The following theorems are about the relation between PEB and QFG. 
-            \begin{theorem}{equivalence between QFG and PEB}
+            \begin{theorem}[equivalence between QFG and PEB]
                 
                 
             \end{theorem}
