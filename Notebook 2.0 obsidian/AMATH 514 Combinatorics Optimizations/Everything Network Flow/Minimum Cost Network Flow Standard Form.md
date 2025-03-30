@@ -18,7 +18,7 @@ $$
     \begin{cases}
         \underbrace{\sum_{(i, j)\in A}^{}x_{i, j}}_{\text{flow out}}
          - 
-        \underbrace{\sum_{(k, i)\in A}^{}x_{k, i}}_{\text{flow in}} = b_i
+        \underbrace{\sum_{(k, i)\in A}^{}x_{k, i}}_{\text{flow in}} = b_i\quad \forall i\in[N]
         & \text{ Mass Balance}
         \\
         \mathbf 0 \le x \le u & \text{Capacity }

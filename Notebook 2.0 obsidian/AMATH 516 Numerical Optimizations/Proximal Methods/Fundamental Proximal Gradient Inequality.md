@@ -245,9 +245,8 @@ $$
 $\blacksquare$
 
 
-
 #### **Theorem 1.3 | Convex smooth proximal gradient inequality**
-> Assume that $F = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ convex.  
+> Assume that $F = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ convex. 
 > Then, for $y \in \R^n, \bar y = T_{L^{-1}, f, g}$ it has the following: 
 > $$
 > \begin{aligned}
@@ -358,8 +357,8 @@ The claim is true for all $L$ that is larger than the real Lipschitz modulus of 
 >     \\
 >     & =
 >     F(x) - F(\bar y)
->     - \frac{L - \mu_g}{2}\Vert x - \bar y \Vert^2
->     + \frac{L - \mu_f}{2}\Vert x- y\Vert^2. 
+>     - \frac{L + \mu_g}{2}\Vert x - \bar y \Vert^2
+>     + \frac{L - \mu_f}{2}\Vert x- y\Vert^2.     
 > \end{aligned}
 > $$
 
@@ -376,28 +375,28 @@ $$
     - \langle L(y - \bar y), x - \bar y\rangle
     - D_f(x, y) 
     + D_f(\bar y, y)
-    + \frac{\beta - q}{2}\Vert x - \bar y\Vert^2
+    - \frac{\beta - q}{2}\Vert x - \bar y\Vert^2
     \\
     &\le 
     F(x) - F(\bar y)
     - \langle L(y - \bar y), x - \bar y\rangle
     - \frac{\mu_f}{2}\Vert x - y\Vert^2
     + \frac{L}{2}\Vert \bar y - y\Vert^2
-    + \frac{\mu_g}{2}\Vert x - \bar y\Vert^2
+    - \frac{\mu_g}{2}\Vert x - \bar y\Vert^2
     \\
     &=
     F(x) - F(\bar y)
     - \langle L(y - \bar y), x - y + y -\bar y\rangle
     - \frac{\mu_f}{2}\Vert x - y\Vert^2
     + \frac{L}{2}\Vert \bar y - y\Vert^2
-    + \frac{\mu_g}{2}\Vert x - \bar y\Vert^2
+    - \frac{\mu_g}{2}\Vert x - \bar y\Vert^2
     \\
     &= 
     F(x) - F(\bar y)
     - L\langle y - \bar y, x - y\rangle
     - \frac{\mu_f}{2}\Vert x - y\Vert^2
     - \frac{L}{2}\Vert \bar y - y\Vert^2
-    + \frac{\mu_g}{2}\Vert x - \bar y\Vert^2. 
+    - \frac{\mu_g}{2}\Vert x - \bar y\Vert^2. 
 \end{aligned}
 $$
 
@@ -410,17 +409,17 @@ $$
     - L\langle y - \bar y, x - y\rangle
     - \frac{\mu_f}{2}\Vert x - y\Vert^2
     - \frac{L}{2}\Vert \bar y - y\Vert^2
-    + \frac{\mu_g}{2}\Vert x - \bar y\Vert^2
+    - \frac{\mu_g}{2}\Vert x - \bar y\Vert^2
     \\
     &= 
     F(x) - F(\bar y)
     - \frac{L}{2}\Vert x - \bar y \Vert^2
     + \frac{L - \mu_f}{2}\Vert x- y\Vert^2
-    + \frac{\mu_g}{2}\Vert x - \bar y\Vert^2
+    - \frac{\mu_g}{2}\Vert x - \bar y\Vert^2
     \\
     &= 
     F(x) - F(\bar y)
-    - \frac{L - \mu_g}{2}\Vert x - \bar y \Vert^2
+    - \frac{L + \mu_g}{2}\Vert x - \bar y \Vert^2
     + \frac{L - \mu_f}{2}\Vert x- y\Vert^2. 
 \end{aligned}
 $$
@@ -569,16 +568,18 @@ $$
     &= 
     F(z) - F(\bar x)
     - D_f(z, x) + D_f(\bar x, x)
-    + \langle \beta(\bar x - x), z - \bar x\rangle
+    + \beta\langle \bar x - x, z - \bar x\rangle
     - \langle w, z - \bar x\rangle
     \\
     &\le 
     F(z) - F(\bar x)
     - D_f(z, x) + D_f(\bar x, x)
-    + \langle \beta(\bar x - x), z - \bar x\rangle
+    + \beta\langle \bar x - x, z - \bar x\rangle
     + \Vert w\Vert\Vert z - \bar x\Vert. 
 \end{aligned}
 $$
+
+$\blacksquare$
 
 #### **Discussion**
 

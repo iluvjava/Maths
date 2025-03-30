@@ -126,8 +126,6 @@ $$
 $$
 
 
-
-
 #### **Theorem (4.1, 4.2) | Algorithm Convergence**
 > The algorithm generates $\bar x_k$ which is the monotone gradient descent step, and it converges to a stationary point when $F$ is $\kappa$ weakly convex: 
 > $$

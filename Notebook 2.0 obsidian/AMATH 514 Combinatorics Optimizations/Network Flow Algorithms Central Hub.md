@@ -1,11 +1,11 @@
-- [[../CSE 000 Basics Algorithms/Single Source Shortest Path Optimality Conditions]]. 
+- [Single Source Shortest Path Optimality Conditions](../CSE%20000%20Basics%20Algorithms/Single%20Source%20Shortest%20Path%20Optimality%20Conditions.md). 
 
 ---
 ### **Intro**
 
 **Basic Algorithms That Powers Everything Else**: 
-- Generic Search Algorithm: [[../CSE 000 Basics Algorithms/Generic Search Algorithm]]
-- Flow Decomposition Algorithm: [[Everything Network Flow/Flow Decomposition Algorithm]]
+- Generic Search Algorithm: [Generic Search Algorithm](../CSE%20000%20Basics%20Algorithms/Generic%20Search%20Algorithm.md)
+- Flow Decomposition Algorithm: [Flow Decomposition Algorithm](Everything%20Network%20Flow/Flow%20Decomposition%20Algorithm.md)
 
 For everything about shortest path algorithm, visit: [Shortest Paths Algorithms CENTRAL HUB](Everything%20Network%20Flow/Shortest%20Paths%20Algorithms%20CENTRAL%20HUB.md), these are a special type of max flow problem, and it's revealing the same optimality conditions for the mincost flow. The algorithm for shortest paths exploit similar conditions compare to the min cost flow. 
 

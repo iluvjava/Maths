@@ -705,7 +705,7 @@ $$
 \begin{aligned}
     \frac{1}{2\mu}\Vert x_{k + 1} - x_k\Vert^2 
     &\ge 
-    \dist(\partial F(x_{k + 1}), \mathbf 0) 
+    \dist(\partial F(x_{k + 1}), \mathbf 0)^2
     \ge 
     F(x_{k + 1}) - F^+. 
 \end{aligned}
