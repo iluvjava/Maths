@@ -204,6 +204,10 @@ $$
 $\blacksquare$
 
 
+#### **Lemma 2 | cute secant line inequality**
+
+
+
 ---
 ### **Co-coersiveness of strong convexity**
 

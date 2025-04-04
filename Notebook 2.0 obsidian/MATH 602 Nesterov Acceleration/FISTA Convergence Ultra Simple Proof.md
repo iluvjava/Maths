@@ -216,3 +216,32 @@ $$
 Rearranging, it's done. $\blacksquare$
 
 
+---
+### **Accelerated proximal gradient with strong convexity**
+
+The convergence anlaysis will be dependent on the similar triangle form. 
+
+#### **Similar Triangle Form**
+> Let iterates $(y_k, x_{k}, v_{k})_{k \ge 1}$ and sequence $(\alpha_k, \rho_k)_{k \ge 0}$ be given by Definition R-WAPG. 
+> Then for all $k \ge 1$, iterate $y_k, x_{k + 1}, v_{k + 1}$
+> satisfy: 
+> $$
+> \begin{aligned}
+>     y_{k} &= 
+>     \left(
+>         1 + \frac{L - L\alpha_{k}}{L\alpha_{k} - \mu}
+>     \right)^{-1}
+>     \left(
+>         v_{k} + 
+>         \left(\frac{L - L\alpha_{k}}{L\alpha_{k} - \mu} \right) x_{k}
+>     \right), 
+>     \\
+>     x_{k + 1} &= 
+>     y_k - L^{-1} \mathcal G_L y_k, 
+>     \\
+>     v_{k + 1} &= x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k). 
+> \end{aligned}
+> $$
+
+
+
