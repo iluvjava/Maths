@@ -25,15 +25,13 @@
     Reports on papers read. 
     This is a LaTEX file for my own notes taking. 
     It may accelerate the process of writing my thesis for my PhD degree. 
-    \todo{
-        This is just pseudo text. This is just pseudo text. 
-        This is just pseudo text. This is just pseudo text \cite{necoara_linear_2019}. 
-    }
     \todoinline{This paper is currently in draft mode. Check source to change options. }
 \end{abstract}
 \chapter{The Basics of Optimization Theories}
     Notations in this chapter are not shared, and they are for this chapter only. 
-    % BREGMAN DIV DEFINITION ===================================================================================
+    % ===================================================================================
+    % BREGMAN DIV DEFINITION 
+    % ===================================================================================
     \begin{definition}[Bregman Divergence]\label{def:bregman-div}
         Let $f:\RR^n \rightarrow \overline \RR$ be a differentiable function. 
         Define Bregman Divergence: 
@@ -209,7 +207,7 @@
             % ==============================
             % STRONG CONVEXITY DEFINITION
             % ==============================
-            \begin{definition}[Strong convexity]\label{def:necoara-scnvx}
+            \begin{definition}[strong convexity]\label{def:necoara-scnvx}
                 Suppose $f$ satisfies Assumption \ref{ass:necoara-2019-settings}. 
                 Then $f \in \mathbb S(L_f, \kappa_f, X)$ is strongly convex iff 
                 \begin{align*}
@@ -219,16 +217,19 @@
                 \end{align*}
             \end{definition}
             Then it's not hard to imagine the following natural relaxation of the above conditions. 
-            % DEFINITION OF WEAKER STRONG CONVEXITY ====================================================================
-            \begin{definition}[Relaxations of Strong convexity]\label{def:necoara-weaker-scnvx}
-                Suppose $f$ satisfies Assumption \ref{ass:necoara-2019-settings}. 
+            %===================================================================
+            % DEFINITION OF WEAKER STRONG CONVEXITY 
+            % ==================================================================
+            \begin{definition}[relaxations of strong convexity]\;\\
+                Suppose $f$ satisfies Assumption \ref{ass:necoara-2019-settings}.
+                \label{def:necoara-weaker-scnvx}
                 Let $L_f \ge \kappa_f \ge 0$ such that for all $x \in X$, $\bar x = \Pi_{X^+} x$. 
                 We define the following: 
                 \begin{enumerate}
                     \item\label{def:neocara-qscnvx} Quasi-strong convexity (Q-SCNVX): $0 \le D_f(\bar x, x) - \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2$. 
-                    Denoeted by $\mathbb S'(L_f, \kappa_f, X)$. 
+                    Denoted by $\mathbb S'(L_f, \kappa_f, X)$. 
                     \item\label{def:necoara-qup} Quadratic under approximation (QUA): $0 \le D_f(x, \bar x) - \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2$. 
-                    Denoeted by $\mathbb U(L_f, \kappa_f, X)$. 
+                    Denoted by $\mathbb U(L_f, \kappa_f, X)$. 
                     \item\label{def:necoara-qgg} Quadratic Gradient Growth (QGG): $0\le D_f(x, \bar x) + D_f(\bar x, x) - \kappa_f/2\Vert x - \bar x\Vert^2$. 
                     Denoted by $\mathbb G(L_f, \kappa_f, X)$. 
                     \item\label{def:necoara-qfg} Quadratic Function Growth (QFG): $0 \le f(x) - f^* - \kappa_f/2\Vert x - \bar x\Vert^2$. 
@@ -241,10 +242,12 @@
                 The error bound condition in Necoara et al. is sometimes referred to as the "Proximal Error Bound". 
             \end{remark}
 
-        \subsection{Major Results in the paper}
+        \subsection{Weaker conditions of strong convexity}
             In Necoara's et al, major results assume convexity of $f$. 
-            % THEOREM | Q-SCNVX IMPLIES QUA ============================================================================
-            \begin{theorem}(Q-SCNVX implies QUA)\label{thm:qscnvx-means-qua}
+            % ============================================================================
+            % THEOREM | Q-SCNVX IMPLIES QUA 
+            % ============================================================================
+            \begin{theorem}[Q-SCNVX implies QUA]\label{thm:qscnvx-means-qua}
                 Let $f$ satisfies Assumption \ref{ass:necoara-2019-settings} and assume $f$ is convex: 
                 \begin{align*}
                     \mathbb S'(L_f, \kappa_f, X) \subseteq \mathbb U(L_f, \kappa_f, X). 
@@ -361,9 +364,11 @@
                 This is Theorem 1 in the paper. 
                 Convexity assumption of $f$ makes $X^+$ convex, so the projection is unique, and it has $\Pi_{X^+}x_\tau = \bar x$ for all $\tau \in [0, 1]$. 
                 In addition, the inductive hypothesis has $\kappa_f^{(n)} \ge 0$, which is not sufficient for convexity, but necessary. 
-                The projectin property remains true for nonconvex $X^+$, however the base case require rethinking. 
+                The projection property remains true for nonconvex $X^+$, however the base case require rethinking. 
             \end{remark}
-            % THEOREM | QGG IMPLIES QUA ================================================================================
+            % ================================================================================
+            % THEOREM | QGG IMPLIES QUA 
+            % ================================================================================
             \begin{theorem}[QGG implies QUA]
                 Let $f$ satisfies Assumption \ref{ass:necoara-2019-settings}, under convexity it has 
                 \begin{align*}
@@ -405,7 +410,9 @@
                 This is Theorem 3 in Neocara et al. \cite{necoara_linear_2019}. 
                 There is no immediate use of convexity besides that the projection $\bar x = \Pi_{X^+}x$ is a singleton.
             \end{remark}
-            % THEOREM | QFC IMPLIES QGG  ===============================================================================
+            % ===============================================================================
+            % THEOREM | QFC IMPLIES QGG  
+            % ===============================================================================
             \begin{theorem}[Q-SCNVX implies QGG]
                 Under Assumption \ref{ass:necoara-2019-settings} and convexity of $f$, it has 
                 \begin{align*}
@@ -419,7 +426,9 @@
             \begin{remark}
                 This is Theorem 2 in the Necoara et al. \cite{necoara_linear_2019}, right after it claims $\mathbb U(L_f, \kappa_f, X)\subseteq \mathbb G(L_f, \kappa_f/2, X)$ under convexity. 
             \end{remark}
-            % THEOREM | SUFFICIENCY OF QFG =============================================================================
+            % =============================================================================
+            % THEOREM | SUFFICIENCY OF QFG 
+            % =============================================================================
             \begin{theorem}[sufficiency of QFG]\label{thm:qfg-suff}
                 Let $f$ satisfies Assumption \ref{ass:necoara-2019-settings}. 
                 For all $0 < \beta < 1$, $x \in X$, let $x^+ = \Pi_{X}(x - L^{-1}_f \nabla f(x))$. 
@@ -454,18 +463,167 @@
                 It's unclear where convexity is used. 
                 However, it' still assumed in Necoara et al. paper. 
             \end{remark}
-            Before we start, we will specialize Theorem \ref{theorem:pg-ineq} in our context because it will be used in later proofs. 
-            In Assumption \ref{ass:necoara-2019-settings}, it can be seemed as $F = f + g$ in Assumption \ref{ass:smooth-add-nonsmooth} with $g = \delta_{X}$. 
-            In this case $\mu_g = 0$ and assuming $f$ is convex we have only $\mu_f = 0$. 
-            Therefore the theorem specializes into the following inequality. 
-            
+            Before we start, we will specialize Theorem \ref{theorem:pg-ineq} because it will be used in later proofs. 
+            In Assumption \ref{ass:necoara-2019-settings}, it can be seemed as taking $F = f + g$ in Assumption \ref{ass:smooth-add-nonsmooth} with $g = \delta_{X}$. 
+            This makes $\mu_g = 0$ and assuming $f$ is convex we have $\mu_f = 0$. 
+            Let $\beta = L_f$, and $x^+ = \Pi_{X}(x - L_f^{-1}\nabla f(x))$, it has for all $z \in X$: 
+            \begin{align}\label{ineq:proj-grad}
+                \begin{split}
+                    0 &\le 
+                    f(z) - f(x^+) + \frac{L_f}{2}\Vert z - x\Vert^2
+                    - \frac{L_f}{2}\Vert z - x^+\Vert^2
+                    \\
+                    &= 
+                    f(z) - f(x^+) + L_f\langle z - x^+, x^+ - x\rangle
+                    + \frac{L_f}{2}\Vert x - x^+\Vert^2. 
+                \end{split}
+            \end{align}
+            Take note that when $z = x$ it has 
+            \begin{align}\label{ineq:proj-grad2}
+                0 &\le f(x) - f(x^+) - \frac{L_f}{2}\Vert x - x^+\Vert^2. 
+            \end{align}
             \par
-            The following theorems are about the relation between PEB and QFG. 
+            The following theorems are about the relation between PEB and QFG.
+            % ==========================================
+            % THEOREM | EQUIVALENCE BETWEEN QFG AND PEB 
+            % ==========================================
             \begin{theorem}[equivalence between QFG and PEB]
-                
-                
+                If $f$ is convex and satisfies Assumption \ref{ass:necoara-2019-settings}. 
+                Then we have: 
+                \begin{align*}
+                    \mathbb E(L_f, \kappa_f, X) &\subseteq \mathbb F(L_f, \kappa^2/L_f, X), 
+                    \\
+                    \mathbb F(L_f, \kappa_f) 
+                    &\subseteq 
+                    \mathbb E\left(
+                        L_f,
+                        \frac{\kappa_f}{\kappa_f/L_f + 1 + \sqrt{\kappa_k/L_f + 1}}, 
+                        X
+                    \right). 
+                \end{align*}
             \end{theorem}
+            \begin{proof}
+                \textbf{Firstly, we show that PEB implies QFG.}
+                For any $x \in X$, define the gradient projection steps by $x^+ = \Pi_{X}(x - L^{-1}_f\nabla f(x))$. 
+                Denote $\bar x^+_\Pi = \Pi_{X^+}x^+$. 
+                Using \eqref{ineq:proj-grad} with $z = \bar x^+_\Pi$ it yields: 
+                {\small
+                \begin{align*}
+                    0 &\ge 
+                    f(x^+) - f(x^+_\Pi) - L_f\langle x_\Pi^+ - x^+, x^+ - x\rangle
+                    - \frac{1}{L_f}\Vert L_f(x - x^+)\Vert^2
+                    \\
+                    \quad&\ge 
+                    \frac{\kappa_f}{2}\Vert x^+ - x_\Pi^+\Vert^2
+                    - \Vert L_f(x - x^+)\Vert\Vert x^+_\Pi - x^+\Vert
+                    - \frac{1}{2L_f}\Vert L_f(x - x^+)\Vert^2   &\text{QFG, Cauchy}
+                    \\
+                    &= \frac{\kappa_f}{2}\Vert x^+ - x_\Pi^+\Vert^2
+                    - \frac{1}{2L_f}\left(
+                        \Vert L_f(x - x^+)\Vert^2
+                        + L_f\Vert L_f(x - x^+)\Vert\Vert x_\Pi^+ - x^+\Vert
+                    \right)
+                    \\
+                    &= 
+                    \frac{\kappa_f + L_f}{2}\Vert x^+ - x^+_\Pi\Vert^2
+                    - \frac{1}{2L_f}\left(
+                        \Vert L_f(x - x^+)\Vert + L_f\Vert x - x_\Pi^+\Vert
+                    \right)^2
+                \end{align*}
+                }
+                From the last line, by positivity of norm it has
+                \begin{align*}
+                    \Vert L_f(x - x^+)\Vert + L_f\Vert x^+ - x_\Pi^+\Vert
+                    &\ge \sqrt{L_f(\kappa_f + L_f)}\Vert x^+ - x^+_\Pi\Vert
+                    \\
+                    \iff 
+                    \Vert L_f(x - x^+)\Vert
+                    &\ge 
+                    \left(\sqrt{L_f(\kappa_f + L_f)} - L_f\right)\Vert x^+ - x^+_\Pi\Vert. 
+                \end{align*}
+                Using property of projection onto $X$ we have 
+                \begin{align*}
+                    \Vert x - \bar x\Vert &\le \Vert x - x_\Pi^+\Vert
+                    \le \Vert x - x^+\Vert + \Vert x^+ - x^+_\Pi\Vert
+                    \\
+                    &= \frac{1}{L_f}\Vert L_f(x - x^+)\Vert + \Vert x^+ - x^+_\Pi\Vert
+                    \\
+                    \iff 
+                    \Vert x - \bar x\Vert - \frac{1}{L_f}\Vert L_f(x - x^+)\Vert
+                    &\le 
+                    \Vert x^+ - x^+_\Pi\Vert. 
+                \end{align*}
+                Combining the two above inequalities gives 
+                {\small
+                \begin{align*}
+                    0 &\le 
+                    \Vert L_f(x - x^+)\Vert
+                    -
+                    \left(\sqrt{L_f(\kappa_f + L_f)} - L_f\right)\left(
+                        \Vert x - \bar x\Vert - \frac{1}{L_f}\Vert L_f(x - x^+)\Vert
+                    \right)
+                    \\
+                    &=
+                    - \left(
+                        \sqrt{L_f(\kappa_f + L_f)} - L_f
+                    \right)\Vert x - \bar x\Vert
+                    +
+                    \left(
+                        L^{-1}_f\left(\sqrt{L_f(\kappa_f + L_f)} - L_f\right) + 1
+                    \right)\Vert L_f(x - x^+)\Vert
+                    \\
+                    &= 
+                    -\left(
+                        \sqrt{L_f(\kappa_f + L_f)} - L_f
+                    \right)\Vert x - \bar x\Vert
+                    +
+                    \sqrt{L_f(\kappa_f + L_f)}
+                    \Vert L_f(x - x^+)\Vert
+                    \\
+                    \iff&
+                    \frac{\sqrt{L_f(\kappa_f + L_f)} - L_f}{\sqrt{L_f(\kappa_f + L_f)}}
+                    \Vert x - \bar x\Vert 
+                    \le
+                    \Vert \mathcal G_{L_f}x\Vert. 
+                \end{align*}
+                }
+                Skipping algebra, the fraction simplifies to 
+                \begin{align*}
+                    \frac{\kappa_f}{\kappa_f/L_f + 1 + \sqrt{\kappa_k/L_f + 1}}. 
+                \end{align*}
+                This gives PEB condition. 
+                \textbf{We now show QFG implies PEB}. 
+                From the error bound condition using $\kappa_f$ it has
+                \begin{align*}
+                    \kappa_f^2\Vert x - \bar x\Vert^2
+                    \le \Vert \mathcal G_{L_f}(x)\Vert^2
+                    \underset{\eqref{ineq:proj-grad2}}{\le }
+                    2L_f(f(x) - f(x^+)) \le 2L_f(f(x) - f^+). 
+                \end{align*}
+            \end{proof}
+            \par
+            The following theorem summarizes the hierarchy of the conditions listed in Definition \ref{def:necoara-weaker-scnvx}. 
+            \begin{theorem}[Hierarchy of weaker S-CNVX conditions]\label{thm:weaker-scnvx-hierarchy}
+                Let $f$ satisfy Assumption \ref{ass:necoara-2019-settings}, assuming convexity then the following relations are true: 
+                \begin{align*}
+                    \mathbb S(\kappa_f, L_f, X) 
+                    \subseteq \mathbb S'(\kappa_f, L_f, X)
+                    \subseteq \mathbb G(\kappa_f, L_f, X) 
+                    \subseteq \mathbb U(\kappa_f, L_f, X) 
+                    \subseteq \mathbb F(\kappa_f, L_f, X). 
+                \end{align*}
+            \end{theorem}
+            \begin{proof}
+                
+            \end{proof}
+            \begin{remark}
+                It's Theorem 4 in Necoara et al. \cite{necoara_linear_2019}.
+            \end{remark}
+        \subsection{Hoffman error bound and Q-SCNVX}
 
+        \subsection{Feasible descent and accelerated feasible descent}
+
+        \subsection{Application, KKT of linear programming}
 
         
 
