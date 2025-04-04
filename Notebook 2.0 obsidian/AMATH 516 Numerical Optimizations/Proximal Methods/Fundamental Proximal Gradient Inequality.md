@@ -15,7 +15,6 @@ This section introduces a crucial inequality that is widely used for the converg
 Recall from previous sections on results of the proximal gradient operator. 
 
 
-
 #### **Lemma 0.1 | Gradient Mapping**
 > Let $h = g + f$ where $g$ is convex, $f$ is $L$-Lipschitz smooth and differentiable. 
 > With the proximal gradient operator $\mathcal T_L(x) = [I + L^{-1}\partial g]^{-1}[I - L^{-1}\nabla f](x)$, and gradient mapping operator $\mathcal G_L(x) = L(x - \mathcal T_L(x))$, then it satisfies for all $x$: 
@@ -54,6 +53,10 @@ We can do this by standard rules of non-smooth convex analysis.
 
 Convexity of $f$ is not necessary for the claim to hold. 
 This is true for all non-convex but differential $f$ as well. 
+
+
+#### **Lemma 0.2 | Proximal gradinet optimality inequality**
+
 
 ---
 ### **The envelope approach for proximal gradient inequality**

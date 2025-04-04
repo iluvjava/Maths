@@ -55,7 +55,6 @@ Proved in [Fundamental Proximal Gradient Inequality](../AMATH%20516%20Numerical%
 
 Suppose $x^+$ exists as a minimizer of $F$. 
 Define $z = \alpha_k x^+ + (1 - \alpha_k)x_{k - 1}$. 
-
 It can be verified that: 
 $$
 \begin{aligned}
@@ -86,7 +85,7 @@ $$
 $$
 
 Suppose that the sequence $(\alpha_k)_{k\ge 0}$ satisfies $\alpha_k^{-2}(1 - \alpha_k) \le \alpha_{k - 1}^{-2}$ for all $k \ge 1$ with $\alpha_0 = 1$ being the base case. 
-Use the proximal gradient inequality with  it then has: 
+Use the proximal gradient inequality with  it then has $\forall k \ge 1$: 
 
 $$
 \begin{aligned}

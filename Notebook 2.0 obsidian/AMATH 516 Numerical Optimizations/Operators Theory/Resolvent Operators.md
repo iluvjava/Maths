@@ -72,6 +72,7 @@ $$
     &\ge \Vert \mathcal J_A u -\mathcal J_Av\Vert^2. 
 \end{aligned}
 $$
+Resolvent $\mathcal J_A$ is full domain because $I + A$ is surjective and hence $(I + A)^{-1}$ has domain equals to $X$. 
 
 $\blacksquare$
 
