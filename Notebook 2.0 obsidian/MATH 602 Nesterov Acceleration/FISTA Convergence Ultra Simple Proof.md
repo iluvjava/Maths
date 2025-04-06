@@ -219,7 +219,7 @@ Rearranging, it's done. $\blacksquare$
 ---
 ### **Accelerated proximal gradient with strong convexity**
 
-The convergence anlaysis will be dependent on the similar triangle form. 
+The convergence analysis will be dependent on the similar triangle form discussed in [Weak Accelerated Proximal Gradient Part II](Weak%20Accelerated%20Proximal%20Gradient%20Part%20II.md). 
 
 #### **Similar Triangle Form**
 > Let iterates $(y_k, x_{k}, v_{k})_{k \ge 1}$ and sequence $(\alpha_k, \rho_k)_{k \ge 0}$ be given by Definition R-WAPG. 
@@ -243,5 +243,5 @@ The convergence anlaysis will be dependent on the similar triangle form.
 > \end{aligned}
 > $$
 
-
+Make the observations that the update of the iterates has alternative representations for $y_k, v_{k}$. 
 

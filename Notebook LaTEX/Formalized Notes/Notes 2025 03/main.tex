@@ -624,6 +624,158 @@
         \subsection{Feasible descent and accelerated feasible descent}
 
         \subsection{Application, KKT of linear programming}
+            Let $X_1, X_2, Y$ be Hilbert spaces. 
+            Define linear mapping $E:X_1 \times X_2 \rightarrow Y := (x_1, x_2)\mapsto E_1 x_1 + E_2 x_2$ where $E_1, E_2$ each are mappings of $X_1 \rightarrow Y, X_2 \rightarrow Y$. 
+            Denote the adjoint of linear mapping by $(\cdot)^*$. 
+            Let $c = (c_1, c_2) \in X_1 \times X_2$, $b \in Y$. 
+            Suppose that $\mathcal K \subseteq X_1$ is a simple cone and $K^*$ is its dual cone. 
+            We consider the following linear programming problem 
+            \begin{align}\label{eqn:lp-cannon-form}
+                \inf_{x \in X_1\times X_2}\left\lbrace
+                    \langle - c, x\rangle
+                    \left| \;
+                        Ex = b, x \in \mathcal K \times X_2
+                    \right.
+                \right\rbrace. 
+            \end{align}
+            Define linear mapping $g, F$ and indicator function $h$ by the following: 
+            \begin{align*}
+                g:X_1\times X_2 \rightarrow \RR 
+                    &:= x \mapsto \langle - c, x\rangle, 
+                \\
+                F: X_1\times X_2 \rightarrow Y \times X_1 
+                    &:= (x_1, x_2) \mapsto (E_1x_1 + E_2 x_2, x_1),
+                \\
+                h: Y \times X_1 \rightarrow \overline \RR &:= 
+                    (y, z) \mapsto \delta_{\{\mathbf 0\}}(y - b) + \delta_{\mathcal K^*}(z). 
+            \end{align*}
+            It's not hard to identify that problem in \eqref{eqn:lp-cannon-form} has representations 
+            \begin{align*}
+                \inf_{x \in X_1\times X_2}
+                \left\lbrace
+                    g(x) + h(Fx)
+                \right\rbrace. 
+            \end{align*}
+            The dual problem of the above is given by
+            \begin{align*}
+                -\inf_{u \in Y\times X_1}
+                \left\lbrace
+                    h^\star(u) + g^\star(-F^* u)
+                \right\rbrace. 
+            \end{align*}
+            Where $h^\star, g^\star$ are the conjugate of $h, g$ and $F^*: Y\times X_1 \rightarrow X_1 \times X_2 = (y, z)\mapsto (E_1^*y + z, E_2^*y)$ is the adjoint operator of $F$. 
+            Note that $g^\star(x) = \delta_{\mathbf 0}(x + c)$ and $h^\star((y, z)) = \langle b, y\rangle + \delta_{\mathcal K^*}(z)$. 
+            This gives the following dual problem 
+            \begin{align*}
+                - \inf_{(y, z) \in Y \times \mathcal K^*} \left\lbrace
+                    \langle b, y\rangle 
+                    \left | \;
+                        E_1^*y + z = c_1, 
+                        E^*_2y = c_2
+                    \right.
+                \right\rbrace. 
+            \end{align*}
+            The KKT conditions give the following convex feasibility problem 
+            \begin{align*}
+                E_1 x_1 + E_2 x_2 &= b, \\
+                E_1^* y + z &= c_1, \\
+                E_2^* y &= c_2, \\
+                \langle b, y\rangle &= \langle c_1, x_1\rangle + \langle c_2, x_2\rangle, \\
+                (x_1, x_2) &\in \mathcal K \times X_2, \\
+                (y, z) &\in Y \times \mathcal K^*.
+            \end{align*}
+            Allow $X_1 = \RR^{n_1}, X_2 = \RR^{n_2}, Y = \RR^m$. 
+            Define 
+            \begin{align*}
+                \mathbf K &:= \mathcal K \times \RR^{n_2} \times \RR^m \times \mathcal K^*, 
+                \\
+                A &:= \begin{bmatrix}
+                    E_1 & E_2 & \mathbf 0 & \mathbf 0
+                    \\
+                    \mathbf 0 &\mathbf 0  & E_1^T & I_{n_1}
+                    \\
+                    \mathbf 0 &\mathbf 0  & E_2^T & \mathbf 0
+                    \\
+                    c_1^T & c_2^T & - b^T & 0
+                \end{bmatrix}, 
+                v := 
+                \begin{bmatrix}
+                    x_1\\ x_2 \\ y \\ z \\
+                \end{bmatrix} \in \mathbf K, 
+                d := 
+                \begin{bmatrix}
+                    b \\ c_1 \\ c_2 \\ 0
+                \end{bmatrix}. 
+            \end{align*}
+            The KKT conditions is a convex feasibility problem which can be formulated by best approxmation problem: 
+            \begin{align}\label{eqn:lp-kkt-min}
+                \min_{v \in \mathbf K} 
+                \frac{1}{2}\Vert Ax - d \Vert^2. 
+            \end{align}
+            Which is minimizing a quadratic problem on a simple cone. 
+            Solving \eqref{eqn:lp-cannon-form} can be approached by optimizing \eqref{eqn:lp-kkt-min}. 
+            It's necessary to investigate the matrices $A, A^T$ which are essential to solving it numerically. 
+            The properties of $A^TA$ will determine the convergence rate of algorithms. 
+            The matrix is a block matrix and possibly spase in practice. 
+            Let $v = (x_1, x_2, y, z)$, it admits implicit representation: 
+            \begin{align*}
+                Av = (E_1x_1 + E_2 x_2,\; E_1^Ty + z,\; E_2^Ty,\; c^T_1x_1 + c_2^Tx_2 - b^Ty). 
+            \end{align*}
+            It involves 
+            \begin{enumerate}
+                \item Two multiplications of $E$: $x_1, x_2$ on the right and $y$ on the right. 
+                \item inner involving of $x_1, x_2$ and $y$. 
+            \end{enumerate}
+            
+            Let $\bar v = (\bar y, \bar x_1, \bar x_2, \xi) \in \RR^m\times \RR^{n_1} \times \RR^{n_2}\times \RR$ then the right mulplication of has: 
+            \begin{align*}
+                \bar v^TA  &= (
+                    E_1^T\bar y + \xi c_1^T,\; E_2^T\bar y + \xi c_2^T,\; 
+                    \bar x_1^TE_1^T + \bar x_2^TE_2^T - \xi b^T,\; \bar x_1^T
+                )
+                \\
+                &= 
+                (
+                    E_1^T\bar y + \xi c_1, \;
+                    E_2^T \bar y + \xi c_2, \;
+                    E_1\bar x_1 + E_2\bar x_2 - \xi b, \;
+                    \bar x_1
+                )^T. 
+            \end{align*}
+            \begin{enumerate}
+                \item Two multplications of the matrix $E$: $\bar y$ on the left and for $\bar x$ on the right, 
+                \item one vector addition with $c = (c_1, c_2)$ and $b$. 
+            \end{enumerate}
+            Therefore, computing $A^TAv$ has four vector multiplications using $E$. 
+            \par
+            Another key operation would be $A^TAv$. 
+            Let $\bar v = Av$, then 
+            \begin{align*}
+                A^TAv &= 
+                \begin{bmatrix}
+                    E^T_1(E_1x_1 + E_2x_2) + (c_1^Tx_1 + c_2^Tx_2 - b^Ty)c_1
+                    \\
+                    E^T_2(E_1x_1 + E_2x_2) + (c_1^Tx_1 + c_2^Tx_2 - b^Ty)c_2
+                    \\
+                    E_1(E_1^Ty + z) + E_2E_2^Ty - (c_1^Tx_1 + c_2^Tx_2 - b^Ty)b
+                    \\
+                    E_1^Ty + z
+                \end{bmatrix}
+                \\
+                &= 
+                \begin{bmatrix}
+                    (E_1^TE_1 + c_1^T)x_1 + (E_1^TE_2 + c_2^T)x_2 - (c_1b^T)y
+                    \\
+                    (E_2^TE_1 + c_1^T)x_1 + (E_2^TE_2 + c_2^T)x_2 - (c_2b^T)y
+                    \\
+                    -(bc_1^T)x_1 - (bc_2^T)x_2 + (E_2E_2^T + E_1E_1^T + bb^T)y
+                    + (E_1E_1^T)z
+                    \\
+                    E_1^Ty + z
+                \end{bmatrix}. 
+            \end{align*}
+            In practice, implicitly repressenting the process of $A^TAv$ is better in computing software. 
+            Here we write it out to view, for theoretical interests. 
 
         
 

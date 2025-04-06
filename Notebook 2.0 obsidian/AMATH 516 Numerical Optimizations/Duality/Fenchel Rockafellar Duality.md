@@ -207,6 +207,8 @@ Sometimes, weak duality can be arbitrarily bad. The optimality gap can be infini
 ---
 ### **Examples**
 
+For a preliminary example, see [Apply Fenchel Rockafellar Dual to Linear Program](../../AMATH%20515%20Optimization%20Fundamentals/Apply%20Fenchel%20Rockafellar%20Dual%20to%20Linear%20Program.md). 
+
 We make some examples that illustrate some subtleties behind the Fenchel Rockafaller duality, especially about the existence of the minimizers for the primal and the dual problems. 
 
 **Example 1 | Non-Existence of Minimizers**
