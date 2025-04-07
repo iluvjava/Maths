@@ -70,8 +70,6 @@ Proved in [Fundamental Proximal Gradient Inequality](../AMATH%20516%20Numerical%
 ---
 ### **Convergence rate accelerated gradient algorithm**
 
-The following algorithm is M-FISTA from Amir Beck's First Order Optimizations textbook. 
-
 #### **Theorem | convergence rate of accelerated proximal gradient**
 > Let $(\alpha_k)_{k \ge 0}$ be a sequence in $\R$ such that $\alpha_k^{-2}(1 - \alpha_k) \le \alpha_{k - 1}^{-2}$ for all $k \ge 1$. 
 > Initialize the Accelerated proximal gradient algorithm with $\alpha_0 = 1$ and let $(x_k, v_k, y_k)_{k \ge0}$ be the sequence generated. 
@@ -87,13 +85,13 @@ The following algorithm is M-FISTA from Amir Beck's First Order Optimizations te
 > $$
 
 Suppose $x^+$ exists as a minimizer of $F$. 
-Define $z = \alpha_k x^+ + (1 - \alpha_k)x_{k - 1}$. 
+Define $z_k = \alpha_k x^+ + (1 - \alpha_k)x_{k - 1}$. 
 It can be verified that: 
 $$
 \begin{aligned}
-    z - x_k &= \alpha_k(x^+ - v_k),
+    z_k - x_k &= \alpha_k(x^+ - v_k),
     \\
-    z - y_k &= \alpha_k(x^+ - v_{k - 1}). 
+    z_k - y_k &= \alpha_k(x^+ - v_{k - 1}). 
 \end{aligned}
 $$
 
@@ -101,14 +99,14 @@ To verify, consider the definition of the algorithm:
 
 $$
 \begin{aligned}
-    z - x_k &= 
+    z_k - x_k &= 
     \alpha_k x^+ + (1 - \alpha_k)x_{k - 1} - x_k
     \\
     &= \alpha_kx^+ + (x_{k - 1} - x_k) - \alpha_kx_{k - 1}
     \\
     &= \alpha_k x^+ - \alpha_k v_k, 
     \\
-    z - y_k &= 
+    z_k - y_k &= 
     \alpha_k x^+ + (1 - \alpha_k)x_{k - 1} - y_k
     \\
     &= \alpha_k x^+ + ((1 - \alpha_k)x_{k - 1} - y_k)
@@ -123,9 +121,9 @@ Use the proximal gradient inequality with  it then has $\forall k \ge 1$:
 $$
 \begin{aligned}
     0 
-    &\le F(z) 
-    - F(x_k) - \frac{L}{2}\Vert z - x_k\Vert^2 + 
-    \frac{L}{2}\Vert z - y_k\Vert^2
+    &\le F(z_k) 
+    - F(x_k) - \frac{L}{2}\Vert z_k - x_k\Vert^2 + 
+    \frac{L}{2}\Vert z_k - y_k\Vert^2
     \\
     &\le 
     \alpha_k F(x^+) + (1 - \alpha_k) F(x_{k - 1}) - F(x_k)
@@ -251,25 +249,31 @@ Rearranging, it's done. $\blacksquare$
 ---
 ### **Extensions and modifications**
 
+The following algorithm is M-FISTA from Amir Beck's First Order Optimizations textbook. 
+
 #### **Algorithm | Monotone accelerated proximal gradient**
 > Initialize with $y_0 = x_0 = v_0, \alpha_0 = 1$. 
 > For all $k = 1, \ldots$ the algorithm create sequences $(x_k, v_k, y_k)$ by:
 > $$
 > \begin{aligned}
->     y_{k} &= 
->     \begin{cases}
->         \alpha_{k} v_{k - 1} + (1 - \alpha_{k}) x_{k-1} & F(x_{k-1}) \le F(x_{k - 2}) \wedge k \ge 2, 
->         \\
->         \alpha_{k} v_{k - 2} + (1 - \alpha_{k}) x_{k - 2} & F(x_{k - 1}) > F(x_{k - 2}) \wedge k \ge 2, 
->         \\
->         \alpha_{1} v_{0} + (1 - \alpha_{1}) x_{0} & k =1. 
->     \end{cases}
+>     & y_k  = \alpha_k v_{k - 1} + (1 - \alpha_k) x_{k - 1}, 
 >     \\
->     x_k &= T_Ly_k, 
+>     & \tilde x_k = T_L y_k, 
 >     \\
->     v_k &= x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
+>     & \text{if }F(\tilde x_k) \le F(x_{k - 1}): \\ &\quad 
+>         \begin{aligned}
+>             x_k &= \tilde x_k, \\ 
+>             v_k &= x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}).
+>         \end{aligned}
+>     \\
+>     & \text{else: }\\&\quad
+>     \begin{aligned}
+>         x_k &= x_{k - 1}, \\ v_{k} &= v_{k - 1}. 
+>     \end{aligned}
 > \end{aligned}
 > $$
+
+
 
 
 ---
