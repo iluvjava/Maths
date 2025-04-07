@@ -17,7 +17,7 @@ Fenchel transform is possible for non-convex function, but in that case, we don'
 When the function is convex, proper and close, we get 2 directions for conjugacy between classes of functions, using the [Biconjugate Theorem](Biconjugate%20Theorem.md). 
 
 
-#### **Def-1: Fenchel Conjugate Transform** 
+#### **Def-1 | Fenchel Conjugate Transform** 
 
 > Given scalar function $f(x)$, preferably convex, the Fenchel conjugate is denoted as $f^*(x)$, sometimes $f^{\star}(x)$, and it's given by: 
 > $$

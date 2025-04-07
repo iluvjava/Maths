@@ -4,7 +4,23 @@
 ### **Intro**
 
 We improve upon the previous proof and make it simpler. 
-This is a descriptions of the three points algorithm. 
+We assume the following optimization problem: 
+$$
+\begin{aligned}
+    \min_{x \in \R^n}\{F(x):= f(x) + g(x)\}. 
+\end{aligned}
+$$
+
+Unless specified, the following are assumed throughout. 
+
+#### **Assumptions**
+1. $f$ is a differentiable function with $L$ Lipschitz gradient. 
+2. $g$ is a convex function. 
+3. $\argmin{x}{F(x)} \neq \emptyset$. 
+
+This is a description of the three points algorithm. 
+
+
 #### **Definition | proximal gradient operator**
 > Let $F = f + g$ where $f$ is differentiable, $L$ Lipschitz smooth. 
 > $g$ is convex. 
@@ -18,18 +34,19 @@ This is a descriptions of the three points algorithm.
 > \end{aligned}
 > $$
 
-This is a single valued operator. 
+This is a single-valued operator. 
 
-#### **Algorithm | Accelerated proximal gradient algorithm**
-> Initialize with $y_0 = x_0 = v_0$, $\alpha_0 = 1$.
+#### **Algorithm | Accelerated proximal gradient**
+> Let $(\alpha_k)_{k \ge 0}$ be a sequence in $\R$. 
+> Initialize with $y_0 = x_0 = v_0$. 
 > For $k = 1, \ldots$ updates: 
 > $$
 > \begin{aligned}
+>     y_{k} &= \alpha_{k} v_{k - 1} + (1 - \alpha_{k}) x_{k - 1}. 
+>     \\
 >     x_k &= T_Ly_k, 
 >     \\
->     v_k &= x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1})
->     \\
->     y_{k + 1} &= \alpha_{k + 1} v_{k} + (1 - \alpha_{k + 1}) x_{k}. 
+>     v_k &= x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}).
 > \end{aligned}
 > $$
 
@@ -51,7 +68,23 @@ Proved in [Fundamental Proximal Gradient Inequality](../AMATH%20516%20Numerical%
 > $$
 
 ---
-### **Convergence rate of the algorithm**
+### **Convergence rate accelerated gradient algorithm**
+
+The following algorithm is M-FISTA from Amir Beck's First Order Optimizations textbook. 
+
+#### **Theorem | convergence rate of accelerated proximal gradient**
+> Let $(\alpha_k)_{k \ge 0}$ be a sequence in $\R$ such that $\alpha_k^{-2}(1 - \alpha_k) \le \alpha_{k - 1}^{-2}$ for all $k \ge 1$. 
+> Initialize the Accelerated proximal gradient algorithm with $\alpha_0 = 1$ and let $(x_k, v_k, y_k)_{k \ge0}$ be the sequence generated. 
+> Let $x^+$ be a minimizer of $F$, then it has for all $k \ge 1$: 
+> $$
+> \begin{aligned}
+>     F(x_k) - F(x^+) + \frac{L\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2 
+>     \le 
+>     \alpha_k^2 \left(
+>         F(x_0) - F(x^+) - \frac{L}{2}\Vert x^+ - v_0\Vert^2
+>     \right). 
+> \end{aligned}
+> $$
 
 Suppose $x^+$ exists as a minimizer of $F$. 
 Define $z = \alpha_k x^+ + (1 - \alpha_k)x_{k - 1}$. 
@@ -214,6 +247,29 @@ $$
 $$
 
 Rearranging, it's done. $\blacksquare$
+
+---
+### **Extensions and modifications**
+
+#### **Algorithm | Monotone accelerated proximal gradient**
+> Initialize with $y_0 = x_0 = v_0, \alpha_0 = 1$. 
+> For all $k = 1, \ldots$ the algorithm create sequences $(x_k, v_k, y_k)$ by:
+> $$
+> \begin{aligned}
+>     y_{k} &= 
+>     \begin{cases}
+>         \alpha_{k} v_{k - 1} + (1 - \alpha_{k}) x_{k-1} & F(x_{k-1}) \le F(x_{k - 2}) \wedge k \ge 2, 
+>         \\
+>         \alpha_{k} v_{k - 2} + (1 - \alpha_{k}) x_{k - 2} & F(x_{k - 1}) > F(x_{k - 2}) \wedge k \ge 2, 
+>         \\
+>         \alpha_{1} v_{0} + (1 - \alpha_{1}) x_{0} & k =1. 
+>     \end{cases}
+>     \\
+>     x_k &= T_Ly_k, 
+>     \\
+>     v_k &= x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
+> \end{aligned}
+> $$
 
 
 ---
