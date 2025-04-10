@@ -4,3 +4,5 @@
 ### **Intro**
 
 Contents in this section is essentially the same with [Strong Convexity](Properties%20of%20Functions/Strong%20Convexity.md). 
+The term "weakly convex" is also referred to as "Hypoconvexity" in the literatures. 
+

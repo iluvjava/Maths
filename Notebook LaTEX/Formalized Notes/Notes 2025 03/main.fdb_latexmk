@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1744007484.21851 "main.aux" "main.bbl" "main" 1744007748.41463 0
+["bibtex main"] 1744007484.21851 "main.aux" "main.bbl" "main" 1744236005.22621 0
   "./references/refs.bib" 1742942264.99027 6526 efbfd4293e1d102587567a2d1f6e1a73 ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/siam.bst" 1292289607 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1744007748.18869 3926 dc32d932e675273e3f5e4d70efda50b0 "pdflatex"
+  "main.aux" 1744236004.90446 3926 dc32d932e675273e3f5e4d70efda50b0 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1744007747.55404 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" "main.pdf" "main" 1744007748.41475 0
-  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" 1744007747.35477 40763 36b51a756d85c2cdc9554ab663a072b2 ""
+["pdflatex"] 1744236004.0017 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" "main.pdf" "main" 1744236005.22637 0
+  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" 1744236003.80818 40764 889194319e6af8a05cf7dd21ee417763 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -228,10 +228,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1716844513.00476 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1716844504 8221424 900989947c23303b742a586f0df8c087 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "main.aux" 1744007748.18869 3926 dc32d932e675273e3f5e4d70efda50b0 "pdflatex"
+  "main.aux" 1744236004.90446 3926 dc32d932e675273e3f5e4d70efda50b0 "pdflatex"
   "main.bbl" 1744007484.28687 265 bf8dfc8ef9247cdd2610eef6886a4cd8 "bibtex main"
-  "main.out" 1744007748.18911 1860 9ff443b27a2f9472d2ea32406a255117 "pdflatex"
-  "main.tex" 1744007747.35477 40763 36b51a756d85c2cdc9554ab663a072b2 ""
+  "main.out" 1744236004.90518 1860 9ff443b27a2f9472d2ea32406a255117 "pdflatex"
+  "main.tex" 1744236003.80818 40764 889194319e6af8a05cf7dd21ee417763 ""
   "presets/julia_lstlisting.tex" 1734912471.75532 795 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1734912471.75575 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1737688388.3909 8751 43b1f87d5e2ad43f60c8e67f03e69d1f ""

@@ -727,7 +727,7 @@
             Solving \eqref{problem:lp-cannon-form} can be approached by optimizing \eqref{problem:lp-kkt-min}. 
             It's necessary to investigate the matrices $A, A^T$ which are essential to solving it numerically. 
             The properties of $A^TA$ will determine the convergence rate of algorithms. 
-            The matrix is a block matrix and possibly spase in practice. 
+            The matrix is a block matrix and possibly sparse in practice. 
             Let $v = (x_1, x_2, y, z)$, it admits implicit representation: 
             \begin{align*}
                 Av = (E_1x_1 + E_2 x_2,\; E_1^Ty + z,\; E_2^Ty,\; c^T_1x_1 + c_2^Tx_2 - b^Ty). 
@@ -754,7 +754,7 @@
                 )^T. 
             \end{align*}
             \begin{enumerate}
-                \item Two multplications of $E$: $\bar y$ on the left and for $\bar x_1, \bar x_2$ on the right, 
+                \item Two multiplications of $E$: $\bar y$ on the left and for $\bar x_1, \bar x_2$ on the right, 
                 \item one vector addition with $c = (c_1, c_2)$ and $b$. 
             \end{enumerate}
             Therefore, computing $A^TAv$ has four vector multiplications using $E$. 
@@ -786,11 +786,11 @@
                     E_1^Ty + z
                 \end{bmatrix}. 
             \end{align*}
-            In practice, implicitly repressenting the process of $A^TAv$ is better in computing software. 
+            In practice, implicitly representing the process of $A^TAv$ is better in computing software. 
             Here we write it out to view, for theoretical interests. 
             \par
             Let $f(v) = (1/2)\Vert Av - d\Vert^2$ to be the objective function of optimization problem \eqref{problem:lp-kkt-min}. 
-            Its gradient, objective value are related and it they have: 
+            Its gradient, objective value are related and if they have: 
             \begin{align*}
                 \nabla f(v) &= A^TAv - A^Td, 
                 \\
