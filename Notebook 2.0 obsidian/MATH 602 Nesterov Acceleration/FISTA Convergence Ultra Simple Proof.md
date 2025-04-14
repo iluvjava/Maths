@@ -266,7 +266,8 @@ $$
 \end{aligned}
 $$
 
-Which is all we can say. 
+There are more convergence claims in the literatures. 
+They will hopefully come soon. 
 
 ---
 ### **Extensions and modifications**
