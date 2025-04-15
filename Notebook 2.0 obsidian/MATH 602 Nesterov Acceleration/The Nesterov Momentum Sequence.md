@@ -246,3 +246,11 @@ $$
 
 
 #### **Fixed point iteration analysis of the sequence**
+
+
+
+---
+### **RWAPG Sequence (Relaxed Nesterov's Momentum Sequence)**
+
+The R-WAPG sequence generalizes Nesterov's original rule for updating the momentum sequence. 
+

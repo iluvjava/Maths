@@ -53,7 +53,7 @@
             \\
             &= \argmin_{z}\left\lbrace
                 g(z) + f(x) + \langle \nabla f(x), z - x\rangle
-                + \frac{L}{2}\Vert x - z\Vert^2
+                + \frac{\beta}{2}\Vert x - z\Vert^2
             \right\rbrace. 
         \end{align*}
     \end{definition}
@@ -718,7 +718,7 @@
                     b \\ c_1 \\ c_2 \\ 0
                 \end{bmatrix}. 
             \end{align*}
-            The KKT conditions is a convex feasibility problem which can be formulated by best approxmation problem: 
+            The KKT conditions is a convex feasibility problem which can be formulated by best approximation problem: 
             \begin{align}\label{problem:lp-kkt-min}
                 \min_{v \in \mathbf K} 
                 \frac{1}{2}\Vert Ax - d \Vert^2. 
@@ -738,7 +738,7 @@
                 \item inner product using $x_1, x_2$ and $y$. 
             \end{enumerate}
             
-            Let $\bar v = (\bar y, \bar x_1, \bar x_2, \xi) \in \RR^m\times \RR^{n_1} \times \RR^{n_2}\times \RR$ then the right mulplication of has: 
+            Let $\bar v = (\bar y, \bar x_1, \bar x_2, \xi) \in \RR^m\times \RR^{n_1} \times \RR^{n_2}\times \RR$ then the right multiplication of has: 
             \begin{align*}
                 \bar v^TA  &= (
                     E_1^T\bar y + \xi c_1^T,\; E_2^T\bar y + \xi c_2^T,\; 
