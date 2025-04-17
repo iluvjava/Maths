@@ -428,7 +428,7 @@ $$
 \end{aligned}
 $$
 
-For the big product, use the trigger discussed [here on Stack Overflow](https://math.stackexchange.com/questions/18179/finding-value-of-the-infinite-product-prod-bigl1-frac1n2-bigr). 
+For the big product, use the trick discussed [here on Stack Overflow](https://math.stackexchange.com/questions/18179/finding-value-of-the-infinite-product-prod-bigl1-frac1n2-bigr). 
 This established the convergence rate $F(x_N) - F^*$ to be on $\mathcal O(\alpha_N^{2})$. 
 And, the sequence $\alpha_i$ has an upper for all $k\ge 0$: 
 

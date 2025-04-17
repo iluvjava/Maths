@@ -3,7 +3,8 @@
 ---
 ### **Intro**
 
-We improve upon the previous proof and make it simpler. 
+We improve upon the previous proof of FISTA and make it simpler. 
+In fact we make it so simple it's boarderline crazy. 
 We assume the following optimization problem: 
 $$
 \begin{aligned}
@@ -14,7 +15,7 @@ $$
 Unless specified, the following are assumed throughout. 
 
 #### **Assumptions Set 1**
-1. $f$ is a differentiable function with $L$ Lipschitz gradient. 
+1. $f$ is a differentiable function with $L$ Lipschitz gradient and it's convex. 
 2. $g$ is a convex function. 
 3. $\argmin{x}{F(x)} \neq \emptyset$. 
 
@@ -69,6 +70,8 @@ Proved in [Fundamental Proximal Gradient Inequality](../AMATH%20516%20Numerical%
 
 ---
 ### **Convergence rate accelerated gradient algorithm**
+
+Let's take a look at this basic convergence rate for the Accelerated Proximal Gradient method Proposed in the previous section. 
 
 #### **Theorem | convergence rate of accelerated proximal gradient**
 > Let $(\alpha_k)_{k \ge 0}$ be a sequence in $\R$ such that $\alpha_k\in (0, 1)$ for all $k \ge 1$, and $\alpha_0 \in (0, 1]$. 
@@ -290,11 +293,12 @@ The other one is from Nesterov's Original writing which also appeared in the Cat
 
 #### **Algorithm | Generic Monotone Accelerated Gradient with Generic Non-Monotone Line Search**
 > Initialize with $y_0 = x_0 = v_0, \alpha_0 = 1$. 
-> For all $k = 1, \ldots$ the algorithm create sequences $(x_k, v_k, y_k)$ such that it satisfies:
+> The algorithm makes sequences $(x_k, v_k, y_k)_{k \ge 1}$, $(\alpha_k)_{k \ge 1}$ such that they satisfy for all $k = 1, \ldots$:
 > $$
 > \begin{aligned}
 >     & y_k = \alpha_k v_{k - 1} + (1 - \alpha_k) x_{k - 1}, \\
->     & \tilde x_k = T_{L_k}(y_{k}), \\
+>     & \tilde x_k = T_{L_k}(y_{k}), \\ 
+>     & D_{f}(\tilde x_k, y_k) \le \frac{L_k}{2}\Vert \tilde x_k - y_k\Vert^2, \\
 >     & \text{Choose any } x_k: F(x_k) \le \min(F(\tilde x_k), F(x_{k - 1})),
 >     \\
 >     & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}) + \alpha_k^{-1}(\tilde x_k - x_k). 
@@ -365,7 +369,7 @@ In this case, it reduced to the MFISTA algorithm.
 
 If, sequence $\alpha_k$ requires $L_k$, then the algorithm generates $(x_k, v_k, x_{k + 1})$ instead. 
 
-#### **Theorem 3.1 | Convergence of Generic Monotone Accelerated Gradient**
+#### **Theorem 3.1 | Convergence of Generic Monotone Accelerated Gradient with Line Search**
 > Let $F = f + g$ satisfy Assumptions set 1. 
 > Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $\alpha_k \in (0, 1)$ for all $k \ge 1$ and $\alpha_0 \in (0, 1]$. 
 > Let $\rho_k = (1 - \alpha_{k + 1})^{-1}\alpha_{k + 1}^2 \alpha_k^{-2} > 0$. 
@@ -377,7 +381,7 @@ If, sequence $\alpha_k$ requires $L_k$, then the algorithm generates $(x_k, v_k,
 >     & \le 
 >     \left(
 >         \prod_{i = 0}^{k - 1} (1 - \alpha_{i + 1})
->         \max(1, \rho_i L_{i + 1}L_i^{-1})
+>         \max\left(1, \rho_i L_{i + 1}L_i^{-1}\right)
 >     \right)
 >     \left(
 >         F(x_0) - F(x^+) + \frac{L_0\alpha_0}{2} \Vert x^+ - v_k\Vert^2
@@ -393,9 +397,9 @@ Note that the sequence has equivalently:
 $$
 \begin{aligned}
     \alpha_k &= 
-    \frac{\alpha_{k - 1}^2}{2}
+    \frac{1}{2}
     \left(
-        -1 + \alpha_{k - 1}^{-1}\sqrt{\alpha_k + 4 \rho_{k - 1}}
+        \alpha_{k - 1}\sqrt{\alpha_{k -1}^2 + 4 \rho_{k - 1}} - \alpha^2_{k - 1}
     \right). 
 \end{aligned}
 $$
@@ -552,14 +556,13 @@ $$
 
 $\blacksquare$
 
-However, Nesterov's Monotone Accelerated Gradient method is different from MFISTA. 
-It requires more computations at each step, and it's stated below. 
+
 
 
 #### **Example | Armijo Monotone Line Search**
 
 It remains to analyze the sequence to provide us with a bound on the convergence rate of the algorithm. 
-The situation is easier if $\overline L \ge L_{k} \ge L_{k + 1}$ for all $k \ge 0$, i.e: increasing monotononically but bounded above. 
+The situation is easier if $\overline L \ge L_{k} \ge L_{k + 1}$ for all $k \ge 0$, i.e: increasing monotonically but bounded above. 
 Let $s \in (1, \infty)$ be a constant scale. 
 Consider the following rule that is the Armijo Monotone Line Search condition: 
 
@@ -597,7 +600,180 @@ $$
 \end{aligned}
 $$
 
-Depending on $L_0, s$, it's possible for $L_{k^+} > L_f$, making it an over estimate. 
+Depending on $L_0, s$, it's possible for $L_{k^+} > L_f$, making it an overestimate. 
+
+
+#### **Example | Backtracking Line Search of Chambolle**
+A none monotone line search from Chambolle et al. decays the estimates of $L_k$ at a geometric rate (or equivalently, increasing step size at a geometric rate) until the descent lemma is no longer satisfies which it then triggers an Armijo monotone line search to increase $L_k$ for proximal point $\tilde x_k$. 
+The idea of gradually changing the Lipschitz constant estimate is crucial.
+We call it: "The sluggish backtracking strategy.". 
+
+Let $r \in (0, 1), s > 1$ be the relaxation ratio and Line search scale. 
+Given $L_{k - 1}$ from previous iteration, it updates $L_{k}$ by: 
+
+$$
+\begin{aligned}
+    & L_k := L_{k - 1}/r,
+    \\
+    & i = 0. 
+    \\
+    & \text{DO: }\\ & \quad
+    \begin{aligned}
+        & \alpha_k := \frac{1}{2}
+        \left(
+            \alpha_{k - 1}\sqrt{\alpha_{k -1}^2 + 4 L_kL_{k - 1}^{-1}} - \alpha^2_{k - 1}
+        \right),
+        \\
+        & y_k := \alpha_k v_{k - 1} + (1 - \alpha_k) x_{k - 1},
+        \\
+        &\tilde x_k := T_{L_k}y_k,
+        \\
+        & L_k := L_{k}s^i,
+        \\
+        & i := i + 1. 
+    \end{aligned}
+    \\
+    & 
+    \text{WHILE } \left(
+            D_f(\tilde x_k, y_k) > L_{k}/2 \Vert \tilde x_k - y_k\Vert^2
+        \right)
+\end{aligned}
+$$
+
+Iterates generated by this algorithm satisfies the generic monotone scheme with generic line search with $\rho_{k - 1} = L_{k}^{-1}L_{k - 1}$. 
+This line search algorithm is more complex since $y_k$ is changing each time $L_k, \alpha_k$ is being updated. 
+
+
+#### **Lemma | The Relaxed Momentum Sequence with Backtracking Line Search**
+> Let $F = f + g$ satisfies Assumption Set 1. 
+> If the generic Monotone Accelerated Gradient algorithm were equipped with Chambolle's Backtracking Line Search then the convergence rate of the algorithm using relaxation sequence $\rho_{k - 1} = L_k^{-1}L_{k - 1}$ is bounded by: 
+> $$
+> \begin{aligned}
+>     \prod_{i = 0}^{k - 1} (1 - \alpha_{k + 1})\max(1, \rho_i L_{i + 1}L_i^{-1})
+>     = \frac{\alpha_k^2L_k^2}{\alpha_0 L_0}
+>     &\le 
+>     \left(
+>         1 + \frac{\sqrt{L_0\alpha_0}}{2}\sum_{i = 1}^{k} \sqrt{L_i^{-1}}
+>     \right)^{-2}. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+The backtracking line search proposed by Chambolle has $\rho_{k - 1} = L_k^{-1}L_{k - 1}$. 
+Consequently, the sequence $(\alpha_k)_{k \ge 0}$ satisfies for all $k \ge 1$: 
+
+$$
+\begin{aligned}
+    (1 - \alpha_k) = \frac{\alpha_k}{\alpha_{k - 1}\rho_{k - 1}} = \frac{\alpha_k^2L_k}{\alpha_{k - 1}L_{k - 1}}. 
+\end{aligned}
+$$
+
+This choice makes $\rho_i L_{i + 1} L^{-1}_i = 1$, so the convergence rate simplifies, and we define $(\beta_k)_{k \ge 1}$: 
+
+$$
+\begin{aligned}
+    & \beta_k := \prod_{i = 0}^{k - 1}(1 - \alpha_{i + 1}) 
+    = 
+    \prod_{i = 0}^{k - 1}\frac{\alpha_{i + 1}^2}{\alpha_{i}^2\rho_k}
+    = 
+    \prod_{i = 0}^{k - 1}\frac{\alpha_{i + 1}^2}{\alpha_{i}^2L_{i + 1}^{-1}L_{i}}
+    = (\alpha_k^2/\alpha_0)(L_k^2/L_0). 
+\end{aligned}
+$$
+Define $\beta_0 = 1$ as the base case. 
+Observe that the sequence is monotone decreasing and strictly larger than zero, i.e: $0 < \beta_{k + 1} < \beta_k \; \forall k \ge 0$. 
+From these definitions we have for all $k \ge 1$, $(1 - \alpha_k) = \beta_k / \beta_{k - 1}$: 
+Now look, they give these: 
+
+$$
+\begin{aligned}
+    (1 - \alpha_k) &= \beta_k/\beta_{k - 1}
+    \\
+    \iff 
+    \alpha_k &= 1 - \beta_k / \beta_{k - 1}
+    \\
+    \implies 
+    \alpha_k^2 &= (1 - \beta_k / \beta_{k - 1})^2, 
+    \\
+    \alpha_k^2&= (1 - \alpha_k)\alpha_{k - 1}^2L_{k - 1}L_k^{-1}
+    \\
+    &= 
+    (1 - \alpha_k)(\alpha_{k - 1}^2L_{k - 1}L_0^{-1}\alpha_0^{-1})L_0\alpha_0L_k^{-1}
+    \\
+    &= 
+    (\beta_k\beta_{k - 1}^{-1})\beta_{k - 1}L_0\alpha_0L_k^{-1}
+    \\
+    &= \beta_kL_0\alpha_0L_k^{-1}. 
+\end{aligned}
+$$
+
+Combining it has $(1 - \beta_k/\beta_{k - 1})^2 = \beta_k L_0\alpha_0L_k^{-1}$. 
+Using the property that $\beta_k$ is monotone decreasing, it has: 
+
+$$
+\begin{aligned}
+    0 &= (1 - \beta_k/\beta_{k - 1})^2 - \beta_k L_0\alpha_0L_k^{-1}
+    \\
+    \iff 
+    0 &= (1 - \beta_k/\beta_{k - 1}) - \sqrt{\beta_k L_0\alpha_0L_k^{-1}}
+    \\
+    \implies
+    0 &= \left(
+        \beta_k^{-1} - \beta_{k - 1}^{-1}
+    \right) - \sqrt{\beta_k^{-1} L_0\alpha_0L_k^{-1}}
+    \\
+    &= 
+    \left(\sqrt{\beta_k^{-1}} + \sqrt{\beta_{k - 1}^{-1}}\right)
+    \left(\sqrt{\beta_k^{-1}} - \sqrt{\beta_{k - 1}^{-1}}\right)
+    - \sqrt{\beta_k^{-1} L_0\alpha_0L_k^{-1}}
+    \\
+    &\le 2\sqrt{\beta_k^{-1}}\left(\sqrt{\beta_k^{-1}} - \sqrt{\beta_{k - 1}^{-1}}\right)
+    - \sqrt{\beta_k^{-1} L_0\alpha_0L_k^{-1}}
+    \\
+    \implies
+    0 &\le 
+    2\left(\sqrt{\beta_k^{-1}} - \sqrt{\beta_{k - 1}^{-1}}\right)
+    - \sqrt{ L_0\alpha_0L_k^{-1}}
+    \\
+    \implies 0 
+    &\le 
+    2\left(
+        \sum_{i = 1}^{k}
+        \sqrt{\beta_i^{-1}} - \sqrt{\beta_{i - 1}^{-1}}
+    \right) - \sum_{i = 1}^{k} \sqrt{ L_0\alpha_0L_i^{-1}}
+    \\
+    &= 
+    2\left(\sqrt{\beta_k^{-1}} -\sqrt{\beta_{0}^{-1}}\right) 
+    - \sum_{i = 1}^{k} \sqrt{ L_0\alpha_0L_i^{-1}}
+    \\
+    &= 2\left(\sqrt{\beta_k^{-1}} - 1\right) 
+    - \sqrt{L_0\alpha_0}\sum_{i = 1}^{k} \sqrt{L_i^{-1}}. 
+\end{aligned}
+$$
+
+Simplifying the above yields the inequality 
+
+$$
+\begin{aligned}
+    \beta_k &\le 
+    \left(
+        1 + \frac{\sqrt{L_0\alpha_0}}{2}\sum_{i = 1}^{k} \sqrt{L_i^{-1}}
+    \right)^{-2}. 
+\end{aligned}
+$$
+
+This is an upper bound of the convergence rate by our previous theorems. 
+
+
+
+
+**Remarks**
+
+The proof shares 异曲同工之妙 with Güler's proof on the accelerated proximal point method 1992. 
+It also appeared in Luca Calatronic, Anthonin Chambolle's work on "Backtracking strategies for accelerated descent method with smooth composite objectives". 
+The above results are consistent with the literatures. 
+
 
 #### **Algorithm | Nesterov's Monotone Accelerated Gradient**
 
