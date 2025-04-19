@@ -429,6 +429,13 @@ $$
 
 $\blacksquare$
 
+
+---
+### **Consequences of the Proximal Gradient Inequality**
+
+We discuss some of the basic consequences of the Proximal Gradient Inequality. 
+
+
 ---
 ### **Variants of proofs for the same claim**
 
