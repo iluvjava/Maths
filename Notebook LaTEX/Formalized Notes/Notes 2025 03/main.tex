@@ -110,7 +110,7 @@
             - \langle \beta(x - \bar x), z - \bar x\rangle. 
         \end{align*}
     \end{proof}
-    \begin{theorem}[convex proximal gradient inequality]\label{theorem:pg-ineq}
+    \begin{theorem}[convex proximal gradient inequality]\label{thm:cnvx-pg-ineq}
         Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth} such that $q = \mu_g \ge 0$, $\beta \ge L_f$. 
         In addition, suppose that $f:\RR^n\rightarrow \RR$ has $L_f$ Lipschitz continuous gradient, and it's $\mu_f \ge 0$ strongly convex. 
         For all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{\beta^{-1}, f, g}(x)$ it has 
@@ -463,7 +463,7 @@
                 It's unclear where convexity is used. 
                 However, it' still assumed in Necoara et al. paper. 
             \end{remark}
-            Before we start, we will specialize Theorem \ref{theorem:pg-ineq} because it will be used in later proofs. 
+            Before we start, we will specialize Theorem \ref{thm:cnvx-pg-ineq} because it will be used in later proofs. 
             In Assumption \ref{ass:necoara-2019-settings}, it can be seemed as taking $F = f + g$ in Assumption \ref{ass:smooth-add-nonsmooth} with $g = \delta_{X}$. 
             This makes $\mu_g = 0$ and assuming $f$ is convex we have $\mu_f = 0$. 
             Let $\beta = L_f$, and $x^+ = \Pi_{X}(x - L_f^{-1}\nabla f(x))$, it has for all $z \in X$: 
@@ -603,7 +603,7 @@
             \end{proof}
             \par
             The following theorem summarizes the hierarchy of the conditions listed in Definition \ref{def:necoara-weaker-scnvx}. 
-            \begin{theorem}[Hierarchy of weaker S-CNVX conditions]\label{thm:weaker-scnvx-hierarchy}
+            \begin{theorem}[Hierarchy of weaker S-CNVX conditions]\label{thm:q-cnvx-hierarchy}
                 Let $f$ satisfy Assumption \ref{ass:necoara-2019-settings}, assuming convexity then the following relations are true: 
                 \begin{align*}
                     \mathbb S(\kappa_f, L_f, X) 
@@ -631,6 +631,119 @@
 
         \subsection{Feasible descent and accelerated feasible descent}
             This section summarizes results from Necoara et al. on the method of feasible descent, fast feasible descent, and fast feasible descent with restart. 
+            \begin{definition}[projected gradient algorithm]\label{def:projg-alg}\;\\
+                The projected gradient algorithm generates a sequence of iterates $(x_k)_{k \ge 0}$ such that they satisfy for all $k \ge 0$
+                \begin{align*}
+                    x_{k + 1} &= \Pi_X(x_k - \alpha_k \nabla f(x_k)), 
+                \end{align*}
+                Where $\alpha_k \ge L_f^{-1}$ for all $k \ge 1$. 
+            \end{definition}
+            Under Assumption \ref{ass:necoara-2019-settings}, convexity of $X$ means obtuse angle theorem from projection and it specializes to 
+            \begin{align}\label{ineq:projg-variational-ineq}
+                (\forall x \in X)\; \langle x_{k + 1} - (x_k + \alpha_k \nabla f(x_k)), x_{k + 1} - x\rangle \le 0. 
+            \end{align}
+
+            \begin{theorem}{feasible descent linear convergence under Q-SCNVX}
+                Under Assumption \ref{ass:necoara-2019-settings}, assume that $f$ is Q-CNVX with $\mu_f, L_f$, then the sequence that satisfies Definition \ref{def:projg-alg} has a linear convergence rate. 
+                Let $\bar x_k = \Pi_{X^+}x_k, \bar x_0 = \Pi_{X^+} x_0$. 
+                For all $k \ge 1$, the iterates satisfy
+                \begin{align*}
+                    \Vert x_k - \bar x_k\Vert^2 &\le \left(
+                        \frac{1 - \kappa_f/L_f}{1 + \kappa_f/L_f}
+                    \right)^k \Vert x_0 - \bar x_0\Vert^2. 
+                \end{align*}
+            \end{theorem}
+            \begin{proof}
+                Our proof makes use of the following properties which we label it in advance for swift exposition: 
+                \begin{enumerate}
+                    \item Inequality \eqref{ineq:projg-variational-ineq}, from the projected gradient and convexity of $X$. 
+                    \item $f \in \mathbb S'$ which is the hypothesis that $f$ is Q-CNVX. 
+                    \item $\alpha_k \le L_f^{-1}$, the stepsize is sufficient to apply descent lemma globally. 
+                    \item $f \in \mathbb Q$ satisfying Q-Growth, a consequence of Q-CNVX by Theorem \ref{thm:q-cnvx-hierarchy}. 
+                \end{enumerate}
+                With $\overline{(\cdot)} = \Pi_{X^+}(\cdot)$ to denote the projection of a vector to the set of minimizers. 
+                The sequence of inequalities and equalities proves the theorem. 
+                {\allowdisplaybreaks
+                \begin{align*}
+                    \Vert x_{k + 1} - \bar x_k\Vert^2
+                    &= 
+                    \Vert x_{k + 1} - x_k + x_k - \bar x_k\Vert^2 
+                    = \Vert x_{k + 1} - x_k\Vert^2 + \Vert x_k - \bar x_k\Vert^2 + 2\langle x_{k + 1} - x_k, x_k - \bar x_k\rangle
+                    \\
+                    &= (- \Vert x_{k + 1} - x_k\Vert^2 + \Vert x_k - \bar x_k\Vert^2)
+                    + 2\Vert x_{k + 1} - x_k\Vert^2 + 2\langle x_{k + 1} - x_k, x_k - \bar x_k\rangle
+                    \\
+                    &= - \Vert x_{k + 1} - x_k\Vert^2 + \Vert x_k - \bar x_k\Vert^2
+                    + 2 \langle x_{k + 1} - x_{k}, x_{k + 1} - \bar x_k\rangle
+                    \\
+                    &= 
+                    - \Vert x_{k + 1} - x_k\Vert^2 + \Vert x_k - \bar x_k\Vert^2
+                    \\  & \quad \;
+                        + 2 \langle x_{k + 1} - x_{k} + \alpha_k \nabla f(x_k), x_{k + 1} - \bar x_k\rangle
+                        - 2\alpha_k \langle \nabla f(x_k), x_{k + 1} - \bar x_k\rangle
+                    \\
+                    &\underset{\text{(i)}}{\le}
+                    - \Vert x_{k + 1} - x_k\Vert^2 + \Vert x_k - \bar x_k\Vert^2
+                    - 2\alpha_k \langle \nabla f(x_k), x_{k + 1} - \bar x_k\rangle
+                    \\
+                    &= 
+                    - \Vert x_{k + 1} - x_k\Vert^2 + \Vert x_k - \bar x_k\Vert^2
+                    + 2\alpha_k \langle \nabla f(x_k), \bar x_k - x_k\rangle
+                    + 2\alpha_k \langle \nabla f(x_k), x_k - x_{k + 1}\rangle
+                    \\
+                    &\underset{\text{(ii)}}{\le}
+                    - \Vert x_{k + 1} - x_k\Vert^2 + \Vert x_k - \bar x_k\Vert^2
+                    \\ &\quad 
+                        + 2\alpha_k \left(
+                            f^+ - f(x_k) - \frac{\kappa_f}{2}\Vert x_k - \bar x_k\Vert^2
+                        \right)
+                        + 2\alpha_k \langle \nabla f(x_k), x_k - x_{k + 1}\rangle
+                    \\
+                    &= (1 - \alpha_k \kappa_f)\Vert x_k - \bar x_k\Vert^2
+                    \\&\quad 
+                        + 2\alpha_k(f^+ - f(x_k)) - 2\alpha_k 
+                        \left(
+                            \langle \nabla f(x_k), x_{k + 1} - x_k\rangle + \frac{1}{2\alpha_k}\Vert x_{k + 1} - x_k\Vert^2
+                        \right)
+                    \\
+                    &= 
+                    (1 - \alpha_k\kappa_f)\Vert x_k - \bar x_k\Vert^2 + 2 \alpha_k f^+
+                    \\&\quad 
+                        - 2 \alpha_k\left(
+                            f(x_k) + \langle \nabla f(x_k), x_{k + 1} - x_k\rangle 
+                            + \frac{1}{2\alpha_k}\Vert x_{k + 1} - x_k\Vert^2
+                        \right)
+                    \\
+                    &\underset{\text{(iii)}}{\le} 
+                    (1 - \alpha_k\kappa_f)\Vert x_k - \bar x_k\Vert^2 + 2 \alpha_k f^+
+                    \\ &\quad 
+                        - 2 \alpha_k\left(
+                            f(x_k) + \langle \nabla f(x_k), x_{k + 1} - x_k\rangle 
+                            + \frac{L_f}{2}\Vert x_{k + 1} - x_k\Vert^2
+                        \right)
+                    \\
+                    &\le 
+                    (1 - \alpha_k\kappa_f)\Vert x_k - \bar x_k\Vert^2 + 2 \alpha_k f^+
+                    - 2\alpha_kf(x_{k + 1})
+                    \\
+                    &\underset{\text{(iv)}}{\le} 
+                    (1 - \alpha_k \kappa_f)\Vert x_k - \bar x_k\Vert^2 - \alpha_k \kappa_k \Vert x_{k + 1} - \bar x_{k + 1}\Vert^2. 
+                \end{align*}
+                }
+                Therefore it has 
+                \begin{align*}
+                    0 &\le \Vert x_{k + 1} - \bar x_k\Vert^2 - \Vert x_{k + 1} - \bar x_{k + 1}\Vert^2
+                    \\
+                    &\le 
+                    (1 - \alpha_k \kappa_f)\Vert x_k - \bar x_k\Vert^2 
+                    - \alpha_k \kappa_k \Vert x_{k + 1} - \bar x_{k + 1}\Vert^2
+                    - \Vert x_{k + 1} - \bar x_{k + 1}\Vert^2
+                    \\
+                    &= (1 - \alpha_k \kappa_f)\Vert x_k - \bar x_k\Vert^2 
+                    - (1 + \alpha_k \kappa_k)\Vert x_{k + 1} - \bar x_{k + 1}\Vert^2. 
+                \end{align*}
+                Unrolling recursively, then use (iii), the claim is proved. 
+            \end{proof}
 
         \subsection{Application, KKT of linear programming}
             This section extends and ideas in the discussion section of Necoara et al. \cite{necoara_linear_2019}. 
@@ -790,19 +903,60 @@
             Here we write it out to view, for theoretical interests. 
             \par
             Let $f(v) = (1/2)\Vert Av - d\Vert^2$ to be the objective function of optimization problem \eqref{problem:lp-kkt-min}. 
-            Its gradient, objective value are related and if they have: 
+            Its gradient, objective value, and Bregman Divergence have: 
             \begin{align*}
                 \nabla f(v) &= A^TAv - A^Td, 
                 \\
                 f(v) &= 
-                \frac{1}{2}\langle x, \nabla f(v) - A^Td\rangle + \frac{1}{2}\Vert d\Vert^2. 
+                \frac{1}{2}\langle x, \nabla f(v) - A^Td\rangle + \frac{1}{2}\Vert d\Vert^2, 
+                \\
+                D_f(x, y) &= \langle x - y, A^TA (x - y)\rangle. 
             \end{align*}
             The value $\nabla f(v), f(v)$ when evaluated together, require minimal additional computations. 
             This fact is favorable for implementations in practice. 
 
-\chapter{Restarting the Accelerated Proximal Gradient}
-    We review specifically on the idea of restarting Accelerated Proximal Gradient. 
-    There are a lot of contents on it in the literatures hence it will be condensed. 
+\chapter{Advanced Enhancement Techniques in Accelerated Proximal Gradient}
+    We review advanced enhancement techniques in Accelerated Proximal Gradient method. 
+    The review will be based on several papers. 
+    \par
+    There are several notable enhancements of the FISTA for function that are not strongly convex. 
+    Monotone variants of FISTA proposed by Beck \todo{[?]} and Nesterov \todo{[?]} imposes monotonicity in function value at the iterates.  
+    Backtracking strategies from Chambolle \todo{[?]} shows that the underestimating Lipschitz constant using a backtracking technique to choose a next iterate improves the average runtime of the algorithm in practice. 
+    They showed that the convergence rate is bounded by the estimates of the Lipschitz constant. 
+    Restart is a technique pioneer early by ??? \todo{[?]}. 
+    Necoara et al. \cite{necoara_linear_2019} showed that there exists an optimal restarting interval to achieve fast line convergence rate for all functions with quadratic growth condition. 
+    \par
+    In this chapter, we will go through the details of these enhancements of FISTA and discuss why they are important in theories, and in practice. 
+    \section{FISTA made simple}
+        Most literatures overcomplicate the proofs and the matters regarding FISTA algorithm and its convergence rate. 
+        We showcase the theories using a generic similar triangle representations of the algorithm which tremendously simplifies the arguments. 
+        \begin{assumption}[the standard FISTA setting]\label{ass:standard-fista}
+            Let $F = f + g$ where $f:\RR^n\rightarrow \overline \RR$ is $L$ Lipschitz smooth, $g$ is convex. 
+            Suppose that $\argmin_{x \in \RR^n} F(x)\neq \emptyset$. 
+        \end{assumption}
+        Specializing Theorem \ref{thm:cnvx-pg-ineq}, we have the following lemma: 
+        \begin{lemma}[proximal gradient inequality]
+            If $F = f + g$ satisfies Assumption \ref{ass:standard-fista}, then for all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{L^{-1}, f, g}(x)$ it has 
+            \begin{align*}
+                0 &\le F(z) - F(\bar x) + \frac{L}{2}\Vert z - x\Vert - \frac{L}{2}\Vert z - \bar x\Vert^2. 
+            \end{align*}
+        \end{lemma}
+        \begin{proof}
+            Use Theorem \ref{thm:cnvx-pg-ineq}. 
+        \end{proof}
+        \begin{definition}[gradient mapping]
+            Suppose $F = f + g$ satisfies Assumption \ref{ass:standard-fista}, define the gradient mapping for all $x \in \RR^n$
+            \begin{align*}
+                \mathcal G_{\beta, f, g}(x) = \beta^{-1}(x - T_{\beta, f, g}(x)). 
+            \end{align*}
+        \end{definition}
+        If $f, g$ are clear in the context then we simply omit subscript and present $\mathcal G_\beta$. 
+        The following definition can capture monotone variants of FISTA with line search, including backtracking strategies. 
+        \begin{definition}[generic monotone proximal gradient with line search]
+            
+        \end{definition}
+
+
 
 
 % ==============================================================================
