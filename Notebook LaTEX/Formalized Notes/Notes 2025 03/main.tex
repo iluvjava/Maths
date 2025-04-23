@@ -910,7 +910,9 @@
                 f(v) &= 
                 \frac{1}{2}\langle x, \nabla f(v) - A^Td\rangle + \frac{1}{2}\Vert d\Vert^2, 
                 \\
-                D_f(x, y) &= \langle x - y, A^TA (x - y)\rangle. 
+                D_f(x, y) &= \langle x - y, A^TA (x - y)\rangle
+                \\
+                &= \langle \nabla f(x) - \nabla f(y), x - y\rangle. 
             \end{align*}
             The value $\nabla f(v), f(v)$ when evaluated together, require minimal additional computations. 
             This fact is favorable for implementations in practice. 
@@ -956,10 +958,10 @@
         ``MAPG'' stands for monotone accelerated gradient. 
         We refer to ``Generic Monotone Accelerated Proximal Gradient with line search" as ``GMAPG LS''. 
         \begin{definition}[GMAPG LS]\label{def:generic-mapg-ls}\;\\ 
-            Initialize with $x_0, v_0, \alpha_0 = 1$. 
-            Initialize any $L_0$ such that
+            Initialize any $x_0, v_0 \in \RR^n, \alpha_0 = 1, L_0 \in \RR$ such that
             \begin{align*}
-                D_f(T_{L_0^{-1}} (y_0)) &\le \frac{L_0}{2}\Vert T_{L_0^{-1}}(x_0) - y_0\Vert^2. 
+                D_f\left(T_{L_0^{-1}} (y_0)\right) 
+                &\le \frac{L_0}{2}\left\Vert T_{L_0^{-1}}(x_0) - y_0\right\Vert^2. 
             \end{align*}
             Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $\alpha_k \in (0, 1) \;\forall k \ge 0$ and $\alpha_0 \in (0, 1]$. 
             \begin{tcolorbox}
@@ -1043,8 +1045,8 @@
                 \item $F$ is convex and hence $F(z_k) \le \alpha_k F(x^+) + (1 - \alpha_k)F(x_{k - 1})$. 
                 \item $F(x_k) \le F(\tilde x_k)$ which is true by definition of GMAPG LS. 
             \end{enumerate}
-            Now, using Theorem \ref{thm:cnvx-pg-ineq}, it has for all $N \in \N, k = 1, 2, \cdots, N$: 
-            {\allowdisplaybreaks
+            Now, using Theorem \ref{thm:cnvx-pg-ineq}, it has for all $k \in \N$: 
+            {\allowdisplaybreaks\small
             \begin{align*}
                 0 &\le 
                 F(z_k) 
@@ -1155,16 +1157,134 @@
             Substituting it back to the previous inequality it yields the desired results. 
         \end{proof}
         We introduce two examples variants of line search method used to enhence the accelerated proximal gradient methods in the literatures to demonsrate Definition \ref{def:generic-mapg-ls} and Theorem \ref{thm:gmapg-ls-convergence}.  
-        MFISTA by Beck is an example of Definition \ref{def:generic-mapg-ls}
+        \par
+        MFISTA by Beck is an example of Definition \ref{def:generic-mapg-ls}. 
         \begin{example}[MFISTA with Armijo line search]\;\\\vspace{-1em}
-            \begin{algorithm}[H]\label{alg:mfista-ls}
+            \begin{algorithm}[H]
                 \begin{algorithmic}[1]
-                    \STATE{\textbf{Input: }input things }
-                    \STATE{}
+                    \STATE{\textbf{Input:} $x_0 \in \RR^n, L_0 \in \RR^n, f:\RR^n \rightarrow \RR, g: \mathbb \RR^n \rightarrow \overline \RR$} 
+                    \STATE{
+                        $y_0 := x_0, t_0 := 1$.
+                    }
+                    \FOR{$k = 0, 1, 2, \ldots$}
+                        \STATE{$\tilde x_{k + 1} = T_{L_k^{-1}}(y_k)$.}
+                        \IF{$D_f(\tilde x_{k + 1}, y_k) > L_k/2\Vert \tilde x_{k + 1} - y_k\Vert^2$}
+                            \STATE{\noindent
+                                $L_k := \argmin_{i = 1,2, \ldots} \left\{ i: 
+                                    D_f(T_{2^{-i}L_k^{-1}}(y_k), y_k) 
+                                    \le 2^{i-1}L_k\left\Vert 
+                                        T_{2^{-i}L^{-1}}y_k - y_k
+                                    \right\Vert^2
+                                \right\}$.
+                            }
+                            \STATE{$\tilde x_{k + 1} := T_{L_0^{-1}}y_k$.}
+                        \ENDIF
+                        \STATE{\noindent
+                            Choose $x_{k + 1} \in \{\tilde x_{k + 1}, x_k\}$ such that $F(x_{k + 1}) \le \min(F(x_k), F(\tilde x_{k + 1}))$. 
+                        }
+                        \STATE{\noindent
+                            $t_{k + 1} := (1/2)\left(1 + \sqrt{1 + 4t_k^2}\right)$. 
+                        }
+                        \STATE{\noindent
+                            $y_{k + 1} := x_{k + 1} + t_kt_{k + 1}^{-1}(\tilde x_{k + 1} - x_{k + 1})+ (t_k - 1)t_{k + 1}^{-1}(x_{k + 1} - x_k)$. 
+                        }
+                    \ENDFOR
                 \end{algorithmic}
                 \caption{MFISTA with Armijo Line Search}
+                \label{alg:mfista-armijo}
+            \end{algorithm}
+            We now demonstrate that it's a special case of Definition \ref{def:generic-mapg-ls}.
+            Let's consider $y_{k + 1}$ produced the GMAPG LS. 
+            If $x_k = x_{k - 1}$ then replacing all instance of $x_k$ by $x_{k - 1}$ it has: 
+            \begin{align*}
+                y_{k + 1} &= \alpha_{k + 1}(v_k) + (1 - \alpha_{k + 1})x_{k - 1}
+                \\
+                &= \alpha_{k + 1}(x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1})) + (1 - \alpha_{k + 1})x_{k - 1}
+                \\
+                &= \alpha_{k + 1} x_{k - 1} + \alpha_{k + 1}\alpha_k^{-1}(\tilde x_k - x_{k - 1}) + (1 - \alpha_{k + 1}) x_{k - 1}
+                \\
+                &= x_{k - 1} + \alpha_{k + 1}\alpha_k^{-1}(\tilde x_k - x_{k - 1})
+                % \\
+                % &= \tilde x_k + (\alpha_{k + 1} \alpha_k^{-1} - 1)(\tilde x_k - x_{k - 1}). 
+            \end{align*}
+            Similarly when $x_k = \tilde x_k$ it produces: 
+            \begin{align*}
+                y_{k + 1} &= 
+                \alpha_{k + 1}v_k + (1 - \alpha_{k + 1})\tilde x_k
+                \\
+                &= 
+                \alpha_{k + 1}(x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1})) + (1 - \alpha_{k + 1})x_k
+                \\
+                &= 
+                \alpha_{k + 1}\left(
+                    (1 - \alpha_{k}^{-1})x_{k - 1} + (\alpha_k^{-1} - 1)\tilde x_k + \tilde x_k
+                \right) + 
+                (1 - \alpha_{k + 1})\tilde x_k
+                \\
+                &= 
+                \alpha_{k + 1}\left(
+                    (\alpha_k^{-1} - 1)(\tilde x_k - x_{k - 1}) + \tilde x_k
+                \right) + 
+                (1 - \alpha_{k + 1})\tilde x_k. 
+                \\
+                &= \tilde x_k + \alpha_{k + 1}(\alpha_k^{-1} - 1)(\tilde x_k - x_{k - 1}). 
+            \end{align*}
+            Let's denote $y'_{k}, x'_{k}, \tilde x_k'$ as the $y_k, x_k, \tilde x_k$ produced by Algorithm \ref{alg:mfista-armijo}.
+            Observe that if $x_0'$ is not the minimizer then it has $\tilde x_1' = T_{L_0^{-1}}(y_0') = T_{L_0^{-1}}(x_0')$. 
+            Then $F(\tilde x_1') < F(x_0')$ is true. 
+            So $x_1' = \tilde x_1 = T_{L_0^{-1}}(x_0')$. 
+            Since $t_0 = 1$, it has $y_1' =\tilde x_1' + (t_0 - 1)t_1^{-1}(\tilde x_1' - x_0')= \tilde x_1'$. 
+            \par
+            Summarize the above results compactly, it has for all $k \ge 0$
+            \begin{align}\label{eqn:emp:result-item-1}
+                y_{k + 1} = \begin{cases}
+                    x_{k - 1} + \alpha_{k + 1}\alpha_k^{-1}(\tilde x_k - x_{k - 1})
+                    & \text{if } x_k = x_{k - 1} \wedge k \ge 1,
+                    \\
+                    \tilde x_k + \alpha_{k + 1}(\alpha_k^{-1} - 1)(\tilde x_k - x_{k - 1})
+                    & \text{if } x_k = \tilde x_k \wedge k \ge 1,
+                    \\
+                    \alpha_1v_0 + (1 - \alpha_1)x_0 & \text{if } k = 0. 
+                \end{cases}
+            \end{align}
+            Then it has for all $k \ge 0$: 
+            \begin{align}\label{eqn:emp:result-item-2}
+                y'_{k + 1} &= 
+                \begin{cases}
+                    x'_k + t_kt_{k + 1}^{-1}(\tilde x_{k + 1} - x_k) 
+                    & \text{if } x_{k + 1}' = x_k' \wedge k \ge 1,
+                    \\
+                    x_{k + 1}' + (t_k - 1)t_{k + 1}^{-1}(\tilde x_{k + 1}' - x_k')  
+                    & \text{if } x_{k + 1}' = \tilde x_{k + 1}'\wedge k \ge 1, 
+                    \\
+                    \tilde x_1'
+                    & 
+                    \text{if } k = 0. 
+                \end{cases}
+            \end{align}
+            Let $x_{-1} \in \RR^n$. 
+            If we choose $v_0 = x_0 = T_{L_0^{-1}} x_{-1}$, then $y_1 = \alpha_1 x_0 + (1 - \alpha_1)x_0 = x_0 = T_{L_0^{-1}}(x_{-1})$.
+            Next, we make $\alpha_k^{-1} = t_k$, then \eqref{eqn:emp:result-item-1}, \eqref{eqn:emp:result-item-2} are equivalent. 
+        \end{example}
+        Chambolle's backtracking strategies employs a line search strategies where the Lipschitz constant estimates increases if the descent lemma is satisfied. 
+        \begin{example}[MFISTA with Chambolle's adaptive backtracking]\;\\\vspace{-1em}
+            \begin{algorithm}[H]\label{alg:mfista-chambolle-ada}
+                \begin{algorithmic}[1]
+                \STATE{\textbf{Input: } }
+                \end{algorithmic}
+                \caption{MFISTA with Chambolle's adaptive backtracking}
             \end{algorithm}
         \end{example}
+
+        \begin{example}[Nesterov's monotone scheme with generic line search]\;\\\vspace{-1em}
+            \begin{algorithm}\label{alg:nesterov-mono-generic-ls}
+            \begin{algorithmic}[1]
+            \STATE{\textbf{Input: } }
+            \end{algorithmic}\caption{Nesterov's monotone scheme with generic line search}
+            \end{algorithm}
+        \end{example}
+
+    \section{Practical enhencements}
 
 
 

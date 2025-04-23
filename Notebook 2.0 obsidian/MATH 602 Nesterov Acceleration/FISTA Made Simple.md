@@ -590,7 +590,7 @@ If, sequence $\alpha_k$ requires $L_k$, then the algorithm generates $(x_k, v_k,
 > \end{aligned}
 > }
 > $$
-> If in addition, the algorithm is initialized with $\alpha_0 = 1, x_0 = v_0 = T_{L_{0}}x_{-1} \in \text{dom}\; F$, then the convergence rate simplifies into: 
+> If in addition, the algorithm is initialized with $\alpha_0 = 1, x_0 = v_0 = T_{L_{0}}x_{-1} \in \text{dom}\; F$ and $x^+$ is a minimizer of $F$, then the convergence rate simplifies: 
 > $$
 > \begin{aligned}
 >     F(x_k) - F(x^+) + \frac{L_k\alpha_k}{2}\Vert x^+ - v_k\Vert^2
@@ -1038,7 +1038,7 @@ It's not exactly the same, but the presentation below would be equivalent.
 
 **Proof**
 
-The convergence rate for the Generic Monotone Accelerated Gradient method still applies here. 
+
 
 
 
