@@ -243,10 +243,10 @@
             \end{remark}
 
         \subsection{Weaker conditions of strong convexity}
-            In Necoara's et al, major results assume convexity of $f$. 
-            % ============================================================================
+            In Necoara's et al., major results assume convexity of $f$. 
+            % ==================================================================
             % THEOREM | Q-SCNVX IMPLIES QUA 
-            % ============================================================================
+            % ==================================================================
             \begin{theorem}[Q-SCNVX implies QUA]\label{thm:qscnvx-means-qua}
                 Let $f$ satisfies Assumption \ref{ass:necoara-2019-settings} and assume $f$ is convex: 
                 \begin{align*}
@@ -254,52 +254,55 @@
                 \end{align*}
             \end{theorem}
             \begin{proof}
-                We proof by induction. 
-                Convexity of $f$ makes $X^+$ convex and $\Pi_{X^+}X$ unique for all $x \in X$. 
+                We prove by induction. 
+                Convexity of $f$ makes $X^+$ convex, so $\Pi_{X^+}x$ is unique for all $x \in \RR^n$. 
                 Make inductive hypothesis that there exists $\kappa^{(k)} \ge 0$ such that 
                 \begin{align*}
                     (\forall x \in X)\quad
                     f(x) \ge f^+ + \langle \nabla f(\Pi_{X^+}x), x - \Pi_{X^+}x\rangle 
-                    + \kappa^{(k)}/2\Vert x - \Pi_{X^+}x \Vert^2. 
+                    + \kappa^{(k)}_f/2\Vert x - \Pi_{X^+}x \Vert^2. 
                 \end{align*}
                 The base case is true by convexity of $f$ with $\kappa_f^{(0)} = 0$. 
                 Choose any $x \in X$ define $\bar x = \Pi_{X^+}x$. 
                 Consider $x_\tau = \bar x + \tau(x - \bar x)$ for $\tau \in [0, 1]$. 
-                Calculus rule has 
+                $f$ is Q-SCNVX so
+                \begin{align}\label{ineq:thm:qscnvx-means-qua-proof-item1}
+                    f^+ - f(x_\tau) &\ge \langle \nabla f(x_\tau), \Pi_{X^+}x_\tau - x_\tau\rangle + 
+                    \kappa_f/2 \Vert x_\tau - \Pi_{X^+}x_\tau\Vert^2 
+                    \notag\\
+                    &= 
+                    \langle \nabla f(x_\tau), \bar x - x_\tau\rangle + 
+                    \kappa_f/2 \Vert x_\tau - \bar x\Vert^2
+                    \notag\\
+                    \iff 
+                    \langle \nabla f(x_\tau), x_\tau - \bar x\rangle
+                    &\ge f(x_\tau) - f^+ + \kappa_f/2\Vert x_\tau -\bar x\Vert^2. 
+                \end{align}
+                In the inductive proof that comes, we will use the following intermediate results. 
+                They are labeled for ease of refernecing. 
+                \begin{enumerate}
+                    \item The inequality \eqref{ineq:thm:qscnvx-means-qua-proof-item1}. 
+                    \item By the property of projection, it has $\Pi_{X^+} x_\tau = \bar x$. 
+                    \item The inductive hypothesis with $k \ge 0$. 
+                    \item $\bar x = \Pi_{X^+}x$, $X^+$ is the set of minimizer of the of $f$ over $X$, hence $f(\bar x) = f^+$, the minimum. 
+                \end{enumerate}
+                Using calculus rules, we start with: 
+                {\footnotesize
                 \begin{align*}
                     f(x) &= 
                     f(\bar x) + \int_0^1 \langle \nabla f(x_\tau), x - \bar x\rangle d\tau
-                    \\
-                    &= 
+                    = 
                     f(\bar x) + \int_0^1 \tau^{-1}\langle \nabla f(x_\tau), \tau(x - \bar x)\rangle d\tau
                     \\
                     &= 
                     f(\bar x) + \int_0^1 \tau^{-1}\langle \nabla f(x_\tau), x_\tau - \bar x\rangle d\tau.
-                \end{align*}
-                $f$ is Q-SCNVX so
-                \begin{align*}
-                    f^+ - f(x_\tau) &\ge \langle \nabla f(x_\tau), \Pi_{X^+}x_\tau - x_\tau\rangle + 
-                    \kappa_f/2 \Vert x_\tau - \Pi_{X^+}x_\tau\Vert^2
                     \\
-                    &= 
-                    \langle \nabla f(x_\tau), \bar x - x_\tau\rangle + 
-                    \kappa_f/2 \Vert x_\tau - \bar x\Vert^2
-                    \\
-                    \iff 
-                    \langle \nabla f(x_\tau), x_\tau - \bar x\rangle
-                    &\ge f(x_\tau) - f^+ + \kappa_f/2\Vert x_\tau -\bar x\Vert^2. 
-                \end{align*}
-                We used $\Pi_{X^+}x_\tau = \bar x$ by convexity of $f$. 
-                Therefore:
-                {\footnotesize
-                \begin{align*}
-                    f(x) &\ge 
+                    &\underset{\text{(i)}}{\ge }
                     f(\bar x) + 
                     \int_0^1 \tau^{-1} \left(
                         f(x_\tau) - f^+ + \frac{\kappa_f}{2}\Vert x_\tau - \bar x\Vert^2
                     \right) d\tau
-                    \\
-                    &= 
+                    = 
                     f(\bar x) + 
                     \int_0^1 
                     \tau^{-1} \left(
@@ -308,7 +311,7 @@
                         + \frac{\tau\kappa_f}{2}\Vert x - \bar x\Vert^2
                     d\tau
                     \\
-                    &\ge 
+                    &\underset{\text{(iii)}}{\ge }
                     f(\bar x) + 
                     \int_0^1 
                     \tau^{-1} \left(
@@ -320,7 +323,7 @@
                         + \frac{\tau\kappa_f}{2}\Vert x - \Pi_{X^+}x_\tau\Vert^2
                     d\tau
                     \\
-                    &= 
+                    &\underset{\text{(ii)}}{=} 
                     f(\bar x) + 
                     \int_0^1 
                     \tau^{-1} \left(
@@ -342,8 +345,8 @@
                         + \frac{\tau\kappa_f}{2}\Vert x - \bar x\Vert^2
                     d\tau
                     \\
-                    &= 
-                    f(\bar x) + 
+                    &\underset{\text{(iv)}}{=} 
+                    f^+ + 
                     \langle 
                         \nabla f(\bar x), x - \bar x
                     \rangle
@@ -378,7 +381,7 @@
             \begin{proof}
                 For all $x \in X$, define $\bar x = \Pi_{X^+}x$, $x_\tau = \bar x + \tau(x - \bar x)\; \forall \tau \in [0, 1]$. 
                 Observe that $\frac{d}{d\tau}x_\tau = x - \bar x$ and $\Pi_{X^+}x_\tau = \bar x\; \forall \tau \in [0, 1]$. 
-                Using calculus and Theorem \ref{def:necoara-weaker-scnvx} \ref{def:necoara-qgg}: 
+                Using calculus, Definition \ref{def:necoara-weaker-scnvx} \ref{def:necoara-qgg}: 
                 \begin{align*}
                     f(x) &= f(\bar x) + \int_0^1 \langle \nabla f(x_\tau), x - \bar x\rangle d\tau  
                     \\
@@ -410,9 +413,9 @@
                 This is Theorem 3 in Neocara et al. \cite{necoara_linear_2019}. 
                 There is no immediate use of convexity besides that the projection $\bar x = \Pi_{X^+}x$ is a singleton.
             \end{remark}
-            % ===============================================================================
+            % ==================================================================
             % THEOREM | QFC IMPLIES QGG  
-            % ===============================================================================
+            % ==================================================================
             \begin{theorem}[Q-SCNVX implies QGG]\label{thm:qscnvx-implies-qgg}
                 Under Assumption \ref{ass:necoara-2019-settings} and convexity of $f$, it has 
                 \begin{align*}
@@ -426,9 +429,9 @@
             \begin{remark}
                 This is Theorem 2 in the Necoara et al. \cite{necoara_linear_2019}, right after it claims $\mathbb U(L_f, \kappa_f, X)\subseteq \mathbb G(L_f, \kappa_f/2, X)$ under convexity. 
             \end{remark}
-            % =============================================================================
+            % ==================================================================
             % THEOREM | SUFFICIENCY OF QFG 
-            % =============================================================================
+            % ==================================================================
             \begin{theorem}[sufficiency of QFG]\label{thm:qfg-suff}
                 Let $f$ satisfies Assumption \ref{ass:necoara-2019-settings}. 
                 For all $0 < \beta < 1$, $x \in X$, let $x^+ = \Pi_{X}(x - L^{-1}_f \nabla f(x))$. 
@@ -503,20 +506,37 @@
                 \end{align*}
             \end{theorem}
             \begin{proof}
-                \textbf{Firstly, we show that PEB implies QFG.}
+                
                 For any $x \in X$, define the gradient projection steps by $x^+ = \Pi_{X}(x - L^{-1}_f\nabla f(x))$. 
                 Denote $x^+_\Pi = \Pi_{X^+}x^+$. 
-                Using \eqref{ineq:proj-grad} with $z = x^+_\Pi$ it yields: 
+                Let $x_\Pi = \Pi_{X^+}x$, using the property of projection onto $X$ we have 
+                \begin{align}\label{ineq:thm:qfg-peb-equiv-proof-item1}
+                    \Vert x - x_\Pi\Vert &\le \Vert x - x_\Pi^+\Vert
+                    \le \Vert x - x^+\Vert + \Vert x^+ - x^+_\Pi\Vert
+                    \notag\\
+                    &= \frac{1}{L_f}\Vert L_f(x - x^+)\Vert + \Vert x^+ - x^+_\Pi\Vert
+                    \notag\\
+                    \iff 
+                    \Vert x^+ - x^+_\Pi\Vert &\ge
+                    \Vert x - x_\Pi\Vert - \frac{1}{L_f}\Vert L_f(x - x^+)\Vert. 
+                \end{align}
+                Before we start, we list intermediate results and conditions which are going to be used in the proof that follows for the ease of referencing. 
+                \begin{enumerate}
+                    \item The inequality \eqref{ineq:thm:qfg-peb-equiv-proof-item1}. It uses the property of projection onto a set hence convexity of $X^+$ is not needed. 
+                    \item The quadratic growth condition with $\mathbb F(L_f, \kappa_f)$. No convexity is needed. 
+                \end{enumerate}
+                \textbf{Firstly, we show that QFG implies PEB.}
+                Consider \eqref{ineq:proj-grad} with $z = x^+_\Pi$ it yields: 
                 {\small
                 \begin{align*}
                     0 &\ge 
                     f(x^+) - f(x^+_\Pi) - L_f\langle x_\Pi^+ - x^+, x^+ - x\rangle
                     - \frac{1}{L_f}\Vert L_f(x - x^+)\Vert^2
                     \\
-                    \quad&\ge 
+                    \quad&\underset{\text{(ii)}}{\ge }
                     \frac{\kappa_f}{2}\Vert x^+ - x_\Pi^+\Vert^2
                     - \Vert L_f(x - x^+)\Vert\Vert x^+_\Pi - x^+\Vert
-                    - \frac{1}{2L_f}\Vert L_f(x - x^+)\Vert^2   &\text{QFG, Cauchy}
+                    - \frac{1}{2L_f}\Vert L_f(x - x^+)\Vert^2 
                     \\
                     &= \frac{\kappa_f}{2}\Vert x^+ - x_\Pi^+\Vert^2
                     - \frac{1}{2L_f}\left(
@@ -531,31 +551,17 @@
                     \right)^2.
                 \end{align*}
                 }
-                From the last line, by positivity of norm it has
+                From the last line, it's can be equivalently expressed as:
                 \begin{align*}
+                    0 &\le
                     \Vert L_f(x - x^+)\Vert + L_f\Vert x^+ - x_\Pi^+\Vert
-                    &\ge \sqrt{L_f(\kappa_f + L_f)}\Vert x^+ - x^+_\Pi\Vert
+                    - \sqrt{L_f(\kappa_f + L_f)}\Vert x^+ - x^+_\Pi\Vert
                     \\
-                    \iff 
+                    &=
                     \Vert L_f(x - x^+)\Vert
-                    &\ge 
-                    \left(\sqrt{L_f(\kappa_f + L_f)} - L_f\right)\Vert x^+ - x^+_\Pi\Vert. 
-                \end{align*}
-                Let $x_\Pi = \Pi_{X^+}x$, using the property of projection onto $X$ we have 
-                \begin{align*}
-                    \Vert x - x_\Pi\Vert &\le \Vert x - x_\Pi^+\Vert
-                    \le \Vert x - x^+\Vert + \Vert x^+ - x^+_\Pi\Vert
+                    - \left(\sqrt{L_f(\kappa_f + L_f)} - L_f\right)\Vert x^+ - x^+_\Pi\Vert
                     \\
-                    &= \frac{1}{L_f}\Vert L_f(x - x^+)\Vert + \Vert x^+ - x^+_\Pi\Vert
-                    \\
-                    \iff 
-                    \Vert x^+ - x^+_\Pi\Vert &\ge
-                    \Vert x - x_\Pi\Vert - \frac{1}{L_f}\Vert L_f(x - x^+)\Vert. 
-                \end{align*}
-                Combining the two above inequalities gives 
-                {\small
-                \begin{align*}
-                    0 &\le 
+                    &\underset{\text{(i)}}{\le}
                     \Vert L_f(x - x^+)\Vert
                     -
                     \left(\sqrt{L_f(\kappa_f + L_f)} - L_f\right)\left(
@@ -585,13 +591,12 @@
                     \le
                     \Vert \mathcal G_{L_f}x\Vert. 
                 \end{align*}
-                }
                 Skipping algebra, the fraction simplifies to 
                 \begin{align*}
                     \frac{\kappa_f}{\kappa_f/L_f + 1 + \sqrt{\kappa_k/L_f + 1}}. 
                 \end{align*}
                 This gives PEB condition. 
-                \textbf{We now show QFG implies PEB}. 
+                \textbf{We now show PEB implies QFG}. 
                 From the error bound condition using $\kappa_f$ it has
                 \begin{align*}
                     \kappa_f^2\Vert x - \bar x\Vert^2
@@ -909,21 +914,22 @@
                 f(v) &= 
                 \frac{1}{2}\langle v, \nabla f(v) - A^Td\rangle + \frac{1}{2}\Vert d\Vert^2, 
                 \\
-                D_f(x, y) &= \langle x - y, A^TA (x - y)\rangle
+                D_f(u, v) &= (1/2)\langle u - v, A^TA (u - v)\rangle
                 \\
-                &= \langle \nabla f(x) - \nabla f(y), x - y\rangle. 
+                &= (1/2)\langle \nabla f(u) - \nabla f(v), u - v\rangle. 
             \end{align*}
             The value $\nabla f(v), f(v)$ when evaluated together, require minimal additional computations. 
             This fact is favorable for implementations in practice. 
-            Furthermore, the diference of the function value between 2 points $v, u$ admits an interesting relation via the Bregman Divergence. 
+            Furthermore, the difference of the function value between 2 points $v, u$ admits an interesting relation via the Bregman Divergence. 
             Observe that $\forall u, v \in \RR^n$ it has 
             \begin{align*}
                 f(u) - f(v) &= \langle \nabla f(v), u - v \rangle + D_f(u, v)
                 \\
-                &= \langle \nabla f(v), u - v \rangle + \langle \nabla f(u) - \nabla f(v), u - v\rangle
+                &= \langle \nabla f(v), u - v \rangle + (1/2)\langle \nabla f(u) - \nabla f(v), u - v\rangle
                 \\
-                &= \langle \nabla f(u), u - v\rangle. 
+                &= (1/2)\langle \nabla f(u) + \nabla f(v), u - v\rangle. 
             \end{align*}
+            For this problem, the computation overhead for $f(u) - f(v), D_f(u, v)$ is very little if $\nabla f(u), \nabla f(v)$ is known. 
 
 \chapter{Advanced Enhancement Techniques in Accelerated Proximal Gradient}
     We review advanced enhancement techniques in Accelerated Proximal Gradient method. 
@@ -1016,9 +1022,9 @@
                 &= \alpha_k(x^+ - v_{k - 1}). 
             \end{align*}
         \end{proof}
-        % ==============================================================================================================
+        % ======================================================================
         % THEOREM | GENERIC GMAPG LS CONVERGENCE IN FXN VAL
-        % ==============================================================================================================
+        % ======================================================================
         \begin{theorem}[generic GMAPG LS convergence]\; \label{thm:gmapg-ls-convergence}\;\\
             Let $F = f + g$ satisfy Assumptions \ref{ass:standard-fista}. 
             Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $\alpha_k \in (0, 1)$ for all $k \ge 1$ and $\alpha_0 \in (0, 1]$. 
@@ -1049,7 +1055,7 @@
         \begin{proof}
             Define $z_k = \alpha_k x^+ + (1 - \alpha_k)x_{k - 1}$ for all $k \ge 1$. 
             In the proof follows, the follow facts will be used. 
-            We list them in advance and they will be labeled during the proof. 
+            We list them in advance, and they will be labeled during the proof. 
             \begin{enumerate}
                 \item Lemma \ref{lemma:apg-iterates}. 
                 \item The sequence $(\alpha_k)_{k \ge 1}$ has for all $k \ge 1$, $1 - \alpha_k = \alpha_k^2\alpha_{k - 1}^2\rho_{k - 1}$, $\alpha_k \in (0, 1)$. 
@@ -1167,18 +1173,18 @@
             \end{align*}
             Substituting it back to the previous inequality it yields the desired results. 
         \end{proof}
-        % ==============================================================================================================
+        % ======================================================================
         % THEOREM | GENERIC GMAPG LS GRADIENT MAPPING CONVERGENCE
-        % ==============================================================================================================
+        % ======================================================================
         \begin{theorem}[generic GMAPG LS gradient mapping convergence]
             
         \end{theorem}
         We introduce two examples variants of line search method used to enhence the accelerated proximal gradient methods in the literatures to demonsrate Definition \ref{def:generic-mapg-ls} and Theorem \ref{thm:gmapg-ls-convergence}.  
         \par
         MFISTA by Beck is an example of Definition \ref{def:generic-mapg-ls}. 
-        % ==============================================================================================================
+        % ======================================================================
         % EXAMPLE | MFISTA WITH ARMIJO LINE SEARCH
-        % ==============================================================================================================
+        % ======================================================================
         \begin{example}[MFISTA with Armijo line search]\;\\\vspace{-1em}
             \begin{algorithm}[H]
                 \begin{algorithmic}[1]
@@ -1287,9 +1293,9 @@
             Next, we make $\alpha_k^{-1} = t_k$, then \eqref{eqn:emp:result-item-1}, \eqref{eqn:emp:result-item-2} are equivalent. 
         \end{example}
         Chambolle's backtracking strategies employs a line search strategies where the Lipschitz constant estimates increases if the descent lemma is satisfied. 
-        % ==============================================================================================================
+        % ======================================================================
         % EXAMPLE | MFISTA WITH CAMBOLLE'S ADAPTIVE BACKTRACKING
-        % ==============================================================================================================
+        % ======================================================================
         The following example illustrate Chambolle's adaptive backtracking strategy in the literatures with our GMAPG LS. 
         \begin{example}[MFISTA with Chambolle's adaptive backtracking]\;\\\vspace{-1em}
             \begin{algorithm}[H]\label{alg:mfista-chambolle-ada}
@@ -1299,9 +1305,9 @@
                 \caption{MFISTA with Chambolle's adaptive backtracking}
             \end{algorithm}
         \end{example}
-        % ==============================================================================================================
+        % ======================================================================
         % EXAMPLE | NESTEROV'S MONOTONE SCHEME WITH GENERIC LINE SEARCH
-        % ==============================================================================================================
+        % ======================================================================
 
         \begin{example}[Nesterov's monotone scheme with generic line search]\;\\\vspace{-1em}
             \begin{algorithm}\label{alg:nesterov-mono-generic-ls}
