@@ -484,14 +484,14 @@
             \end{align}
             \par
             The following theorems are about the relation between PEB and QFG.
-            % ==========================================
+            % ==========================================================================================================
             % THEOREM | EQUIVALENCE BETWEEN QFG AND PEB 
-            % ==========================================
+            % ==========================================================================================================
             \begin{theorem}[equivalence between QFG and PEB]\label{thm:qfg-peb-equiv}
                 If $f$ is convex and satisfies Assumption \ref{ass:necoara-2019-settings}. 
                 Then we have: 
                 \begin{align*}
-                    \mathbb E(L_f, \kappa_f, X) &\subseteq \mathbb F(L_f, \kappa^2/L_f, X), 
+                    \mathbb E(L_f, \kappa_f, X) &\subseteq \mathbb F(L_f, \kappa^2_f/L_f, X), 
                     \\
                     \mathbb F(L_f, \kappa_f) 
                     &\subseteq 
@@ -505,8 +505,8 @@
             \begin{proof}
                 \textbf{Firstly, we show that PEB implies QFG.}
                 For any $x \in X$, define the gradient projection steps by $x^+ = \Pi_{X}(x - L^{-1}_f\nabla f(x))$. 
-                Denote $\bar x^+_\Pi = \Pi_{X^+}x^+$. 
-                Using \eqref{ineq:proj-grad} with $z = \bar x^+_\Pi$ it yields: 
+                Denote $x^+_\Pi = \Pi_{X^+}x^+$. 
+                Using \eqref{ineq:proj-grad} with $z = x^+_\Pi$ it yields: 
                 {\small
                 \begin{align*}
                     0 &\ge 
@@ -528,7 +528,7 @@
                     \frac{\kappa_f + L_f}{2}\Vert x^+ - x^+_\Pi\Vert^2
                     - \frac{1}{2L_f}\left(
                         \Vert L_f(x - x^+)\Vert + L_f\Vert x - x_\Pi^+\Vert
-                    \right)^2
+                    \right)^2.
                 \end{align*}
                 }
                 From the last line, by positivity of norm it has
@@ -541,17 +541,16 @@
                     &\ge 
                     \left(\sqrt{L_f(\kappa_f + L_f)} - L_f\right)\Vert x^+ - x^+_\Pi\Vert. 
                 \end{align*}
-                Using property of projection onto $X$ we have 
+                Let $x_\Pi = \Pi_{X^+}x$, using the property of projection onto $X$ we have 
                 \begin{align*}
-                    \Vert x - \bar x\Vert &\le \Vert x - x_\Pi^+\Vert
+                    \Vert x - x_\Pi\Vert &\le \Vert x - x_\Pi^+\Vert
                     \le \Vert x - x^+\Vert + \Vert x^+ - x^+_\Pi\Vert
                     \\
                     &= \frac{1}{L_f}\Vert L_f(x - x^+)\Vert + \Vert x^+ - x^+_\Pi\Vert
                     \\
                     \iff 
-                    \Vert x - \bar x\Vert - \frac{1}{L_f}\Vert L_f(x - x^+)\Vert
-                    &\le 
-                    \Vert x^+ - x^+_\Pi\Vert. 
+                    \Vert x^+ - x^+_\Pi\Vert &\ge
+                    \Vert x - x_\Pi\Vert - \frac{1}{L_f}\Vert L_f(x - x^+)\Vert. 
                 \end{align*}
                 Combining the two above inequalities gives 
                 {\small
@@ -908,7 +907,7 @@
                 \nabla f(v) &= A^TAv - A^Td, 
                 \\
                 f(v) &= 
-                \frac{1}{2}\langle x, \nabla f(v) - A^Td\rangle + \frac{1}{2}\Vert d\Vert^2, 
+                \frac{1}{2}\langle v, \nabla f(v) - A^Td\rangle + \frac{1}{2}\Vert d\Vert^2, 
                 \\
                 D_f(x, y) &= \langle x - y, A^TA (x - y)\rangle
                 \\
@@ -916,6 +915,15 @@
             \end{align*}
             The value $\nabla f(v), f(v)$ when evaluated together, require minimal additional computations. 
             This fact is favorable for implementations in practice. 
+            Furthermore, the diference of the function value between 2 points $v, u$ admits an interesting relation via the Bregman Divergence. 
+            Observe that $\forall u, v \in \RR^n$ it has 
+            \begin{align*}
+                f(u) - f(v) &= \langle \nabla f(v), u - v \rangle + D_f(u, v)
+                \\
+                &= \langle \nabla f(v), u - v \rangle + \langle \nabla f(u) - \nabla f(v), u - v\rangle
+                \\
+                &= \langle \nabla f(u), u - v\rangle. 
+            \end{align*}
 
 \chapter{Advanced Enhancement Techniques in Accelerated Proximal Gradient}
     We review advanced enhancement techniques in Accelerated Proximal Gradient method. 
@@ -1008,6 +1016,9 @@
                 &= \alpha_k(x^+ - v_{k - 1}). 
             \end{align*}
         \end{proof}
+        % ==============================================================================================================
+        % THEOREM | GENERIC GMAPG LS CONVERGENCE IN FXN VAL
+        % ==============================================================================================================
         \begin{theorem}[generic GMAPG LS convergence]\; \label{thm:gmapg-ls-convergence}\;\\
             Let $F = f + g$ satisfy Assumptions \ref{ass:standard-fista}. 
             Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $\alpha_k \in (0, 1)$ for all $k \ge 1$ and $\alpha_0 \in (0, 1]$. 
@@ -1032,7 +1043,7 @@
                     \prod_{i = 0}^{k - 1} (1 - \alpha_{i + 1})
                     \max\left(1, \rho_i L_{i + 1}L_i^{-1}\right)
                 \right)
-                \frac{L}{2}\Vert x^+ - x_{-1}\Vert^2. 
+                \frac{L_0}{2}\Vert x^+ - x_{-1}\Vert^2. 
             \end{align*}
         \end{theorem}
         \begin{proof}
@@ -1156,9 +1167,18 @@
             \end{align*}
             Substituting it back to the previous inequality it yields the desired results. 
         \end{proof}
+        % ==============================================================================================================
+        % THEOREM | GENERIC GMAPG LS GRADIENT MAPPING CONVERGENCE
+        % ==============================================================================================================
+        \begin{theorem}[generic GMAPG LS gradient mapping convergence]
+            
+        \end{theorem}
         We introduce two examples variants of line search method used to enhence the accelerated proximal gradient methods in the literatures to demonsrate Definition \ref{def:generic-mapg-ls} and Theorem \ref{thm:gmapg-ls-convergence}.  
         \par
         MFISTA by Beck is an example of Definition \ref{def:generic-mapg-ls}. 
+        % ==============================================================================================================
+        % EXAMPLE | MFISTA WITH ARMIJO LINE SEARCH
+        % ==============================================================================================================
         \begin{example}[MFISTA with Armijo line search]\;\\\vspace{-1em}
             \begin{algorithm}[H]
                 \begin{algorithmic}[1]
@@ -1267,6 +1287,10 @@
             Next, we make $\alpha_k^{-1} = t_k$, then \eqref{eqn:emp:result-item-1}, \eqref{eqn:emp:result-item-2} are equivalent. 
         \end{example}
         Chambolle's backtracking strategies employs a line search strategies where the Lipschitz constant estimates increases if the descent lemma is satisfied. 
+        % ==============================================================================================================
+        % EXAMPLE | MFISTA WITH CAMBOLLE'S ADAPTIVE BACKTRACKING
+        % ==============================================================================================================
+        The following example illustrate Chambolle's adaptive backtracking strategy in the literatures with our GMAPG LS. 
         \begin{example}[MFISTA with Chambolle's adaptive backtracking]\;\\\vspace{-1em}
             \begin{algorithm}[H]\label{alg:mfista-chambolle-ada}
                 \begin{algorithmic}[1]
@@ -1275,6 +1299,9 @@
                 \caption{MFISTA with Chambolle's adaptive backtracking}
             \end{algorithm}
         \end{example}
+        % ==============================================================================================================
+        % EXAMPLE | NESTEROV'S MONOTONE SCHEME WITH GENERIC LINE SEARCH
+        % ==============================================================================================================
 
         \begin{example}[Nesterov's monotone scheme with generic line search]\;\\\vspace{-1em}
             \begin{algorithm}\label{alg:nesterov-mono-generic-ls}
@@ -1285,6 +1312,8 @@
         \end{example}
 
     \section{Practical enhencements}
+        In this section, we provide results for the faster convergence rate of examples listed from the previous section. 
+
 
 
 
