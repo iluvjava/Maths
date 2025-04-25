@@ -1320,6 +1320,8 @@
         % ======================================================================
         The following example illustrate Chambolle's adaptive backtracking strategy in the literatures with our GMAPG LS. 
         \begin{example}[MFISTA with Chambolle's adaptive backtracking]\;\\\vspace{-1em}
+            This example won't give specific rules for calculating $\tilde x_k$ for monotone descent. 
+            Chambolle's restart has specific rules for choosing the stepsizes based on the estimates of the Lipschitz constants. 
             \begin{algorithm}[H]\label{alg:mfista-chambolle-ada}
                 \begin{algorithmic}[1]
                 \STATE{\textbf{Input: } }
@@ -1339,10 +1341,14 @@
             \end{algorithm}
         \end{example}
 
-    \section{Practical enhencements}
+    \section{practical enhancement}
         In this section, we provide results for the faster convergence rate of examples listed from the previous section. 
+    \section{restarting with gradient and function values}
+        
 
 
+\section{Primal Dual Lagrangian for LP}
+    
 
 
 % ==============================================================================
