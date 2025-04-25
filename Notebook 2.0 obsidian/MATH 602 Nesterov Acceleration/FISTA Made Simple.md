@@ -53,7 +53,17 @@ Proved in [Fundamental Proximal Gradient Inequality](../AMATH%20516%20Numerical%
 >     &= F(x) - F(Ty) - \frac{L}{2}\Vert x - Ty\Vert^2  + \frac{L - \mu}{2}\Vert x - y\Vert^2. 
 > \end{aligned}
 > $$
-> 
+
+#### **Corollary | Function Descent**
+> Assume that $F = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ convex. 
+Then, for $y \in \R^n, \bar y = T_Ly$ it has the following: 
+> $$
+> \begin{aligned}
+>     0 &\le 
+>     F(y) - F(Ty) - \frac{L}{2}\Vert y - Ty\Vert^2. 
+> \end{aligned}
+> $$
+
 
 ---
 ### **Convergence rate accelerated gradient algorithm**
@@ -600,7 +610,7 @@ If, sequence $\alpha_k$ requires $L_k$, then the algorithm generates $(x_k, v_k,
 >         \prod_{i = 0}^{k - 1} (1 - \alpha_{i + 1})
 >         \max\left(1, \rho_i L_{i + 1}L_i^{-1}\right)
 >     \right)
->     \frac{L}{2}\Vert x^+ - x_{-1}\Vert^2. 
+>     \frac{L_0}{2}\Vert x^+ - x_{-1}\Vert^2. 
 > \end{aligned}
 > $$
 
@@ -1011,46 +1021,174 @@ $\blacksquare$
 The proof shares 异曲同工之妙 with Güler's proof on the accelerated proximal point method 1992. 
 It also appeared in Luca Calatronic, Anthonin Chambolle's work on "Backtracking strategies for accelerated descent method with smooth composite objectives". 
 The above results are consistent with the literatures. 
-
-In addition, if we let $L_i = L_0, \alpha_0 = 1$ for all $i$, it simplifies, and it's: $\frac{4}{(k + 1)^2}$. 
-
-
+In addition, if we let $L_i = L_0, \alpha_0 = 1$ for all $i$, it simplifies, and it's: $\beta_k \le \frac{4}{(k + 2)^2}$. 
 
 Nesterov in his book, labeled (2.2.32) proposed the following algorithm as a variant for the accelerated gradient method. 
 It's not exactly the same, but the presentation below would be equivalent. 
 
-
 There is a similar theorem for the convergence of the gradient mapping of Generic Monotone FISTA with Line Search. 
-#### **Theorem | Convergence of gradient mapping**
-> 
-
 
 #### **Example | Nesterov's Monotone Accelerated Gradient**
-> Initialize $y_0 = x_0 = v_0$, $\alpha_0 \in (0, 1]$, and the sequence $(\alpha_k)_{k \ge 0}$ such that $\forall k \ge 1: \alpha_k \in (0, 1)$, The Nesterov's Monotone method generates sequences $(x_k, v_k, y_k)_{k\ge 1}$ such that it satisfies: 
+> Initialize $x_0, v_0$, $\alpha_0 \in (0, 1]$, and the sequence $(\alpha_k)_{k \ge 0}$ such that $\forall k \ge 1: \alpha_k \in (0, 1)$, The Nesterov's Monotone method generates sequences $(x_k, v_k, y_k)_{k\ge 1}$ such that it satisfies: 
 > $$
 > \begin{aligned}
 >     y_k &= \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1},
 >     \\
->     \tilde x_k &= T_L(y_k),
+>     \tilde x_k &= T_{L_k}(y_k), \text{ with line search or backtracking. }
 >     \\
 >     v_k &= x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1}),
 >     \\
 >     \hat y_k &= \argmin{}\left\lbrace
->         f(y): y \in \{x_{k - 1}, \tilde x_k\}
+>         F(y): y \in \{x_{k - 1}, \tilde x_k\}
 >     \right\rbrace,
 >     \\
 >     x_k &= T_L(\hat y_k). 
 > \end{aligned}
 > $$
 
+Obviously, this fits the generic description of the monotone algorithm. 
 This variant of monotone FISTA exhibits fast convergence of the norm of the gradient mapping. 
+Furthermore, observe that for all $k \ge 1$ it has from the proximal gradient inequality that: 
+
+$$
+\begin{aligned}
+    0 &\le F(\hat y_k) - F(T_L \hat y_k) - \frac{L}{2}\Vert \hat y_k - T_L \hat y_k\Vert^2
+    \\
+    &= \min(F(x_{k - 1}), F(\tilde x_k)) - F(x_k) - \frac{L}{2}\Vert \hat y_k - T_L \hat y_k\Vert^2
+    \\
+    &\le F(x_{k - 1}) - F(x_k) - \frac{1}{2L}\Vert \mathcal G_L(\hat y_k) \Vert^2. 
+\end{aligned}
+$$
+
+Consider partial sum $k \le i \le N$ of the above inequality then
+
+$$
+\begin{aligned}
+    0 &\le \left(
+        \sum_{i = k}^{N} F(x_{i - 1}) - F(x_i)
+    \right) 
+    - \frac{1}{2L}\sum_{i = k}^{N} \Vert \mathcal G_L(\hat y_k)\Vert^2
+    \\
+    &= 
+    F(x_{k - 1}) - F(x_N) 
+    - \frac{1}{2L}\sum_{i = k}^{N} \Vert \mathcal G_L(\hat y_k)\Vert^2
+    \\
+    &\le 
+    F(x_{k - 1}) - F(x_N) 
+    - \frac{N - (k - 1)}{2L}\left(
+        \min_{k \le i \le N} \Vert \mathcal G_L(\hat y_i)\Vert^2
+    \right)
+    \\
+    &\le F(x_{k - 1}) - F^+ 
+    - \frac{N - (k - 1)}{2L}\left(
+        \min_{k \le i \le N} \Vert \mathcal G_L(\hat y_i)\Vert^2
+    \right)
+\end{aligned}
+$$
+
+Define for all $k \ge 1$: 
+$$
+\begin{aligned}
+    \beta_k := 
+        \prod_{i = 0}^{k - 1} (1 - \alpha_{i + 1})
+        \max\left(1, \rho_i L_{i + 1}L_i^{-1}\right), \beta_0 = 1. 
+\end{aligned}
+$$
+
+Using previous theorem, if the algorithm is initialized via $x_0 = v_0 = T_{L_0}(x_{-1}), \alpha_0 = 1$ then the convergence rate applies and for the minimizer $x^+$ it has 
+
+$$
+\begin{aligned}
+    0&\le 
+    \frac{\beta_{k - 1}L_0}{2}\Vert x^+ - x_{-1}\Vert^2
+    - \frac{N - (k - 1)}{2L}\left(
+        \min_{k \le i \le N} \Vert \mathcal G_L(\hat y_k)\Vert^2
+    \right)
+    \\
+    &= \frac{\beta_{k - 1}^{}}{2}\left(
+        L_0\Vert x^+ - x_{-1}\Vert^2
+        - \frac{N - (k - 1)}{\beta_{k - 1}L} \min_{k \le i \le N} \Vert \mathcal G_L(\hat y_i)\Vert^2
+    \right)
+    \\
+    \iff 
+    0 &\le 
+    \frac{LL_0\beta_{k - 1}\Vert x^+ - x_{-1}\Vert^2}{N - (k - 1)}
+    - \min_{k \le i \le N} \Vert \mathcal G_L(\hat y_i)\Vert^2
+    \\
+    &\le 
+    \frac{LL_0\beta_{k - 1}\Vert x^+ - x_{-1}\Vert^2}{N - (k - 1)} 
+    - \min_{1 \le i \le N} \Vert \mathcal G_L(\hat y_i)\Vert^2
+    \\
+    \iff  0 & \le 
+    \left(
+        \frac{LL_0\beta_{k - 1}}{N - (k - 1)}
+    \right)^{1/2}\Vert x^+ - x_{-1}\Vert
+    - \min_{1 \le i \le N} \Vert \mathcal G_L(\hat y_i)\Vert
+\end{aligned}
+$$
+
+Assuming that the sequence is given by $(1 - \alpha_k)\alpha_{k - 1}L_{k - 1} = \alpha_k^2 L_k$, then previous theorem has 
+
+$$
+\begin{aligned}
+    \beta_k &\le 
+    \left(
+        1 + \frac{\sqrt{L_0}}{2}\sum_{i = 1}^{k} \sqrt{L_i^{-1}}
+    \right)^{-2} \le 
+    \left(
+        1 + \frac{k\sqrt{L_0}}{2} \min_{1\le i \le k} \sqrt{L_i^{-1}}
+    \right)^{-2}. 
+\end{aligned}
+$$
 
 
+Looks complicated, we may want to disable line search to discuss the convergence rate here. 
+Then, things simplified, $\beta_k \le 4/(k + 2)^2$ then it has 
 
+$$
+\begin{aligned}
+    \frac{LL_0\beta_{k - 1}}{N - (k - 1)} &= 
+    \left(
+        \frac{L}{N - k + 1}
+    \right)\left(
+        \frac{4}{(k + 1)^2}
+    \right)
+    = \frac{4L}{(N - k + 1)(k + 1)^2}. 
+\end{aligned}
+$$
 
+It's showned from Nesterov that 
 
+$$
+\begin{aligned}
+    \max_{k = 1, \ldots, N} (N - k + 1)(k + 1) &\ge 
+    (N + 2)(4/27(N + 2)^2 - 1/4) - 1/8
+    \\
+    \implies 
+    \min_{k = 1, \ldots, N} \frac{4L}{(N - k + 1)(k + 1)^2}
+    &\le 
+    \frac{4L}{(N + 2)(4/27(N + 2)^2 - 1/4) - 1/8}
+    \\
+    &= 
+    \frac{4L}{(N + 2)(1/108)(4N - 3\sqrt{3} + 8)(4N + 3\sqrt{3} + 8) - 1/8}
+    \\
+    &\le \frac{432L}{(N + 2)(4N - 3\sqrt{3} + 8)^2 - 1/8}
+    \\
+    &\le \frac{432L}{N(4N - 2)^2 - 1/8}\le \frac{432L}{N(2N)^2 - 1/8}
+    \\
+    &= \frac{432L}{4N^3 - 1/8}
+\end{aligned}
+$$
 
+Which means 
 
+$$
+\begin{aligned}
+    \min_{1 \le i \le N} \Vert \mathcal G_L(\hat y_i)\Vert
+    &\le 
+    \sqrt{\frac{432L}{4N^3 - 1/8}} \Vert x^+ - x_{-1}\Vert. 
+\end{aligned}
+$$
 
 
 ---

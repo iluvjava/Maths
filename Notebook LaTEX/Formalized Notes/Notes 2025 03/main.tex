@@ -57,9 +57,9 @@
             \right\rbrace. 
         \end{align*}
     \end{definition}
-    % =================================================
+    % ==========================================================================
     % WEAKLY CONVEX GENERIC PROXIMAL GRADIENT INEQUALITY
-    % ==================================================
+    % ==========================================================================
     \begin{theorem}[weakly convex generic proximal gradient inequality]\label{thm:pg-ineq-wcnvx-generic}\;\\
         Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth} with $\beta > 0$ and $q \in \RR$. 
         Then for all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{\beta^{-1}, f, g}(x)$, it has: 
@@ -487,53 +487,30 @@
             \end{align}
             \par
             The following theorems are about the relation between PEB and QFG.
-            % ==========================================================================================================
-            % THEOREM | EQUIVALENCE BETWEEN QFG AND PEB 
-            % ==========================================================================================================
-            \begin{theorem}[equivalence between QFG and PEB]\label{thm:qfg-peb-equiv}
-                If $f$ is convex and satisfies Assumption \ref{ass:necoara-2019-settings}. 
-                Then we have: 
+            % ==================================================================
+            % LEMMA | QFG AND GRADIENT MAPPING
+            % ==================================================================
+            \begin{lemma}[gradient mapping and quadratic function growth]\;\label{lemma:grad-map-qfg}\\
+                Let $f$ satisfies Assumtion \ref{ass:necoara-2019-settings}. 
+                Suppose that $f \in \mathbb F(L_f, \mu_f, X)$ so it satisfies the quadratic function growth condition. 
+                For all $x \in \RR^n$, define $x^+ = \Pi_X(x - L^{-1}_f\nabla f(x))$, 
+                definte projections onto the set of minimizers $x^+_\Pi = \Pi_{X^+} x^+, X_\Pi = \Pi_{X^+}x$, then
                 \begin{align*}
-                    \mathbb E(L_f, \kappa_f, X) &\subseteq \mathbb F(L_f, \kappa^2_f/L_f, X), 
-                    \\
-                    \mathbb F(L_f, \kappa_f) 
-                    &\subseteq 
-                    \mathbb E\left(
-                        L_f,
-                        \frac{\kappa_f}{\kappa_f/L_f + 1 + \sqrt{\kappa_k/L_f + 1}}, 
-                        X
-                    \right). 
+                    \left(
+                        \sqrt{L_f(\kappa_f + L_f)} - L_f
+                    \right)\Vert x^+ - x_\Pi^+\Vert
+                    &\le \Vert L_f(x - x^+)\Vert. 
                 \end{align*}
-            \end{theorem}
+            \end{lemma}
             \begin{proof}
-                
-                For any $x \in X$, define the gradient projection steps by $x^+ = \Pi_{X}(x - L^{-1}_f\nabla f(x))$. 
-                Denote $x^+_\Pi = \Pi_{X^+}x^+$. 
-                Let $x_\Pi = \Pi_{X^+}x$, using the property of projection onto $X$ we have 
-                \begin{align}\label{ineq:thm:qfg-peb-equiv-proof-item1}
-                    \Vert x - x_\Pi\Vert &\le \Vert x - x_\Pi^+\Vert
-                    \le \Vert x - x^+\Vert + \Vert x^+ - x^+_\Pi\Vert
-                    \notag\\
-                    &= \frac{1}{L_f}\Vert L_f(x - x^+)\Vert + \Vert x^+ - x^+_\Pi\Vert
-                    \notag\\
-                    \iff 
-                    \Vert x^+ - x^+_\Pi\Vert &\ge
-                    \Vert x - x_\Pi\Vert - \frac{1}{L_f}\Vert L_f(x - x^+)\Vert. 
-                \end{align}
-                Before we start, we list intermediate results and conditions which are going to be used in the proof that follows for the ease of referencing. 
-                \begin{enumerate}
-                    \item The inequality \eqref{ineq:thm:qfg-peb-equiv-proof-item1}. It uses the property of projection onto a set hence convexity of $X^+$ is not needed. 
-                    \item The quadratic growth condition with $\mathbb F(L_f, \kappa_f)$. No convexity is needed. 
-                \end{enumerate}
-                \textbf{Firstly, we show that QFG implies PEB.}
-                Consider \eqref{ineq:proj-grad} with $z = x^+_\Pi$ it yields: 
+                Using convexity, consider \eqref{ineq:proj-grad} with $z = x^+_\Pi$ it yields: 
                 {\small
                 \begin{align*}
                     0 &\ge 
                     f(x^+) - f(x^+_\Pi) - L_f\langle x_\Pi^+ - x^+, x^+ - x\rangle
                     - \frac{1}{L_f}\Vert L_f(x - x^+)\Vert^2
                     \\
-                    \quad&\underset{\text{(ii)}}{\ge }
+                    &\ge
                     \frac{\kappa_f}{2}\Vert x^+ - x_\Pi^+\Vert^2
                     - \Vert L_f(x - x^+)\Vert\Vert x^+_\Pi - x^+\Vert
                     - \frac{1}{2L_f}\Vert L_f(x - x^+)\Vert^2 
@@ -558,6 +535,50 @@
                     - \sqrt{L_f(\kappa_f + L_f)}\Vert x^+ - x^+_\Pi\Vert
                     \\
                     &=
+                    \Vert L_f(x - x^+)\Vert
+                    - \left(\sqrt{L_f(\kappa_f + L_f)} - L_f\right)\Vert x^+ - x^+_\Pi\Vert.
+                \end{align*}
+            \end{proof}
+            % ==================================================================
+            % THEOREM | EQUIVALENCE BETWEEN QFG AND PEB 
+            % ==================================================================
+            \begin{theorem}[equivalence between QFG and PEB]\label{thm:qfg-peb-equiv}
+                If $f$ is convex and satisfies Assumption \ref{ass:necoara-2019-settings}. 
+                Then we have: 
+                \begin{align*}
+                    \mathbb E(L_f, \kappa_f, X) &\subseteq \mathbb F(L_f, \kappa^2_f/L_f, X), 
+                    \\
+                    \mathbb F(L_f, \kappa_f) 
+                    &\subseteq 
+                    \mathbb E\left(
+                        L_f,
+                        \frac{\kappa_f}{\kappa_f/L_f + 1 + \sqrt{\kappa_k/L_f + 1}}, 
+                        X
+                    \right). 
+                \end{align*}
+            \end{theorem}
+            \begin{proof}
+                For any $x \in X$, define the gradient projection steps by $x^+ = \Pi_{X}(x - L^{-1}_f\nabla f(x))$. 
+                Denote $x^+_\Pi = \Pi_{X^+}x^+$. 
+                Let $x_\Pi = \Pi_{X^+}x$, using the property of projection onto $X$ we have 
+                \begin{align}\label{ineq:thm:qfg-peb-equiv-proof-item1}
+                    \Vert x - x_\Pi\Vert &\le \Vert x - x_\Pi^+\Vert
+                    \le \Vert x - x^+\Vert + \Vert x^+ - x^+_\Pi\Vert
+                    \notag\\
+                    &= \frac{1}{L_f}\Vert L_f(x - x^+)\Vert + \Vert x^+ - x^+_\Pi\Vert
+                    \notag\\
+                    \iff 
+                    \Vert x^+ - x^+_\Pi\Vert &\ge
+                    \Vert x - x_\Pi\Vert - \frac{1}{L_f}\Vert L_f(x - x^+)\Vert. 
+                \end{align}
+                Before we start, we list intermediate results and conditions which are going to be used in the proof that follows for the ease of referencing. 
+                \begin{enumerate}
+                    \item The inequality \eqref{ineq:thm:qfg-peb-equiv-proof-item1}. It uses the property of projection onto a set hence convexity of $X^+$ is not needed. 
+                \end{enumerate}
+                Starting with Lemma \ref{lemma:grad-map-qfg} because $f$ satisfies quadratic growth and it is assumed convex, then it has: 
+                {\small
+                \begin{align*}
+                    0 &\le 
                     \Vert L_f(x - x^+)\Vert
                     - \left(\sqrt{L_f(\kappa_f + L_f)} - L_f\right)\Vert x^+ - x^+_\Pi\Vert
                     \\
@@ -591,7 +612,8 @@
                     \le
                     \Vert \mathcal G_{L_f}x\Vert. 
                 \end{align*}
-                Skipping algebra, the fraction simplifies to 
+                }
+                Skipping some algebra, the fraction simplifies to 
                 \begin{align*}
                     \frac{\kappa_f}{\kappa_f/L_f + 1 + \sqrt{\kappa_k/L_f + 1}}. 
                 \end{align*}
