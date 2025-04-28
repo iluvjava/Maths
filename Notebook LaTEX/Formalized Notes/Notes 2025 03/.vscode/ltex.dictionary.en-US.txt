@@ -5,3 +5,5 @@ Nesterov
 FISTA
 Nonsmooth
 subgradient
+Armijo
+MFISTA

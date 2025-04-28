@@ -356,7 +356,6 @@ $$
 \end{aligned}
 $$
 
-
 #### **Theorem | Convergence of the gradient mapping (RESULTS SEEM INCORRECT)**
 > Suppose that $F = f + g$ satisfies Assumption Set 1. 
 > $L$ is Lipschitz smooth constant for $f$. 
@@ -386,33 +385,45 @@ $$
 \begin{aligned}
     \Vert \mathcal G_L y_k\Vert
     &= 
-    L\alpha_k\Vert v_{k + 1} - v_k\Vert
+    L\alpha_k\Vert v_{k} - v_{k - 1}\Vert
     \\
     &\le 
     L\alpha_k \left(
-        \Vert v_{k + 1} - x^+\Vert + \Vert v_k - x^+\Vert
+        \Vert v_{k} - x^+\Vert + \Vert v_{k - 1} - x^+\Vert
     \right)
     \\
     &= L\alpha_k\left(
-        \frac{\sqrt{\beta_{k + 1}}}{\alpha_{k + 1}} + 
-        \frac{\sqrt{\beta_k}}{\alpha_k}
+        \frac{\sqrt{\beta_{k}}}{\alpha_{k}} + 
+        \frac{\sqrt{\beta_{k - 1}}}{\alpha_{k - 1}}
     \right)\Vert x^+ - x_{-1}\Vert
     \\
     &= 
-    L \left(
-        \frac{\alpha_k\sqrt{\beta_{k + 1}}}{\alpha_{k + 1}} + \sqrt{\beta_k}
+    L\left(
+        \sqrt{\beta_{k}} + 
+        \frac{\alpha_k\sqrt{\beta_{k - 1}}}{\alpha_{k - 1}}
     \right)\Vert x^+ - x_{-1}\Vert
     \\
     &= 
-    L \left(
-        \sqrt{\frac{\beta_{k + 1}}{1 - \alpha_{k + 1}}} + \sqrt{\beta_k}
+    L\left(
+        \sqrt{\beta_{k}} + 
+        \sqrt{\beta_{k - 1}(1 - \alpha_k)}
     \right)\Vert x^+ - x_{-1}\Vert
-    \\
-    &= L\left(
-        \max(1 , \sqrt{ \rho_k})\sqrt{\beta_k} + \sqrt{\beta_k}
-    \right)\Vert x^+ - x_{-1}\Vert
-    \\
-    &= L \sqrt{\beta_k}\max(1, \sqrt{\rho_k})\Vert x^+ - x_{-1}\Vert. 
+    % \\
+    % &= 
+    % L \left(
+    %     \frac{\alpha_k\sqrt{\beta_{k + 1}}}{\alpha_{k + 1}} + \sqrt{\beta_k}
+    % \right)\Vert x^+ - x_{-1}\Vert
+    % \\
+    % &= 
+    % L \left(
+    %     \sqrt{\frac{\beta_{k + 1}}{1 - \alpha_{k + 1}}} + \sqrt{\beta_k}
+    % \right)\Vert x^+ - x_{-1}\Vert
+    % \\
+    % &= L\left(
+    %     \max(1 , \sqrt{ \rho_k})\sqrt{\beta_k} + \sqrt{\beta_k}
+    % \right)\Vert x^+ - x_{-1}\Vert
+    % \\
+    % &= L \sqrt{\beta_k}\max(1, \sqrt{\rho_k})\Vert x^+ - x_{-1}\Vert. 
 \end{aligned}
 $$
 

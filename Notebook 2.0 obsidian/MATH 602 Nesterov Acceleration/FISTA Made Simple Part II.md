@@ -62,10 +62,10 @@ Otherwise, $x_k = \tilde x_k$ and it yields:
 $$
 \begin{aligned}
     y_{k + 1} &= 
-    \alpha_{k + 1}v_k + (1 - \alpha_{k + 1})\tilde x_k
+    \alpha_{k + 1}(v_k) + (1 - \alpha_{k + 1})\tilde x_k
     \\
     &= 
-    \alpha_{k + 1}(x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1})) + (1 - \alpha_{k + 1})x_k
+    \alpha_{k + 1}(x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1})) + (1 - \alpha_{k + 1})\tilde x_k
     \\
     &= 
     \alpha_{k + 1}\left(
@@ -207,15 +207,15 @@ $$
     + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_{k - 1}\Vert^2
     \\
     &= 
-    (1 - \alpha_k)(F(x_{k - 1}) - F(x^+)) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
+    (1 - \alpha_k)(F(x_{k - 1}) - F(x^+)) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_{k - 1}\Vert^2
     - \left(
-        F(\tilde x_k) - F(x^+) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
+        F(\tilde x_k) - F(x^+) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_{k}\Vert^2
     \right)
     \\
     &\le 
-    (1 - \alpha_k)(F(x_{k - 1}) - F(x^+)) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
+    (1 - \alpha_k)(F(x_{k - 1}) - F(x^+)) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_{k - 1}\Vert^2
     - \left(
-        F(x_k) - F(x^+) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
+        F(x_k) - F(x^+) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_{k}\Vert^2
     \right)
     \\
     &= 
@@ -234,7 +234,7 @@ $$
         1 - \alpha_k
     \right)\left(
         F(x_{k - 1}) - F(x^+) + \frac{L_{k - 1}\alpha_{k - 1}^2(\rho_{k - 1}L_kL_{k - 1}^{-1})}{2}
-        \Vert x^+ - v_k\Vert^2
+        \Vert x^+ - v_{k - 1}\Vert^2
     \right) \\
         & \quad 
         - \left(
@@ -246,7 +246,7 @@ $$
         1 - \alpha_k
     \right)\left(
         F(x_{k - 1}) - F(x^+) + \frac{L_{k - 1}\alpha_{k - 1}^2\max(1, \rho_{k - 1}L_kL_{k - 1}^{-1})}{2}
-        \Vert x^+ - v_k\Vert^2
+        \Vert x^+ - v_{k - 1}\Vert^2
     \right) \\
         & \quad 
         - \left(
@@ -259,7 +259,7 @@ $$
     \right)\max(1, \rho_{k - 1}L_kL_{k - 1}^{-1})
     \left(
         F(x_{k - 1}) - F(x^+) + \frac{L_{k - 1}\alpha_{k - 1}^2}{2}
-        \Vert x^+ - v_k\Vert^2
+        \Vert x^+ - v_{k - 1}\Vert^2
     \right) \\
         & \quad 
         - \left(
@@ -376,7 +376,7 @@ $$
     \begin{aligned}
         & \alpha_k := \frac{1}{2}
         \left(
-            \alpha_{k - 1}\sqrt{\alpha_{k -1}^2 + 4 L_kL_{k - 1}^{-1}} - \alpha^2_{k - 1}
+            \alpha_{k - 1}\sqrt{\alpha_{k -1}^2 + 4 L_{k - 1}L_{k}^{-1}} - \alpha^2_{k - 1}
         \right),
         \\
         & y_k := \alpha_k v_{k - 1} + (1 - \alpha_k) x_{k - 1},
