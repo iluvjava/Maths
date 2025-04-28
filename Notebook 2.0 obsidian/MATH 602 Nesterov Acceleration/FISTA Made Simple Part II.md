@@ -93,32 +93,30 @@ If, sequence $\alpha_k$ requires $L_k$, then the algorithm generates $(x_k, v_k,
 > Let $F = f + g$ satisfy Assumptions set 1. 
 > Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $\alpha_k \in (0, 1)$ for all $k \ge 1$ and $\alpha_0 \in (0, 1]$. 
 > Let $\rho_k = (1 - \alpha_{k + 1})^{-1}\alpha_{k + 1}^2 \alpha_k^{-2} > 0$. 
+> Define the sequence $(\beta_k)_{k \ge 0}$, let $\beta_0 = 1$ and for all $k \ge 1$: 
+> $$
+> \begin{aligned}
+>     \beta_k &:= \prod_{i = 0}^{k - 1}(1 - \alpha_{i + 1})
+>     \max\left(1, \rho_i L_{i + 1}L_i^{-1}\right). 
+> \end{aligned}
+> $$
 > Then, the convergence rate of Generic Monotone Accelerated Gradient with Generic Non-Monotone Line Search algorithm has for all $x^+ \in \R^n, k \ge 1$: 
 > $$
-> {\scriptsize
 > \begin{aligned}
 >     F(x_k) - F(x^+) + \frac{L_k\alpha_k}{2}\Vert x^+ - v_k\Vert^2
 >     & \le 
->     \left(
->         \prod_{i = 0}^{k - 1} (1 - \alpha_{i + 1})
->         \max\left(1, \rho_i L_{i + 1}L_i^{-1}\right)
->     \right)
+>     \beta_k
 >     \left(
 >         F(x_0) - F(x^+) + \frac{L_0\alpha_0}{2} \Vert x^+ - v_k\Vert^2
 >     \right). 
 > \end{aligned}
-> }
 > $$
 > If in addition, the algorithm is initialized with $\alpha_0 = 1, x_0 = v_0 = T_{L_{0}}x_{-1} \in \text{dom}\; F$ and $x^+$ is a minimizer of $F$, then the convergence rate simplifies: 
 > $$
 > \begin{aligned}
 >     F(x_k) - F(x^+) + \frac{L_k\alpha_k}{2}\Vert x^+ - v_k\Vert^2
 >     & \le 
->     \left(
->         \prod_{i = 0}^{k - 1} (1 - \alpha_{i + 1})
->         \max\left(1, \rho_i L_{i + 1}L_i^{-1}\right)
->     \right)
->     \frac{L_0}{2}\Vert x^+ - x_{-1}\Vert^2. 
+>     \frac{\beta_kL_0}{2}\Vert x^+ - x_{-1}\Vert^2. 
 > \end{aligned}
 > $$
 
@@ -701,6 +699,98 @@ $$
 **Remarks**
 
 Unfortunately this result can't speed up the convergence of the function value to $o(k^{-3})$. 
+If the function is convex and simply bounded below and has Lipschitz gradient (A subset of weakly convex function), there would be a convergence on the squared norm of the gradient mapping. 
+
+
+
+---
+### **Bounds on the gradient mapping of the last iterate**
+
+Without the monotone assumption, the FISTA with backtracking has convergence on the gradient mapping. 
+
+Recall that $\beta_0 = 1$, and for all $k\ge 1$: 
+
+$$
+\begin{aligned}
+    \beta_k := \prod_{i = 0}^{k - 1}(1 - \alpha_{i + 1})
+    \max\left(1, \rho_i L_{i + 1}L_i^{-1}\right). 
+\end{aligned}
+$$
+
+The proof comes from the following intermediate results. 
+**Intermediate Results (1)**: 
+The gradient mapping admits, for all $k \ge 1$: 
+
+$$
+\begin{aligned}
+    \Vert \mathcal G_{L_k} y_k\Vert &=
+    L_k\alpha_k\Vert v_{k} - v_{k - 1}\Vert. 
+\end{aligned}
+$$
+
+**Intermediate Results (2):**
+Recall that $(1 - \alpha_k)\rho_{k - 1} = \alpha_k^2/\alpha_{k - 1}$ for all $k \ge 1$. 
+If we assume that $\alpha_0 = 1$, then for all $k \ge 0$: 
+$$
+\begin{aligned}
+    \Vert x^+ - x_{-1}\Vert - \frac{\alpha_k}{\sqrt{\beta_k}}\Vert x^+ - v_k\Vert. 
+\end{aligned}
+$$
+
+**Proving Intermediate Results (1)**. 
+$$
+\begin{aligned}
+    y_k &= \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1}
+    \iff 
+    v_{k - 1} = \alpha_k^{-1}(y_k - (1 - \alpha_k)x_{k - 1}). 
+\end{aligned}
+$$
+
+Hence, it has for all $k \ge 0$
+
+$$
+\begin{aligned}
+    v_k - v_{k - 1} &= 
+    (x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1})) - \alpha_k^{-1}(y_k - (1 - \alpha_k)x_{k - 1})
+    \\
+    &= 
+    x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1})
+    - \alpha_k^{-1}y_k + (\alpha_k^{-1} - 1)x_{k - 1}
+    \\
+    &= \alpha_k^{-1}(\tilde x_k - x_{k - 1}) - \alpha_k^{-1}y_k + \alpha_k^{-1} x_{k - 1}
+    \\
+    &= \alpha_k^{-1}\tilde x_k - \alpha_k^{-1} y_k 
+    = \alpha^{-1}_k(\tilde x_k - y_k) = \alpha_k^{-1}(T_{L_k} y_k - y_k)
+    \\
+    &= -\alpha_k^{-1}L^{-1} \mathcal G_L(y_k). 
+\end{aligned}
+$$
+
+**Proving Intermediate Results (2)**. The base case is verified by the assumption that $x_0 = v_0 = T_{L_0} x_{-1}$. 
+Apply the proximal gradient inequality and using the fact that $x\^+$ is a minimizer we can get
+
+$$
+\begin{aligned}
+    0 &\le 
+    F(x^+) - F(T_{L_{-1}}x_{-1}) - \frac{L_0}{2}\Vert x^+ - T_{L_0}x_{-1}\Vert^2 + 
+    \frac{L_0}{2}\Vert x^+ - x_{-1}\Vert^2
+    \\
+    &= 
+    F(x^+) - F(x_0) - \frac{L_0}{2}\Vert x^+ - v_0\Vert^2 + 
+    \frac{L_0}{2}\Vert x^+ - x_{-1}\Vert^2
+    \\
+    &\le 
+    - \frac{L_0}{2}\Vert x^+ - v_0\Vert^2 + 
+    \frac{L_0}{2}\Vert x^+ - x_{-1}\Vert^2
+    \\
+    &= \frac{L_0}{2}\left(
+        \Vert x^+ - x_{-1}\Vert- \Vert x^+ - v_0\Vert 
+    \right). 
+\end{aligned}
+$$
+
+Because $\beta_0 = \alpha_0 = 1$, the base case holds. 
+
 
 
 ---

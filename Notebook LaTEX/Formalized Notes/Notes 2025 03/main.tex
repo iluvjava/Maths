@@ -1108,13 +1108,13 @@
                 + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_{k - 1}\Vert^2
                 \\
                 &= 
-                (1 - \alpha_k)(F(x_{k - 1}) - F(x^+)) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
+                (1 - \alpha_k)(F(x_{k - 1}) - F(x^+)) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_{k - 1}\Vert^2
                 - \left(
                     F(\tilde x_k) - F(x^+) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
                 \right)
                 \\
                 &\underset{\text{(iv)}}{\le} 
-                (1 - \alpha_k)(F(x_{k - 1}) - F(x^+)) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
+                (1 - \alpha_k)(F(x_{k - 1}) - F(x^+)) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_{k - 1}\Vert^2
                 - \left(
                     F(x_k) - F(x^+) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
                 \right)
@@ -1124,7 +1124,7 @@
                 \left(
                     \frac{\alpha_k^2}{\alpha_{k - 1}^2\rho_{k - 1}}
                 \right)
-                \frac{L_{k - 1}\alpha_{k - 1}^2(\rho_{k - 1}L_kL_{k - 1}^{-1})}{2}\Vert x^+ - v_k\Vert^2 \\
+                \frac{L_{k - 1}\alpha_{k - 1}^2(\rho_{k - 1}L_kL_{k - 1}^{-1})}{2}\Vert x^+ - v_{k-1}\Vert^2 \\
                     &\quad 
                     - \left(
                         F(x_k) - F(x^+) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
@@ -1135,7 +1135,7 @@
                     1 - \alpha_k
                 \right)\left(
                     F(x_{k - 1}) - F(x^+) + \frac{L_{k - 1}\alpha_{k - 1}^2(\rho_{k - 1}L_kL_{k - 1}^{-1})}{2}
-                    \Vert x^+ - v_k\Vert^2
+                    \Vert x^+ - v_{k - 1}\Vert^2
                 \right) \\
                     & \quad 
                     - \left(
@@ -1147,7 +1147,7 @@
                     1 - \alpha_k
                 \right)\left(
                     F(x_{k - 1}) - F(x^+) + \frac{L_{k - 1}\alpha_{k - 1}^2\max(1, \rho_{k - 1}L_kL_{k - 1}^{-1})}{2}
-                    \Vert x^+ - v_k\Vert^2
+                    \Vert x^+ - v_{k - 1}\Vert^2
                 \right) \\
                     & \quad 
                     - \left(
@@ -1160,7 +1160,7 @@
                 \right)\max(1, \rho_{k - 1}L_kL_{k - 1}^{-1})
                 \left(
                     F(x_{k - 1}) - F(x^+) + \frac{L_{k - 1}\alpha_{k - 1}^2}{2}
-                    \Vert x^+ - v_k\Vert^2
+                    \Vert x^+ - v_{k - 1}\Vert^2
                 \right) \\
                     & \quad 
                     - \left(
