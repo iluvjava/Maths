@@ -1,43 +1,61 @@
 \documentclass[11pt]{beamer}
 \usetheme{Madrid}
 \usepackage[utf8]{inputenc}
-
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\DeclareMathOperator{\argmin}{argmin}
+% \DeclareMathOperator{\argmin}{argmin}
 \usepackage{algorithmic}
 \usepackage{algorithm}
 \usepackage{wrapfig}
 \usepackage{subcaption}
+\usepackage{tcolorbox}
+
+
+% THEMES AND BEAMER SETTINGS ===================================================
+% \usetheme{Madrid}
 \graphicspath{{.}}
+\input{presets/wang/custom_commands.tex} % IMPORT WANG'S LATEX CUSTOM COMMANDS. 
+\setbeamertemplate{theorems}[numbered] % ADD NUMBERING TO ALL AMS THEOREMS. 
+\setbeamertemplate{footline}[frame number] % ADD PAGE NUMBERS ON BOTTOM. 
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{navigation symbols}{} 
+% \setbeamercolor{block title}{bg=cyan,fg=black}  % CHANGE THE BLOCK STYLE IN BEAMER. 
+% \setbeamercolor{block body}{bg=lime,fg=black} % CHANGE THE BLOCK STYLE IN BEAMER. 
 
-\author{Generic Name}
-\title{Title for Super Fancy Stuff}
-% Informe o seu email de contato no comando a seguir
-% Por exemplo, alcebiades.col@ufes.br
-\newcommand{\email}{lalala@lala.la}
-\setbeamercovered{transparent}
-\setbeamertemplate{navigation symbols}{}
-%\logo{}
-\institute[]{Some Super Fancy Institution}
+% BIB STYLES SETTINGS ----------------------------------------------------------
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\setbeamerfont{bibliography item}{size=\footnotesize}
+\setbeamerfont{bibliography entry author}{size=\footnotesize}
+\setbeamerfont{bibliography entry title}{size=\footnotesize}
+\setbeamerfont{bibliography entry location}{size=\footnotesize}
+\setbeamerfont{bibliography entry note}{size=\footnotesize}
+% \setbeamercovered{transparent}  % GREY OUT PAUSED FUTURE ITEMS IN SLID. 
+\bibliographystyle{siam}
+
+
+
+% SLIDE INFORMATION ============================================================
+\author{Hongda Li}
+\title[Thesis Proposal Talk]{
+    Nesterov's First Order Method Accelerations: Unifications, Applications and Numerical Experiments
+}
+% \newcommand{\email}{lalala@lala.la}
+\institute[UBCO]{
+    University of British Columbia Okanagan
+}
 \date{\today}
-\subject{Subject Title }
+\subject{Nesterov's acceleration and its applications}
 
-% ---------------------------------------------------------
-% Selecione um estilo de referência
-\bibliographystyle{IEEEtran}
+% SLIDES ELEMENTS CUSTOMIZATIONS ===============================================
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{assumption}{Assumption}[section]
+\newtheorem{proposition}{Proposition}[section]
 
-%\bibliographystyle{abbrv}
-%\setbeamertemplate{bibliography item}{\insertbiblabel}
-% ---------------------------------------------------------
-
-% ---------------------------------------------------------
-\newtheorem{remark}{Remark}
-\newtheorem{assumption}{Assumption}
-
+% DOCUMENT STARTS ==============================================================
 \begin{document}
 
 \begin{frame}
@@ -48,21 +66,178 @@
     \tableofcontents
 \end{frame}
 
-\section{This is the First Section}
-    \subsection{Taxonomy of Proximal type of Methods}
-        \begin{frame}{Relaxed Weak Accelerated Proximal Gradient Method: a Unified Framework for Nesterov's Accelerations}
+\section{Introduction and background}
+    \subsection{Motivations}
+        \begin{frame}{Nesterov's accelerated gradient in 1983}
+            There are many variants of Nesterov's acceleration. 
+            \begin{block}{Nesterov's accelerated gradient in 1983}
+                Initialized $x_0 = y_0 \in \RR^n$. 
+                The original formulation by Nesterov in 1983 \cite{nesterov_method_1983} has
+                \begin{align*}
+                    & x_{k + 1} := y_k - L^{-1}\nabla F(y_k),
+                    \\
+                    & t_{k + 1} := 1/2\left(1 + \sqrt{1 + 4t_{k}^2}\right),
+                    \\
+                    & \theta_{k + 1} := (t_{k} - 1)/t_{k + 1}, \label{eqn:example-algorithm}
+                    \\
+                    & y_{k + 1} := x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k).
+                \end{align*}    
+            \end{block}
+            If $F$ is convex and has $L$ Lipschitz smooth gradient and minimizer $x^+$ exists. 
+            Then it has
+            \begin{itemize}
+                \item a convergence rate of $\mathcal O(1/k^2)$ of $(F(x_k) - F(x^+))_{k \ge 1}$;
+                \item this convergence rate is optimal in the sense as proposed by Nesterov \cite{nesterov_lectures_2018}.
+            \end{itemize}
+        \end{frame}
+        \begin{frame}{Chambolle, Dossal}
+            Generalized by Beck \cite{beck_fast_2009-1} in 2009 is the FISTA algorithm for additive smooth and non-smooth objective. 
+            It's available in their proof that the sequence $(t_k)_{k}$ can be relaxed: 
+            \begin{tcolorbox}\noindent\vspace{-1em}
+                \begin{align*}
+                    (\forall k \ge 1)\quad t_k (t_k - 1) &\le t_{k - 1}^2. 
+                \end{align*}    
+            \end{tcolorbox}
+            \begin{enumerate}
+                \item When it's equal, as in the case of Nesterov's 1983, the convergence rate is the best. 
+                \item It's showed by Chambolle and Dossal in 2015 \cite{chambolle_convergence_2015} that the choice $(k + a -1)/a$ has weak convergence of iterates $(x_k)_{k \ge 0}$ for all $a > 2$, under the same assumption as before. 
+            \end{enumerate}
+        \end{frame}
+        \begin{frame}{V-FISTA and strongly convex variants}
+            Fixing the momentum sequence gives an optimal convergence rate of the algorithm for the class of $F:\RR^n \rightarrow \RR$ that has 
+            \begin{enumerate}
+                \item $L$ smooth gradient, 
+                \item and $\mu \ge 0$ strongly convexity. 
+            \end{enumerate}
+            Available in Nesterov's book \cite{nesterov_lectures_2018} and Beck's book \cite{beck_first-order_2017} showed that if the sequence $(\theta_k)_{k\ge 0}$ has: 
+            \begin{tcolorbox}
+                \begin{align*}
+                   \theta_k = \frac{\sqrt{L/\mu} - 1}{\sqrt{L/\mu} + 1}. 
+                \end{align*}
+            \end{tcolorbox}
+            Disregarding the definition of $(t_k)_{k \ge 0}$ for now. 
+            Then the algorithm has
+            \begin{enumerate}
+                \item A linear convergence rate of $\mathcal O((1 - \sqrt{\mu/L})^k)$ for $(F(x_k) - F(x^+))_{k \ge 1}$. 
+            \end{enumerate}
+        \end{frame}
+    \subsection{Our discoveries and inspirations}
+        \begin{frame}{The assumptions we make throughout}
+            Let the ambient space be $\RR^n$ equiped with Euclidean inner product and norm. 
+            \begin{assumption}[Convex smooth plus nonsmooth]
+                Define $F := f + g$.
+                \begin{enumerate}
+                    \item $f: \RR^n \rightarrow \RR$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex.
+                    \item $g: \RR^n \rightarrow \overline \RR$ is proper, closed and convex. The extended real is defined as $\overline \RR := \RR \cup \{\infty\}$.
+                    \item A minimizer exists for the optimization problem: $F^+ = \min_x \left\lbrace f(x) + g(x)\right\rbrace$.
+                \end{enumerate}
+            \end{assumption}
+        \end{frame}
+        \begin{frame}{Our theoretical contributions, statement of results}
+            Here are the promises: 
+            \begin{enumerate}
+                \item We relaxed the traditional choices of the sequence $(\theta_k)_{k \ge 1}$ in the weakest possible way to show that an upper bound for the sequence $(F(x_k) - F^+)_{k \ge 1}$ exists. 
+                \item We proposed an unified framework which we call ``Relaxed Weak Accelerated Proximal Gradient (R-WAPG)" that unifies the convergence theories for functions that are strongly convex or not necessarily strongly convex. 
+                \item We demonsrate that the R-WAPG framework can be represented is equivalent to various representations of the Nesterov's type accelerated proximal gradient methods with Euclidean geometry in the literature. 
+            \end{enumerate}
+             
+        \end{frame}
+        \begin{frame}{Summarized results of our theoretical contributions}
+            Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be two sequences. 
+            Suppose that $\alpha_0 \in (0, 1]$ and for all $k \ge 1$, $\alpha_k \in (\mu/L, 1)$ and define $(\rho_k)_{k\ge0 }$ by: 
+            \begin{tcolorbox}\noindent\vspace{-1em}
+                \begin{align*}
+                    \rho_k &:= \frac{\alpha_{k + 1}^2 - (\mu/L)\alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2} \quad \forall (k \ge 0).
+                \end{align*}
+            \end{tcolorbox}
+            We can show Nesterov's type accelerated proximal gradient algorithm (similar to what's show in prior but with $g \equiv 0$) which generates $(F(x_k) - F^+)_{k\ge 1}$ has an upper bound of: 
+            \begin{tcolorbox}\noindent\vspace{-1em} 
+                \begin{align*}
+                    \mathcal O\left(
+                        \left(
+                            \prod_{i = 0}^{k - 1} \max(1, \rho_{i})
+                        \right)
+                        \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
+                    \right).
+                \end{align*}
+            \end{tcolorbox}
+        \end{frame}
+        \begin{frame}{Realizations of our upper bound}
+            Let's label 
+            \begin{enumerate}
+                \item[(i)] R-WAPG with $\mu \ge 0$, %\ref{def:wapg} 
+                \item[(ii)] Chambolle, Dossal 2015 \cite{chambolle_convergence_2015} with $\mu \ge 0$,
+                \item[(iii)] V-FISTA Beck (10.7.7) \cite{beck_first-order_2017}, with $\mu > 0$,
+                \item[(iv)] R-WAPG with $\mu > 0$, %\ref{def:wapg}
+            \end{enumerate}
+            \begin{table}[H]
+                \centering
+                {\scriptsize
+                \begin{tabular}{|l|l|l|l|l|}
+                \hline
+                    Algorithm 
+                    & 
+                    $\alpha_k$ 
+                    & 
+                    $\rho_k$ 
+                    & 
+                    $F(x_k) - F^+ \le \mathcal O(\cdot)$ 
+                \\ \hline
+                    (i) &
+                    $\alpha_k \in(\mu/L, 1)$ &
+                    $\rho_k > 0$ &
+                    \begin{tabular}{l}
+                        $\max(1, \rho_i)(1 - \alpha_{i + 1})$
+                        \\
+                        % (Proposition \ref{prop:wapg-convergence})
+                    \end{tabular}
+                \\ \hline
+                    (ii) &
+                    $ 0 < \alpha_k^{-2} \le \alpha_{k + 1}^{-1} - \alpha_{k + 1}^{-2}$ &
+                    $\rho_k \ge 1$ &
+                    \begin{tabular}{l}
+                        $\alpha_k^{2}$ \\ 
+                        % (Theorem \ref{thm:r-wapg-on-cham-doss})
+                    \end{tabular}
+                \\ \hline
+                    (iii) &
+                    $\alpha_k = \sqrt{\mu/L}$ &
+                    $\rho_k = 1$ &
+                    \begin{tabular}{l}
+                        $(1 - \sqrt{\mu/L})^k$,
+                        \\
+                        % (Theorem \ref{thm:fixed-momentum-fista}, remark)
+                    \end{tabular}
+                \\ \hline
+                    (iv) &
+                    $\alpha_k = \alpha \in (\mu/L, 1)$ &
+                    $\rho_k = \rho > 0$ &
+                    \begin{tabular}{l}
+                        $\left(1 - \min\left(\mu/(\alpha L), \alpha\right)\right)^{k}$
+                        \\
+                        % (Theorem \ref{thm:fixed-momentum-fista})
+                    \end{tabular}
+                \\ \hline
+                \end{tabular}
+                }
+            \end{table}
+            Note that
+        \end{frame}
+        \begin{frame}{A practical realization inspired by the theories}
             
-           
-                
         \end{frame}
         
-    
+\section{The R-WAPG framework and convergence rate}
+
+\section{Unifying different variants of accelerated proximal gradient}
+
+\section{Adaptive momentum sequence and numerical experiments}
+
         
     
 \section{References}
-    \begin{frame}{References}
-        
-        \bibliography{refs.bib}
+    \begin{frame}{References}        
+        \bibliography{references/R-WAPG.bib}
     \end{frame}
 
 \end{document}
