@@ -177,9 +177,9 @@
     \section{Necoara's et al's Paper}
         \subsection{The Settings}
             The assumption follows give the same setting as Necoara et al. \cite{necoara_linear_2019}. 
-            % =======================
+            % ==================================================================
             % NECOARA's ASSUMPTIONS 
-            % =======================
+            % ==================================================================
             \begin{assumption}\label{ass:necoara-2019-settings}
                 Consider optimization problem: 
                 \begin{align}
@@ -204,9 +204,9 @@
             \begin{align*}
                 \mathcal G_{L_f}x = L_f(x - \Pi_{X}x). 
             \end{align*}
-            % ==============================
+            % ==================================================================
             % STRONG CONVEXITY DEFINITION
-            % ==============================
+            % ==================================================================
             \begin{definition}[strong convexity]\label{def:necoara-scnvx}
                 Suppose $f$ satisfies Assumption \ref{ass:necoara-2019-settings}. 
                 Then $f \in \mathbb S(L_f, \kappa_f, X)$ is strongly convex iff 
@@ -923,6 +923,17 @@
                     + (E_1E_1^T)z
                     \\
                     E_1^Ty + z
+                \end{bmatrix}
+                \\
+                &= 
+                \begin{bmatrix}
+                    E_1^TE_1 + c_1^T & E_1^TE_2 + c_2^T & -c_1b^T & \\
+                    E_2^TE_1 + c_1^T & E_2^TE_2 + c_2^T & -c_2b^T & \\
+                    -bc_1^T& -bc_2^T & E_2E_2^T + E_1E_1^T + bb^T & E_1E_1^T \\
+                    & & & E_1^Ty + z\\
+                \end{bmatrix}
+                \begin{bmatrix}
+                    x_1 \\ x_2 \\ y \\ z
                 \end{bmatrix}. 
             \end{align*}
             In practice, implicitly representing the process of $A^TAv$ is better in computing software. 

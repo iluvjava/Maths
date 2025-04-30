@@ -1,9 +1,51 @@
-- [FISTA Made Simple Part II](MATH%20602%20Nesterov%20Acceleration/FISTA%20Made%20Simple%20Part%20II.md)
+- [FISTA Made Simple Part I](FISTA%20Made%20Simple%20Part%20I.md)
 
 ---
 ### **Intro**
 
 Please read the previous file. 
+Recall that the assumptions and the theories that were based on 
+Unless specified, the following are assumed throughout. 
+
+#### **Assumptions Set 1**
+1. $f$ is a differentiable function with $L$ Lipschitz gradient, and it's convex. 
+2. $g$ is a convex function. 
+3. $\argmin{x}{F(x)} \neq \emptyset$. 
+
+This is a description of the three points algorithm. 
+
+
+#### **Definition | proximal gradient operator**
+> Let $F = f + g$ where $f$ is differentiable, $L$ Lipschitz smooth. 
+> $g$ is convex. 
+> Define the proximal gradient operator: 
+> $$
+> \begin{aligned}
+>     T_Lx = \argmin{z \in \R^n }
+>     \left\lbrace 
+>         g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{L}{2}\Vert z - x\Vert^2
+>     \right\rbrace. 
+> \end{aligned}
+> $$
+
+This is a single-valued operator. 
+
+Proved in [Fundamental Proximal Gradient Inequality](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Fundamental%20Proximal%20Gradient%20Inequality.md) is the following theorem: 
+
+#### **Theorem | Proximal gradient inequality**
+> Assume that $F = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ convex. 
+> Then, for $y \in \R^n, \bar y = T_Ly$ it has the following: 
+> $$
+> \begin{aligned}
+>     (\forall x \in \R^n)\quad 
+>     0 &\le 
+>     F(x) - F(\bar y) - \langle L(y - \bar y), x - y\rangle
+>     - \frac{\mu}{2}\Vert x - y\Vert^2
+>     - \frac{L}{2}\Vert y - \bar y\Vert^2. 
+>     \\
+>     &= F(x) - F(Ty) - \frac{L}{2}\Vert x - Ty\Vert^2  + \frac{L - \mu}{2}\Vert x - y\Vert^2. 
+> \end{aligned}
+> $$
 
 
 ---
@@ -708,6 +750,8 @@ If the function is convex and simply bounded below and has Lipschitz gradient (A
 
 Without the monotone assumption, the FISTA with backtracking has convergence on the gradient mapping. 
 
+#### **Theorem | convergence of the last gradient mapping**
+
 Recall that $\beta_0 = 1$, and for all $k\ge 1$: 
 
 $$
@@ -730,12 +774,75 @@ $$
 
 **Intermediate Results (2):**
 Recall that $(1 - \alpha_k)\rho_{k - 1} = \alpha_k^2/\alpha_{k - 1}$ for all $k \ge 1$. 
-If we assume that $\alpha_0 = 1$, then for all $k \ge 0$: 
+If we assume that $\alpha_0 = 1$ and $x^+$ is a minimizer of $F$, then for all $k \ge 0$ it has: 
 $$
 \begin{aligned}
-    \Vert x^+ - x_{-1}\Vert - \frac{\alpha_k}{\sqrt{\beta_k}}\Vert x^+ - v_k\Vert. 
+    \frac{\alpha_k}{\sqrt{\beta_k L_0}}\Vert x^+ - v_k\Vert &\le 
+    \Vert x^+ - v_0\Vert. 
 \end{aligned}
 $$
+
+**Deriving the overall results**. For all $k \ge 0$, starting with Intermediate Results (1) we have 
+
+$$
+\begin{aligned}
+    \Vert \mathcal G_{L_k} y_k\Vert 
+    &= L_k\alpha_k \Vert v_k - v_{k - 1}\Vert
+    \\
+    &\le 
+    L_k\alpha_k(\Vert v_k - x^+\Vert + \Vert v_{k - 1} - x^+\Vert)
+    \\
+    &\le 
+    L_k \alpha_k \left(
+        \frac{\sqrt{\beta_kL_0}}{\alpha_k}\Vert x^+ - v_0\Vert
+        - 
+        \frac{\sqrt{\beta_{k - 1}L_0}}{\alpha_{k - 1}}\Vert x^+ - v_0\Vert
+    \right) 
+    \\
+    &= L_k L_0 \left(
+        \sqrt{\beta_k}
+        - 
+        \frac{\alpha_k\sqrt{\beta_{k - 1}}}{\alpha_{k - 1}}
+    \right)\Vert x^+ - v_0\Vert
+    \\
+    &= \sqrt{\beta_k}L_k L_0 \left(
+        1 - 
+        \frac{\alpha_k}{\alpha_{k - 1}}\sqrt{\frac{\beta_{k - 1}}{\beta_k}}
+    \right)\Vert x^+ - v_0\Vert
+    \\
+    &= \sqrt{\beta_k}L_k L_0 \left(
+        1 - 
+        \frac{\alpha_k}{\alpha_{k - 1}}
+        \left((1 - \alpha_k)\max(1, \rho_{k - 1}L_k L_{k - 1}^{-1})\right)^{-1/2}
+    \right)\Vert x^+ - v_0\Vert
+    \\
+    &= 
+    \sqrt{\beta_k}L_k L_0 \left(
+        1 - 
+        ((1 - \alpha_k)\rho_{k - 1})^{1/2}
+        \left((1 - \alpha_k)\max(1, \rho_{k - 1}L_k L_{k - 1}^{-1})\right)^{-1/2}
+    \right)\Vert x^+ - v_0\Vert
+    \\
+    &= 
+    \sqrt{\beta_k}L_k L_0 \left(
+        1 - 
+        \left(\rho_{k - 1}^{-1}\max(1, \rho_{k - 1}L_k L_{k - 1}^{-1})\right)^{-1/2}
+    \right)\Vert x^+ - v_0\Vert
+    \\
+    &=
+    \sqrt{\beta_k}L_k L_0 \left(
+        1 - 
+        \max(\rho_{k - 1}^{-1}, L_k L_{k - 1}^{-1})^{-1/2}
+    \right)\Vert x^+ - v_0\Vert
+    \\
+    &= 
+    \sqrt{\beta_k}L_k L_0 \left(
+        1 - 
+        \min(\rho_{k - 1}, L_k^{-1} L_{k - 1})^{1/2}
+    \right)\Vert x^+ - v_0\Vert. 
+\end{aligned}
+$$
+
 
 **Proving Intermediate Results (1)**. 
 $$
@@ -762,7 +869,7 @@ $$
     &= \alpha_k^{-1}\tilde x_k - \alpha_k^{-1} y_k 
     = \alpha^{-1}_k(\tilde x_k - y_k) = \alpha_k^{-1}(T_{L_k} y_k - y_k)
     \\
-    &= -\alpha_k^{-1}L^{-1} \mathcal G_L(y_k). 
+    &= -\alpha_k^{-1}L_k^{-1}(\mathcal G_{L_k}(y_k)). 
 \end{aligned}
 $$
 
@@ -790,6 +897,28 @@ $$
 $$
 
 Because $\beta_0 = \alpha_0 = 1$, the base case holds. 
+For all $k \ge 1$, we consider the convergence claim and it has 
+
+$$
+\begin{aligned}
+    0 &\le \frac{L_0\beta_k }{2}\Vert x^+ - x_{-1}\Vert^2 
+    - F(x_k) + F(x^+) - \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
+    \\
+    &\le 
+    \frac{L_0\beta_k }{2}\Vert x^+ - x_{-1}\Vert^2 
+    - \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
+    \\
+    &= \frac{\alpha_k^2L_k}{2}\left(
+        \frac{\beta_k}{\alpha_k^2L_0}
+        \Vert x^+ - x_{-1}\Vert^2 
+        - \Vert x^+ - v_k\Vert^2
+    \right)
+    \\
+    \iff 
+    0 &\le 
+    \Vert x^+ - x_{-1}\Vert - \frac{\alpha_k}{\sqrt{\beta_k L_0}}\Vert x^+ - v_k\Vert. 
+\end{aligned}
+$$
 
 
 
