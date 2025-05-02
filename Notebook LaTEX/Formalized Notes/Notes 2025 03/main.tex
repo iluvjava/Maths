@@ -987,7 +987,7 @@
         \begin{lemma}[proximal gradient inequality]
             If $F = f + g$ satisfies Assumption \ref{ass:standard-fista}, then for all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{L^{-1}, f, g}(x)$ it has 
             \begin{align*}
-                0 &\le F(z) - F(\bar x) + \frac{L}{2}\Vert z - x\Vert - \frac{L}{2}\Vert z - \bar x\Vert^2. 
+                0 &\le F(z) - F(\bar x) + \frac{L}{2}\Vert z - x\Vert^2 - \frac{L}{2}\Vert^2 z - \bar x\Vert^2. 
             \end{align*}
         \end{lemma}
         \begin{proof}
