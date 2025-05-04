@@ -19,7 +19,7 @@ and we are interested in minimization of $f$, where $l(x)$ is convex with Lipsch
 	* Proximal methods as gradient on the envelope. (Not mentioned?)
 		* In [[Proximal Point Method, Interpretations]], we discussed that proximal point method is just gradient descend on the Moreau envelope, where $\alpha$ is the step size. 
 	* Proximal methods as ODEs solver for gradient dynamical system. (Definitely ignored in the paper)
-		* [[Projected Proximal Gradient, Interpretations]]
+		* [[../../AMATH 516 Numerical Optimizations/Proximal Methods/Dynamical system interpretation of proximal gradient]]
 * Envelope Method
 	* NOT SURE WHAT THE INEQUALITIES ARE ALL ABOUT. 
 

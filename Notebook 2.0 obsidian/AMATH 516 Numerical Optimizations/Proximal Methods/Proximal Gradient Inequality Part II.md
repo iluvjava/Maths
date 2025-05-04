@@ -1,0 +1,189 @@
+- [Proximal Gradient Inequality Part II](Proximal%20Gradient%20Inequality%20Part%20II.md)
+- [Weakly Convex Function](../Weakly%20Convex%20Function.md)
+
+---
+### **Intro**
+
+Recall contents from the previous file. 
+In this file we present proximal gradient inequality in the nonconvex settings. 
+
+---
+### **Extensions of Proximal Gradient Inequality**
+
+We will prove the same claim with different approaches. 
+This is sometimes useful. 
+In this section we consider the [Mordukhovich Limiting Subdifferential](AMATH%20516%20Numerical%20Optimizations/Non-Smooth%20Calculus/Limiting%20Subgradient.md) due nonconvexity. 
+The proofs based on subgradient inequality will be simpler compared to using Quadratic growth conditions over minimizers. 
+
+#### **Claim 2.1 | The Fundamental Proximal Gradient Inequality**
+> Let $F = f + g$. 
+> Let $f$ be differentiable, assume there exists $q \in \R$ be the largest value such that $g - q\Vert \cdot\Vert^2/2$ is convex. 
+> For any $x \in \R^n$, define $\bar x = T_{\beta^{-1}, f, g}(x)$, it has $\forall z \in \R^n$
+> $$
+> \begin{aligned}
+>     \frac{q}{2}\Vert z - \bar x\Vert^2 
+>     &\le 
+>     F(z) - F(\bar x) - \langle \beta(x - \bar x), z - \bar x\rangle 
+>     + D_f(x, \bar x ) - D_f(z, x). 
+> \end{aligned}
+> $$
+
+**Proof**
+
+By definition, it has 
+
+$$
+\begin{aligned}
+    \bar x &\in \argmin{z} \left\lbrace
+        g(z) + \langle \nabla f(x), z\rangle + \frac{\beta}{2}\Vert z - x\Vert^2
+    \right\rbrace
+    \\
+    \implies
+    \mathbf 0 
+    &\in \partial g(x^+) + \nabla f(x) + \beta(x^+ - x)
+    \\
+    \iff 
+    \partial g(x^+) &\ni
+    - \nabla f(x) - \beta(x^+ - x). 
+\end{aligned}
+$$
+
+Here $\partial g$ would be the limiting subgradient. 
+Since $g - q \Vert \cdot\Vert^2/2$ is convex it has for all $z\in \R^n$: 
+
+$$
+\begin{aligned}
+    \frac{q}{2}\Vert z - \bar x\Vert^2 
+    &\le 
+    g(z) - g(\bar x) + \langle \nabla f(x) + \beta(\bar x - x), z - \bar x\rangle
+    \\
+    &= 
+    g(z) - g(\bar x) + \langle \nabla f(x), z - \bar x\rangle + \langle \beta(\bar x - x), z - \bar x\rangle
+    \\
+    &= g(z) - g(\bar x) + \langle \nabla f(x), z - x\rangle
+    + \langle \nabla f(x), x - \bar x\rangle
+    + \langle \beta(\bar x - x), z - \bar x\rangle
+    \\
+    &= 
+    g(z) - g(\bar x) 
+    + (-D_f(z, x) + f(z) - f(x))
+    + (D_f(\bar x, x) - f(\bar x) + f(x))
+    + \langle \beta(\bar x - x), z - \bar x\rangle
+    \\
+    &= F(z) - F(\bar x) - D_f(z, x) + D_f(\bar x, x) 
+    - \langle \beta(x - \bar x), z - \bar x\rangle. 
+\end{aligned}
+$$
+
+$\blacksquare$
+
+**Remarks**
+
+It's a different proof, a different setup for $g$, but the results remains similar. 
+
+
+#### **Claim 2.1.1 | Monotone descent property under smoothness**
+> Let $F = f + g$ where, $f$ is differentiable and its gradient is Lipschitz upper smooth, i.e: $D_f(x, y) \le L/2 \Vert x - y\Vert^2$ for all $x, y \in \R^n$, and $g - q\frac{\Vert \cdot\Vert^2}{2}$ is convex for some $q \in \R$. 
+> Let $\bar x = T_{\beta^{-1}, f, g}(x)$. 
+> Then, for all $x \in \R^n$, it has the following inequality: 
+> $$
+> \begin{aligned}
+>     0 \ge F(x) - F(\bar x) - (\beta + q/2 - L/2)\Vert x - \bar x\Vert^2. 
+> \end{aligned}
+> $$
+> And descent is possible when $\beta \le (L - q)/2$. 
+
+**Proof**
+
+
+
+#### **Theorem 2.2 | Inexact proximal gradient inequality**
+> Let $F = f + g$. Let $f$ be differentiable and suppose that there exists $q \in \R$ such that $g - q \Vert \cdot\Vert^2/2$ is convex. 
+> Suppose that there exists $\bar x$, $\epsilon > 0$ such that $\Vert w\Vert \le \epsilon$ satisfying the variational inequality: 
+> $$
+> \begin{aligned}
+>     w \in \partial g(\bar x) + \nabla f(x) + \beta(\bar x - x). 
+> \end{aligned}
+> $$
+> Then the inexact proximal gradient inequality has for all $z \in \R^n$: 
+> $$
+> \begin{aligned}
+>     0 &\le 
+>     F(z) - F(\bar x) - D_f(z, x) - D_f(\bar x, x) 
+>     - \langle w, z - \bar x\rangle - \beta \langle \bar x - x, z - \bar x\rangle 
+>     \\
+>     &\le 
+>     F(z) - F(\bar x) - D_f(z, x) - D_f(\bar x, x) 
+>     + \Vert w\Vert\Vert z - \bar x\Vert
+>     - \beta \langle \bar x - x, z - \bar x\rangle. 
+> \end{aligned}
+> $$
+
+
+**Proof**
+
+The proof uses the subgradient inequality of weakly/strongly convex functions. 
+Let $v = w - \nabla f(x) - \beta(\bar x - x)$. 
+Then for all $z \in \R^n$ the subgradient inequality has: 
+
+$$
+\begin{aligned}
+    & \frac{q}{2}\Vert z - \bar x\Vert^2
+    \\
+    &\le 
+    g(z) - g(\bar x) - \langle v, z - \bar x\rangle
+    \\
+    &= 
+    g(z) - g(\bar x) - \langle w - \nabla f(x) - \beta(\bar x - x), z - \bar x\rangle
+    \\
+    &= 
+    g(z) - g(\bar x) + \langle\nabla f(x) + \beta(\bar x - x), z - \bar x\rangle
+    - \langle w, z - \bar x\rangle
+    \\
+    &= 
+    g(z) - g(\bar x) + (\langle\nabla f(x), z - \bar x\rangle) 
+    + \langle \beta(\bar x - x), z - \bar x\rangle
+    - \langle w, z - \bar x\rangle
+    \\
+    &= 
+    g(z) - g(\bar x) + (\langle \nabla f(x), z - x\rangle - \langle \nabla f(x), x - \bar x\rangle) 
+    + \langle \beta(\bar x - x), z - \bar x\rangle
+    - \langle w, z - \bar x\rangle
+    \\
+    &= 
+    g(z) - g(\bar x) + 
+    (- D_f(z, x) + f(z) - f(x) + D_f(\bar x, x) - f(\bar x) + f(x)) 
+    + \langle \beta(\bar x - x), z - \bar x\rangle
+    - \langle w, z - \bar x\rangle
+    \\
+    &= 
+    g(z) - g(\bar x) + 
+    (- D_f(z, x) + f(z) + D_f(\bar x, x) - f(\bar x)) 
+    + \langle \beta(\bar x - x), z - \bar x\rangle
+    - \langle w, z - \bar x\rangle
+    \\
+    &= 
+    F(z) - F(\bar x)
+    - D_f(z, x) + D_f(\bar x, x)
+    + \beta\langle \bar x - x, z - \bar x\rangle
+    - \langle w, z - \bar x\rangle
+    \\
+    &\le 
+    F(z) - F(\bar x)
+    - D_f(z, x) + D_f(\bar x, x)
+    + \beta\langle \bar x - x, z - \bar x\rangle
+    + \Vert w\Vert\Vert z - \bar x\Vert. 
+\end{aligned}
+$$
+
+$\blacksquare$
+
+#### **Discussion**
+
+The proofs may look different from before, but the underlying mechanism is the same. 
+
+---
+### **Inexact Proximal Gradient inequalities**
+
+The theories are developed under the settings of Catalyst Accelerations frameworks. 
+See [Catalyst Accelerations Part IV, Inexact Oracles](../../MATH%20602%20Nesterov%20Acceleration/Catalyst%20Accelerations%20Part%20IV,%20Inexact%20Oracles.md). 

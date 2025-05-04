@@ -271,7 +271,7 @@ Therefore, the squared norm of the residuals, The minimum norm of all iterations
 **Remarks**
 
 For a function whose gradient is Lipschitz smooth with constant $L$, we have $1/L \nabla f(x)$ being non-expansive. The above bound is pessimistic. 
-It's not clear whether it's tight or not, and in what sense that it can be optimal. This derivation is extremely similar to what we had for [Smooth Gradient Descend The Basics](../Smooth%20Gradient%20Descend%20The%20Basics.md), more specifically the smooth descend frameworks. 
+It's not clear whether it's tight or not, and in what sense that it can be optimal. This derivation is extremely similar to what we had for [Smooth Gradient Descend The Basics](../Classics%20Algorithms/Smooth%20Gradient%20Descend%20The%20Basics.md), more specifically the smooth descend frameworks. 
 The proof suffers from the same problem as the proof of gradient descent under the general case. 
 However, this proof assumed the existence of a fixed point set, which is equivalent to assuming that $0 = \nabla f(x)$ has a solution in the case of gradient descent. 
 We emphasize that this is a major difference between the two proofs. 

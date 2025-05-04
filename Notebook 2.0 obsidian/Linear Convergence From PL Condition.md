@@ -1,4 +1,4 @@
-This file is a supplement for [Smooth Gradient Descend The Basics](AMATH%20516%20Numerical%20Optimizations/Smooth%20Gradient%20Descend%20The%20Basics.md). 
+This file is a supplement for [Smooth Gradient Descend The Basics](AMATH%20516%20Numerical%20Optimizations/Classics%20Algorithms/Smooth%20Gradient%20Descend%20The%20Basics.md). 
 
 
 ---

@@ -1,4 +1,4 @@
-[[Proximal Gradient, Forward Backwards Envelope]], read this to understand some basic properties about the envelope and such. 
+- [[Proximal Gradient, Forward Backwards Envelope]]
 
 ---
 ### **Intro**
@@ -239,7 +239,7 @@ $$
 \end{aligned}
 $$
 
-Please compare the above results to (2) from the above derivation of convergence of the proximal gradient method. This particular lemma is also crucial to the proof of [Proximal Gradient with Momentum Accelerations](Proximal%20Gradient%20with%20Momentum%20Accelerations.md). 
+Please compare the above results to (2) from the above derivation of convergence of the proximal gradient method. This particular lemma is also crucial to the proof of [The FISTA Algorithm](../Proximal%20Methods/The%20FISTA%20Algorithm.md). 
 
 **Proof**
 
@@ -278,7 +278,7 @@ $$
 
 This is also stated as Theorem 10.16, In Amir Beck's first order optimization method, and it's also stated in Heinz's convex optimization class. 
 This lemma is central to the evaluation of proximal gradient related method and all the variance of the same method. 
-For a more detailed discussion of this specific lemma, visit [Fundamental Proximal Gradient Inequality](Fundamental%20Proximal%20Gradient%20Inequality.md) for more information. 
+For a more detailed discussion of this specific lemma, visit [Proximal Gradient Inequality Part I](../Proximal%20Methods/Proximal%20Gradient%20Inequality%20Part%20I.md) for more information. 
 
 #### **Corollary-1 | Smooth Gradient Descent**
 > The same lemma, Fundamental Proximal Gradient Lemma is applicable for $T = I - \nabla g(x)$. This can be done by setting $h$ being the zero function then $T = [I - \beta^{-1}\nabla g]$ would just be the gradient operator. 

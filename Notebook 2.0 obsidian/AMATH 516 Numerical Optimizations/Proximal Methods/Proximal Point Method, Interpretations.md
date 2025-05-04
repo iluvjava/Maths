@@ -14,7 +14,7 @@ $$
 can be interpreted as: 
 1. Gradient on the Moreau envelope. 
 2. Fixed point iterations on the subgradient operator.
-4. Backward Euler on the gradient dynamics involving the subgradient oracle. [Projected Proximal Gradient, Interpretations](Projected%20Proximal%20Gradient,%20Interpretations.md) for more. 
+4. Backward Euler on the gradient dynamics involving the subgradient oracle. [Dynamical system interpretation of proximal gradient](Dynamical%20system%20interpretation%20of%20proximal%20gradient.md) for more. 
 
 References: 
 1. [Proximal Algorithms](https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf)

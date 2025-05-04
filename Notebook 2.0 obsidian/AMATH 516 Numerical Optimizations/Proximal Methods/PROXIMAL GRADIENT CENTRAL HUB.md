@@ -2,7 +2,7 @@
 
 Proximal gradient are for solve composite objectives of smooth plus non-smooth. 
 
-- [[AMATH 516 Numerical Optimizations/Classics Algorithms/Proximal Gradient Convergence Rate]]
+- [[Proximal Gradient Convergence Rate]]
 
 ---
 ### **Very Old Notes**

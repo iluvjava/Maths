@@ -1,6 +1,6 @@
 - [V-FISTA](V-FISTA.md)
 - [Regret in APG EST SEQ](Regret%20in%20APG%20EST%20SEQ.md)
-- [Fundamental Proximal Gradient Inequality](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Fundamental%20Proximal%20Gradient%20Inequality.md)
+- [Proximal Gradient Inequality Part I](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Proximal%20Gradient%20Inequality%20Part%20I.md)
 - [PPM APG Forms Analysis](PPM%20APG%20Forms%20Analysis.md)
 
 ---

@@ -1,6 +1,6 @@
 - [Mordukhovich Limiting Subdifferential](../Non-Smooth%20Calculus/Limiting%20Subgradient.md)
 - [Kurdyka Lojasiewicz Inequality](Kurdyka%20Lojasiewicz%20Inequality.md)
-- [Ekeland Variational Principle](AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Ekeland%20Variational%20Principle.md)
+- [Ekeland Variational Principle](../Ekeland%20Variational%20Principle.md)
 
 ---
 ### **Intro**

@@ -64,7 +64,7 @@
         Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth} with $\beta > 0$ and $q \in \RR$. 
         Then for all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{\beta^{-1}, f, g}(x)$, it has: 
         \begin{align*}
-            \frac{q}{2}\Vert z - x^+\Vert^2 
+            \frac{q}{2}\Vert z - \bar x\Vert^2 
             &\le 
             F(z) - F(\bar x) - \langle \beta(x - \bar x), z - \bar x\rangle 
             + D_f(x, \bar x ) - D_f(z, x).  
@@ -1213,20 +1213,57 @@
             
         \end{theorem}
         We introduce two examples variants of line search method used to enhance the accelerated proximal gradient methods in the literatures to demonstrate Definition \ref{def:generic-mapg-ls} and Theorem \ref{thm:gmapg-ls-convergence}.  
-        \par
+    \section{Algorithms formulations of GMAPG}
         MFISTA by Beck is an example of Definition \ref{def:generic-mapg-ls}. 
         % ======================================================================
         % EXAMPLE | MFISTA WITH ARMIJO LINE SEARCH
         % ======================================================================
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \STATE{\textbf{Input:}}
+                \caption{Armijo Line Search}
+            \end{algorithmic}
+        \end{algorithm}
+        We will now give an algorithimic description of GMAPG. 
+        \begin{algorithm}[H]\label{alg:chambolle-btls}
+            \begin{algorithmic}[1]
+                \STATE{\noindent
+                    \textbf{Input:}
+                    $f, g, x, v, L> L_{\min} > 0, \rho, \alpha$
+                }
+                \STATE{$L^+ := \max(L_{\min}, \rho L)$.}
+                \FOR{$i = 1, 2, \ldots, 53$}
+                    \STATE{$\alpha^+ := (1/2)\left(\alpha\sqrt{\alpha^2 + L/L^+} - \alpha^2\right)$. }
+                    \STATE{$y^+ := \alpha^+ v + (1 - \alpha^+) x$. }
+                    \STATE{$x^+ := T_{1/L^+, f, g}(y^+)$.}
+                    \IF{$2D_f(x^+, y^+) \le \Vert x^+ - y^+\Vert^2$}
+                        \STATE{\textbf{break}}
+                    \ENDIF
+                    \STATE{$L^+ := 2^iL^+$.}
+                \ENDFOR
+                \STATE{\textbf{Return: }$y^+, x^+, \alpha^+, L^+$}
+                \caption{Chambolle's Backtracking}
+            \end{algorithmic}
+        \end{algorithm}
+
+        \begin{algorithm}[H]\label{alg:mfista-chambolle-ada}
+            \begin{algorithmic}[1]
+                \STATE{\noindent
+                    \textbf{Input:} $f, g, x_{-1}, L_0, r_{\min}, \text{Exit condition: }\mathbb E_\chi$. 
+                }
+
+            \end{algorithmic}
+            \caption{GMAPG with Chambolle's backtracking}
+        \end{algorithm}
         \begin{example}[MFISTA with Armijo line search]\;\\\vspace{-1em}
             \begin{algorithm}[H]
                 \begin{algorithmic}[1]
-                    \STATE{\textbf{Input:} $x_0 \in \RR^n, L_0 \in \RR^n, f:\RR^n \rightarrow \RR, g: \mathbb \RR^n \rightarrow \overline \RR$} 
+                    \STATE{\textbf{Input:} $x_{-1} \in \RR^n, L_0 \in \RR^n, f:\RR^n \rightarrow \RR, g: \mathbb \RR^n \rightarrow \overline \RR$} 
                     \STATE{
-                        $y_0 := x_0, t_0 := 1$.
+                        $x_0 := y_0, t_0 := 1$.
                     }
                     \FOR{$k = 0, 1, 2, \ldots$}
-                        \STATE{$\tilde x_{k + 1} = T_{L_k^{-1}}(y_k)$.}
+                        \STATE{$\tilde x_{k + 1} := T_{L_k^{-1}}(y_k)$.}
                         \IF{$D_f(\tilde x_{k + 1}, y_k) > L_k/2\Vert \tilde x_{k + 1} - y_k\Vert^2$}
                             \STATE{\noindent
                                 $L_k := \argmin_{i = 1,2, \ldots} \left\{ i: 
@@ -1252,7 +1289,7 @@
                 \caption{MFISTA with Armijo Line Search}
                 \label{alg:mfista-armijo}
             \end{algorithm}
-            We now demonstrate that it's a special case of Definition \ref{def:generic-mapg-ls}.
+            We now demonstrate that Algorithm \ref{alg:mfista-armijo} is a special case of Definition \ref{def:generic-mapg-ls}.
             Let's consider $y_{k + 1}$ produced the GMAPG LS. 
             If $x_k = x_{k - 1}$ then replacing all instance of $x_k$ by $x_{k - 1}$ it has: 
             \begin{align*}
@@ -1324,21 +1361,6 @@
             Let $x_{-1} \in \RR^n$. 
             If we choose $v_0 = x_0 = T_{L_0^{-1}} x_{-1}$, then $y_1 = \alpha_1 x_0 + (1 - \alpha_1)x_0 = x_0 = T_{L_0^{-1}}(x_{-1})$.
             Next, we make $\alpha_k^{-1} = t_k$, then \eqref{eqn:emp:result-item-1}, \eqref{eqn:emp:result-item-2} are equivalent. 
-        \end{example}
-        Chambolle's backtracking strategies employs a line search strategies where the Lipschitz constant estimates increases if the descent lemma is satisfied. 
-        % ======================================================================
-        % EXAMPLE | MFISTA WITH CAMBOLLE'S ADAPTIVE BACKTRACKING
-        % ======================================================================
-        The following example illustrate Chambolle's adaptive backtracking strategy in the literatures with our GMAPG LS. 
-        \begin{example}[MFISTA with Chambolle's adaptive backtracking]\;\\\vspace{-1em}
-            This example won't give specific rules for calculating $\tilde x_k$ for monotone descent. 
-            Chambolle's restart has specific rules for choosing the step sizes based on the estimates of the Lipschitz constants. 
-            \begin{algorithm}[H]\label{alg:mfista-chambolle-ada}
-                \begin{algorithmic}[1]
-                \STATE{\textbf{Input: } }
-                \end{algorithmic}
-                \caption{MFISTA with Chambolle's adaptive backtracking}
-            \end{algorithm}
         \end{example}
         % ======================================================================
         % EXAMPLE | NESTEROV'S MONOTONE SCHEME WITH GENERIC LINE SEARCH

@@ -1,4 +1,4 @@
-- [Smooth Gradient Descend The Basics](Smooth%20Gradient%20Descend%20The%20Basics.md)
+- [Smooth Gradient Descend The Basics](../Classics%20Algorithms/Smooth%20Gradient%20Descend%20The%20Basics.md)
 - [Morau Envelope and Proximal Operators](Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md)
 
 ---
@@ -33,11 +33,11 @@ The following lemma gives the results of proximal inequality which is relevant t
 > Let $y \in \R^n$. 
 > Suppose that the PPM generates sequence $(x_t)_{ t \ge 0}$ on $F$. 
 > If $F: \R^n \rightarrow \overline \R$ is $\mu \ge 0$ strongly convex, 
-> then for all $x \in \R^n$ it has 
+> then for all $x \in \R^n, t\ge 0$:
 > $$
 > \begin{aligned}
 >     0 &\le 
->     F(x) - F(x_t) + \frac{\eta_{t + 1}}{2}\left(
+>     F(x) - F(x_{t + 1}) + \frac{\eta_{t + 1}}{2}\left(
 >         \Vert x - x_t\Vert^2 - \Vert x_{t + 1} - x_t \Vert^2
 >     \right) - \frac{\eta_{t + 1} + \mu}{2}\Vert x - x_{t + 1}\Vert^2
 >     \\
@@ -61,32 +61,32 @@ Consider the $\mu + \eta_{t + 1}$ strong convexity property of $\mathcal M^{\eta
 $$
 \begin{aligned}
     0 &\le 
-    \mathcal M(x; x_t) - \mathcal M(x_{t + 1}, x_t) 
+    \mathcal M(x; x_t) - \mathcal M(x_{t + 1}; x_t) 
     - \frac{\eta_{t + 1} + \mu}{2}\Vert x - x_{t + 1}\Vert^2
     \\
-    &= F(x) - F(x_t) + \frac{\eta_{t + 1}}{2}\left(
+    &= F(x) - F(x_{t + 1}) + \frac{\eta_{t + 1}}{2}\left(
         \Vert x - x_t\Vert^2 - \Vert x_{t + 1} - x_t \Vert^2
         - \Vert x - x_{t + 1}\Vert^2
     \right)
     - \frac{\mu}{2}\Vert x - x_{t + 1}\Vert^2
     \\
-    &= F(x) - F(x_t) + \frac{\eta_{t + 1}}{2}\left(
+    &= F(x) - F(x_{t + 1}) + \frac{\eta_{t + 1}}{2}\left(
         \Vert x - x_t\Vert^2 - \Vert x_{t + 1} - x_t \Vert^2
     \right) - \frac{\eta_{t + 1} + \mu}{2}\Vert x - x_{t + 1}\Vert^2
     \\
-    &= F(x) - F(x_t) + \frac{\eta_{t + 1}}{2}\left(
+    &= F(x) - F(x_{t + 1}) + \frac{\eta_{t + 1}}{2}\left(
         \Vert x - x_{t + 1} + x_{t + 1} - x_t\Vert^2 - \Vert x_{t + 1} - x_t \Vert^2
         - \Vert x - x_{t + 1}\Vert^2
     \right) 
     - \frac{\mu}{2}\Vert x - x_{t + 1}\Vert^2
     \\
     &= 
-    F(x) - F(x_t) 
+    F(x) - F(x_{t + 1}) 
     + \eta_{t + 1}\langle x - x_{t + 1}, x_{t + 1} - x_t\rangle
     - \frac{\mu}{2}\Vert x - x_{t + 1}\Vert^2
     \\
     &\le 
-    F(x) - F(x_t) 
+    F(x) - F(x_{t + 1}) 
     + \eta_{t + 1}\langle x - x_{t + 1}, x_{t + 1} - x_t\rangle. 
 \end{aligned}
 $$
@@ -97,269 +97,261 @@ The inequality is equivalent to $F$ being $\mu \ge 0$ strongly convex.
 For a discussion on the proximal mapping in the convex settings, visit: [Moreau Envelope and Convex Proximal Mapping](../Proximal%20Operator/Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md). 
 
 
-#### **Lemma 2 | Convergence rate of a sequence**
-> Let $(\sigma_t)_{t \ge 0}$, and $(\Delta_t)_{t \ge 0}$ be two sequences with the following list of conditions: 
-> - (a): $\sigma_t > 0\; \forall t \ge 0$, the sequence $\sigma_t$ is strictly positive. 
-> - (b): $\Delta_{t + 1} - \Delta_t \le 0$, i.e: $\Delta_t$ monotonically decreases. 
-> - (c): $(\sigma_{t + 1} - \sigma_t)\Delta_t \le 0$, which we call the descent lemma. 
-> 
-> Then the following scenarios are true. 
-> 1. For all $t \ge 0$, $(\sigma_{t + 1} - \sigma_t)\Delta_t = \sigma_{t + 1} \Delta_{t + 1} - \sigma_t \Delta_t - \sigma_{t + 1}(\Delta_{t + 1} - \Delta_t)$. 
-> 2. If (a), (b) are true. Then it has $\sigma_{t + 1}\Delta_{t + 1} - \sigma_t \Delta_t \le (\sigma_{t + 1} - \sigma_t)\Delta_t$. 
-> 3. If (a), (b), (c) are true, then it has: $\sigma_{t + 1}\Delta_{t + 1} - \sigma_t \Delta_{t} \le 0$. 
-
-**Proof**
-
-The proof of (1.), (2.) is direct. 
-Consider 
-
-$$
-\begin{aligned}
-    \sigma_{t + 1}\Delta_{t + 1} - \sigma_t \Delta_t
-    &= 
-    \sigma_{t + 1}(\Delta_{t + 1} - \Delta_t) - \sigma_t \Delta_t + \sigma_{t + 1} \Delta_t
-    \\
-    &= \sigma_{t + 1}(\Delta_{t + 1} - \Delta_t) 
-    + (\sigma_{t + 1} - \sigma_t) \Delta_t
-    \\
-    \iff 
-    (\sigma_{t + 1} - \sigma_t)\Delta_t 
-    &= 
-    \sigma_{t + 1}\Delta_{t + 1} - \sigma_t \Delta_t - \sigma_{t + 1}(\Delta_{t + 1} - \Delta_t)
-    \\
-    & \ge  \sigma_{t + 1}\Delta_{t + 1} - \sigma_t \Delta_t. 
-\end{aligned}
-$$
-
-To prove (c), because (c) is true, then it bounds $\sigma_{t + 1}\Delta_{t + 1} - \sigma_t \Delta_t \le 0$. 
-
-
 
 
 ---
 ### **Convergence in the convex case**
 
 We show the convergence of PPM in the convex case. 
-Let $\sigma_t$ be a monotone increasing sequence. 
-The following idea is important to showing the convergence of PPM method in the convex settings. 
-It shows the way of proving convergence using the method of Lyapunov function. 
-Consider the following: 
-
-$$
-\begin{aligned}
-    0 
-    &\ge 
-    \sigma_{t + 1}(\Delta_{t + 1} - \Delta_{t})
-    + (\sigma_{t + 1} - \sigma_t)\Delta_t
-    \\
-    &= 
-    \sigma_{t + 1}\Delta_{t + 1} - \sigma_{t + 1}\Delta_t
-    + \sigma_{t + 1}\Delta_t - \sigma_t \Delta_t
-    \\
-    &=
-    \sigma_{t + 1}\Delta_{t + 1}  - \sigma_t \Delta_t. 
-\end{aligned}
-$$
-
-
-Performing a telescoping sum, it shows that $\Delta_t \le \mathcal O(\sigma_{t + 1}^{-1})$. 
-Following a similar idea, we are going to prove the convergence rate of proximal point method applied to a convex function: $f: \R^n \rightarrow \overline \R$. 
 
 
 #### **Theorem 1.1 | A Lyapunov quantity for PPM under convexity**
 > Suppose that $F:\R^n \rightarrow \overline \R$ is a convex function. 
-> Let $(x_t)_{t \ge 0}$ be a sequence generated by PPM with $F$, and relaxation sequence $(\eta_t)_{t \ge 1}$. 
-> For all $x \in \R^n$, $t \ge 0$ define: 
+> Let $(x_t)_{t \ge 0}$ be a sequence generated by PPM with $F$, and relaxation sequence $(\eta_t)_{t \ge 1}$ such that $\infty > \eta_t > 0$ for all $t \ge 0$. 
+> Then, the iterates satisfies for all $x \in \R^n$: 
 > $$
 > \begin{aligned}
->     \Phi_{t + 1} := \left(
->         \sum_{i = 1}^{t + 1}\eta_{i}^{-1}
->     \right)\left(
->         F(x_{t + 1}) - F(x) + 
->         \frac{1}{2}\Vert x - x_{t + 1}\Vert^2
->     \right). 
+>     \left(
+>         \sum_{i = 1}^{t + 1} 
+>         \eta_i^{-1}
+>     \right)(F(x_{t + 1}) - F(x)) + \frac{1}{2}\Vert x - x_{t + 1}\Vert^2
+>     &\le \frac{1}{2}(\Vert x - x_0\Vert^2 - \Vert x_0 - x_1\Vert^2). 
 > \end{aligned}
 > $$
-> Define $\Phi_0 = F(x_0) - F(x) + (1/2)\Vert x_0 - x\Vert^2$. 
-> Then $\Phi_t$ decreases monotonically, i.e: for all $t \ge 1$ it has $\Phi_{t + 1} - \Phi_t \le 0$. 
+> If $x^+$ exists as a minimizer of $F$, this gives a convergence rate of $\mathcal O((\sum_{i = 1}^{N}\eta_i^{-1})^{-1})$ for the sequence $F(x_k) - F(x^+)$. 
+
 
 **Proof**
 
-The proof admits the following key intermediate steps: 
+Lets assume that the sequence $(\sigma_t)_{t \ge 1}, (\eta_t)_{t \ge 1}$ are sequence such that $\sigma_t \ge 0$ is always non-negative and $\eta_t > 0$ for all $t \ge 1$. 
+The following intermediate results are presented in advanced before their proofs. 
 
-1. (**Step I**): $F(x_t)$ is a monotone decreasing sequence. 
+**(I)**. 
+The algorithm has $F(x_{t + 1}) - F(x_t) \le 0$ for all $t \ge 0$.
 
-2. (**Step II:**): 
-For any positive sequence $(\sigma_t)_{t \ge 0}$, the following inequality is true for all $x \in \R^n$ and $t \ge 0$: 
+**(II)**. 
+For all $t \ge 0$: 
 $$
 \begin{aligned}
-    (\sigma_{t + 1} - \sigma_t)(F(x_{t + 1}) - F(x)) 
-    &= 
-    \sigma_{t + 1} (F(x_{t + 1}) - F(x)) 
-    - 
-    \sigma_t(F(x_{t + 1}) - F(x_t))
-    - \sigma_t(F(x_t) - F(x))
-    \\
-    &\ge 
-    \sigma_{t + 1} (F(x_{t + 1}) - F(x))
-    - \sigma_t(F(x_t) - F(x)). 
+    F(x_{t + 1}) - F(x)
+    &\ge (\sigma_{t + 1} + 1)(F(x_{t + 1}) - F(x)) - \sigma_{t + 1} (F(x_t) - F(x)). 
+\end{aligned}
+$$
+
+**(III)**. If $(\forall t \ge 1)\;\sigma_{t + 1}/\eta_{t + 1} = \sigma_t/\eta_t + \eta_t^{-1}$ for all $t \ge 1$. 
+Then it has that $\eta_{t + 1}^{-1}\sigma_{t + 1} = \sigma_1 \eta_1^{-1} + \sum_{i = 1}^{t}\eta_i^{-1}$. 
+Let the base case be: $\sigma_1 = 0$, then it simplifies. 
+
+**(IV)**. 
+From the base case we also have for all $x_0 \in \R^n, x \in \R^n$ that 
+$$
+\begin{aligned}
+    \eta_1^{-1}(F(x_1) - F(x)) + \frac{1}{2}\Vert x - x_1\Vert^2
+    &\le 
+    \frac{1}{2}\Vert x - x_0\Vert^2 - \frac{1}{2}\Vert x_0 - x_1\Vert^2. 
 \end{aligned}
 $$
 
 
-We will go back to show **(Step I), (Step II)**. 
-The monotone property of $\Phi_t$ is now achievable from these intermediate results. 
-Define $\sigma_{t + 1} = \sigma_t + \eta_{t}^{-1}$ for all $t \ge 1$ and $\sigma_0 = 0$. 
-Then the sequence $(\eta_t)_{t \ge 1}$ is strictly positive which makes $\sigma_t$ a monotone increasing strictly positive sequence because it has $\sigma_t = \sum_{i = 1}^{t} \eta_i^{-1} > 0$. 
+Then consider for all $t \ge 0$, from the proximal point inequality: 
 
-At this point, we are ready to show the results. 
-For all $x \in \R^n, t \in \Z_+$, it has from the proximal inequality: 
 $$
-{\small
 \begin{aligned}
     0 &\ge 
-    F(x_{t + 1}) - F(x) + \frac{\eta_{t + 1}}{2}
+    F(x_{t + 1}) - F(x) + 
+    \frac{\eta_{t + 1}}{2}
     \left(
         \Vert x - x_{t + 1}\Vert^2 - \Vert x - x_t\Vert^2
     \right)
     +
     \frac{\eta_{t + 1}}{2}\Vert x_{t + 1} - x_t\Vert^2
     \\
-    \iff 
-    0 &\ge 
-    \eta_{t + 1}^{-1}(F(x_{t + 1}) - F(x))
-    +
-    (1/2)(\Vert x - x_{t + 1}\Vert^2 - \Vert x - x_t\Vert^2)
+    &\hspace{-0.2em}\underset{\text{(II)}}{\ge}
+    (\sigma_{t + 1} + 1)(F(x_{t + 1}) - F(x)) - \sigma_{t + 1} (F(x_t) - F(x))
     + 
-    (1/2)\Vert x_{t + 1} - x_t\Vert^2
-    \\
-    &= 
-    (\sigma_{t + 1} - \sigma_t)(F(x_{t + 1}) - F(x))
-    +
-    (1/2)(\Vert x - x_{t + 1}\Vert^2 - \Vert x - x_t\Vert^2)
-    + 
-    (1/2)\Vert x_{t + 1} - x_t\Vert^2
-    \\
-    &\ge
-    \sigma_{t + 1} (F(x_{t + 1}) - F(x)) 
-    - \sigma_t(F(x_t) - F(x))
-    +
-    (1/2)(\Vert x - x_{t + 1}\Vert^2 - \Vert x - x_t\Vert^2)
-    + 
-    (1/2)\Vert x_{t + 1} - x_t\Vert^2
-    \\
-    &\ge
-    \sigma_{t + 1} (F(x_{t + 1}) - F(x)) 
-    - \sigma_t(F(x_t) - F(x))
-    +
-    (1/2)(\Vert x - x_{t + 1}\Vert^2 - \Vert x - x_t\Vert^2)
-    \\
-    &= \sigma_{t + 1}\left(
-        F(x_{t + 1}) - F(x) + \frac{1}{2}\Vert x - x_{t + 1}\Vert^2
-    \right) - 
-    \sigma_{t}\left(
-        F(x_{t}) - F(x) + \frac{1}{2}\Vert x - x_{t}\Vert^2
-    \right). 
-    \\
-    &= \Phi_{t + 1} - \Phi_t. 
-\end{aligned}
-}
-$$
-
-
-It remains to show **(Step I), (Step II)**. 
-
-**Proof of (Step I)**. 
-Setting $x = x_{t}$ in the inequality from **(Step I)** it yields: 
-
-$$
-\begin{aligned}
-    0 &\ge 
-    F(x_{t + 1}) - F(x_{t}) + \frac{\eta_{t + 1}}{2}\Vert x_{t} - x_{t + 1}\Vert^2 
-    + \frac{\eta_{t + 1}}{2}\Vert x_{t + 1} - x_t\Vert^2
-    \\
-    &= F(x_{t + 1}) - F(x_t). 
-\end{aligned}
-$$
-
-
-**Proof of (Step II)**. 
-Let $\sigma_{t + 1}$ be any number, it follows that: 
-
-$$
-{\small
-\begin{aligned}
-    \sigma_{t + 1} (F(x_{t + 1}) - F(x)) 
-    &= 
-    (\sigma_{t + 1} - \sigma_t) (F(x_{t + 1}) - F(x)) 
-    + \sigma_t(F(x_{t + 1}) - F(x))
-    \\
-    &= 
-    (\sigma_{t + 1} - \sigma_t) (F(x_{t + 1}) - F(x)) 
-    + \sigma_t(F(x_{t + 1}) - F(x_t) + F(x_t) - F(x))
-    \\
-    &= 
-    (\sigma_{t + 1} - \sigma_t) (F(x_{t + 1}) - F(x)) 
-    + \sigma_t(F(x_{t + 1}) - F(x_t)) 
-    + \sigma_t(F(x_t) - F(x))
-    \\
-    \iff 
-    (\sigma_{t + 1} - \sigma_t)(F(x_{t + 1}) - F(x)) &= 
-    \sigma_{t + 1} (F(x_{t + 1}) - F(x)) 
-    - 
-    \sigma_t(F(x_{t + 1}) - F(x_t))
-     - \sigma_t(F(x_t) - F(x)). 
-\end{aligned}
-}
-$$
-
-#### **Theorem 1.2 | PPM convergence rate**
-> Let $(x_t)_{t \ge 0}$ be generated by the PPM on function $F: \R^n \rightarrow \overline \R$ which is convex. 
-> Assuming that a minimizer $x^+$ exists for $F$ and the minimum is $F^+$. 
-> Then it has the following convergence rate: 
-> $$
-> \begin{aligned}
->     F(x_{N + 1}) - F^+ +
->     \frac{1}{2}\Vert x^+ - x_{N + 1}\Vert^2
->     &\le 
->     \left(
->         \sum_{i = 0}^{N}
->         \eta_{i + 1}^{-1}
->     \right)^{-1}
->     \left(
->         F(x_0) - F^+ + \frac{1}{2}\Vert x^+ - x_0\Vert^2
->     \right). 
-> \end{aligned}
-> $$
-
-**Proof**
-
-From theorem 1.1 it has for all $t \in \Z^+: \Phi_{t + 1} - \Phi_t \le 0$. 
-Hence, telescoping it for all $t = 1, \ldots, N$ it has 
-
-$$
-\begin{aligned}
-    0 &\ge 
-    \sum_{i = 0}^{N}
-    \Phi_{t + 1} - \Phi_t
-    = \Phi_{N + 1} - \Phi_0
-    \\
-    &= 
+    \frac{\eta_{t + 1}}{2}
     \left(
-        \sum_{i = 1}^{N + 1}\eta_{i}^{-1}
+        \Vert x - x_{t + 1}\Vert^2 - \Vert x - x_t\Vert^2
     \right)
+    +
+    \frac{\eta_{t + 1}}{2}\Vert x_{t + 1} - x_t\Vert^2
+    \\
+    &\ge 
+    (\sigma_{t + 1} + 1)(F(x_{t + 1}) - F(x)) - \sigma_{t + 1} (F(x_t) - F(x))
+    + 
+    \frac{\eta_{t + 1}}{2}
     \left(
-        F(x_{N + 1}) - F^+ +
-        \frac{1}{2}\Vert x^+ - x_{N + 1}\Vert^2
-    \right) - 
+        \Vert x - x_{t + 1}\Vert^2 - \Vert x - x_t\Vert^2
+    \right)
+    \\
+    &= 
+    \eta_{t + 1}
     \left(
-        F(x_0) - F(x^+) + \frac{1}{2}\Vert x_0 - x^+\Vert^2
+        \left(
+            \frac{\sigma_{t + 1}}{\eta_{t + 1}} + \frac{1}{\eta_{t + 1}}
+        \right)(F(x_{t + 1}) - F(x))
+        + \frac{1}{2}\Vert x - x_{t + 1}\Vert^2
+        - 
+        \left(
+            \frac{\sigma_{t + 1}}{\eta_{t + 1}}(F(x_t) - F(x))
+            + \frac{1}{2}\Vert x - x_t\Vert^2
+        \right)
+    \right)
+    \\
+    \iff 
+    0 
+    &\ge  
+    \left(
+        \frac{\sigma_{t + 1}}{\eta_{t + 1}} + \frac{1}{\eta_{t + 1}}
+    \right)(F(x_{t + 1}) - F(x))
+    + \frac{1}{2}\Vert x - x_{t + 1}\Vert^2
+    - 
+    \left(
+        \left(
+            \frac{\sigma_{t}}{\eta_{t}} + \frac{1}{\eta_t}
+        \right)
+        (F(x_t) - F(x))
+        + \frac{1}{2}\Vert x - x_t\Vert^2
     \right). 
 \end{aligned}
 $$
 
-Re-arranging the above inequality yields the convergence results of the PPM in the convex settings. 
+Since this is true for all $t \ge 0$ telescoping the series makes: 
 
+$$
+\begin{aligned}
+    0 &\ge 
+    \left(
+        \frac{\sigma_{t + 1}}{\eta_{t + 1}} + \frac{1}{\eta_{t + 1}}
+    \right)(F(x_{t + 1}) - F(x))
+    + \frac{1}{2}\Vert x - x_{t + 1}\Vert^2
+    -
+    \left(
+        \left(
+            \frac{\sigma_{1}}{\eta_{1}} + \frac{1}{\eta_1}
+        \right)
+        (F(x_1) - F(x))
+        + \frac{1}{2}\Vert x - x_1\Vert^2
+    \right)
+    \\
+    &\hspace{-.3em}\underset{\text{(III)}}{=}
+    \left(
+        \sum_{i = 1}^{t + 1}\eta_i^{-1}
+    \right)
+    (F(x_{t + 1}) - F(x))
+    + 
+    \frac{1}{2}\Vert x - x_{t + 1}\Vert^2
+    - 
+    \left(
+        \frac{1}{\eta_1}
+        (F(x_1) - F(x))
+        + \frac{1}{2}\Vert x - x_1\Vert^2
+    \right)
+    \\
+    &\hspace{-0.3em}\underset{\text{(IV)}}{\ge} 
+    \left(
+        \sum_{i = 1}^{t + 1}\eta_i^{-1}
+    \right)
+    (F(x_{t + 1}) - F(x))
+    + 
+    \frac{1}{2}\Vert x - x_{t + 1}\Vert^2
+    - 
+    \frac{1}{2}
+    \left(
+        \Vert x - x_0\Vert^2 - \Vert x_0 - x_1\Vert^2
+    \right). 
+\end{aligned}
+$$
+
+And this is pretty much the convergence claim of the algorithm.
+
+**Proof of (I)**. 
+Take the proximal inequality and set $x = x_{t}$ which gives: 
+
+$$
+\begin{aligned}
+    0 &\le 
+    F(x_t) - F(x_{t + 1}) + \frac{\eta_{t + 1}}{2}\left(
+    \Vert x_t - x_t\Vert^2 - \Vert x_{t + 1} - x_t \Vert^2
+    \right) - \frac{\eta_{t + 1}}{2}\Vert x_t - x_{t + 1}\Vert^2
+    \\
+    &\le 
+    F(x_t) - F(x_{t + 1}) + \frac{\eta_{t + 1}}{2}\left(
+     - \Vert x_{t + 1} - x_t \Vert^2
+    \right) - \frac{\eta_{t + 1}}{2}\Vert x_t - x_{t + 1}\Vert^2
+    \\
+    &\le F(x_t) - F(x_{t + 1}) - \eta_{t + 1}\Vert x_{t + 1} - x_t\Vert^2. 
+\end{aligned}
+$$
+
+**Proof of (II)**. 
+The proof is direct when $\sigma_{t + 1} \ge 0$ for all $t \ge 1$. 
+Consider 
+
+$$
+\begin{aligned}
+    F(x_{t + 1}) - F(x) &= 
+    (\sigma_{t + 1} + 1 - \sigma_{t + 1})(F(x_{t + 1})- F(x))
+    \\
+    &= 
+    (\sigma_{t + 1} + 1)(F(x_{t + 1}) - F(x))
+    - \sigma_{t + 1}(F(x_{t + 1}) - F(x))
+    \\
+    &= 
+    (\sigma_{t + 1} + 1)(F(x_{t + 1}) - F(x))
+    - \sigma_{t + 1} (F(x_{t + 1}) - F(x_k) + F(x_k) - F(x))
+    \\
+    &\underset{\text{(I)}}{\ge} 
+    (\sigma_{t + 1} + 1)(F(x_{t + 1}) - F(x))
+    - \sigma_{t + 1} (F(x_k) - F(x))
+
+\end{aligned}
+$$
+
+**Proof of (III)**. 
+The proof is direct from the recursive relations. 
+Consider for all $t \ge 1$ we have the equation: 
+$$
+\begin{aligned}
+    \eta_{t + 1}^{-1}\sigma_{t + 1} - \sigma_t \eta_t^{-1} 
+    & = \eta_t^{-1}
+    \\
+    \implies
+    \sum_{i = 1}^{t} \eta_{i + 1}^{-1} \sigma_{i + 1} - \sigma_i \eta_i^{-1}
+    &= \sum_{i = 1}^{t} \eta_i^{-1}
+    \\
+    \iff 
+    \eta_{t + 1}^{-1} \sigma_{t + 1} - \sigma_1\eta_1^{-1}
+    &= 
+    \sum_{i = 1}^{t} \eta_i ^{-1}. 
+\end{aligned}
+$$
+
+**Proof of (IV)**. 
+This is true if we put in $t = 0$ for the proximal inequality, which gives us the inequality of the first step in the PPM method. 
+
+$$
+\begin{aligned}
+    0 &\le F(x) - F(x_1) + \frac{\eta_1}{2}(\Vert x - x_1\Vert^2 - \Vert x_1 - x_0\Vert^2) 
+    - \frac{\eta_1}{2}\Vert x - x_1\Vert^2
+    \\
+    \iff 
+    0 &\le 
+    \eta_1^{-1}(F(x) - F(x_1)) + \frac{1}{2}(\Vert x - x_1\Vert^2 - \Vert x_1 - x_0\Vert^2) 
+    - \frac{1}{2}\Vert x - x_1\Vert^2
+    \\
+    &= 
+    \left(
+        - \eta_1^{-1}(F(x_1) - F(x)) - \frac{1}{2}\Vert x - x_1\Vert^2
+    \right)
+    + 
+    \frac{1}{2}(\Vert x - x_1\Vert^2 - \Vert x_1 - x_0\Vert^2) . 
+\end{aligned}
+$$
+
+
+
+$\blacksquare$
 
 **Remarks**
 
@@ -370,7 +362,6 @@ By relaxing some of the parameters, a similar convergence result can be claimed 
 
 The convergence we showed here is sufficient but not necessary. 
 The sequence $(\eta_t)_{t \ge 1}$ is the quadratic growth constant for the model function $\mathcal M_F$. 
-In the spacial case of convexity, it coincided with the regularization parameters for PPM. 
 
 ---
 ### **In connection between PPM and smooth gradient descent**
@@ -560,7 +551,7 @@ $$
 
 **Remarks**
 
-The same Lyapunov function were use in the convergence of the same smooth gradient descent algorithm in [Smooth Gradient Descend The Basics](../Smooth%20Gradient%20Descend%20The%20Basics.md). 
+The same Lyapunov function were use in the convergence of the same smooth gradient descent algorithm in [Smooth Gradient Descend The Basics](../Classics%20Algorithms/Smooth%20Gradient%20Descend%20The%20Basics.md). 
 
 
 #### **Theorem 2.2 | Rate of convergence and step sizes for smooth gradient**
@@ -773,11 +764,6 @@ $$
 $$
 
 Easy to see that $2\mu\eta_i + \mu^2 \ge \mu \eta_i$, therefore the inverted big product can be upper bounded by $\left(\prod_{i = 1}^{t} (1 + \eta_i \mu)\right)^{-1}$, which is more simplified. 
-
----
-### **Bregman Proximal point, extension to Non-Euclidean cases**
-
-
 
 ---
 ### **Convergence under inexact proximal oracles**
