@@ -538,7 +538,7 @@ to assert decreasing objective, the multiplier on the RHS for the norm will have
 ---
 ### **Convergence in the Convex Case**
 
-See [[AMATH 516 Numerical Optimizations/Classics Algorithms/Proximal Gradient Convergence Rate]] for a proof of the convergence rate under the same assumptions that we had been discussing. Without the strong convexity assumption, the convergence rate for the algorithm is $\mathcal O(1/k)$ for the optimality measure. Under strong convexity assumptions and strong smoothness assumption, weaker convergence and stronger convergence results can be obtained under both cases. 
+See [[Proximal Gradient Convergence Rate]] for a proof of the convergence rate under the same assumptions that we had been discussing. Without the strong convexity assumption, the convergence rate for the algorithm is $\mathcal O(1/k)$ for the optimality measure. Under strong convexity assumptions and strong smoothness assumption, weaker convergence and stronger convergence results can be obtained under both cases. 
 
 ---
 ### **FISTA, Accelerated Proximal Gradient**
@@ -559,7 +559,7 @@ The iteration will be started with: $x_0 = y_0$, $t_0 = 1$, the update sequence 
 >\end{aligned}
 >$$
 
-Take notice that this is exactly the same when compare to the gradient descent without the proximal operator. This algorithm with the Nesterov acceleration is provably better and its convergence proof is listed in [[Proximal Gradient with Momentum Accelerations]]. 
+Take notice that this is exactly the same when compare to the gradient descent without the proximal operator. This algorithm with the Nesterov acceleration is provably better and its convergence proof is listed in [[The FISTA Algorithm]]. 
 
 
 ---

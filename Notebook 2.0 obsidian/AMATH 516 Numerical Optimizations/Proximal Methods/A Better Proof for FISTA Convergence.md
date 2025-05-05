@@ -1,4 +1,4 @@
-- [[Proximal Gradient with Momentum Accelerations]]
+- [[The FISTA Algorithm]]
 
 ---
 ### **Intro**

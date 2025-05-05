@@ -37,7 +37,7 @@ This is a description of the three points algorithm.
 
 This is a single-valued operator. 
 
-Proved in [Fundamental Proximal Gradient Inequality](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Fundamental%20Proximal%20Gradient%20Inequality.md) is the following theorem: 
+Proved in [Proximal Gradient Inequality Part I](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Proximal%20Gradient%20Inequality%20Part%20I.md) is the following theorem: 
 
 #### **Theorem | Proximal gradient inequality**
 > Assume that $F = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ convex. 

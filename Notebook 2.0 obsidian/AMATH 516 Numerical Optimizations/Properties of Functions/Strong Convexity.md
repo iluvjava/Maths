@@ -30,8 +30,8 @@ Such a function has the following property:
 The following characterization of convexity are equivalent. 
 Recall the definition of subgradient $\partial f: \R^n \rightarrow 2^{\R^n}$. 
 
-#### **Theorem 2 | Equivalent subgradient characterization of strong convexity**
-> Let $f: \R^n \rightarrow \overline \R$ be a $\alpha > 0$-strong convex function then the following statetment are equivalent: 
+#### **Theorem 2 | Equivalent subgradient characterizations of strong convexity**
+> Let $f: \R^n \rightarrow \overline \R$ be a $\alpha > 0$-strong convex function then the following statement are equivalent: 
 > 1. $f - \alpha/2\Vert \cdot\Vert^2$ is a convex function. 
 > 2. It has for all $x \in \text{dom}\; \partial f, v \in \partial f(x), y \in \R^n$ $f(y) - f(x) - \langle v, y - x\rangle - \frac{\alpha}{2}\Vert x - y\Vert^2 \ge 0$. 
 > 3. $\partial f: \R^n \rightarrow 2^{\R^n}$ is a maximally monotone operator and it has for all $x, y \in \text{dom}\; \partial f$, $x' \in \partial f(x), y' \in \partial f(y)$ such that $\langle x - y, x' - y'\rangle \ge \alpha\Vert x - y\Vert^2$. 

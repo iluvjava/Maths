@@ -23,7 +23,7 @@ $$
 
 It chooses the global minimizer of the problem. 
 It's impossible to compute in practice but a very strong oracle to work with theoretically. 
-See [Basics of Proximal Point Convergence in the Nonconvex case](AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Ekeland%20Variational%20Principle.md) for a basic introduction of convergence of the proximal point method in Metric space. 
+See [Basics of Proximal Point Convergence in the Nonconvex case](../Ekeland%20Variational%20Principle.md) for a basic introduction of convergence of the proximal point method in Metric space. 
 
 **Notations and quantities**
 1. $\partial f$ here is the Modokovich Limiting subdifferential. 

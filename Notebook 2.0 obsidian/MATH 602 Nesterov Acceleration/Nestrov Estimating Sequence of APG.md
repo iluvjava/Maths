@@ -2,7 +2,7 @@
 alias: Nesterov's Estimating Sequence derivations of Accelerated Proximal Gradient Method
 ---
 - [Nesterov Original Conception of Momentum Method](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md)
-- [Fundamental Proximal Gradient Inequality](Fundamental%20Proximal%20Gradient%20Inequality.md)
+- [Proximal Gradient Inequality Part I](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Proximal%20Gradient%20Inequality%20Part%20I.md)
 
 --- 
 ### **Intro**

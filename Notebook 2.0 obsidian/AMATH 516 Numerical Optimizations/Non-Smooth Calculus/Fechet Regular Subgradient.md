@@ -128,14 +128,14 @@ This is direct since when $f$ is convex, we have $\mathbb D_f(x, \bar x | v) \ge
 The little-o term is gone. 
 
 
-#### **Claim | Characterizing Subgradient by Dini Hadamard Subderivatives**
-> If $\bar x \in \text{dom}(f)$ then $\hat \partial f(\bar x) = \{v\in \mathbb R^n | \langle v, w\rangle \le df(x | w) \forall w \in \mathbb R^n\}$. 
+#### **Theorem 1 | Characterizing Subgradient by Dini Hadamard Subderivatives**
+> If $\bar x \in \text{dom}(f)$ then $\hat \partial f(\bar x) = \{v\in \mathbb R^n : \langle v, w\rangle \le df(x)(w) \;\forall w \in \mathbb R^n\}$. 
 
 **proof**
 
 See [Variational Subderivatives](Non-Smooth%20Calculus/Variational%20Subderivatives.md) for more information. 
 
-#### **Thm | Regular Subgradient is Dense for L.S.C Functions**
+#### **Theorem 2 | Regular Subgradient is Dense for L.S.C Functions**
 > L.S.C functions has dense regular subgradient. 
 > Let $f : \mathbb R^n \mapsto \mathbb{\bar R}$, then for all $\epsilon > 0$, there exists $y \in x_0 + \epsilon \mathbb B$ such that $\hat \partial f(y) \neq \emptyset$ and $f(x_0) - \epsilon \le f(x) \le f(x_0)$. 
 
@@ -143,7 +143,7 @@ See [Variational Subderivatives](Non-Smooth%20Calculus/Variational%20Subderivati
 
 #UNFINISHED. 
 
-#### **Thm | Sufficient Conditions for Differentiability**
+#### **Thereom 3 | Sufficient Conditions for Differentiability**
 > If $\hat\partial f(\bar x) \neq \emptyset$  and $\hat \partial [-f](\bar x) \neq \emptyset$, then the function $f$ is differentiable at $\bar x$. 
 
 **Proof**
@@ -204,7 +204,26 @@ It's now proved and $f$ is Frechet Differentiable at $\bar x$.
 ---
 ### **Basic Theorems for Regular Subgradient**
 
+One of the most basic rule for subgradients is the sum rule. 
 
+#### **Theorem | Smooth nonsmooth sum rule of regular subgradient**
+> Let $F = f + g$. 
+> Suppose that $f:\R^n \rightarrow \R$ is differentiable at $\bar x$. 
+> $g$ has regular subgradient $\partial g(\bar x)\neq \emptyset$. 
+
+**Proof**
+
+From Theorem 1, and the property of Dini-Hadmard subderivative it has if $v \in \hat \partial F(\bar x)$: 
+
+$$
+\begin{aligned}
+    (\forall w \in \R^n)\; 
+    \langle v, w\rangle \le dF(\bar x)(w) = df(\bar x)(w) + dg(\bar x)(w)
+    = \langle \nabla f(\bar x), w\rangle + dg(\bar x)(w). 
+\end{aligned}
+$$
+
+Since this is true for all $w$, we have equaliy $\hat \partial F(\bar x) = \nabla f(\bar x) + \hat \partial g(\bar x)$. 
 
 
 ---

@@ -30,7 +30,7 @@ This is a description of the three points algorithm.
 
 This is a single-valued operator. 
 
-Proved in [Fundamental Proximal Gradient Inequality](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Fundamental%20Proximal%20Gradient%20Inequality.md) is the following theorem: 
+Proved in [Proximal Gradient Inequality Part I](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Proximal%20Gradient%20Inequality%20Part%20I.md) is the following theorem: 
 
 #### **Theorem | Proximal gradient inequality**
 > Assume that $F = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ convex. 
@@ -595,10 +595,9 @@ There is a similar theorem for the convergence of the gradient mapping of Generi
 > $$
 
 
-
 Obviously, this fits the generic description of the monotone algorithm. 
 This variant of monotone FISTA exhibits fast convergence of the norm of the gradient mapping. 
-Furthermore, observe that for all $k \ge 1$ it has from the proximal gradient inequality that: 
+Furthermore, observe that for all $k \ge 1$ it has from the proximal gradient inequality that (No need for convexity here): 
 
 $$
 \begin{aligned}

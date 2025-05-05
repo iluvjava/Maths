@@ -200,7 +200,7 @@ $$
 \end{aligned}
 $$
 
-$\square$
+$\blacksquare$
 
 ---
 ### **Local Lipschitz Continuity**
@@ -277,7 +277,7 @@ $$
 
 
 
-$\square$
+$\blacksquare$
 
 
 ---
@@ -327,6 +327,22 @@ Taking limit on both sides with $\tau \searrow 0$ and $w \rightarrow \mathbf 0$,
 Obviously, the set $\hat \partial f(\bar x)$ is an intersection of all the half spaces that satisfies the conditions where, it supports the Dini-hadamard subderivative. 
 Therefore, the set $\hat \partial f (\bar x)$ will have to be a convex set. 
 
+---
+### **Sum rule of Dini Hadamard subderivative**
+
+Firstly, if $f:\R^n \rightarrow \overline \R$ is differentiable, then $df(x)(w) = \langle \nabla f(x), w\rangle$ for all $w \in \R^n$. 
+This should be obvious. 
+
+#### **Claim | Sum rule of Dini Hadamard Subderivative**
+> Let $F = f + g$. 
+> Suppose that $f: \R^n \rightarrow \overline \R$ is differentiable at $\bar x$ and $g$ has $dg(x)$ is defined for all $w$ then 
+> Then, for all $w \in \R^n$, $dF(\bar x)(w) =dg(\bar x)(w) + \langle \nabla f(\bar x), x\rangle$. 
+
+**Proof**
+
+It's direct. 
+
+$\blacksquare$
 
 
 ---

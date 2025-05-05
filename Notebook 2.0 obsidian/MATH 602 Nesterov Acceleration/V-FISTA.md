@@ -1,4 +1,4 @@
-[Proximal Gradient with Momentum Accelerations](AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Proximal%20Gradient%20with%20Momentum%20Accelerations.md)
+[The FISTA Algorithm](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/The%20FISTA%20Algorithm.md)
 
 
 ---
@@ -117,7 +117,7 @@ We recall the prox grad lemma used in the proof of FISTA. We will apply the same
 > Where $D_g(x, y):= g(x) - g(y) - \langle \nabla g(y), x -y\rangle$ is the Bregman Divergence for the smooth part of the sum: $g$. 
 
 
-This theorem is extracted from the proof of proximal gradient in [Proximal Gradient Convergence Rate](AMATH%20516%20Numerical%20Optimizations/Classics%20Algorithms/Proximal%20Gradient%20Convergence%20Rate.md). 
+This theorem is extracted from the proof of proximal gradient in [Proximal Gradient Convergence Rate](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Proximal%20Gradient%20Convergence%20Rate.md). 
 Under the strong convexity assumption, the above claim becomes stronger using the lower bound $D_g(x, y) \ge \sigma/2\Vert x - y\Vert^2$ because function $g$ is a strongly convex function. 
 
 ---
@@ -145,7 +145,7 @@ The following proof was adapted from the proof of theorem 10.7.7 in Amir Beck's 
 where $\theta_k = (t_k - 1)/(t_k + 1)$. 
 The parameters, $\theta_k$, and $t_k$ will be determined as we go over the proof. 
 $t_{0} = 1$ is the base case for $t_k$ sequence, it represents the fact that there is no accelerations involved on the first step of the algorithm, its value depends on what it we want it to be. 
-We start with the [Fundamental Proximal Gradient Inequality](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Fundamental%20Proximal%20Gradient%20Inequality.md): 
+We start with the [Proximal Gradient Inequality Part I](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Proximal%20Gradient%20Inequality%20Part%20I.md): 
 
 $$
 \begin{aligned}
