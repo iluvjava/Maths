@@ -43,7 +43,7 @@ Therefore:
 
 Recall the sequence of equivalent characterization for convex function through their convex subgradient from [Subgradient Characterizations of Convexity](Properties%20of%20Functions/Subgradient%20Characterizations%20of%20Convexity.md). 
 
-In addition, we take the sum rule for regular subgradient (See [Regular Subgradient](Non-Smooth%20Calculus/Subgradient%20Intro.md)) for more and it gives: 
+In addition, we take the sum rule for regular subgradient (See [Regular Subgradient](Non-Smooth%20Calculus/Subgradient%20Intro.md)) for more and, it gives: 
 
 $$
 \begin{aligned}
@@ -53,6 +53,13 @@ $$
 \end{aligned}
 $$
 
+One final missing ingredient is the equivalence between the regular subgradient and the limiting subgradient for Locally Lipschitz functions. 
+
+
+
+
+---
+### **Basic characterizations on weakly convex functions**
 
 
 #### **Theorem | weak convexity equivalences**
