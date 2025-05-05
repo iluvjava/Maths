@@ -84,7 +84,7 @@ It's a different proof, a different setup for $g$, but the results remains simil
 
 
 #### **Claim 2.1.1 | Monotone descent property under smoothness**
-> Let $F = f + g$ where, $f$ is differentiable and the divergence is upper bounded by $L$, i.e: $D_f(x, y) \le L/2 \Vert x - y\Vert^2$ for all $x, y \in \R^n$, and there exists $q \in \R$ such that $g - q\frac{\Vert \cdot\Vert^2}{2}$ is convex. 
+> Let $F = f + g$ where, $f$ is differentiable and, the divergence is upper bounded by $L$, i.e: $D_f(x, y) \le L/2 \Vert x - y\Vert^2$ for all $x, y \in \R^n$, and there exists $q \in \R$ such that $g - q\frac{\Vert \cdot\Vert^2}{2}$ is convex. 
 > Let $\bar x = T_{\beta^{-1}, f, g}(x)$. 
 > Then, for all $x \in \R^n$, it has the following inequality: 
 > $$
@@ -96,8 +96,8 @@ It's a different proof, a different setup for $g$, but the results remains simil
 
 **Proof**
 
-The assumption of $f, g$ is fits Claim 2.1 because $f$ is differentiable and $g - q\Vert \cdot\Vert^2/2$ is a convex function. 
-Invoking Claim 2.1 with $\bar x = T_{\beta^{-1}, f, g}$, and $z = x$, we have for all $x \in \R^n$: 
+The assumption of $f, g$ is fits **Claim 2.1** because $f$ is differentiable and $g - q\Vert \cdot\Vert^2/2$ is a convex function. 
+Invoking **Claim 2.1** with $\bar x = T_{\beta^{-1}, f, g}$, and $z = x$, we have for all $x \in \R^n$: 
 
 $$
 \begin{aligned}

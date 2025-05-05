@@ -595,6 +595,10 @@ There is a similar theorem for the convergence of the gradient mapping of Generi
 > $$
 
 
+#### **Theorem | Convergence of Nestrov's Monotone FISTA variants under convexity**
+> 
+
+
 Obviously, this fits the generic description of the monotone algorithm. 
 This variant of monotone FISTA exhibits fast convergence of the norm of the gradient mapping. 
 Furthermore, observe that for all $k \ge 1$ it has from the proximal gradient inequality that (No need for convexity here): 

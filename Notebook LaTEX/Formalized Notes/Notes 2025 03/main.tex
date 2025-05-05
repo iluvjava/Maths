@@ -1209,17 +1209,46 @@
         % ======================================================================
         % THEOREM | GENERIC GMAPG LS GRADIENT MAPPING CONVERGENCE
         % ======================================================================
-        \begin{theorem}[generic GMAPG LS gradient mapping convergence]
-            
+        \begin{theorem}[generic GMAPG LS gradient mapping convergence]\;\label{thm:gmapg-generic-gradmap-convergence}\\
+            Suppose that $F = f + g$ satisfies Assumption \ref{ass:standard-fista}. 
+            Let the sequences $(x_k, y_k, v_k)$ satisfy GMAPG (Definition \ref{def:generic-mapg-ls}). 
+            If in addition, the sequence $(\alpha_k)_{k \ge 0}$ has $\alpha_0 = 1$ and it is initialized with $x_0=x_0 = T_{1/L_0, f, g}x_{-1}$ for some $x_{-1} \in\RR^n$ and there exists $x^+$ which is a minimizer of $F$. 
+            Then, the convergence of gradient mapping $\Vert \mathcal G_{1/L_k}(y_k)\Vert$ is described by the sequence $(\beta)_{k \ge 0}$ where $\beta_0 = 1$ and for all $k \ge 1$:
+            \begin{align*}
+                \beta_k := \prod_{i = 0}^{k - 1}(1 - \alpha_{i + 1}) \max\left(1, \rho_i L_{i + 1}L_i^{-1}\right). 
+            \end{align*}
+            It satisfies for all $k \ge 1$ the inequality:
+            \begin{align*}
+                \Vert \mathcal G_{L_k} y_k\Vert &\le 
+                \sqrt{\beta_k}L_k L_0 \left(
+                    1 - 
+                    \min(\rho_{k - 1}, L_k^{-1} L_{k - 1})^{1/2}
+                \right)\Vert x^+ - v_0\Vert. 
+            \end{align*}
         \end{theorem}
-        We introduce two examples variants of line search method used to enhance the accelerated proximal gradient methods in the literatures to demonstrate Definition \ref{def:generic-mapg-ls} and Theorem \ref{thm:gmapg-ls-convergence}.  
+        \begin{proof}
+            The following intermediate results are in order for the proof. 
+            \begin{enumerate}
+                \item[(a)]
+            \end{enumerate}
+        \end{proof}
     \section{Algorithmic description of GMAPG}
         There are several components to the GMAPG algorithm. 
+        This section introduces two variants of line search method used to enhance the accelerated proximal gradient methods in the literatures to demonstrate Definition \ref{def:generic-mapg-ls}. 
         \begin{algorithm}[H]
             \begin{algorithmic}[1]\label{alg:armijo-ls}
                 \STATE{\noindent
-                    \textbf{Function ArmijoLS}
-                    $(f, g, x, v, L, \alpha, \_, \_)$
+                    % \textbf{Function ArmijoLS}
+                    % $(f, g, x, v, L, \alpha, \_, \_)$
+                    \textbf{Function ArmijoLS:}
+                    \begin{tabular}{lcl}
+                        $f : \RR^n \rightarrow \RR$ && Convex Lipschitz smooth\\ 
+                        $g: \RR^n \rightarrow \overline \RR$  &&  Convex function with Proximal operator\\ 
+                        $x \in \RR^n$ && Vector\\
+                        $v \in \RR^n$ && Vector\\
+                        $L \in \RR$ && $L > 0$\\
+                        $\alpha \in \RR$  && $\alpha \in (0, 1]$
+                    \end{tabular}
                 }
                 \STATE{$\alpha^+ := (1/2)\left(\alpha\sqrt{\alpha^2 + 1} - \alpha^2\right)$.}
                 \STATE{$y^+ := \alpha^+ v + (1 - \alpha^+)x$.}

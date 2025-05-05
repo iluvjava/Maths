@@ -55,7 +55,7 @@ Convexity of $f$ is not necessary for the claim to hold.
 This is true for all non-convex but differential $f$ as well. 
 
 
-#### **Lemma 0.2 | Proximal gradinet optimality inequality**
+#### **Lemma 0.2 | Proximal gradient optimality inequality**
 
 
 ---

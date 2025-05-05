@@ -6,8 +6,8 @@ alias:Regular Subgradient
 ---
 ### **Intro**
 
-Under simple cases where the function is non-convex, the convex subgradient doesn't reduces to the ordinary gradient for differentiable functions. 
-For example $x^3$ doesn't have any convex subgradient but it's a differentiable function. 
+Under simple cases where the function is non-convex, the convex subgradient doesn't reduce to the ordinary gradient for differentiable functions. 
+For example $x^3$ doesn't have any convex subgradient but, it's a differentiable function. 
 This motivates the definition and discussion for regular subgradient for non-convex functions. 
 
 Let $f : \mathbb R^n \mapsto \mathbb{\bar R}$. 
@@ -22,7 +22,7 @@ $$
 $$
 
 The above is similar to [Bregman Divergence](Bregman%20Divergence.md), here this is a generalization to function that are not necessarily differentiable. 
-For example, this notations can represent a differentiable function (See [Frechet, Gateaux Differentiability Euclidean Space](../../MATH%20000%20Math%20Essential/Analysis/Frechet,%20Gateaux%20Differentiability%20Euclidean%20Space.md)). 
+For example, this notation can represent a differentiable function (See [Frechet, Gateaux Differentiability Euclidean Space](../../MATH%20000%20Math%20Essential/Analysis/Frechet,%20Gateaux%20Differentiability%20Euclidean%20Space.md)). 
 Recall: [The Little-o Notations in Limits](../../MATH%20000%20Math%20Essential/Analysis/The%20Little-o%20Notations%20in%20Limits.md). 
 Let $f : \mathbb R^n \mapsto \R$ be a differentiable at $\bar x \in \mathbb R^n$ if and only if there exists $v \in \mathbb R^n$ such that 
 
