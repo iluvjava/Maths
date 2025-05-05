@@ -45,9 +45,9 @@
     \end{assumption}
     \begin{definition}[proximal gradient operator]
         Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth}. 
-        Define the proximal gradient operator by: 
+        Let $\beta > 0$, we define the proximal gradient operator for all $x \in \RR^n$: 
         \begin{align*}
-            T_{\beta^{-1}, f, g}(x) &= \hprox_{\beta^{-1}g} \left(
+            T_{\beta^{-1}, f, g}(x) &:= \hprox_{\beta^{-1}g} \left(
                 x - \beta^{-1} \nabla f(x)
             \right)
             \\
@@ -1217,16 +1217,29 @@
         There are several components to the GMAPG algorithm. 
         \begin{algorithm}[H]
             \begin{algorithmic}[1]\label{alg:armijo-ls}
-                \STATE{\textbf{Function ArmijoLS}
+                \STATE{\noindent
+                    \textbf{Function ArmijoLS}
                     $(f, g, x, v, L, \alpha, \_, \_)$
                 }
+                \STATE{$\alpha^+ := (1/2)\left(\alpha\sqrt{\alpha^2 + 1} - \alpha^2\right)$.}
+                \STATE{$y^+ := \alpha^+ v + (1 - \alpha^+)x$.}
+                \STATE{$L^+ := L$. }
+                \FOR{$i = 1, 2,\ldots, 53$}
+                    \STATE{$L^+ := 2L^+$. }
+                    \STATE{$x^+ := T_{1/L^+, f, g}(y^+)$. }
+                    \IF{$D_f(x^+, y^+) \le (L^+/2)\Vert x^+ - y^+\Vert^2$}
+                        \STATE{\textbf{break}}
+                    \ENDIF
+                    \STATE{$L^+ := 2^{i}L$}
+                \ENDFOR
+                \STATE{\textbf{Return:} $y^+, x^+, \alpha^+, L^+$}
                 \caption{Armijo Line Search}
             \end{algorithmic}
         \end{algorithm}
         \begin{algorithm}[H]\label{alg:chambolle-btls}
             \begin{algorithmic}[1]
                 \STATE{\noindent
-                    \textbf{Function ChambBT}($f, g, x, v, L, \alpha, L_{\min}, \rho$)
+                    \textbf{Function ChamBT}($f, g, x, v, L, \alpha, L_{\min}, \rho$)
                 }
                 \STATE{$L^+ := \max(L_{\min}, \rho L)$.}
                 \FOR{$i = 1, 2, \ldots, 53$}

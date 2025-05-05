@@ -16,6 +16,7 @@ In this section we consider the [Mordukhovich Limiting Subdifferential](AMATH%20
 The proofs based on subgradient inequality will be simpler compared to using Quadratic growth conditions over minimizers. 
 
 #### **Claim 2.1 | The Fundamental Proximal Gradient Inequality**
+> Suppose $\beta > 0$. 
 > Let $F = f + g$. 
 > Let $f$ be differentiable, assume there exists $q \in \R$ be the largest value such that $g - q\Vert \cdot\Vert^2/2$ is convex. 
 > For any $x \in \R^n$, define $\bar x = T_{\beta^{-1}, f, g}(x)$, it has $\forall z \in \R^n$
@@ -83,7 +84,7 @@ It's a different proof, a different setup for $g$, but the results remains simil
 
 
 #### **Claim 2.1.1 | Monotone descent property under smoothness**
-> Let $F = f + g$ where, $f$ is differentiable and its gradient is Lipschitz upper smooth, i.e: $D_f(x, y) \le L/2 \Vert x - y\Vert^2$ for all $x, y \in \R^n$, and $g - q\frac{\Vert \cdot\Vert^2}{2}$ is convex for some $q \in \R$. 
+> Let $F = f + g$ where, $f$ is differentiable and the divergence is upper bounded by $L$, i.e: $D_f(x, y) \le L/2 \Vert x - y\Vert^2$ for all $x, y \in \R^n$, and there exists $q \in \R$ such that $g - q\frac{\Vert \cdot\Vert^2}{2}$ is convex. 
 > Let $\bar x = T_{\beta^{-1}, f, g}(x)$. 
 > Then, for all $x \in \R^n$, it has the following inequality: 
 > $$
@@ -91,9 +92,36 @@ It's a different proof, a different setup for $g$, but the results remains simil
 >     0 \ge F(x) - F(\bar x) - (\beta + q/2 - L/2)\Vert x - \bar x\Vert^2. 
 > \end{aligned}
 > $$
-> And descent is possible when $\beta \le (L - q)/2$. 
+> And descent is possible when $\beta \ge (L - q)/2$. 
 
 **Proof**
+
+The assumption of $f, g$ is fits Claim 2.1 because $f$ is differentiable and $g - q\Vert \cdot\Vert^2/2$ is a convex function. 
+Invoking Claim 2.1 with $\bar x = T_{\beta^{-1}, f, g}$, and $z = x$, we have for all $x \in \R^n$: 
+
+$$
+\begin{aligned}
+    0 &\le 
+    - \frac{q}{2}\Vert x - \bar x\Vert^2 + 
+    F(x) - F(\bar x) - \langle \beta(x - \bar x), x - \bar x\rangle 
+    + D_f(x, \bar x ) - D_f(x, x)
+    \\
+    &= 
+    - \frac{q}{2}\Vert x - \bar x\Vert^2 + 
+    F(x) - F(\bar x) - \beta \Vert x - \bar x\Vert^2
+    + D_f(x, \bar x ) - 0
+    \\
+    &\le
+    - \frac{q}{2}\Vert x - \bar x\Vert^2 + 
+    F(x) - F(\bar x) - \beta \Vert x - \bar x\Vert^2
+    + \frac{L}{2}\Vert x - \bar x\Vert^2 
+    \\
+    &= F(x) - F(\bar x) - \left(
+        \beta + \frac{q}{2} - \frac{L}{2}
+    \right) \Vert x - \bar x\Vert^2. 
+\end{aligned}
+$$
+
 
 
 
