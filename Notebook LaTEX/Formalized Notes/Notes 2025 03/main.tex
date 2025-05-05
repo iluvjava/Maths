@@ -1213,23 +1213,20 @@
             
         \end{theorem}
         We introduce two examples variants of line search method used to enhance the accelerated proximal gradient methods in the literatures to demonstrate Definition \ref{def:generic-mapg-ls} and Theorem \ref{thm:gmapg-ls-convergence}.  
-    \section{Algorithms formulations of GMAPG}
-        MFISTA by Beck is an example of Definition \ref{def:generic-mapg-ls}. 
-        % ======================================================================
-        % EXAMPLE | MFISTA WITH ARMIJO LINE SEARCH
-        % ======================================================================
+    \section{Algorithmic description of GMAPG}
+        There are several components to the GMAPG algorithm. 
         \begin{algorithm}[H]
-            \begin{algorithmic}[1]
-                \STATE{\textbf{Input:}}
+            \begin{algorithmic}[1]\label{alg:armijo-ls}
+                \STATE{\textbf{Function ArmijoLS}
+                    $(f, g, x, v, L, \alpha, \_, \_)$
+                }
                 \caption{Armijo Line Search}
             \end{algorithmic}
         \end{algorithm}
-        We will now give an algorithimic description of GMAPG. 
         \begin{algorithm}[H]\label{alg:chambolle-btls}
             \begin{algorithmic}[1]
                 \STATE{\noindent
-                    \textbf{Input:}
-                    $f, g, x, v, L> L_{\min} > 0, \rho, \alpha$
+                    \textbf{Function ChambBT}($f, g, x, v, L, \alpha, L_{\min}, \rho$)
                 }
                 \STATE{$L^+ := \max(L_{\min}, \rho L)$.}
                 \FOR{$i = 1, 2, \ldots, 53$}
@@ -1245,16 +1242,36 @@
                 \caption{Chambolle's Backtracking}
             \end{algorithmic}
         \end{algorithm}
-
-        \begin{algorithm}[H]\label{alg:mfista-chambolle-ada}
+        \begin{algorithm}[H]\label{alg:beck-mono}
             \begin{algorithmic}[1]
                 \STATE{\noindent
-                    \textbf{Input:} $f, g, x_{-1}, L_0, r_{\min}, \text{Exit condition: }\mathbb E_\chi$. 
+                    \textbf{Function BeckMono}($f, g, x, v, L, L_{\min}, \rho, \alpha$)
                 }
-
+                \caption{Beck's monotone routine}
+            \end{algorithmic}
+        \end{algorithm}
+        \begin{algorithm}[H]\label{alg:nes-mono}
+            \begin{algorithmic}[1]
+                \STATE{\noindent
+                    \textbf{Function NesMono}($f, g, x, v, L, L_{\min}, \rho, \alpha$)
+                }
+                \caption{Nesterov's monotone routine}
+            \end{algorithmic}
+        \end{algorithm}
+        \begin{algorithm}[H]\label{alg:gmapg}
+            \begin{algorithmic}[1]
+                \STATE{\noindent
+                    \textbf{Function GMAPG} (
+                        $f, g, x_{-1}, L_0, r_{\min}, \text{Exit condition: }\mathbb E_\chi$
+                    )
+                }
             \end{algorithmic}
             \caption{GMAPG with Chambolle's backtracking}
         \end{algorithm}
+    % ==========================================================================
+    % SECTION | EXAMPLES OF GMAPG IN THE LITERATURE
+    % ==========================================================================
+    \section{Examples of GMAPG in the literature}
         \begin{example}[MFISTA with Armijo line search]\;\\\vspace{-1em}
             \begin{algorithm}[H]
                 \begin{algorithmic}[1]
@@ -1365,7 +1382,6 @@
         % ======================================================================
         % EXAMPLE | NESTEROV'S MONOTONE SCHEME WITH GENERIC LINE SEARCH
         % ======================================================================
-
         \begin{example}[Nesterov's monotone scheme with generic line search]\;\\\vspace{-1em}
             \begin{algorithm}\label{alg:nesterov-mono-generic-ls}
             \begin{algorithmic}[1]
@@ -1376,7 +1392,10 @@
 
     \section{Practical enhancement}
         In this section, we provide results for the faster convergence rate of examples listed from the previous section. 
+    \section{Nonconvex convergence}
+        
     \section{Restarting with gradient and function values}
+    
         
 
 
