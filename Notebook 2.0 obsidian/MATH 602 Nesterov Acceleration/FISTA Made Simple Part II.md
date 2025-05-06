@@ -790,7 +790,7 @@ $$
 $$
 
 **Intermediate Results (2):**
-Recall that $(1 - \alpha_k)\rho_{k - 1} = \alpha_k^2/\alpha_{k - 1}$ for all $k \ge 1$. 
+Recall that $(1 - \alpha_k)\rho_{k - 1} = \alpha_k^2/\alpha_{k - 1}^2$ for all $k \ge 1$. 
 If we assume that $\alpha_0 = 1$ and $x^+$ is a minimizer of $F$, then for all $k \ge 0$ it has: 
 $$
 \begin{aligned}
@@ -816,44 +816,44 @@ $$
         \frac{\sqrt{\beta_{k - 1}L_0}}{\alpha_{k - 1}}\Vert x^+ - v_0\Vert
     \right) 
     \\
-    &= L_k L_0 \left(
+    &= L_k\sqrt{L_0} \left(
         \sqrt{\beta_k}
         - 
         \frac{\alpha_k\sqrt{\beta_{k - 1}}}{\alpha_{k - 1}}
     \right)\Vert x^+ - v_0\Vert
     \\
-    &= \sqrt{\beta_k}L_k L_0 \left(
+    &= \sqrt{\beta_k L_0}L_k \left(
         1 - 
         \frac{\alpha_k}{\alpha_{k - 1}}\sqrt{\frac{\beta_{k - 1}}{\beta_k}}
     \right)\Vert x^+ - v_0\Vert
     \\
-    &= \sqrt{\beta_k}L_k L_0 \left(
+    &= \sqrt{\beta_k L_0}L_k \left(
         1 - 
         \frac{\alpha_k}{\alpha_{k - 1}}
         \left((1 - \alpha_k)\max(1, \rho_{k - 1}L_k L_{k - 1}^{-1})\right)^{-1/2}
     \right)\Vert x^+ - v_0\Vert
     \\
     &= 
-    \sqrt{\beta_k}L_k L_0 \left(
+    \sqrt{\beta_k L_0}L_k \left(
         1 - 
         ((1 - \alpha_k)\rho_{k - 1})^{1/2}
         \left((1 - \alpha_k)\max(1, \rho_{k - 1}L_k L_{k - 1}^{-1})\right)^{-1/2}
     \right)\Vert x^+ - v_0\Vert
     \\
     &= 
-    \sqrt{\beta_k}L_k L_0 \left(
+    \sqrt{\beta_k L_0}L_k \left(
         1 - 
         \left(\rho_{k - 1}^{-1}\max(1, \rho_{k - 1}L_k L_{k - 1}^{-1})\right)^{-1/2}
     \right)\Vert x^+ - v_0\Vert
     \\
     &=
-    \sqrt{\beta_k}L_k L_0 \left(
+    \sqrt{\beta_k L_0}L_k \left(
         1 - 
         \max(\rho_{k - 1}^{-1}, L_k L_{k - 1}^{-1})^{-1/2}
     \right)\Vert x^+ - v_0\Vert
     \\
     &= 
-    \sqrt{\beta_k}L_k L_0 \left(
+    \sqrt{\beta_k L_0}L_k \left(
         1 - 
         \min(\rho_{k - 1}, L_k^{-1} L_{k - 1})^{1/2}
     \right)\Vert x^+ - v_0\Vert. 
@@ -890,8 +890,8 @@ $$
 \end{aligned}
 $$
 
-**Proving Intermediate Results (2)**. The base case is verified by the assumption that $x_0 = v_0 = T_{L_0} x_{-1}$. 
-Apply the proximal gradient inequality and using the fact that $x\^+$ is a minimizer we can get
+**Proving Intermediate Results (2)**. The base case $k = 1$ is verified by the assumption that $x_0 = v_0 = T_{L_0} x_{-1}$. 
+Apply the proximal gradient inequality and using the fact that $x^+$ is a minimizer we can get
 
 $$
 \begin{aligned}
@@ -914,7 +914,7 @@ $$
 $$
 
 Because $\beta_0 = \alpha_0 = 1$, the base case holds. 
-For all $k \ge 1$, we consider the convergence claim and it has 
+For all $k \ge 1$, we consider the convergence claim, and it has 
 
 $$
 \begin{aligned}

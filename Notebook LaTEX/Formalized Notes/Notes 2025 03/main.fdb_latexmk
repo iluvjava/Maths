@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1746487377 "main.aux" "main.bbl" "main" 1746487379
+["bibtex main"] 1746492749 "main.aux" "main.bbl" "main" 1746492920
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/siam.bst" 1291867956 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1746487379 9784 b7d267596959b5b5b85f4a9ee1769771 "pdflatex"
+  "main.aux" 1746492919 9941 8c74c6d5c9c35c2d62fbc6b619cdcecf "pdflatex"
   "references/refs.bib" 1743016732 6587 efbfd4293e1d102587567a2d1f6e1a73 ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1746487377 "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" "main.pdf" "main" 1746487379
+["pdflatex"] 1746492917 "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" "main.pdf" "main" 1746492920
   "C:/Users/alto/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1737674572 213711 9c6a2446f46c541ed5dc6afd45bb7161 ""
   "C:/Users/alto/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1666893782 10787539 152cb807f892717dbbfe4a4f6571af5d ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -46,6 +46,7 @@
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmti12.tfm" 1136768653 1484 ed72f8f5cf654cda15ecc8e32bfcbee5 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmti7.tfm" 1136768653 1492 86331993fe614793f5e7e755835c31c5 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmti8.tfm" 1136768653 1504 1747189e0441d1c18f3ea56fafc1c480 ""
+  "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1247596666 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247596666 32080 340ef9bf63678554ee606688e7b5339d ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb" 1247596666 32166 b0c356b15f19587482a9217ce1d8fa67 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb" 1247596667 32001 6aeea3afe875097b1eb0da29acd61e28 ""
@@ -226,11 +227,11 @@
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388494052 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
-  "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" 1746487374 78920 872f9c648893d341d1ce36d40112b6c4 ""
-  "main.aux" 1746487379 9784 b7d267596959b5b5b85f4a9ee1769771 "pdflatex"
-  "main.bbl" 1746487377 277 e00e327fd2e9906d522a6166777e0db2 "bibtex main"
-  "main.out" 1746487379 3684 f626737e225dc2376e465ff23b5d14af "pdflatex"
-  "main.tex" 1746487374 78920 872f9c648893d341d1ce36d40112b6c4 ""
+  "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" 1746492917 87074 5e10138e6300136b305b09ffb22536b4 ""
+  "main.aux" 1746492919 9941 8c74c6d5c9c35c2d62fbc6b619cdcecf "pdflatex"
+  "main.bbl" 1746492749 277 e00e327fd2e9906d522a6166777e0db2 "bibtex main"
+  "main.out" 1746492919 4038 eec282c9113efb89dbbeccda6a431906 "pdflatex"
+  "main.tex" 1746492917 87074 5e10138e6300136b305b09ffb22536b4 ""
   "presets/julia_lstlisting.tex" 1742600456 817 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1742426998 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1742600456 8931 43b1f87d5e2ad43f60c8e67f03e69d1f ""

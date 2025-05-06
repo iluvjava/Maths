@@ -60,7 +60,7 @@
     % ==========================================================================
     % WEAKLY CONVEX GENERIC PROXIMAL GRADIENT INEQUALITY
     % ==========================================================================
-    \begin{theorem}[weakly convex generic proximal gradient inequality]\label{thm:pg-ineq-wcnvx-generic}\;\\
+    \begin{theorem}[weakly convex generic proximal gradient inequality]\;\label{thm:pg-ineq-wcnvx-generic}\\
         Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth} with $\beta > 0$ and $q \in \RR$. 
         Then for all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{\beta^{-1}, f, g}(x)$, it has: 
         \begin{align*}
@@ -1206,13 +1206,23 @@
             \end{align*}
             Substituting it back to the previous inequality it yields the desired results. 
         \end{proof}
+        \begin{remark}
+            The sequence has explicit update formula: 
+            \begin{align*}
+                \alpha_k = 
+                \frac{1}{2}
+                \left(
+                    \alpha_{k - 1}\sqrt{\alpha_{k -1}^2 + 4 \rho_{k - 1}} - \alpha^2_{k - 1}
+                \right)
+            \end{align*}
+        \end{remark}
         % ======================================================================
         % THEOREM | GENERIC GMAPG LS GRADIENT MAPPING CONVERGENCE
         % ======================================================================
         \begin{theorem}[generic GMAPG LS gradient mapping convergence]\;\label{thm:gmapg-generic-gradmap-convergence}\\
             Suppose that $F = f + g$ satisfies Assumption \ref{ass:standard-fista}. 
             Let the sequences $(x_k, y_k, v_k)$ satisfy GMAPG (Definition \ref{def:generic-mapg-ls}). 
-            If in addition, the sequence $(\alpha_k)_{k \ge 0}$ has $\alpha_0 = 1$ and it is initialized with $x_0=x_0 = T_{1/L_0, f, g}x_{-1}$ for some $x_{-1} \in\RR^n$ and there exists $x^+$ which is a minimizer of $F$. 
+            If in addition, the sequence $(\alpha_k)_{k \ge 0}$ has $\alpha_0 = 1$ and, it is initialized with $x_0=x_0 = T_{1/L_0, f, g}x_{-1}$ for some $x_{-1} \in\RR^n$ and there exists $x^+$ which is a minimizer of $F$. 
             Then, the convergence of gradient mapping $\Vert \mathcal G_{1/L_k}(y_k)\Vert$ is described by the sequence $(\beta)_{k \ge 0}$ where $\beta_0 = 1$ and for all $k \ge 1$:
             \begin{align*}
                 \beta_k := \prod_{i = 0}^{k - 1}(1 - \alpha_{i + 1}) \max\left(1, \rho_i L_{i + 1}L_i^{-1}\right). 
@@ -1227,27 +1237,153 @@
             \end{align*}
         \end{theorem}
         \begin{proof}
-            The following intermediate results are in order for the proof. 
+            The following intermediate results will be used in the proof. 
+            We stated prior to the proof for a sleeker exposition. 
             \begin{enumerate}
-                \item[(a)]
+                \item[(a)] From Definition \ref{def:generic-mapg-ls}, the gradient mapping satisfies for all $k \ge 1$ that $\Vert \mathcal G_{1/L_k} y_k\Vert = L_k\alpha_k \Vert v_k - v_{k - 1}\Vert$.
+                \item[(b)] We have $(a_k)_{k \ge 1}$ satisfying $\forall k \ge 1$ that $(1 - \alpha_k)\rho_{k - 1} = \alpha_k^2/\alpha_{k - 1}^2$ from the statement hypothesis. We assumed $\alpha_0 = 0, \beta_0 = 1$, $x^+$ is a minimizer of $F$. Then using these it has for all $k \ge 0$ it has $\frac{\alpha_k}{\sqrt{\beta_k L_0}}\Vert x^+ - v_k\Vert \le \Vert x^+ - v_0\Vert$. 
+                \item[(c)] The sequence $(\alpha_k)_{k \ge 0}$ has $(1 - \alpha_k)\rho_{k - 1} = \alpha_k^2/\alpha_{k - 1}^2$ from the statement hypothesis so $\alpha_k/\alpha_{k - 1} = \sqrt{\rho_{k - 1}(1 - \alpha_k)}$ for all $k \ge 1$. 
+                \item[(d)] The definition of the sequence $(\beta_k)_{k \ge 0}$ stated in the statement hypothesis. 
             \end{enumerate}
+            From these intermediate results, the convergence can be derived. 
+            From (a) it has for all $k \ge 0$: 
+            \begin{align*}
+                \Vert \mathcal G_{L_k} y_k\Vert 
+                &= L_k\alpha_k \Vert v_k - v_{k - 1}\Vert
+                \\
+                &\le 
+                L_k\alpha_k(\Vert v_k - x^+\Vert + \Vert v_{k - 1} - x^+\Vert)
+                \\
+                &\underset{\text{(b)}}{\le} 
+                L_k \alpha_k \left(
+                    \frac{\sqrt{\beta_kL_0}}{\alpha_k}\Vert x^+ - v_0\Vert
+                    - 
+                    \frac{\sqrt{\beta_{k - 1}L_0}}{\alpha_{k - 1}}\Vert x^+ - v_0\Vert
+                \right) 
+                \\
+                &= L_k\sqrt{L_0} \left(
+                    \sqrt{\beta_k}
+                    - 
+                    \frac{\alpha_k\sqrt{\beta_{k - 1}}}{\alpha_{k - 1}}
+                \right)\Vert x^+ - v_0\Vert
+                \\
+                &= \sqrt{\beta_k L_0}L_k \left(
+                    1 - 
+                    \frac{\alpha_k}{\alpha_{k - 1}}\sqrt{\frac{\beta_{k - 1}}{\beta_k}}
+                \right)\Vert x^+ - v_0\Vert
+                \\
+                &\underset{\text{(d)}}{=} \sqrt{\beta_k L_0}L_k \left(
+                    1 - 
+                    \frac{\alpha_k}{\alpha_{k - 1}}
+                    \left((1 - \alpha_k)\max(1, \rho_{k - 1}L_k L_{k - 1}^{-1})\right)^{-1/2}
+                \right)\Vert x^+ - v_0\Vert
+                \\
+                &\underset{\text{(c)}}{=} 
+                \sqrt{\beta_k L_0}L_k \left(
+                    1 - 
+                    ((1 - \alpha_k)\rho_{k - 1})^{1/2}
+                    \left((1 - \alpha_k)\max(1, \rho_{k - 1}L_k L_{k - 1}^{-1})\right)^{-1/2}
+                \right)\Vert x^+ - v_0\Vert
+                \\
+                &= 
+                \sqrt{\beta_k L_0}L_k \left(
+                    1 - 
+                    \left(\rho_{k - 1}^{-1}\max(1, \rho_{k - 1}L_k L_{k - 1}^{-1})\right)^{-1/2}
+                \right)\Vert x^+ - v_0\Vert
+                \\
+                &=
+                \sqrt{\beta_k L_0}L_k \left(
+                    1 - 
+                    \max(\rho_{k - 1}^{-1}, L_k L_{k - 1}^{-1})^{-1/2}
+                \right)\Vert x^+ - v_0\Vert
+                \\
+                &= 
+                \sqrt{\beta_k L_0}L_k \left(
+                    1 - 
+                    \min(\rho_{k - 1}, L_k^{-1} L_{k - 1})^{1/2}
+                \right)\Vert x^+ - v_0\Vert. 
+            \end{align*}
+            Now, \textbf{let's proof intermediate results (a)}. 
+            From the definition of GMAPG it has 
+            \begin{align*}
+                y_k &= \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1}
+                \iff 
+                v_{k - 1} = \alpha_k^{-1}(y_k - (1 - \alpha_k)x_{k - 1}). 
+            \end{align*}
+            Using the above, and definition of GMAPG, it yields 
+            \begin{align*}    
+                v_k - v_{k - 1} &= 
+                (x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1})) - \alpha_k^{-1}(y_k - (1 - \alpha_k)x_{k - 1})
+                \\
+                &= 
+                x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1})
+                - \alpha_k^{-1}y_k + (\alpha_k^{-1} - 1)x_{k - 1}
+                \\
+                &= \alpha_k^{-1}(\tilde x_k - x_{k - 1}) - \alpha_k^{-1}y_k + \alpha_k^{-1} x_{k - 1}
+                \\
+                &= \alpha_k^{-1}\tilde x_k - \alpha_k^{-1} y_k 
+                = \alpha^{-1}_k(\tilde x_k - y_k) = \alpha_k^{-1}(T_{L_k} y_k - y_k)
+                \\
+                &= -\alpha_k^{-1}L_k^{-1}(\mathcal G_{L_k}(y_k)). 
+            \end{align*}
+            \textbf{We now prove result (b)}. 
+            The base case $k = 1$ is verified by the assumption that $x_0 = v_0 = T_{L_0} x_{-1}$. 
+            Apply the proximal gradient inequality with $x^+$ as a minimizer it yields: 
+            \begin{align*}
+                0 &\le 
+                F(x^+) - F(T_{L_{-1}}x_{-1}) - \frac{L_0}{2}\Vert x^+ - T_{L_0}x_{-1}\Vert^2 + 
+                \frac{L_0}{2}\Vert x^+ - x_{-1}\Vert^2
+                \\
+                &= 
+                F(x^+) - F(x_0) - \frac{L_0}{2}\Vert x^+ - v_0\Vert^2 + 
+                \frac{L_0}{2}\Vert x^+ - x_{-1}\Vert^2
+                \\
+                &\le 
+                - \frac{L_0}{2}\Vert x^+ - v_0\Vert^2 + 
+                \frac{L_0}{2}\Vert x^+ - x_{-1}\Vert^2
+                \\
+                &= \frac{L_0}{2}\left(
+                    \Vert x^+ - x_{-1}\Vert- \Vert x^+ - v_0\Vert 
+                \right). 
+            \end{align*}
+            Because $\beta_0 = \alpha_0 = 1$, the base case holds. 
+            For all $k \ge 1$, we consider the convergence claim and use the assumption that $x^+$ is a minimizer of $F$ so, it has from Theorem \ref{thm:gmapg-ls-convergence} that 
+            \begin{align*}
+                0 &\le \frac{L_0\beta_k }{2}\Vert x^+ - x_{-1}\Vert^2 
+                - F(x_k) + F(x^+) - \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
+                \\
+                &\le 
+                \frac{L_0\beta_k }{2}\Vert x^+ - x_{-1}\Vert^2 
+                - \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
+                \\
+                &= \frac{\alpha_k^2L_k}{2}\left(
+                    \frac{\beta_k}{\alpha_k^2L_0}
+                    \Vert x^+ - x_{-1}\Vert^2 
+                    - \Vert x^+ - v_k\Vert^2
+                \right)
+                \\
+                \iff 
+                0 &\le 
+                \Vert x^+ - x_{-1}\Vert - \frac{\alpha_k}{\sqrt{\beta_k L_0}}\Vert x^+ - v_k\Vert. 
+            \end{align*}
         \end{proof}
     \section{Algorithmic description of GMAPG}
         There are several components to the GMAPG algorithm. 
-        This section introduces two variants of line search method used to enhance the accelerated proximal gradient methods in the literatures to demonstrate Definition \ref{def:generic-mapg-ls}. 
+        This section will introduce various type of implementations that can be fitted into GMAPG in Definition \ref{def:generic-mapg-ls}. 
         \begin{algorithm}[H]
+            {\small
             \begin{algorithmic}[1]\label{alg:armijo-ls}
                 \STATE{\noindent
                     % \textbf{Function ArmijoLS}
                     % $(f, g, x, v, L, \alpha, \_, \_)$
                     \textbf{Function ArmijoLS:}
-                    \begin{tabular}{lcl}
-                        $f : \RR^n \rightarrow \RR$ && Convex Lipschitz smooth\\ 
-                        $g: \RR^n \rightarrow \overline \RR$  &&  Convex function with Proximal operator\\ 
-                        $x \in \RR^n$ && Vector\\
-                        $v \in \RR^n$ && Vector\\
-                        $L \in \RR$ && $L > 0$\\
-                        $\alpha \in \RR$  && $\alpha \in (0, 1]$
+                    \begin{tabular}{ll}
+                        $f : \RR^n \rightarrow \RR$ & Convex Lipschitz smooth\\ 
+                        $g: \RR^n \rightarrow \overline \RR$  &  Convex function with Proximal operator\\ 
+                        $x \in \RR^n$ & Vector\\
+                        $v \in \RR^n$ & Vector\\
+                        $L \in \RR$ & $L > 0$\\
+                        $\alpha \in \RR$  & $\alpha \in (0, 1]$
                     \end{tabular}
                 }
                 \STATE{$\alpha^+ := (1/2)\left(\alpha\sqrt{\alpha^2 + 1} - \alpha^2\right)$.}
@@ -1264,11 +1400,24 @@
                 \STATE{\textbf{Return:} $y^+, x^+, \alpha^+, L^+$}
                 \caption{Armijo Line Search}
             \end{algorithmic}
+            }
         \end{algorithm}
         \begin{algorithm}[H]\label{alg:chambolle-btls}
+            {\small
             \begin{algorithmic}[1]
                 \STATE{\noindent
-                    \textbf{Function ChamBT}($f, g, x, v, L, \alpha, L_{\min}, \rho$)
+                    % \textbf{Function ChamBT}($f, g, x, v, L, \alpha, L_{\min}, \rho$)
+                    \textbf{Function ChamBT input: }
+                    \begin{tabular}{ll}
+                        $f:\RR^n \rightarrow \RR$ & Convex Lipschitz smooth\\ 
+                        $g:\RR^n \rightarrow \overline\RR$ & Convex with Proximal Operator\\ 
+                        $x\in \RR^n$ & Vector\\
+                        $v\in \RR^n$ & Vector\\
+                        $\alpha \in \RR$ & Vector\\
+                        $L\in \RR$ & Number, $L > 0$ \\
+                        $L_{\min} \in \RR$ & Number, $L_{\min} > 0$\\
+                        $\rho \in \RR$ & Number, $\rho \in (0, 1)$\\
+                    \end{tabular}
                 }
                 \STATE{$L^+ := \max(L_{\min}, \rho L)$.}
                 \FOR{$i = 1, 2, \ldots, 53$}
@@ -1283,11 +1432,19 @@
                 \STATE{\textbf{Return: }$y^+, x^+, \alpha^+, L^+$}
                 \caption{Chambolle's Backtracking}
             \end{algorithmic}
+            }
         \end{algorithm}
         \begin{algorithm}[H]\label{alg:beck-mono}
             \begin{algorithmic}[1]
                 \STATE{\noindent
-                    \textbf{Function BeckMono}($f, g, x, v, L, L_{\min}, \rho, \alpha$)
+                    % \textbf{Function BeckMono}($f, g, x, v, L, L_{\min}, \rho, \alpha$)
+                    \textbf{Function BeckMono Input:}
+                    \begin{tabular}{ll}
+                        $f: \RR^n \rightarrow \RR$ & \\
+                        $g: \RR^n \rightarrow \overline \RR$ & \\
+                        $\tilde x \in \RR^n$ & \\
+                        $x \in \RR^n$ & 
+                    \end{tabular}
                 }
                 \caption{Beck's monotone routine}
             \end{algorithmic}
@@ -1432,11 +1589,13 @@
             \end{algorithm}
         \end{example}
 
-    \section{Practical enhancement}
+    \section{Practical enhancement from the Nesterov's Monotone Variant}
         In this section, we provide results for the faster convergence rate of examples listed from the previous section. 
+    \section{Restarting with function values}
+    \section{Applying them to large scale LP}
     \section{Nonconvex convergence}
         
-    \section{Restarting with gradient and function values}
+    
     
         
 
