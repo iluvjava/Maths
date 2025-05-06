@@ -7,3 +7,4 @@ Nonsmooth
 subgradient
 Armijo
 MFISTA
+GMAPG

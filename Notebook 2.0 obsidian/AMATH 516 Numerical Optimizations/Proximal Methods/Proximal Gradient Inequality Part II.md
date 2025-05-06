@@ -84,12 +84,12 @@ It's a different proof, a different setup for $g$, but the results remains simil
 
 
 #### **Claim 2.1.1 | Monotone descent property under smoothness**
-> Let $F = f + g$ where, $f$ is differentiable and, the divergence is upper bounded by $L$, i.e: $D_f(x, y) \le L/2 \Vert x - y\Vert^2$ for all $x, y \in \R^n$, and there exists $q \in \R$ such that $g - q\frac{\Vert \cdot\Vert^2}{2}$ is convex. 
+> Let $F = f + g$ where, $f$ is differentiable and, the divergence is upper bounded by $L$, i.e: $D_f(x, y) \le L/2 \Vert x - y\Vert^2$ for all $x, y \in \R^n$, and there exists a largest $q \in \R$ such that $g - q\frac{\Vert \cdot\Vert^2}{2}$ is convex. 
 > Let $\bar x = T_{\beta^{-1}, f, g}(x)$. 
 > Then, for all $x \in \R^n$, it has the following inequality: 
 > $$
 > \begin{aligned}
->     0 \ge F(x) - F(\bar x) - (\beta + q/2 - L/2)\Vert x - \bar x\Vert^2. 
+>     0 \le F(x) - F(\bar x) - (\beta + q/2 - L/2)\Vert x - \bar x\Vert^2. 
 > \end{aligned}
 > $$
 > And descent is possible when $\beta \ge (L - q)/2$. 
@@ -122,7 +122,13 @@ $$
 \end{aligned}
 $$
 
+Descent in the value of the function is possible if $\beta + q/2 - L/2 \ge 0$. 
 
+$\blacksquare$
+
+**Remarks**
+
+When $q = 0$, this reduce to the convex case. 
 
 
 #### **Theorem 2.2 | Inexact proximal gradient inequality**

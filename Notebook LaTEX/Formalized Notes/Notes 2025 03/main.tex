@@ -1071,18 +1071,14 @@
                 \le 
                 \beta_k
                 \left(
-                    F(x_0) - F(x^+) + \frac{L_0\alpha_0}{2} \Vert x^+ - v_k\Vert^2
+                    F(x_0) - F(x^+) + \frac{L_0\alpha_0}{2} \Vert x^+ - v_0\Vert^2
                 \right). 
             \end{align*}
             If in addition, the algorithm is initialized with $\alpha_0 = 1, x_0 = v_0 = T_{L_{0}}x_{-1} \in \text{dom}\; F$ and $x^+$ is a minimizer of $F$, then the convergence rate simplifies: 
             \begin{align*}
                 F(x_k) - F(x^+) + \frac{L_k\alpha_k}{2}\Vert x^+ - v_k\Vert^2
                 & \le 
-                \left(
-                    \prod_{i = 0}^{k - 1} (1 - \alpha_{i + 1})
-                    \max\left(1, \rho_i L_{i + 1}L_i^{-1}\right)
-                \right)
-                \frac{L_0}{2}\Vert x^+ - x_{-1}\Vert^2. 
+                \frac{\beta_kL_0}{2}\Vert x^+ - x_{-1}\Vert^2. 
             \end{align*}
         \end{theorem}
         \begin{proof}
@@ -1108,7 +1104,7 @@
                 - \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k \Vert^2 
                 + \frac{L_k\alpha_k^2}{2}\Vert(x^+ - v_{k - 1})\Vert^2
                 \\
-                &\underset{\text{(iii)}}{\le} 
+                &\hspace{-0.3em}\underset{\text{(iii)}}{\le} 
                 \alpha_k F(x^+) + (1 - \alpha_k) F(x_{k - 1}) - F(\tilde x_k)
                 - \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k \Vert^2 
                 + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_{k - 1} \Vert^2
@@ -1124,7 +1120,7 @@
                     F(\tilde x_k) - F(x^+) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
                 \right)
                 \\
-                &\underset{\text{(iv)}}{\le} 
+                &\hspace{-0.3em}\underset{\text{(iv)}}{\le} 
                 (1 - \alpha_k)(F(x_{k - 1}) - F(x^+)) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_{k - 1}\Vert^2
                 - \left(
                     F(x_k) - F(x^+) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
@@ -1222,14 +1218,14 @@
         \begin{theorem}[generic GMAPG LS gradient mapping convergence]\;\label{thm:gmapg-generic-gradmap-convergence}\\
             Suppose that $F = f + g$ satisfies Assumption \ref{ass:standard-fista}. 
             Let the sequences $(x_k, y_k, v_k)$ satisfy GMAPG (Definition \ref{def:generic-mapg-ls}). 
-            If in addition, the sequence $(\alpha_k)_{k \ge 0}$ has $\alpha_0 = 1$ and, it is initialized with $x_0=x_0 = T_{1/L_0, f, g}x_{-1}$ for some $x_{-1} \in\RR^n$ and there exists $x^+$ which is a minimizer of $F$. 
+            If in addition, the sequence $(\alpha_k)_{k \ge 0}$ has $\alpha_0 = 1$ and, GMAPG is initialized with $v_0=x_0 = T_{1/L_0, f, g}(x_{-1})$ for any $x_{-1} \in\RR^n$ and there exists $x^+$ which is a minimizer of $F$. 
             Then, the convergence of gradient mapping $\Vert \mathcal G_{1/L_k}(y_k)\Vert$ is described by the sequence $(\beta)_{k \ge 0}$ where $\beta_0 = 1$ and for all $k \ge 1$:
             \begin{align*}
                 \beta_k := \prod_{i = 0}^{k - 1}(1 - \alpha_{i + 1}) \max\left(1, \rho_i L_{i + 1}L_i^{-1}\right). 
             \end{align*}
             It satisfies for all $k \ge 1$ the inequality:
             \begin{align*}
-                \Vert \mathcal G_{L_k} y_k\Vert &\le 
+                \Vert \mathcal G_{L_k} (y_k)\Vert &\le 
                 \sqrt{\beta_k}L_k L_0 \left(
                     1 - 
                     \min(\rho_{k - 1}, L_k^{-1} L_{k - 1})^{1/2}
@@ -1367,6 +1363,144 @@
                 \Vert x^+ - x_{-1}\Vert - \frac{\alpha_k}{\sqrt{\beta_k L_0}}\Vert x^+ - v_k\Vert. 
             \end{align*}
         \end{proof}
+        \begin{lemma}[specialized GMAPG momentum sequence]\;\label{lemma:gmapg-seq-bnd}\\
+            Suppose that the sequence $(\alpha_k)_{k \ge 0}$ has $\alpha_0 \in (0, 1]$ and for all $k \ge 1$, it satisfies $\alpha_{k - 1}^2\rho_{k - 1}(1 - \alpha_k) = \alpha_k^2$. 
+            Suppose that $(\beta_k)_{k \ge 0}$ is a sequence such that $\beta_0 = 1$ and for all $k \ge 1$ it's defined as: 
+            \begin{align*}
+                \beta_k := \prod_{i = 0}^{k - 1}(1 - \alpha_{i + 1}) \max\left(1, \rho_i L_{i + 1}L_i^{-1}\right). 
+            \end{align*}
+            If, we set $\rho_{k - 1} = L_{k}^{-1}L_{k - 1}$ such that $L_k >0$ for all $k \ge 1$, then for all $k \ge 1$ it has the inequality: 
+            \begin{align*}
+                \beta_k \le \left(
+                    1 + \frac{\alpha_0\sqrt{L_0}}{2}\sum_{i = 1}^{k} \sqrt{L_i^{-1}}
+                \right)^{-2}. 
+            \end{align*}
+        \end{lemma}
+        \begin{proof}
+            We state the following intermediate results needed to construct the proof. 
+            They will be proved at the end. 
+            \begin{enumerate}
+                \item[(a)] $(\beta_k)_{k \ge 0}$ is monotone decreasing and it's strictly larger than zero. 
+                \item[(b)] Because $\rho_{k}L_{k + 1}L_k = 1$ for all $k \ge 0$, the definition of $(\beta_k)_{k\ge 0}$ simplifies and $\beta_k = (\alpha_k^2/\alpha_0^2)(L_k/L_0)$. As a consequence it also gives for all $k \ge 1$ that: 
+                \begin{align*}
+                    \alpha_k^2 &= \alpha_0^2\beta_kL_0L_k^{-1},
+                    \\
+                    \alpha_k &= 1 - \beta_k / \beta_{k - 1}. 
+                \end{align*}
+            \end{enumerate}
+            Starting with results (b), and combine the two equality it gives for all $k \ge 1$ the equality 
+            \begin{align*}
+                0 &=
+                (1 - \beta_k/\beta_{k - 1})^2 - \alpha_0^2L_0L_k^{-1}\beta_k 
+                \\
+                \iff 
+                0 &= 
+                (1 - \beta_k/\beta_{k - 1}) - \alpha_0\sqrt{L_0L_k^{-1}\beta_k}
+                \\
+                \iff 
+                0 &= 
+                (\beta_k^{-1} - \beta_{k - 1}^{-1}) - \alpha_0 \sqrt{L_0 L_k^{-1}\beta_k^{-1}}
+                \\
+                &= \left(
+                    \sqrt{\beta_k^{-1}} + \sqrt{\beta_{k - 1}^{-1}}
+                \right)\left(
+                    \sqrt{\beta_k^{-1}} - \sqrt{\beta_{k - 1}^{-1}}
+                \right)
+                - \alpha_0 \sqrt{L_0L_k^{-1}\beta_k^{-1}}
+                \\
+                &\underset{\text{(a)}}{\le} 
+                2\sqrt{\beta_k^{-1}}\left(
+                    \sqrt{\beta_k^{-1}} - \sqrt{\beta_{k - 1}^{-1}}
+                \right) - \alpha_0 \sqrt{L_0L_k^{-1}\beta_k^{-1}}
+                \\
+                \iff
+                0 &\le 
+                2\left(
+                    \sqrt{\beta_k^{-1}} - \sqrt{\beta_{k - 1}^{-1}} 
+                \right) - \alpha_0 \sqrt{L_0L_k^{-1}}. 
+            \end{align*}
+            Since this is true for all $k \ge 1$, taking a telescoping sum of the above series gives
+            \begin{align*}
+                0 &\le 
+                \left(
+                    \sum_{i = 1}^{k} \sqrt{\beta_i^{-1}} - \sqrt{\beta_{i - 1}^{-1}}
+                \right)
+                - \sum_{i = 1}^{k} \frac{\alpha_0}{2} \sqrt{L_0L_k^{-1}}
+                \\
+                &= 
+                \sqrt{\beta_k^{-1}} - \sqrt{\beta_0^{-1}} 
+                - \frac{\alpha_0\sqrt{L_0}}{2}\sum_{i = 1}^{k} \sqrt{ L_k^{-1}}
+                \\
+                &= 
+                \sqrt{\beta_k^{-1}} - 1
+                - \frac{\alpha_0\sqrt{L_0}}{2}\sum_{i = 1}^{k} \sqrt{ L_k^{-1}}. 
+            \end{align*}
+            Therefore, transforming the inequality it has: 
+            \begin{align*}
+                \beta_k &\le 
+                \left(
+                    1 + \frac{\alpha_0\sqrt{L_0}}{2}\sum_{i = 1}^{k} \sqrt{ L_k^{-1}}
+                \right)^{-2}. 
+            \end{align*}
+            \textbf{Let's now justify (a)}.
+            When $\rho_{i} = L_{i + 1}L_i^{-1}$, the big product simplifies and, it has: 
+            \begin{align*}
+                \beta_k &= \prod_{i = 0}^{k - 1}(1 - \alpha_{i + 1}) 
+                = (1 - \alpha_k)\beta_{k - 1}. 
+            \end{align*}
+            Since $\alpha_k \in (0, 1)$, $\beta_k$ is monotonically decreasing. 
+            \textbf{To see (b)}, it has from the above which also justifies $1 - \alpha_k = \beta_k / \beta_{k - 1}$. 
+            Recall that sequence $(\alpha_k)_{k \ge 0}$ has $\forall k \ge 1$ that $\alpha_{k - 1}^2\rho_{k - 1}(1 - \alpha_k) = \alpha_k^2$, using it we can simplify the product for $\beta_k$, it follows that 
+            \begin{align*}
+                \beta_k &= \prod_{i = 0}^{k - 1}\left(
+                    1 - \alpha_{i + 1}
+                \right)
+                = 
+                \prod_{i = 1}^{k}\alpha_i^2\alpha_{i - 1}^{-2}\rho_{i - 1}^{-1}
+                = 
+                \prod_{i = 1}^{k}\alpha_i^2\alpha_{i - 1}^{-2} L_i^{-1}L_{i - 1}
+                \\
+                &= \left(
+                    \frac{\alpha_k^2\alpha_{k - 1}^2\ldots \alpha_1^2}
+                    {\alpha_{k -1}^2\alpha_{k - 2}^2\ldots \alpha_0^2}
+                \right)\left(
+                    \frac{L_kL_{k - 1}\ldots L_1}{L_{k - 1}L_{k - 1}\ldots L_0}
+                \right)
+                = \frac{\alpha_k^2}{\alpha_0^2}\frac{L_k}{L_0}. 
+            \end{align*}
+            Rearranging it gives: $\alpha_0^2L_0 \beta_kL_k^{-1} = \alpha_k^2$.
+        \end{proof}
+        \begin{remark}
+            A simpler upper bound is more useful in practice. 
+            For all $k \ge 1$ let $\hat L = \max_{i = 0, 1, \ldots, k} L_k$ then 
+            \begin{align*}
+                \beta_k 
+                &\le \left(
+                    1 + 
+                    \frac{\alpha_0 \sqrt{L_0}}{2}\sum_{i = 1}^{k}\sqrt{\hat L^{-1}}
+                \right)^{-2}
+                \le \left(
+                    1 + \frac{1}{2}\alpha_0 \sqrt{L_0}k\sqrt{\hat L^{-1}}
+                \right)^{-2}
+                \\
+                &= \left(
+                    1 + \frac{k\alpha_0\sqrt{L_0 \hat L^{-1}}}{2}
+                \right)^{-2} = L^{-1}_0\hat L\left(
+                    \sqrt{L_0^{-1}\hat L} + \frac{k\alpha_0}{2}
+                \right)^{-2}
+                \\
+                &\le 
+                L^{-1}_0\hat L\left(
+                    1 + \frac{k\alpha_0}{2}
+                \right)^{-2} 
+                = \frac{4\hat L}{L_0(2 + k \alpha_0)^2}. 
+            \end{align*}
+            This simplifies the convergence claim back in Theorem \ref{thm:gmapg-ls-convergence}. 
+        \end{remark}
+        \begin{theorem}[specialized GMAPG convergence rate]
+            
+        \end{theorem}
+    
     \section{Algorithmic description of GMAPG}
         There are several components to the GMAPG algorithm. 
         This section will introduce various type of implementations that can be fitted into GMAPG in Definition \ref{def:generic-mapg-ls}. 
@@ -1581,7 +1715,8 @@
         % ======================================================================
         % EXAMPLE | NESTEROV'S MONOTONE SCHEME WITH GENERIC LINE SEARCH
         % ======================================================================
-        \begin{example}[Nesterov's monotone scheme with generic line search]\;\\\vspace{-1em}
+        \begin{example}[Nesterov's monotone scheme with generic line search]\;\\
+            The following is (2.2.32) in Nesterov's book, phrased in our GMAPG framework. 
             \begin{algorithm}\label{alg:nesterov-mono-generic-ls}
             \begin{algorithmic}[1]
             \STATE{\textbf{Input: } }
@@ -1590,7 +1725,9 @@
         \end{example}
 
     \section{Practical enhancement from the Nesterov's Monotone Variant}
-        In this section, we provide results for the faster convergence rate of examples listed from the previous section. 
+        Firstly, we will introduce some theories in for nonconvex functions. 
+        The following assumption will characterize the full scope of discussion in nonconvexity objective function. 
+
     \section{Restarting with function values}
     \section{Applying them to large scale LP}
     \section{Nonconvex convergence}

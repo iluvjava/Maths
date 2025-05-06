@@ -70,7 +70,7 @@ $$
 
 **We first prove (1) is equivalent to (2)**. 
 The proof is direct and, we will make use the following intermediate results: 
-- **(a)**: The cute inequality in Euclidean space. 
+- **(a)**: The cute inequality in Euclidean space. See [Equalities, Inequalities of Euclidean Space](Background/Equalities,%20Inequalities%20of%20Euclidean%20Space.md). 
 
 Let $x \in \R^n, y \in \R^n$. 
 Starting with the Jensen's inequality by the convexity of $h$ it has for all $\alpha \in [0, 1]$ the inequality: 
