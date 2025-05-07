@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1746579870.21996 "main.aux" "main.bbl" "main" 1746579899.33083 0
+["bibtex main"] 1746585635.22107 "main.aux" "main.bbl" "main" 1746605649.10176 0
   "./references/refs.bib" 1742942264.99027 6526 efbfd4293e1d102587567a2d1f6e1a73 ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/siam.bst" 1292289607 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1746579899.0034 9575 4df955ac40533a47e6b34dcee8695e66 "pdflatex"
+  "main.aux" 1746605648.86413 9575 63713b001d9bb15808f3ff204f3d2f5c "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1746579897.90503 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" "main.pdf" "main" 1746579899.33101 0
-  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" 1746579897.68556 92659 3d3a3b1e91d2790a7b3e4fa66c9afa0e ""
+["pdflatex"] 1746605648.06028 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" "main.pdf" "main" 1746605649.10187 0
+  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" 1746605647.86299 92708 6890ea6931d65028d4cf36b502af6cd5 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -231,10 +231,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1716844513.00476 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1716844504 8221424 900989947c23303b742a586f0df8c087 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "main.aux" 1746579899.0034 9575 4df955ac40533a47e6b34dcee8695e66 "pdflatex"
-  "main.bbl" 1746579870.3324 265 bf8dfc8ef9247cdd2610eef6886a4cd8 "bibtex main"
-  "main.out" 1746579899.0046 3875 2cf66c88feaa802ead93dcb3f5f0273b "pdflatex"
-  "main.tex" 1746579897.68556 92659 3d3a3b1e91d2790a7b3e4fa66c9afa0e ""
+  "main.aux" 1746605648.86413 9575 63713b001d9bb15808f3ff204f3d2f5c "pdflatex"
+  "main.bbl" 1746585635.32963 265 bf8dfc8ef9247cdd2610eef6886a4cd8 "bibtex main"
+  "main.out" 1746605648.86489 3875 2cf66c88feaa802ead93dcb3f5f0273b "pdflatex"
+  "main.tex" 1746605647.86299 92708 6890ea6931d65028d4cf36b502af6cd5 ""
   "presets/julia_lstlisting.tex" 1734912471.75532 795 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1734912471.75575 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1737688388.3909 8751 43b1f87d5e2ad43f60c8e67f03e69d1f ""

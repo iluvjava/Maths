@@ -787,17 +787,19 @@ Nesterov's monotone variant brings additional convergence results.
 > $$
 
 
+
 #### **Theorem | Convergence of Nestrov's Monotone FISTA variants under convexity**
 > ...
 
 
 **Proof**
 
+The convergence of the gradient mapping only matters for how $x_k$ is being updated, updates on $\tilde x_k$ is irrelevant. 
 Furthermore, observe that for all $k \ge 1$ it has from the proximal gradient inequality that (No need for convexity here): 
 
 $$
 \begin{aligned}
-    0 &\le F(\hat y_k) - F(T_L \hat y_k) - \frac{L}{2}\Vert \hat y_k - T_L \hat y_k\Vert^2
+    0 &\le F(\hat y_k) - F\left(T_L \hat y_k\right) - \frac{L}{2}\Vert \hat y_k - T_L \hat y_k\Vert^2
     \\
     &= \min(F(x_{k - 1}), F(\tilde x_k)) - F(x_k) - \frac{L}{2}\Vert \hat y_k - T_L \hat y_k\Vert^2
     \\
@@ -827,7 +829,7 @@ $$
     &\le F(x_{k - 1}) - F^+ 
     - \frac{N - (k - 1)}{2L}\left(
         \min_{k \le i \le N} \Vert \mathcal G_L(\hat y_i)\Vert^2
-    \right)
+    \right). 
 \end{aligned}
 $$
 
