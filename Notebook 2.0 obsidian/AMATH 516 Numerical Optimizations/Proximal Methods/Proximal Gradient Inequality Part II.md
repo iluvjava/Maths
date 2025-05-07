@@ -6,6 +6,44 @@
 
 Recall contents from the previous file. 
 In this file we present proximal gradient inequality in the nonconvex settings. 
+We will first introduce the nonconvex settings to set up the scope and then we will discuss the proximal gradient and the gradient mapping operator in this scope. 
+
+#### **Assumption set 1**
+> Let $F = f + g$ where $f$ is a $L$ smooth differentiable function and $g$ is weakly/strongly convex, i.e: There exists a largest $q \in \R^n$ such that $g - q/2\Vert \cdot\Vert^2$ is a convex function. 
+
+
+The proximal gradient operator remains the same, it will be applied to $F = f + g$ under Assumption set 1. 
+Recall the definition of proximal gradient operator: 
+
+$$
+\begin{aligned}
+    T_{\beta^{-1}f, g}(x) &= \argmin{z \in \R^n}\left\lbrace
+        g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{\beta}{2}\Vert z - x\Vert^2
+    \right\rbrace
+    \\
+    &= \left[
+        I + \beta^{-1} \partial g
+    \right]\circ \left[
+        I - \beta^{-1}\nabla f
+    \right](x). 
+\end{aligned}
+$$
+
+When we choose $\beta > \max(-q, 0)$, the operator $T_{\beta^{-1}f, g}(x)$ admits a unique solution due theories of strong convexity. 
+Recall that the gradient mapping has
+
+$$
+\begin{aligned}
+    \mathcal G_{\beta^{-1}, f, g}(x) 
+    &= x - T_{\beta^{-1}, f, g}(x) 
+    \in \beta(\nabla f(\bar x) + \partial g(x)).
+\end{aligned}
+$$
+These results are obvious from the calculus of nonsmooth calculus. 
+
+
+
+
 
 ---
 ### **Extensions of Proximal Gradient Inequality**
@@ -41,11 +79,11 @@ $$
     \\
     \implies
     \mathbf 0 
-    &\in \partial g(x^+) + \nabla f(x) + \beta(x^+ - x)
+    &\in \partial g(\bar x) + \nabla f(x) + \beta(\bar x - x)
     \\
     \iff 
-    \partial g(x^+) &\ni
-    - \nabla f(x) - \beta(x^+ - x). 
+    \partial g(\bar x) &\ni
+    - \nabla f(x) - \beta(\bar x - x). 
 \end{aligned}
 $$
 
@@ -93,11 +131,12 @@ It's a different proof, a different setup for $g$, but the results remains simil
 > \end{aligned}
 > $$
 > And descent is possible when $\beta \ge (L - q)/2$. 
+> The maximum descent is achieved by taking $\beta = (L - q)$
 
 **Proof**
 
 The assumption of $f, g$ is fits **Claim 2.1** because $f$ is differentiable and $g - q\Vert \cdot\Vert^2/2$ is a convex function. 
-Invoking **Claim 2.1** with $\bar x = T_{\beta^{-1}, f, g}$, and $z = x$, we have for all $x \in \R^n$: 
+Invoking **Claim 2.1** with $\bar x = T_{\beta^{-1}, f, g}(x)$, and $z = x$, we have for all $x \in \R^n$: 
 
 $$
 \begin{aligned}
@@ -123,12 +162,54 @@ $$
 $$
 
 Descent in the value of the function is possible if $\beta + q/2 - L/2 \ge 0$. 
+To find the best stepsize, dependence between $\bar x$ and stepsize $\beta$ needs to be removed. 
+To do that consider 
+
+$$
+\begin{aligned}
+    0 &\le 
+    F(x) - F(\bar x) - \left(
+        \beta + \frac{q}{2} - \frac{L}{2}
+    \right)\beta^{-2}\Vert \beta(x - \bar x) \Vert^2 
+    \\
+    &= 
+    F(x) - F(\bar x) - \left(
+        \beta + \frac{q}{2} - \frac{L}{2}
+    \right)\beta^{-2}\Vert \mathcal G_{\beta^{-1}}(x) \Vert^2 
+    \\
+    &= F(x) - F(\bar x) - \left(
+        \beta^{-1} + \frac{q - L}{2\beta^2} 
+    \right)\Vert \mathcal G_{\beta^{-1}}(x)\Vert^2.
+\end{aligned}
+$$
+
+It's not hard to see that, the best value to choose for $\beta$ is minimizing the expression $x + (1/2)(q - L)x^2$ with $x = \beta^{-1}$. 
+Solving it gives: $\beta = L - q$, substituting it back it gives a best descent inequality: 
+$$
+\begin{aligned}
+    0 &\le 
+    F(x)- F(\bar x) - \frac{1}{2(L - q)}\Vert \mathcal G_{1/(L - q)}(x)\Vert^2. 
+\end{aligned}
+$$
+
+
 
 $\blacksquare$
 
 **Remarks**
 
 When $q = 0$, this reduce to the convex case. 
+To perform a line search for an algorithm simply asserts the following condition
+
+$$
+\begin{aligned}
+    0 &\le F(x) - F(\bar x) - \frac{1}{2\eta}\Vert \mathcal G_{1/\eta} (x)\Vert^2.
+\end{aligned}
+$$
+
+
+
+
 
 
 #### **Theorem 2.2 | Inexact proximal gradient inequality**

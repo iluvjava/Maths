@@ -41,7 +41,7 @@ Which is changing WRT to whatever $x$ is given in relation to $\bar x$, but here
 
 
 When $g:\R \rightarrow \R = - x^2, \bar x = 0$, $\partial g_\epsilon(0) = \emptyset \;\forall \epsilon \ge 0$. 
-Because from the definition it tries to assert $\exist \epsilon \ge 0, v \in \R$ such that $vx \le \bar x + \epsilon$. 
+Because from the definition it tries to assert $\exists \epsilon \ge 0, v \in \R$ such that $vx \le \bar x + \epsilon$. 
 Which is simply impossible. 
 
 A more, permissible interpretation is to uplift the dimension. 

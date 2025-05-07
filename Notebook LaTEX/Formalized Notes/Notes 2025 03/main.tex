@@ -29,9 +29,9 @@
 \end{abstract}
 \chapter{The Basics of Optimization Theories}
     Notations in this chapter are not shared, and they are for this chapter only. 
-    % ===================================================================================
+    % ==========================================================================
     % BREGMAN DIV DEFINITION 
-    % ===================================================================================
+    % ==========================================================================
     \begin{definition}[Bregman Divergence]\label{def:bregman-div}
         Let $f:\RR^n \rightarrow \overline \RR$ be a differentiable function. 
         Define Bregman Divergence: 
@@ -987,7 +987,7 @@
         \begin{lemma}[proximal gradient inequality]
             If $F = f + g$ satisfies Assumption \ref{ass:standard-fista}, then for all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{L^{-1}, f, g}(x)$ it has 
             \begin{align*}
-                0 &\le F(z) - F(\bar x) + \frac{L}{2}\Vert z - x\Vert^2 - \frac{L}{2}\Vert^2 z - \bar x\Vert^2. 
+                0 &\le F(z) - F(\bar x) + \frac{L}{2}\Vert z - x\Vert^2 - \frac{L}{2}\Vert z - \bar x\Vert^2. 
             \end{align*}
         \end{lemma}
         \begin{proof}
@@ -1244,7 +1244,7 @@
             From these intermediate results, the convergence can be derived. 
             From (a) it has for all $k \ge 0$: 
             \begin{align*}
-                \Vert \mathcal G_{L_k} y_k\Vert 
+                \Vert \mathcal G_{1/L_k} y_k\Vert 
                 &= L_k\alpha_k \Vert v_k - v_{k - 1}\Vert
                 \\
                 &\le 
@@ -1320,7 +1320,7 @@
                 &= \alpha_k^{-1}\tilde x_k - \alpha_k^{-1} y_k 
                 = \alpha^{-1}_k(\tilde x_k - y_k) = \alpha_k^{-1}(T_{L_k} y_k - y_k)
                 \\
-                &= -\alpha_k^{-1}L_k^{-1}(\mathcal G_{L_k}(y_k)). 
+                &= -\alpha_k^{-1}L_k^{-1}(\mathcal G_{1/L_k}(y_k)). 
             \end{align*}
             \textbf{We now prove result (b)}. 
             The base case $k = 1$ is verified by the assumption that $x_0 = v_0 = T_{L_0} x_{-1}$. 
@@ -1472,30 +1472,36 @@
         \end{proof}
         \begin{remark}
             A simpler upper bound is more useful in practice. 
-            For all $k \ge 1$ let $\hat L = \max_{i = 0, 1, \ldots, k} L_k$ then 
+            For all $k \ge 1$ let $\hat L_k = \max_{i = 0, 1, \ldots, k} L_i$ then 
             \begin{align*}
                 \beta_k 
                 &\le \left(
                     1 + 
-                    \frac{\alpha_0 \sqrt{L_0}}{2}\sum_{i = 1}^{k}\sqrt{\hat L^{-1}}
+                    \frac{\alpha_0 \sqrt{L_0}}{2}\sum_{i = 1}^{k}\sqrt{\hat L^{-1}_k}
                 \right)^{-2}
                 \le \left(
-                    1 + \frac{1}{2}\alpha_0 \sqrt{L_0}k\sqrt{\hat L^{-1}}
+                    1 + \frac{1}{2}\alpha_0 \sqrt{L_0}k\sqrt{\hat L^{-1}_k}
                 \right)^{-2}
                 \\
                 &= \left(
-                    1 + \frac{k\alpha_0\sqrt{L_0 \hat L^{-1}}}{2}
+                    1 + \frac{k\alpha_0\sqrt{L_0 \hat L^{-1}_k}}{2}
                 \right)^{-2} = L^{-1}_0\hat L\left(
-                    \sqrt{L_0^{-1}\hat L} + \frac{k\alpha_0}{2}
+                    \sqrt{L_0^{-1}\hat L_k} + \frac{k\alpha_0}{2}
                 \right)^{-2}
                 \\
                 &\le 
-                L^{-1}_0\hat L\left(
+                L^{-1}_0\hat L_k\left(
                     1 + \frac{k\alpha_0}{2}
                 \right)^{-2} 
-                = \frac{4\hat L}{L_0(2 + k \alpha_0)^2}. 
+                = \frac{4\hat L_k}{L_0(2 + k \alpha_0)^2}. 
             \end{align*}
             This simplifies the convergence claim back in Theorem \ref{thm:gmapg-ls-convergence}. 
+            The above inequality would work the same if we set: 
+            \begin{align*}
+                \hat L_k &= \max\left(
+                    L_0, \frac{1}{k} \sum_{i = 1}^{k} \sqrt{L_i^{-1}}
+                \right). 
+            \end{align*}
         \end{remark}
         \begin{theorem}[specialized GMAPG convergence rate]
             
@@ -1571,7 +1577,6 @@
         \begin{algorithm}[H]\label{alg:beck-mono}
             \begin{algorithmic}[1]
                 \STATE{\noindent
-                    % \textbf{Function BeckMono}($f, g, x, v, L, L_{\min}, \rho, \alpha$)
                     \textbf{Function BeckMono Input:}
                     \begin{tabular}{ll}
                         $f: \RR^n \rightarrow \RR$ & \\
@@ -1623,7 +1628,7 @@
                                     \right\Vert^2
                                 \right\}$.
                             }
-                            \STATE{$\tilde x_{k + 1} := T_{L_0^{-1}}y_k$.}
+                            \STATE{$\tilde x_{k + 1} := T_{L_k^{-1}}y_k$.}
                         \ENDIF
                         \STATE{\noindent
                             Choose $x_{k + 1} \in \{\tilde x_{k + 1}, x_k\}$ such that $F(x_{k + 1}) \le \min(F(x_k), F(\tilde x_{k + 1}))$. 
@@ -1726,11 +1731,13 @@
 
     \section{Practical enhancement from the Nesterov's Monotone Variant}
         Firstly, we will introduce some theories in for nonconvex functions. 
+        This is necessary because Nesterov's monotone variants can adapt to weakly convex objective functions. 
         The following assumption will characterize the full scope of discussion in nonconvexity objective function. 
-
+        \begin{definition}[nonconvex Nesterov's monotone scheme]\label{def:nes-monotone-scheme}
+            
+        \end{definition}
     \section{Restarting with function values}
     \section{Applying them to large scale LP}
-    \section{Nonconvex convergence}
         
     
     

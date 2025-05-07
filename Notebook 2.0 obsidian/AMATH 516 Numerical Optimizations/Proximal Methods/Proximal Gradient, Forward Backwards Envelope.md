@@ -483,7 +483,7 @@ However, to allow the same argument for non-convexity, the definition of Subgrad
 
 A point produced by the proximal gradient point step, will decrease the objective function. 
 
-#### **Theorem | Stepsize that Ensures Objective Decrease**
+#### **Theorem | optimal stepsize**
 
 > If $f=g + h$, $f, g$ are convex, $f$ is convex and Lipschitz smooth with constant $L$, then if a step size of $L^{-1} > \beta$ will give objective decrease at each step of the proximal gradient iteration. 
 

@@ -54,8 +54,11 @@ We can do this by standard rules of non-smooth convex analysis.
 Convexity of $f$ is not necessary for the claim to hold. 
 This is true for all non-convex but differential $f$ as well. 
 
+A variational inequality characterize the iterates generated through the proximal gradient mapping. 
 
 #### **Lemma 0.2 | Proximal gradient optimality inequality**
+> ...
+
 
 
 ---

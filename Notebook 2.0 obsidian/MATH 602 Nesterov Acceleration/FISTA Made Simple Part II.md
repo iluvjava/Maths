@@ -21,7 +21,7 @@ This is a description of the three points algorithm.
 > Define the proximal gradient operator: 
 > $$
 > \begin{aligned}
->     T_Lx = \argmin{z \in \R^n }
+>     T_L(x) = \argmin{z \in \R^n }
 >     \left\lbrace 
 >         g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{L}{2}\Vert z - x\Vert^2
 >     \right\rbrace. 
@@ -791,8 +791,8 @@ Nesterov's monotone variant brings additional convergence results.
 > ...
 
 
-Obviously, this fits the generic description of the monotone algorithm. 
-This variant of monotone FISTA exhibits fast convergence of the norm of the gradient mapping. 
+**Proof**
+
 Furthermore, observe that for all $k \ge 1$ it has from the proximal gradient inequality that (No need for convexity here): 
 
 $$
@@ -805,7 +805,7 @@ $$
 \end{aligned}
 $$
 
-Consider partial sum $k \le i \le N$ of the above inequality then
+Consider the partial sum $k \le i \le N$ of the above inequality: 
 
 $$
 \begin{aligned}
@@ -945,10 +945,13 @@ If the function is convex and simply bounded below and has Lipschitz gradient (A
 Let's explore some more exotic consequences of Nesterov's monotone variant. 
 The following claim is relevant. 
 
+#### **Assumption Set 2**
+1. $f$ is differentiable with $L$ Lipschitz gradient. 
+2. $g$ is a $q$-weakly convex function, meaning $g + q/2\Vert \cdot\Vert^2$ is a convex function. 
 
 #### **Claim 2.1 | Monotone descent property under smoothness**
 > Let $F = f + g$ where, $f$ is differentiable and, the divergence is upper bounded by $L$, i.e: $D_f(x, y) \le L/2 \Vert x - y\Vert^2$ for all $x, y \in \R^n$, and there exists $q \in \R$ such that $g + q\frac{\Vert \cdot\Vert^2}{2}$ is convex. 
-> Let $\bar x = T_{\beta^{-1}, f, g}(x)$. 
+> Let $\bar x = T_{\beta, f, g}(x)$. 
 > Then, for all $x \in \R^n$, it has the following inequality: 
 > $$
 > \begin{aligned}
@@ -956,58 +959,105 @@ The following claim is relevant.
 > \end{aligned}
 > $$
 > And descent is possible when $\beta \ge (L + q)/2$. 
+> The maximum amount of descent is achieved when $\beta = L + q$. 
 
 **Proof**
 
 For a proof of the theorem, visit [Proximal Gradient Inequality Part II](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Proximal%20Gradient%20Inequality%20Part%20II.md). 
+$\blacksquare$
 
 **Remarks**
 
-One of the good choice for descent is to have $\beta = q/2 + L$, then it simplifies conveniently into 
+The best descent is characterize by inequality: 
 $$
 \begin{aligned}
-    0 &\le F(x) - F(\bar x) - L/2\Vert x - \bar x\Vert^2. 
+    0 &\le 
+    F(x)- F(\bar x) - \frac{1}{2(L + q)}\Vert \mathcal G_{1/(L + q)}(x)\Vert^2. 
 \end{aligned}
 $$
 
+For a line search, the algorithm that chooses stepszie $\beta$ need to find the smallest $\eta$ and it has: 
 
+$$
+\begin{aligned}
+    0 &\le 
+    F(x)- F(\bar x) - \frac{1}{2\eta}\Vert \mathcal G_{1/\eta}(x)\Vert^2
+    \\
+    &\le 
+    F(x)- F(\bar x) - \frac{1}{2(L + q)}\Vert \mathcal G_{1/(L + q)}(x)\Vert^2
+\end{aligned}
+$$
 
-#### **Assumption Set 2**
-1. $f$ is differentiable with $L$ Lipschitz gradient. 
-2. $g$ is a $q$-weakly convex function, meaning $g + q/2\Vert \cdot\Vert^2$ is a convex function. 
+A line search employed for the algorithm generate $\eta$ smaller than $L + q$ because it only needs to satisfies the inequality for a subset of iterates. 
 
-Nesterov's Monotone scheme can be improved by conducting a different line search routine, this is not difficult. 
-
+#### **Algorithm | Nesterov's monotone scheme for nonconvex function**
+> ...
 
 #### **Claim | Nesterov's monotone scheme nonconvex convergence**
 > ...
 
 **Proof**
 
+
 $$
 \begin{aligned}
-    0 &\le \left(
-        \sum_{i = k}^{N} F(x_{i - 1}) - F(x_i)
-    \right) 
-    - \frac{1}{2L}\sum_{i = k}^{N} \Vert \mathcal G_L(\hat y_k)\Vert^2
-    \\
-    &= 
-    F(x_{k - 1}) - F(x_N) 
-    - \frac{1}{2L}\sum_{i = k}^{N} \Vert \mathcal G_L(\hat y_k)\Vert^2
-    \\
-    &\le 
-    F(x_{k - 1}) - F(x_N) 
-    - \frac{N - (k - 1)}{2L}\left(
-        \min_{k \le i \le N} \Vert \mathcal G_L(\hat y_i)\Vert^2
-    \right)
-    \\
-    &\le F(x_{k - 1}) - F^+ 
-    - \frac{N - (k - 1)}{2L}\left(
-        \min_{k \le i \le N} \Vert \mathcal G_L(\hat y_i)\Vert^2
-    \right)
+    \hat \eta_k := \max_{i = 0, \ldots, k}  \eta_i. 
 \end{aligned}
 $$
 
+The line search assert that: 
+
+$$
+\begin{aligned}
+    0 &\le F(\hat y_k) - F(T_{\eta_k}\hat y_k) 
+    - \frac{1}{2\eta_k}\Vert \mathcal G_{1/\eta_k}(x)\Vert^2
+    \\
+    &= \min(F(x_{k - 1}), F(\tilde x_k)) - F(x_k) 
+    - \frac{1}{2\eta_k}\Vert \mathcal G_{1/\eta_k}(x)\Vert^2
+    \\
+    &\le 
+    F(x_{k - 1}) - F(x_k) - \frac{1}{2\eta_k} \Vert \mathcal G_{1/\eta_k}(x)\Vert^2
+    \\
+    &\le 
+    F(x_{k - 1}) - F(x_k) - \frac{1}{2\hat \eta_k} \Vert \mathcal G_{1/\eta_k}(x)\Vert^2. 
+\end{aligned}
+$$
+
+Telescope the above, then: 
+
+$$
+\begin{aligned}
+    0 &\le \left(
+        \sum_{i = 1}^{N} F(x_{i - 1}) - F(x_i)
+    \right) 
+    - \frac{1}{2\hat \eta_N}\sum_{i = 1}^{N} \Vert \mathcal G_{\eta_i}(\hat y_k)\Vert^2
+    \\
+    &= 
+    F(x_{0}) - F(x_N) 
+    - \frac{1}{2\hat \eta_N}\sum_{i = 1}^{N} \Vert \mathcal G_{\eta_i}(\hat y_k)\Vert^2
+    \\
+    &\le 
+    F(x_{0}) - F(x_N) 
+    - \frac{N }{2\hat \eta_N}\left(
+        \min_{1 \le i \le N} \Vert \mathcal G_{\eta_i}(\hat y_i)\Vert^2
+    \right)
+    \\
+    &\le F(x_{0}) - F^+ 
+    - \frac{N}{2\hat \eta_N}\left(
+        \min_{1 \le i \le N} \Vert \mathcal G_{\eta_i}(\hat y_i)\Vert^2
+    \right). 
+\end{aligned}
+$$
+
+Therefore, we have a convergence of 
+
+$$
+\begin{aligned}
+    \min_{1 \le i \le N} \Vert \mathcal G_{\eta_i}(\hat y_i)\Vert
+    &\le 
+    \sqrt{\frac{2\hat \eta_N(F(x_0) - F^+)}{N}}. 
+\end{aligned}
+$$
 
 
 ---
