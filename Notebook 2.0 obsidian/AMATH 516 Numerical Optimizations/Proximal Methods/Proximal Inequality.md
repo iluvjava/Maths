@@ -4,8 +4,7 @@
 ---
 ### **Intro**
 
-A comprehensive guide for proximal 
-Inequality. 
+A comprehensive guide for the proximal Inequality. 
 For Proximal Gradient inequality, a specialized type of proximal inequality with additive smooth and nonsmooth objective, visits [Proximal Gradient Inequality Part I](Proximal%20Gradient%20Inequality%20Part%20I.md). 
 
 The following theorem restated the proximal inequality for a convex function $f: \R^n \rightarrow \overline \R$. 

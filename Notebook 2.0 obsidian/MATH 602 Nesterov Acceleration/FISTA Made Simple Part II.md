@@ -782,7 +782,7 @@ Nesterov's monotone variant brings additional convergence results.
 >         F(y): y \in \{x_{k - 1}, \tilde x_k\}
 >     \right\rbrace,
 >     \\
->     x_k &= T_L(\hat y_k). 
+>     x_k &= T_{L}(\hat y_k). 
 > \end{aligned}
 > $$
 
@@ -990,10 +990,24 @@ $$
 \end{aligned}
 $$
 
-A line search employed for the algorithm generate $\eta$ smaller than $L + q$ because it only needs to satisfies the inequality for a subset of iterates. 
+A line search employed for the algorithm generate $\eta$ smaller than $L + q$ because it only needs to satisfy the inequality for a subset of iterates. 
 
 #### **Algorithm | Nesterov's monotone scheme for nonconvex function**
-> ...
+> $$
+> \begin{aligned}
+>     y_k &= \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1},
+>     \\
+>     \tilde x_k &= T_{L_k}(y_k), \text{ with line search or backtracking. }
+>     \\
+>     v_k &= x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1}),
+>     \\
+>     \hat y_k &= \argmin{}\left\lbrace
+>         F(y): y \in \{x_{k - 1}, \tilde x_k\}
+>     \right\rbrace,
+>     \\
+>     x_k &= T_{1/\eta_k}(\hat y_k) \text{ s.t: } F(x_k) - F(\hat y_k) \le - \frac{1}{2\eta_k}\Vert \mathcal G_{1/\eta_k}(\hat y_k) \Vert^2, \eta_{k} \ge \eta_{k - 1}. 
+> \end{aligned}
+> $$
 
 #### **Claim | Nesterov's monotone scheme nonconvex convergence**
 > ...
@@ -1007,21 +1021,21 @@ $$
 \end{aligned}
 $$
 
-The line search assert that: 
+The line search asserts that: 
 
 $$
 \begin{aligned}
     0 &\le F(\hat y_k) - F(T_{\eta_k}\hat y_k) 
-    - \frac{1}{2\eta_k}\Vert \mathcal G_{1/\eta_k}(x)\Vert^2
+    - \frac{1}{2\eta_k}\Vert \mathcal G_{1/\eta_k}(\hat y_k)\Vert^2
     \\
     &= \min(F(x_{k - 1}), F(\tilde x_k)) - F(x_k) 
-    - \frac{1}{2\eta_k}\Vert \mathcal G_{1/\eta_k}(x)\Vert^2
+    - \frac{1}{2\eta_k}\Vert \mathcal G_{1/\eta_k}(\hat y_k)\Vert^2
     \\
     &\le 
-    F(x_{k - 1}) - F(x_k) - \frac{1}{2\eta_k} \Vert \mathcal G_{1/\eta_k}(x)\Vert^2
+    F(x_{k - 1}) - F(x_k) - \frac{1}{2\eta_k} \Vert \mathcal G_{1/\eta_k}(\hat y_k)\Vert^2
     \\
     &\le 
-    F(x_{k - 1}) - F(x_k) - \frac{1}{2\hat \eta_k} \Vert \mathcal G_{1/\eta_k}(x)\Vert^2. 
+    F(x_{k - 1}) - F(x_k) - \frac{1}{2\hat \eta_k} \Vert \mathcal G_{1/\eta_k}(\hat y_k)\Vert^2. 
 \end{aligned}
 $$
 

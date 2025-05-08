@@ -977,7 +977,7 @@
     \par
     In this chapter, we will go through the details of these enhancements of FISTA and discuss why they are important in theories, and in practice. 
     \section{FISTA made simple}
-        Most literatures overcomplicate the proofs and the matters regarding FISTA algorithm and its convergence rate. 
+        We make the proofs for FISTA  with common enhancement technique available in simple proofs. 
         We showcase the theories using a generic similar triangle representations of the algorithm which tremendously simplifies the arguments. 
         \begin{assumption}[the standard FISTA setting]\label{ass:standard-fista}
             Let $F = f + g$ where $f:\RR^n\rightarrow \overline \RR$ is $L$ Lipschitz smooth, $g$ is convex. 
@@ -1225,7 +1225,7 @@
             \end{align*}
             It satisfies for all $k \ge 1$ the inequality:
             \begin{align*}
-                \Vert \mathcal G_{L_k} (y_k)\Vert &\le 
+                \Vert \mathcal G_{1/L_k} (y_k)\Vert &\le 
                 \sqrt{\beta_k}L_k L_0 \left(
                     1 - 
                     \min(\rho_{k - 1}, L_k^{-1} L_{k - 1})^{1/2}
@@ -1253,49 +1253,49 @@
                 &\underset{\text{(b)}}{\le} 
                 L_k \alpha_k \left(
                     \frac{\sqrt{\beta_kL_0}}{\alpha_k}\Vert x^+ - v_0\Vert
-                    - 
+                    +
                     \frac{\sqrt{\beta_{k - 1}L_0}}{\alpha_{k - 1}}\Vert x^+ - v_0\Vert
                 \right) 
                 \\
                 &= L_k\sqrt{L_0} \left(
                     \sqrt{\beta_k}
-                    - 
+                    +
                     \frac{\alpha_k\sqrt{\beta_{k - 1}}}{\alpha_{k - 1}}
                 \right)\Vert x^+ - v_0\Vert
                 \\
                 &= \sqrt{\beta_k L_0}L_k \left(
-                    1 - 
+                    1 +
                     \frac{\alpha_k}{\alpha_{k - 1}}\sqrt{\frac{\beta_{k - 1}}{\beta_k}}
                 \right)\Vert x^+ - v_0\Vert
                 \\
                 &\underset{\text{(d)}}{=} \sqrt{\beta_k L_0}L_k \left(
-                    1 - 
+                    1 +
                     \frac{\alpha_k}{\alpha_{k - 1}}
                     \left((1 - \alpha_k)\max(1, \rho_{k - 1}L_k L_{k - 1}^{-1})\right)^{-1/2}
                 \right)\Vert x^+ - v_0\Vert
                 \\
                 &\underset{\text{(c)}}{=} 
                 \sqrt{\beta_k L_0}L_k \left(
-                    1 - 
+                    1 +
                     ((1 - \alpha_k)\rho_{k - 1})^{1/2}
                     \left((1 - \alpha_k)\max(1, \rho_{k - 1}L_k L_{k - 1}^{-1})\right)^{-1/2}
                 \right)\Vert x^+ - v_0\Vert
                 \\
                 &= 
                 \sqrt{\beta_k L_0}L_k \left(
-                    1 - 
+                    1 +
                     \left(\rho_{k - 1}^{-1}\max(1, \rho_{k - 1}L_k L_{k - 1}^{-1})\right)^{-1/2}
                 \right)\Vert x^+ - v_0\Vert
                 \\
                 &=
                 \sqrt{\beta_k L_0}L_k \left(
-                    1 - 
+                    1 +
                     \max(\rho_{k - 1}^{-1}, L_k L_{k - 1}^{-1})^{-1/2}
                 \right)\Vert x^+ - v_0\Vert
                 \\
                 &= 
                 \sqrt{\beta_k L_0}L_k \left(
-                    1 - 
+                    1 +
                     \min(\rho_{k - 1}, L_k^{-1} L_{k - 1})^{1/2}
                 \right)\Vert x^+ - v_0\Vert. 
             \end{align*}
@@ -1503,9 +1503,59 @@
                 \right). 
             \end{align*}
         \end{remark}
-        \begin{theorem}[specialized GMAPG convergence rate]
-            
+        \begin{theorem}[specialized GMAPG convergence rate]\label{thm:gmapg-specialized-convergence}
+            Suppose that $F = f + g$ satisfy Assumption \ref{ass:standard-fista}. 
+            Let the sequence $(x_k, v_k, v_k)$ satisfy GMAPG, definition \ref{def:generic-mapg-ls} and, assume that the GMAPG is initialized by $x_0 = v_0 = T_{1/L_0}(x_{-1})$ and, assume $\rho_{k - 1} = L_{k}^{-1}L_{k}$, $\alpha_0 = 1$ so the sequence $(\alpha_k)_{k \ge 0}$ satisfies for all $k\ge 1$: $\alpha_{k - 1}^2L_k^{-1}L_{k - 1}(1 - \alpha_k) = \alpha_k^2$. 
+            Let $x^+$ be a minimizer of $F$, define 
+            \begin{align*}
+                \hat L_k = \max\left(
+                    L_0, \frac{1}{k}\sum_{i = 1}^{k} \sqrt{L_i^{-1}}
+                \right). 
+            \end{align*}
+            Then, we have convergence claim: 
+            \begin{enumerate}
+                \item \begin{align*}
+                    F(x_k) - F(x^+) + \frac{L_k\alpha_k}{2}\Vert x^+ - v_k\Vert^2 \le 
+                    \frac{2\hat L_k}{(2 + k)^2}\Vert x^+ - x_{-1}\Vert^2.
+                \end{align*}
+                \item 
+                \begin{align*}
+                    \Vert \mathcal G_{1/L_k}(y_k)\Vert \le 
+                    \frac{2\hat L_k L_k}{2 + k}
+                    \left(
+                        1 - L_k^{-1/2}L_{k - 1}^{1/2}
+                    \right)
+                    \Vert x^+ - v_0\Vert. 
+                \end{align*}
+            \end{enumerate}
         \end{theorem}
+        \begin{proof}
+            To see (i), use \ref{lemma:gmapg-seq-bnd} and the remark with Theorem \ref{thm:gmapg-ls-convergence} because the assumptions of $x^+, (\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ is the same. 
+            To see (ii), the convergence claim from \ref{thm:gmapg-generic-gradmap-convergence} simplifies with $\hat L_k \ge L_0$ and, it has 
+            \begin{align*}
+                \Vert \mathcal G_{1/L_k}(y_k) \Vert
+                &\le 
+                \left(
+                    \frac{2\sqrt{\hat L_kL_0}L_k}{2 + k}
+                \right)\left(
+                    1 + \min(\rho_{k - 1}, L_k^{-1}L_{k - 1})^{1/2}
+                \right)\Vert x^+ - v_0\Vert
+                \\
+                &= 
+                \left(
+                    \frac{2\sqrt{\hat L_kL_0}L_k}{2 + k}
+                \right)\left(
+                    1 + L_k^{-1/2}L_{k - 1}^{1/2}
+                \right)\Vert x^+ - v_0\Vert
+                \\
+                &\le 
+                \left(
+                    \frac{2\hat L_k L_k}{2 + k}
+                \right)\left(
+                    1 + L_k^{-1/2}L_{k - 1}^{1/2}
+                \right)\Vert x^+ - v_0\Vert. 
+            \end{align*}
+        \end{proof}
     
     \section{Algorithmic description of GMAPG}
         There are several components to the GMAPG algorithm. 

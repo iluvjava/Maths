@@ -36,7 +36,7 @@ Then, the following results about $E \setminus A, E \setminus B$ are true and th
 - **(c)**: $(E \setminus A)\cap (E \setminus B) = \emptyset$, they are disjoint. 
 
 Therefore, let $S = E \setminus A, T = E \setminus B$, then the theorem is true. 
-Item (5) implies that $S, T$ are nonempty set as well. 
+Item (4) implies that $S, T$ are nonempty set as well. 
 
 **Proof of (a)**. $E \setminus A = E \cap A^\complement$, $E, A^\complement$ are closed therefore $E \setminus A$ is closed. 
 The proof for $B$ is follows the identical logic. 
@@ -80,7 +80,7 @@ $$
     \\
     &= E \cap (A \cup B)^\complement 
     \\
-    &\underset{(3)}= \empty. 
+    &\underset{(3)}= \emptyset. 
 \end{aligned}
 $$
 
@@ -112,11 +112,6 @@ This contradicts $S\cap T = \emptyset$.
 Therefore, no such sequence exists and $\inf_{x\in T}\dist(x, S) > \epsilon > 0$. 
 
 **Showing (Step II)**. 
-<!-- 
-$S \subseteq C, T\subseteq C$ therefore for all $N \in \N$, there exists $n\ge N$ such that $x_n \in S$ or $x_n \in T$ because $C$ is the set of cluster points, therefore $k =\inf_{n \ge N} \{n : x_n \in S, x_{n + 1}\in T\}\neq \emptyset$. 
-Then, $x_{k = 1}\in T$ by definition. 
-Applying results from the previous set it has $\Vert x_k - x_{k + 1}\Vert > \epsilon$ which concludes the proof.  
--->
 For all $K \in \N$, there exists $k \ge K$ such that $x_{k} \in S$, $x_{k + 1} \in T$, this is true because $C$ is the set of cluster points for $(x_n)_{n \in \N}$. 
 For all $\epsilon' \ge 0, N \in \N$, $\exists\; n \ge \max(N, N(\epsilon'))$ such that $\dist(x_n, C) \le \epsilon'$. 
 Let $K = \max(N, N(\epsilon'))$, it implies $\exists k$ such that $\dist(x_k, S)\le \epsilon', \dist(x_{k + 1}, T) \le \epsilon'$. 

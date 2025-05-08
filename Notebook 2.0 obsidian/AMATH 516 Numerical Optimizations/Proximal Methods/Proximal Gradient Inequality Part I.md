@@ -49,6 +49,8 @@ $$
 
 We can do this by standard rules of non-smooth convex analysis. 
 
+$\blacksquare$
+
 **Remark**
 
 Convexity of $f$ is not necessary for the claim to hold. 
@@ -341,6 +343,7 @@ $$
 $$
 
 Our second result is claimed. 
+
 $\blacksquare$
 
 **Remark**
