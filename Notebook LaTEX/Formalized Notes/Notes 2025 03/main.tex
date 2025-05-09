@@ -986,10 +986,17 @@
                     \item $g$ is $L$ Lipschitz smooth and $q_g$ weakly convex. 
                 \end{enumerate}
             \end{assumption}
+            \begin{remark}
+                If a function is $L$ smooth, it also be $L$ weakly convex. 
+                Here we defined $q_f$ because the actual weakly convex constant may be much smaller than $L$, and it is true in the case when $g$ is in fact convex.  
+            \end{remark}
             \begin{definition}[weakly convex function]\;\label{def:wcnvx-fxn}\\
                 Let $f: \RR^n \rightarrow\overline \RR$ be an l.s.c proper function. 
-                We define $F$ to be $q$ weakly convex if there exists $q \in \RR$ such that the function $F + q/2\Vert \cdot\Vert^2$ is a convex function and $q$ is the infimum of all such possible parameters. 
+                We define $F$ to be $q$ weakly convex if there exists $q \in \ge 0$ such that the function $F + q/2\Vert \cdot\Vert^2$ is a convex function and $q$ is the infimum of all such possible parameters. 
             \end{definition}
+            \begin{remark}
+                If $q = 0$, $f$ is convex or strongly convex. 
+            \end{remark}
             \begin{definition}[gradient mapping]
                 Suppose $F = f + g$ satisfies Assumption \ref{ass:sum-of-wcnvx}, define the gradient mapping for all $x \in \RR^n$
                 \begin{align*}
@@ -1031,7 +1038,6 @@
     \section{FISTA made simple}
         We make the proofs for FISTA  with common enhancement technique available in simple proofs. 
         We showcase the theories using a generic similar triangle representations of the algorithm which tremendously simplifies the arguments. 
-        
         The following definition can capture monotone variants of FISTA with line search, including backtracking strategies. 
         \par
         ``MAPG'' stands for monotone accelerated gradient. 
@@ -1083,9 +1089,6 @@
                 &= \alpha_k(x^+ - v_{k - 1}). 
             \end{align*}
         \end{proof}
-        % ======================================================================
-        % THEOREM | GENERIC GMAPG CONVERGENCE IN FXN VAL
-        % ======================================================================
         \begin{theorem}[generic GMAPG convergence]\; \label{thm:gmapg-ls-convergence}\;\\
             Let $F = f + g$ satisfy Assumptions \ref{ass:standard-fista}. 
             Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $\alpha_k \in (0, 1)$ for all $k \ge 1$ and $\alpha_0 \in (0, 1]$. 
@@ -1241,9 +1244,6 @@
                 \right)
             \end{align*}
         \end{remark}
-        % ======================================================================
-        % THEOREM | GENERIC GMAPG GRADIENT MAPPING CONVERGENCE
-        % ======================================================================
         \begin{theorem}[generic GMAPG gradient mapping convergence]\;\label{thm:gmapg-generic-gradmap-convergence}\\
             Suppose that $F = f + g$ satisfies Assumption \ref{ass:standard-fista}. 
             Let the sequences $(x_k, y_k, v_k)$ satisfy GMAPG (Definition \ref{def:generic-mapg-ls}). 
@@ -1589,137 +1589,168 @@
     \section{Algorithmic description of GMAPG}
         There are several components to the GMAPG algorithm. 
         This section will introduce various type of implementations that can be fitted into GMAPG in Definition \ref{def:generic-mapg-ls}. 
-        \begin{algorithm}[H]
-            {\small
-            \begin{algorithmic}[1]\label{alg:armijo-ls}
-                \STATE{\noindent
-                    % \textbf{Function ArmijoLS}
-                    % $(f, g, x, v, L, \alpha, \_, \_)$
-                    \textbf{Function ArmijoLS: }
-                    \begin{tabular}{|ll}
-                        $f : \RR^n \rightarrow \RR$ & Convex Lipschitz smooth\\ 
-                        $g: \RR^n \rightarrow \overline \RR$  &  Convex function with Proximal operator\\ 
-                        $x \in \RR^n$ & Vector\\
-                        $v \in \RR^n$ & Vector\\
-                        $L \in \RR$ & $L > 0$\\
-                        $\alpha \in \RR$  & $\alpha \in (0, 1]$\\
-                        $\cdots$ & Ignore extra inputs
-                    \end{tabular}\vspace{0.5em}
+        \subsection{Line search routines}
+            % ARMIJO LINE SEARCH -----------------------------------------------
+            \begin{algorithm}[H]
+                {\small
+                \begin{algorithmic}[1]
+                    \STATE{\noindent
+                        \textbf{Function ArmijoLS: }
+                        \begin{tabular}{|ll}
+                            $f : \RR^n \rightarrow \RR$ & Convex Lipschitz smooth\\ 
+                            $g: \RR^n \rightarrow \overline \RR$  &  Convex\\ 
+                            $x \in \RR^n$ & Vector\\
+                            $v \in \RR^n$ & Vector\\
+                            $L \in \RR$ & $L > 0$\\
+                            $\alpha \in \RR$  & $\alpha \in (0, 1]$\\
+                            $\cdots$ & Ignore extra inputs
+                        \end{tabular}\vspace{0.5em}
+                    }
+                    \STATE{$\alpha^+ := (1/2)\left(\alpha\sqrt{\alpha^2 + 1} - \alpha^2\right)$.}
+                    \STATE{$y^+ := \alpha^+ v + (1 - \alpha^+)x$.}
+                    \STATE{$L^+ := L$. }
+                    \FOR{$i = 1, 2,\ldots, 53$}
+                        \STATE{$L^+ := 2L^+$. }
+                        \STATE{$x^+ := T_{1/L^+, f, g}(y^+)$. }
+                        \IF{$D_f(x^+, y^+) \le (L^+/2)\Vert x^+ - y^+\Vert^2$}
+                            \STATE{\textbf{break}}
+                        \ENDIF
+                        \STATE{$L^+ := 2^{i}L$}
+                    \ENDFOR
+                    \STATE{\textbf{Return:} $x^+, y^+, \alpha^+, L^+$}
+                    \caption{Armijo Line Search}\label{alg:armijo-ls}
+                \end{algorithmic}
                 }
-                \STATE{$\alpha^+ := (1/2)\left(\alpha\sqrt{\alpha^2 + 1} - \alpha^2\right)$.}
-                \STATE{$y^+ := \alpha^+ v + (1 - \alpha^+)x$.}
-                \STATE{$L^+ := L$. }
-                \FOR{$i = 1, 2,\ldots, 53$}
-                    \STATE{$L^+ := 2L^+$. }
-                    \STATE{$x^+ := T_{1/L^+, f, g}(y^+)$. }
-                    \IF{$D_f(x^+, y^+) \le (L^+/2)\Vert x^+ - y^+\Vert^2$}
-                        \STATE{\textbf{break}}
-                    \ENDIF
-                    \STATE{$L^+ := 2^{i}L$}
-                \ENDFOR
-                \STATE{\textbf{Return:} $y^+, x^+, \alpha^+, L^+$}
-                \caption{Armijo Line Search}
-            \end{algorithmic}
-            }
-        \end{algorithm}
-        \begin{algorithm}[H]
-            {\small
-            \begin{algorithmic}[1]\label{alg:chambolle-btls}
-                \STATE{\noindent
-                    % \textbf{Function ChamBT}($f, g, x, v, L, \alpha, L_{\min}, \rho$)
-                    \textbf{Function ChamBT input: }
-                    \begin{tabular}{|ll}
-                        $f:\RR^n \rightarrow \RR$ & Convex Lipschitz smooth\\ 
-                        $g:\RR^n \rightarrow \overline\RR$ & Convex with Proximal Operator\\ 
-                        $x\in \RR^n$ & Vector\\
-                        $v\in \RR^n$ & Vector\\
-                        $L\in \RR$ & Number, $L > 0$ \\
-                        $\alpha \in \RR$ & Vector\\
-                        $L_{\min} \in \RR$ & Number, $L_{\min} > 0$\\
-                        $\rho \in \RR$ & Number, $\rho \in (0, 1)$\\
-                    \end{tabular}\vspace{0.5em}
+            \end{algorithm}
+            % CHAMBOLLE'S BACKTRACKING LINE SEARCH -----------------------------
+            \begin{algorithm}[H]
+                {\small
+                \begin{algorithmic}[1]
+                    \STATE{\noindent
+                        \textbf{Function ChamBT Inputs: }
+                        \begin{tabular}{|ll}
+                            $f:\RR^n \rightarrow \RR$ & Convex Lipschitz smooth\\ 
+                            $g:\RR^n \rightarrow \overline\RR$ & Convex\\ 
+                            $x\in \RR^n$ & Vector\\
+                            $v\in \RR^n$ & Vector\\
+                            $L\in \RR$ & Number, $L > 0$ \\
+                            $\alpha \in \RR$ & Vector\\
+                            $L_{\min} \in \RR$ & Number, $L_{\min} > 0$\\
+                            $\rho \in \RR$ & Number, $\rho \in (0, 1)$\\
+                        \end{tabular}\vspace{0.5em}
+                    }
+                    \STATE{$L^+ := \max(L_{\min}, \rho L)$.}
+                    \FOR{$i = 1, 2, \ldots, 53$}
+                        \STATE{$\alpha^+ := (1/2)\left(\alpha\sqrt{\alpha^2 + L/L^+} - \alpha^2\right)$. }
+                        \STATE{$y^+ := \alpha^+ v + (1 - \alpha^+) x$. }
+                        \STATE{$x^+ := T_{1/L^+, f, g}(y^+)$.}
+                        \IF{$2D_f(x^+, y^+) \le \Vert x^+ - y^+\Vert^2$}
+                            \STATE{\textbf{break}}
+                        \ENDIF
+                        \STATE{$L^+ := 2^iL^+$.}
+                    \ENDFOR
+                    \STATE{\textbf{Return: }$x^+, \alpha^+, L^+$}
+                    \caption{Chambolle's Backtracking}\label{alg:chambolle-btls}
+                \end{algorithmic}
                 }
-                \STATE{$L^+ := \max(L_{\min}, \rho L)$.}
-                \FOR{$i = 1, 2, \ldots, 53$}
-                    \STATE{$\alpha^+ := (1/2)\left(\alpha\sqrt{\alpha^2 + L/L^+} - \alpha^2\right)$. }
-                    \STATE{$y^+ := \alpha^+ v + (1 - \alpha^+) x$. }
-                    \STATE{$x^+ := T_{1/L^+, f, g}(y^+)$.}
-                    \IF{$2D_f(x^+, y^+) \le \Vert x^+ - y^+\Vert^2$}
-                        \STATE{\textbf{break}}
-                    \ENDIF
-                    \STATE{$L^+ := 2^iL^+$.}
-                \ENDFOR
-                \STATE{\textbf{Return: }$y^+, x^+, \alpha^+, L^+$}
-                \caption{Chambolle's Backtracking}
-            \end{algorithmic}
-            }
-        \end{algorithm}
-        % BECK'S MONO ----------------------------------------------------------
-        \begin{algorithm}[H]
-            \begin{algorithmic}[1]\label{alg:beck-mono}
-                \STATE{\noindent
-                    \textbf{Function BeckMono Inputs: }
-                    \begin{tabular}{|ll}
-                        $f: \RR^n \rightarrow \RR$ & \\
-                        $g: \RR^n \rightarrow \overline \RR$ & \\
-                        $\tilde x \in \RR^n$ & \\
-                        $x \in \RR^n$ & \\
-                        $\rho$ & Number $\rho \in (0, 1)$
-                    \end{tabular}\vspace{0.5em}
-                }
-                \STATE{\noindent
-                    $x^+ = \argmin \{(f + g)(z): z \in \{\tilde x, x\}\}$. 
-                }
-                \STATE{\textbf{Return: } $x^+, \eta$}
-                \caption{Beck's monotone routine}
-            \end{algorithmic}
-        \end{algorithm}
-        % NES'S MONO -----------------------------------------------------------
-        \begin{algorithm}[H]
-            \begin{algorithmic}[1]
-                \STATE{\noindent
-                    \textbf{Function NesMono Inputs: }
-                    \begin{tabular}{|ll}
-                        $f:\RR^n\rightarrow \RR$ & Lipschitz Smooth \\ 
-                        $g: \RR^n \rightarrow \overline \RR$ & Weakly Convex \\ 
-                        $\tilde x \in \RR^n$ & Vector \\ 
-                        $x \in \RR^n$ & Vector \\
-                        $\eta \in \RR$ & Number $\eta > 0$\\
-                    \end{tabular}\vspace{0.5em}
-                }
-                \STATE{\noindent
-                    $\hat y := \argmin\{(f + g)(z), x \in \{\tilde x, x\}\}$. 
-                }
-                \STATE{\noindent
-                    $x^+ := T_{1/\eta}(\hat y)$. 
-                }
-                \WHILE{$F(x^+) - F(\hat y) > -1/(2\eta)\Vert \mathcal G_{1/\eta}(\hat y)\Vert^2$}
-                    \STATE{$\eta := 2\eta$. }
-                \ENDWHILE
-                \STATE{\textbf{return: } $x^+, \eta$ }
-                \caption{Nesterov's monotone routine}
-            \end{algorithmic}\label{alg:nes-mono}
-        \end{algorithm}
-        % GMAPG ----------------------------------------------------------------
-        \begin{algorithm}[H]
-            \begin{algorithmic}[1]
-                \STATE{\noindent
-                    \textbf{Function GMAPG Inputs: }
-                    \begin{tabular}{|ll}
-                        $f:\RR^n \rightarrow \RR$ &  Weakly Convex Lipschitz Smooth \\
-                        $g: \RR^n \rightarrow \overline\RR$ & Weakly Convex \\ 
-                        $L\in \RR$ & $L > 0$\\ 
-                        $r_{\min} $ & $r_{\min} \in (0, 1)$ \\ 
-                        $\rho \in \RR$ & $\rho \in (0, 1)$ \\
-                        $N_{\min}\in \N$ & $N \ge 1$ \\
-                        $N \in \N$ & $N \ge N_{\min}$ \\
-                        $\mathbb L_{\mathcal S}$ \\ Algorithm \ref{alg:armijo-ls} or \ref{alg:chambolle-btls}
-                    \end{tabular}
-                }
-                \STATE{\textbf{Return: }}
-            \caption{GMAPG with Chambolle's backtracking}
-            \end{algorithmic}\label{alg:gmapg}
-        \end{algorithm}
+            \end{algorithm}
+        \subsection{Monotone routines}
+            % BECK'S MONO ------------------------------------------------------
+            \begin{algorithm}[H]
+                \begin{algorithmic}[1]
+                    \STATE{\noindent
+                        \textbf{Function BeckMono Inputs: }
+                        \begin{tabular}{|ll}
+                            $f: \RR^n \rightarrow \RR$ & \\
+                            $g: \RR^n \rightarrow \overline \RR$ & \\
+                            $\tilde x \in \RR^n$ & \\
+                            $x \in \RR^n$ & \\
+                            $\rho$ & Number $\rho \in (0, 1)$ \\
+                            $G \in \RR$ & Number 
+                        \end{tabular}\vspace{0.5em}
+                    }
+                    \STATE{\noindent
+                        $x^+ = \argmin \{(f + g)(z): z \in \{\tilde x, x\}\}$. 
+                    }
+                    \STATE{\textbf{Return: } $x^+, x_{k - 1} ,\eta$}
+                    \caption{Beck's monotone routine}\label{alg:beck-mono}
+                \end{algorithmic}
+            \end{algorithm}
+            % NES'S MONO -------------------------------------------------------
+            \begin{algorithm}[H]
+                \begin{algorithmic}[1]
+                    \STATE{\noindent
+                        \textbf{Function NesMono Inputs: }
+                        \begin{tabular}{|ll}
+                            $f:\RR^n\rightarrow \RR$ & Lipschitz Smooth \\ 
+                            $g: \RR^n \rightarrow \overline \RR$ & Weakly Convex \\ 
+                            $\tilde x \in \RR^n$ & Vector \\ 
+                            $x \in \RR^n$ & Vector \\
+                            $\eta \in \RR$ & Number $\eta > 0$\\
+                            $G \in \RR$  & Number
+                        \end{tabular}\vspace{0.5em}
+                    }
+                    \STATE{\noindent
+                        $\hat y := \argmin\{(f + g)(z), x \in \{\tilde x, x\}\}$. 
+                    }
+                    \STATE{\noindent
+                        $x^+ := T_{1/\eta}(\hat y)$. 
+                    }
+                    \FOR {i = 1, 2, \ldots, 53}
+                        \IF{$(f + g)(x^+) - (f + g)(\hat y) \le -1/(2\eta)\Vert \mathcal G_{1/\eta}(\hat y)\Vert^2$}
+                            \STATE{\textbf{Break}}
+                        \ENDIF
+                        \STATE{$\eta := 2\eta$. }
+                            \STATE{$x^+ := T_{1/\eta}(\hat y)$.}
+                    \ENDFOR
+                    \STATE{$G := \eta (x^+ - \hat y).$}
+                    \STATE{\textbf{return: } $x^+, \eta$ }
+                    \caption{Nesterov's monotone routine}\label{alg:nes-mono}
+                \end{algorithmic}
+            \end{algorithm}
+        \subsection{GMAPG main algorithm}
+            % GMAPG ------------------------------------------------------------
+            \begin{algorithm}[H]
+                \begin{algorithmic}[1]
+                    \STATE{\noindent
+                        \textbf{Function GMAPG Inputs: }
+                        \begin{tabular}{|ll}
+                            $f:\RR^n \rightarrow \RR$ & Lipschitz Smooth \\
+                            $g: \RR^n \rightarrow \overline\RR$ & Weakly Convex \\ 
+                            $x_{-1}$ & Vector\\
+                            $L\in \RR$ & $L > 0$\\ 
+                            $r $ & $r \in (0, 1)$ \\ 
+                            $\rho \in \RR$ & $\rho \in (0, 1)$ \\
+                            $N_{\min}\in \N$ & $N \ge 1$ \\
+                            $N \in \N$ & $N \ge N_{\min}$ \\
+                            $\epsilon \in \RR$ & Number\\
+                            $\mathbf L$ & Algorithm \ref{alg:armijo-ls} or \ref{alg:chambolle-btls}\\
+                            $\mathbf M$ & Algorithm \ref{alg:beck-mono} or \ref{alg:nes-mono}\\
+                            $\mathbf E_\chi$ & Exit Condition 
+                        \end{tabular}
+                    }
+                    \STATE{$\alpha_0 := 1$.}
+                    \STATE{$x_0, y_0,\alpha_1, L_0 := \textbf{ArmijoLS}(f, g, x_{-1}, x_{-1}, L, \alpha_0)$.}
+                    \STATE{$\eta_0 := L_0; v_0 := x_0; G_0 = L_0(x_0 - y_0).$}
+                    \FOR{$k := 1, 2,\ldots, N$}
+                        \STATE{\noindent
+                            $\tilde x_{k}, y_k, \alpha_{k + 1}, L_{k} := \mathbf{L}(f, g, v_{k - 1}, x_{k - 1}, L_{k - 1}, \alpha_{k}, rL_{k - 1}, \rho)$.
+                        }
+                        \STATE{\noindent
+                            $\rho := \rho^{1/2} \textbf{ if } L_{k} > L_{k - 1} \textbf{ else } \rho$.
+                        }
+                        \STATE{$G_k:= L_k(\tilde x_k - y_k)$}
+                        \STATE{\noindent
+                            $x_k, \hat y_k, \eta_{k + 1}, G_k := \mathbf M(f, g, \tilde x_k, x_{k - 1}, \eta_k, G_k)$.
+                        }
+                        \IF{$G_k < \epsilon \textbf{ or } (\mathbf E_\chi  \textbf{ and } k > N_{\min})$}
+                            \STATE{\textbf{break}}
+                        \ENDIF
+                    \ENDFOR
+                    \STATE{\textbf{Return: }$x_k, k$}
+                \caption{GMAPG with Chambolle's backtracking}
+                \end{algorithmic}\label{alg:gmapg}
+            \end{algorithm}
     % ==========================================================================
     % SECTION | EXAMPLES OF GMAPG IN THE LITERATURE
     % ==========================================================================
@@ -1831,9 +1862,6 @@
             If we choose $v_0 = x_0 = T_{L_0^{-1}} x_{-1}$, then $y_1 = \alpha_1 x_0 + (1 - \alpha_1)x_0 = x_0 = T_{L_0^{-1}}(x_{-1})$.
             Next, we make $\alpha_k^{-1} = t_k$, then \eqref{eqn:emp:result-item-1}, \eqref{eqn:emp:result-item-2} are equivalent. 
         \end{example}
-        % ======================================================================
-        % EXAMPLE | NESTEROV'S MONOTONE SCHEME WITH GENERIC LINE SEARCH
-        % ======================================================================
         \begin{example}[Nesterov's monotone scheme with generic line search]\;\\
             The following is (2.2.32) in Nesterov's book, phrased in our GMAPG framework. 
             \begin{algorithm}\label{alg:nesterov-mono-generic-ls}
@@ -1847,9 +1875,8 @@
         Firstly, we will introduce some theories in for nonconvex functions. 
         This is necessary because Nesterov's monotone variants can adapt to weakly convex objective functions. 
         The following assumption will characterize the full scope of discussion in nonconvexity objective function. 
-        
-
         \begin{definition}[nonconvex Nesterov's monotone scheme]\;\label{def:nes-monotone-scheme}\\
+
             
         \end{definition}
     \section{Restarting with function values}

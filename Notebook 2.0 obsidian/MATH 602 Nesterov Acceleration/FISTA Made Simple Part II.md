@@ -996,21 +996,24 @@ $$
 A line search employed for the algorithm generate $\eta$ smaller than $L + q$ because it only needs to satisfy the inequality for a subset of iterates. 
 
 #### **Algorithm | Nesterov's monotone scheme for nonconvex function**
-> Initialize any $v_0, x_0 \in \R^n$. 
-> 
+> Let $L_0 \ge L$. 
+> Let $(\alpha_k)_{k \ge 0}$ with $\alpha_0 = 1$ and it satisfies for all $k \ge 1$: $L_{k}^{-1}L_{k - 1}\alpha_{k - 1}^2(1 - \alpha_k) = \alpha_k^2$. 
+> Initialize the algorithm with $v_0, x_0 = T_{L}(x_{-1})$, for some $x_{-1} \in \R^n$. 
 > $$
 > \begin{aligned}
->     y_k &= \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1},
+>     &y_k = \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1},
 >     \\
->     \tilde x_k &= T_{L_k}(y_k), \text{ with line search or backtracking. }
+>     &\tilde x_k = T_{L_k}(y_k), \text{ with line search or backtracking. }
 >     \\
->     v_k &= x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1}),
+>     &v_k = x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1}),
 >     \\
->     \hat y_k &= \argmin{}\left\lbrace
+>     &\hat y_k = \argmin{}\left\lbrace
 >         F(y): y \in \{x_{k - 1}, \tilde x_k\}
 >     \right\rbrace,
 >     \\
->     x_k &= T_{1/\eta_k}(\hat y_k) \text{ s.t: } F(x_k) - F(\hat y_k) \le - \frac{1}{2\eta_k}\Vert \mathcal G_{1/\eta_k}(\hat y_k) \Vert^2, \eta_{k} \ge \eta_{k - 1}. 
+>     & \eta_{k}\text{ s.t: } F(x_k) - F(\hat y_k) \le - 1/(2\eta_k)\Vert \mathcal G_{1/\eta_k}(\hat y_k) \Vert^2, \eta_{k} \ge \eta_{k - 1}, 
+>     \\
+>     &x_k = T_{1/\eta_k}(\hat y_k) . 
 > \end{aligned}
 > $$
 
