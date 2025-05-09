@@ -208,8 +208,8 @@ $$
 $$
 
 
-
-
+#### **Claim 2.2.1 | the smooth part is convex and Lipschitz smooth**
+> ...
 
 
 #### **Theorem 2.2 | Inexact proximal gradient inequality**

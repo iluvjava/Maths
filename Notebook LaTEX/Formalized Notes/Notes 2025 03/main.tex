@@ -41,7 +41,7 @@
         \end{align*}
     \end{definition}
     \begin{assumption}[smooth plus nonsmooth]\label{ass:smooth-add-nonsmooth}
-        Let $F = f+ g$ where $f:\RR^n \rightarrow \overline \RR$ is differentiable and there exists $q\in \RR$ such that $g - q/2\Vert \cdot\Vert^2$ is convex.
+        Let $F = f+ g$ where $f:\RR^n \rightarrow \overline \RR$ is differentiable and there exists $q\in \RR$ such that $g - \mu/2\Vert \cdot\Vert^2$ is convex.
     \end{assumption}
     \begin{definition}[proximal gradient operator]
         Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth}. 
@@ -61,10 +61,10 @@
     % WEAKLY CONVEX GENERIC PROXIMAL GRADIENT INEQUALITY
     % ==========================================================================
     \begin{theorem}[weakly convex generic proximal gradient inequality]\;\label{thm:pg-ineq-wcnvx-generic}\\
-        Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth} with $\beta > 0$ and $q \in \RR$. 
+        Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth} with $\beta > 0$ and $\mu \in \RR$. 
         Then for all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{\beta^{-1}, f, g}(x)$, it has: 
         \begin{align*}
-            \frac{q}{2}\Vert z - \bar x\Vert^2 
+            \frac{\mu}{2}\Vert z - \bar x\Vert^2 
             &\le 
             F(z) - F(\bar x) - \langle \beta(x - \bar x), z - \bar x\rangle 
             + D_f(x, \bar x ) - D_f(z, x).  
@@ -79,15 +79,15 @@
             \\
             \implies
             \mathbf 0 
-            &\in \partial g(x^+) + \nabla f(x) + \beta(x^+ - x)
+            &\in \partial g(\bar x) + \nabla f(x) + \beta(\bar x - x)
             \\
             \iff 
             \partial g(x^+) &\ni
-            - \nabla f(x) - \beta(x^+ - x). 
+            - \nabla f(x) - \beta(\bar x - x). 
         \end{align*}
         The subgradient inequality for weak convexity has 
         \begin{align*}
-            \frac{q}{2}\Vert z - \bar x\Vert^2 
+            \frac{\mu}{2}\Vert z - \bar x\Vert^2 
             &\le 
             g(z) - g(\bar x) + \langle \nabla f(x) + \beta(\bar x - x), z - \bar x\rangle
             \\
@@ -111,7 +111,7 @@
         \end{align*}
     \end{proof}
     \begin{theorem}[convex proximal gradient inequality]\label{thm:cnvx-pg-ineq}
-        Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth} such that $q = \mu_g \ge 0$, $\beta \ge L_f$. 
+        Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth} such that $\mu = \mu_g \ge 0$, $\beta \ge L_f$. 
         In addition, suppose that $f:\RR^n\rightarrow \RR$ has $L_f$ Lipschitz continuous gradient, and it's $\mu_f \ge 0$ strongly convex. 
         For all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{\beta^{-1}, f, g}(x)$ it has 
         \begin{align*}
@@ -976,40 +976,68 @@
     Necoara et al. \cite{necoara_linear_2019} showed that there exists an optimal restarting interval to achieve fast line convergence rate for all functions with quadratic growth condition. 
     \par
     In this chapter, we will go through the details of these enhancements of FISTA and discuss why they are important in theories, and in practice. 
+    \section{Preliminaries}
+        This section introduces the full scope of the theories in our analysis. 
+        \subsection{smooth plus nonsmooth weakly convex}
+            \begin{assumption}[sum of weakly convex smooth and nonsmooth]\;\label{ass:sum-of-wcnvx}\\
+                Let $F: \RR^n \rightarrow \overline\RR:= f + g$ such that $f, g$ satisfy 
+                \begin{enumerate}
+                    \item $f$ is $L$ Lipschitz smooth and $q_f$ weakly convex. 
+                    \item $g$ is $L$ Lipschitz smooth and $q_g$ weakly convex. 
+                \end{enumerate}
+            \end{assumption}
+            \begin{definition}[weakly convex function]\;\label{def:wcnvx-fxn}\\
+                Let $f: \RR^n \rightarrow\overline \RR$ be an l.s.c proper function. 
+                We define $F$ to be $q$ weakly convex if there exists $q \in \RR$ such that the function $F + q/2\Vert \cdot\Vert^2$ is a convex function and $q$ is the infimum of all such possible parameters. 
+            \end{definition}
+            \begin{definition}[gradient mapping]
+                Suppose $F = f + g$ satisfies Assumption \ref{ass:sum-of-wcnvx}, define the gradient mapping for all $x \in \RR^n$
+                \begin{align*}
+                    \mathcal G_{\beta^{-1}, f, g}(x) = \beta(x - T_{\beta^{-1}, f, g}(x)). 
+                \end{align*}
+                If $f, g$ are clear in the context then we omit subscript and present $\mathcal G_\beta$. 
+            \end{definition}
+            \begin{lemma}[weakly convex monotone descent]\;\label{lemma:mono-wcnvx-descent}\\
+                Let $F = f + g$ satisfies Assumption \ref{ass:sum-of-wcnvx}. 
+                Let $\bar x = T_{\beta, f, g}(x)$. 
+                Then, for all $x \in \RR^n$, it has the following inequality: 
+                $$
+                \begin{aligned}
+                    0 \le F(x) - F(\bar x) - (\beta - q/2 - L/2)\Vert x - \bar x\Vert^2. 
+                \end{aligned}
+                $$
+                And descent is possible when $\beta \ge (L + q)/2$. 
+                The maximum amount of descent is achieved when $\beta = L + q$. 
+            \end{lemma}
+            \begin{proof}
+                Use Theorem \ref{thm:pg-ineq-wcnvx-generic}. 
+            \end{proof}
+        \subsection{smooth plus nonsmooth convex}
+            The following assumption is strictly stronger than \ref{ass:sum-of-wcnvx}. 
+            \begin{assumption}[convex smooth and nonsmooth]\label{ass:standard-fista}
+                Let $F = f + g$ where $f:\RR^n\rightarrow \overline \RR$ is $L$ Lipschitz smooth, $g$ is convex. 
+                Suppose that $\argmin_{x \in \RR^n} F(x)\neq \emptyset$. 
+            \end{assumption}
+            \begin{lemma}[proximal gradient inequality]
+                If $F = f + g$ satisfies Assumption \ref{ass:standard-fista}, then for all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{L^{-1}, f, g}(x)$ it has 
+                \begin{align*}
+                    0 &\le F(z) - F(\bar x) + \frac{L}{2}\Vert z - x\Vert^2 - \frac{L}{2}\Vert z - \bar x\Vert^2. 
+                \end{align*}
+            \end{lemma}
+            \begin{proof}
+                Use Theorem \ref{thm:cnvx-pg-ineq}. 
+            \end{proof}
+            
     \section{FISTA made simple}
         We make the proofs for FISTA  with common enhancement technique available in simple proofs. 
         We showcase the theories using a generic similar triangle representations of the algorithm which tremendously simplifies the arguments. 
-        \begin{assumption}[the standard FISTA setting]\label{ass:standard-fista}
-            Let $F = f + g$ where $f:\RR^n\rightarrow \overline \RR$ is $L$ Lipschitz smooth, $g$ is convex. 
-            Suppose that $\argmin_{x \in \RR^n} F(x)\neq \emptyset$. 
-        \end{assumption}
-        Specializing Theorem \ref{thm:cnvx-pg-ineq}, we have the following lemma: 
-        \begin{lemma}[proximal gradient inequality]
-            If $F = f + g$ satisfies Assumption \ref{ass:standard-fista}, then for all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{L^{-1}, f, g}(x)$ it has 
-            \begin{align*}
-                0 &\le F(z) - F(\bar x) + \frac{L}{2}\Vert z - x\Vert^2 - \frac{L}{2}\Vert z - \bar x\Vert^2. 
-            \end{align*}
-        \end{lemma}
-        \begin{proof}
-            Use Theorem \ref{thm:cnvx-pg-ineq}. 
-        \end{proof}
-        \begin{definition}[gradient mapping]
-            Suppose $F = f + g$ satisfies Assumption \ref{ass:standard-fista}, define the gradient mapping for all $x \in \RR^n$
-            \begin{align*}
-                \mathcal G_{\beta^{-1}, f, g}(x) = \beta(x - T_{\beta^{-1}, f, g}(x)). 
-            \end{align*}
-        \end{definition}
-        If $f, g$ are clear in the context then we simply omit subscript and present $\mathcal G_\beta$. 
+        
         The following definition can capture monotone variants of FISTA with line search, including backtracking strategies. 
         \par
         ``MAPG'' stands for monotone accelerated gradient. 
-        We refer to ``Generic Monotone Accelerated Proximal Gradient with line search" as ``GMAPG LS''. 
-        \begin{definition}[GMAPG LS]\label{def:generic-mapg-ls}\;\\ 
-            Initialize any $x_0, v_0 \in \RR^n, \alpha_0 = 1, L_0 \in \RR$ such that
-            \begin{align*}
-                D_f\left(T_{L_0^{-1}} (y_0)\right) 
-                &\le \frac{L_0}{2}\left\Vert T_{L_0^{-1}}(x_0) - y_0\right\Vert^2. 
-            \end{align*}
+        We refer to ``Generic Monotone Accelerated Proximal Gradient with line search" as ``GMAPG''. 
+        \begin{definition}[GMAPG]\label{def:generic-mapg-ls}\;\\ 
+            Initialize any $x_0, v_0 \in \RR^n$. 
             Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $\alpha_k \in (0, 1) \;\forall k \ge 0$ and $\alpha_0 \in (0, 1]$. 
             \begin{tcolorbox}
                 The algorithm makes sequences $(x_k, v_k, y_k)_{k \ge 1}$, such that for all $k = 1, 2, \ldots$ they satisfy: 
@@ -1056,9 +1084,9 @@
             \end{align*}
         \end{proof}
         % ======================================================================
-        % THEOREM | GENERIC GMAPG LS CONVERGENCE IN FXN VAL
+        % THEOREM | GENERIC GMAPG CONVERGENCE IN FXN VAL
         % ======================================================================
-        \begin{theorem}[generic GMAPG LS convergence]\; \label{thm:gmapg-ls-convergence}\;\\
+        \begin{theorem}[generic GMAPG convergence]\; \label{thm:gmapg-ls-convergence}\;\\
             Let $F = f + g$ satisfy Assumptions \ref{ass:standard-fista}. 
             Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $\alpha_k \in (0, 1)$ for all $k \ge 1$ and $\alpha_0 \in (0, 1]$. 
             Let $\rho_k = (1 - \alpha_{k + 1})^{-1}\alpha_{k + 1}^2 \alpha_k^{-2}$ for all $k \ge 0$. 
@@ -1074,7 +1102,8 @@
                     F(x_0) - F(x^+) + \frac{L_0\alpha_0}{2} \Vert x^+ - v_0\Vert^2
                 \right). 
             \end{align*}
-            If in addition, the algorithm is initialized with $\alpha_0 = 1, x_0 = v_0 = T_{L_{0}}x_{-1} \in \text{dom}\; F$ and $x^+$ is a minimizer of $F$, then the convergence rate simplifies: 
+            If in addition, the algorithm is initialized with $L_0 \ge L$, $\alpha_0 = 1, x_0 = v_0 = T_{L_{0}}x_{-1} \in \text{dom}\; F$ and $x^+$ is a minimizer of $F$.
+            Then, the convergence rate simplifies: 
             \begin{align*}
                 F(x_k) - F(x^+) + \frac{L_k\alpha_k}{2}\Vert x^+ - v_k\Vert^2
                 & \le 
@@ -1089,7 +1118,7 @@
                 \item Lemma \ref{lemma:apg-iterates}. 
                 \item The sequence $(\alpha_k)_{k \ge 1}$ has for all $k \ge 1$, $1 - \alpha_k = \alpha_k^2\alpha_{k - 1}^2\rho_{k - 1}$, $\alpha_k \in (0, 1)$. 
                 \item $F$ is convex and hence $F(z_k) \le \alpha_k F(x^+) + (1 - \alpha_k)F(x_{k - 1})$. 
-                \item $F(x_k) \le F(\tilde x_k)$ which is true by definition of GMAPG LS. 
+                \item $F(x_k) \le F(\tilde x_k)$ which is true by definition of GMAPG. 
             \end{enumerate}
             Now, using Theorem \ref{thm:cnvx-pg-ineq}, it has for all $k \in \N$: 
             {\allowdisplaybreaks\small
@@ -1213,12 +1242,12 @@
             \end{align*}
         \end{remark}
         % ======================================================================
-        % THEOREM | GENERIC GMAPG LS GRADIENT MAPPING CONVERGENCE
+        % THEOREM | GENERIC GMAPG GRADIENT MAPPING CONVERGENCE
         % ======================================================================
-        \begin{theorem}[generic GMAPG LS gradient mapping convergence]\;\label{thm:gmapg-generic-gradmap-convergence}\\
+        \begin{theorem}[generic GMAPG gradient mapping convergence]\;\label{thm:gmapg-generic-gradmap-convergence}\\
             Suppose that $F = f + g$ satisfies Assumption \ref{ass:standard-fista}. 
             Let the sequences $(x_k, y_k, v_k)$ satisfy GMAPG (Definition \ref{def:generic-mapg-ls}). 
-            If in addition, the sequence $(\alpha_k)_{k \ge 0}$ has $\alpha_0 = 1$ and, GMAPG is initialized with $v_0=x_0 = T_{1/L_0, f, g}(x_{-1})$ for any $x_{-1} \in\RR^n$ and there exists $x^+$ which is a minimizer of $F$. 
+            If in addition, the sequence $(\alpha_k)_{k \ge 0}$ has $\alpha_0 = 1$ and, GMAPG is initialized with $L_0 \ge L$, $v_0=x_0 = T_{1/L_0, f, g}(x_{-1})$ for any $x_{-1} \in\RR^n$ and there exists $x^+$ which is a minimizer of $F$. 
             Then, the convergence of gradient mapping $\Vert \mathcal G_{1/L_k}(y_k)\Vert$ is described by the sequence $(\beta)_{k \ge 0}$ where $\beta_0 = 1$ and for all $k \ge 1$:
             \begin{align*}
                 \beta_k := \prod_{i = 0}^{k - 1}(1 - \alpha_{i + 1}) \max\left(1, \rho_i L_{i + 1}L_i^{-1}\right). 
@@ -1566,15 +1595,16 @@
                 \STATE{\noindent
                     % \textbf{Function ArmijoLS}
                     % $(f, g, x, v, L, \alpha, \_, \_)$
-                    \textbf{Function ArmijoLS:}
-                    \begin{tabular}{ll}
+                    \textbf{Function ArmijoLS: }
+                    \begin{tabular}{|ll}
                         $f : \RR^n \rightarrow \RR$ & Convex Lipschitz smooth\\ 
                         $g: \RR^n \rightarrow \overline \RR$  &  Convex function with Proximal operator\\ 
                         $x \in \RR^n$ & Vector\\
                         $v \in \RR^n$ & Vector\\
                         $L \in \RR$ & $L > 0$\\
-                        $\alpha \in \RR$  & $\alpha \in (0, 1]$
-                    \end{tabular}
+                        $\alpha \in \RR$  & $\alpha \in (0, 1]$\\
+                        $\cdots$ & Ignore extra inputs
+                    \end{tabular}\vspace{0.5em}
                 }
                 \STATE{$\alpha^+ := (1/2)\left(\alpha\sqrt{\alpha^2 + 1} - \alpha^2\right)$.}
                 \STATE{$y^+ := \alpha^+ v + (1 - \alpha^+)x$.}
@@ -1592,22 +1622,22 @@
             \end{algorithmic}
             }
         \end{algorithm}
-        \begin{algorithm}[H]\label{alg:chambolle-btls}
+        \begin{algorithm}[H]
             {\small
-            \begin{algorithmic}[1]
+            \begin{algorithmic}[1]\label{alg:chambolle-btls}
                 \STATE{\noindent
                     % \textbf{Function ChamBT}($f, g, x, v, L, \alpha, L_{\min}, \rho$)
                     \textbf{Function ChamBT input: }
-                    \begin{tabular}{ll}
+                    \begin{tabular}{|ll}
                         $f:\RR^n \rightarrow \RR$ & Convex Lipschitz smooth\\ 
                         $g:\RR^n \rightarrow \overline\RR$ & Convex with Proximal Operator\\ 
                         $x\in \RR^n$ & Vector\\
                         $v\in \RR^n$ & Vector\\
-                        $\alpha \in \RR$ & Vector\\
                         $L\in \RR$ & Number, $L > 0$ \\
+                        $\alpha \in \RR$ & Vector\\
                         $L_{\min} \in \RR$ & Number, $L_{\min} > 0$\\
                         $\rho \in \RR$ & Number, $\rho \in (0, 1)$\\
-                    \end{tabular}
+                    \end{tabular}\vspace{0.5em}
                 }
                 \STATE{$L^+ := \max(L_{\min}, \rho L)$.}
                 \FOR{$i = 1, 2, \ldots, 53$}
@@ -1624,39 +1654,71 @@
             \end{algorithmic}
             }
         \end{algorithm}
-        \begin{algorithm}[H]\label{alg:beck-mono}
-            \begin{algorithmic}[1]
+        % BECK'S MONO ----------------------------------------------------------
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]\label{alg:beck-mono}
                 \STATE{\noindent
-                    \textbf{Function BeckMono Input:}
-                    \begin{tabular}{ll}
+                    \textbf{Function BeckMono Inputs: }
+                    \begin{tabular}{|ll}
                         $f: \RR^n \rightarrow \RR$ & \\
                         $g: \RR^n \rightarrow \overline \RR$ & \\
                         $\tilde x \in \RR^n$ & \\
-                        $x \in \RR^n$ & 
-                    \end{tabular}
-
+                        $x \in \RR^n$ & \\
+                        $\rho$ & Number $\rho \in (0, 1)$
+                    \end{tabular}\vspace{0.5em}
                 }
-                \STATE{\textbf{Return: } $x^+$}
+                \STATE{\noindent
+                    $x^+ = \argmin \{(f + g)(z): z \in \{\tilde x, x\}\}$. 
+                }
+                \STATE{\textbf{Return: } $x^+, \eta$}
                 \caption{Beck's monotone routine}
             \end{algorithmic}
         \end{algorithm}
-        \begin{algorithm}[H]\label{alg:nes-mono}
+        % NES'S MONO -----------------------------------------------------------
+        \begin{algorithm}[H]
             \begin{algorithmic}[1]
                 \STATE{\noindent
-                    \textbf{Function NesMono}($f, g, x, v, L, L_{\min}, \rho, \alpha$)
+                    \textbf{Function NesMono Inputs: }
+                    \begin{tabular}{|ll}
+                        $f:\RR^n\rightarrow \RR$ & Lipschitz Smooth \\ 
+                        $g: \RR^n \rightarrow \overline \RR$ & Weakly Convex \\ 
+                        $\tilde x \in \RR^n$ & Vector \\ 
+                        $x \in \RR^n$ & Vector \\
+                        $\eta \in \RR$ & Number $\eta > 0$\\
+                    \end{tabular}\vspace{0.5em}
                 }
+                \STATE{\noindent
+                    $\hat y := \argmin\{(f + g)(z), x \in \{\tilde x, x\}\}$. 
+                }
+                \STATE{\noindent
+                    $x^+ := T_{1/\eta}(\hat y)$. 
+                }
+                \WHILE{$F(x^+) - F(\hat y) > -1/(2\eta)\Vert \mathcal G_{1/\eta}(\hat y)\Vert^2$}
+                    \STATE{$\eta := 2\eta$. }
+                \ENDWHILE
+                \STATE{\textbf{return: } $x^+, \eta$ }
                 \caption{Nesterov's monotone routine}
-            \end{algorithmic}
+            \end{algorithmic}\label{alg:nes-mono}
         \end{algorithm}
-        \begin{algorithm}[H]\label{alg:gmapg}
+        % GMAPG ----------------------------------------------------------------
+        \begin{algorithm}[H]
             \begin{algorithmic}[1]
                 \STATE{\noindent
-                    \textbf{Function GMAPG} (
-                        $f, g, x_{-1}, L_0, r_{\min}, \text{Exit condition: }\mathbb E_\chi$
-                    )
+                    \textbf{Function GMAPG Inputs: }
+                    \begin{tabular}{|ll}
+                        $f:\RR^n \rightarrow \RR$ &  Weakly Convex Lipschitz Smooth \\
+                        $g: \RR^n \rightarrow \overline\RR$ & Weakly Convex \\ 
+                        $L\in \RR$ & $L > 0$\\ 
+                        $r_{\min} $ & $r_{\min} \in (0, 1)$ \\ 
+                        $\rho \in \RR$ & $\rho \in (0, 1)$ \\
+                        $N_{\min}\in \N$ & $N \ge 1$ \\
+                        $N \in \N$ & $N \ge N_{\min}$ \\
+                        $\mathbb L_{\mathcal S}$ \\ Algorithm \ref{alg:armijo-ls} or \ref{alg:chambolle-btls}
+                    \end{tabular}
                 }
-            \end{algorithmic}
+                \STATE{\textbf{Return: }}
             \caption{GMAPG with Chambolle's backtracking}
+            \end{algorithmic}\label{alg:gmapg}
         \end{algorithm}
     % ==========================================================================
     % SECTION | EXAMPLES OF GMAPG IN THE LITERATURE
@@ -1697,7 +1759,7 @@
                 \label{alg:mfista-armijo}
             \end{algorithm}
             We now demonstrate that Algorithm \ref{alg:mfista-armijo} is a special case of Definition \ref{def:generic-mapg-ls}.
-            Let's consider $y_{k + 1}$ produced the GMAPG LS. 
+            Let's consider $y_{k + 1}$ produced the GMAPG. 
             If $x_k = x_{k - 1}$ then replacing all instance of $x_k$ by $x_{k - 1}$ it has: 
             \begin{align*}
                 y_{k + 1} &= \alpha_{k + 1}(v_k) + (1 - \alpha_{k + 1})x_{k - 1}
@@ -1785,7 +1847,9 @@
         Firstly, we will introduce some theories in for nonconvex functions. 
         This is necessary because Nesterov's monotone variants can adapt to weakly convex objective functions. 
         The following assumption will characterize the full scope of discussion in nonconvexity objective function. 
-        \begin{definition}[nonconvex Nesterov's monotone scheme]\label{def:nes-monotone-scheme}
+        
+
+        \begin{definition}[nonconvex Nesterov's monotone scheme]\;\label{def:nes-monotone-scheme}\\
             
         \end{definition}
     \section{Restarting with function values}

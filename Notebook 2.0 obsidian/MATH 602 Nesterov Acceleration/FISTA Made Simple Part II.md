@@ -57,12 +57,6 @@ The other one is from Nesterov's Original writing which also appeared in the Cat
 
 #### **Algorithm | Generic Monotone Accelerated Gradient with Generic Line Search**
 > Initialize with $y_0 = x_0 = v_0, \alpha_0 = 1$. 
-> Initialize any $L_0$ such that
-> $$
-> \begin{aligned}
->     D_f(T_{L_0}, y_0) &\le \frac{L_0}{2}\Vert T_{L_0}x_0 - y_0\Vert^2. 
-> \end{aligned}
-> $$
 > Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $\alpha_k \in (0, 1) \forall k \ge 0$ and $\alpha_0 \in (0, 1]$. 
 > The algorithm makes sequences $(x_k, v_k, y_k)_{k \ge 1}$, such that for all $k = 1, 2, \ldots$ they satisfy: 
 > $$
@@ -595,7 +589,7 @@ Without the monotone assumption, the FISTA with backtracking has convergence on 
 > \begin{aligned}
 >     \Vert \mathcal G_{L_k} y_k\Vert &\le 
 >     \sqrt{\beta_k}L_k L_0 \left(
->         1 - 
+>         1 +
 >         \min(\rho_{k - 1}, L_k^{-1} L_{k - 1})^{1/2}
 >     \right)\Vert x^+ - v_0\Vert. 
 > \end{aligned}
@@ -637,49 +631,49 @@ $$
     &\le 
     L_k \alpha_k \left(
         \frac{\sqrt{\beta_kL_0}}{\alpha_k}\Vert x^+ - v_0\Vert
-        - 
+        +
         \frac{\sqrt{\beta_{k - 1}L_0}}{\alpha_{k - 1}}\Vert x^+ - v_0\Vert
     \right) 
     \\
     &= L_k\sqrt{L_0} \left(
         \sqrt{\beta_k}
-        - 
+        +
         \frac{\alpha_k\sqrt{\beta_{k - 1}}}{\alpha_{k - 1}}
     \right)\Vert x^+ - v_0\Vert
     \\
     &= \sqrt{\beta_k L_0}L_k \left(
-        1 - 
+        1 +
         \frac{\alpha_k}{\alpha_{k - 1}}\sqrt{\frac{\beta_{k - 1}}{\beta_k}}
     \right)\Vert x^+ - v_0\Vert
     \\
     &= \sqrt{\beta_k L_0}L_k \left(
-        1 - 
+        1 +
         \frac{\alpha_k}{\alpha_{k - 1}}
         \left((1 - \alpha_k)\max(1, \rho_{k - 1}L_k L_{k - 1}^{-1})\right)^{-1/2}
     \right)\Vert x^+ - v_0\Vert
     \\
     &= 
     \sqrt{\beta_k L_0}L_k \left(
-        1 - 
+        1 +
         ((1 - \alpha_k)\rho_{k - 1})^{1/2}
         \left((1 - \alpha_k)\max(1, \rho_{k - 1}L_k L_{k - 1}^{-1})\right)^{-1/2}
     \right)\Vert x^+ - v_0\Vert
     \\
     &= 
     \sqrt{\beta_k L_0}L_k \left(
-        1 - 
+        1 +
         \left(\rho_{k - 1}^{-1}\max(1, \rho_{k - 1}L_k L_{k - 1}^{-1})\right)^{-1/2}
     \right)\Vert x^+ - v_0\Vert
     \\
     &=
     \sqrt{\beta_k L_0}L_k \left(
-        1 - 
+        1 +
         \max(\rho_{k - 1}^{-1}, L_k L_{k - 1}^{-1})^{-1/2}
     \right)\Vert x^+ - v_0\Vert
     \\
     &= 
     \sqrt{\beta_k L_0}L_k \left(
-        1 - 
+        1 +
         \min(\rho_{k - 1}, L_k^{-1} L_{k - 1})^{1/2}
     \right)\Vert x^+ - v_0\Vert. 
 \end{aligned}
@@ -788,9 +782,18 @@ Nesterov's monotone variant brings additional convergence results.
 
 
 
-#### **Theorem | Convergence of Nestrov's Monotone FISTA variants under convexity**
-> ...
 
+#### **Theorem | Convergence of Nestrov's Monotone FISTA variants under convexity**
+> Let $F = f + g$ satisfy Assumption Set 1. 
+> Initialize Nesterov's Monotone Accelerated Gradient scheme with $x_0 = v_0 = T_{L_0}(x_{-1})$, $\alpha_0 = 1$ and let it satisfy $\rho_{k - 1}\alpha_{k - 1}^2(1 - \alpha_k) = \alpha_k^2$ with $\rho_{k - 1} = L_{k}^{-1}L_{k - 1}$. 
+> Then, the sequence generated satisfy: 
+> $$
+> \begin{aligned}
+>     \min_{1 \le i \le N} \Vert \mathcal G_L(\hat y_i)\Vert
+>     &\le 
+>     \sqrt{\frac{432L}{4N^3 - 1/8}} \Vert x^+ - x_{-1}\Vert. 
+> \end{aligned}
+> $$
 
 **Proof**
 
@@ -993,6 +996,8 @@ $$
 A line search employed for the algorithm generate $\eta$ smaller than $L + q$ because it only needs to satisfy the inequality for a subset of iterates. 
 
 #### **Algorithm | Nesterov's monotone scheme for nonconvex function**
+> Initialize any $v_0, x_0 \in \R^n$. 
+> 
 > $$
 > \begin{aligned}
 >     y_k &= \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1},
@@ -1075,6 +1080,7 @@ $$
 \end{aligned}
 $$
 
+The line search scheme makes for $\hat \eta_k \le (L + q)$. 
 
 ---
 ### **Accelerated proximal gradient with strong convexity**
