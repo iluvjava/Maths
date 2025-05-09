@@ -992,7 +992,7 @@
             \end{remark}
             \begin{definition}[weakly convex function]\;\label{def:wcnvx-fxn}\\
                 Let $f: \RR^n \rightarrow\overline \RR$ be an l.s.c proper function. 
-                We define $F$ to be $q$ weakly convex if there exists $q \in \ge 0$ such that the function $F + q/2\Vert \cdot\Vert^2$ is a convex function and $q$ is the infimum of all such possible parameters. 
+                We define $F$ to be $q$ weakly convex if there exists $q \ge 0$ such that the function $F + q/2\Vert \cdot\Vert^2$ is a convex function and $q$ is the infimum of all such possible parameters. 
             \end{definition}
             \begin{remark}
                 If $q = 0$, $f$ is convex or strongly convex. 
@@ -1661,11 +1661,11 @@
                     \STATE{\noindent
                         \textbf{Function BeckMono Inputs: }
                         \begin{tabular}{|ll}
-                            $f: \RR^n \rightarrow \RR$ & \\
-                            $g: \RR^n \rightarrow \overline \RR$ & \\
-                            $\tilde x \in \RR^n$ & \\
-                            $x \in \RR^n$ & \\
-                            $\rho$ & Number $\rho \in (0, 1)$ \\
+                            $f: \RR^n \rightarrow \RR$ & Convex Smooth\\
+                            $g: \RR^n \rightarrow \overline \RR$ & Convex\\
+                            $\tilde x \in \RR^n$ & Vector\\
+                            $x \in \RR^n$ & Vector\\
+                            $\rho$ & Number $\rho \in (0, 1)$ Number\\
                             $G \in \RR$ & Number 
                         \end{tabular}\vspace{0.5em}
                     }
@@ -1876,8 +1876,7 @@
         This is necessary because Nesterov's monotone variants can adapt to weakly convex objective functions. 
         The following assumption will characterize the full scope of discussion in nonconvexity objective function. 
         \begin{definition}[nonconvex Nesterov's monotone scheme]\;\label{def:nes-monotone-scheme}\\
-
-            
+            ...
         \end{definition}
     \section{Restarting with function values}
     \section{Applying them to large scale LP}

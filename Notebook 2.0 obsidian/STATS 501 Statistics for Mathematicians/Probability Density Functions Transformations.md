@@ -1,5 +1,5 @@
-- [[../../AMATH 561 Probability Theory/Probability Basics/Random Variables as Measurable Functions]], 
-- [[PDFs, PMFs]]
+- [Random Variables as Measurable Functions](../../AMATH%20561%20Probability%20Theory/Probability%20Basics/Random%20Variables%20as%20Measurable%20Functions.md), 
+- [PDFs, PMFs](PDFs,%20PMFs.md)
 
 ---
 ### **Intro**
@@ -62,7 +62,7 @@ and we make use of the fact that the derive of $F_X$ is always positive and chai
 ---
 ### **Invertible in High Dimension**
 
-For a high dimensional mapping $G(\vec{X})$, mapping from $\mathbb R^n$ back to itself, and its pre-image is single-valued, meaning that it can be differentiated with $J[G]$, being the Jacobi. Let $f(\vec{X})$ be an mapping from $\mathbb R^n$ to $\mathbb R$ be the  density function for random variable $\vec{X}$, then the transform random variable $G(\vec {X})$ will be given by: 
+For a high dimensional mapping $G(\vec{X})$, mapping from $\mathbb R^n$ back to itself, and its pre-image is single-valued, and it can be differentiated with $J[G]$, being the Jacobi. Let $f(\vec{X})$ be an mapping from $\mathbb R^n$ to $\mathbb R$ be the  density function for random variable $\vec{X}$, then the transform random variable $G(\vec {X})$ has PDF: 
 
 $$
 \begin{aligned}
