@@ -174,7 +174,7 @@
 \chapter{Linear Convergence of First Order Method}
     In this chapter, we are specifically interested in characterizing linear convergence of well known first order optimization algorithms. 
     In this section, $D_f$ will denote the Bregman Divergence as defined in Definition \ref{def:bregman-div}. 
-    \section{Necoara's et al's Paper}
+    \section{Necoara's et al.'s Paper}
         \subsection{The Settings}
             The assumption follows give the same setting as Necoara et al. \cite{necoara_linear_2019}. 
             % ==================================================================
@@ -972,10 +972,11 @@
     Monotone variants of FISTA proposed by Beck \todo{[?]} and Nesterov \todo{[?]} imposes monotonicity in function value at the iterates.  
     Backtracking strategies from Chambolle \todo{[?]} shows that the underestimating Lipschitz constant using a backtracking technique to choose a next iterate improves the average runtime of the algorithm in practice. 
     They showed that the convergence rate is bounded by the estimates of the Lipschitz constant. 
-    Restart is a technique pioneer early by ??? \todo{[?]}. 
+    Restart is a technique pioneer early by ??? \todo{[?]}.
     Necoara et al. \cite{necoara_linear_2019} showed that there exists an optimal restarting interval to achieve fast line convergence rate for all functions with quadratic growth condition. 
     \par
     In this chapter, we will go through the details of these enhancements of FISTA and discuss why they are important in theories, and in practice. 
+    
     \section{Preliminaries}
         This section introduces the full scope of the theories in our analysis. 
         \subsection{smooth plus nonsmooth weakly convex}
@@ -1754,6 +1755,7 @@
     % ==========================================================================
     % SECTION | EXAMPLES OF GMAPG IN THE LITERATURE
     % ==========================================================================
+    
     \section{Examples of GMAPG in the literature}
         \begin{example}[MFISTA with Armijo line search]\;\\\vspace{-1em}
             \begin{algorithm}[H]
@@ -1878,7 +1880,12 @@
         \begin{definition}[nonconvex Nesterov's monotone scheme]\;\label{def:nes-monotone-scheme}\\
             ...
         \end{definition}
+        \begin{theorem}[convergence of Nesterov's monotone scheme nonconvex]
+            
+        \end{theorem}
+    
     \section{Restarting with function values}
+        
     \section{Applying them to large scale LP}
         
     

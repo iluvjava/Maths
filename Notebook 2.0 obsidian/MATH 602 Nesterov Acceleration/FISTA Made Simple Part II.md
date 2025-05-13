@@ -997,7 +997,7 @@ A line search employed for the algorithm generate $\eta$ smaller than $L + q$ be
 
 #### **Algorithm | Nesterov's monotone scheme for nonconvex function**
 > Let $L_0 \ge L$. 
-> Let $(\alpha_k)_{k \ge 0}$ with $\alpha_0 = 1$ and it satisfies for all $k \ge 1$: $L_{k}^{-1}L_{k - 1}\alpha_{k - 1}^2(1 - \alpha_k) = \alpha_k^2$. 
+> Let $(\alpha_k)_{k \ge 0}$ with $\alpha_0 = 1$ and, it satisfies for all $k \ge 1$: $L_{k}^{-1}L_{k - 1}\alpha_{k - 1}^2(1 - \alpha_k) = \alpha_k^2$. 
 > Initialize the algorithm with $v_0, x_0 = T_{L}(x_{-1})$, for some $x_{-1} \in \R^n$. 
 > $$
 > \begin{aligned}
