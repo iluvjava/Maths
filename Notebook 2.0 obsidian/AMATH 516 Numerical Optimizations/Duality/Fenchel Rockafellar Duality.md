@@ -1,6 +1,7 @@
-[[Dualization Techniques]], finding the Fenchel dual for a given function. [[Duality/Convex Conjugation Introduction]], the definition and interpretations for a convex conjugate of a function, and [[Duality/MinMax MaxMin Lemma]]. 
+- [Dualization Techniques](Dualization%20Techniques.md), finding the Fenchel dual for a given function. 
+- [Convex Conjugation Introduction](Duality/Convex%20Conjugation%20Introduction.md), the definition and interpretations for a convex conjugate of a function, and [MinMax MaxMin Lemma](Duality/MinMax%20MaxMin%20Lemma.md). 
 
-We might need to use [[Duality/Fenchel Identity, Inequality]] one theorem characterizing the existence of the minimizers for the primal and the dual problems. 
+We might need to use [Fenchel Identity, Inequality](Duality/Fenchel%20Identity,%20Inequality.md) one theorem characterizing the existence of the minimizers for the primal and the dual problems. 
 
 
 ---
@@ -83,7 +84,7 @@ The above theorem that characterizes the existence of the solution for the prima
 ---
 ### **Demonstrations**
 
-The duality statement can be constructed by using Dualizations techniques and the [[Duality/MinMax MaxMin Lemma]]. Starts by considering the following facts with $f, g$ instead: 
+The duality statement can be constructed by using Dualizations techniques and the [MinMax MaxMin Lemma](Duality/MinMax%20MaxMin%20Lemma.md). Starts by considering the following facts with $f, g$ instead: 
 
 $$
 \begin{aligned}
@@ -211,12 +212,12 @@ For a preliminary example, see [Apply Fenchel Rockafellar Dual to Linear Program
 
 We make some examples that illustrate some subtleties behind the Fenchel Rockafaller duality, especially about the existence of the minimizers for the primal and the dual problems. 
 
-**Example 1 | Non-Existence of Minimizers**
-
+#### **Example 1 | Non-Existence of Minimizers**
+> 
 
 
 
 ---
 ### **Remarks**
 
-Fenchel Rockafellar is a special case of KKT duality. For an intro for KKT, see: [[Introducing The KKT Conditions]] for an introduction. 
+Fenchel Rockafellar is a special case of KKT duality. For an intro for KKT, see: [Introducing The KKT Conditions](Introducing%20The%20KKT%20Conditions.md) for an introduction. 

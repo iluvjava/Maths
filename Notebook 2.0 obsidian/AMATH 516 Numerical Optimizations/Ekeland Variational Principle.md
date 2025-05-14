@@ -177,3 +177,59 @@ Observe that the bounded below assumption is crucial for the description of choo
 **Proof**
 
 
+
+
+---
+### **Let's Follow Rock-Wets instead**
+
+Ekeland variational principle states something really weird. 
+It seems quite important and See coverage in [Wikipedia](https://en.wikipedia.org/wiki/Ekeland%27s_variational_principle).
+On the internet, it says that this allows compactness to be used for function that is doesn't necessary has bounded level set. 
+
+#### **Theorem | Ekeland Variational Principles**
+> Let $f : \R^n \rightarrow \overline \R$ be lsc and $\inf_x f(x) = f^+ > \infty$. 
+> Let $\epsilon > 0$, suppose that $\bar x$ has $f(\bar x) \le f^+ + \epsilon$. 
+> Then for any $\delta$, there exists a point $\tilde x \in \mathbb B(\bar x, \epsilon/\delta)$ such that $f(\tilde x) \le f(\bar x)$ and $(\forall x \in \R^n):\; f(x) + \delta\Vert x - \tilde x\Vert > f(\tilde x)$. 
+
+**Proof**
+
+Let's consider the function $f_1 = f + \delta \Vert \cdot - \bar x\Vert$. 
+Define $C := \argmin{x}\; f_1(x)$ then $C\neq \emptyset$ is compact because $f_1$ is level bounded: 
+$$
+\begin{aligned}
+    \{x | f_1(x) \le \alpha\} \subseteq \{x | f^+ + \delta \Vert x - \bar x\Vert \le \alpha\}
+    = \mathbb B (\bar x, (\alpha - f^+)/\delta),
+\end{aligned}
+$$
+
+Now consider the function $f_C = f + \delta_C$ which is lsc and level bounded hence $\argmin{x} \;f_C(x) \neq\emptyset$. 
+Let's choose $\tilde x \in \argmin{x}\; f_C(x)$. 
+Obviously that for all $x \in C$, $f(\tilde x) \le f(x)$. 
+When $x \neq C$, $f_1(\tilde x) < f_1( x)$ by definition of $C$ hence: 
+
+$$
+\begin{aligned}
+    f(\tilde x) \le f(x) + \delta(\Vert x - \bar x\Vert - \Vert \tilde x - \bar x\Vert) &\le 
+    f(x) + \delta \Vert x - \tilde x\Vert. 
+\end{aligned}
+$$
+
+Hence, for all $x \neq \tilde x$: $f(\tilde x) < f(x) + \delta\Vert x - \tilde x\Vert$. 
+Therefore, $\tilde x$ also minimizes $f_1$. 
+In addition: 
+
+$$
+\begin{aligned}
+    f(\tilde x) <  f(\tilde x) + \delta \Vert \tilde x - \bar x\Vert 
+    &\le f(\bar x) \le f^+ + \epsilon 
+    \implies 
+    \delta\Vert \tilde x - \bar x\Vert \le \epsilon
+\end{aligned}
+$$
+
+Which writes as $f(\tilde x) \le f(\bar x)$ and $\tilde x \in \mathbb (\overline x, \epsilon/\delta)$. 
+
+
+**Remarks**
+
+It's just saying that for all lsc function and a $\epsilon$ suboptimal point $\bar x$, it's possible to always choose a new $\tilde x$ such that it's strictly below $f(x) + \delta \Vert x - \tilde x\Vert$, not infinitely away from $\tilde x$. 
