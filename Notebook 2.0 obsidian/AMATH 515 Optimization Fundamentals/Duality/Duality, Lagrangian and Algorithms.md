@@ -6,7 +6,7 @@ What is the Lagrangian?
 What implications do they have for algorithm designs? 
 
 ---
-### **Definition: Lagarangian**
+### **Lagarangian**
 
 Starts with our primal problem: 
 
@@ -16,7 +16,7 @@ $$
 \right\rbrace
 $$
 
-And then during the dualization process, we have the lagrangian: 
+And then during the dualization process, we have the Lagrangian: 
 
 $$
 \min_x \sup_z 

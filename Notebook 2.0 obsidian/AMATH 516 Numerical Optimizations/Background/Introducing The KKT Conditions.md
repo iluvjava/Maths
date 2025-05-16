@@ -1,6 +1,5 @@
-[[MinMax MaxMin Lemma]]
-KKT: Karush–Kuhn–Tucker conditions
-Wiki: [here](https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions). 
+- [[MinMax MaxMin Lemma]]
+- KKT: Karush–Kuhn–Tucker conditions Wiki: [here](https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions). 
 
 ---
 ### **Intro**

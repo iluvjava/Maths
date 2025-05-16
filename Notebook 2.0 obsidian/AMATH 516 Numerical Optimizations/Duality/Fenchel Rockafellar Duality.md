@@ -7,7 +7,8 @@ We might need to use [Fenchel Identity, Inequality](Duality/Fenchel%20Identity,%
 ---
 ### **Intro**
 
-The duality theorem, straight from the legendary researchers. We phrase the theorem and then we discuss its details, and problems. 
+The duality theorem, straight from the legendary researchers. 
+We phrase the theorem and then we discuss its details, and problems. 
 
 
 #### **Theorem-1 | Fenchel Rockafellar Dual Problems**
@@ -116,7 +117,7 @@ $$
     \inf_{x\in X}
     \sup_{y\in Y}
     \left\lbrace
-        f(x) + \langle y, Ax\rangle - y^\star(y)
+        f(x) + \langle y, Ax\rangle - g^\star(y)
     \right\rbrace
     \\
     & \le 

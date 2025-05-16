@@ -1,4 +1,5 @@
-[[Minimizers of Smooth Non-smooth Sum]], [[Subdifferentials Subgradient Computations]]
+- [[Minimizers of Smooth Non-smooth Sum]], 
+- [[Subdifferentials Subgradient Computations]]
 
 
 ---
