@@ -38,7 +38,7 @@ However, the equality can be achieved if, the function $f$ is closed and convex.
 >     y \in \partial f (x) \iff 
 >     y \in \argmax{z} \left\lbrace
 >         \langle x, z\rangle - f^\star(z)
->     \right\rbrace. 
+>     \right\rbrace, f(x) = f^{\star\star}(x).
 > \end{aligned}
 > $$
 
@@ -58,7 +58,7 @@ $$
         \langle x, z\rangle - f^\star (z)
     \right\rbrace
     \\
-    &= f^{\star\star}(x) \le f(x) 
+    &= f^{\star\star}(x) = \text{cl}\; f(x) \le f(x) 
     \\
     \iff y &\in 
     \argmax{z} \left\lbrace

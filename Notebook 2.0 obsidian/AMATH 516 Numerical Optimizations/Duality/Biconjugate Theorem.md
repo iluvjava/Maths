@@ -1,20 +1,18 @@
 [[Convex Conjugation Introduction]]
 
 ---
-# **Intro**
+### **Intro**
 
 Convex conjugate represents the epigraph of a function via affine minorants, or basically half spaces. We use the epigraphical interpretation to prove the theorem. 
 
-### **Theorem Statement**
+### **The Biconjugate theorem**
 
+#### **Theorem statement**
 > For any proper function we have the convex closure of the epigraph of a function is the same as the epigraph of the biconjugation of that function: 
 > $$
 > \text{epi}(f^{\star\star}) = \text{cl}\circ \text{cvxh}\circ \text{epi}(f)
 > $$
-
-
----
-# **Proof**
+**Proof**
 
 Recall the fact that the epigraph of $f^\star$ consists of all the affine functions that are below the epigraph of $f$. Giving us the following description of the epigraph of $f$: 
 

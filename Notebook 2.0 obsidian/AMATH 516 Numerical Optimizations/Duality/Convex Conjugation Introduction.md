@@ -36,7 +36,7 @@ For clear notations, we will present conjugating a function wrt to a specific pa
 
 $$
 \begin{aligned}
-	{[f(Ax + b, y)|x]}^\star(z)
+	{[x\mapsto f(Ax + b, y)]}^\star(z)
 \end{aligned}
 $$
 
@@ -54,28 +54,75 @@ The conjugate function is always convex, see the next section for more info. We 
 
 Before we start, please see [Fenchel Identity, Inequality](Fenchel%20Identity,%20Inequality.md), for the inequality. It's somewhat relevant. 
 
-#### **Claim-1 | Conjugate Encodes Affine Minorants**
 
-> For a function $f$ that is proper, we have $\forall (y, \alpha) \in {\text{epi}}(f^\star)$, we have the claim that $f(x) \ge \langle y, x\rangle - \alpha$
+#### **Proposition 1 | The basics of convex conjugate**
+> Let $f$ be a proper function.
+> Then, 
+> 1. $\forall \; (y, \alpha) \in {\text{epi}}(f^\star)$, it has $f(x) \ge \langle y, x\rangle - \alpha$. Consequently 
+> $$
+>    \text{epi} f\subseteq \bigcap_{(y, \alpha)\in \text{epi}(f^\star)}\{(x, \beta): \beta \ge \langle y, x\rangle - \alpha\}. 
+> $$
+> 2. $f^\star$ is a convex function. It has $f^\star(x) \ge \langle z, x\rangle - \alpha$ for all $(z, \alpha) \in \text{epi}\; f$. In addition, it has 
+> $$
+>   \text{epi}\; f^\star= 
+>   \bigcap_{(z, \alpha)\in \text{epi}\; f} \{(x, \beta) : \beta \ge \langle z, x\rangle - \alpha\}. 
+> $$
 
-Please observe that the vector from $\text{epi}(f)$ is the slope of a supporting hyperplane of the original function $f(x)$. The relation between original and conjugate function is: $f(x)\ge y^Tx - f^\star(y)$. This is the *Cauchy Subgradient inequality* or *Fenchel inequality*. 
+Please observe that the vector from $\text{epi}(f)$ is the slope of a supporting hyperplane of the original function $f(x)$. 
+The relation between original and conjugate function is: $f(x)\ge y^Tx - f^\star(y)$. 
+This is the *Cauchy Subgradient inequality* or *Fenchel inequality*. 
 
-**Justification**
+**Proof**
 
-Directly from the definition of the conjugate function we state: 
+Let's proof **item (1)**. 
+Let $(y, \alpha) \in \text{epi}(f^\star)$, by definition: 
 
 $$
 \begin{aligned}
-    & \forall (y, \alpha) \in \text{epi}(f^\star)
+    0 &= \sup_{z} \left\lbrace
+        \langle z, y\rangle - f(z)
+    \right\rbrace - f^\star(x)
     \\
-    & \alpha \ge f^\star(y) \ge \langle y, x\rangle - f(x) \quad \forall x,y
+    &\ge \langle x, y\rangle - f(x) - f^\star(x)
     \\
-    \implies & 
-    f(x) \ge \langle y, x\rangle - \alpha. 
+    &\ge \langle x, y\rangle - f(x) - \alpha. 
 \end{aligned}
 $$
 
 We used the Fenchel inequality on the second line. 
+To show **item (2)**, it's direct: 
+
+$$
+\begin{aligned}
+    f^\star(x) &= \sup_{z} \left\lbrace
+        \langle z, x\rangle - f(z)
+    \right\rbrace
+    \\
+    &= \sup_{z, \alpha} \left\lbrace
+        \langle z, x \rangle - \alpha : \alpha \ge f(z)
+    \right\rbrace
+    \\
+    &= 
+    \sup_{z, \alpha} \left\lbrace
+        \langle z, x \rangle - \alpha : (z, \alpha) \in \text{epi}\; f
+    \right\rbrace. 
+\end{aligned}
+$$
+
+The supremum of a set of affine function always yields a convex function. 
+Because the equality holds, taking the supremum of a family of function is taking the intersection of their epi graph so 
+
+$$
+\begin{aligned}
+    \text{epi}\; f^\star &= 
+    \bigcap_{(z, \alpha) \in \text{epi}\; f} \text{epi} (x \mapsto \langle z, x\rangle - \alpha)
+    \\
+    &= 
+    \bigcap_{(z, \alpha)\in \text{epi}\; f} \{(x, \beta) : \beta \ge \langle z, x\rangle - \alpha\}. 
+\end{aligned}
+$$
+
+$\blacksquare$
 
 **Illustrations**
 
@@ -87,28 +134,8 @@ Taken from Dimitri's class at UW.
 
 The conjugate function $f^\star(x)$'s value provides the least offset of the affine functions that is below the function $f$, given the slope of the affine function. 
 
-#### **Corollary-1 | Enclosing the Epigraph**: 
- 
-In fact, one can go on and make the claim the the epigraph of the original function is contained within all the halfspaces defined by the convex conjugate functions. Therefore, using the above inequality: 
+#### **Proposition 2 | More basics observations on conjugates**
 
-$$
-\begin{aligned}
-    & \forall (x, \beta)\in \text{epi}(f), (y, \alpha)\in \text{epi}(f^\star)
-    \\
-    & 
-    \beta \ge f(x)\ge \langle y, x\rangle - \alpha
-    \\
-    \implies & 
-    \text{epi(f)} \subseteq
-    \bigcap_{(y, \alpha)\in \text{epi}(f^\star)}\{(x, \beta): \beta \ge \langle y, x\rangle - \alpha\}. 
-\end{aligned}
-$$
-
-Recall from [Supporting Convex Sets using Halfspaces](../CVX%20Geometry/Supporting%20Convex%20Sets%20using%20Halfspaces.md), we had created a support for the epigraph of $f$, using the elements from the epigraph of $f^\star$. 
-
-**Remarks**
-
-Here we only showed $\subseteq$, the converse is not shown but it's true. It can be proved via a contradiction, and separation of convex sets, by bearing in mind for the property of an epigraph of a convex function. 
 
 #### **Theorem | Conjugate is the Support Function of the Epigraph of $f$**
 
@@ -158,7 +185,7 @@ $$
         \begin{bmatrix}
             x \\ - 1
         \end{bmatrix}
-    \right)
+    \right).
 \end{aligned}
 $$
 
@@ -225,45 +252,40 @@ Substituting again with $y = \nabla f(x)$, we obtained the statement.
 
 Conjugate of the conjugate of a function. 
 
-**Theorem: Biconjugate Function is Always Smaller**
-
+#### **Lemma | Bi-conjugate Function is Always Smaller**
+> Let $f$ be a proper function. 
+> Then for all $x \in \R^n$ it has: 
 > $$
-> f^{\star\star}(x) \le f(x)
+> f^{\star\star}(x) \le f(x). 
 > $$
 
-Such a claim make sense geometrically, a convex envelop is reconstructed using the conjugate of the original function, and it will always be smaller in quantity. 
 
 **Proof**
 
 $$
 \begin{aligned}
-    f^{\star\star}(z) = \sup_x \left\lbrace 
-    z^Tx - f^\star(x)
+    f^{\star}(x) &= \sup_z \{ \langle x, z\rangle - f^\star(z)\}
+    \\
+    &= \sup_z  \left\lbrace
+        \langle x, z\rangle - \sup_{w}\{\langle w, z\rangle - f(w)\}
     \right\rbrace
-    & =
-    \sup_x \left\lbrace 
-        z^Tx - \sup_{y} \left\lbrace
-            z^Ty - f(y)
-        \right\rbrace
-    \right\rbrace 
-    \\\underset{[1]}{\implies}
-    \sup_x \left\lbrace 
-    \inf_{y} \left\lbrace
-       z^T(x - y) + f(y)
-    \right\rbrace
-    \right\rbrace
-    &\le \inf_y
-    \left\lbrace
-        \sup_x \left\lbrace 
-            z^T(x - y) + f(y)
+    \\
+    &= \sup_z \left\lbrace
+        \inf_w \left\lbrace
+            \langle x, z\rangle - \langle w, z\rangle + f(w)
         \right\rbrace
     \right\rbrace
+    \\
+    &\le 
+    \sup_z\left\lbrace
+        \langle x, z\rangle - \langle x, z\rangle + f(x)
+    \right\rbrace = f(x). 
 \end{aligned}
 $$
 
-See [MinMax MaxMin Lemma](MinMax%20MaxMin%20Lemma.md) for applications. 
+$\blacksquare$
 
-**Corollary: The Biconjugate Theorem**
+#### **Corollary | The Biconjugate Theorem**
 
 > $$
 > \text{epi}(f^{\star\star}) = \text{cl}\circ \text{cvxh}\circ\text{epi}(f)
