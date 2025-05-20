@@ -225,7 +225,7 @@ $$
     \\
     \implies 
     \bigcup_{i \in I}
-    X\cap C_i^\complement\cap X^\complement &= 
+    X\cap C_i^\complement \cup X^\complement &= 
     X \cap M = X
     \\
     \iff 

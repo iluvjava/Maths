@@ -22,7 +22,7 @@ The Fenchel inequality ties together the idea of convex conjugate, subgradient, 
 
 However, the equality can be achieved if, the function $f$ is closed and convex. We state the theorem. 
 
-#### **Theorem-1 | Fenchel's Identity and Equivalences**
+#### **Theorem 1 | Fenchel's Identity and Equivalences**
 > Let $f$ be convex and proper, then there exists $x, y\in X$ which makes the following conditions equivalent: 
 > 1. $f(x) + f^\star(y) = \langle x, y\rangle$, 
 > 2. $y \in \partial f(x)$, 
@@ -35,10 +35,11 @@ However, the equality can be achieved if, the function $f$ is closed and convex.
 > Let $f$ be convex and proper, then it holds that
 > $$
 > \begin{aligned}
->     y \in \partial f (x) \iff 
+>	 & y \in \partial f (x) \iff 
 >     y \in \argmax{z} \left\lbrace
 >         \langle x, z\rangle - f^\star(z)
->     \right\rbrace, f(x) = f^{\star\star}(x).
+>     \right\rbrace, \\ 
+>     & f(x) = f^{\star\star}(x).
 > \end{aligned}
 > $$
 
@@ -48,8 +49,7 @@ We can use the previous theorem and start with the equivalence between (1), (2) 
 
 $$
 \begin{aligned}
-    y &\in \partial f(x) 
-    \\
+    y &\in \partial f(x) \\
     \iff 
     f(x) &= \langle  x, y\rangle - f^\star(y)
     \\
@@ -58,14 +58,27 @@ $$
         \langle x, z\rangle - f^\star (z)
     \right\rbrace
     \\
-    &= f^{\star\star}(x) = \text{cl}\; f(x) \le f(x) 
-    \\
-    \iff y &\in 
-    \argmax{z} \left\lbrace
-        \langle x, z\rangle - f^\star(z)
-    \right\rbrace. 
+    &= f^{\star\star}(x) = \text{cl}\; f(x) \le f(x). 
 \end{aligned}
 $$
+
+Hence it has $\sup_{z}\{ \langle x, z\rangle - f^\star(z)\} = \langle x, y\rangle - f^\star(y)$ hence $y \in \argmax{z}\{\langle x, z\rangle - f^\star(z)\}$. 
+At the same time it has $f(x) \le f^{\star\star}(x) \le f(x)$, hence $f^{\star\star}(x) = f(x)$. 
+For the converse we use $f(x) = f^{\star\star}(x)$ that we just proved.
+Suppose that $y \in \argmax{z}\{\langle x, z\rangle - f^\star(z)\}$ hence it has 
+
+$$
+\begin{aligned}
+    \langle x, y\rangle - f^\star(y) &= 
+    \sup_{z} \left\lbrace
+        \langle x, z\rangle - f^\star(z) 
+    \right\rbrace = f^{\star\star}(x) = f(x)
+    \\
+    \iff \langle x, y\rangle - f^\star(y) &= f(x). 
+\end{aligned}
+$$
+
+Using Proposition 1 (1) it's equivalent to $y \in \partial f(x)$. 
 
 $\blacksquare$
 
