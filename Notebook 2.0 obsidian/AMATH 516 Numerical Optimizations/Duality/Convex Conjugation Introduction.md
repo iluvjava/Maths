@@ -15,7 +15,7 @@ Convex conjugate is Fenchel conjugate, It's also called the Fenchel Legendre Tra
 3. It's convex. 
 4. Convex conjugate function is related to the subgradient. 
 
-#### **Def-1**
+#### **Def 1 | The conjugate of a function**
 
 > Let $f(x): \mathbb{R}^n \mapsto \mathbb{R} \cup \{-\infty, \infty\}$, then the Fenchel Conjugate is defined to be: 
 > $$
@@ -52,8 +52,6 @@ The conjugate function is always convex, see the next section for more info. We 
 - Conjugate encodes the maximum offset of Affine minorants of the original function. 
 - Fenchel conjugate is a special case of the support function on the epigraph of $f$. 
 
-Before we start, please see [Fenchel Identity, Inequality](Fenchel%20Identity,%20Inequality.md), for the inequality. It's somewhat relevant. 
-
 
 #### **Proposition 1 | The basics of convex conjugate**
 > Let $f$ be a proper function.
@@ -68,9 +66,7 @@ Before we start, please see [Fenchel Identity, Inequality](Fenchel%20Identity,%2
 >   \bigcap_{(z, \alpha)\in \text{epi}\; f} \{(x, \beta) : \beta \ge \langle z, x\rangle - \alpha\}. 
 > $$
 
-Please observe that the vector from $\text{epi}(f)$ is the slope of a supporting hyperplane of the original function $f(x)$. 
-The relation between original and conjugate function is: $f(x)\ge y^Tx - f^\star(y)$. 
-This is the *Cauchy Subgradient inequality* or *Fenchel inequality*. 
+
 
 **Proof**
 
@@ -134,7 +130,59 @@ Taken from Dimitri's class at UW.
 
 The conjugate function $f^\star(x)$'s value provides the least offset of the affine functions that is below the function $f$, given the slope of the affine function. 
 
+Please observe that the vector from $\text{epi}(f)$ is the slope of a supporting hyperplane of the original function $f(x)$. 
+The relation between original and conjugate function is: $f(x)\ge y^Tx - f^\star(y)$. 
+This is the *Cauchy Subgradient inequality* or *Fenchel inequality*. 
+Conditions are required to make it an equality. 
+Finish reading this file entirely and see [Fenchel Equality](Fenchel%20Identity,%20Inequality.md) for the relevant theories. 
+
+The epigraphical description of the dual can be improved on a higher dimension using the idea of a support function. 
+
 #### **Proposition 2 | More basics observations on conjugates**
+> Let $f$ be a proper function, then $f^\star$ has: 
+> $$
+> \begin{aligned}
+>     \text{epi}\; f^\star \subseteq \text{cl.cnvxh.epi}\; f
+>     = \bigcap_{(y, \alpha)\in \text{epi}(f^\star)}\{(x, \beta)\in \R^n \times \R: \beta \ge \langle y, x\rangle - \alpha\}. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+Define $Q := \bigcap_{(y, \alpha)\in \text{epi}(f^\star)}\{(x, \beta): \beta \ge \langle y, x\rangle - \alpha\}$ for short. 
+It's not hard to see that we had $\text{epi} f^\star \subseteq Q$ since $Q$ is closed and convex it implies $\text{cl.cnvxh.epi}\; f \subseteq Q$ as well. 
+Here is the thing we are going to demonstrate: 
+* Suppose that $(x, \eta) \not\in \text{cl.cnvxh.epi}\; f$, then there exists $(y, - \alpha) \in \text{epi}\; f^\star$ and $\alpha > \eta$ so $(x, \eta) \not\in Q$. 
+
+From $(x, \eta)\not\in \text{cl.cnvxh.epi}\; f$, by convex separation there exists some $(y, \alpha)$ such that $\text{epi}\; f\subseteq \text{epi}(z \mapsto \langle y, z\rangle + \alpha)$ and $(x, \eta)\not \in \text{epi}(z \mapsto \langle y, z\rangle + \alpha)$. 
+The former condition has: 
+
+$$
+\begin{aligned}
+    & 0 < \epsilon = \inf_z \left\lbrace
+        f(z) - \langle y, z\rangle - \alpha
+    \right\rbrace
+    \\
+    \iff & 0 < \epsilon = - f^\star(y) - \alpha 
+    \\
+    \implies & f^\star(y) < - \alpha
+    \\
+    \iff 
+    & (y, -\alpha) \in \text{epi}\; f^\star. 
+\end{aligned}
+$$
+
+The later condition has: 
+
+$$
+\begin{aligned}
+    (x, \eta)\not \in \text{epi}(z \mapsto \langle y, z\rangle + \alpha)\implies 
+    \eta < \langle y, x\rangle - (- \alpha). 
+\end{aligned}
+$$
+
+With $(y, - \alpha) \in \text{epi}\; f^\star$, the definition of $Q$ implies that $(x, \eta) \not \in Q$. 
+$\blacksquare$
 
 
 #### **Theorem | Conjugate is the Support Function of the Epigraph of $f$**
@@ -148,6 +196,9 @@ The conjugate function $f^\star(x)$'s value provides the least offset of the aff
 >        \end{bmatrix}
 > \right) = f^\star(x)
 > $$
+
+
+**Proof**
 
 Recall the definition from the support functions and consider: 
 
@@ -189,7 +240,9 @@ $$
 \end{aligned}
 $$
 
-From the first line the the second line, we make the intuitive argument that the finite value for supremum is always attain at the boundary of the epigraph, then using that we construct $z = [y \;f(y)]^T$ to denote it. And finally we arrive at the fact that, the conjugate function is the support function for $\text{epi}(f)$, along the vector $[x\; - 1]^T$. 
+From the first line the the second line, we make the intuitive argument that the finite value for supremum is always attain at the boundary of the epigraph, then using that we construct $z = [y \;f(y)]^T$ to denote it. 
+And finally we arrive at the fact that, the conjugate function is the support function for $\text{epi}(f)$, along the vector $[x\; - 1]^T$. 
+$\blacksquare$
 
 #### **Corollary | Conjugate is Convex**
 
@@ -252,7 +305,7 @@ Substituting again with $y = \nabla f(x)$, we obtained the statement.
 
 Conjugate of the conjugate of a function. 
 
-#### **Lemma | Bi-conjugate Function is Always Smaller**
+#### **Lemma | bi conjugate is always smaller**
 > Let $f$ be a proper function. 
 > Then for all $x \in \R^n$ it has: 
 > $$
