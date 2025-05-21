@@ -39,7 +39,7 @@ We assume that $f, g$ are convex, closed and proper functions. This is required 
 The simultaneous existence of minimizers both primal and dual such that their objectives are equaled is characterized following theorem: 
 
 #### **Theorem 2 | Fenchel Rockafellar Duality equivalences**
-> Let $x\in \text{dom}(g), y \in \text{dom}(h)$, then all of the following are equivalent: 
+> Let $x\in \text{dom}(g), y \in \text{dom}(h)$, then all the following are equivalent: 
 > 1. $x$ is a primal solution and $y$ is a dual solution achieving: $\mu = \mu^\star$. 
 > 2. $g(x) + h(Ax) = -g^\star(A^*y) - h^\star(-y)$. 
 > 3. $x\in \partial g^\star(A^*y)$, and $Ax\in \partial h^\star(-y)$
