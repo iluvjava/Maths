@@ -108,7 +108,7 @@ $$
     \\
     &\underset{\text{(a)}}{=} g(x) + h(Ax - z) 
     \\
-    &= F(x, y)
+    &= F(x, z)
 \end{aligned}
 $$
 
