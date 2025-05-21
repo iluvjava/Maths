@@ -7,7 +7,7 @@
 We will introduce weak duality. 
 Let $\mathbb X, \mathbb Y$ be two Hilbert space. 
 Let $g:\mathbb X\rightarrow \overline \R, h:\mathbb Y \rightarrow \overline \R$ be proper functions. 
-Let $A:\mathbb X \rightarrow \mathbb Y$ be a linear mapping and $A^*$ denotes its adjoint. 
+Let $A:\mathbb X \rightarrow \mathbb Y$ be a linear mapping and $A^*$ denotes its adjoin. 
 The following should be obvious: 
 
 $$

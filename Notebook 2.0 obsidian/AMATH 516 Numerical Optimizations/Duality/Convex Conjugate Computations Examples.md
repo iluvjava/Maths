@@ -443,14 +443,12 @@ We consider the conjugate of several simple composition and derive it to show wh
 $$
 \begin{aligned}
     \left[
-        \alpha f(\lambda x + b) + \langle a, x\rangle
+        x\mapsto \alpha f(\lambda x + b) + \langle a, x\rangle
     \right]^\star (y) 
     &= 
-    \alpha f^\star\left(
-        \frac{\lambda}{\alpha}(y - a)
-    \right) - \left\langle 
-        b, \lambda \frac{y - a}{\alpha} 
-    \right\rangle
+    \alpha f\left(
+        \frac{y - a}{\lambda \alpha}
+    \right) - \left\langle b, \frac{y - a}{\lambda} \right\rangle
 \end{aligned}
 $$
 
@@ -458,53 +456,44 @@ Observe that the linear offset wedge out a linear term in the dual. other type o
 
 **Demonstrations**
 > [!tip]-
-> $$
-> \begin{aligned}
->     & \quad \sup_{x\in X}\left\lbrace
->         \langle y, x\rangle - \alpha f(\lambda x + b) - \langle a, x\rangle
->     \right\rbrace
->     \\
->     \alpha > 0
->     \implies 
->     & = 
->     \alpha \sup_{x\in X} 
->     \left\lbrace
->         \left\langle x, \frac{y - a}{\alpha}\right\rangle
->         - f(\lambda x + b)
->     \right\rbrace
->     \\
->     &= 
->     \alpha 
->     \sup_{x\in X} 
->     \left\lbrace
->         \left\langle \lambda^{-1}x, \frac{y - a}{\alpha}\right\rangle
->         - f(x + b)
->     \right\rbrace
->     \\
->     &= 
->     \alpha
->     \sup_{x\in X} 
->     \left\lbrace
->         \left\langle \lambda^{-1}x - b, \frac{y - a}{\alpha}\right\rangle
->         - f(x)
->     \right\rbrace
->     \\
->     &= 
->     \alpha
->     \sup_{x\in X} 
->     \left\lbrace
->         \left\langle \lambda^{-1}x, \frac{y - a}{\alpha}\right\rangle
->         - f(x)
->     \right\rbrace - \left\langle b, \frac{\lambda(y - a)}{\alpha} \right\rangle
->     \\
->     &= 
->     \alpha f^\star\left(\frac{\lambda(y - a)}{\alpha}\right) 
->     - 
->     \left\langle b, \frac{\lambda(y - a)}{\alpha}\right\rangle, 
-> \end{aligned}
-> $$
+
 > 
-> I hope this exam serves a good references in the future. 
+
+$$
+\begin{aligned}
+    \left[x \mapsto \alpha f(\lambda x + b) + \langle a, x\rangle\right]^\star(y)
+    &= \sup_{x} \left\lbrace
+        \langle y, x\rangle - \alpha f(\lambda x + b) - \langle a, x\rangle
+    \right\rbrace
+    \\
+    &= \sup_{x}\left\lbrace
+        \langle x, y - a\rangle - \alpha f(\lambda x + b)
+    \right\rbrace
+    \\
+    &= 
+    \sup_{x}
+    \left\lbrace
+        \langle  \lambda^{-1}(x - b), y - a\rangle - \alpha f(x)
+    \right\rbrace
+    \\
+    &= \alpha \sup_{x}\left\lbrace
+        \left\langle
+            x - b, \frac{y - a}{\lambda\alpha}
+        \right\rangle - f(x)
+    \right\rbrace
+    \\
+    &= \alpha \sup_{x}
+    \left\lbrace
+        \left\langle x, \frac{y - a}{\alpha \lambda} \right\rangle
+        - f(x)
+    \right\rbrace
+    - \left\langle b, \frac{y - a}{\lambda} \right\rangle
+    \\
+    &= \alpha f\left(
+        \frac{y - a}{\lambda \alpha}
+    \right) - \left\langle b, \frac{y - a}{\lambda} \right\rangle. 
+\end{aligned}
+$$
 
 
 ---
