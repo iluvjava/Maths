@@ -8,3 +8,4 @@ subgradient
 Armijo
 MFISTA
 GMAPG
+infeasibility

@@ -1568,7 +1568,7 @@
         \end{remark}
         \begin{theorem}[specialized GMAPG convergence rate]\label{thm:gmapg-specialized-convergence}
             Suppose that $F = f + g$ satisfy Assumption \ref{ass:standard-fista}. 
-            Let the sequence $(x_k, v_k, v_k)$ satisfy GMAPG, definition \ref{def:generic-mapg-ls} and, assume that the GMAPG is initialized by $x_0 = v_0 = T_{1/L_0}(x_{-1})$ and, assume $\rho_{k - 1} = L_{k}^{-1}L_{k}$, $\alpha_0 = 1$ so the sequence $(\alpha_k)_{k \ge 0}$ satisfies for all $k\ge 1$: $\alpha_{k - 1}^2L_k^{-1}L_{k - 1}(1 - \alpha_k) = \alpha_k^2$. 
+            Let the sequences $(x_k, v_k, v_k)_{k \ge 0}$ and $(L_k)_{k \ge 0}$ satisfy GMAPG in Definition \ref{def:generic-mapg-ls} and, assume that the GMAPG is initialized by $x_0 = v_0 = T_{1/L_0}(x_{-1})$ and, assume $\rho_{k - 1} = L_{k}^{-1}L_{k}$, $\alpha_0 = 1$ so the sequence $(\alpha_k)_{k \ge 0}$ satisfies for all $k\ge 1$: $\alpha_{k - 1}^2L_k^{-1}L_{k - 1}(1 - \alpha_k) = \alpha_k^2$. 
             Let $x^+$ be a minimizer of $F$, define 
             \begin{align*}
                 \hat L_k = \max\left(
@@ -1593,7 +1593,7 @@
             \end{enumerate}
         \end{theorem}
         \begin{proof}
-            To see (i), use \ref{lemma:gmapg-seq-bnd} and the remark with Theorem \ref{thm:gmapg-ls-convergence} because the assumptions of $x^+, (\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ is the same. 
+            To see (i), use Lemma \ref{lemma:gmapg-seq-bnd} and its remark to bound $(\beta_k)_{k \ge 1}$ and then, apply Theorem \ref{thm:gmapg-ls-convergence} because the assumptions of $x^+, (\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ is the same. 
             To see (ii), the convergence claim from \ref{thm:gmapg-generic-gradmap-convergence} simplifies with $\hat L_k \ge L_0$ and, it has 
             \begin{align*}
                 \Vert \mathcal G_{1/L_k}(y_k) \Vert
@@ -1998,17 +1998,14 @@
             The convergence claim still works for restarts. 
         \end{remark}
         \par
-        A stronger results on the convergence rate of $\Vert \mathcal G_{1/\eta_k}(y_k)\Vert$ can be obtained if, we assume that the function $F=f + g$ satisfies \ref{ass:standard-fista}. 
+        A stronger result on the convergence rate of $\Vert \mathcal G_{1/\eta_k}(y_k)\Vert$ can be obtained if, we assume that the function $F=f + g$ satisfies \ref{ass:standard-fista}. 
     \section{Restarting with function values}
         
     \section{Applying them to large scale LP}
-        
     
+    \section{Hoffman Bounds and infeasibility detection}
     
-        
-
-
-\section{Primal Dual Lagrangian for LP}
+\chapter{Enhanced Primal Dual Methods for LP}
     
 
 
