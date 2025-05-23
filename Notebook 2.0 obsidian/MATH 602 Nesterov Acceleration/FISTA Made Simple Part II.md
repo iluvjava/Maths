@@ -998,7 +998,8 @@ A line search employed for the algorithm generate $\eta$ smaller than $L + q$ be
 #### **Algorithm | Nesterov's monotone scheme for nonconvex function**
 > Let $L_0 \ge L$. 
 > Let $(\alpha_k)_{k \ge 0}$ with $\alpha_0 = 1$ and, it satisfies for all $k \ge 1$: $L_{k}^{-1}L_{k - 1}\alpha_{k - 1}^2(1 - \alpha_k) = \alpha_k^2$. 
-> Initialize the algorithm with $v_0, x_0 = T_{L}(x_{-1})$, for some $x_{-1} \in \R^n$. 
+> Initialize the algorithm with $\hat y_0 = v_0= x_0 = T_{L_0}(x_{-1})$, for some $x_{-1} \in \R^n$. 
+> The algorithm is defined by sequences $(y_k, v_k, x_k)_{k \ge 1}$ and $(\tilde x_k, \hat y_k)_{k \ge 1}$ such that they all satisfy: 
 > $$
 > \begin{aligned}
 >     &y_k = \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1},
@@ -1018,14 +1019,24 @@ A line search employed for the algorithm generate $\eta$ smaller than $L + q$ be
 > $$
 
 #### **Claim | Nesterov's monotone scheme nonconvex convergence**
-> ...
+> Suppose that the sequences $(y_{k + 1}, v_k, x_k)_{k \ge 0}$ and $(\hat y_k, \tilde x_k)_{k \ge 0}$, $(\alpha_k)_{k \ge 0}$ satisfy Definition Nesterov's monotone scheme.
+> Assume that $F$ is bounded below with $F^+ := \inf_{x}F(x)$. 
+> Then for all $N \ge 1$ it has
+> $$
+> \begin{aligned}
+>     \min_{1 \le k \le N}\Vert \mathcal G_{1/\eta_k}(\hat y_k) \Vert^2 
+>     &\le\frac{2\overline \eta_N}{N}(F(x_{-1}) - F^+). 
+> \end{aligned}
+> $$
+> Here, $\overline \eta_k = \max_{i = 0, \ldots, k}\eta_i$. 
+> If the line search routine in Algorithm \ref{alg:nes-mono} is used, then it's bounded above by $2(q_g + L)$. 
 
 **Proof**
 
 
 $$
 \begin{aligned}
-    \hat \eta_k := \max_{i = 0, \ldots, k}  \eta_i. 
+    \overline\eta_k := \max_{i = 0, \ldots, k}  \eta_i. 
 \end{aligned}
 $$
 
@@ -1043,7 +1054,7 @@ $$
     F(x_{k - 1}) - F(x_k) - \frac{1}{2\eta_k} \Vert \mathcal G_{1/\eta_k}(\hat y_k)\Vert^2
     \\
     &\le 
-    F(x_{k - 1}) - F(x_k) - \frac{1}{2\hat \eta_k} \Vert \mathcal G_{1/\eta_k}(\hat y_k)\Vert^2. 
+    F(x_{k - 1}) - F(x_k) - \frac{1}{2\overline \eta_k} \Vert \mathcal G_{1/\eta_k}(\hat y_k)\Vert^2. 
 \end{aligned}
 $$
 
@@ -1054,20 +1065,20 @@ $$
     0 &\le \left(
         \sum_{i = 1}^{N} F(x_{i - 1}) - F(x_i)
     \right) 
-    - \frac{1}{2\hat \eta_N}\sum_{i = 1}^{N} \Vert \mathcal G_{\eta_i}(\hat y_k)\Vert^2
+    - \frac{1}{2\overline \eta_N}\sum_{i = 1}^{N} \Vert \mathcal G_{\eta_i}(\hat y_k)\Vert^2
     \\
     &= 
     F(x_{0}) - F(x_N) 
-    - \frac{1}{2\hat \eta_N}\sum_{i = 1}^{N} \Vert \mathcal G_{\eta_i}(\hat y_k)\Vert^2
+    - \frac{1}{2\overline \eta_N}\sum_{i = 1}^{N} \Vert \mathcal G_{\eta_i}(\hat y_k)\Vert^2
     \\
     &\le 
     F(x_{0}) - F(x_N) 
-    - \frac{N }{2\hat \eta_N}\left(
+    - \frac{N }{2\overline \eta_N}\left(
         \min_{1 \le i \le N} \Vert \mathcal G_{\eta_i}(\hat y_i)\Vert^2
     \right)
     \\
     &\le F(x_{0}) - F^+ 
-    - \frac{N}{2\hat \eta_N}\left(
+    - \frac{N}{2\overline \eta_N}\left(
         \min_{1 \le i \le N} \Vert \mathcal G_{\eta_i}(\hat y_i)\Vert^2
     \right). 
 \end{aligned}
@@ -1079,7 +1090,7 @@ $$
 \begin{aligned}
     \min_{1 \le i \le N} \Vert \mathcal G_{\eta_i}(\hat y_i)\Vert
     &\le 
-    \sqrt{\frac{2\hat \eta_N(F(x_0) - F^+)}{N}}. 
+    \sqrt{\frac{2\overline \eta_N(F(x_0) - F^+)}{N}}. 
 \end{aligned}
 $$
 

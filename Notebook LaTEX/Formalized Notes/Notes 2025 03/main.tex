@@ -60,7 +60,7 @@
     % ==========================================================================
     % WEAKLY CONVEX GENERIC PROXIMAL GRADIENT INEQUALITY
     % ==========================================================================
-    \begin{theorem}[weakly convex generic proximal gradient inequality]\;\label{thm:pg-ineq-wcnvx-generic}\\
+    \begin{theorem}[strongly/weakly convex generic proximal gradient inequality]\;\label{thm:pg-ineq-swcnvx-generic}\\
         Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth} with $\beta > 0$ and $\mu \in \RR$. 
         Then for all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{\beta^{-1}, f, g}(x)$, it has: 
         \begin{align*}
@@ -127,7 +127,7 @@
             \left(\forall x \in \RR^n, y \in \RR^n\right)\; 
             \frac{\mu_f}{2}\Vert x - y\Vert^2 \le D_f(x, y) \le \frac{L_f}{2}\Vert x - y\Vert^2. 
         \end{align*}
-        Specializing Theorem \ref{thm:pg-ineq-wcnvx-generic}, let $x \in \RR^n$ and define $\bar x = T_{\beta^{-1}, f, g}(x)$ it has $\forall z \in \RR^n:$
+        Specializing Theorem \ref{thm:pg-ineq-swcnvx-generic}, let $x \in \RR^n$ and define $\bar x = T_{\beta^{-1}, f, g}(x)$ it has $\forall z \in \RR^n:$
         \begin{align*}
             \frac{\mu_g}{2}\Vert z - \bar x \Vert^2 
             &\le 
@@ -615,7 +615,7 @@
                 }
                 Skipping some algebra, the fraction simplifies to 
                 \begin{align*}
-                    \frac{\kappa_f}{\kappa_f/L_f + 1 + \sqrt{\kappa_k/L_f + 1}}. 
+                    \frac{\kappa_f/L_f}{\kappa_f/L_f + 1 + \sqrt{\kappa_k/L_f + 1}}. 
                 \end{align*}
                 This gives PEB condition. 
                 \textbf{We now show PEB implies QFG}. 
@@ -772,7 +772,7 @@
             \end{proof}
 
         \subsection{Application, KKT of linear programming}
-            This section extends and ideas in the discussion section of Necoara et al. \cite{necoara_linear_2019}. 
+            This section extends ideas in the discussion section of Necoara et al. \cite{necoara_linear_2019}. 
             \par
             Let $X_1, X_2, Y$ be Hilbert spaces. 
             Define linear mapping $E:X_1 \times X_2 \rightarrow Y := (x_1, x_2)\mapsto E_1 x_1 + E_2 x_2$ where $E_1, E_2$ each are mappings of $X_1 \rightarrow Y, X_2 \rightarrow Y$. 
@@ -984,7 +984,7 @@
                 Let $F: \RR^n \rightarrow \overline\RR:= f + g$ such that $f, g$ satisfy 
                 \begin{enumerate}
                     \item $f$ is $L$ Lipschitz smooth and $q_f$ weakly convex. 
-                    \item $g$ is $L$ Lipschitz smooth and $q_g$ weakly convex. 
+                    \item $g$ is $q_g$ weakly convex. 
                 \end{enumerate}
             \end{assumption}
             \begin{remark}
@@ -997,7 +997,7 @@
             \end{definition}
             \begin{remark}
                 If $q = 0$, $f$ is convex or strongly convex. 
-                If $f$ is weakly convex, then $f + 1/2\Vert \cdot\Vert^2$ is convex and it has $\dom f$ convex, and locally Lipschitz continuous on $\reli \dom f$. 
+                If $f$ is weakly convex, then $f + 1/2\Vert \cdot\Vert^2$ is convex and, it has $\dom f$ convex, and locally Lipschitz continuous on $\reli \dom f$. 
             \end{remark}
             \begin{definition}[gradient mapping]
                 Suppose $F = f + g$ satisfies Assumption \ref{ass:sum-of-wcnvx}, define the gradient mapping for all $x \in \RR^n$
@@ -1008,18 +1008,50 @@
             \end{definition}
             \begin{lemma}[weakly convex monotone descent]\;\label{lemma:mono-wcnvx-descent}\\
                 Let $F = f + g$ satisfies Assumption \ref{ass:sum-of-wcnvx}. 
-                Let $\bar x = T_{\beta, f, g}(x)$. 
+                Let $\bar x = T_{\beta^{-1}, f, g}(x)$. 
                 Then, for all $x \in \RR^n$, it has the following inequality: 
                 $$
                 \begin{aligned}
-                    0 \le F(x) - F(\bar x) - (\beta - q/2 - L/2)\Vert x - \bar x\Vert^2. 
+                    0 \le F(x) - F(\bar x) - (\beta - q_g/2 - L/2)\Vert x - \bar x\Vert^2. 
                 \end{aligned}
                 $$
-                And descent is possible when $\beta \ge (L + q)/2$. 
-                The maximum amount of descent is achieved when $\beta = L + q$. 
+                And descent is possible when $\beta \ge (L + q_g)/2$ and it yields the descent lemma: 
+                \begin{align*}
+                    0 &\le F(x) - F(\bar x) - 1/\beta \Vert \mathcal G_{1/\beta}(x)\Vert^2. 
+                \end{align*}
+                The maximum amount of descent is achieved when $\beta = L + q_g$. 
             \end{lemma}
             \begin{proof}
-                Use Theorem \ref{thm:pg-ineq-wcnvx-generic}. 
+                Use Theorem \ref{thm:pg-ineq-swcnvx-generic}, set $z = x$, after some algebra it yields: 
+                \begin{align*}
+                    0 \le F(x) - F(\bar x) - \left(
+                        \beta - \frac{q_g + L}{2}
+                    \right)\Vert x - \bar x\Vert^2. 
+                \end{align*}
+                Using the definition of gradient mapping previously, it has for all $\beta > 0$: 
+                \begin{align*}
+                    0 &\le F(x) - F(\bar x) - \left(
+                        \beta - \frac{q_g + L}{2}
+                    \right)\Vert \beta^{-1}\mathcal G_{1/\beta}(x) \Vert^2
+                    \\
+                    &\le F(x) - F(\bar x) - \left(
+                        \beta^{-1} - \frac{q_g + L}{2\beta^2}
+                    \right)\Vert\mathcal G_{1/\beta}(x) \Vert^2
+                \end{align*}
+                Optimizing $x\mapsto x - x^2(1_g - L)/2$ yields $x = (q_g - L)^{-1}$ so $\beta = q_g - L$ gives the most amount of descent. 
+                Consider any $\beta \ge (q_g - L)$: 
+                \begin{align*}
+                    &\le F(x) - F(\bar x) - \left(
+                        \beta^{-1} - \frac{q_g + L}{2\beta^2}
+                    \right)\Vert\mathcal G_{1/\beta}(x) \Vert^2
+                    \\
+                    &\le F(x) - F(\bar x) + \left(
+                        \beta^{-1}/2 - \beta^{-1}
+                    \right)\Vert\mathcal G_{1/\beta}(x) \Vert^2
+                    \\
+                    &= 
+                    F(x) - F(\bar x) + \frac{1}{2\beta}\Vert\mathcal G_{1/\beta}(x) \Vert^2. 
+                \end{align*}
             \end{proof}
         \subsection{smooth plus nonsmooth convex}
             The following assumption is strictly stronger than \ref{ass:sum-of-wcnvx}. 
@@ -1107,7 +1139,7 @@
                     F(x_0) - F(x^+) + \frac{L_0\alpha_0}{2} \Vert x^+ - v_0\Vert^2
                 \right). 
             \end{align*}
-            If in addition, the algorithm is initialized with $L_0 \ge L$, $\alpha_0 = 1, x_0 = v_0 = T_{L_{0}}x_{-1} \in \text{dom}\; F$ and $x^+$ is a minimizer of $F$.
+            If in addition, the algorithm is initialized using line search so that \mbox{$D_f(x_0, x_{-1}) \le L_0/2 \Vert x_0 - x_{-1}\Vert^2$}, $\alpha_0 = 1, x_0 = v_0 = T_{L_{0}}x_{-1} \in \dom F$ and, $x^+$ is a minimizer of $F$.
             Then, the convergence rate simplifies: 
             \begin{align*}
                 F(x_k) - F(x^+) + \frac{L_k\alpha_k}{2}\Vert x^+ - v_k\Vert^2
@@ -1674,7 +1706,7 @@
                     \STATE{\noindent
                         $x^+ = \argmin \{(f + g)(z): z \in \{\tilde x, x\}\}$. 
                     }
-                    \STATE{\textbf{Return: } $x^+, x_{k - 1} ,\eta$}
+                    \STATE{\textbf{Return: } $x^+, \eta, G$}
                     \caption{Beck's monotone routine}\label{alg:beck-mono}
                 \end{algorithmic}
             \end{algorithm}
@@ -1706,7 +1738,7 @@
                             \STATE{$x^+ := T_{1/\eta}(\hat y)$.}
                     \ENDFOR
                     \STATE{$G := \eta (x^+ - \hat y).$}
-                    \STATE{\textbf{return: } $x^+, \eta$ }
+                    \STATE{\textbf{return: } $x^+, \eta, G$ }
                     \caption{Nesterov's monotone routine}\label{alg:nes-mono}
                 \end{algorithmic}
             \end{algorithm}
@@ -1743,7 +1775,7 @@
                         }
                         \STATE{$G_k:= L_k(\tilde x_k - y_k)$}
                         \STATE{\noindent
-                            $x_k, \hat y_k, \eta_{k + 1}, G_k := \mathbf M(f, g, \tilde x_k, x_{k - 1}, \eta_k, G_k)$.
+                            $x_k, \eta_{k + 1}, G_k := \mathbf M(f, g, \tilde x_k, x_{k - 1}, \eta_k, G_k)$.
                         }
                         \IF{$G_k < \epsilon \textbf{ or } (\mathbf E_\chi  \textbf{ and } k > N_{\min})$}
                             \STATE{\textbf{break}}
@@ -1879,12 +1911,94 @@
         This is necessary because Nesterov's monotone variants can adapt to weakly convex objective functions. 
         The following assumption will characterize the full scope of discussion in nonconvexity objective function. 
         \begin{definition}[nonconvex Nesterov's monotone scheme]\;\label{def:nes-monotone-scheme}\\
-            ...
+            Suppose $F = f + g$ satisfies Assumption \ref{ass:sum-of-wcnvx}. 
+            Let $L_0 \ge L$. 
+            Let $(\alpha_k)_{k \ge 0}$ with $\alpha_0 = 1$ and, it satisfies for all $k \ge 1$: $L_{k}^{-1}L_{k - 1}\alpha_{k - 1}^2(1 - \alpha_k) = \alpha_k^2$. 
+            Initialize the algorithm with $\hat y_0 =v_0=x_0 = T_{1/L_0}(x_{-1})$, $\eta_0 = L_0$, for some $x_{-1} \in \RR^n$ and $L_0$ such that $F(x_0) \le F(x_{-1})$. 
+            The algorithm is defined by sequences $(y_k, v_k, x_k)_{k \ge 1}$ and $(\tilde x_k, \hat y_k)_{k \ge 1}$ such that they all satisfy: 
+            $$
+            \begin{aligned}
+                &y_k = \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1},
+                \\
+                &\tilde x_k = T_{1/L_k}(y_k), \text{ with line search or backtracking. }
+                \\
+                &v_k = x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1}),
+                \\
+                &\hat y_k = \argmin{}\left\lbrace
+                    F(y): y \in \{x_{k - 1}, \tilde x_k\}
+                \right\rbrace,
+                \\
+                & \eta_{k}\text{ s.t: } F(x_k) - F(\hat y_k) \le - 1/(2\eta_k)\Vert \mathcal G_{1/\eta_k}(\hat y_k) \Vert^2, \eta_{k} \ge \eta_{k - 1}, 
+                \\
+                &x_k = T_{1/\eta_k}(\hat y_k) . 
+            \end{aligned}
+            $$
         \end{definition}
-        \begin{theorem}[convergence of Nesterov's monotone scheme nonconvex]
-            
+        The following theorem states the fact that the algorithm should eventually terminate if the objective function is bounded below. 
+        \begin{theorem}[convergence of Nesterov's monotone scheme nonconvex]\;\label{thm:nes-mono-wcnvx-convergence}\\
+            Suppose that the sequences $(y_{k + 1}, v_k, x_k)_{k \ge 0}$ and $(\hat y_k, \tilde x_k)_{k \ge 0}$, $(\alpha_k)_{k \ge 0}$ satisfy Definition \ref{alg:nes-mono}. 
+            Assume that $F$ is bounded below with $F^+ := \inf_{x}F(x)$. 
+            Then for all $N \ge 1$ it has
+            \begin{align*}
+                \min_{1 \le k \le N}\Vert \mathcal G_{1/\eta_k}(\hat y_k) \Vert^2 
+                &\le\frac{2\overline \eta_N}{N}(F(x_{-1}) - F^+). 
+            \end{align*}
+            Here, $\overline \eta_k = \max_{i = 0, \ldots, k}\eta_i$. 
+            If the monotone routine in Algorithm \ref{alg:nes-mono} is used, then it's bounded above by $2(q_g + L)$. 
         \end{theorem}
-    
+        \begin{proof}
+            $\overline \eta_k = \max_{i = 0, \ldots, k}\eta_i$
+            Using Lemma \ref{lemma:mono-wcnvx-descent} it has from the descent condition of monotone routine that for all $k \ge 1$,  
+            \begin{align*}
+                0 &\le F(\hat y_k) - F\left(T_{1/\eta_k}\hat y_k\right) 
+                - \frac{1}{2\eta_k}\Vert \mathcal G_{1/\eta_k}(\hat y_k)\Vert^2
+                \\
+                &= \min(F(x_{k - 1}), F(\tilde x_k)) - F(x_k) 
+                - \frac{1}{2\eta_k}\Vert \mathcal G_{1/\eta_k}(\hat y_k)\Vert^2
+                \\
+                &\le 
+                F(x_{k - 1}) - F(x_k) - \frac{1}{2\eta_k} \Vert \mathcal G_{1/\eta_k}(\hat y_k)\Vert^2
+                \\
+                &\le 
+                F(x_{k - 1}) - F(x_k) - \frac{1}{2\overline\eta_k} \Vert \mathcal G_{1/\eta_k}(\hat y_k)\Vert^2. 
+            \end{align*}
+            Telescoping it has: 
+            \begin{align*}
+                0 &\le \left(
+                    \sum_{i = 1}^{N} F(x_{i - 1}) - F(x_i)
+                \right) 
+                - \frac{1}{2\overline\eta_N}\sum_{i = 1}^{N} \Vert \mathcal G_{1/\eta_i}(\hat y_k)\Vert^2
+                \\
+                &= 
+                F(x_{0}) - F(x_N) 
+                - \frac{1}{2\overline\eta_N}\sum_{i = 1}^{N} \Vert \mathcal G_{1/\eta_i}(\hat y_k)\Vert^2
+                \\
+                &\le 
+                F(x_{0}) - F(x_N) 
+                - \frac{N }{2\overline\eta_N}\left(
+                    \min_{1 \le i \le N} \Vert \mathcal G_{1/\eta_i}(\hat y_i)\Vert^2
+                \right)
+                \\
+                &\le F(x_{0}) - F^+ 
+                - \frac{N}{2\overline\eta_N}\left(
+                    \min_{1 \le i \le N} \Vert \mathcal G_{1/\eta_i}(\hat y_i)\Vert^2
+                \right)
+                \\
+                &\le F(x_{-1}) - F^+ 
+                - \frac{N}{2\overline\eta_N}\left(
+                    \min_{1 \le i \le N} \Vert \mathcal G_{1/\eta_i}(\hat y_i)\Vert^2
+                \right).
+            \end{align*}
+            Finally, we show $\overline \eta_k \le 2(q_g - L)$. 
+            If there exists $k$ such that $\eta_k \ge q_g - L$ in the algorithm, then by Lemma \ref{lemma:mono-wcnvx-descent} the condition $F(x_k) - F(\hat y_k) \le -1/(2\eta_k)\Vert \mathcal G_{1/\eta_k}(\hat y_k)\Vert$ for all possible $\hat y_k \in \RR^n$, therefore Algorithm \ref{alg:nes-mono} won't increase the value of $\eta_k$ in the future iteration. 
+            It has for all $i \ge k$, $\eta_i = \eta_k$. 
+            Suppose that some $\eta_i > 2(q_g + L), i \ge k$ then it means there exists $\eta_k > q_g + L$, this contradicts what we had right before, hence impossible and $\eta_i \le 2(q_g + L)$ is an upper bound. 
+        \end{proof}
+        \begin{remark}
+            The convergence claim still works for restarts. 
+        \end{remark}
+        \par
+        A stronger results on the convergence rate of $\Vert \mathcal G_{1/\eta_k}(y_k)\Vert$ can be obtained if, we assume that the function $F=f + g$ satisfies \ref{ass:standard-fista}. 
     \section{Restarting with function values}
         
     \section{Applying them to large scale LP}
