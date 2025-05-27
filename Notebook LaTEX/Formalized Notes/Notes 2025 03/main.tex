@@ -969,16 +969,18 @@
     The review will be based on several papers. 
     \par
     There are several notable enhancements of the FISTA for function that are not strongly convex. 
-    Monotone variants of FISTA proposed by Beck \todo{[?]} and Nesterov \todo{[?]} imposes monotonicity in function value at the iterates.  
-    Backtracking strategies from Chambolle \todo{[?]} shows that the underestimating Lipschitz constant using a backtracking technique to choose a next iterate improves the average runtime of the algorithm in practice. 
+    Monotone variants of FISTA proposed by Beck \cite{beck_fast_2009-1} and Nesterov \cite[2.2.32]{nesterov_lectures_2018} imposes monotonicity in function value at the iterates.  
+    Backtracking strategies from Chambolle \cite{calatroni_backtracking_2019} shows that the underestimating Lipschitz constant using a backtracking technique to choose a next iterate improves the average runtime of the algorithm in practice. 
     They showed that the convergence rate is bounded by the estimates of the Lipschitz constant. 
-    Restart is a technique pioneer early by ??? \todo{[?]}.
-    Necoara et al. \cite{necoara_linear_2019} showed that there exists an optimal restarting interval to achieve fast line convergence rate for all functions with quadratic growth condition. 
+    Restart is a technique discussed in Necoara et al. \cite{necoara_linear_2019}.
+    They showed that there exists an optimal restarting interval to achieve fast line convergence rate for all functions with quadratic growth condition. 
+    The method of restarting was improved to be parameter free while still retaining a fast linear convergence rate, see Alamo et al. \cite{alamo_restart_2019} and Aujol et al. \cite{aujol_parameter-free_2024}. 
     \par
     In this chapter, we will go through the details of these enhancements of FISTA and discuss why they are important in theories, and in practice. 
     
     \section{Preliminaries}
         This section introduces the full scope of the theories in our analysis. 
+        Firstly, recall the definition of Bregman divergence $D_f(x, y)$ from Definition \ref{def:bregman-div} for a differentiable function $f:\RR^n \rightarrow \overline \RR$. 
         \subsection{smooth plus nonsmooth weakly convex}
             \begin{assumption}[sum of weakly convex smooth and nonsmooth]\;\label{ass:sum-of-wcnvx}\\
                 Let $F: \RR^n \rightarrow \overline\RR:= f + g$ such that $f, g$ satisfy 
@@ -1072,7 +1074,13 @@
     \section{FISTA made simple}
         We make the proofs for FISTA  with common enhancement technique available in simple proofs. 
         We showcase the theories using a generic similar triangle representations of the algorithm which tremendously simplifies the arguments. 
-        The following definition can capture monotone variants of FISTA with line search, including backtracking strategies. 
+        The following definition captures several monotone variants of FISTA with line search,  or backtracking strategies.
+        \par
+        In this section, we give convergence results for a unified formulation of monotone accelerated proximal gradient methods with line search or backtracking enhancements. 
+        Definition \ref{def:generic-mapg-ls} gives a unified view of several combined heuristics. 
+        Theorem \ref{thm:gmapg-ls-convergence} gives a generic description for the convergence rate. 
+        Lemma \ref{lemma:gmapg-seq-bnd} specializes the sequence, attains the lowest upper bound. 
+        Theorem \ref{thm:gmapg-specialized-convergence} gives a concrete $\mathcal O(1/k^2)$ upper bound for the optimality gap and normed gradient mapping on the last iteration. 
         \par
         ``MAPG'' stands for monotone accelerated gradient. 
         We refer to ``Generic Monotone Accelerated Proximal Gradient with line search" as ``GMAPG''. 
@@ -1426,6 +1434,9 @@
                 \Vert x^+ - x_{-1}\Vert - \frac{\alpha_k}{\sqrt{\beta_k L_0}}\Vert x^+ - v_k\Vert. 
             \end{align*}
         \end{proof}
+        \begin{remark}
+            The above theorem is improved from Alamo et al. \cite{alamo_restart_2019}. 
+        \end{remark}
         \begin{lemma}[specialized GMAPG momentum sequence]\;\label{lemma:gmapg-seq-bnd}\\
             Suppose that the sequence $(\alpha_k)_{k \ge 0}$ has $\alpha_0 \in (0, 1]$ and for all $k \ge 1$, it satisfies $\alpha_{k - 1}^2\rho_{k - 1}(1 - \alpha_k) = \alpha_k^2$. 
             Suppose that $(\beta_k)_{k \ge 0}$ is a sequence such that $\beta_0 = 1$ and for all $k \ge 1$ it's defined as: 
@@ -1534,7 +1545,8 @@
             Rearranging it gives: $\alpha_0^2L_0 \beta_kL_k^{-1} = \alpha_k^2$.
         \end{proof}
         \begin{remark}
-            A simpler upper bound is more useful in practice. 
+            The techique of the proof we used here is very similar to Güler \cite[Lemma 2.2]{guler_new_1992}.
+            A simpler upper bound is more practical. 
             For all $k \ge 1$ let $\hat L_k = \max_{i = 0, 1, \ldots, k} L_i$ then 
             \begin{align*}
                 \beta_k 
@@ -1593,7 +1605,7 @@
             \end{enumerate}
         \end{theorem}
         \begin{proof}
-            To see (i), use Lemma \ref{lemma:gmapg-seq-bnd} and its remark to bound $(\beta_k)_{k \ge 1}$ and then, apply Theorem \ref{thm:gmapg-ls-convergence} because the assumptions of $x^+, (\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ is the same. 
+            To see (i), use Lemma \ref{lemma:gmapg-seq-bnd} and its remark to bound $(\beta_k)_{k \ge 1}$ and then, apply Theorem \ref{thm:gmapg-ls-convergence} because the assumptions of $x^+, (\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ suit. 
             To see (ii), the convergence claim from \ref{thm:gmapg-generic-gradmap-convergence} simplifies with $\hat L_k \ge L_0$ and, it has 
             \begin{align*}
                 \Vert \mathcal G_{1/L_k}(y_k) \Vert
@@ -1656,6 +1668,17 @@
                 \end{algorithmic}
                 }
             \end{algorithm}
+            \par
+            Algorithm \ref{alg:armijo-ls} performs a step of Armijo line search and a step of accelerated proximal gradient. 
+            The function can be used for each iteration in the inner loop of the algorithm. 
+            Here are the explanations for all its input parameters: 
+            \begin{enumerate}
+                \item $f, g$ are functions satisfying Assumption \ref{ass:standard-fista}. 
+                \item $x, v$ are the $x_k, v_k$ iterates in Definition \ref{def:generic-mapg-ls}. 
+                \item $\alpha$ are the current $\alpha_k$ in Definition \ref{def:generic-mapg-ls}. 
+                \item $L$ is the estimate of the Lipschitz constant of $f$ passed in by the inner loop. 
+            \end{enumerate}
+            Iterates $x^+, y^+$ and parameters $\alpha^+, L^+$ are returned to the callers at the end. 
             % CHAMBOLLE'S BACKTRACKING LINE SEARCH -----------------------------
             \begin{algorithm}[H]
                 {\small
@@ -1688,6 +1711,15 @@
                 \end{algorithmic}
                 }
             \end{algorithm}
+            \par
+            Algorithm \ref{alg:chambolle-btls} attempts to decrease the Lipschitz estimate $L_k$ for $f$ in an iteration of the inner loop. 
+            The above implementations were adapted and simplified from Chambolle et al. \cite{calatroni_backtracking_2019}. 
+            It takes in additional parameters $L_{\min}, \rho$ compared to Algorithm \ref{alg:armijo-ls}. 
+            Here are their explanations: 
+            \begin{enumerate}
+                \item $L_{\min}$ determines a lower bound of Lipschitz estimates. It's the lowest value of an estimate $L_k$ allowed. It increases stability of the algorithm by preventing unnecessary triggering a line search routine to recovers from an underestimated $L_k$ that doesn't satisfy the Lipschitz smoothness condition for $f$ at the current iterate. 
+                \item $\rho \in (0, 1)$ is the decay ratio. It's use to shrink the current estimate of $L$ and produce $L^+$ at the start of the forloop before verifying the smoothness condition. 
+            \end{enumerate}
         \subsection{Monotone routines}
             % BECK'S MONO ------------------------------------------------------
             \begin{algorithm}[H]
@@ -1710,6 +1742,10 @@
                     \caption{Beck's monotone routine}\label{alg:beck-mono}
                 \end{algorithmic}
             \end{algorithm}
+            \par
+            Algorithm \ref{alg:beck-mono} is a subroutine for asserting monotone condition on function value. 
+            The parameter $G$ has no actual usage besides making it compatible with Algorithm \ref{alg:nes-mono} in the context of Algorithm \ref{alg:gmapg}. 
+            The input $\tilde x$ is the candidate iterate produced by FISTA without monotone constraints and $x$ is the previous iterates $x_{k - 1}$ in the inner loop. 
             % NES'S MONO -------------------------------------------------------
             \begin{algorithm}[H]
                 \begin{algorithmic}[1]
@@ -1742,6 +1778,11 @@
                     \caption{Nesterov's monotone routine}\label{alg:nes-mono}
                 \end{algorithmic}
             \end{algorithm}
+            \par
+            The above Algorithm \ref{alg:nes-mono} implements and adapts Nesterov's monotone scheme from Nesterov \cite[2.2.32]{nesterov_lectures_2018} for GMAPG. 
+            In addition to Algorithm \ref{alg:beck-mono}, $\eta$ is a new input parameter and $G$ has a significance role. 
+            $\eta$ is a stepsize parameter for weakly convex objective $F = f + g$ satisfying Assumption \ref{ass:sum-of-wcnvx}. 
+            $G$ is the norm of the gradient mapping updated at at $\hat y$ which will be returned to the inner loop to verify exit conditions. 
         \subsection{GMAPG main algorithm}
             % GMAPG ------------------------------------------------------------
             \begin{algorithm}[H]
@@ -1775,19 +1816,19 @@
                         }
                         \STATE{$G_k:= L_k(\tilde x_k - y_k)$}
                         \STATE{\noindent
-                            $x_k, \eta_{k + 1}, G_k := \mathbf M(f, g, \tilde x_k, x_{k - 1}, \eta_k, G_k)$.
+                            $x_k, \eta_{k + 1}, G_k^+ := \mathbf M(f, g, \tilde x_k, x_{k - 1}, \eta_k, G_k)$.
                         }
-                        \IF{$G_k < \epsilon \textbf{ or } (\mathbf E_\chi  \textbf{ and } k > N_{\min})$}
+                        \IF{$G_k^+ < \epsilon \textbf{ or } (\mathbf E_\chi  \textbf{ and } k > N_{\min})$}
                             \STATE{\textbf{break}}
                         \ENDIF
                     \ENDFOR
                     \STATE{\textbf{Return: }$x_k, k$}
-                \caption{GMAPG with Chambolle's backtracking}
-                \end{algorithmic}\label{alg:gmapg}
+                \caption{GMAPG with Chambolle's backtracking}\label{alg:gmapg}
+                \end{algorithmic}
             \end{algorithm}
-    % ==========================================================================
-    % SECTION | EXAMPLES OF GMAPG IN THE LITERATURE
-    % ==========================================================================
+            The above Algorithm \ref{alg:gmapg} is an implementation of GMAPG in Definition \ref{alg:gmapg}. 
+            Parameters $r, \rho$ are chosen in the discretion of the practitioners. 
+            For example, we chose $r= 0.4, \rho = 2^{1/1024}$. 
     
     \section{Examples of GMAPG in the literature}
         \begin{example}[MFISTA with Armijo line search]\;\\\vspace{-1em}
@@ -1999,8 +2040,77 @@
         \end{remark}
         \par
         A stronger result on the convergence rate of $\Vert \mathcal G_{1/\eta_k}(y_k)\Vert$ can be obtained if, we assume that the function $F=f + g$ satisfies \ref{ass:standard-fista}. 
-    \section{Restarting with function values}
+    
+    \section{Restarting with function values for linear convergence}
+        In this section, we show that restarting GMAPG with a well suited conditions yields fast linear global convergence. 
+        We adapt and improve prior theories from Alamo \cite{alamo_restart_2019} for our GMAPG method. 
+        \par
+        Let's introduce our first set of restart conditions which denote it by $\mathbf E_{\chi}^{a}$. 
+        $\mathbf E_{\chi}^{a}$ only uses function values on iterates available to the inner loop to determine the exit conditions, and it achieves global fast linear convergence. 
+        The inner loop algorithm is described in Algorithm \ref{alg:gmapg}, let $k$ denote the inner loop counter and define $m = \lfloor k/2 \rfloor + 1$ the conditions are: 
+        \begin{align*}
+            \mathbf E_{\chi}^a \iff 
+            f(x_m) - f(x_k) \le \exp(-1)(f(x_0) - f(x_m)). 
+        \end{align*}
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+            \STATE{\textbf{Input: }\begin{tabular}{ll}
+                $f:\RR^n \rightarrow \RR$ & Lipschitz Smooth \\
+                $g: \RR^n \rightarrow \overline\RR$ & Weakly Convex \\ 
+                $x_{-1}$ & Vector\\
+                $M \in \N$ & Integer\\
+                $\epsilon \in \RR$ & Number\\
+                $\mathbf L$ & Algorithm \ref{alg:armijo-ls} or \ref{alg:chambolle-btls}\\
+                $\mathbf M$ & Algorithm \ref{alg:beck-mono} or \ref{alg:nes-mono}\\
+                $L:=1$ & $L > 0$\\ 
+                $r:=0.5$ & $r \in (0, 1)$ \\ 
+                $\rho := 2^{1/1024}$ & $\rho \in (0, 1)$ 
+            \end{tabular}}
+            \STATE{$n_0 := 0$.}
+            \STATE{$z_1, p_0 := \textbf{GMAPG}(f, g, x_{-1}, r_j, \rho, N_{\min}=n_0, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}
+            \STATE{$n_1:=p_0. $}
+            \STATE{$M := M - n_1$}
+            \FOR{$j = 1,2, \ldots, M$}
+                \STATE{$z_{j + 1}, p_j := \textbf{GMAPG}(f, g, z_j, r, \rho, N_{\min}=n_j, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}
+                \STATE{$M := M - p_j$}
+                \IF{$f(z_{j}) - f(z_{j + 1}) > \exp(-1)(f(z_{j - 1}) - f(z_{j}))$}
+                    \STATE{$n_{j + 1} := 2p_j$.}
+                \ELSE
+                \STATE{$n_{j + 1} := p_j$.}
+                \ENDIF
+            \ENDFOR
+            \end{algorithmic}\caption{Linear convergence restarted GMAPG}\label{alg:linear-rgmapg}
+        \end{algorithm}
+        \par
+        Algorithm \ref{alg:linear-rgmapg} implements a restarted GMAPG with condition $\textbf{E}_{\chi}^a$ and, it has a fast linear convergence rate. 
+        The following observation on it is crucial to take notice for the convergence rate. 
+        \par
+        $n_j$ is used as the lower bound $N_{\min}$ for the GMAPG inner loop described in Algorithm \ref{alg:gmapg} at iteration $j$ and, $p_j$ is the actual iteration underwent by the inner loop and, it has $p_j \ge n_{j}$. 
+        $n_{j + 1}$ is the minimum iteration for the next execution of GMAGP, and it has $n_{j + 1} = p_{j}$  if the ``if statement" isn't triggered otherwise $n_{j + 1} = 2p_{j}$. 
+        Consequently, it has either $p_{j + 1} \ge n_{j + 1} = 2p_j$ or $p_{j + 1} \ge n_{j + 1} = p_j$. 
+        \par
+        We now introduce the following notations for the convergence proof. 
+        Since the restarted GMAPG consist of executions of an outer loop in Algorithm \ref{alg:linear-rgmapg} in variable $j$ and, an inner loop in Algorithm \ref{alg:gmapg} in variable $k$, we denote $z_{j, k}$ for the iterates $x_k$ in the inner loop and $z_j$ in the outer loop together. 
+        We make the rule that $z_{j + 1, -1} = z_{j, p_j}$ for compatibility of the theorems in the previous sections. 
+        For example in line 7 at the $j$ iteration, the inner loop returns $x_{p_j}$ as the last iterate of the inner loop and, it's assigned to $z_{j + 1}$ by the outer loop. 
+        In that case we denote $z_{j + 1, -1}$ as the initial iterate pass into the inner loop for the $j + 1$ iteration, and $z_{j, p_j}$ would denote the last iteration before exiting the inner loop for the $j$ th iteration of the outer loop. 
+        Therefore, $z_{j + 1, -1} = z_{j, p_j}$ and all iterates generated by the inner loop is the finite sequence $(z_{j, k})_{k = 0}^{p_j}$. 
+        \par
+
+        \begin{lemma}[bounds on inner iteration counts]
+            ...
+        \end{lemma}
+        \begin{proof}
+            
+        \end{proof}
+        \begin{lemma}[bounds on outer iteration counts]
+            ...
+        \end{lemma}
         
+        \begin{theorem}[bounds on the total iterations]
+            ...
+        \end{theorem}
+
     \section{Applying them to large scale LP}
     
     \section{Hoffman Bounds and infeasibility detection}

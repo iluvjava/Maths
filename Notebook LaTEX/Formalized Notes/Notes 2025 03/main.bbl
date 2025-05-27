@@ -1,8 +1,24 @@
 \begin{thebibliography}{1}
 
+\bibitem{alamo_restart_2019}
+{\sc T.~Alamo, P.~Krupa, and D.~Limon}, {\em Restart {FISTA} with global linear convergence}, Dec. 2019.
+
+\bibitem{aujol_parameter-free_2024}
+{\sc J.-F. Aujol, L.~Calatroni, C.~Dossal, H.~Labarrière, and A.~Rondepierre}, {\em Parameter-{Free} {FISTA} by adaptive restart and backtracking}, SIAM Journal on Optimization,  (2024), pp.~3259--3285.
+
+\bibitem{beck_fast_2009-1}
+{\sc A.~Beck and M.~Teboulle}, {\em Fast gradient-based algorithms for constrained total variation image denoising and deblurring problems}, IEEE Transactions on Image Processing, 18 (2009), pp.~2419--2434.
+
+\bibitem{calatroni_backtracking_2019}
+{\sc L.~Calatroni and A.~Chambolle}, {\em Backtracking strategies for accelerated descent methods with smooth composite objectives}, SIAM Journal on Optimization, 29 (2019), pp.~1772--1798.
+
+\bibitem{guler_new_1992}
+{\sc O.~Güler}, {\em New proximal point algorithms for convex minimization}, SIAM Journal on Optimization, 2 (1992), pp.~649--664.
+
 \bibitem{necoara_linear_2019}
-{\sc I.~Necoara, Y.~Nesterov, and F.~Glineur}, {\em Linear convergence of first
-  order methods for non-strongly convex optimization}, Mathematical
-  Programming, 175 (2019), pp.~69--107.
+{\sc I.~Necoara, Y.~Nesterov, and F.~Glineur}, {\em Linear convergence of first order methods for non-strongly convex optimization}, Mathematical Programming, 175 (2019), pp.~69--107.
+
+\bibitem{nesterov_lectures_2018}
+{\sc Y.~Nesterov}, {\em Lectures on {Convex} {Optimization}}, vol.~137 of Springer {Optimization} and {Its} {Applications}, Springer International Publishing, 2018.
 
 \end{thebibliography}

@@ -1,16 +1,5 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
-\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
-\global\let\oldnewlabel\newlabel
-\gdef\newlabel#1#2{\newlabelxx{#1}#2}
-\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
-\AtEndDocument{\ifx\hyper@anchor\@undefined
-\let\newlabel\oldnewlabel
-\fi}
-\fi}
-\global\let\hyper@last\relax 
-\gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \@writefile{tdo}{\contentsline {todo}{\fcolorbox {black}{yellow}{\textcolor {yellow}{o}}\ }{1}{section*.1}\protected@file@percent }
@@ -61,26 +50,15 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1.5}Application, KKT of linear programming}{11}{subsection.2.1.5}\protected@file@percent }
 \newlabel{problem:lp-cannon-form}{{2.1.12}{12}{Application, KKT of linear programming}{equation.2.1.12}{}}
 \newlabel{problem:lp-kkt-min}{{2.1.13}{13}{Application, KKT of linear programming}{equation.2.1.13}{}}
+\citation{beck_fast_2009-1}
+\citation{nesterov_lectures_2018}
+\citation{calatroni_backtracking_2019}
 \citation{necoara_linear_2019}
+\citation{alamo_restart_2019}
+\citation{aujol_parameter-free_2024}
 \@writefile{toc}{\contentsline {chapter}{\numberline {3}Advanced Enhancement Techniques in Accelerated Proximal Gradient}{15}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{tdo}{\contentsline {todo}{\fcolorbox {black}{yellow}{\textcolor {yellow}{o}}\ [?]}{15}{section*.2}\protected@file@percent }
-\pgfsyspdfmark {pgfid2}{34573401}{36850337}
-\@writefile{tdo}{\contentsline {todo}{\fcolorbox {black}{yellow}{\textcolor {yellow}{o}}\ [?]}{15}{section*.3}\protected@file@percent }
-\pgfsyspdfmark {pgfid7}{39222309}{36850337}
-\pgfsyspdfmark {pgfid5}{54179908}{36820299}
-\pgfsyspdfmark {pgfid6}{61199355}{36596385}
-\pgfsyspdfmark {pgfid10}{54179908}{35131653}
-\pgfsyspdfmark {pgfid11}{61199355}{34907739}
-\@writefile{tdo}{\contentsline {todo}{\fcolorbox {black}{yellow}{\textcolor {yellow}{o}}\ [?]}{15}{section*.4}\protected@file@percent }
-\pgfsyspdfmark {pgfid12}{41433535}{35900065}
-\pgfsyspdfmark {pgfid15}{54179908}{33443007}
-\pgfsyspdfmark {pgfid16}{61199355}{33219093}
-\@writefile{tdo}{\contentsline {todo}{\fcolorbox {black}{yellow}{\textcolor {yellow}{o}}\ [?]}{15}{section*.5}\protected@file@percent }
-\pgfsyspdfmark {pgfid17}{20239533}{32098977}
-\pgfsyspdfmark {pgfid20}{54179908}{31754361}
-\pgfsyspdfmark {pgfid21}{61199355}{31530447}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}Preliminaries}{15}{section.3.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}smooth plus nonsmooth weakly convex}{16}{subsection.3.1.1}\protected@file@percent }
 \newlabel{ass:sum-of-wcnvx}{{3.1.1}{16}{smooth plus nonsmooth weakly convex}{theorem.3.1.1}{}}
@@ -91,42 +69,55 @@
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}FISTA made simple}{17}{section.3.2}\protected@file@percent }
 \newlabel{def:generic-mapg-ls}{{3.2.1}{18}{FISTA made simple}{theorem.3.2.1}{}}
 \newlabel{lemma:apg-iterates}{{3.2.2}{18}{FISTA made simple}{theorem.3.2.2}{}}
-\newlabel{thm:gmapg-ls-convergence}{{3.2.3}{18}{FISTA made simple}{theorem.3.2.3}{}}
-\newlabel{thm:gmapg-generic-gradmap-convergence}{{3.2.5}{20}{FISTA made simple}{theorem.3.2.5}{}}
-\newlabel{lemma:gmapg-seq-bnd}{{3.2.6}{22}{FISTA made simple}{theorem.3.2.6}{}}
-\newlabel{thm:gmapg-specialized-convergence}{{3.2.8}{24}{FISTA made simple}{theorem.3.2.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Algorithmic description of GMAPG}{25}{section.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Line search routines}{26}{subsection.3.3.1}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Armijo Line Search\relax }}{26}{algorithm.1}\protected@file@percent }
+\newlabel{thm:gmapg-ls-convergence}{{3.2.3}{19}{FISTA made simple}{theorem.3.2.3}{}}
+\newlabel{thm:gmapg-generic-gradmap-convergence}{{3.2.5}{21}{FISTA made simple}{theorem.3.2.5}{}}
+\citation{alamo_restart_2019}
+\newlabel{lemma:gmapg-seq-bnd}{{3.2.7}{23}{FISTA made simple}{theorem.3.2.7}{}}
+\citation{guler_new_1992}
+\newlabel{thm:gmapg-specialized-convergence}{{3.2.9}{25}{FISTA made simple}{theorem.3.2.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Algorithmic description of GMAPG}{26}{section.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Line search routines}{27}{subsection.3.3.1}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Armijo Line Search}}{27}{algorithm.1}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{alg:armijo-ls}{{1}{26}{Armijo Line Search\relax }{algorithm.1}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Chambolle's Backtracking\relax }}{27}{algorithm.2}\protected@file@percent }
-\newlabel{alg:chambolle-btls}{{2}{27}{Chambolle's Backtracking\relax }{algorithm.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Monotone routines}{27}{subsection.3.3.2}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Beck's monotone routine\relax }}{27}{algorithm.3}\protected@file@percent }
-\newlabel{alg:beck-mono}{{3}{27}{Beck's monotone routine\relax }{algorithm.3}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Nesterov's monotone routine\relax }}{28}{algorithm.4}\protected@file@percent }
-\newlabel{alg:nes-mono}{{4}{28}{Nesterov's monotone routine\relax }{algorithm.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}GMAPG main algorithm}{29}{subsection.3.3.3}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {5}{\ignorespaces GMAPG with Chambolle's backtracking\relax }}{29}{algorithm.5}\protected@file@percent }
-\newlabel{alg:gmapg}{{\caption@xref {alg:gmapg}{ on input line 1786}}{29}{GMAPG main algorithm}{algorithm.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Examples of GMAPG in the literature}{29}{section.3.4}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {6}{\ignorespaces MFISTA with Armijo Line Search\relax }}{30}{algorithm.6}\protected@file@percent }
-\newlabel{alg:mfista-armijo}{{6}{30}{MFISTA with Armijo Line Search\relax }{algorithm.6}{}}
-\newlabel{eqn:emp:result-item-1}{{3.4.1}{30}{Examples of GMAPG in the literature}{equation.3.4.1}{}}
-\newlabel{eqn:emp:result-item-2}{{3.4.2}{31}{Examples of GMAPG in the literature}{equation.3.4.2}{}}
-\newlabel{alg:nesterov-mono-generic-ls}{{\caption@xref {alg:nesterov-mono-generic-ls}{ on input line 1902}}{31}{Examples of GMAPG in the literature}{theorem.3.4.2}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {7}{\ignorespaces Nesterov's monotone scheme with generic line search\relax }}{31}{algorithm.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Practical enhancement from the Nesterov's Monotone Variant}{31}{section.3.5}\protected@file@percent }
-\newlabel{def:nes-monotone-scheme}{{3.5.1}{31}{Practical enhancement from the Nesterov's Monotone Variant}{theorem.3.5.1}{}}
-\newlabel{thm:nes-mono-wcnvx-convergence}{{3.5.2}{32}{Practical enhancement from the Nesterov's Monotone Variant}{theorem.3.5.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Restarting with function values}{33}{section.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.7}Applying them to large scale LP}{33}{section.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.8}Hoffman Bounds and infeasibility detection}{33}{section.3.8}\protected@file@percent }
+\newlabel{alg:armijo-ls}{{1}{27}{Armijo Line Search}{algorithm.1}{}}
+\citation{calatroni_backtracking_2019}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Chambolle's Backtracking}}{28}{algorithm.2}\protected@file@percent }
+\newlabel{alg:chambolle-btls}{{2}{28}{Chambolle's Backtracking}{algorithm.2}{}}
+\citation{nesterov_lectures_2018}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Monotone routines}{29}{subsection.3.3.2}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Beck's monotone routine}}{29}{algorithm.3}\protected@file@percent }
+\newlabel{alg:beck-mono}{{3}{29}{Beck's monotone routine}{algorithm.3}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Nesterov's monotone routine}}{29}{algorithm.4}\protected@file@percent }
+\newlabel{alg:nes-mono}{{4}{29}{Nesterov's monotone routine}{algorithm.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}GMAPG main algorithm}{30}{subsection.3.3.3}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {5}{\ignorespaces GMAPG with Chambolle's backtracking}}{30}{algorithm.5}\protected@file@percent }
+\newlabel{alg:gmapg}{{5}{30}{GMAPG with Chambolle's backtracking}{algorithm.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Examples of GMAPG in the literature}{31}{section.3.4}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {6}{\ignorespaces MFISTA with Armijo Line Search}}{31}{algorithm.6}\protected@file@percent }
+\newlabel{alg:mfista-armijo}{{6}{31}{MFISTA with Armijo Line Search}{algorithm.6}{}}
+\newlabel{eqn:emp:result-item-1}{{3.4.1}{32}{Examples of GMAPG in the literature}{equation.3.4.1}{}}
+\newlabel{eqn:emp:result-item-2}{{3.4.2}{32}{Examples of GMAPG in the literature}{equation.3.4.2}{}}
+\newlabel{alg:nesterov-mono-generic-ls}{{\caption@xref {alg:nesterov-mono-generic-ls}{ on input line 1943}}{32}{Examples of GMAPG in the literature}{theorem.3.4.2}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {7}{\ignorespaces Nesterov's monotone scheme with generic line search}}{32}{algorithm.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Practical enhancement from the Nesterov's Monotone Variant}{32}{section.3.5}\protected@file@percent }
+\newlabel{def:nes-monotone-scheme}{{3.5.1}{32}{Practical enhancement from the Nesterov's Monotone Variant}{theorem.3.5.1}{}}
+\newlabel{thm:nes-mono-wcnvx-convergence}{{3.5.2}{33}{Practical enhancement from the Nesterov's Monotone Variant}{theorem.3.5.2}{}}
+\citation{alamo_restart_2019}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Restarting with function values for linear convergence}{34}{section.3.6}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {8}{\ignorespaces Linear convergence restarted GMAPG}}{35}{algorithm.8}\protected@file@percent }
+\newlabel{alg:linear-rgmapg}{{8}{35}{Linear convergence restarted GMAPG}{algorithm.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}Applying them to large scale LP}{36}{section.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.8}Hoffman Bounds and infeasibility detection}{36}{section.3.8}\protected@file@percent }
 \bibstyle{siam}
 \bibdata{references/refs.bib}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Enhanced Primal Dual Methods for LP}{34}{chapter.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Enhanced Primal Dual Methods for LP}{37}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\bibcite{necoara_linear_2019}{1}
-\gdef \@abspage@last{37}
+\bibcite{alamo_restart_2019}{1}
+\bibcite{aujol_parameter-free_2024}{2}
+\bibcite{beck_fast_2009-1}{3}
+\bibcite{calatroni_backtracking_2019}{4}
+\bibcite{guler_new_1992}{5}
+\bibcite{necoara_linear_2019}{6}
+\bibcite{nesterov_lectures_2018}{7}
+\gdef \@abspage@last{40}

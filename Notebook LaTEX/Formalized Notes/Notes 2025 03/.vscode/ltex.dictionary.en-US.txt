@@ -9,3 +9,4 @@ Armijo
 MFISTA
 GMAPG
 infeasibility
+optimality
