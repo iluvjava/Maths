@@ -1,4 +1,4 @@
-- [Proximal Gradient Inequality Part II](Proximal%20Gradient%20Inequality%20Part%20II.md)
+- [Proximal Gradient Inequality Part I](Proximal%20Gradient%20Inequality%20Part%20I.md)
 - [Weakly Convex Function](../Weakly%20Convex%20Function.md)
 
 ---

@@ -1329,7 +1329,7 @@
             \end{align*}
             We label the following results prior to their proofs for a sleeker exposition for the proof of \eqref{eqn:emp:result-item-2}. 
             \begin{enumerate}
-                \item[(a)] From Definition \ref{def:generic-mapg-ls}, the gradient mapping satisfies for all $k \ge 1$ that $\Vert \mathcal G_{1/L_k} y_k\Vert = L_k\alpha_k \Vert v_k - v_{k - 1}\Vert$.
+                \item[(a)] From Definition \ref{def:generic-mapg-ls}, the gradient mapping satisfies for all $k \ge 1$ that $\Vert \mathcal G_{1/L_k} (y_k)\Vert = L_k\alpha_k \Vert v_k - v_{k - 1}\Vert$.
                 \item[(b)] We have $(a_k)_{k \ge 1}$ satisfying $\forall k \ge 1$ that $(1 - \alpha_k)\rho_{k - 1} = \alpha_k^2/\alpha_{k - 1}^2$ from the statement hypothesis. We assumed $\alpha_0 = 0, \beta_0 = 1$, $x^+$ is a minimizer of $F$. Then using these it has for all $k \ge 0$ it has $\frac{\alpha_k}{\sqrt{\beta_k L_0}}\Vert x^+ - v_k\Vert \le \Vert x^+ - v_0\Vert$. 
                 \item[(c)] The sequence $(\alpha_k)_{k \ge 0}$ has $(1 - \alpha_k)\rho_{k - 1} = \alpha_k^2/\alpha_{k - 1}^2$ from the statement hypothesis so $\alpha_k/\alpha_{k - 1} = \sqrt{\rho_{k - 1}(1 - \alpha_k)}$ for all $k \ge 1$. 
                 \item[(d)] The definition of $(\beta_k)_{k \ge 0}$ from Definition \ref{def:alpha-beta-rho-seq}. 
@@ -1337,7 +1337,7 @@
             Using the above intermediate results, the convergence in \eqref{ineq:gmapg-generic-gm-cnvg-prt1} can be derived. 
             From (a) it has for all $k \ge 0$: 
             \begin{align*}
-                \Vert \mathcal G_{1/L_k} y_k\Vert 
+                \Vert \mathcal G_{1/L_k} (y_k)\Vert 
                 &= L_k\alpha_k \Vert v_k - v_{k - 1}\Vert
                 \\
                 &\le 
@@ -1834,7 +1834,10 @@
                     }
                     \STATE{$\alpha_0 := 1$.}
                     \STATE{$x_0, y_0,\alpha_1, L_0 := \textbf{ArmijoLS}(f, g, x_{-1}, x_{-1}, L, \alpha_0)$.}
-                    \STATE{$\eta_0 := L_0; v_0 := x_0; G_0 = L_0(x_0 - y_0).$}
+                    \STATE{$\eta_0 := L_0; v_0 := x_0; G_0 = \Vert \sqrt{L_0}(x_0 - y_0)\Vert.$}
+                    \IF{$G_0 \le \epsilon$}
+                        \STATE{\textbf{Return: }$x_k, 0, L_0, G_0$}
+                    \ENDIF
                     \FOR{$k := 1, 2,\ldots, N$}
                         \STATE{\noindent
                             $\tilde x_{k}, y_k, \alpha_{k + 1}, L_{k} := \mathbf{L}(f, g, v_{k - 1}, x_{k - 1}, L_{k - 1}, \alpha_{k}, rL_{k - 1}, \rho)$.
@@ -1843,7 +1846,7 @@
                         \STATE{\noindent
                             $\rho := \rho^{1/2} \textbf{ if } L_{k} > L_{k - 1} \textbf{ else } \rho$.
                         }
-                        \STATE{$G_k:= L_k(\tilde x_k - y_k)$}
+                        \STATE{$G_k:= \Vert \sqrt L_k(\tilde x_k - y_k)\Vert $}
                         \STATE{\noindent
                             $x_k, \eta_{k + 1}, G_k^+ := \mathbf M(f, g, \tilde x_k, x_{k - 1}, \eta_k, G_k)$.
                         }
@@ -2109,7 +2112,7 @@
         The inner loop algorithm is described in Algorithm \ref{alg:gmapg}, let $k$ denote the inner loop counter and define $m = \lfloor k/2 \rfloor + 1$ the conditions are: 
         \begin{align}\label{ineq:rgmapg-exit-cond}
             \mathbf E_{\chi}^a \iff 
-            f(x_m) - f(x_k) \le \exp(-1)(f(x_0) - f(x_m)). 
+            f(x_m) - f(x_k) \le \exp(-1)(f(x_{-1}) - f(x_m)). 
         \end{align}
         \begin{algorithm}[H]
             \begin{algorithmic}[1]
@@ -2147,16 +2150,23 @@
         \par
         Algorithm \ref{alg:linear-rgmapg} implements a restarted GMAPG with condition $\textbf{E}_{\chi}^a$ and, it has a fast linear convergence rate. 
         The following observation on it is crucial to take notice for the convergence rate. 
+        \begin{observation}
+            If the outer loop runs for $j = 1, 2, \ldots, J$ iterations with $M \ge J$ so the algorithm terminated due $G_k^+ \le \epsilon$. 
+            Then for all $J\ge j\ge 1$ it has $n_{j}\le n_{j + 1}$ hence $(n_j)_{j \ge 0}^J$ is monotone increasing
+            For all $J -1 \ge j \ge 1 $ it has $p_{j-1}\le p_{j}$ so $(p_j)_{j \ge 1}^{J}$ is monotone exluding the last iterates $p_J$. 
+        \end{observation}
         \par
-        $n_j$ is used as the lower bound $N_{\min}$ for the GMAPG inner loop described in Algorithm \ref{alg:gmapg} at iteration $j$ and, $p_j$ is the actual iteration underwent by the inner loop and, it has $p_j \ge n_{j}$. 
+        For all $1 \le j \le J$, $n_j$ is used as the lower bound $N_{\min}$ for the GMAPG inner loop described in Algorithm \ref{alg:gmapg} at iteration $j$ and, $p_j$ is the actual iteration underwent by the inner loop therefore it has $p_j \ge n_{j}$. 
         $n_{j + 1}$ is the minimum iteration for the next execution of GMAGP, and it has $n_{j + 1} = p_{j}$  if the ``if statement" isn't triggered otherwise $n_{j + 1} = 2p_{j}$. 
-        Consequently, it has either $p_{j + 1} \ge n_{j + 1} = 2p_j$ or $p_{j + 1} \ge n_{j + 1} = p_j$. 
+        For $j < J$ so it excludes the last iteration, it has either $p_{j + 1} \ge n_{j + 1} = 2p_j \ge 2n_{j} \ge n_j$ or $p_{j + 1} \ge n_{j + 1} = p_j \ge n_j$. 
+        When $j = J$ it's not necessarily true that $p_J \ge n_J$ because on the last iteration, it can exit the forloop through conditions $G_k^+ \le \epsilon$ in line 14 of Algorithm \ref{alg:gmapg}, but $n_J \ge p_{J - 1} \ge n_{J - 1}$ still. 
         \par
         We now introduce the following notations for the convergence proof. 
-        Since the restarted GMAPG consist of executions of an outer loop in Algorithm \ref{alg:linear-rgmapg} in variable $j$ and, an inner loop in Algorithm \ref{alg:gmapg} in variable $k$, we denote $z_{j, k}$ for the iterates $x_k$ in the inner loop and $z_j$ in the outer loop together. 
-        We make the choice to have $z_{j + 1, -1} = z_{j, p_j} = z_{j + 1}$ for consistencies across theorems from previous sections. 
-        For example in line 7 of Algorithm \ref{alg:linear-rgmapg} at the $j$ iteration, the inner loop returns $x_{p_j}$ as the last iterate. Denote $x_{p_j}$ as $z_{j, p_j}$ and, it's assigned to $z_{j + 1}$ by the outer loop so $x_{p_j} = z_{j, p_j} = z_{j + 1}$. 
-        It continues and $z_{j + 1}$ will be the initial iterate pass into the inner loop for the $j + 1$ iteration, and hence $z_{j + 1} =z_{j + 1, -1}$. 
+        Since the restarted GMAPG consist of executions of an outer loop in Algorithm \ref{alg:linear-rgmapg} in variable $j$ and, an inner loop in Algorithm \ref{alg:gmapg} in variable $k$, we denote $x_{k}^{(j)}$ for the iterates $x_k$ in the inner loop during the $j$ iteration of the outer loop together. 
+        We make the choice to have $x_{-1}^{(j + 1)} = z_{j + 1} = x_{p_j}^{(j)}$ for consistencies across theorems from previous sections. 
+        For example in line 7 of Algorithm \ref{alg:linear-rgmapg} at the $j$ iteration, the inner loop returns $x_{p_j}$ as the last iterate. 
+        So $x_{p_j}$ is assigned to assigned to $z_{j + 1}$ by the outer loop and it has $x_{p_j} = x_{p_j}^{(j)} = z_{j + 1}$. 
+        It continues and $z_{j + 1}$ will be the initial iterate pass into the inner loop for the $j + 1$ iteration, and hence $z_{j + 1} =x_{-1}^{(j + 1)}$. 
         \par
         Let $e$ denotes the base of natural log. 
         The following lemma combines quadratic growth assumption of the objective to assert lower bound on the number of iteration required to achieve a certain optimality on the objective function $F$. 
@@ -2186,7 +2196,7 @@
             The second inequality comes from Assumption \ref{ass:q-growth-ch2} directly. 
             Suppose that $k \ge 2\sqrt{1 + e}\left(\mu\widehat L_k^{-1}\right)^{-1/2}$. 
             Denote $\gamma_k = 4\widehat L_k \mu^{-1}(2 + k)^{-2}$.
-            We make the following assumption first and it will be proved later:
+            We make the following assumption first, and it will be proved later:
             \begin{enumerate}
                 \item [(a)] It has $\gamma_k \in (0, 1)$. 
             \end{enumerate}
@@ -2254,12 +2264,12 @@
             }
         \end{proof}
         \par
-        Continuing with the quadratic growth assumption, the following lemma states the fact that $p_j$ in Algorithm \ref{alg:linear-rgmapg} is bounded above and there exists a for $p_j$ such that $n_{j + 1 + k} = p_{j + k}$ for all $k \ge 0$ until it terminates. 
+        Continuing with the quadratic growth assumption, the following lemma states the fact that $p_j$ in Algorithm \ref{alg:linear-rgmapg} is bounded above and there exists a $j \ge 1$ such that $n_{j + 1 + k} = p_{j + k}$ for all $k \ge 0$ until it terminates. 
         \begin{lemma}[inner iteration is bounded above]\label{lemma:rgmapg-inner-bnds}
-            Suppose that $F = f + g$ satisfies Assumption \ref{ass:standard-fista} so $F^+ := \inf_xF(x)$ and, $X^+$ is the set of minimizers. 
+            Suppose that $F = f + g$ satisfies Assumption \ref{ass:standard-fista} and Assumption \ref{ass:q-growth-ch2}, denote $F^+ := \inf_xF(x)$ and, $X^+$ as the set of minimizers. 
             Consider any $j \ge 1$ iteration experienced by the outer loop. 
-            Let $(z_{j,k})_{k\ge 0}^{p_{j}}$ be the sequence generated by Algorithm \ref{alg:linear-rgmapg} in the $j$ th iteration of outer loop. 
-            Define $\bar p := \frac{4\sqrt{2L(1 + e)}}{\sqrt{\mu}}$, then $p_{j} \le \bar p$. 
+            Let $\left(x_{k}^{(j)}\right)_{k\ge 0}^{p_{j}}$ be the sequence generated by Algorithm \ref{alg:linear-rgmapg} in the $j$ th iteration of outer loop. 
+            Define $\bar p := \frac{4\sqrt{2L(1 + e)}}{\sqrt{\mu}}$, then $p_{j} \le \bar p, n_j \le \bar p$. 
         \end{lemma}
         \begin{proof}
             The end result is constructed upon the following intermediate results that are proved at the end: 
@@ -2268,16 +2278,16 @@
                 \item [(ii)] If $p_{j - 1} \le p_j\le \bar p$  then $n_{j + 1} \le \bar p$. 
             \end{enumerate}
             Take note that $n_0 = 0, n_1 = p_0$ hence (i) gives $p_0 \le \bar p$, and $p_1 \le \max(\bar p, n_1) = \max(\bar p, p_0) \le \bar p$. 
-            We now have the base case: $p_0 \le p_1 \le \bar p$. 
+            We now have the base case: $p_0 \le p_1 = n_0 \le \bar p$. 
             Inductively assume $p_{j - 1} \le p_j \le \bar p$ then: 
             \begin{align*}
                 p_{j + 1} \underset{\text{(i)}}{\le} \max(\bar p, n_{j + 1}) \underset{\text{(ii)}}{\le} \bar p. 
             \end{align*}
-            Therefore, for all $j \ge 0$, $p_j \le \bar p$. 
+            Therefore, for all $j \ge 0$, $p_j \le \bar p$, and $n_{j + 1} \le \bar p$. 
             \par
             \textbf{Proof of (i)}. 
             Recall exit condition in \eqref{ineq:rgmapg-exit-cond} has $m = \lfloor k/2\rfloor + 1$. 
-            Starting with the statement hypothesis it has $k \ge \ bar p$ therefore: 
+            Starting with the statement hypothesis it has $k \ge \bar p$ therefore: 
             \begin{align*}
                 0 &\le k/2 - \bar p/2 \le \lfloor k/2\rfloor + 1 - \bar p/2
                 = m - \bar p /2 \le m - \lfloor \bar p/2\rfloor
@@ -2287,26 +2297,48 @@
                 \right\rfloor \le 
                 m - \left\lfloor 
                     \frac{2\sqrt{\widehat L_k(1 + e)}}{\sqrt{\mu}}
-                \right\rfloor
+                \right\rfloor. 
             \end{align*}
             On the last inequality we used Proposition \ref{prop:bnded-lip-ls} which has $\widehat L_k \le 2 L$. 
             Observe that the inequality allow us to apply Lemma \ref{lemma:prog-ratio} with $m = k$ which yields: 
             \begin{align*}
-                e^{-1} \ge \frac{F(z_{j, m}) - F^+}{F(z_{j, -1}) - F(z_{j, m})} \ge \frac{F(z_{j, m}) - F(z_{j, k})}{F(z_{j, -1}) - F(z_{j, m})} \implies \mathbf E_{\chi}^a. 
+                e^{-1} \ge 
+                \frac{
+                    F\left(x_{m}^{(j)}\right) - F^+
+                }{
+                    F\left(x_{-1}^{(j)}\right) 
+                    - F\left(x_{m}^{(j)}\right)
+                } 
+                \ge 
+                \frac{
+                    F\left(x_{m}^{(j)}\right)
+                    - F\left(x_k^{(j)}\right)
+                }{
+                    F\left(x_{-1}^{(j)}\right) 
+                    - F\left(x_{m}^{(j)}\right)
+                } 
+                \implies \mathbf E_{\chi}^a. 
             \end{align*}
-            Observe that line 11 of Algorithm \ref{alg:gmapg} exits as soon as possible if $E_\chi^a$ is true and $k > N_{\min} = n_j$ and, $G_k \le \epsilon$ will only cause it to exit earlier therefore $p_j \le \max(\bar p, n_j)$. 
+            Observe that line 14 of Algorithm \ref{alg:gmapg} exits as soon as possible if $\mathbf E_\chi^a$ is true and $k > N_{\min} = n_j$ and, $G_k \le \epsilon$ will only cause it to exit earlier therefore it has $p_j \le \max(\bar p, n_j)$. 
             \par
             \textbf{Proof of (ii)}. 
             Inductively assume that $p_{j - 1} \le p_j \le \bar p$. 
-            If $p_{j - 1} \le \bar p /2$ then Line 14, 16 implies that $n_{j} \le \max(p_{j - 1}, 2p_{j - 1}) \le \bar p$. 
+            If $p_{j - 1} \le \bar p /2$ then Line 14, 16 in Algorithm \ref{alg:linear-rgmapg} implies that $n_{j} \le \max(p_{j - 1}, 2p_{j - 1}) \le \bar p$. 
             Otherwise, $p_{j - 1} > \bar p/2$, and using Proposition \ref{prop:bnded-lip-ls} it means 
             \begin{align*}
-                p_{j - 1} \ge \bar p /2 = \frac{2\sqrt{2L(1 + e)}}{\sqrt{\mu}} \ge \left \lfloor \frac{2\sqrt{\widehat L_k(1 + e)}}{\sqrt{\mu}} \right\rfloor. 
+                p_{j - 1} \ge \bar p /2 = \frac{2\sqrt{2L(1 + e)}}{\sqrt{\mu}} 
+                \ge 
+                \left \lfloor \frac{2\sqrt{\widehat L_k(1 + e)}}{\sqrt{\mu}} \right\rfloor. 
             \end{align*}
             The above inequality allows us to use Lemma \ref{lemma:prog-ratio} which yields 
             \begin{align*}
-                e^{-1} \ge \frac{F(z_{j - 1, p_{j - 1}}) - F^+}
-                {F(z_{j - 1, -1}) - F(z_{j - 1, p_{j - 1}})}
+                e^{-1} \ge 
+                \frac{
+                    F\left(x_{p_{j - 1}}^{(j - 1)}\right) - F^+
+                }
+                {
+                    F\left(x_{-1}^{(j - 1)}\right) - F\left(z_{p_{j - 1}}^{(j - 1)}\right)
+                }
                 \ge 
                 \frac{F(z_j) - F(z_{j + 1})}
                 {F(z_{j - 1}) - F(z_{j})} \implies n_{j + 1} = p_{j + 1}.
@@ -2319,9 +2351,18 @@
         \begin{lemma}[bounds on outer iteration counts]
             ...
         \end{lemma}
-        
+        \begin{proof}
+            Suppose that since the $j\ge 2$ th iteration, there is no period doubling for $T_\epsilon$ number of iterations in the outer loop of Algorithm \ref{alg:linear-rgmapg}, i.e: $n_{j + k + 1} = p_{j + k}$ for $ 0 \le k \le T_\epsilon - 1$. 
+
+        \end{proof}
         \begin{theorem}[bounds on the total iterations]
             ...
+        \end{theorem}
+        \begin{proof}
+            
+        \end{proof}
+        \begin{theorem}[convergence rates of restarted GMAPG]
+            
         \end{theorem}
 
     \section{Applying them to large scale LP}
