@@ -65,7 +65,7 @@ Theorem 20.4 in Heinz's course notes for the 563 optimization class at UBCO.
 
 #### **Theorem 3 | Regularity Conditions and existence of minimizers**
 
-> For any of the following conditions, if they hold for $f, g$, then, the primal and dual will have a solutions with zero duality gap. 
+> For any of the following conditions, if they hold for $f, g$, then, the primal and dual will have a solution with zero duality gap. 
 > 1. $\text{ri.dom}(g)\cap A(\text{ri.dom}(f))\neq \emptyset$ or, 
 > 2. $\text{int.dom}(g)\cap A(\text{dom}(f))\neq \emptyset$ or,
 > 3. $g$ is polyhedral and $\text{dom}(g)\cap \text{ri}(A(\text{dom}(f)))\neq \emptyset$ or, 
