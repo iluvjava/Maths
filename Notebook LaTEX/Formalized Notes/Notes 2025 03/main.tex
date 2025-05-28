@@ -994,12 +994,12 @@
                 Here we defined $q_f$ because the actual weakly convex constant may be much smaller than $L$, and it is true in the case when $g$ is in fact convex.  
             \end{remark}
             \begin{definition}[weakly convex function]\;\label{def:wcnvx-fxn}\\
-                Let $f: \RR^n \rightarrow\overline \RR$ be an l.s.c proper function. 
+                Let $F: \RR^n \rightarrow\overline \RR$ be an l.s.c proper function. 
                 We define $F$ to be $q$ weakly convex if there exists $q \ge 0$ such that the function $F + q/2\Vert \cdot\Vert^2$ is a convex function and $q$ is the infimum of all such possible parameters. 
             \end{definition}
             \begin{remark}
-                If $q = 0$, $f$ is convex or strongly convex. 
-                If $f$ is weakly convex, then $f + 1/2\Vert \cdot\Vert^2$ is convex and, it has $\dom f$ convex, and locally Lipschitz continuous on $\reli \dom f$. 
+                If $q = 0$, $F$ is convex.
+                If $F$ is weakly convex, then $F + q/2\Vert \cdot\Vert^2$ is convex and, it has $\dom F$ convex, and locally Lipschitz continuous on $\reli \dom F$. 
             \end{remark}
             \begin{definition}[gradient mapping]\label{def:gm-for-ch2}
                 Suppose $F = f + g$ satisfies Assumption \ref{ass:sum-of-wcnvx}, define the gradient mapping for all $x \in \RR^n$
@@ -1040,10 +1040,10 @@
                         \beta^{-1} - \frac{q_g + L}{2\beta^2}
                     \right)\Vert\mathcal G_{1/\beta}(x) \Vert^2
                 \end{align*}
-                Optimizing $x\mapsto x - x^2(1_g - L)/2$ yields $x = (q_g - L)^{-1}$ so $\beta = q_g - L$ gives the most amount of descent. 
-                Consider any $\beta \ge (q_g - L)$: 
+                % Optimizing $x\mapsto x - x^2(q_g + L)/2$ yields $x = (q_g + L)^{-1}$ so $\beta = q_g - L$ gives the most amount of descent. 
+                Consider any $\beta \ge (q_g + L)$: 
                 \begin{align*}
-                    &\le F(x) - F(\bar x) - \left(
+                    0 &\le F(x) - F(\bar x) - \left(
                         \beta^{-1} - \frac{q_g + L}{2\beta^2}
                     \right)\Vert\mathcal G_{1/\beta}(x) \Vert^2
                     \\
@@ -1052,7 +1052,7 @@
                     \right)\Vert\mathcal G_{1/\beta}(x) \Vert^2
                     \\
                     &= 
-                    F(x) - F(\bar x) + \frac{1}{2\beta}\Vert\mathcal G_{1/\beta}(x) \Vert^2. 
+                    F(x) - F(\bar x) - \frac{1}{2\beta}\Vert\mathcal G_{1/\beta}(x) \Vert^2. 
                 \end{align*}
             \end{proof}
         \subsection{smooth plus nonsmooth convex}
@@ -2009,7 +2009,7 @@
         \end{definition}
         The following theorem states the fact that the algorithm should eventually terminate if the objective function is bounded below. 
         \begin{theorem}[convergence of Nesterov's monotone scheme nonconvex]\;\label{thm:nes-mono-wcnvx-convergence}\\
-            Suppose that the sequences $(y_{k + 1}, v_k, x_k)_{k \ge 0}$ and $(\hat y_k, \tilde x_k)_{k \ge 0}$, $(\alpha_k)_{k \ge 0}$ satisfy Definition \ref{alg:nes-mono}. 
+            Suppose that the sequences $(y_{k + 1}, v_k, x_k)_{k \ge 0}$ and $(\hat y_k, \tilde x_k)_{k \ge 0}$, $(\alpha_k)_{k \ge 0}$ satisfy Definition \ref{def:nes-monotone-scheme}. 
             Assume that $F$ is bounded below with $F^+ := \inf_{x}F(x)$. 
             Then for all $N \ge 1$ it has
             \begin{align*}
