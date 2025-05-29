@@ -973,7 +973,7 @@
     Backtracking strategies from Chambolle \cite{calatroni_backtracking_2019} shows that the underestimating Lipschitz constant using a backtracking technique to choose a next iterate improves the average runtime of the algorithm in practice. 
     They showed that the convergence rate is bounded by the estimates of the Lipschitz constant. 
     Restart is a technique discussed in Necoara et al. \cite{necoara_linear_2019}.
-    They showed that there exists an optimal restarting interval to achieve fast line convergence rate for all functions with quadratic growth condition. 
+    They showed that there exists an optimal restarting interval to achieve fast linear convergence rate for all functions with quadratic growth condition. 
     The method of restarting was improved to be parameter free while still retaining a fast linear convergence rate, see Alamo et al. \cite{alamo_restart_2019} and Aujol et al. \cite{aujol_parameter-free_2024}. 
     \par
     In this chapter, we will go through the details of these enhancements of FISTA and discuss why they are important in theories, and in practice. 
@@ -982,6 +982,14 @@
         This section introduces the full scope of the theories in our analysis. 
         Firstly, recall the definition of Bregman divergence $D_f(x, y)$ from Definition \ref{def:bregman-div} for a differentiable function $f:\RR^n \rightarrow \overline \RR$. 
         \subsection{smooth plus nonsmooth weakly convex}
+            \begin{definition}[weakly convex function]\;\label{def:wcnvx-fxn}\\
+                Let $F: \RR^n \rightarrow\overline \RR$ be an l.s.c proper function. 
+                We define $F$ to be $q$ weakly convex if there exists $q \ge 0$ such that the function $F + q/2\Vert \cdot\Vert^2$ is a convex function and $q$ is the infimum of all such possible parameters. 
+            \end{definition}
+            \begin{remark}
+                If $q = 0$, $F$ is convex.
+                If $F$ is weakly convex, then $F + q/2\Vert \cdot\Vert^2$ is convex and, it has $\dom F$ convex, and locally Lipschitz continuous on $\reli \dom F$. 
+            \end{remark}
             \begin{assumption}[sum of weakly convex smooth and nonsmooth]\;\label{ass:sum-of-wcnvx}\\
                 Let $F: \RR^n \rightarrow \overline\RR:= f + g$ such that $f, g$ satisfy 
                 \begin{enumerate}
@@ -990,16 +998,8 @@
                 \end{enumerate}
             \end{assumption}
             \begin{remark}
-                If a function is $L$ smooth, it also be $L$ weakly convex. 
+                If a function is $L$ smooth, it's $L$ weakly convex also. 
                 Here we defined $q_f$ because the actual weakly convex constant may be much smaller than $L$, and it is true in the case when $g$ is in fact convex.  
-            \end{remark}
-            \begin{definition}[weakly convex function]\;\label{def:wcnvx-fxn}\\
-                Let $F: \RR^n \rightarrow\overline \RR$ be an l.s.c proper function. 
-                We define $F$ to be $q$ weakly convex if there exists $q \ge 0$ such that the function $F + q/2\Vert \cdot\Vert^2$ is a convex function and $q$ is the infimum of all such possible parameters. 
-            \end{definition}
-            \begin{remark}
-                If $q = 0$, $F$ is convex.
-                If $F$ is weakly convex, then $F + q/2\Vert \cdot\Vert^2$ is convex and, it has $\dom F$ convex, and locally Lipschitz continuous on $\reli \dom F$. 
             \end{remark}
             \begin{definition}[gradient mapping]\label{def:gm-for-ch2}
                 Suppose $F = f + g$ satisfies Assumption \ref{ass:sum-of-wcnvx}, define the gradient mapping for all $x \in \RR^n$
@@ -1017,11 +1017,10 @@
                     0 \le F(x) - F(\bar x) - (\beta - q_g/2 - L/2)\Vert x - \bar x\Vert^2. 
                 \end{aligned}
                 $$
-                And descent is possible when $\beta \ge (L + q_g)/2$ and it yields the descent lemma: 
+                And descent is possible when $\beta \ge (L + q_g)/2$ and, it yields the descent lemma: 
                 \begin{align*}
-                    0 &\le F(x) - F(\bar x) - 1/\beta \Vert \mathcal G_{1/\beta}(x)\Vert^2. 
+                    F(\bar x) - F(x) &\le - 1/\beta \Vert \mathcal G_{1/\beta}(x)\Vert^2. 
                 \end{align*}
-                The maximum amount of descent is achieved when $\beta = L + q_g$. 
             \end{lemma}
             \begin{proof}
                 Use Theorem \ref{thm:pg-ineq-swcnvx-generic}, set $z = x$, after some algebra it yields: 
@@ -1461,8 +1460,6 @@
             The above theorem is improved from Alamo et al. \cite{alamo_restart_2019}. 
         \end{remark}
         \begin{lemma}[specialized GMAPG momentum sequence]\;\label{lemma:gmapg-seq-bnd}\\
-            % Suppose that the sequence $(\alpha_k)_{k \ge 0}$ has $\alpha_0 \in (0, 1]$ and for all $k \ge 1$, it satisfies $\alpha_{k - 1}^2\rho_{k - 1}(1 - \alpha_k) = \alpha_k^2$. 
-            % Suppose that $(\beta_k)_{k \ge 0}$ is a sequence such that $\beta_0 = 1$ and for all $k \ge 1$ it's defined as: 
             Take sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}, (\beta_k)_{k \ge 0}$ as in Definition \ref{def:alpha-beta-rho-seq}. 
             In addition, assume that $\alpha_0 = 1$. 
             If, we set $\rho_{k - 1} = L_{k}^{-1}L_{k - 1}$ such that $L_k >0$ for all $k \ge 1$, then for all $k \ge 1$, the sequence $(\beta_k)_{k \ge 0}$ has the inequality: 
@@ -1477,7 +1474,7 @@
             They will be proved at the end. 
             \begin{enumerate}
                 \item[(a)] $(\beta_k)_{k \ge 0}$ is monotone decreasing, and it's strictly larger than zero. 
-                \item[(b)] Because $\rho_{k}L_{k + 1}L_k = 1$ for all $k \ge 0$, the definition of $(\beta_k)_{k\ge 0}$ simplifies and $\beta_k = (\alpha_k^2/\alpha_0^2)(L_k/L_0)$. As a consequence it also gives for all $k \ge 1$ that: 
+                \item[(b)] Because $\rho_{k}L_{k + 1}L_k^{-1} = 1$ for all $k \ge 0$, the definition of $(\beta_k)_{k\ge 0}$ simplifies and $\beta_k = (\alpha_k^2/\alpha_0^2)(L_k/L_0)$. As a consequence it also gives for all $k \ge 1$ that: 
                 \begin{align*}
                     \alpha_k^2 &= \alpha_0^2\beta_kL_0L_k^{-1},
                     \\
@@ -1982,7 +1979,7 @@
     \section{Practical enhancement from the Nesterov's Monotone Variant}
         Firstly, we will introduce some theories in for nonconvex functions. 
         This is necessary because Nesterov's monotone variants can adapt to weakly convex objective functions. 
-        The following assumption will characterize the full scope of discussion in nonconvexity objective function. 
+        The following assumption will characterize the full scope of discussion in nonconvex objective function. 
         \begin{definition}[nonconvex Nesterov's monotone scheme]\;\label{def:nes-monotone-scheme}\\
             Suppose $F = f + g$ satisfies Assumption \ref{ass:sum-of-wcnvx}. 
             Let $L_0 \ge L$. 
@@ -2130,8 +2127,8 @@
             \end{tabular}}
             \STATE{$n_0 := 0; z_0 = x_{-1}$.}
             \STATE{$z_1, p_0, \overline L_1:= \textbf{GMAPG}(f, g, x_{-1}, L, r_j, \rho, N_{\min}=n_0, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}
-            \STATE{$n_1:=p_0. $}
-            \STATE{$M := M - n_1$}
+            \STATE{$n_1:=p_0$.}
+            \STATE{$M := M - n_1$.}
             \FOR{$j = 1,2, \ldots, M$}
                 \STATE{$z_{j + 1}, p_j, \overline L_{j + 1}, G_k^+ := \textbf{GMAPG}(f, g, z_j, \overline L_j, r, \rho, N_{\min}=n_j, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}
                 \STATE{$M := M - p_j$.}
@@ -2150,22 +2147,22 @@
         \par
         Algorithm \ref{alg:linear-rgmapg} implements a restarted GMAPG with condition $\textbf{E}_{\chi}^a$ and, it has a fast linear convergence rate. 
         The following observation on it is crucial to take notice for the convergence rate. 
-        \begin{observation}
+        \begin{observation}\label{obs:rgmapg}
             If the outer loop runs for $j = 1, 2, \ldots, J$ iterations with $M \ge J$ so the algorithm terminated due $G_k^+ \le \epsilon$. 
             Then for all $J\ge j\ge 1$ it has $n_{j}\le n_{j + 1}$ hence $(n_j)_{j \ge 0}^J$ is monotone increasing
-            For all $J -1 \ge j \ge 1 $ it has $p_{j-1}\le p_{j}$ so $(p_j)_{j \ge 1}^{J}$ is monotone exluding the last iterates $p_J$. 
+            For all $J -1 \ge j \ge 1 $ it has $p_{j-1}\le p_{j}$ so $(p_j)_{j \ge 1}^{J}$ is monotone excluding the last iterates $p_J$. 
         \end{observation}
         \par
         For all $1 \le j \le J$, $n_j$ is used as the lower bound $N_{\min}$ for the GMAPG inner loop described in Algorithm \ref{alg:gmapg} at iteration $j$ and, $p_j$ is the actual iteration underwent by the inner loop therefore it has $p_j \ge n_{j}$. 
         $n_{j + 1}$ is the minimum iteration for the next execution of GMAGP, and it has $n_{j + 1} = p_{j}$  if the ``if statement" isn't triggered otherwise $n_{j + 1} = 2p_{j}$. 
         For $j < J$ so it excludes the last iteration, it has either $p_{j + 1} \ge n_{j + 1} = 2p_j \ge 2n_{j} \ge n_j$ or $p_{j + 1} \ge n_{j + 1} = p_j \ge n_j$. 
-        When $j = J$ it's not necessarily true that $p_J \ge n_J$ because on the last iteration, it can exit the forloop through conditions $G_k^+ \le \epsilon$ in line 14 of Algorithm \ref{alg:gmapg}, but $n_J \ge p_{J - 1} \ge n_{J - 1}$ still. 
+        When $j = J$ it's not necessarily true that $p_J \ge n_J$ because on the last iteration, it can exit the for loop through conditions $G_k^+ \le \epsilon$ in line 14 of Algorithm \ref{alg:gmapg}, but $n_J \ge p_{J - 1} \ge n_{J - 1}$ still. 
         \par
         We now introduce the following notations for the convergence proof. 
         Since the restarted GMAPG consist of executions of an outer loop in Algorithm \ref{alg:linear-rgmapg} in variable $j$ and, an inner loop in Algorithm \ref{alg:gmapg} in variable $k$, we denote $x_{k}^{(j)}$ for the iterates $x_k$ in the inner loop during the $j$ iteration of the outer loop together. 
         We make the choice to have $x_{-1}^{(j + 1)} = z_{j + 1} = x_{p_j}^{(j)}$ for consistencies across theorems from previous sections. 
         For example in line 7 of Algorithm \ref{alg:linear-rgmapg} at the $j$ iteration, the inner loop returns $x_{p_j}$ as the last iterate. 
-        So $x_{p_j}$ is assigned to assigned to $z_{j + 1}$ by the outer loop and it has $x_{p_j} = x_{p_j}^{(j)} = z_{j + 1}$. 
+        So $x_{p_j}$ is assigned to $z_{j + 1}$ by the outer loop and it has $x_{p_j} = x_{p_j}^{(j)} = z_{j + 1}$. 
         It continues and $z_{j + 1}$ will be the initial iterate pass into the inner loop for the $j + 1$ iteration, and hence $z_{j + 1} =x_{-1}^{(j + 1)}$. 
         \par
         Let $e$ denotes the base of natural log. 
@@ -2266,7 +2263,7 @@
         \par
         Continuing with the quadratic growth assumption, the following lemma states the fact that $p_j$ in Algorithm \ref{alg:linear-rgmapg} is bounded above and there exists a $j \ge 1$ such that $n_{j + 1 + k} = p_{j + k}$ for all $k \ge 0$ until it terminates. 
         \begin{lemma}[inner iteration is bounded above]\label{lemma:rgmapg-inner-bnds}
-            Suppose that $F = f + g$ satisfies Assumption \ref{ass:standard-fista} and Assumption \ref{ass:q-growth-ch2}, denote $F^+ := \inf_xF(x)$ and, $X^+$ as the set of minimizers. 
+            Suppose that $F = f + g$ satisfies Assumption \ref{ass:q-growth-ch2}, denote $F^+ := \inf_xF(x)$ and, $X^+$ as the set of minimizers. 
             Consider any $j \ge 1$ iteration experienced by the outer loop. 
             Let $\left(x_{k}^{(j)}\right)_{k\ge 0}^{p_{j}}$ be the sequence generated by Algorithm \ref{alg:linear-rgmapg} in the $j$ th iteration of outer loop. 
             Define $\bar p := \frac{4\sqrt{2L(1 + e)}}{\sqrt{\mu}}$, then $p_{j} \le \bar p, n_j \le \bar p$. 
@@ -2348,18 +2345,75 @@
         \par
         We just show that the sequence $n_j$ is bounded above, and it must have a limit because it's also monotone increasing, which implies that at some point, the doubling of $n_{j + 1} = 2p_j$ must stop for the outer loop. 
         The following lemma shows that when that happens, the algorithm will always terminate after a finite number of iterations of the outer loop. 
-        \begin{lemma}[bounds on outer iteration counts]
-            ...
+        \begin{lemma}[bounds on outer iteration counts]\label{lemma:rgmapg-outer-itr-bnd}
+            Let $F = f + g$ satisfies Assumption \ref{ass:standard-fista}. 
+            Suppose we apply Algorithm \ref{alg:linear-rgmapg} on $F = f + g$. 
+            Define $T_\epsilon = \lceil\ln(2\epsilon^{-2}(F(z_0) - F^+))\rceil$
+            Assume that after iteration $j$, no doubling occurred in the if statement, i.e: $n_{t + 1} = p_t$ for $t \ge j$, then it must terminate before, or at iteration $j + T_\epsilon$. 
         \end{lemma}
         \begin{proof}
             Suppose that since the $j\ge 2$ th iteration, there is no period doubling for $T_\epsilon$ number of iterations in the outer loop of Algorithm \ref{alg:linear-rgmapg}, i.e: $n_{t + 1} = p_t$
-            for $j \le t \le j + T_\epsilon - 1$, and denote $s = j + T_\epsilon -1$ for better notations, giving us $j \le t \le s$. 
+            for $j \le t \le j + T_\epsilon - 1$, and denote $s = j + T_\epsilon -1$ for better notations, giving us for all $j \le t \le s$, $n_{t + 1} = p_t$. 
+            \par
+            Consider the start of the $s$ th iteration of the outer loop, denote $L_0^{(s)}, G_0^{(s)}$ as the $L_0$ in line 4 in Algorithm \ref{alg:gmapg}, it would give the following inequalities
+            {\allowdisplaybreaks
+            \begin{align*}
+                \frac{1}{2}\left(
+                    G_0^{(s)}
+                \right)^2
+                &\underset{\text{(a)}}{=} 
+                \frac{1}{2}\left\Vert
+                    \sqrt{L_0^{(s)}}\left(z_s - T_{1/L_0^{(s)}}(z_s)\right)
+                \right\Vert^2
+                \\
+                &\underset{\text{(b)}}{=} \frac{1}{2L_0^{(s)}}\left\Vert
+                        \mathcal G_{1/L_0^{(s)}}(z_s)
+                \right\Vert^2
+                \\
+                &\underset{\text{(c)}}{\le} F(z_s) - F\left(x_0^{(s)}\right) 
+                \\
+                &\underset{\text{(d)}}{\le} 
+                F(z_s) - F\left(x_{p_s}^{(s)}\right)
+                \\
+                &= F(z_s) - F(z_{s + 1})
+                \\
+                &\underset{\text{(e)}}{\le} \exp(-T_\epsilon)\left(F(z_{s - T_\epsilon}) - F(z_{s - T_\epsilon + 1})\right)
+                \\
+                &= \exp(-T_\epsilon)(F(z_{j - 1}) - F(z_j)) 
+                \\
+                &\underset{\text{(f)}}{\le} \exp(-T_\epsilon)(F(z_{0}) - F(z_j))
+                \\
+                &\underset{\text{(g)}}{\le} \left(
+                    \frac{2(F(z_0) - F^+)}{\epsilon^2}
+                \right)^{-1}(F(z_0) - F^+) 
+                \\
+                &= \epsilon^2/2.
+            \end{align*}
+            }
+            \begin{enumerate}
+                \item [(a)] At the $s$ iteration of the loop in Algorithm \ref{alg:linear-rgmapg}, $z_s$ is passed into Algorithm \ref{alg:gmapg} with $x_{-1} = z_s$. Therefore, at line 3 in Algorithm \ref{alg:gmapg} it calls Algorithm \ref{alg:armijo-ls} with $x_{-1} = z_s, \alpha_0 = 1, L^+$ which means $y^+ = x_{-1} = z_s$ at line 5 and $x^+ = T_{1/L^+}(z_s)$. Coming back to line 3 in Algorithm \ref{alg:gmapg}, it assigns $y_0 = y^+ = z_s, x_0 = x^+ = T_{1/L^+}(z_s)$ and $L_0 = L^+$. Assuming the line search went successful, it will have $D_f(z_s, x_0) \le L^{(s)}_0/2 \Vert z_s - x_0\Vert^2$. 
+                \item [(b)] We used definition of gradient mapping in Definition \ref{def:gm-for-ch2}. 
+                \item [(c)] By the assumption that the line search in Algorithm \ref{alg:armijo-ls} is successful at $z_s$ back in item (a), here we can use \eqref{eqn:emp:result-item-2} in Theorem \ref{thm:gmapg-generic-gm-cnvg}. 
+                \item [(d)] GMAPG is monotone in function value for the use of $\mathbf M$ that is either Algorithm \ref{alg:beck-mono} or \ref{alg:nes-mono}, so it has $F\left(x_{p_s}^{(s)}\right) \le F\left(x_0^{(s)}\right)$. 
+                \item [(e)] Here we used the assumption that no doubling occurs so $n_{t + 1} = p_t$ for all $j \le t \le s$ meaning that line 13 in Algorithm \ref{alg:linear-rgmapg} has $F(z_t) - F(z_{t + 1}) \ge e^{-1}(F(z_{t - 1}) - F(z_t))$. For that, we recursively unrolled it for $T_\epsilon$ many iterations starting with $t = s = j + T_\epsilon - 1$ ending with $t = j$. 
+                \item [(f)] We used the monotone property of subroutine $\mathbf M$ in GMAPG again so $F(z_0) \le F(z_{j - 1})$. 
+                \item [(g)] We substituted $T_\epsilon = \lceil\ln(2\epsilon^{-2}(F(z_0) - F^+))\rceil$ and, removing $\lceil\cdot\rceil$ to make for the $\le$ inequality. 
+            \end{enumerate}
+            Therefore, it has $G_0^{(s)} \le \epsilon$, hence it must have terminated at, or before iteration $s$. 
         \end{proof}
         \begin{theorem}[bounds on the total iterations]
             ...
         \end{theorem}
         \begin{proof}
-            
+            Firstly, Algorithm \ref{alg:linear-rgmapg} must terminate within finite many iterations under Assumption \ref{ass:q-growth-ch2} for all total budget $M \in \N$. 
+            This is because Observation \ref{obs:rgmapg} shows that $n_j$ is a non-decreasing sequence, Lemma \ref{lemma:rgmapg-inner-bnds} shows that $n_j \le \bar p$ under this quadratic growth assumption, therefore $n_j$ must converge which implies that doubling of $n_{j + 1} = 2p_{j}$ must stop. 
+            Finally, since the doubling must stop, Lemma \ref{lemma:rgmapg-outer-itr-bnd} applies hence, it terminates at most $j + T_\epsilon$ iteration. 
+            \par
+            Using it let's assume that it executed for $j = 1, 2, \cdots, J$, and it can be represented as $J = m + nT_\epsilon$ with $0 \le m < T_\epsilon$. 
+            The following intermediate results are important to the proof. 
+            \begin{enumerate}
+                \item [(a)] 
+            \end{enumerate}
         \end{proof}
         \begin{theorem}[convergence rates of restarted GMAPG]
             
