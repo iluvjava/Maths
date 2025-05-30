@@ -930,7 +930,7 @@
                     E_1^TE_1 + c_1^T & E_1^TE_2 + c_2^T & -c_1b^T & \\
                     E_2^TE_1 + c_1^T & E_2^TE_2 + c_2^T & -c_2b^T & \\
                     -bc_1^T& -bc_2^T & E_2E_2^T + E_1E_1^T + bb^T & E_1E_1^T \\
-                    & & & E_1^Ty + z\\
+                    & & E_1^Ty & I_{n_1}\\
                 \end{bmatrix}
                 \begin{bmatrix}
                     x_1 \\ x_2 \\ y \\ z
@@ -1856,6 +1856,7 @@
                 \end{algorithmic}
             \end{algorithm}
             The above Algorithm \ref{alg:gmapg} is an implementation of GMAPG in Definition \ref{alg:gmapg}. 
+            The first iterates $x_0$ is produced by a step of proximal gradient descent through Algorithm \ref{alg:armijo-ls} so, it has $x_0 = v_0 = T_{1/L_0}(x_{-1})$, and consequently all results from Theorem \ref{thm:gmapg-specialized-cnvg} apply. 
             Parameters $r, \rho$ are chosen in the discretion of the practitioners. 
             For example, we chose $r= 0.4, \rho = 2^{1/1024}$. 
     
@@ -2067,7 +2068,7 @@
             The convergence claim still works for restarts. 
         \end{remark}
         \par
-        A stronger result on the convergence rate of $\Vert \mathcal G_{1/\eta_k}(y_k)\Vert$ can be obtained if, we assume that the function $F=f + g$ satisfies \ref{ass:standard-fista}. 
+        A stronger result on the convergence rate of $\Vert \mathcal G_{1/\eta_k}(y_k)\Vert$ can be obtained if, we assume that the function $F=f + g$ satisfies Assumption \ref{ass:standard-fista}. 
     
     \section{Restarting with function values for linear convergence}
         In this section, we show that restarting GMAPG with a well suited conditions yields fast linear global convergence. 
@@ -2132,7 +2133,7 @@
                 \IF{$M \le 0 \textbf{ or } G^+ \le \epsilon$}
                     \STATE{\textbf{break}}                
                 \ENDIF
-                \STATE{$z_{j + 1}, p_j, \overline L_{j + 1}, G_k^+ := \textbf{GMAPG}(f, g, z_j, \overline L_j, r, \rho, N_{\min}=n_j, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}
+                \STATE{$z_{j + 1}, p_j, \overline L_{j + 1}, G^+ := \textbf{GMAPG}(f, g, z_j, \overline L_j, r, \rho, N_{\min}=n_j, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}
                 \STATE{$M := M - p_j$.}
                 \STATE{$\overline L_{j + 1} = \max(\overline L_{j}, \overline L_{j + 1})$.}
                 \IF{$f(z_{j}) - f(z_{j + 1}) > \exp(-1)(f(z_{j - 1}) - f(z_{j}))$}
@@ -2160,7 +2161,7 @@
         We now introduce the following notations for the convergence proof. 
         Since the restarted GMAPG consist of executions of an outer loop in Algorithm \ref{alg:linear-rgmapg} in variable $j$ and, an inner loop in Algorithm \ref{alg:gmapg} in variable $k$, we denote $x_{k}^{(j)}$ for the iterates $x_k$ in the inner loop during the $j$ iteration of the outer loop together. 
         We make the choice to have $x_{-1}^{(j + 1)} = z_{j + 1} = x_{p_j}^{(j)}$ for consistencies across theorems from previous sections. 
-        For example in line 7 of Algorithm \ref{alg:linear-rgmapg} at the $j$ iteration, the inner loop returns $x_{p_j}$ as the last iterate. 
+        For example in line 10 of Algorithm \ref{alg:linear-rgmapg} at the $j$ iteration, the inner loop returns $x_{p_j}$ as the last iterate. 
         So $x_{p_j}$ is assigned to $z_{j + 1}$ by the outer loop, and it has $x_{p_j} = x_{p_j}^{(j)} = z_{j + 1}$. 
         It continues and $z_{j + 1}$ will be the initial iterate pass into the inner loop for the $j + 1$ iteration, and hence $z_{j + 1} =x_{-1}^{(j + 1)}$. 
         \par
@@ -2401,14 +2402,23 @@
             Therefore, it has $G_0^{(s)} \le \epsilon$, hence it must have terminated at, or before iteration $s$. 
         \end{proof}
         \begin{theorem}[bounds on the total iterations]
-            ...
+            Let $F = f + g$ satisfies Assumption \ref{ass:q-growth-ch2}. 
+            Suppose that Algorithm \ref{alg:linear-rgmapg} is applied to it then the total number of iterations is bounded for all $M \in \N$, $\epsilon > 0$ by
+            \begin{align*}
+                \sum_{i = 0}^{J - 1}p_i &\le 
+                \frac{8\sqrt{2L(1 + e)}}{\sqrt{\mu}} \left\lceil 
+                \ln \left(
+                    \frac{2(F(z_0) - F^+)}{\epsilon^2}
+                \right) 
+                \right\rceil. 
+            \end{align*}
         \end{theorem}
         \begin{proof}
             Firstly, Algorithm \ref{alg:linear-rgmapg} must terminate within finite many iterations under Assumption \ref{ass:q-growth-ch2} for all total budget $M \in \N$. 
             This is because Observation \ref{obs:rgmapg} shows that $n_j$ is a non-decreasing sequence, Lemma \ref{lemma:rgmapg-inner-bnds} shows that $n_j \le \bar p$ under this quadratic growth assumption, therefore $n_j$ must converge which implies that doubling of $n_{j + 1} = 2p_{j}$ must stop. 
             Finally, since the doubling must stop at some $j$, Lemma \ref{lemma:rgmapg-outer-itr-bnd} applies hence, it terminates at most $j + T_\epsilon$ iteration. 
             \par
-            Using it let's assume that it executed for $j = 1, 2, \cdots, J$ and $M$ is large enough to achieve optimality $G^+_k \le \epsilon$ right at the start of iteration $J$.
+            Using it let's assume that it executed for $j = 1, 2, \cdots, J$ and $M$ is large enough to achieve optimality $G^+ \le \epsilon$ right at the start of iteration $J$.
             Representing it by the maximum period between doubling: $J = m + nT_\epsilon$ with $0 \le m < T_\epsilon$. 
             The following intermediate results are important to the proof. 
             \begin{enumerate}
@@ -2420,7 +2430,7 @@
             \begin{align*}
                 \sum_{i = 0}^{J} n_i &= \sum_{i = 0}^{m + nT_\epsilon} n_i
                 \\
-                &= \sum_{i = 0}^{m}n_i + \sum_{l = 0}^{n - 1}\sum_{i = 1}^{T_\epsilon} n_{m + i + lT}
+                &= \sum_{i = 0}^{m}n_i + \sum_{l = 0}^{n - 1}\sum_{i = 1}^{T_\epsilon} n_{m + i + lT_\epsilon}
                 \\
                 &\hspace{-0.5em}
                 \underset{\substack{(b), \\ m \le T_\epsilon.}}\le T_\epsilon n_m + \sum_{l = 0}^{n - 1} T_\epsilon n_{m + (l + 1)T_\epsilon}
@@ -2433,18 +2443,130 @@
             \end{align*}
             The total iteration counts is bounded by: 
             \begin{align*}
-                \sum_{i = 0}^{J} n_i &\le 
-                \frac{8\sqrt{2L(1 + e)}}{\sqrt{\mu}} \left\lfloor 
+                \sum_{i = 0}^{J - 1}p_i \le \sum_{i = 0}^{J} n_i &\le 
+                \frac{8\sqrt{2L(1 + e)}}{\sqrt{\mu}} \left\lceil 
                 \ln \left(
                     \frac{2(F(z_0) - F^+)}{\epsilon^2}
                 \right) 
-                \right\rfloor. 
+                \right\rceil. 
             \end{align*}
+            Note that $n_0 = 0$. 
         \end{proof}
-        \begin{theorem}[convergence rates of restarted GMAPG]\label{thm:rgmapg-cnvg}
-            
+        \par
+        The final results from above theorem provides the convergence rate of iterates and the complexity of restart GMAPG under Assumption \ref{ass:q-growth-ch2}. 
+        We denote $\kappa := L/\mu$. 
+        \begin{theorem}[restarted GMAPG convergence and complexity]\;\label{thm:rgmapg-cnvg-complexity}
+            Let $F = f + g$ satisfy Assumption \ref{ass:q-growth-ch2}. 
+            Let $J$ be the total number of iteration performed to achieve accuracy in the outer loop.
+            Let $K := \sum_{i = 0}^{J - 1}p_i$ be the total iterations. 
+            Then, the maximum $K$ needed to achieve optimality $\Vert z_J - z_J^+\Vert \le \delta$ on the iterates is bounded by $\mathcal O\left(\frac{1}{\sqrt{\kappa}}\ln\left(\frac{1}{\kappa\delta}\right)\right)$. 
         \end{theorem}
-
+        \begin{proof}
+            Suppose $K = \sum_{i = 0}^{J - 1} p_i$ iteration were performed and, it achieved $G_0^{(J)} \le \epsilon$, 
+            Now, let $k > 0$ and let $\epsilon = \sqrt{2}(F(z_0) - F^+)^{1/2}\exp(-k + 1)$ then: 
+            \begin{align*}
+                \ln \left(
+                    \frac{2(F(z_0) - F^+)}{\epsilon^2}
+                \right)
+                &= 2(k - 1). 
+            \end{align*}
+            Then it has 
+            \begin{align*}
+                0 &\le 
+                \frac{8\sqrt{2L(1 + e)}}{\sqrt{\mu}}\left\lceil 
+                    \ln\left(
+                        \frac{2(F(z_0) - F^+)}{\epsilon^2}
+                    \right)
+                \right\rceil - K
+                =
+                \frac{8\sqrt{2L(1 + e)}}{\sqrt{\mu}}\left\lceil 
+                    2(k - 1)
+                \right\rceil - K 
+                \\
+                &\le 
+                \frac{8\sqrt{2L(1 + e)}}{\sqrt{\mu}} (2(k - 1) + 1) - K
+                \\
+                \implies
+                0 &\le k - 1 + 1/2 - \frac{K\sqrt{\mu}}{16\sqrt{2L(1 + e)}}
+                \\
+                &\le k - \frac{K\sqrt{\mu}}{16\sqrt{2L(1 + e)}} .
+            \end{align*}
+            This gives us 
+            \begin{align*}
+                G_0^{(J)} &\le \epsilon = \sqrt{2}(F(z_0) - F^+)^{1/2}\exp(-k + 1)
+                \\
+                &=
+                e\sqrt{2}(F(z_0) - F^+)^{1/2}\exp(-k)
+                \\
+                &\le
+                e\sqrt{2}(F(z_0) - F^+)^{1/2}\exp\left(
+                    - \frac{K\sqrt{\mu}}{16\sqrt{2L(1 + e)}}
+                \right)
+                \\
+                &= e\sqrt{2}(F(z_0) - F^+)^{1/2}\exp\left(
+                    - \frac{K\sqrt{\kappa}}{16\sqrt{2 + 2e}}
+                \right). 
+            \end{align*}
+            The above inequality shows a linear convergence rate of the quantity $G_0^{(J)}$ with respect to the total number of iterations required for GMAPG. 
+            Using Theorem \ref{thm:qfg-peb-equiv} from previous chapter and take note that Assumption \ref{ass:q-growth-ch2} is Definition \ref{def:necoara-weaker-scnvx}\ref{def:necoara-qfg}. 
+            Denote $z_J^+ = \Pi_{X^+}z_J$ then it has 
+            {\allowdisplaybreaks
+            \begin{align*}
+                G_0^{(J)} 
+                &\underset{\text{(a)}}{=}\left\Vert \sqrt{L_0^{(J)}} \left(z_J - x_0^{(J)}\right) \right\Vert 
+                = \frac{1}{\sqrt{L_0^{(J)}}} \left\Vert 
+                    L_0^{(J)}\left(
+                        z_J - x_0^{(J)}
+                    \right)
+                \right\Vert
+                \underset{\text{(a)}}{=}\frac{1}{\sqrt{L_0^{(J)}}} \left\Vert 
+                    \mathcal G_{1/L_0^{(J)}}(z_J)
+                \right\Vert
+                \\
+                &\underset{\text{(b)}}{\ge} \frac{1}{\sqrt{2L}}\left\Vert\mathcal G_{1/L_0^{(J)}}(z_J)\right\Vert
+                \\
+                &\underset{\text{(c)}}{\ge} \frac{\sqrt{L(\mu + L)} - L}{\sqrt{L(\mu + L)}} \frac{1}{\sqrt{2L}}\left\Vert
+                    z_J - z_J^+
+                \right\Vert
+                \\
+                &= \frac{1}{\sqrt{2L}}\left(
+                    1 - \frac{1}{\sqrt{1 + \mu/L}}
+                \right)\left\Vert
+                    z_J - z_J^+
+                \right\Vert
+                \\
+                &\underset{\text{(d)}}{\ge} \frac{1}{2\sqrt{L}}\left(
+                    \frac{\mu}{2L}
+                \right)\left\Vert
+                    z_J - z_J^+
+                \right\Vert 
+                = \frac{\kappa}{4\sqrt{L}} \left\Vert
+                    z_J - z_J^+
+                \right\Vert. 
+            \end{align*}
+            }
+            \begin{enumerate}
+                \item [(a)] 
+                \item [(b)]
+                \item [(c)]
+                \item [(d)]
+            \end{enumerate}
+            It then yields the convergence rate of 
+            \begin{align*}
+                \left\Vert z_J - z^+_J\right\Vert 
+                &\le \frac{4eL\sqrt{2}(F(z_0) - F^+)^{1/2}}{\kappa}
+                \exp\left(
+                    - \frac{K\sqrt{\kappa}}{16\sqrt{2 + 2e}}
+                \right) 
+                \le 
+                \mathcal O\left(
+                    \kappa^{-1}\exp\left(-\sqrt{\kappa}K\right)
+                \right). 
+            \end{align*}
+            To achieve accuracy $\Vert z_J - z^+_J\Vert \le \delta$, it would require $\mathcal O\left(\frac{1}{\sqrt{\kappa}}\ln\left(\frac{1}{\kappa\delta}\right)\right)$ many total iterations of GMAGP. 
+        \end{proof}
+        
+    
     \section{Applying them to large scale LP}
     
     \section{Hoffman Bounds and infeasibility detection}

@@ -12,7 +12,7 @@ We state the theorem, and discuss its corollaries and consequences. Recall that 
 > 2. $p:Z\mapsto \mathbb R$ be a sub-linear functional.
 > Then it's possible to extend $f$ to $\tilde f: X\mapsto \mathbb R$, such that $f = \tilde f$ on $Z$, and $\tilde f \le p$ on $X$. 
 > 
-> Referenced from (4.2-1) from Kryzig's textbook, intrductory functional analysis. 
+> Referenced from (4.2-1) from Kryzig's textbook, introductory functional analysis. 
 
 **Note**:
 
