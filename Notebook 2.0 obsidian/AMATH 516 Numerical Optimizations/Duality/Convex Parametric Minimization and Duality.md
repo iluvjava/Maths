@@ -15,7 +15,7 @@ The following assumption setups the scope of the discussion.
 > $F: \mathbb R^n \times Y \rightarrow \overline \R$ is a convex and proper in its first parameter for all its second parameter.  
 
 The first parameter represents the primal variable. 
-The second parameter represent pertubation to the primal optimization problem. 
+The second parameter represents perturbation to the primal optimization problem. 
 
 #### **Definition 1 | Primal dual value functions**
 > $p: \R^n \rightarrow \overline \R$ is defined as $p(y) = \inf_{x}F(x, y)$. 
@@ -202,7 +202,7 @@ $\blacksquare$
 > Let $A \in \R^{m\times n}$. 
 > 1. Define $F:\R^m \times \R^n :=(x, y)\mapsto  g(x) + h(Ax - y)$. 
 > 2. Define value function $p(y) := \inf_x F(x, y)$. 
-> 3. Define dual value function $q(u) := \sup_{v}- F^\star(u, v)$. 
+> 3. Define, dual value function $q(u) := \sup_{v}- F^\star(u, v)$. 
 > 
 > If $\mathbf 0 \in \text{ri.dom}\; p$, then strong duality holds and $p(\mathbf 0) = q(\mathbf 0)$.
 

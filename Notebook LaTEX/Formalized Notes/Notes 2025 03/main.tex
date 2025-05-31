@@ -772,9 +772,11 @@
                 Unrolling recursively, then use (iii), the claim is proved. 
             \end{proof}
 
-\chapter{Application, KKT of linear programming}
-    This chapter extends ideas by the end of Necoara et al.'s paper \cite{necoara_linear_2019}. 
-    \section{Introductions and problem formulations}
+\chapter{Application, Linear Feasibility Problems}
+    This chapter extends ideas by the end of Necoara et al.'s paper \cite{necoara_linear_2019}.
+    \section{Reducing LP to linear feasibility problems}
+        We first introduce the linear feasibility problem as our primary problem. 
+        \par
         Let $X_1, X_2, Y$ be Hilbert spaces. 
         Define linear mapping $E:X_1 \times X_2 \rightarrow Y := (x_1, x_2)\mapsto E_1 x_1 + E_2 x_2$ where $E_1, E_2$ each are mappings of $X_1 \rightarrow Y, X_2 \rightarrow Y$. 
         Denote the adjoint of linear mapping by $(\cdot)^*$. 
@@ -2129,14 +2131,14 @@
                 $\rho := 2^{1/1024}$ & $\rho \in (0, 1)$ 
             \end{tabular}}
             \STATE{$n_0 := 0; z_0 = x_{-1}$.}
-            \STATE{$z_1, p_0, \overline L_1, G^+:= \textbf{GMAPG}(f, g, x_{-1}, L, r_j, \rho, N_{\min}=n_0, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}
+            \STATE{$z_1, p_0, \overline L_1, G^{(0)}:= \textbf{GMAPG}(f, g, x_{-1}, L, r_j, \rho, N_{\min}=n_0, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}
             \STATE{$n_1:=p_0$.}
             \STATE{$M := M - n_1$.}
             \FOR{$j = 1,2, \ldots, M$}
-                \IF{$M \le 0 \textbf{ or } G^+ \le \epsilon$}
+                \IF{$M \le 0 \textbf{ or } G^{(j-1)} \le \epsilon$}
                     \STATE{\textbf{break}}                
                 \ENDIF
-                \STATE{$z_{j + 1}, p_j, \overline L_{j + 1}, G^+ := \textbf{GMAPG}(f, g, z_j, \overline L_j, r, \rho, N_{\min}=n_j, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}
+                \STATE{$z_{j + 1}, p_j, \overline L_{j + 1}, G^{(j)} := \textbf{GMAPG}(f, g, z_j, \overline L_j, r, \rho, N_{\min}=n_j, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}
                 \STATE{$M := M - p_j$.}
                 \STATE{$\overline L_{j + 1} = \max(\overline L_{j}, \overline L_{j + 1})$.}
                 \IF{$f(z_{j}) - f(z_{j + 1}) > \exp(-1)(f(z_{j - 1}) - f(z_{j}))$}
@@ -2358,6 +2360,8 @@
             Suppose that since the $j\ge 2$ th iteration, there is no period doubling for $T_\epsilon$ number of iterations in the outer loop of Algorithm \ref{alg:linear-rgmapg}, i.e: $n_{t + 1} = p_t$
             for $j \le t \le j + T_\epsilon - 1$, and denote $s = j + T_\epsilon -1$ for better notations, giving us for all $j \le t \le s$, $n_{t + 1} = p_t$. 
             \par
+            Our goal now is to show that at iteration $j = s$ of Algorithm \ref{alg:linear-rgmapg} it must have $G_0 \le \epsilon$ at line 5 of Algorithm \ref{alg:gmapg}. 
+            \par
             Consider the start of the $s$ th iteration of the outer loop, denote $L_0^{(s)}, G_0^{(s)}$ as the $L_0$ in line 4 in Algorithm \ref{alg:gmapg}, it would give the following inequalities
             {\allowdisplaybreaks
             \begin{align*}
@@ -2406,7 +2410,9 @@
         \end{proof}
         \begin{theorem}[bounds on the total iterations]
             Let $F = f + g$ satisfies Assumption \ref{ass:q-growth-ch2}. 
-            Suppose that Algorithm \ref{alg:linear-rgmapg} is applied to it then the total number of iterations is bounded for all $M \in \N$, $\epsilon > 0$ by
+            Suppose that we applied Algorithm \ref{alg:linear-rgmapg} to it. 
+            For any $\epsilon > 0$, assuming that it terminated at $j = J < M$ iteration.
+            Then the total number of iterations has an upper bound:
             \begin{align*}
                 \sum_{i = 0}^{J - 1}p_i &\le 
                 \frac{8\sqrt{2L(1 + e)}}{\sqrt{\mu}} \left\lceil 
@@ -2422,6 +2428,7 @@
             Finally, since the doubling must stop at some $j$, Lemma \ref{lemma:rgmapg-outer-itr-bnd} applies hence, it terminates at most $j + T_\epsilon$ iteration. 
             \par
             Using it let's assume that it executed for $j = 1, 2, \cdots, J$ and $M$ is large enough to achieve optimality $G^+ \le \epsilon$ right at the start of iteration $J$.
+            This is one of the way the algorithm can terminate, making it a sufficient condition for deriving the upper bound on the total number of iterations. 
             Representing it by the maximum period between doubling: $J = m + nT_\epsilon$ with $0 \le m < T_\epsilon$. 
             The following intermediate results are important to the proof. 
             \begin{enumerate}
@@ -2456,7 +2463,7 @@
             Note that $n_0 = 0$. 
         \end{proof}
         \par
-        The final results from above theorem provides the convergence rate of iterates and the complexity of restart GMAPG under Assumption \ref{ass:q-growth-ch2}. 
+        The final results from above theorem provide the convergence rate of iterates and the complexity of restart GMAPG under Assumption \ref{ass:q-growth-ch2}. 
         We denote $\kappa := L/\mu$. 
         \begin{theorem}[restarted GMAPG convergence and complexity]\;\label{thm:rgmapg-cnvg-complexity}
             Let $F = f + g$ satisfy Assumption \ref{ass:q-growth-ch2}. 
@@ -2465,8 +2472,11 @@
             Then, the maximum $K$ needed to achieve optimality $\Vert z_J - z_J^+\Vert \le \delta$ on the iterates is bounded by $\mathcal O\left(\frac{1}{\sqrt{\kappa}}\ln\left(\frac{1}{\kappa\delta}\right)\right)$. 
         \end{theorem}
         \begin{proof}
-            Suppose $K = \sum_{i = 0}^{J - 1} p_i$ iteration were performed and, it achieved $G_0^{(J)} \le \epsilon$, 
-            Now, let $k > 0$ and let $\epsilon = \sqrt{2}(F(z_0) - F^+)^{1/2}\exp(-k + 1)$ then: 
+            Suppose a total of $K := \sum_{i = 0}^{J - 1} p_i$ iteration were performed and, at line 10 of Algorithm \ref{alg:linear-rgmapg} at iteration $j = J$ it achieved $G_0 \le \epsilon$ at line 5 of Algorithm \ref{alg:gmapg}. 
+            That will cause the inner GMAPG to return $G_0$ so, at line 10 it has $G^{(J)} < \epsilon$ in Algorithm \ref{alg:linear-rgmapg}. 
+            This is one of the ways the algorithm can terminate hence, it suffices for deriving an upper bound. 
+            \par
+            Now we show the convergence rate of $G^{(J)}$, let $k > 0$ and let $\epsilon = \sqrt{2}(F(z_0) - F^+)^{1/2}\exp(-k + 1)$ then: 
             \begin{align*}
                 \ln \left(
                     \frac{2(F(z_0) - F^+)}{\epsilon^2}
@@ -2496,7 +2506,7 @@
             \end{align*}
             This gives us 
             \begin{align*}
-                G_0^{(J)} &\le \epsilon = \sqrt{2}(F(z_0) - F^+)^{1/2}\exp(-k + 1)
+                G^{(J)} &\le \epsilon = \sqrt{2}(F(z_0) - F^+)^{1/2}\exp(-k + 1)
                 \\
                 &=
                 e\sqrt{2}(F(z_0) - F^+)^{1/2}\exp(-k)
@@ -2511,11 +2521,10 @@
                 \right). 
             \end{align*}
             The above inequality shows a linear convergence rate of the quantity $G_0^{(J)}$ with respect to the total number of iterations required for GMAPG. 
-            Using Theorem \ref{thm:qfg-peb-equiv} from previous chapter and take note that Assumption \ref{ass:q-growth-ch2} is Definition \ref{def:necoara-weaker-scnvx}\ref{def:necoara-qfg}. 
             Denote $z_J^+ = \Pi_{X^+}z_J$ then it has 
             {\allowdisplaybreaks
             \begin{align*}
-                G_0^{(J)} 
+                G^{(J)} 
                 &\underset{\text{(a)}}{=}\left\Vert \sqrt{L_0^{(J)}} \left(z_J - x_0^{(J)}\right) \right\Vert 
                 = \frac{1}{\sqrt{L_0^{(J)}}} \left\Vert 
                     L_0^{(J)}\left(
@@ -2549,10 +2558,10 @@
             \end{align*}
             }
             \begin{enumerate}
-                \item [(a)] 
-                \item [(b)]
-                \item [(c)]
-                \item [(d)]
+                \item [(a)] For the first equality, we assumed that $G^{(J)} < \epsilon$ in the outer loop and, it's returned by Algorithm \ref{alg:gmapg} at line 5. Therefore, it has $G_0 = G^{(J)} = \sqrt{L^{(J)}_0} \Vert z^{(J)} - x_0^{(J)}\Vert$ because it calls Algorithm \ref{alg:armijo-ls} (Armijo line search) with $\alpha_0 = 0$. The second equality comes by using Definition \ref{def:gm-for-ch2}. 
+                \item [(b)] Proposition \ref{prop:bnded-lip-ls} has $L_0^{(J)} \le 2L$. 
+                \item [(c)] Using Theorem \ref{thm:qfg-peb-equiv} from previous chapter and take note that Assumption \ref{ass:q-growth-ch2} is Definition \ref{def:necoara-weaker-scnvx}\ref{def:necoara-qfg}. 
+                \item [(d)] The function $1/\sqrt{1 - x/L}$ is convex hence a Taylor expansion has $1/\sqrt{1 - x/L} \le 1 - x/(2L) $, substituting it with $x = \mu$ makes for a lower bound. 
             \end{enumerate}
             It then yields the convergence rate of 
             \begin{align*}

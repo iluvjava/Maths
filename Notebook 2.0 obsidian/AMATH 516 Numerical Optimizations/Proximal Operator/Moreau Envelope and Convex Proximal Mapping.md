@@ -1,7 +1,7 @@
 ---
-alias: Morau Envelope and Convex Proximal Operators
+alias: Proximal Mapping and Morean ou Envelope
 
---- 
+---
 - [Multivalued Functions, Set-valued Mappings](../Operators%20Theory/Multivalued%20Functions,%20Set-valued%20Mappings.md)
 
 ---
