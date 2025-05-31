@@ -654,8 +654,6 @@
                 It's Theorem 4 in Necoara et al. \cite{necoara_linear_2019}.
             \end{remark}
 
-       
-
         \subsection{Feasible descent and accelerated feasible descent}
             This section summarizes results from Necoara et al. on the method of feasible descent, fast feasible descent, and fast feasible descent with restart. 
             \begin{definition}[projected gradient algorithm]\label{def:projg-alg}\;\\
@@ -776,6 +774,15 @@
     This chapter extends ideas by the end of Necoara et al.'s paper \cite{necoara_linear_2019}.
     \section{Reducing LP to linear feasibility problems}
         We first introduce the linear feasibility problem as our primary problem. 
+        \begin{definition}[a linear feasibility problem]
+            Let $A\in \RR^{m\times n}$, $b \in \RR^m$
+            Let $\mathcal K$ be a simple cone. 
+            The linear feasibility problem is defined as the following optimization problem: 
+            \begin{align*}
+                \min_{x \in \mathcal K} \Vert Ax - b\Vert^2.
+            \end{align*}
+        \end{definition}
+        The KKT of a linear programming problem is an instance of a linear feasibility problem. 
         \par
         Let $X_1, X_2, Y$ be Hilbert spaces. 
         Define linear mapping $E:X_1 \times X_2 \rightarrow Y := (x_1, x_2)\mapsto E_1 x_1 + E_2 x_2$ where $E_1, E_2$ each are mappings of $X_1 \rightarrow Y, X_2 \rightarrow Y$. 
