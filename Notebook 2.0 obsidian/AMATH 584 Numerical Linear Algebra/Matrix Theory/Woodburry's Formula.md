@@ -1,4 +1,4 @@
-Needs to know some [[Useful Matrix Identities]] before stepping into this part first. 
+- [Useful Matrix Identities](Useful%20Matrix%20Identities.md) 
 
 
 ---
@@ -18,7 +18,7 @@ This is also the update subroutine involved in the BFGS algorithm.
 ---
 ### **Proofs**
 
-Use the matrix sum identity from the [[Useful Matrix Identities]] to prove this. It will take a while but it should be the right approach to it. 
+Use the matrix sum identity from the [Useful Matrix Identities](Useful%20Matrix%20Identities.md) to prove this. It will take a while but it should be the right approach to it. 
 
 
 ---

@@ -22,7 +22,7 @@ The theorem the follows introduce the formulation of error bound presented by Ne
 #### **Theorem | Hoffman error bound**
 > Let $A \in \R^{p\times n}, C \in \R^{m \times n}$. 
 > Take arbitrary norm $\Vert \cdot\Vert_\alpha, \Vert \cdot\Vert_\beta$in $\R^{m + p}, \R^n$ respectively. 
-> Given the non empty polyhedron $\mathcal P = \{x \in \R^n: Ax = b, Cx \le d\}$. 
+> Given the nonempty polyhedron $\mathcal P = \{x \in \R^n: Ax = b, Cx \le d\}$. 
 > Then there exists constant $\theta(A, C) > 0$ such that the inequality holds: 
 > $$
 > \begin{aligned}
@@ -72,21 +72,41 @@ $$
         \right\Vert_{\alpha^\star}: 
         {\small \begin{aligned}
             & \Vert A^T + C^Tv\Vert_{\beta^\star} = 1\\
-            & \text{ Rows of $C$ corresponding to nonzero component of $v$}\\
+            & \text{ Rows of $C$ corresponding to positive/nonzero component of $v$}\\
             & \text{and rows of $A$ are linear independent.}
         \end{aligned}}
     \right\rbrace.
 \end{aligned}
 $$
 
-
+Hoof man constant relates to the above parameter by $\theta(A, C) := \zeta_{\alpha, \beta}(A, C)^{-1}$. 
 
 ---
 ### **The Hoffman constants, Examples**
 
+Things are normally easier for the Hoffman constant because polytopes can be equivalent to each other by a reformulation. 
+Continuing from the previous section, consider the special case with $C = I, d = \mathbf 0$ so $\mathcal P = \{x \in \R^n: Ax = b, x \ge 0\}$ and consider Euclidean norm with $\alpha = \beta = 2$. 
+Then it simplifies: 
 
+$$
+\begin{aligned}
+    \zeta_{2, 2}(A, C) &:= 
+    \min_{I \in \mathcal J} \min_{u, v}\left\lbrace
+        \left\Vert
+            A^Tu + C^Tv
+        \right\Vert: 
+        \left\Vert
+            \begin{matrix}u \\ v\end{matrix}
+        \right\Vert = 1, 
+        v_I \ge \mathbf 0, v_{[m]\setminus I} = \mathbf 0
+    \right\rbrace
+    \\
+    &= \min_{\mathbb I \in \mathcal J} \frac{1}{\sigma_{\min}([A^T, I_{\mathbb I}^T])}. 
+\end{aligned}
+$$
+
+When $m = 0$, the polytopes is the intersection of linear subspaces. 
+Making $\mathcal J = \emptyset$ hence things simplify further: $\zeta_{2, 2}(A, 0) = \sigma_{\min}(A)$. 
 
 
 [^1]: I. Necoara, Yu. Nesterov, and F. Glineur, “Linear convergence of first order methods for non-strongly convex optimization,” _Math. Program._, vol. 175, no. 1, pp. 69–107, May 2019, doi: [10.1007/s10107-018-1232-1](https://doi.org/10.1007/s10107-018-1232-1).
-
-

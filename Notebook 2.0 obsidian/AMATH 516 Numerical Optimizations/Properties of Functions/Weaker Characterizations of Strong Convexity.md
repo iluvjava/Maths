@@ -58,16 +58,17 @@ $$
 > 4. Quadratic Function Growth (QFG): $0 \le f(x) - f^* - \kappa_f/2\Vert x - \bar x\Vert^2$. Denoted by $\mathbb F(L_f, \kappa_f, X)$. 
 > 5. Error Bound (EB): $\Vert \mathcal G_{L_f}(x)\Vert \ge \Vert x - \bar x\Vert$. Denoted by $\mathbb E(L_f, \kappa_f, X)$. 
 
-
 #### **Literature's Contributions**
 In Necoara's paper, they did: 
 1. Introduce relations between various weaker characterizations of strong convexity with proofs. 
 2. Gave examples of convex functions satisfiyings the conditions. 
 3. Showed linear convergence rate of Projected Gradient, or Accelerated Projected Gradient Method under some weaker settings of strong convexity. 
 
+We will provide more details to their results, and make compact presentations for their results. 
+
 ---
 
-### **Important theoretical results in the paper on wkear characterizations of strong convexity**
+### **Important theoretical results in the paper on weaker characterizations of strong convexity**
 
 The theorems that follow will be given the same numberings as it appeared in the referenced literature. 
 

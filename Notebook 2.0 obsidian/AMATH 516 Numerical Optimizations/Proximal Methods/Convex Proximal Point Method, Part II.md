@@ -5,6 +5,8 @@
 ### **Proximal Point in the Rockafellar Manner**
 
 This section will only summarize key results from Rockafellar's writing of the proximal point method in the convex case. 
+Rockfellar's work has the perspective of maximal monotone operators and variational inequalities description of PPM method, very early on. 
+
 In this section we briefly view over how geniuses like Rockafellar handles the situations. 
 He heavily makes use of theories of monotone operators in Hilbert spaces, and he focuses more on the iterates than the function value. 
 His analysis is a world of difference compare to Guler's work which inspired all previous sections. 

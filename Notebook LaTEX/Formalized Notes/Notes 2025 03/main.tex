@@ -784,7 +784,7 @@
         \end{definition}
         The KKT of a linear programming problem is an instance of a linear feasibility problem. 
         \par
-        Let $X_1, X_2, Y$ be Hilbert spaces. 
+        Let $X_1, X_2, Y$ be Euclidean spaces. 
         Define linear mapping $E:X_1 \times X_2 \rightarrow Y := (x_1, x_2)\mapsto E_1 x_1 + E_2 x_2$ where $E_1, E_2$ each are mappings of $X_1 \rightarrow Y, X_2 \rightarrow Y$. 
         Denote the adjoint of linear mapping by $(\cdot)^*$. 
         Let $c = (c_1, c_2) \in X_1 \times X_2$, $b \in Y$. 
@@ -835,7 +835,7 @@
                 \right.
             \right\rbrace. 
         \end{align*}
-        The KKT conditions give the following convex feasibility problem 
+        The KKT conditions give the following linear feasibility problem 
         \begin{align*}
             E_1 x_1 + E_2 x_2 &= b, \\
             E_1^* y + z &= c_1, \\
@@ -844,7 +844,7 @@
             (x_1, x_2) &\in \mathcal K \times X_2, \\
             (y, z) &\in Y \times \mathcal K^*.
         \end{align*}
-        Allow $X_1 = \RR^{n_1}, X_2 = \RR^{n_2}, Y = \RR^m$. 
+        Assuming $X_1 = \RR^{n_1}, X_2 = \RR^{n_2}, Y = \RR^m$. 
         Define 
         \begin{align*}
             \mathbf K &:= \mathcal K \times \RR^{n_2} \times \RR^m \times \mathcal K^*, 
