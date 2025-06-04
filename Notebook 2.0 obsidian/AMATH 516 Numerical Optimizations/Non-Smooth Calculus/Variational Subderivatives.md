@@ -26,7 +26,7 @@ Subderivative is a number, not a vector. It tells how the function changes given
 ---
 ### **Dini-Hadamard Variational Subderivative**
 
-Dini-Hadmard variational sub-derivative tells us how a function behaves near a given ray. 
+Dini-Hadmard variational subderivative tells us how a function behaves near a given ray. 
 We denote $\mathbb B = \{x : \Vert x\Vert < 1\}$. 
 
 #### **Def-1 | Dini-Hadamard Variational Subderivative**
@@ -39,7 +39,7 @@ We denote $\mathbb B = \{x : \Vert x\Vert < 1\}$.
 > $$
  
 
-**Obesrvations**
+**Observations**
 
 The limit is saying: 
 
@@ -67,7 +67,7 @@ $$
 
 
 #### **Def-2 | Classic Directional Derivative Locally Lipschitz Functions**
-> Consider any $f$ that is an augmented real function and it's Lipschitz continuous around the point $x$, then the directional derivative in the direction of $u$ is: 
+> Consider any $f$ that is an augmented real function and, it's Lipschitz continuous around the point $x$, then the directional derivative in the direction of $u$ is: 
 > $$
 > \begin{aligned}
 >      f'(x, u) = \liminf_{\tau \searrow 0}\frac{f(x + \tau u) - f(x)}{\tau}
@@ -90,12 +90,12 @@ Allow $\eta\rightarrow 0$ from both direction will yield Gâteaux derivative def
 Under the condition that $f$ is *Lipchitz Continuous* on a neighborhood of points (A characterization of convex functions as well), the above definition is equivalent to the usual calculus definition of a directional derivative introduced to second year undergraduate students. 
 
 ---
-### **Recovering Fenchet Differentiability**
+### **Recovering Frenchet Differentiability**
 
 The definition of Dini-Hadmard variational subderivatives breaks the definition of other type of variational derivatives down to small components. 
-To illustrate, we consider the following claims that proposed an equivalent characterization of the Fenchet Differentiability. 
+To illustrate, we consider the following claims that proposed an equivalent characterization of the Frenchet Differentiability. 
 
-#### **Claim | Sufficient for Fenchet Differentiability**
+#### **Claim | Sufficient for Frenchet Differentiability**
 > Suppose $f:\R^n \rightarrow \R$ is continuous. 
 > Then it is differentiable if and only if $\exists v \in \R^n$ such that: 
 > $$
@@ -335,7 +335,7 @@ This should be obvious.
 
 #### **Claim | Sum rule of Dini Hadamard Subderivative**
 > Let $F = f + g$. 
-> Suppose that $f: \R^n \rightarrow \overline \R$ is differentiable at $\bar x$ and $g$ has $dg(x)$ is defined for all $w$ then 
+> Suppose that $f: \R^n \rightarrow \overline \R$ is differentiable at $\bar x$ and $g$ has $dg(x)$ is defined for all $w$. 
 > Then, for all $w \in \R^n$, $dF(\bar x)(w) =dg(\bar x)(w) + \langle \nabla f(\bar x), x\rangle$. 
 
 **Proof**

@@ -3,7 +3,7 @@ aliases:
   - Nonexpansive Operator in Euclidean Space
 ---
 - [Banach Contraction in Metric Space](Banach%20Contraction%20in%20Metric%20Space.md)
-- [Lipschitz Continuity](Lipschitz%20Continuity.md)
+- [Local, Global Lipschitz Continuity](AMATH%20516%20Numerical%20Optimizations/Background/Local,%20Global%20Lipschitz%20Continuity.md)
 
 ---
 ### **Intro**

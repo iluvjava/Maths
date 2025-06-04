@@ -50,7 +50,7 @@ Theorem 2.21 from \<First Order Method in Optimizations\>, It's also one of the 
 
 **Remarks**: 
 
-The definition of Lipchitz is in [Lipschitz Continuity](../Background/Lipschitz%20Continuity%20), and the proof and some detailed discussion will be in here: [Convex Function is Locally Lipschitz](../Non-Smooth%20Calculus/Convex%20Function%20is%20Locally%20Lipschitz%20). Convex Functions are continuous on its domain, but only along a line segment. 
+The definition of Lipchitz is in [Local, Global Lipschitz Continuity](AMATH%20516%20Numerical%20Optimizations/Background/Local,%20Global%20Lipschitz%20Continuity.md), and the proof and some detailed discussion will be in here: [Convex Function is Locally Lipschitz](../Non-Smooth%20Calculus/Convex%20Function%20is%20Locally%20Lipschitz%20). Convex Functions are continuous on its domain, but only along a line segment. 
 Which is proved by [this](Convex%20Line%20Segment%20Continuity%20) file. 
 
 ---

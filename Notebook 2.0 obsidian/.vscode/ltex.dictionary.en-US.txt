@@ -48,3 +48,6 @@ Ekeland
 Güler
 Calatronic
 Chambolle
+Necoara
+polytopes
+subgradients

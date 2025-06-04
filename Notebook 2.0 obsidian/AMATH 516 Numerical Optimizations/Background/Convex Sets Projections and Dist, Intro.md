@@ -1,5 +1,5 @@
 1. [Topological Basics for Optimizations](Topological%20Basics%20for%20Optimizations.md)
-2. [Lipschitz Continuity](Lipschitz%20Continuity.md)
+2. [Local, Global Lipschitz Continuity](AMATH%20516%20Numerical%20Optimizations/Background/Local,%20Global%20Lipschitz%20Continuity.md)
 3. [Characterizing Functions for Optimizations](Characterizing%20Functions%20for%20Optimizations.md)
 
 

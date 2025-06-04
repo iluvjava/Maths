@@ -5,16 +5,16 @@
 ### **Intro**
 
 Error bound theory is very deep and broad in the field of numerical optimizations. 
-This file give one example of an Error Bound in the early days of the field. 
+This file gives one example of an Error Bound in the early days of the field. 
 The idea traces back to this publication: 
 > Hoffman, A.J.: On approximate solutions of systems of linear inequalities. J. Res. Natl. Bur. Stand. 49, 263–265 (1952)
 
-Hoffman found a inequality that bounds the distance to a polytope using it's constraint violation. 
+Hoffman found an inequality that bounds the distance to a polytope using its constraints' violation. 
 Necoara et al. [^1] presented the inequality in their paper. 
 
 **Notations are now in order.**
-Denote $\Vert \cdot\Vert_{(\cdot)}, \Vert \cdot\Vert_{(\cdot)^\star}$ for the norm and dual norm in an Euclidean space. 
-Take $P$ in an Euclidean space, denote $[\cdot]_{P} \equiv \argmin{z \in P}\Vert z - (\cdot)\Vert$ as the projection onto a set $P$. 
+Denote $\Vert \cdot\Vert_{(\cdot)}, \Vert \cdot\Vert_{(\cdot)^\star}$ for the norm and dual norm in a Euclidean space. 
+Take $P$ in a Euclidean space, denote $[\cdot]_{P} \equiv \argmin{z \in P}\Vert z - (\cdot)\Vert$ as the projection onto a set $P$. 
 Similarly, denote $[\cdot]_+$ as the projection on the positive quadrant of any Euclidean space. 
 And denote $[m]$ with $m \in \N$ to be the enumeration of $\{1, 2, \ldots, m\}$. 
 The theorem the follows introduce the formulation of error bound presented by Necoara et al. 
@@ -91,14 +91,14 @@ Then it simplifies:
 $$
 \begin{aligned}
     \zeta_{2, 2}(A, C) &:= 
-    \min_{I \in \mathcal J} \min_{u, v}\left\lbrace
+    \min_{\mathbb I \in \mathcal J} \min_{u, v}\left\lbrace
         \left\Vert
             A^Tu + C^Tv
         \right\Vert: 
         \left\Vert
             \begin{matrix}u \\ v\end{matrix}
         \right\Vert = 1, 
-        v_I \ge \mathbf 0, v_{[m]\setminus I} = \mathbf 0
+        v_\mathbb I \ge \mathbf 0, v_{[m]\setminus \mathbb I} = \mathbf 0
     \right\rbrace
     \\
     &= \min_{\mathbb I \in \mathcal J} \frac{1}{\sigma_{\min}([A^T, I_{\mathbb I}^T])}. 

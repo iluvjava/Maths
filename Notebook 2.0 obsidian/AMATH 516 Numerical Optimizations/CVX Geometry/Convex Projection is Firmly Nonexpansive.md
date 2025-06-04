@@ -1,4 +1,4 @@
-1. [[Lipschitz Continuity]]
+1. [[AMATH 516 Numerical Optimizations/Background/Local, Global Lipschitz Continuity]]
 2. [[Convex Sets Projection Obtuse Angle Theorem]]
 3. Used in: [[Convex Sets Projections and Dist, Intro]]
 

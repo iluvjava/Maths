@@ -2415,7 +2415,7 @@
             \end{enumerate}
             Therefore, it has $G_0^{(s)} \le \epsilon$, hence it must have terminated at, or before iteration $s$. 
         \end{proof}
-        \begin{theorem}[bounds on the total iterations]
+        \begin{theorem}[bounds on the total iterations]\label{thm:rgmapg-total-itr-bnds}
             Let $F = f + g$ satisfies Assumption \ref{ass:q-growth-ch2}. 
             Suppose that we applied Algorithm \ref{alg:linear-rgmapg} to it. 
             For any $\epsilon > 0$, assuming that it terminated at $j = J < M$ iteration.
@@ -2458,7 +2458,7 @@
                 \\
                 &\le 2T_\epsilon n_J \le 2T_\epsilon \bar p.
             \end{align*}
-            The total iteration counts is bounded by: 
+            The total number of iterations is bounded by: 
             \begin{align*}
                 \sum_{i = 0}^{J - 1}p_i \le \sum_{i = 0}^{J} n_i &\le 
                 \frac{8\sqrt{2L(1 + e)}}{\sqrt{\mu}} \left\lceil 
@@ -2472,7 +2472,7 @@
         \par
         The final results from above theorem provide the convergence rate of iterates and the complexity of restart GMAPG under Assumption \ref{ass:q-growth-ch2}. 
         We denote $\kappa := L/\mu$. 
-        \begin{theorem}[restarted GMAPG convergence and complexity]\;\label{thm:rgmapg-cnvg-complexity}
+        \begin{theorem}[restarted GMAPG convergence and complexity]\;\label{thm:rgmapg-cnvg-complexity}\\
             Let $F = f + g$ satisfy Assumption \ref{ass:q-growth-ch2}. 
             Let $J$ be the total number of iteration performed to achieve accuracy in the outer loop.
             Let $K := \sum_{i = 0}^{J - 1}p_i$ be the total iterations. 
@@ -2490,7 +2490,7 @@
                 \right)
                 &= 2(k - 1). 
             \end{align*}
-            Then it has 
+            Then it has from Theorem \ref{thm:rgmapg-total-itr-bnds} that:
             \begin{align*}
                 0 &\le 
                 \frac{8\sqrt{2L(1 + e)}}{\sqrt{\mu}}\left\lceil 

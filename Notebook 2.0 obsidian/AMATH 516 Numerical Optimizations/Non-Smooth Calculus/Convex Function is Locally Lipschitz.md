@@ -1,4 +1,4 @@
-* [[Lipschitz Continuity]]
+* [[AMATH 516 Numerical Optimizations/Background/Local, Global Lipschitz Continuity]]
 * [[Characterizing Functions for Optimizations]]
 * [[Subgradient Intro]]
 

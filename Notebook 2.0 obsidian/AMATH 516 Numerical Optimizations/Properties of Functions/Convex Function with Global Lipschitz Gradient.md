@@ -1,5 +1,5 @@
 - [Characterizing Functions for Optimizations](../Background/Characterizing%20Functions%20for%20Optimizations.md)
-- [Lipschitz Continuity](../Background/Lipschitz%20Continuity.md)
+- [Local, Global Lipschitz Continuity](AMATH%20516%20Numerical%20Optimizations/Background/Local,%20Global%20Lipschitz%20Continuity.md)
 
 ---
 ### **Intro**
@@ -40,7 +40,7 @@ $$
 \end{aligned}
 \tag{A2}
 $$
-See [Lipschitz Continuity](../Background/Lipschitz%20Continuity.md) for exciting results regarding mapping of this type. 
+See [Local, Global Lipschitz Continuity](AMATH%20516%20Numerical%20Optimizations/Background/Local,%20Global%20Lipschitz%20Continuity.md) for exciting results regarding mapping of this type. 
 Using convexity alone, it gives the following lemma. 
 
 #### **Lemma 1 | Equivalent characterizations of Convexity**
