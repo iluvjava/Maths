@@ -59,21 +59,32 @@ It's equivalent because let's fix some value of $\delta > 0$ for any $\epsilon>0
 
 $$
 \begin{aligned}
-    \Vert x - a\Vert < \delta \implies 
-    f(x) - f(a) \ge - \epsilon 
-    &\iff
-    \forall x \in \mathbb B_\delta(a) : f(x) - f(a) \ge -\epsilon
+    & (\forall \epsilon > 0)(\exists \delta > 0)(\forall x \in \mathbb B(\bar x | \delta)\setminus \{x\})\;
+    f(x) - f(\bar x) \ge - \epsilon
     \\
-    \iff 
-    \inf \{f(\mathbb B_\delta(a))\} - f(a) \ge -\epsilon
+    \iff &  
+    (\forall \epsilon > 0)(\exists \delta > 0) \;
+    \inf \left\lbrace
+        f(x) - f(\bar x) : 0 < \Vert x - \bar x\Vert \le \delta
+    \right\rbrace \ge - \epsilon
+    \\
+    \iff &
+    \lim_{\delta \searrow 0}
+    \inf \left\lbrace
+        f(x) - f(\bar x) : 0 < \Vert x - \bar x\Vert \le \delta
+    \right\rbrace \ge0
+    \\
+    \iff & 
+    \liminf_{x\rightarrow \bar x} f(x) - f(\bar x) \ge 0. 
 \end{aligned}
 $$
 
-Since the choice of $\epsilon > 0$ is arbitrary, and the fact that limit works with inequality then $\lim_{\delta \searrow 0} \inf \{f(\mathbb B_\delta(a))\} \ge f(a)$. 
-The see the converse, simply use the definition of liminf illustrated in the above definition. 
+$\blacksquare$
+
 
 #### **Claim | Sequential Lower Semi-Continuity**
-> Consider any $(x_n)_{n \in \mathbb N}$ to be a sequence such that it converges to $a$ then the sequential limit $\text{liminf}_{n\rightarrow \infty} f(x_n) \ge f(a)$ holds. This claim is equivalent to saying that $f$ is l.s.c at $a$. 
+> Consider any $(x_n)_{n \in \mathbb N}$ to be a sequence such that it converges to $a$ then the sequential limit $\text{liminf}_{n\rightarrow \infty} f(x_n) \ge f(a)$ holds. 
+> This claim is equivalent to saying that $f$ is l.s.c at $a$. 
 
 **Proof**
 

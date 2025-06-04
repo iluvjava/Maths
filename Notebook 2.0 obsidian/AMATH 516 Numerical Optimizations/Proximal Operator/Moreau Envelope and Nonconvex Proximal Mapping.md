@@ -1,5 +1,5 @@
 - [Moreau Envelope and Convex Proximal Mapping](Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md)
-- [Lower Semi-Continuous](../Background/Lower%20Semi-Continuous.md)
+- [Lower Semi-Continuity](../Background/Lower%20Semi-Continuity.md)
 
 ---
 ### **Intro**

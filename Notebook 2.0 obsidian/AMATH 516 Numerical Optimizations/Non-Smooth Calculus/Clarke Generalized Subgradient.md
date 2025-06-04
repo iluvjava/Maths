@@ -4,6 +4,7 @@
 ### **Intro**
 
 This type of subgradient and subderivative for locally/globally Lipschitz continuous function. 
+The following contents are taken from Professor Wang's class at UBCO. 
 
 #### **Definition | Clarke generalized directional derivative**
 > Let $O$ be an open set in $\R^n$. 

@@ -5,7 +5,7 @@
 
 > The epigraph of a function is closed iff the function is lower-semi-continuous. 
 
-See [[Lower Semi-Continuous]] for its definition. 
+See [[Lower Semi-Continuity]] for its definition. 
 
 **Proof**:
 

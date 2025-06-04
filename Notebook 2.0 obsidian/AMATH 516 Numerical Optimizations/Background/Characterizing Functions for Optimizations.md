@@ -18,7 +18,7 @@ Functions that models feasibility such as the indicator function of a set $Q$.
 Read [Augmented Reals](Augmented%20Reals.md) for arithmetic rules. Here is a list of topics that are helpful for understanding the basics geometry of these type of functions. 
 
 * [Epigraph, Level Sets](Epigraph,%20Level%20Sets.md), this describes the geometry of the function.
-* [Lower Semi-Continuous](Lower%20Semi-Continuous.md), this put some lower bound on all limit point on the function. 
+* [Lower Semi-Continuity](Lower%20Semi-Continuity.md), this put some lower bound on all limit point on the function. 
 * [Convex Sets Intro](Convex%20Sets%20Intro.md), this helps describing convexity of functions. 
 * [Dom](Dom.md), The definition for the domain of a function that is on the augmented reals. 
 

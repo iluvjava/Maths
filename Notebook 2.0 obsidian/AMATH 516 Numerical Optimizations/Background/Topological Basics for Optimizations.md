@@ -119,6 +119,6 @@ More Topology Related
 Sets and Convex Geometry related
 * [[Convex Sets Intro]]
 * [[Euclidean Space]]
-* [[Lower Semi-Continuous]]
+* [[Lower Semi-Continuity]]
 * [[Generating Cone of a Set]]
 * [[Convex Hull, Convex Span]]

@@ -159,5 +159,5 @@ Similarly, this definition defines lower semi-continuity of a function.
 > $$
 
 
-See [Lower Semi-Continuous](../../AMATH%20516%20Numerical%20Optimizations/Background/Lower%20Semi-Continuous.md) for lot more information. 
+See [Lower Semi-Continuity](../../AMATH%20516%20Numerical%20Optimizations/Background/Lower%20Semi-Continuity.md) for lot more information. 
 

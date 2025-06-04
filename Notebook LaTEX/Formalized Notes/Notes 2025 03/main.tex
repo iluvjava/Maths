@@ -774,15 +774,16 @@
     This chapter extends ideas by the end of Necoara et al.'s paper \cite{necoara_linear_2019}.
     \section{Reducing LP to linear feasibility problems}
         We first introduce the linear feasibility problem as our primary problem. 
-        \begin{definition}[a linear feasibility problem]
+        \begin{definition}[a conic feasibility problem]
             Let $A\in \RR^{m\times n}$, $b \in \RR^m$
             Let $\mathcal K$ be a simple cone. 
-            The linear feasibility problem is defined as the following optimization problem: 
+            The conic feasibility problem is defined as the following optimization problem: 
             \begin{align*}
                 \min_{x \in \mathcal K} \Vert Ax - b\Vert^2.
             \end{align*}
         \end{definition}
-        The KKT of a linear programming problem is an instance of a linear feasibility problem. 
+        The KKT of a linear programming problem is an instance of a linear feasibility problem, with $\mathcal K$ being a cross product of one of $\RR, \RR_+, \RR_-$. 
+        A feasibility semidefinite program with linear constraint can is another example. 
         \par
         Let $X_1, X_2, Y$ be Euclidean spaces. 
         Define linear mapping $E:X_1 \times X_2 \rightarrow Y := (x_1, x_2)\mapsto E_1 x_1 + E_2 x_2$ where $E_1, E_2$ each are mappings of $X_1 \rightarrow Y, X_2 \rightarrow Y$. 
@@ -947,14 +948,14 @@
         \end{align*}
         In practice, implicitly representing the process of $A^TAv$ is better in computing software. 
         Here we write it out to view, for theoretical interests. 
+        % SUBSECTION | INVESTIGATING THE MATRIX
         \subsection{Investigating the matrix}
-            
+        % SUBSECTION | SPEEDY EVALUATION
         \subsection{Speedy evaluations}
             Let $f(v) = (1/2)\Vert Av - d\Vert^2$ to be the objective function of optimization problem \eqref{problem:lp-kkt-min}. 
-            Its gradient, objective value, and Bregman Divergence have: 
+            The gradient of $f$ at $v$ is: $\nabla f(v) = A^TAv - A^Td$. 
+            Once the gradient at a point is known, the objective value at $v$, and Bregman Divergence at $u, v$ can be expressed in its gradient at $u, v$ with minimum computation overhead: 
             \begin{align*}
-                \nabla f(v) &= A^TAv - A^Td, 
-                \\
                 f(v) &= 
                 \frac{1}{2}\langle v, \nabla f(v) - A^Td\rangle + \frac{1}{2}\Vert d\Vert^2, 
                 \\
@@ -962,10 +963,10 @@
                 \\
                 &= (1/2)\langle \nabla f(u) - \nabla f(v), u - v\rangle. 
             \end{align*}
-            The value $\nabla f(v), f(v)$ when evaluated together, require minimal additional computations. 
+            This makes evaluating $\nabla f(v), f(v)$ together just as fast as evaluating $\nabla f(v)$ alone.
             This fact is favorable for implementations in practice. 
             Furthermore, the difference of the function value between 2 points $v, u$ admits an interesting relation via the Bregman Divergence. 
-            Observe that $\forall u, v \in \RR^n$ it has 
+            Observe that $\forall u, v \in \RR^n$ it has: 
             \begin{align*}
                 f(u) - f(v) &= \langle \nabla f(v), u - v \rangle + D_f(u, v)
                 \\
@@ -973,8 +974,8 @@
                 \\
                 &= (1/2)\langle \nabla f(u) + \nabla f(v), u - v\rangle. 
             \end{align*}
-            For this problem, the computation overhead for $f(u) - f(v), D_f(u, v)$ is very little if $\nabla f(u), \nabla f(v)$ is known. 
-    \section{Hoffman error bound and Q-SCNVX}
+            For this reason, the computation overhead for $f(u) - f(v), D_f(u, v)$ is very little as well if, $\nabla f(u), \nabla f(v)$ is already known.
+    \section{Hoffman error bound in linear feasibility problem}
 
 \chapter{Advanced Enhancement Techniques in Accelerated Proximal Gradient}
     We review advanced enhancement techniques in Accelerated Proximal Gradient method. 
@@ -2585,7 +2586,6 @@
             To achieve accuracy $\Vert z_J - z^+_J\Vert \le \delta$, it would require $\mathcal O\left(\frac{1}{\sqrt{\kappa}}\ln\left(\frac{1}{\kappa\delta}\right)\right)$ many total iterations of GMAGP. 
         \end{proof}
         
-    
     \section{Applying them to large scale LP}
     
     \section{Hoffman Bounds and infeasibility detection}
