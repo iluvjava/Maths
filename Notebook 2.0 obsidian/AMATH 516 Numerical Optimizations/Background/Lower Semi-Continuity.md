@@ -39,7 +39,7 @@ $$
 \end{aligned}
 $$
 
-Therefore the function is not lower semi-continuous. 
+Therefore, the function is not lower semi-continuous. 
 
 **Remarks:**
 

@@ -75,12 +75,88 @@ $$
 $$
 
 Therefore $L = \inf C$. 
+$\blacksquare$
 
+**Remark**
+
+Since the limit infimum is in the set of cluster point, it means there also exists a subsequence that converges to limit infimum. 
 
 ---
 ### **Some properties of Limit Infimum and Limit Supremum of Sequences**
 
+#### **Lemma | Liminf first inequality**
+> For any two sequences $a_n, b_n$ in $\R$, it has the inequality 
+> $$
+> \begin{aligned}
+>     \liminf_{n\rightarrow \infty} a_n + b_n &\ge 
+>     \liminf_{n\rightarrow \infty} a_n + 
+>     \liminf_{n\rightarrow \infty} b_m. 
+> \end{aligned}
+> $$
 
+**Proof**
+
+The proof is direct. 
+$$
+\begin{aligned}
+    \liminf_{k\rightarrow \infty} a_k + b_k
+    &= \lim_{k\rightarrow \infty} \inf_{\substack{m \ge k \\ n \ge k}}\left\lbrace
+        a_m + b_n |\; m = n
+    \right\rbrace
+    \\
+    &\ge \lim_{k\rightarrow \infty} \inf_{\substack{m \ge k \\ n \ge k}}\left\lbrace
+        a_m + b_n
+    \right\rbrace
+    \\
+    &= \lim_{k\rightarrow \infty} \inf_{m \ge k} a_m + 
+    \lim_{k \rightarrow \infty} \inf_{n \ge k} b_n. 
+\end{aligned}
+$$
+
+#### **Lemma | Liminf composite sequence**
+> Suppose $(a_k)_{k \ge 0}, (b_k)_{k \ge 0}$ are sequences in $\R$. 
+> Suppose in addition that $\lim_{k\rightarrow \infty} b_k = b$ which has a limit. 
+> Then 
+> $$
+> \begin{aligned}
+>     \liminf_{k\rightarrow \infty} a_k + b_k = b + \liminf_{k \rightarrow \infty} a_k. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+The proof is direct.
+Because $b_n$ has a limit it's true that $\liminf_{k \rightarrow \infty} b_k = b$. 
+Using previous lemma it has: 
+$$
+\begin{aligned}
+    \liminf_{k\rightarrow \infty} a_k + b_k 
+    &\ge \liminf_{k\rightarrow \infty} a_k + \liminf_{k\rightarrow \infty} b_k 
+    \\
+    &= \liminf_{k\rightarrow \infty} a_k + b. 
+\end{aligned}
+$$
+
+Next, using it again 
+
+$$
+\begin{aligned}
+    0 &\le \liminf_{k \rightarrow \infty} a_k + b_k - b_k + 
+    \liminf_{k \rightarrow \infty} b_k - \left(
+        \liminf_{k\rightarrow \infty} a_k + b_k
+    \right)
+    \\
+    &= 
+    \left(
+        \liminf_{k \rightarrow \infty} a_k
+    \right) + 
+    b - \left(
+        \liminf_{k\rightarrow \infty} a_k + b_k
+    \right). 
+\end{aligned}
+$$
+
+It's now done. 
 
 ---
 ### **Limit Supremum, Limit Infimum of functions**
