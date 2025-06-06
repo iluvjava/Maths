@@ -33,7 +33,7 @@ $$
     \left(\exists w_n \rightarrow \bar w, \tau_n \searrow 0\right)\;
     \lim_{n\rightarrow \infty} \tau^{-1}\Delta_f(\bar x + \tau w, \bar x)  
     \le r. 
-\end{aligned}\tag{a}
+\end{aligned}
 $$
 Mark that $w_n \rightarrow \overline w, \tau_n \searrow 0$, it will be used later. 
 Define sequence $x_n$ in $\R^n$ and, $\alpha_n$ in $\R$: 
@@ -103,7 +103,7 @@ $$
 \begin{aligned}
     df(\bar x)(\bar w) &\le 
     \lim_{n \rightarrow \infty}
-    \tau_n^{-1}(f(\bar x + \tau_n w_n) - f(\bar x)) 
+    \tau_n^{-1}(\Delta_f(\bar x + \tau_n w_n, \bar x)) 
     \le 
     \lim_{n\rightarrow \infty}\tau_n^{-1}(\alpha_n - f(\bar x)) = r. 
 \end{aligned}
