@@ -1,5 +1,5 @@
 Pre-req: 
-- [Subgradient Intro](Subgradient%20Intro.md)
+- [Subgradients Intro](Subgradients%20Intro.md)
 - [Convex Separations Theorems](../CVX%20Geometry/Strict%20Separations%20Theorem.md)
 
 

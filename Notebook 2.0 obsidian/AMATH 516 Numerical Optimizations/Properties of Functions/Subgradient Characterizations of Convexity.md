@@ -1,5 +1,5 @@
 - [Gradient, Hessian Characterization of Convex Functions](../CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convex%20Functions.md)
-- [Subgradient Intro](../Non-Smooth%20Calculus/Subgradient%20Intro.md)
+- [Subgradients Intro](../Non-Smooth%20Calculus/Subgradients%20Intro.md)
 - [Convex Separations Theorems](../CVX%20Geometry/Strict%20Separations%20Theorem.md)
 
 ---

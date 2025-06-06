@@ -2,7 +2,7 @@
 alias: Variational Directional Derivatives, Dini Hadamard Subderivatives
 
 ---
-- [Subgradient Intro](Subgradient%20Intro.md), [Fechet Regular Subgradient](Fechet%20Regular%20Subgradient.md)
+- [Subgradients Intro](Subgradients%20Intro.md), [Fechet Regular Subgradient](Fechet%20Regular%20Subgradient.md)
 - [Epigraph, Level Sets](Epigraph,%20Level%20Sets.md), 
 - [Support Function](Support%20Function.md), 
 

@@ -2,7 +2,7 @@
 alias: Fenchel Equality, Fenchel Identity
 ---
 * [Convex Conjugation Introduction](Convex%20Conjugation%20Introduction.md)
-* [Subgradient Intro](../Non-Smooth%20Calculus/Subgradient%20Intro.md)
+* [Subgradients Intro](../Non-Smooth%20Calculus/Subgradients%20Intro.md)
 
 ---
 ### **Intro**

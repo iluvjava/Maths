@@ -1,4 +1,4 @@
-[[Non-Smooth Calculus/Subgradient Intro]], 
+[[Subgradients Intro]], 
 
 ---
 ### **Intro**

@@ -1,4 +1,4 @@
-[[Subgradient Intro]], [[Convex Directional Derivatives]]. 
+[[Subgradients Intro]], [[Convex Directional Derivatives]]. 
 
 ----
 ### **Intro**

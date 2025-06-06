@@ -43,7 +43,7 @@ The following claim state this preliminary observation from the definition of we
 
 Recall the sequence of equivalent characterization for convex function through their convex subgradient from [Subgradient Characterizations of Convexity](Properties%20of%20Functions/Subgradient%20Characterizations%20of%20Convexity.md). 
 
-In addition, we take the sum rule for regular subgradient (See [Regular Subgradient](Non-Smooth%20Calculus/Subgradient%20Intro.md)) for more and, it gives: 
+In addition, we take the sum rule for regular subgradient (See [Regular Subgradient](Non-Smooth%20Calculus/Subgradients%20Intro.md)) for more and, it gives: 
 
 $$
 \begin{aligned}

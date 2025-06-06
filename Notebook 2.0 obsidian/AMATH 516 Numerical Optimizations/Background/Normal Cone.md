@@ -4,19 +4,19 @@
 ---
 ### **Variational Normal Cone**
 
-A [Variational Normal Cone](Variational%20Normal%20Cone.md)  is parameterized by a set $Q\subseteq \mathbb{R}^n$ and a point $\bar{x}\in Q$ such that: 
+A [Regular Normal Cone](../Variational%20Geometry/Variational,%20Limiting%20Normal%20Cone%20Introduction.md)  is parameterized by a set $Q\subseteq \mathbb{R}^n$ and a point $\bar{x}\in Q$ such that: 
 
 > $$
-> N_Q(\bar{x}) := \left\lbrace
+> \hat N_Q(\bar{x}) := \left\lbrace
 >     v \in \mathbb{R}^n: 
 >     \langle v, x - \bar{x}\rangle \le o(\Vert x - \bar{x}\Vert_2), x\rightarrow \bar{x}\in Q
 > \right\rbrace
 > $$
 
-Where, the little $o$ notations denotes the limit that: $\lim_{x\rightarrow \bar{x}} \frac{o(\Vert x - \bar{x}\Vert_2)}{\Vert x - \bar{x}\Vert_2} = 0$. Another Equivalent Definition of the set is given as: 
-
+Where, the little $o$ notations denotes the limit that: $\lim_{x\rightarrow \bar{x}} \frac{o(\Vert x - \bar{x}\Vert_2)}{\Vert x - \bar{x}\Vert_2} = 0$. 
+An equivalent definition is:
 > $$
-> N_Q(\bar x):= 
+> \hat N_Q(\bar x):= 
 > \left\lbrace
 >     v\in \mathbb E 
 >     \left|

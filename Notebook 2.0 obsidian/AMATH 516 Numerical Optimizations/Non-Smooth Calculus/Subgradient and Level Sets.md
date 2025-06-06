@@ -1,4 +1,4 @@
-[[Subgradient Intro]]
+[[Subgradients Intro]]
 [[Tangent Cone]]
 
 ---

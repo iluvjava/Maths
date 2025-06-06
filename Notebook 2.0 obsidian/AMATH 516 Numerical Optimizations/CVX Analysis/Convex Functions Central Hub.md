@@ -1,6 +1,6 @@
 - [Convex Sets Intro](../Background/Convex%20Sets%20Intro.md),
 - [Characterizing Functions for Optimizations](../Background/Characterizing%20Functions%20for%20Optimizations.md),
-- [Subgradient Intro](../Non-Smooth%20Calculus/Subgradient%20Intro.md)
+- [Subgradients Intro](../Non-Smooth%20Calculus/Subgradients%20Intro.md)
 
 ---
 ### **Intro**

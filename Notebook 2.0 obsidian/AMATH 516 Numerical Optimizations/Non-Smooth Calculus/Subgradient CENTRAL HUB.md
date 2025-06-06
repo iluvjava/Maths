@@ -2,7 +2,7 @@
 alias: Subgradient Properties
 
 ---
-[Subgradient Intro](Subgradient%20Intro.md)
+[Subgradients Intro](Subgradients%20Intro.md)
 
 ---
 **Intro**
@@ -28,7 +28,7 @@ Properties, and geometric interpretations of Subgradient.
 	* Sum rule of subgradient holds under regularity conditions. 
 * [Subgradient and Subdifferential Examples](Subgradient%20and%20Subdifferential%20Examples.md)
 	* Examples of subgradient for enlightenment and applications. 
-* [Epigraphical Normal Cone Interpretation of Subgradient](Epigraphical%20Normal%20Cone%20Interpretation%20of%20Subgradient.md)
+* [Variational Subgradient Part II](Variational%20Subgradient%20Part%20II.md)
 	* A standard geometric interpretation of subgradient via normal cone and epigraph of functions. 
 	* This feature generalizes to the non-convex settings. 
 
@@ -46,5 +46,5 @@ In this section, we expand some of the classic calculus rules for convex subdiff
 
 #### **Topics**
 - [Fechet Regular Subgradient](Fechet%20Regular%20Subgradient.md) (Regular Subgradient)
-- [Dini Hadamard Subderivatives](Variational%20Subderivatives.md) (Variational Subderivative)
+- [Dini Hadamard Subderivatives](Variational%20Subderivatives%20Introduction.md) (Variational Subderivative)
 - [Limiting Subgradient](Limiting%20Subgradient.md) (Mordukhovich Limiting Subdifferential)

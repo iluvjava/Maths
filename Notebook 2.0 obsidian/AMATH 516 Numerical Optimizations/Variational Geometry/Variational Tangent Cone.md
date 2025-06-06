@@ -1,6 +1,6 @@
 - [Tangent Cone](Tangent%20Cone.md)
 - [Normal Cone](Normal%20Cone.md)
-
+- [Set Limits Part II](../Background/Set%20Limits%20Part%20II.md)
 
 ---
 ### **Intro**
@@ -15,7 +15,7 @@ The tangent cone and normal cone a tightly connected via the tangent normal pola
 We introduce some definitions and basic properties for the tangent cone along with some observations. 
 
 #### **Def | The Bouligand Tangent Cone**
-> Let $C \subseteq \mathbb R^n$ a closed set, let $\bar x \in C$, define Bouligran tangent cone of $C$ at $\bar x$ as 
+> Let $C \subseteq \mathbb R^n$ a closed set, let $\bar x \in C$, define Bouligan tangent cone of $C$ at $\bar x$ as 
 > $$
 > \begin{aligned}
 >     T_C(\bar x) 
@@ -77,4 +77,4 @@ Not sure it's something for the reader then.
 
 **Remarks**
 
-The distance function is incensitity to $x \in \text{cl}(C)$. 
+The distance function is insensitive closure of the set $C$. 

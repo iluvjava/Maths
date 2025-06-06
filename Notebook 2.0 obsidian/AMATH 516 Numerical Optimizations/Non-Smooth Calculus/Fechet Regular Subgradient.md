@@ -1,7 +1,7 @@
 ---
 alias:Regular Subgradient
 ---
-- [Subgradient Intro](Subgradient%20Intro.md)
+- [Subgradients Intro](Subgradients%20Intro.md)
 
 ---
 ### **Intro**
@@ -62,7 +62,6 @@ $$
 
 For the $(\impliedby)$ direction, we consider $\varphi(x - \bar x) = \min(\mathbb D_f(x , \bar x | v), 0)$ then $\nabla \varphi(x - \bar x) = \mathbf 0$ implies
 
-
 $$
 \begin{aligned}
     0
@@ -92,6 +91,7 @@ $$
 \end{aligned}
 $$
 
+$\blacksquare$
 
 **Remarks**
 
@@ -133,7 +133,7 @@ The little-o term is gone.
 
 **proof**
 
-See [Variational Subderivatives](Non-Smooth%20Calculus/Variational%20Subderivatives.md) for more information. 
+See [Variational Subderivatives Introduction](Variational%20Subderivatives%20Introduction.md) for more information. 
 
 #### **Theorem 2 | Regular Subgradient is Dense for L.S.C Functions**
 > L.S.C functions has dense regular subgradient. 
@@ -198,7 +198,7 @@ $$
 
 Then the last line we have the definition of Frechet derivative. 
 It's now proved and $f$ is Frechet Differentiable at $\bar x$. 
-
+$\blacksquare$
 
 
 ---

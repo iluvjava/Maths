@@ -4,7 +4,7 @@ alias: Fenchel Conjugate
 Pre-requisite: 
 * [Characterizing Functions for Optimizations](Characterizing%20Functions%20for%20Optimizations.md)
 * [Support Function](Support%20Function.md)
-* [Subgradient Intro](../Non-Smooth%20Calculus/Subgradient%20Intro.md)
+* [Subgradients Intro](../Non-Smooth%20Calculus/Subgradients%20Intro.md)
 
 ---
 ### **Intro**

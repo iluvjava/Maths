@@ -1,6 +1,5 @@
-
 - [Normal Cone](Normal%20Cone.md)
-- [Regular Subgradient](Subgradient%20Intro.md)
+- [Regular Subgradient](../Non-Smooth%20Calculus/Subgradients%20Intro.md)
 
 ---
 ### **Intro**
@@ -9,7 +8,6 @@ We discuss some of the properties expected of Variational normal cones.
 Recall the definition of a regular Frechet normal cone defined on set $C \subseteq \mathbb R^n$: 
 
 #### **Def | Frechet Regular Normal Cone**
-
 > $$
 > \begin{aligned}
 >     v \in \widehat N_C(\bar x) \iff 
@@ -25,8 +23,6 @@ Recall the definition of a regular Frechet normal cone defined on set $C \subset
 > \end{aligned}
 > $$
 > When $\bar x \not \in C$, we have $\widehat N(\bar x) = \emptyset$. 
-
-
 
 
 **Remarks**
@@ -115,6 +111,11 @@ $$
 At the last line we used the fact that the limit exists due $\alpha v, \beta u \in \widehat N_C(\bar x)$. 
 And the conclusion of the above derivation would be that $\alpha u + \beta v \in \widehat N_C(\bar x)$ as well, and therefore the cone is a convex cone. 
 The set is closed because by the definition we have that $\mathbf 0 \in \widehat N_{C}(\bar x)$ trivially. 
+
+**Remarks**
+
+To see $\hat N_C(\bar x) \subsetneq N_C(\bar x)$, consider $\bar x = (0, 0)$ with $C = \{(x, y) : xy = 0 \}$. 
+
 
 #### **Thm | Parallelization Properties of Normal Cone**
 > Let $C = \Omega_1 \times \Omega_2$, so that it can be represented as the product space of 2 vector spaces. 

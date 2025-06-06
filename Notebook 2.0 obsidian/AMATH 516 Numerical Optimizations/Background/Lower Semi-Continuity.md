@@ -82,33 +82,93 @@ $$
 $\blacksquare$
 
 
-#### **Claim | Sequential Lower Semi-Continuity**
-> Consider any $(x_n)_{n \in \mathbb N}$ to be a sequence such that it converges to $a$ then the sequential limit $\text{liminf}_{n\rightarrow \infty} f(x_n) \ge f(a)$ holds. 
-> This claim is equivalent to saying that $f$ is l.s.c at $a$. 
+#### **Claim | Sequential limits under lower semi-continuity**
+> Let $(x_n)_{n\ge 0}$ be any sequence converging to $\bar x$. 
+> $f$ is l.s.c if and only if $\liminf_{n\rightarrow \infty} f(x_n) \ge f(\bar x)$.
 
 **Proof**
 
-The above claim is a consequence of definition of l.s.c from the previous section. 
-To do that we need to use the axiom of choice. 
-Consider the previous claim
+By l.s.c it has 
+$$
+\begin{aligned}
+    (\forall \epsilon > 0)(\exists \delta_\epsilon > 0)\; 
+    \inf_{x}
+    \left\lbrace
+        f(x) - f(\bar x) : x \in \mathbb B(\bar x | \delta_\epsilon)
+    \right\rbrace > -\epsilon. 
+\end{aligned}
+$$
+So, let $\epsilon > 0$. 
+Consider any $\bar x \rightarrow \bar x$, the convergence asserts that there exists $k(\epsilon) \in \N$ such that eventually $\Vert x_n - \bar x\Vert \le \delta_\epsilon$ for all $n \ge k(\epsilon)$. 
+Since $f$ is l.s.c it has: 
 
 $$
 \begin{aligned}
-    \forall \epsilon > 0 \;\exists \delta > 0: 
-    \inf_{x \in \mathbb B_{\delta}(a)} f(x)\ge f(a) - \epsilon, 
+    \inf_{n}\left\lbrace
+        f(x_n) - f(\bar x) : n \ge k(\epsilon)
+    \right\rbrace \ge 
+    \inf_{x} \left\lbrace
+        f(x) - f(\bar x) | x \in \mathbb B(x | \delta_\epsilon)
+    \right\rbrace > - \epsilon. 
+\end{aligned}
+$$
+Since $\epsilon > 0$ arbitrary, it's saying: 
+$$
+\begin{aligned}
+    (\forall \epsilon > 0)(\exists k(\epsilon) \in \N): 
+    \inf_{n}\left\lbrace
+        f(x_n) - f(\bar x) : n > k(\epsilon)
+    \right\rbrace > - \epsilon. 
+\end{aligned}
+$$
+It's the equivalent of $\lim_{m\rightarrow\infty}\inf_{n \ge m} f(x_n) - f(\bar x) \ge 0$. 
+To see the converse of the claim, consider a sequence $x_n\rightarrow \bar x$ that has $\liminf_{n\rightarrow \infty} f(x_n) - f(\bar x) = -c < 0$. 
+By convergence of limit infimum, it has 
+
+$$
+\begin{aligned}
+    & (\forall \epsilon > 0)(\exists k(\epsilon) \in \N) 
+    \;\inf_{n} \left\lbrace
+        f(x_n) - f(\bar x) : n \ge k(\epsilon) 
+    \right\rbrace < c + \epsilon
+    \\
+    \implies &
+    \inf_{n} \left\lbrace
+        f(x_n) - f(\bar x) : n \ge k(c/2)
+    \right\rbrace < -c/2
+\end{aligned}\tag{a}
+$$
+
+This is not good since a convergence sequence is bounded, with $(x_{k(c/2) + n})_{n \ge 0}$ it would claim: 
+
+$$
+\begin{aligned}
+    (\exists \delta > 0)(\forall n \in \N)
+    \left\Vert x_{k(c/2) + n} - \bar x\right\Vert < \delta. 
 \end{aligned}
 $$
 
-choose $\epsilon = 1/n$ then it asserts the existence of $\mathbb B_{\delta_n}(a)$ for each $n\in \mathbb N$. 
-Using axiom of choice, we choose $x_n \in \mathbb B_{\delta_n}(a)$ for all $n\in \mathbb N$. 
-We had identify that sequence $(x_n)_{n\in \mathbb N}$ that satisfies $\lim_{n\rightarrow \infty} f(x_n) \ge f(a)$ with $x_n \rightarrow a$, which is a stronger than the convergence of the subsequential limit. 
+This means $f$ is not l.s.c because combining the above with Equation (a): 
 
-To show the converse that the sequential lower semi-continuity is sufficient to the definition of l.s.c we show that if the above claim is not true, then the definition of l.s.c doesn't hold for $f$. 
-This part of the proof is direct and doesn't need the axiom of choice. 
+$$
+\begin{aligned}
+    \inf_{x}\left\lbrace
+       f(x) - f(\bar x) : x \in \mathbb(\bar x | \delta)
+    \right\rbrace 
+    \le 
+    \inf_{n} \left\lbrace
+        f(x_n) - f(\bar x) : n \ge k(c/2)
+    \right\rbrace < - c/2. 
+\end{aligned}
+$$
+
+So $f$ is not l.s.c 
+$\blacksquare$
+
 
 **Remarks**
 
-Under a metric space, sequenctial characterization of l.s.c is sufficient to the continuous limit over the full space. They are equivalent if axiom of choice can be used. 
+Under a metric space, sequential characterization of l.s.c is sufficient to the continuous limit over the full space. They are equivalent if axiom of choice can be used. 
 
 
 #### **Thm | A list of Equivalent Conditions**
@@ -119,25 +179,25 @@ Under a metric space, sequenctial characterization of l.s.c is sufficient to the
 
 **Observations**
 
-For (1.) iff (2.) see:[Lower Semi-Continuity is Closedness of Epigraph](Lower%20Semi-Continuity%20is%20Closedness%20of%20Epigraph.md).
+For (1.) iff (2.) see: [Lower Semi-Continuity is Closedness of Epigraph](Lower%20Semi-Continuity%20is%20Closedness%20of%20Epigraph.md).
 Conditions 3 is trivial. 
 Choose $\alpha \in \arg\min\{\alpha \in \mathbb{\bar R} : \exists x_n \rightarrow \bar x \wedge f(\bar x) = \alpha\}$ then $\exists (x_n)_{n\in \mathbb N}$ such that $\lim_{n\rightarrow \infty} x_n = \bar x$, at the same time for all $x_n'\rightarrow \bar x$ such that $\lim_{n\rightarrow \infty} f(x_n) = \alpha '$, we must have $\alpha \le x'$. 
 Select that specific best sequence $x_n$, then its subsequential limit automatically equals to $\lim_{x\rightarrow a}f(x)$. 
-Therefore using the equivalence between the first 2 conditions we would have: (3.) iff $f$ is l.s.c iff $\text{epi}(f)$ is closed. 
+Therefore, using the equivalence between the first 2 conditions we would have: (3.) iff $f$ is l.s.c iff $\text{epi}(f)$ is closed. 
 
 **Proof of (2.) => (3.)**
 
 It's direct by the observation that $\text{lev}_\alpha(f)\times \{\alpha\} = \text{epi}(f)\cap (\mathbb R^n \times \{\alpha\})$. 
 The set $\mathbb R^n\times \{\alpha\}$ is a closed set and since $\text{lev}_\alpha(f)$ is closed, the intersection of 2 closed set is still a closed set by basic topology of $\mathbb R^n$. 
 
-**Proof of (3.)==> (1.)**
+**Proof of (3.) => (1.)**
 
 
 
 ---
 ### **Calculus of Lower Semi-continuity**
 
-We investigate when and under what conttext, lower semi-continuity continue to work. 
+We investigate when and under what context, lower semi-continuity continue to work. 
 We list all of them. 
 
 #### **Claims**
@@ -159,8 +219,8 @@ $$
 $$
 
 In the above case 3., 4., finite number of intersection and union of closed set is still a closed set. 
-However, infinitely many union of open sets is always an open set, meaning that inifinitely may intersection of closed set is still a closed set, justifying 3. in the infinite case. 
-Infinitely many intersection of closed set is not a closed set. 
+However, infinitely many unions of open sets is always an open set, meaning that infinitely may intersection of closed set is still a closed set, justifying 3. in the infinite case. 
+Infinitely many intersections of closed set is not a closed set. 
 Simply consider the closure of the list of singletons $\text{cl}\{1/n : n \in \mathbb N\}$. 
 
 #### **Thm | Composition with a Continuous Mapping**
@@ -169,7 +229,7 @@ Simply consider the closure of the list of singletons $\text{cl}\{1/n : n \in \m
 
 **Proof**
 
-Take $x \rightarrow \bar x$ to be an arbitrary convergence sequence in $\mathbb R^n$, for all $\epsilon \ge 0$, using the l.s.c property of $g$, wehave 
+Take $x \rightarrow \bar x$ to be an arbitrary convergence sequence in $\mathbb R^n$, for all $\epsilon \ge 0$, using the l.s.c property of $g$, we have 
 
 $$
 \begin{aligned}

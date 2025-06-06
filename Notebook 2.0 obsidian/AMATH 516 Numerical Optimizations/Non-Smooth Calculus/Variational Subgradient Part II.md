@@ -1,17 +1,17 @@
-[[Subgradient Intro]]
-
+- [Fechet Regular Subgradient](Fechet%20Regular%20Subgradient.md)
+- [Variational, Limiting Normal Cone Introduction](../Variational%20Geometry/Variational,%20Limiting%20Normal%20Cone%20Introduction.md)
 
 ---
 ### **Intro**
 
 A subgradient is part of a normal cone at the epigraph for a function at some point. 
 
-**Thm:**
+#### **Thm | Variational tagent characterizations of regular subgradient**
 
 > Let $f: \mathbb E \mapsto \mathbb{\bar R}$, consider a point where $f(x)$ is finite, then the equivalence hold.
 > $$
 >   v \in \hat\partial [f](x)\iff (v, -1)\in N_{\text{epi}(f)}((x, f(x)))
->$$
+> $$
 
 This theorem holds for both variational subgradient for nonconvex functions, it also holds for convex functions. 
 

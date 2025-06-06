@@ -1,8 +1,3 @@
----
-aliases:
-  - Variagional Subgradient
-  - Regular Subgradient
----
 * [Normal Cone](Normal%20Cone.md)
 * [Characterizing Functions for Optimizations](Characterizing%20Functions%20for%20Optimizations.md)
 * [Convex Sets Intro](Convex%20Sets%20Intro.md)
@@ -18,8 +13,7 @@ aliases:
 * Epigraphical Normal cone and generalized subgradient. 
 
 
-**Defintion | Convex Subgradient**
-
+#### **Defintion | Convex Subgradient**
 > Let $f$  be convex proper function mapping from $\mathbb E$ to $\mathbb {\bar R}$, a vector $g$ is referred to as sub-differential to the point $x\in \text{dom}(f)$ when: 
 > 
 > $$
@@ -42,8 +36,7 @@ Motivate by the fact that, under non-convex case, for some functions, the subgra
 One famous such example is $x^3$ at the point $x = 0$, which it doesn't have a subgradient  because it's impossible to separate the non-convex epigraph from all other points using a tangent plane at $x = 0$ for $x^3$. 
 Rockafellar thought of this and extended the definition, we call it the regular subgradient, or the variational subgradient. 
 
-**Definition | Regular Subgradient**
-
+#### **Definition | Regular Subgradient**
 > Let $f$ be $\mathbb E \mapsto \mathbb{\bar R}$, let $g$ be part of the sub-gradient, and let $x\in \text{dom}(f)$, then
 > 
 > $$
@@ -79,7 +72,7 @@ The variational subgradient is consistent with the gradient definition for ordin
 
 The definition for convex subgradient comes from: \<First Order Methods in Optimizations\> by SIAM, the second definition (regular subgradient) comes from \<Variational Analysis\> Definition 8.3 by Rockafellar, it's consistent with Dimitri's AMATH 516 FALL 2021
 
-Read [Regular Subgradient](Subgradient%20Intro.md) for more information. 
+Read [Regular Subgradient](Subgradients%20Intro.md) for more information. 
 
 ---
 ### **Notations**

@@ -1,5 +1,5 @@
 The subgradient monotonicity is a natural extension to what we have in the smooth case. The following materials will be relevant: 
-* [Subgradient Intro](Subgradient%20Intro.md)
+* [Subgradients Intro](Subgradients%20Intro.md)
 * [Characterizing Functions for Optimizations](Characterizing%20Functions%20for%20Optimizations.md), the convexity parts. 
 * [Gradient, Hessian Characterization of Convex Functions](../CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convex%20Functions.md), This one is older, but it discuss the case when the function is continuous. 
 * [Monotone Operators Introduction](Monotone%20Operators%20Introduction.md). 

@@ -1,4 +1,5 @@
 - [Real Analysis Basics](Real%20Analysis%20Basics.md)
+- [The Little-o Notations in Limits](../../MATH%20000%20Math%20Essential/Analysis/The%20Little-o%20Notations%20in%20Limits.md)
 
 ---
 ### **Intro**
@@ -109,7 +110,7 @@ The norm function $\Vert \cdot\Vert$ is a classical example of a Globally Lipsch
 Locally Lipschitz properties makes the little-o Asymptoptic behaviors of mapping more manageable under certain conditions. 
 
 #### **Thm | Asymptoptic Behavrios of a Locally Lipschitz Mapping**
-> Let $F: \mathbb R^n \mapsto \mathbb R^m$ be locally Lipschitz at $\bar x \in \mathbb R^n$ then, we have $o(\Vert y - \bar x, F(y) - F(\bar x)\Vert)$ is Asymptoptically the same as $o(\Vert y - \bar x\Vert)$. 
+> Let $F: \mathbb R^n \mapsto \mathbb R^m$ be locally Lipschitz at $\bar x \in \mathbb R^n$ then, we have $o(\Vert (y - \bar x, F(y) - F(\bar x))\Vert)$ is Asymptoptically the same as $o(\Vert y - \bar x\Vert)$. 
 
 **Proof**
 

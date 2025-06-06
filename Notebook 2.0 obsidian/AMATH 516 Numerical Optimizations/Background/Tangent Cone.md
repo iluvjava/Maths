@@ -7,7 +7,6 @@
 A tangent cone is a cone that is define via the set $Q$ and a point $\bar{x}\in Q$ where $Q\in \mathbb{R}^n$: 
 
 #### **Def | Variational Tangent Cone**
-
 > $$
 > T_Q(\bar{x}):= 
 > \left\lbrace

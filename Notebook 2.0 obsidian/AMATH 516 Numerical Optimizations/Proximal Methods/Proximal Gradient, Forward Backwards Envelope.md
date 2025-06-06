@@ -1,5 +1,5 @@
 prereq: 
-* [Subgradient Intro](../Non-Smooth%20Calculus/Subgradient%20Intro.md)
+* [Subgradients Intro](../Non-Smooth%20Calculus/Subgradients%20Intro.md)
 * [[Characterizing Functions for Optimizations]], Strong convexity is used. 
 * [[Moreau Envelope and Convex Proximal Mapping]], We use the proximal operator a lot in here, and some of the important properties of the proximal operator. 
 * [[../Properties of Functions/Convex Function with Global Lipschitz Gradient| Strong Smoothness Conditions]], We use one of the smoothness property and its relations to convexity and Lipschitz of the gradient of the convex function. 
