@@ -1,5 +1,5 @@
 ---
-alias:Regular Subgradient
+alias: Regular Subgradient
 ---
 - [Subgradients Intro](Subgradients%20Intro.md)
 
@@ -100,7 +100,7 @@ The above characterization is equivalent to the definition of regular subgradien
 #### **Claim | Differentiable Lower Bounding Functions**
 > $v\in \hat \partial f(\bar x)$ if and only if there exists $h : \mathbb R^n \mapsto \mathbb R$ such that $h$ is differentiable at $\bar x$ with $f(x) \ge h(x), f(\bar x) = h (\bar x)$ and $\nabla f(\bar x) = v$. 
 
-**proof**
+**Proof**
 
 We suggest the following function as a the candidate:  
 
@@ -111,7 +111,7 @@ $$
 The reader should convince yourself in your head that $f(\bar x) = h(\bar x)$ and $f(x) \ge h(x)$. 
 Next, we need to show the equivalent between the condition $v \in \hat \partial f(\bar x)$ and $v = \nabla f(\bar x)$. 
 The proof is similar to what we had for the previous proof. 
-
+$\blacksquare$
 
 ---
 ### **Testing out the Regular Subgradient** 
@@ -129,9 +129,11 @@ The little-o term is gone.
 
 
 #### **Theorem 1 | Characterizing Subgradient by Dini Hadamard Subderivatives**
-> If $\bar x \in \text{dom}(f)$ then $\hat \partial f(\bar x) = \{v\in \mathbb R^n : \langle v, w\rangle \le df(x)(w) \;\forall w \in \mathbb R^n\}$. 
+> If $\bar x \in \text{dom}(f)$ then $\hat \partial f(\bar x) = \{v\in \mathbb R^n | \langle v, w\rangle \le df(x | w) \; \forall w \in \mathbb R^n\}$. 
+> This set is a convex set. 
+> This set is a closed set. 
 
-**proof**
+**Proof**
 
 See [Variational Subderivatives Introduction](Variational%20Subderivatives%20Introduction.md) for more information. 
 
@@ -223,7 +225,25 @@ $$
 \end{aligned}
 $$
 
-Since this is true for all $w$, we have equaliy $\hat \partial F(\bar x) = \nabla f(\bar x) + \hat \partial g(\bar x)$. 
+Since this is true for all $w$, we have equality $\hat \partial F(\bar x) = \nabla f(\bar x) + \hat \partial g(\bar x)$. 
+$\blacksquare$
+
+#### **Theorem | Fermat's rule and, local minimum**
+> Let $f: \R^n \rightarrow \overline \R$. 
+> If $\bar x$ is a local minimizer of $f$.
+> Then, $\mathbf 0 \in \widehat \partial f(\bar x)$, and $df(\bar x)(w) \ge 0 \;\forall w \in \R^n$. 
+
+**Proof**
+
+The concept of a local minimizer gives the inequality: 
+
+$$
+\begin{aligned}
+    f(x) - f(\bar x) - o(\Vert x - \bar x\Vert) &\ge 0 \implies \mathbf 0 \in \widehat \partial f(\bar x). 
+\end{aligned}
+$$
+
+Using Theorem 1 it has $\bar x \in \text{dom}(f) \iff df(x)(w) \ge 0 \; \forall w \in \R^n$. 
 
 
 ---

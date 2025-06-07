@@ -57,7 +57,7 @@ $$
 
 **Remarks**:
 
-Immediately Observe the Equivalence to the tangent cone definitions [Tangent Cone](../Background/Tangent%20Cone.md) on the epigraph of the function: 
+Immediately Observe the Equivalence to the tangent cone definitions [Tangent Cone Introduction](AMATH%20516%20Numerical%20Optimizations/Background/Tangent%20Cone%20Introduction.md) on the epigraph of the function: 
 
 $$
 \begin{aligned}
@@ -287,7 +287,9 @@ The following theorem is introduced in Professor Wang's Lecture of MATH 564 at U
 This theorem is in fact an exercise in Rockafellar and Wett's textbook. 
 
 #### **Thm | Regular Subgradient and Dini-Hadarmard Subderivative**
-> If $\bar x \in \text{dom}(f)$ then $\hat \partial f(\bar x) = \{v\in \mathbb R^n | \langle v, w\rangle \le df(x | w) \forall w \in \mathbb R^n\}$. 
+> If $\bar x \in \text{dom}(f)$ then $\hat \partial f(\bar x) = \{v\in \mathbb R^n | \langle v, w\rangle \le df(x | w) \; \forall w \in \mathbb R^n\}$. 
+> This set is a convex set. 
+> This set is a closed set. 
 
 **Proof**
 
@@ -317,15 +319,13 @@ $$
 \end{aligned}
 $$
 
-Taking limit on both sides with $\tau \searrow 0$ and $w \rightarrow \mathbf 0$, we can eliminate the little-0 term. 
+Taking limit on both sides with $\tau \searrow 0$ and $w \rightarrow \mathbf 0$, we can eliminate the little-o term. 
 
+ $\hat \partial f(\bar x)$ is an intersection of half spaces that supports the Dini-hadamard subderivative. 
+ Therefore, the set $\hat \partial f (\bar x)$ will have to be a convex set ([Convexity Preserving Operations of Sets](AMATH%20516%20Numerical%20Optimizations/CVX%20Geometry/Convexity%20Preserving%20Operations%20of%20Sets.md)) via an epigraph argument. 
+These half spaces are closed, making $\widehat \partial f(\bar x)$ a closed set as well. 
 
-
-
-**Remarks**
-
-Obviously, the set $\hat \partial f(\bar x)$ is an intersection of all the half spaces that satisfies the conditions where, it supports the Dini-hadamard subderivative. 
-Therefore, the set $\hat \partial f (\bar x)$ will have to be a convex set. 
+ $\blacksquare$
 
 ---
 ### **Sum rule of Dini Hadamard subderivative**

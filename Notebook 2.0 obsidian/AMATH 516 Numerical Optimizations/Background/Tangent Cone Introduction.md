@@ -1,4 +1,4 @@
-[[Introducing Cone]]
+- [[Introducing Cone]]
 
 
 --- 
@@ -6,13 +6,14 @@
 
 A tangent cone is a cone that is define via the set $Q$ and a point $\bar{x}\in Q$ where $Q\in \mathbb{R}^n$: 
 
-#### **Def | Variational Tangent Cone**
+#### **Def | Bouligand Tangent Cone**
+> The Bouligand tangent cone is a set of limits defined by: 
 > $$
 > T_Q(\bar{x}):= 
 > \left\lbrace
->     \lim_{i \rightarrow ∞} \tau_i^{-1}(x_i - \bar{x}): 
+>     \lim_{i \rightarrow ∞} \tau_i^{-1}(x_i - \bar{x}) :
 >     x_i \rightarrow \bar{x} \in Q, \tau_i ↘ 0
-> \right\rbrace
+> \right\rbrace. 
 > $$
 
 **Mathematically**: 

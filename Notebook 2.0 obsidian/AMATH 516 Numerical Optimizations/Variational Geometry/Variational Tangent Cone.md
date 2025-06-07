@@ -1,4 +1,4 @@
-- [Tangent Cone](Tangent%20Cone.md)
+- [Tangent Cone Introduction](AMATH%20516%20Numerical%20Optimizations/Background/Tangent%20Cone%20Introduction.md)
 - [Normal Cone](Normal%20Cone.md)
 - [Set Limits Part II](../Background/Set%20Limits%20Part%20II.md)
 
@@ -15,7 +15,7 @@ The tangent cone and normal cone a tightly connected via the tangent normal pola
 We introduce some definitions and basic properties for the tangent cone along with some observations. 
 
 #### **Def | The Bouligand Tangent Cone**
-> Let $C \subseteq \mathbb R^n$ a closed set, let $\bar x \in C$, define Bouligan tangent cone of $C$ at $\bar x$ as 
+> Let $C \subseteq \mathbb R^n$ a closed set, let $\bar x \in C$, define Bouligand tangent cone of $C$ at $\bar x$ as 
 > $$
 > \begin{aligned}
 >     T_C(\bar x) 
@@ -56,6 +56,7 @@ If we "zoom in" into the point $\mathbf 0$ with a sequence of vector $x^{(n)} \i
 This is true by the st limit $\underset{\tau \searrow 0}{\text{Limsup}}$, which take
 the closure of a union of sets as $\gamma \searrow 0$. 
 Intersection of closed set is always a closed set. 
+$\blacksquare$
 
 #### **Prop | Distance Function and Normal Cone**
 > Let $C \subseteq \mathbb R^n$, be a closed set and $x \in C$, then $v \in T_C(x)$ is equivalent to the condition that the direcitonal derivative on the function $d_C(x)$ in the direction of $v$ equals to zero. 

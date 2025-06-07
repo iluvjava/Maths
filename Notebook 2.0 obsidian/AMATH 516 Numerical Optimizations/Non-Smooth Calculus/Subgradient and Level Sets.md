@@ -1,5 +1,5 @@
 [[Subgradients Intro]]
-[[Tangent Cone]]
+[[AMATH 516 Numerical Optimizations/Background/Tangent Cone Introduction]]
 
 ---
 ### **Intro**

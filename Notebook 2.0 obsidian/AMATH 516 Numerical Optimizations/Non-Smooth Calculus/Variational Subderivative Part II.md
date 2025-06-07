@@ -1,4 +1,4 @@
-- [Tangent Cone](../Background/Tangent%20Cone.md)
+- [Tangent Cone Introduction](AMATH%20516%20Numerical%20Optimizations/Background/Tangent%20Cone%20Introduction.md)
 - [Variational Subderivatives Introduction](Variational%20Subderivatives%20Introduction.md)
 
 ---

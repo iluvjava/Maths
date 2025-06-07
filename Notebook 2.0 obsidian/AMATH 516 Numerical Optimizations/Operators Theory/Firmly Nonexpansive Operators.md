@@ -377,7 +377,7 @@ If an operator $T$ is idempotent, meaning that $T\circ Tx = x$, and it's also Fi
 **Before Proof**
 
 Due to it requires too many facts about this operator, visit [Moreau Envelope and Convex Proximal Mapping](Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md) for a coverage of this example. 
-Recall from [Subgradient CENTRAL HUB](Subgradient%20CENTRAL%20HUB.md) that the subgradient operator is a monotone operator. Now we make the claim: 
+Recall from [SUBGRADIENTS CENTRAL HUB](AMATH%20516%20Numerical%20Optimizations/Non-Smooth%20Calculus/SUBGRADIENTS%20CENTRAL%20HUB.md) that the subgradient operator is a monotone operator. Now we make the claim: 
 
 **Proof**: 
 

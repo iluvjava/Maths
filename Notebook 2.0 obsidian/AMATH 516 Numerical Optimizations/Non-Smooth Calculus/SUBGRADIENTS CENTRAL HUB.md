@@ -1,36 +1,18 @@
----
-alias: Subgradient Properties
+### **Intro**
 
----
-[Subgradients Intro](Subgradients%20Intro.md)
-
----
-**Intro**
-
-We list everything that is directly related to subgradient in this file so that we have a place to refer to various concepts all at the same time. 
+Introduction: [Subgradients Intro](Subgradients%20Intro.md). 
 
 ### **Properties of the Convex Subgradient**
 
 Properties, and geometric interpretations of Subgradient. 
 * [Subgradient Characterizations of Convexity](../Properties%20of%20Functions/Subgradient%20Characterizations%20of%20Convexity.md)
 * [Subgradient is Convex](../CVX%20Analysis/Convex%20Subgradient%20is%20Convex.md)
-	* $\partial f(x)$ is a convex set. 
 * [Bounded Subgradient Lemma](Bounded%20Subgradient%20Lemma.md)
-	* Subgradient is a bounded set in the relative interior of a convex function. 
 * [Nonempty Subdifferential Implies Convexity](Nonempty%20Subdifferential%20Implies%20Convexity.md)
-	* If the subgradient is nonempty in the domain of the function, then the function is convex. 
 * [Subgradient and Level Sets](Subgradient%20and%20Level%20Sets.md)
-	* The subgradient is in the normal cone at the level set of the function value at that point. 
 * [Monotonicity of Subgradient](Monotonicity%20of%20Subgradient.md)
-	* The subgradient operator is a Maximally monotone cyclic operator. 
-	* If the subgradient $\partial f$ is maximally monotone, then $f$ it's convex. 
 * [Subdifferentials Subgradient Computations](Subdifferentials%20Subgradient%20Computations.md)
-	* Sum rule of subgradient holds under regularity conditions. 
 * [Subgradient and Subdifferential Examples](Subgradient%20and%20Subdifferential%20Examples.md)
-	* Examples of subgradient for enlightenment and applications. 
-* [Variational Subgradient Part II](Variational%20Subgradient%20Part%20II.md)
-	* A standard geometric interpretation of subgradient via normal cone and epigraph of functions. 
-	* This feature generalizes to the non-convex settings. 
 
 ### **Other Properties that I haven't had time to write**
 
@@ -47,4 +29,6 @@ In this section, we expand some of the classic calculus rules for convex subdiff
 #### **Topics**
 - [Fechet Regular Subgradient](Fechet%20Regular%20Subgradient.md) (Regular Subgradient)
 - [Dini Hadamard Subderivatives](Variational%20Subderivatives%20Introduction.md) (Variational Subderivative)
+	- [Variational Subderivative Part II](AMATH%20516%20Numerical%20Optimizations/Non-Smooth%20Calculus/Variational%20Subderivative%20Part%20II.md) Tagent cone on the epi graph interpretations. 
 - [Limiting Subgradient](Limiting%20Subgradient.md) (Mordukhovich Limiting Subdifferential)
+- [Clarke Generalized Subderivative](AMATH%20516%20Numerical%20Optimizations/Non-Smooth%20Calculus/Clarke%20Generalized%20Subderivative.md)

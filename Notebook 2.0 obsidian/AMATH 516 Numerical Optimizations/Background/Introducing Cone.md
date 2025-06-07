@@ -47,4 +47,4 @@ This is take from Prof Dimitri's teaching of MATH 516 at UW 2021.
 - [Dual Cone](Dual%20Cone.md). Related to the Fenchel dual of indicator functions. 
 - [Polar Cone](Polar%20Cone.md). A polar cone is the result of a transformation on a cone such that it's perpendicular to the original cones. 
 - [Normal Cone](Normal%20Cone.md). A conic descriptions of sets with convex analysis or variational flavors. 
-- [Tangent Cone](Tangent%20Cone.md). A conic descriptions of functions and sets with convex analysis or variational flavors. 
+- [Tangent Cone Introduction](AMATH%20516%20Numerical%20Optimizations/Background/Tangent%20Cone%20Introduction.md). A conic descriptions of functions and sets with convex analysis or variational flavors. 

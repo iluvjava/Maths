@@ -53,7 +53,7 @@ $$
 The addition is Minkowski set addition and the overline is taking the closure of the set. 
 
 
-#### **Def | Limits of Sets**
+#### **Def | Limits of Set Sequence**
 > Let $(x, d)$ be a metric space, we define the limit of a sequence of sets $C_n \subseteq X$ mathematically as 
 > $$
 > \begin{aligned}

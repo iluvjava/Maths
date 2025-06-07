@@ -94,4 +94,4 @@ For example: $\partial[f(Ax + b, u)|u](x_+)$ means taking the derivative of $f$ 
 ---
 ### **Comments**
 
-The introduction is done. Visit [Subgradient CENTRAL HUB](Subgradient%20CENTRAL%20HUB.md) for all the things related to this concept. 
+The introduction is done. Visit [SUBGRADIENTS CENTRAL HUB](AMATH%20516%20Numerical%20Optimizations/Non-Smooth%20Calculus/SUBGRADIENTS%20CENTRAL%20HUB.md) for all the things related to this concept. 

@@ -13,6 +13,7 @@ alias: Mordukhovich Limiting Subdifferential
 The limiting subgradient creates closure to regular subgradient. 
 To start we define F-attentative convergence of a sequence. 
 This is required for the limiting subgradient definition, which is based on the regular subgradient. 
+Assume that $f:\R^n \rightarrow \overline \R$ is a l.s.c function. 
 
 #### **Def | F-Attentative Convergence**
 > Define let $x_n \in \mathbb R^n$ be a sequence that converges to $\bar x$, then $x_n \rightarrow_f \bar x$ to be $f$-attentive convergence if and only if the following conditions are true for the sequence: 
