@@ -145,7 +145,7 @@ See [Variational Subderivatives Introduction](Variational%20Subderivatives%20Int
 
 #UNFINISHED. 
 
-#### **Thereom 3 | Sufficient Conditions for Differentiability**
+#### **Theorem 3 | Sufficient Conditions for Differentiability**
 > If $\hat\partial f(\bar x) \neq \emptyset$  and $\hat \partial [-f](\bar x) \neq \emptyset$, then the function $f$ is differentiable at $\bar x$. 
 
 **Proof**

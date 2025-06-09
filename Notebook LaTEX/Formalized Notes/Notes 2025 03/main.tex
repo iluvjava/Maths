@@ -978,18 +978,14 @@
     \section{Hoffman error bound in linear feasibility problem}
 
 \chapter{Advanced Enhancement Techniques in Accelerated Proximal Gradient}
-    We incorperate advanced enhancement techniques for the Accelerated Proximal Gradient method and combined then together. 
-    This is based on several papers. 
+    This chapter is the draft for an upcoming paper. 
+    The writing style will change to fit this purpose better. 
     \par
     There are several notable enhancements of the FISTA for function that are not strongly convex. 
-    Monotone variants of FISTA proposed by Beck \cite{beck_fast_2009-1} and Nesterov \cite[2.2.32]{nesterov_lectures_2018} imposes monotonicity in function value at the iterates.  
-    Backtracking strategies from Chambolle \cite{calatroni_backtracking_2019} shows that the underestimating Lipschitz constant using a backtracking technique to choose a next iterate improves the average runtime of the algorithm in practice. 
-    They showed that the convergence rate is bounded by the estimates of the Lipschitz constant. 
-    Restart is a technique discussed in Necoara et al. \cite{necoara_linear_2019}.
-    They showed that there exists an optimal restarting interval to achieve fast linear convergence rate for all functions with quadratic growth condition. 
-    The method of restarting was improved to be parameter free while still retaining a fast linear convergence rate, see Alamo et al. \cite{alamo_restart_2019} and Aujol et al. \cite{aujol_parameter-free_2024}. 
-    \par
-    In this chapter, we will go through the details of these enhancements of FISTA and discuss why they are important in theories, and in practice. 
+    Monotone variants are proposed by Beck \cite{beck_fast_2009-1} and Nesterov \cite[2.2.32]{nesterov_lectures_2018}. 
+    Chambolle proposed the Backtracking strategy \cite{calatroni_backtracking_2019}.
+    Restart is a technique can be found in Necoara et al. \cite{necoara_linear_2019}, \cite{alamo_restart_2019} and Aujol et al. \cite{aujol_parameter-free_2024}. 
+    
     
     \section{Preliminaries}
         This section introduces the full scope of the theories in our analysis. 
