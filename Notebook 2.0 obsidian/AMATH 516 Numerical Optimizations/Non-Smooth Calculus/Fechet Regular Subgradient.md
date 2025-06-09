@@ -244,7 +244,7 @@ $$
 $$
 
 Using Theorem 1 it has $\bar x \in \text{dom}(f) \iff df(x)(w) \ge 0 \; \forall w \in \R^n$. 
-
+$\blacksquare$
 
 ---
 ### **Examples**
