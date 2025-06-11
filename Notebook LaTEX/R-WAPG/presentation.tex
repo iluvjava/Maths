@@ -86,10 +86,10 @@
                 \end{align*}    
                 }
             \end{block}
-            If $F$ is convex and has $L$ Lipschitz smooth gradient and minimizer $x^+$ exists. 
+            If $F$ is convex and has $L$ Lipschitz smooth gradient and a minimizer $x^+$ exists. 
             Then it has
             \begin{itemize}
-                \item a convergence rate of $\mathcal O(1/k^2)$ of $(F(x_k) - F(x^+))_{k \ge 1}$;
+                \item a convergence rate of $\mathcal O(1/k^2)$ for $(F(x_k) - F(x^+))_{k \ge 1}$;
                 \item this convergence rate is optimal in the sense as proposed by Nesterov \cite{nesterov_lectures_2018}.
             \end{itemize}
         \end{frame}
@@ -118,7 +118,6 @@
                    \theta_k = \frac{\sqrt{L/\mu} - 1}{\sqrt{L/\mu} + 1}. 
                 \end{align*}
             \end{tcolorbox}
-            Disregarding the definition of $(t_k)_{k \ge 0}$ for now. 
             Then the algorithm has
             \begin{enumerate}
                 \item A linear convergence rate of $\mathcal O((1 - \sqrt{\mu/L})^k)$ for $(F(x_k) - F(x^+))_{k \ge 1}$. 
@@ -140,9 +139,9 @@
         \begin{frame}{Our theoretical contributions, statement of results}
             Here are the promises: 
             \begin{enumerate}
-                \item We relaxed the traditional choices of the sequence $(\theta_k)_{k \ge 1}$ in the weakest possible way to show that an upper bound for the sequence $(F(x_k) - F^+)_{k \ge 1}$ exists. 
+                \item We relaxed the traditional choices of the sequence $(\theta_k)_{k \ge 1}$ to full extend to show that an upper bound for the sequence $(F(x_k) - F^+)_{k \ge 1}$ exists. 
                 \item We proposed a unified framework which we call ``Relaxed Weak Accelerated Proximal Gradient (R-WAPG)" that unifies the convergence theories for functions that are strongly convex or not necessarily strongly convex. 
-                \item We demonstrate that the R-WAPG framework can be represented is equivalent to various representations of the Nesterov's type accelerated proximal gradient methods with Euclidean geometry in the literature. 
+                \item We demonstrate that the R-WAPG framework is equivalent to various representations of the Nesterov's type accelerated proximal gradient methods with Euclidean geometry in the literature. 
             \end{enumerate}
              
         \end{frame}
@@ -154,7 +153,7 @@
                     \rho_k &:= \frac{\alpha_{k + 1}^2 - (\mu/L)\alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2} \quad \forall (k \ge 0).
                 \end{align*}
             \end{tcolorbox}
-            We can show Nesterov's type accelerated proximal gradient algorithm (similar to what's show in prior but with $g \equiv 0$) which generates $(F(x_k) - F^+)_{k\ge 1}$ has an upper bound of: 
+            We can show Nesterov's type accelerated proximal gradient algorithm (or equivalently, FISTA with $g \equiv 0$) generates $(F(x_k) - F^+)_{k\ge 1}$ has an upper bound of: 
             \begin{tcolorbox}\noindent\vspace{-1em} 
                 \begin{align*}
                     \mathcal O\left(
@@ -253,7 +252,7 @@
                         (1 - \alpha_{k + 1}) \alpha_k^2.
                     }
                 \end{align*}
-                We all the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ the R-WAPG sequences. 
+                We call the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ the R-WAPG sequences. 
             \end{definition}
         \end{frame}
         \begin{frame}{R-WAPG}
@@ -654,8 +653,9 @@
         Our paper can be found on arxiv using the following QR code: 
         \begin{figure}
             \centering
-            \includegraphics[width=17em]{assets/paper-qrcode.png}
+            \includegraphics[width=15em]{assets/paper-qrcode.png}
         \end{figure}
+        Questions?
     \end{frame}
     \begin{frame}{References}        
         \bibliography{references/R-WAPG.bib}

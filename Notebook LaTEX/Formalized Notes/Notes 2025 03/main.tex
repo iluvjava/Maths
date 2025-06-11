@@ -975,20 +975,24 @@
                 &= (1/2)\langle \nabla f(u) + \nabla f(v), u - v\rangle. 
             \end{align*}
             For this reason, the computation overhead for $f(u) - f(v), D_f(u, v)$ is very little as well if, $\nabla f(u), \nabla f(v)$ is already known.
-    \section{Hoffman error bound in linear feasibility problem}
+    \section{Hoffman error bound of linear feasibility problem}
+    \section{Quadratic growth of linear feasibility problem}
 
 \chapter{Advanced Enhancement Techniques in Accelerated Proximal Gradient}
+    %% SYMBOL SETS FOR THIS CHAPTER ONLY 
+    \newcommand{\XXAPG}{AMAPG}
+
     This chapter is the draft for an upcoming paper. 
     The writing style will change to fit this purpose better. 
+    It will be very terse. 
     \par
-    There are several notable enhancements of the FISTA for function that are not strongly convex. 
+    There are several notable enhancements of the FISTA for function that are not necessarily strongly convex. 
     Monotone variants are proposed by Beck \cite{beck_fast_2009-1} and Nesterov \cite[2.2.32]{nesterov_lectures_2018}. 
     Chambolle proposed the Backtracking strategy \cite{calatroni_backtracking_2019}.
     Restart is a technique can be found in Necoara et al. \cite{necoara_linear_2019}, \cite{alamo_restart_2019} and Aujol et al. \cite{aujol_parameter-free_2024}. 
     
     
     \section{Preliminaries}
-        This section introduces the full scope of the theories in our analysis. 
         Firstly, recall the definition of Bregman divergence $D_f(x, y)$ from Definition \ref{def:bregman-div} for a differentiable function $f:\RR^n \rightarrow \overline \RR$. 
         \subsection{smooth plus nonsmooth weakly convex}
             \begin{definition}[weakly convex function]\;\label{def:wcnvx-fxn}\\
@@ -1064,10 +1068,8 @@
                 \end{align*}
             \end{proof}
         \subsection{smooth plus nonsmooth convex}
-            The following assumption is strictly stronger than \ref{ass:sum-of-wcnvx}. 
             \begin{assumption}[convex smooth and nonsmooth]\label{ass:standard-fista}
-                Let $F = f + g$ where $f:\RR^n\rightarrow \overline \RR$ is $L$ Lipschitz smooth, $g$ is convex. 
-                Suppose that $\argmin_{x \in \RR^n} F(x)\neq \emptyset$.
+                Let $F = f + g$ where $f:\RR^n\rightarrow \overline \RR$ is $L$ Lipschitz smooth, $g$ is convex and, $\argmin_{x \in \RR^n} F(x)\neq \emptyset$.
             \end{assumption}
             \begin{lemma}[proximal gradient inequality]\label{lemma:fitsa-pg-ineq}
                 If $F = f + g$ satisfies Assumption \ref{ass:standard-fista}, then for all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{L^{-1}, f, g}(x)$ it has 
@@ -1080,19 +1082,14 @@
             \end{proof}
             
     \section{FISTA made simple}
-        We make the proofs for FISTA  with common enhancement technique available in simple proofs. 
-        We showcase the theories using a generic similar triangle representations of the algorithm which tremendously simplifies the arguments. 
-        The following definition captures several monotone variants of FISTA with line search,  or backtracking strategies.
+        This section gives convergence results under a unified perspective of accelerated proximal gradient methods with line search, backtracking, and monotone enhancements. 
+        Definition \ref{def:xxapg} unifies several combined heuristics. 
+        Theorem \ref{thm:xxapg-fxn-cnvg} provides a generic convergence rate for all momentum sequence satisfying Definition \ref{def:alpha-beta-rho-seq}. 
+        A specialized sequence is stated in Lemma \ref{lemma:xxapg-seq-bnd} which attains the lowest upper bound on the convergence rate. 
+        Theorem \ref{thm:xxapg-specialized-cnvg} proves the $\mathcal O(1/k^2)$ for optimality gap and, the norm of gradient mapping on the last iterate. 
         \par
-        In this section, we give convergence results for a unified formulation of monotone accelerated proximal gradient methods with line search or backtracking enhancements. 
-        Definition \ref{def:generic-mapg-ls} gives a unified view of several combined heuristics. 
-        Theorem \ref{thm:gmapg-ls-convergence} gives a generic description for the convergence rate. 
-        Lemma \ref{lemma:gmapg-seq-bnd} specializes the sequence, attains the lowest upper bound. 
-        Theorem \ref{thm:gmapg-specialized-cnvg} gives a concrete $\mathcal O(1/k^2)$ upper bound for the optimality gap and normed gradient mapping on the last iteration. 
-        \par
-        ``MAPG'' stands for monotone accelerated gradient. 
-        We refer to ``Generic Monotone Accelerated Proximal Gradient with line search" as ``GMAPG''. 
-        \begin{definition}[GMAPG]\label{def:generic-mapg-ls}\;\\ 
+        ``Abstract Monotone Accelerated Proximal Gradient with line search" is ``\XXAPG{}''. 
+        \begin{definition}[\XXAPG{}]\label{def:xxapg}\;\\ 
             Initialize any $x_0, v_0 \in \RR^n$. 
             Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $\alpha_k \in (0, 1) \;\forall k \ge 0$ and $\alpha_0 \in (0, 1]$. 
             \begin{tcolorbox}
@@ -1102,25 +1099,28 @@
                     & \tilde x_k = T_{L_k^{-1}}(y_{k}), \\ 
                     & v_k = x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1}), \\
                     & D_{f}(\tilde x_k, y_k) \le \frac{L_k}{2}\Vert \tilde x_k - y_k\Vert^2, \\
-                    & \text{Choose any } x_k: F(x_k) \le \min(F(\tilde x_k), F(x_{k - 1})). 
+                    & \text{Choose any } x_k: F(x_k) \le F(\tilde x_k). 
                 \end{align*}    
             \end{tcolorbox}
         \end{definition}
+        \begin{remark}
+            Having $F(x_k) \le F(\tilde x_k)$ doesn't necessarily mean $F(x_k) \le F(x_{k - 1})$. 
+        \end{remark}
         The following definition characterizes the sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$, $(L_k)_{k \ge 0}$ and defines $(\beta_k)_{k \ge 0}$ for the proofs for the convergence rate. 
         \begin{definition}[alpha momentum sequence]\label{def:alpha-beta-rho-seq}
             Let $(\alpha_k)_{k \ge 0}$ be a sequence in $\RR$ such that $\alpha_k \in (0, 1)$ for all $k \in \N$. 
-            Take $(L_k)_{k \ge 0}$ from Definition \ref{def:generic-mapg-ls} so it has $L_k > 0$ for all $k \in \N \cup \{0\}$. 
-            The sequence $(\rho_k)_{k \ge 0}$ is defined as 
+            Let $(L_k)_{k \ge 0}$ satisfy $L_k > 0$ for all $k \in \N \cup \{0\}$. 
+            Define the sequence $(\rho_k)_{k \ge 0}$ by:
             \begin{align*}
                \rho_{k} &= (1 - \alpha_{k + 1})^{-1}a_{k + 1}^2\alpha_k^{-2}. 
             \end{align*}
-            Define sequence $(\beta_k)_{k \ge 0}$ such that $\beta_0 = 1$ and for all $k \ge 1$: 
+            Define the sequence $(\beta_k)_{k \ge 0}$, let $\beta_0 = 1$ and, for all $k \ge 1$ it's defined by: 
             \begin{align*}
                 \beta_k := \prod_{i = 0}^{k - 1} (1 - \alpha_{i + 1})\max\left(1, \rho_i L_{i + 1}L_i^{-1}\right). 
             \end{align*}
         \end{definition}
         \begin{lemma}[acceerated proximal gradient iterates relation]\;\label{lemma:apg-iterates}\;\\
-            The iterates $(x_k, v_k, y_k)_{k \ge 1}$ generated by Definition \ref{def:generic-mapg-ls}. 
+            The iterates $(x_k, v_k, y_k)_{k \ge 1}$ generated by Definition \ref{def:xxapg}. 
             Let $z_k = \alpha_k x^+ + (1 - \alpha_k)x_{k - 1}$. 
             Then it has for all $k \ge 1$ that: 
             \begin{align*}
@@ -1152,12 +1152,12 @@
                 &= \alpha_k(x^+ - v_{k - 1}). 
             \end{align*}
         \end{proof}
-        \begin{theorem}[generic GMAPG convergence]\; \label{thm:gmapg-ls-convergence}\;\\
+        \begin{theorem}[generic \XXAPG{} convergence]\; \label{thm:xxapg-fxn-cnvg}\;\\
             Let $F = f + g$ satisfy Assumptions \ref{ass:standard-fista}. 
             % Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $\alpha_k \in (0, 1)$ for all $k \ge 1$ and $\alpha_0 \in (0, 1]$. 
             % Let $\rho_k = (1 - \alpha_{k + 1})^{-1}\alpha_{k + 1}^2 \alpha_k^{-2}$ for all $k \ge 0$. 
             Take the sequence $(\alpha_k)_{k \ge 0}, (\beta_k)_{k \ge 0}$ and $(\rho_k)_{k \ge 0}$ from Definition \ref{def:alpha-beta-rho-seq}. 
-            Then, for all $x^+ \in \RR^n, k \ge 1$, the convergence rate of GMAPG (Definition \ref{def:generic-mapg-ls}) is given by: 
+            Then, for all $x^+ \in \RR^n, k \ge 1$, the convergence rate of \XXAPG{} (Definition \ref{def:xxapg}) is given by: 
             \begin{align*}
                 F(x_k) - F(x^+) + \frac{L_k\alpha_k}{2}\Vert x^+ - v_k\Vert^2
                 \le 
@@ -1176,13 +1176,12 @@
         \end{theorem}
         \begin{proof}
             Define $z_k = \alpha_k x^+ + (1 - \alpha_k)x_{k - 1}$ for all $k \ge 1$. 
-            In the proof follows, the follow facts will be used. 
-            We list them in advance, and they will be labeled during the proof. 
+            In the proof that follows, we list some facts in advance before their proofs which come later. 
             \begin{enumerate}
-                \item Lemma \ref{lemma:apg-iterates}. 
-                \item The sequence $(\alpha_k)_{k \ge 1}$ has for all $k \ge 1$, $1 - \alpha_k = \alpha_k^2\alpha_{k - 1}^2\rho_{k - 1}$, $\alpha_k \in (0, 1)$ from Definition \ref{def:alpha-beta-rho-seq}. 
-                \item $F$ is convex and hence $F(z_k) \le \alpha_k F(x^+) + (1 - \alpha_k)F(x_{k - 1})$ from Assumption \ref{ass:standard-fista}. 
-                \item $F(x_k) \le F(\tilde x_k)$ which is true by definition of GMAPG (Definition \ref{def:generic-mapg-ls}). 
+                \item[(a)] Lemma \ref{lemma:apg-iterates}. 
+                \item[(b)] The sequence $(\alpha_k)_{k \ge 1}$ has for all $k \ge 1$, $\alpha_{k - 1}^2\rho_{k - 1}(1 - \alpha_k) = \alpha_k^2$, $\alpha_k \in (0, 1)$ from Definition \ref{def:alpha-beta-rho-seq}. 
+                \item[(c)] $F$ is convex and hence $F(z_k) \le \alpha_k F(x^+) + (1 - \alpha_k)F(x_{k - 1})$ from Assumption \ref{ass:standard-fista}. 
+                \item[(c)] $F(x_k) \le F(\tilde x_k)$ which is true by definition of \XXAPG{} (Definition \ref{def:xxapg}). 
             \end{enumerate}
             Now, using Theorem \ref{thm:cnvx-pg-ineq}, it has for all $k \in \N$: 
             {\allowdisplaybreaks\small
@@ -1192,12 +1191,12 @@
                 - F(\tilde x_k) - \frac{L_k}{2}\Vert z_k - \tilde x_k\Vert^2 + 
                 \frac{L_k}{2}\Vert z_k - y_k\Vert^2
                 \\
-                &\underset{\text{(i)}}{=}
+                &\underset{\text{(a)}}{=}
                 F(\alpha_k x^+ + (1 - \alpha_k)x_{k - 1}) - F(\tilde x_k)
                 - \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k \Vert^2 
-                + \frac{L_k\alpha_k^2}{2}\Vert(x^+ - v_{k - 1})\Vert^2
+                + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_{k - 1}\Vert^2
                 \\
-                &\hspace{-0.3em}\underset{\text{(iii)}}{\le} 
+                &\underset{\text{(c)}}{\le} 
                 \alpha_k F(x^+) + (1 - \alpha_k) F(x_{k - 1}) - F(\tilde x_k)
                 - \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k \Vert^2 
                 + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_{k - 1} \Vert^2
@@ -1213,13 +1212,13 @@
                     F(\tilde x_k) - F(x^+) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
                 \right)
                 \\
-                &\hspace{-0.3em}\underset{\text{(iv)}}{\le} 
+                &\underset{\text{(d)}}{\le} 
                 (1 - \alpha_k)(F(x_{k - 1}) - F(x^+)) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_{k - 1}\Vert^2
                 - \left(
                     F(x_k) - F(x^+) + \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
                 \right)
                 \\
-                &= 
+                &\underset{\text{(b)}}{=} 
                 (1 - \alpha_k)(F(x_{k - 1}) - F(x^+)) + 
                 \left(
                     \frac{\alpha_k^2}{\alpha_{k - 1}^2\rho_{k - 1}}
@@ -1305,17 +1304,17 @@
                 \right)
             \end{align*}
         \end{remark}
-        \begin{theorem}[generic GMAPG gradient mapping convergence]\;\label{thm:gmapg-generic-gm-cnvg}\\
+        \begin{theorem}[generic \XXAPG{} gradient mapping convergence]\;\label{thm:xxapg-gm-cnvg}\\
             Suppose that $F = f + g$ satisfies Assumption \ref{ass:standard-fista}. 
-            % Let the sequences $(x_k, y_k, v_k)$ satisfy GMAPG (Definition \ref{def:generic-mapg-ls}).
-            Let the sequences $(x_k, y_k, v_k)$ satisfy GMAPG (Definition \ref{def:generic-mapg-ls}), and take the momentum sequences $(\alpha_k)_{k \ge 0}, (\beta_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ from Definition \ref{def:alpha-beta-rho-seq}. 
+            % Let the sequences $(x_k, y_k, v_k)$ satisfy \XXAPG{} (Definition \ref{def:xxapg}).
+            Let the sequences $(x_k, y_k, v_k)$ satisfy \XXAPG{} (Definition \ref{def:xxapg}), and take the momentum sequences $(\alpha_k)_{k \ge 0}, (\beta_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ from Definition \ref{def:alpha-beta-rho-seq}. 
             If in addition, 
             \begin{enumerate}
-                \item The sequence $(\alpha_k)_{k \ge 0}$ has $\alpha_0 = 1$ and, GMAPG is initialized with $L_0 \ge L$ or, equivalently a successful line search satisfying \mbox{$D_f(x_{0}, x_{-1}) \le L_0/2\Vert x_{0} - x_{-1}\Vert^2$};
+                \item The sequence $(\alpha_k)_{k \ge 0}$ has $\alpha_0 = 1$ and, \XXAPG{} is initialized with $L_0 \ge L$ or, equivalently a successful line search satisfying \mbox{$D_f(x_{0}, x_{-1}) \le L_0/2\Vert x_{0} - x_{-1}\Vert^2$};
                 \item $v_0=x_0 = T_{1/L_0, f, g}(x_{-1})$ for any $x_{-1} \in\RR^n$ and there exists $x^+$ which is a minimizer of $F$. 
             \end{enumerate}
             Then, we have the convergence of gradient mapping, it satisfies for all $k \ge 1$ the inequality:
-            \begin{align}\label{ineq:gmapg-generic-gm-cnvg-prt1}
+            \begin{align}\label{ineq:xxapg-gm-cnvg-prt1}
                 \Vert \mathcal G_{1/L_k} (y_k)\Vert &\le 
                 \sqrt{\beta_k}L_k L_0 \left(
                     1 - 
@@ -1323,26 +1322,26 @@
                 \right)\Vert x^+ - v_0\Vert. 
             \end{align}
             It has also:
-            \begin{align}\label{ineq:gmapg-generic-gm-cnvg-prt2}
+            \begin{align}\label{ineq:xxapg-gm-cnvg-prt2}
                 \frac{1}{2L_0}\Vert \mathcal G_{1/L_0}(x_{-1}) \Vert^2
                 \le F(x_{-1}) - F(x_0). 
             \end{align}
         \end{theorem}
         \begin{proof}
-            \eqref{ineq:gmapg-generic-gm-cnvg-prt2} is direct because $x_0 = T_{1/L_0, f, g}(x_{-1})$ and \mbox{$D_f(x_{0}, x_{-1}) \le L_0/2\Vert x_{0} - x_{-1}\Vert^2$} is assumed in the statement hypothesis, using \ref{lemma:fitsa-pg-ineq} with $x = x_{-1}, z = x_{-1}$, using  gradient mapping as defined in Definition \ref{def:gm-for-ch2} it has 
+            \eqref{ineq:xxapg-gm-cnvg-prt2} is direct because $x_0 = T_{1/L_0, f, g}(x_{-1})$ and \mbox{$D_f(x_{0}, x_{-1}) \le L_0/2\Vert x_{0} - x_{-1}\Vert^2$} is assumed in the statement hypothesis, using Lemma \ref{lemma:fitsa-pg-ineq} with $x = x_{-1}, z = x_{-1}$, by Definition \ref{def:gm-for-ch2} it has 
             \begin{align*}
                 0 &\le F(x_{-1}) - F(x_0) + 0 - \frac{L_0}{2} \Vert x_{-1} - x_0\Vert^2
                 \\
-                &= (F(x_{-1}) - F(\bar x)) - \frac{L_0}{2}\Vert L_0^{-1}\mathcal G_{1/L_0}(x_{-1})\Vert^2. 
+                &= F(x_{-1}) - F(x_0) - \frac{L_0}{2}\Vert L_0^{-1}\mathcal G_{1/L_0}(x_{-1})\Vert^2. 
             \end{align*}
-            We label the following results prior to their proofs for a sleeker exposition for the proof of \eqref{eqn:emp:result-item-2}. 
+            We label the following results prior to their proofs which will come later for a sleeker exposition for the proof of \eqref{eqn:emp:result-item-2}. 
             \begin{enumerate}
-                \item[(a)] From Definition \ref{def:generic-mapg-ls}, the gradient mapping satisfies for all $k \ge 1$ that $\Vert \mathcal G_{1/L_k} (y_k)\Vert = L_k\alpha_k \Vert v_k - v_{k - 1}\Vert$.
-                \item[(b)] We have $(a_k)_{k \ge 1}$ satisfying $\forall k \ge 1$ that $(1 - \alpha_k)\rho_{k - 1} = \alpha_k^2/\alpha_{k - 1}^2$ from the statement hypothesis. We assumed $\alpha_0 = 0, \beta_0 = 1$, $x^+$ is a minimizer of $F$. Then using these it has for all $k \ge 0$ it has $\frac{\alpha_k}{\sqrt{\beta_k L_0}}\Vert x^+ - v_k\Vert \le \Vert x^+ - v_0\Vert$. 
+                \item[(a)] From Definition \ref{def:xxapg}, the gradient mapping satisfies for all $k \ge 1$ that $\Vert \mathcal G_{1/L_k} (y_k)\Vert = L_k\alpha_k \Vert v_k - v_{k - 1}\Vert$.
+                \item[(b)] We have $(a_k)_{k \ge 1}$ satisfying $\forall k \ge 1$ that $(1 - \alpha_k)\rho_{k - 1} = \alpha_k^2/\alpha_{k - 1}^2$ from the statement hypothesis. We assumed $\alpha_0 = 0, \beta_0 = 1$, $x^+$ is a minimizer of $F$ and, a successful line search in item (i). Then using these it has for all $k \ge 0$ it has $\frac{\alpha_k}{\sqrt{\beta_k L_0}}\Vert x^+ - v_k\Vert \le \Vert x^+ - v_0\Vert$. 
                 \item[(c)] The sequence $(\alpha_k)_{k \ge 0}$ has $(1 - \alpha_k)\rho_{k - 1} = \alpha_k^2/\alpha_{k - 1}^2$ from the statement hypothesis so $\alpha_k/\alpha_{k - 1} = \sqrt{\rho_{k - 1}(1 - \alpha_k)}$ for all $k \ge 1$. 
                 \item[(d)] The definition of $(\beta_k)_{k \ge 0}$ from Definition \ref{def:alpha-beta-rho-seq}. 
             \end{enumerate}
-            Using the above intermediate results, the convergence in \eqref{ineq:gmapg-generic-gm-cnvg-prt1} can be derived. 
+            Using the above intermediate results, the convergence in \eqref{ineq:xxapg-gm-cnvg-prt1} can be derived. 
             From (a) it has for all $k \ge 0$: 
             \begin{align*}
                 \Vert \mathcal G_{1/L_k} (y_k)\Vert 
@@ -1401,13 +1400,13 @@
                 \right)\Vert x^+ - v_0\Vert. 
             \end{align*}
             Now, \textbf{let's proof intermediate results (a)}. 
-            From the definition of GMAPG it has 
+            From the Definition \ref{def:xxapg} it has 
             \begin{align*}
                 y_k &= \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1}
                 \iff 
                 v_{k - 1} = \alpha_k^{-1}(y_k - (1 - \alpha_k)x_{k - 1}). 
             \end{align*}
-            Using the above, and definition of GMAPG, it yields 
+            Current iterates $v_k$ is updated via $x_{k-1}, \tilde x_k$ so consider:
             \begin{align*}    
                 v_k - v_{k - 1} &= 
                 (x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1})) - \alpha_k^{-1}(y_k - (1 - \alpha_k)x_{k - 1})
@@ -1419,7 +1418,7 @@
                 &= \alpha_k^{-1}(\tilde x_k - x_{k - 1}) - \alpha_k^{-1}y_k + \alpha_k^{-1} x_{k - 1}
                 \\
                 &= \alpha_k^{-1}\tilde x_k - \alpha_k^{-1} y_k 
-                = \alpha^{-1}_k(\tilde x_k - y_k) = \alpha_k^{-1}(T_{L_k} y_k - y_k)
+                = \alpha^{-1}_k(\tilde x_k - y_k) = \alpha_k^{-1}(T_{1/L_k} y_k - y_k)
                 \\
                 &= -\alpha_k^{-1}L_k^{-1}(\mathcal G_{1/L_k}(y_k)). 
             \end{align*}
@@ -1445,7 +1444,7 @@
                 \right). 
             \end{align*}
             Because $\beta_0 = \alpha_0 = 1$, the base case holds. 
-            For all $k \ge 1$, we consider the convergence claim and use the assumption that $x^+$ is a minimizer of $F$ so, it has from Theorem \ref{thm:gmapg-ls-convergence} that 
+            For all $k \ge 1$, we consider the convergence claim and use the assumption that $x^+$ is a minimizer of $F$ so, it has from Theorem \ref{thm:xxapg-fxn-cnvg} that 
             \begin{align*}
                 0 &\le \frac{L_0\beta_k }{2}\Vert x^+ - x_{-1}\Vert^2 
                 - F(x_k) + F(x^+) - \frac{L_k\alpha_k^2}{2}\Vert x^+ - v_k\Vert^2
@@ -1468,7 +1467,7 @@
         \begin{remark}
             The above theorem is improved from Alamo et al. \cite{alamo_restart_2019}. 
         \end{remark}
-        \begin{lemma}[specialized GMAPG momentum sequence]\;\label{lemma:gmapg-seq-bnd}\\
+        \begin{lemma}[specialized \XXAPG{} momentum sequence]\;\label{lemma:xxapg-seq-bnd}\\
             Take sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}, (\beta_k)_{k \ge 0}$ as in Definition \ref{def:alpha-beta-rho-seq}. 
             In addition, assume that $\alpha_0 = 1$. 
             If, we set $\rho_{k - 1} = L_{k}^{-1}L_{k - 1}$ such that $L_k >0$ for all $k \ge 1$, then for all $k \ge 1$, the sequence $(\beta_k)_{k \ge 0}$ has the inequality: 
@@ -1575,7 +1574,15 @@
         \begin{remark}
             The technique of the proof we used here is very similar to Güler \cite[Lemma 2.2]{guler_new_1992}.
             A simpler upper bound is more practical. 
-            For all $k \ge 1$ let $\widehat L_k = \max_{i = 0, 1, \ldots, k} L_i$ then 
+            For all $k \ge 1$ let  
+            \begin{align*}
+                \widehat L_k &= \max\left(
+                    L_0, \left(
+                        \frac{1}{k} \sum_{i = 1}^{k} \sqrt{L_i^{-1}}
+                    \right)^{-2}
+                \right). 
+            \end{align*}
+            Then, 
             \begin{align*}
                 \beta_k 
                 &\le \left(
@@ -1598,19 +1605,11 @@
                 \right)^{-2} 
                 = \frac{4\widehat L_k}{L_0(2 + k \alpha_0)^2}. 
             \end{align*}
-            This simplifies the convergence claim back in Theorem \ref{thm:gmapg-ls-convergence}. 
-            The above inequality would work the same if we set: 
-            \begin{align*}
-                \widehat L_k &= \max\left(
-                    L_0, \left(
-                        \frac{1}{k} \sum_{i = 1}^{k} \sqrt{L_i^{-1}}
-                    \right)^{-2}
-                \right). 
-            \end{align*}
+            This simplifies the convergence claim back in Theorem \ref{thm:xxapg-fxn-cnvg}. 
         \end{remark}
-        \begin{theorem}[specialized GMAPG convergence rate]\label{thm:gmapg-specialized-cnvg}
+        \begin{theorem}[specialized \XXAPG{} convergence rate]\label{thm:xxapg-specialized-cnvg}
             Suppose that $F = f + g$ satisfy Assumption \ref{ass:standard-fista}. 
-            Let the sequences $(x_k, v_k, v_k)_{k \ge 0}$ and $(L_k)_{k \ge 0}$ satisfy GMAPG in Definition \ref{def:generic-mapg-ls} and, assume that the GMAPG is initialized by $x_0 = v_0 = T_{1/L_0}(x_{-1})$ and, assume $\rho_{k - 1} = L_{k}^{-1}L_{k}$, $\alpha_0 = 1$ so the sequence $(\alpha_k)_{k \ge 0}$ satisfies for all $k\ge 1$: $\alpha_{k - 1}^2L_k^{-1}L_{k - 1}(1 - \alpha_k) = \alpha_k^2$. 
+            Let the sequences $(x_k, v_k, v_k)_{k \ge 0}$ and $(L_k)_{k \ge 0}$ satisfy \XXAPG{} in Definition \ref{def:xxapg} and, assume that the \XXAPG{} is initialized by $x_0 = v_0 = T_{1/L_0}(x_{-1})$ and, assume $\rho_{k - 1} = L_{k}^{-1}L_{k}$, $\alpha_0 = 1$ so the sequence $(\alpha_k)_{k \ge 0}$ satisfies for all $k\ge 1$: $\alpha_{k - 1}^2L_k^{-1}L_{k - 1}(1 - \alpha_k) = \alpha_k^2$. 
             Let $x^+$ be a minimizer of $F$, define 
             \begin{align*}
                 \widehat L_k &:= \max\left(
@@ -1637,8 +1636,8 @@
             \end{enumerate}
         \end{theorem}
         \begin{proof}
-            To see (i), use Lemma \ref{lemma:gmapg-seq-bnd} and its remark to bound $(\beta_k)_{k \ge 1}$ and then, apply Theorem \ref{thm:gmapg-ls-convergence} because the assumptions of $x^+, (\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ suit. 
-            To see (ii), the convergence claim from \ref{thm:gmapg-generic-gm-cnvg} simplifies with $\widehat L_k \ge L_0$ and, it has 
+            To see (i), use Lemma \ref{lemma:xxapg-seq-bnd} and its remark to bound $(\beta_k)_{k \ge 1}$ and then, apply Theorem \ref{thm:xxapg-fxn-cnvg} because the assumptions of $x^+, (\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ suit. 
+            To see (ii), the convergence claim from \ref{thm:xxapg-gm-cnvg} simplifies with $\widehat L_k \ge L_0$ and, it has 
             \begin{align}
                 \Vert \mathcal G_{1/L_k}(y_k) \Vert
                 &\le 
@@ -1664,9 +1663,9 @@
             \end{align}
         \end{proof}
     
-    \section{Algorithmic description of GMAPG}
-        There are several components to the GMAPG algorithm. 
-        This section will introduce various type of implementations that can be fitted into GMAPG in Definition \ref{def:generic-mapg-ls}. 
+    \section{Algorithmic description of \XXAPG{}}
+        There are several components to the \XXAPG{} algorithm. 
+        This section will introduce various type of implementations that can be fitted into \XXAPG{} in Definition \ref{def:xxapg}. 
         \subsection{Line search routines}
             % ARMIJO LINE SEARCH -----------------------------------------------
             \begin{algorithm}[H]
@@ -1706,8 +1705,8 @@
             Here are the explanations for all its input parameters: 
             \begin{enumerate}
                 \item $f, g$ are functions satisfying Assumption \ref{ass:standard-fista}. 
-                \item $x, v$ are the $x_k, v_k$ iterates in Definition \ref{def:generic-mapg-ls}. 
-                \item $\alpha$ are the current $\alpha_k$ in Definition \ref{def:generic-mapg-ls}. 
+                \item $x, v$ are the $x_k, v_k$ iterates in Definition \ref{def:xxapg}. 
+                \item $\alpha$ are the current $\alpha_k$ in Definition \ref{def:xxapg}. 
                 \item $L$ is the estimate of the Lipschitz constant of $f$ passed in by the inner loop. 
             \end{enumerate}
             Iterates $x^+, y^+$ and parameters $\alpha^+, L^+$ are returned to the callers at the end. 
@@ -1777,7 +1776,7 @@
             \end{algorithm}
             \par
             Algorithm \ref{alg:beck-mono} is a subroutine for asserting monotone condition on function value. 
-            The parameter $G$ has no actual usage besides making it compatible with Algorithm \ref{alg:nes-mono} in the context of Algorithm \ref{alg:gmapg}. 
+            The parameter $G$ has no actual usage besides making it compatible with Algorithm \ref{alg:nes-mono} in the context of Algorithm \ref{alg:xxapg}. 
             The input $\tilde x$ is the candidate iterate produced by FISTA without monotone constraints and $x$ is the previous iterates $x_{k - 1}$ in the inner loop. 
             % NES'S MONO -------------------------------------------------------
             \begin{algorithm}[H]
@@ -1812,17 +1811,16 @@
                 \end{algorithmic}
             \end{algorithm}
             \par
-            The above Algorithm \ref{alg:nes-mono} implements and adapts Nesterov's monotone scheme from Nesterov \cite[2.2.32]{nesterov_lectures_2018} for GMAPG. 
+            The above Algorithm \ref{alg:nes-mono} implements and adapts Nesterov's monotone scheme from Nesterov \cite[2.2.32]{nesterov_lectures_2018} for \XXAPG{}. 
             In addition to Algorithm \ref{alg:beck-mono}, $\eta$ is a new input parameter and $G$ has a significance role. 
             $\eta$ is a stepsize parameter for weakly convex objective $F = f + g$ satisfying Assumption \ref{ass:sum-of-wcnvx}. 
-            $G$ is the norm of the gradient mapping updated at at $\hat y$ which will be returned to the inner loop to verify exit conditions. 
+            $G$ is the norm of the gradient mapping updated at $\hat y$ which will be returned to the inner loop to verify exit conditions. 
         
-        \subsection{GMAPG main algorithm}
-            % GMAPG ------------------------------------------------------------
+        \subsection{\XXAPG{} main algorithm}
             \begin{algorithm}[H]
                 \begin{algorithmic}[1]
                     \STATE{\noindent
-                        \textbf{Function GMAPG Inputs: }
+                        \textbf{Function \XXAPG{} Inputs: }
                         \begin{tabular}{|ll}
                             $f:\RR^n \rightarrow \RR$ & Lipschitz Smooth \\
                             $g: \RR^n \rightarrow \overline\RR$ & Weakly Convex \\ 
@@ -1842,7 +1840,7 @@
                     \STATE{$x_0, y_0,\alpha_1, L_0 := \textbf{ArmijoLS}(f, g, x_{-1}, x_{-1}, L, \alpha_0)$.}
                     \STATE{$\eta_0 := L_0; v_0 := x_0; G_0 = \Vert \sqrt{L_0}(x_0 - y_0)\Vert.$}
                     \IF{$G_0 \le \epsilon$}
-                        \STATE{\textbf{Return: }$x_k, 0, L_0, G_0$}
+                        \STATE{\textbf{Return: }$x_k, 0, L_0, G_0$}\label{alg:xxapg-exit1}
                     \ENDIF
                     \FOR{$k := 1, 2,\ldots, N$}
                         \STATE{\noindent
@@ -1857,19 +1855,23 @@
                             $x_k, \eta_{k + 1}, G_k^+ := \mathbf M(f, g, \tilde x_k, x_{k - 1}, \eta_k, G_k)$.
                         }
                         \IF{$G_k^+ < \epsilon \textbf{ or } (\mathbf E_\chi  \textbf{ and } k > N_{\min})$}
-                            \STATE{\textbf{break}}
+                            \STATE{\textbf{break}}\label{alg:xxapg-exit2}
                         \ENDIF
                     \ENDFOR
                     \STATE{\textbf{Return: }$x_k, k, \overline L, G_k^+ $}
-                \caption{GMAPG with Chambolle's backtracking}\label{alg:gmapg}
+                \caption{\XXAPG{} with Chambolle's backtracking}\label{alg:xxapg}
                 \end{algorithmic}
             \end{algorithm}
-            The above Algorithm \ref{alg:gmapg} is an implementation of GMAPG in Definition \ref{alg:gmapg}. 
-            The first iterates $x_0$ is produced by a step of proximal gradient descent through Algorithm \ref{alg:armijo-ls} so, it has $x_0 = v_0 = T_{1/L_0}(x_{-1})$, and consequently all results from Theorem \ref{thm:gmapg-specialized-cnvg} apply. 
+            The above Algorithm \ref{alg:xxapg} is an implementation of \XXAPG{} in Definition \ref{alg:xxapg}. 
+            The first iterates $x_0$ is produced by a step of proximal gradient descent through Algorithm \ref{alg:armijo-ls} so, it has $x_0 = v_0 = T_{1/L_0}(x_{-1})$, and consequently all results from Theorem \ref{thm:xxapg-specialized-cnvg} apply. 
             Parameters $r, \rho$ are chosen in the discretion of the practitioners. 
             For example, we chose $r= 0.4, \rho = 2^{1/1024}$. 
+            \begin{observation}[\XXAPG{} exit conditions]
+                Algorithm \ref{alg:xxapg} exits and returns its results on line \ref{alg:xxapg-exit1}, or at line \ref{alg:xxapg-exit2}. 
+                If exited, then at least one of the conditions are true. 
+            \end{observation}
     
-    \section{Examples of GMAPG in the literature}
+    \section{Examples of \XXAPG{} in the literature}
         \begin{example}[MFISTA with Armijo line search]\;\\\vspace{-1em}
             \begin{algorithm}[H]
                 \begin{algorithmic}[1]
@@ -1904,8 +1906,8 @@
                 \caption{MFISTA with Armijo Line Search}
                 \label{alg:mfista-armijo}
             \end{algorithm}
-            We now demonstrate that Algorithm \ref{alg:mfista-armijo} is a special case of Definition \ref{def:generic-mapg-ls}.
-            Let's consider $y_{k + 1}$ produced the GMAPG. 
+            We now demonstrate that Algorithm \ref{alg:mfista-armijo} is a special case of Definition \ref{def:xxapg}.
+            Let's consider $y_{k + 1}$ produced the \XXAPG{}. 
             If $x_k = x_{k - 1}$ then replacing all instance of $x_k$ by $x_{k - 1}$ it has: 
             \begin{align*}
                 y_{k + 1} &= \alpha_{k + 1}(v_k) + (1 - \alpha_{k + 1})x_{k - 1}
@@ -1977,18 +1979,17 @@
             If we choose $v_0 = x_0 = T_{L_0^{-1}} x_{-1}$, then $y_1 = \alpha_1 x_0 + (1 - \alpha_1)x_0 = x_0 = T_{L_0^{-1}}(x_{-1})$.
             Next, we make $\alpha_k^{-1} = t_k$, then \eqref{eqn:emp:result-item-1}, \eqref{eqn:emp:result-item-2} are equivalent. 
         \end{example}
-        \begin{example}[Nesterov's monotone scheme with generic line search]\;\\
-            The following is (2.2.32) in Nesterov's book, phrased in our GMAPG framework. 
-            \begin{algorithm}\label{alg:nesterov-mono-generic-ls}
-            \begin{algorithmic}[1]
-            \STATE{\textbf{Input: } }
-            \end{algorithmic}\caption{Nesterov's monotone scheme with generic line search}
-            \end{algorithm}
-        \end{example}
+        % \begin{example}[Nesterov's monotone scheme with generic line search]\;\\
+        %     The following is (2.2.32) in Nesterov's book, phrased in our \XXAPG{} framework. 
+        %     \begin{algorithm}\label{alg:nesterov-mono-generic-ls}
+        %     \begin{algorithmic}[1]
+        %     \STATE{\textbf{Input: } }
+        %     \end{algorithmic}\caption{Nesterov's monotone scheme with generic line search}
+        %     \end{algorithm}
+        % \end{example}
 
     \section{Practical enhancement from the Nesterov's Monotone Variant}
-        The following definition is a set of necessary conditions GMAPG with Nesterov's monotone subroutine. 
-        Our goal in this section is to show that Nesterov's implementations of monotone accelerated gradient method has convergence results under Assumption \ref{ass:sum-of-wcnvx}.
+        Under Assumption \ref{ass:sum-of-wcnvx}, Theorem \ref{thm:nes-mono-wcnvx-convergence} shows the Nesterov's monotone algorithm in Definition \ref{def:nes-monotone-scheme} eventually terminate. 
         \begin{definition}[nonconvex Nesterov's monotone scheme]\;\label{def:nes-monotone-scheme}\\
             Suppose $F = f + g$ satisfies Assumption \ref{ass:sum-of-wcnvx}. 
             Let $L_0 \ge L$. 
@@ -2078,10 +2079,10 @@
         \end{remark}
         \par
         A stronger result on the convergence rate of $\Vert \mathcal G_{1/\eta_k}(y_k)\Vert$ can be obtained if, we assume that the function $F=f + g$ satisfies Assumption \ref{ass:standard-fista}. 
+        See Nesterov's book \cite{nesterov_lectures_2018} for more details. 
     
     \section{Restarting with function values for linear convergence}
-        In this section, we show that restarting GMAPG with a well suited conditions yields fast linear global convergence. 
-        We adapt and improve prior theories from Alamo \cite{alamo_restart_2019} for our GMAPG method. 
+        We adapted and improved prior theories on FISTA restart with global linear convergence from Alamo \cite{alamo_restart_2019} for our \XXAPG{} method. 
         The following definition, gives the quadratic growth property of $f$ which allows for a fast linear convergence rate using adaptive restarts. 
         \begin{assumption}[quadratic growth condition]\label{ass:q-growth-ch2}
             Let $F = f + g$ satisfies Assumption \ref{ass:standard-fista} so that minimizers exists and, it's bounded below. 
@@ -2091,31 +2092,10 @@
                 F(x) - F^+ &\ge \frac{\mu}{2}\Vert x - \bar x\Vert^2. 
             \end{align*}
         \end{assumption}
-        The following proposition about line search will furnish convergence results from previous section. 
-        \begin{proposition}[Lipschitz line search estimates are bounded]\label{prop:bnded-lip-ls}
-            Suppose that $F = f + g$ satisfies Assumption \ref{ass:standard-fista}. 
-            Choose such $F$ for Algorithm \ref{alg:gmapg} so, it generates the sequence $(L_k)_{k\ge 0}$. 
-            Then, the sequence $(\hat L_k)_{k \ge 1}$ from Theorem \ref{thm:gmapg-specialized-cnvg} is bounded above and, it has
-            \begin{align*}
-                \widehat L_k &:= \max\left(
-                    L_0, \left(
-                        \frac{1}{k} \sum_{i = 1}^{k} \sqrt{L_i^{-1}}
-                    \right)^{-2}
-                \right)\le  \overline L \le \max\left(L_0,  2L\right). 
-            \end{align*}
-        \end{proposition}
-        \begin{proof}
-            A line search is triggered in Algorithm \ref{alg:armijo-ls}, \ref{alg:chambolle-btls} if and only if $L_{k + 1} = 2L_{k}$ for some $k \ge 0$ and, there exists some $x\in \RR^n, y \in \RR^n$ such that $D_f(x, y) > L_k\Vert x - y \Vert^2$. 
-            For all $k = 0, 1, \ldots $, if $L_k \ge L$ then, it has $D_f(x, y) \le L_k/2\Vert x - y\Vert^2$ for all $x, y \in \RR^n$. 
-            Hence, $L_{k + 1} \le L_k$ because a line sarch is never triggered. 
-            \par
-            For contradiction let's assume that there exists $k \ge 1$ such that a line search is triggered for $L_k$ and, $L_{k + 1} = 2L_{k} > 2L$, then $L_k > L$, but we just showed that this implies $L_{k + 1} \le L_k$, which is a contradiction. 
-            Therefore, if $L_{k + 1} = 2L_k$ then it must be that $L_k < L$ so, the highest value it can achieve is either $L_0$, or $2L$. 
-        \end{proof}
         \par
         Let's introduce our first set of restart conditions which denote it by $\mathbf E_{\chi}^{a}$. 
         $\mathbf E_{\chi}^{a}$ only uses function values on iterates available to the inner loop to determine the exit conditions, and it achieves global fast linear convergence. 
-        The inner loop algorithm is described in Algorithm \ref{alg:gmapg}, let $k$ denote the inner loop counter and define $m = \lfloor k/2 \rfloor + 1$ the conditions are: 
+        The inner loop algorithm is described in Algorithm \ref{alg:xxapg}, let $k$ denote the inner loop counter and define $m = \lfloor k/2 \rfloor + 1$ the conditions are: 
         \begin{align}\label{ineq:rgmapg-exit-cond}
             \mathbf E_{\chi}^a \iff 
             f(x_m) - f(x_k) \le \exp(-1)(f(x_{-1}) - f(x_m)). 
@@ -2135,14 +2115,14 @@
                 $\rho := 2^{1/1024}$ & $\rho \in (0, 1)$ 
             \end{tabular}}
             \STATE{$n_0 := 0; z_0 = x_{-1}$.}
-            \STATE{$z_1, p_0, \overline L_1, G^{(0)}:= \textbf{GMAPG}(f, g, x_{-1}, L, r_j, \rho, N_{\min}=n_0, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}
+            \STATE{$z_1, p_0, \overline L_1, G^{(0)}:= \textbf{\XXAPG{}}(f, g, x_{-1}, L, r_j, \rho, N_{\min}=n_0, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}
             \STATE{$n_1:=p_0$.}
             \STATE{$M := M - n_1$.}
             \FOR{$j = 1,2, \ldots, M$}
                 \IF{$M \le 0 \textbf{ or } G^{(j-1)} \le \epsilon$}
                     \STATE{\textbf{break}}                
                 \ENDIF
-                \STATE{$z_{j + 1}, p_j, \overline L_{j + 1}, G^{(j)} := \textbf{GMAPG}(f, g, z_j, \overline L_j, r, \rho, N_{\min}=n_j, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}
+                \STATE{$z_{j + 1}, p_j, \overline L_{j + 1}, G^{(j)} := \textbf{\XXAPG{}}(f, g, z_j, \overline L_j, r, \rho, N_{\min}=n_j, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}
                 \STATE{$M := M - p_j$.}
                 \STATE{$\overline L_{j + 1} = \max(\overline L_{j}, \overline L_{j + 1})$.}
                 \IF{$f(z_{j}) - f(z_{j + 1}) > \exp(-1)(f(z_{j - 1}) - f(z_{j}))$}
@@ -2151,24 +2131,27 @@
                 \STATE{$n_{j + 1} := p_j$.}
                 \ENDIF
             \ENDFOR
-            \end{algorithmic}\caption{Linear convergence restarted GMAPG}\label{alg:linear-rgmapg}
+            \end{algorithmic}\caption{Linear convergence restarted \XXAPG{}}\label{alg:linear-rgmapg}
         \end{algorithm}
         \par
-        Algorithm \ref{alg:linear-rgmapg} implements a restarted GMAPG with condition $\textbf{E}_{\chi}^a$ and, it has a fast linear convergence rate. 
+        Algorithm \ref{alg:linear-rgmapg} implements a restarted \XXAPG{} with condition $\textbf{E}_{\chi}^a$ and, it has a fast linear convergence rate. 
         The following observation on it is crucial to take notice for the convergence rate. 
         \begin{observation}\label{obs:rgmapg}
-            If the outer loop runs for $j = 1, 2, \ldots, J$ iterations with $M \ge J$ so the algorithm terminated due $G_k^+ \le \epsilon$. 
-            Then for all $J\ge j\ge 1$ it has $n_{j}\le n_{j + 1}$ hence $(n_j)_{j \ge 0}^J$ is monotone increasing
-            For all $J -1 \ge j \ge 1 $ it has $p_{j-1}\le p_{j}$ so $(p_j)_{j \ge 1}^{J}$ is monotone excluding the last iterates $p_J$. 
+            If the outer loop runs for $j = 1, 2, \ldots, J$ iterations with $M \ge J$ so the algorithm terminated due $G^{(J - 1)} \le \epsilon$. 
+            Then, it has 
+            \begin{enumerate}
+                \item for all $J\ge j\ge 1$ it has $n_{j}\le n_{j + 1}$ hence $(n_j)_{j \ge 0}^J$ is monotone increasing; 
+                \item for all $J -1 \ge j \ge 1 $ it has $p_{j-1}\le p_{j}$ so $(p_j)_{j \ge 1}^{J}$ is monotone excluding the last iterates $p_J$. 
+            \end{enumerate}
         \end{observation}
         \par
-        For all $1 \le j \le J$, $n_j$ is used as the lower bound $N_{\min}$ for the GMAPG inner loop described in Algorithm \ref{alg:gmapg} at iteration $j$ and, $p_j$ is the actual iteration underwent by the inner loop therefore it has $p_j \ge n_{j}$. 
+        For all $1 \le j \le J$, $n_j$ is used as the lower bound $N_{\min}$ for the \XXAPG{} inner loop described in Algorithm \ref{alg:xxapg} at iteration $j$ and, $p_j$ is the actual iteration underwent by the inner loop therefore it has $p_j \ge n_{j}$. 
         $n_{j + 1}$ is the minimum iteration for the next execution of GMAGP, and it has $n_{j + 1} = p_{j}$  if the ``if statement" isn't triggered otherwise $n_{j + 1} = 2p_{j}$. 
         For $j < J$ so it excludes the last iteration, it has either $p_{j + 1} \ge n_{j + 1} = 2p_j \ge 2n_{j} \ge n_j$ or $p_{j + 1} \ge n_{j + 1} = p_j \ge n_j$. 
-        When $j = J$ it's not necessarily true that $p_J \ge n_J$ because on the last iteration, it can exit the for loop through conditions $G_k^+ \le \epsilon$ in line 14 of Algorithm \ref{alg:gmapg}, but $n_J \ge p_{J - 1} \ge n_{J - 1}$ still. 
+        When $j = J$ it's not necessarily true that $p_J \ge n_J$ because on the last iteration, it can exit the for loop through conditions $G_k^+ \le \epsilon$ in line 14 of Algorithm \ref{alg:xxapg}, but $n_J \ge p_{J - 1} \ge n_{J - 1}$ still. 
         \par
         We now introduce the following notations for the convergence proof. 
-        Since the restarted GMAPG consist of executions of an outer loop in Algorithm \ref{alg:linear-rgmapg} in variable $j$ and, an inner loop in Algorithm \ref{alg:gmapg} in variable $k$, we denote $x_{k}^{(j)}$ for the iterates $x_k$ in the inner loop during the $j$ iteration of the outer loop together. 
+        Since the restarted \XXAPG{} consist of executions of an outer loop in Algorithm \ref{alg:linear-rgmapg} in variable $j$ and, an inner loop in Algorithm \ref{alg:xxapg} in variable $k$, we denote $x_{k}^{(j)}$ for the iterates $x_k$ in the inner loop during the $j$ iteration of the outer loop together. 
         We make the choice to have $x_{-1}^{(j + 1)} = z_{j + 1} = x_{p_j}^{(j)}$ for consistencies across theorems from previous sections. 
         For example in line 10 of Algorithm \ref{alg:linear-rgmapg} at the $j$ iteration, the inner loop returns $x_{p_j}$ as the last iterate. 
         So $x_{p_j}$ is assigned to $z_{j + 1}$ by the outer loop, and it has $x_{p_j} = x_{p_j}^{(j)} = z_{j + 1}$. 
@@ -2177,8 +2160,8 @@
         Let $e$ denotes the base of natural log. 
         The following lemma combines quadratic growth assumption of the objective to assert lower bound on the number of iteration required to achieve a certain optimality on the objective function $F$. 
         \begin{lemma}[maximum iteration needed for an optimality gap ratio]\;\label{lemma:prog-ratio}\\
-            Suppose that $F = f + g$ satisfies Assumption \ref{ass:standard-fista} so $F^+ := \inf_xF(x)$, $X^+$ is the set of minimizers, and $\mu > 0$ is the quadratic growth constant. 
-            Let the sequence $(x_k)_{k \ge -1}$ be generated by GMAPG (Definition \ref{alg:gmapg}). 
+            Suppose that $F = f + g$ satisfies Assumption \ref{ass:q-growth-ch2} so $F^+ := \inf_xF(x)$, $X^+$ is the set of minimizers, and $\mu > 0$ is the quadratic growth constant. 
+            Let the sequence $(x_k)_{k \ge -1}$ be generated by \XXAPG{} (Definition \ref{alg:xxapg}). 
             Then it has
             \begin{align*}
                 \forall k \ge \left\lfloor \frac{2\sqrt{1 + e}}{\sqrt{\mu\widehat L_k^{-1}}}\right\rfloor:\; 
@@ -2195,7 +2178,7 @@
         \end{lemma}
         \begin{proof}
             For all $k \ge 0$, denote minimizer $x^+_k = \Pi_{X^+}x_k$ so, $F(x^+_k) = F^+$. 
-            From Theorem \ref{thm:gmapg-specialized-cnvg} it has 
+            From Theorem \ref{thm:xxapg-specialized-cnvg} it has 
             \begin{align*}
                 F(x_k) - F^+ \le \frac{2 \widehat L_k}{(2 + k)^2}\Vert x_k - x_{-1}^+\Vert^2 \le \frac{4 \widehat L_k}{\mu(2 + k)^2}(F(x_{-1}) - F^+). 
             \end{align*}
@@ -2269,6 +2252,28 @@
             \end{align*}
             }
         \end{proof}
+        The following proposition places an upper bound on the estimated Lipschitz constant from the line search routine specified in Algorithm \ref{alg:armijo-ls}, \ref{alg:chambolle-btls}. 
+        This is crucial to derive a global convergence properties of the algorithm based on the parameters of the objective function. 
+        \begin{proposition}[Lipschitz line search estimates are bounded]\label{prop:bnded-lip-ls}
+            Suppose that $F = f + g$ satisfies Assumption \ref{ass:standard-fista}. 
+            Choose such $F$ for Algorithm \ref{alg:xxapg} so, it generates the sequence $(L_k)_{k\ge 0}$. 
+            Then, the sequence $(\hat L_k)_{k \ge 1}$ from Theorem \ref{thm:xxapg-specialized-cnvg} is bounded above and, it has
+            \begin{align*}
+                \widehat L_k &:= \max\left(
+                    L_0, \left(
+                        \frac{1}{k} \sum_{i = 1}^{k} \sqrt{L_i^{-1}}
+                    \right)^{-2}
+                \right)\le  \overline L \le \max\left(L_0,  2L\right). 
+            \end{align*}
+        \end{proposition}
+        \begin{proof}
+            A line search is triggered in Algorithm \ref{alg:armijo-ls}, \ref{alg:chambolle-btls} if and only if $L_{k + 1} = 2L_{k}$ for some $k \ge 0$ and, there exists some $x\in \RR^n, y \in \RR^n$ such that $D_f(x, y) > L_k\Vert x - y \Vert^2$. 
+            For all $k = 0, 1, \ldots $, if $L_k \ge L$ then, it has $D_f(x, y) \le L_k/2\Vert x - y\Vert^2$ for all $x, y \in \RR^n$. 
+            Hence, $L_{k + 1} \le L_k$ because a line sarch is never triggered. 
+            \par
+            For contradiction let's assume that there exists $k \ge 1$ such that a line search is triggered for $L_k$ and, $L_{k + 1} = 2L_{k} > 2L$, then $L_k > L$, but we just showed that this implies $L_{k + 1} \le L_k$, which is a contradiction. 
+            Therefore, if $L_{k + 1} = 2L_k$ then it must be that $L_k < L$ so, the highest value it can achieve is either $L_0$, or $2L$. 
+        \end{proof}
         \par
         Continuing with the quadratic growth assumption, the following lemma states the fact that $p_j$ in Algorithm \ref{alg:linear-rgmapg} is bounded above and there exists a $j \ge 1$ such that $n_{j + 1 + k} = p_{j + k}$ for all $k \ge 0$ until it terminates. 
         \begin{lemma}[inner iteration is bounded above]\label{lemma:rgmapg-inner-bnds}
@@ -2325,7 +2330,7 @@
                 } 
                 \implies \mathbf E_{\chi}^a. 
             \end{align*}
-            Observe that line 14 of Algorithm \ref{alg:gmapg} exits as soon as possible if $\mathbf E_\chi^a$ is true and $k > N_{\min} = n_j$ and, $G_k \le \epsilon$ will only cause it to exit earlier therefore it has $p_j \le \max(\bar p, n_j)$. 
+            Observe that line 14 of Algorithm \ref{alg:xxapg} exits as soon as possible if $\mathbf E_\chi^a$ is true and $k > N_{\min} = n_j$ and, $G_k \le \epsilon$ will only cause it to exit earlier therefore it has $p_j \le \max(\bar p, n_j)$. 
             \par
             \textbf{Proof of (ii)}. 
             Inductively assume that $p_{j - 1} \le p_j \le \bar p$. 
@@ -2364,9 +2369,9 @@
             Suppose that since the $j\ge 2$ th iteration, there is no period doubling for $T_\epsilon$ number of iterations in the outer loop of Algorithm \ref{alg:linear-rgmapg}, i.e: $n_{t + 1} = p_t$
             for $j \le t \le j + T_\epsilon - 1$, and denote $s = j + T_\epsilon -1$ for better notations, giving us for all $j \le t \le s$, $n_{t + 1} = p_t$. 
             \par
-            Our goal now is to show that at iteration $j = s$ of Algorithm \ref{alg:linear-rgmapg} it must have $G_0 \le \epsilon$ at line 5 of Algorithm \ref{alg:gmapg}. 
+            Our goal now is to show that at iteration $j = s$ of Algorithm \ref{alg:linear-rgmapg} it must have $G_0 \le \epsilon$ at line 5 of Algorithm \ref{alg:xxapg}. 
             \par
-            Consider the start of the $s$ th iteration of the outer loop, denote $L_0^{(s)}, G_0^{(s)}$ as the $L_0$ in line 4 in Algorithm \ref{alg:gmapg}, it would give the following inequalities
+            Consider the start of the $s$ th iteration of the outer loop, denote $L_0^{(s)}, G_0^{(s)}$ as the $L_0$ in line 4 in Algorithm \ref{alg:xxapg}, it would give the following inequalities
             {\allowdisplaybreaks
             \begin{align*}
                 \frac{1}{2}\left(
@@ -2402,12 +2407,12 @@
             \end{align*}
             }
             \begin{enumerate}
-                \item [(a)] At the $s$ iteration of the loop in Algorithm \ref{alg:linear-rgmapg}, $z_s$ is passed into Algorithm \ref{alg:gmapg} with $x_{-1} = z_s$. Therefore, at line 3 in Algorithm \ref{alg:gmapg} it calls Algorithm \ref{alg:armijo-ls} with $x_{-1} = z_s, \alpha_0 = 1, L^+$ which means $y^+ = x_{-1} = z_s$ at line 5 and $x^+ = T_{1/L^+}(z_s)$. Coming back to line 3 in Algorithm \ref{alg:gmapg}, it assigns $y_0 = y^+ = z_s, x_0 = x^+ = T_{1/L^+}(z_s)$ and $L_0 = L^+$. Assuming the line search went successful, it will have $D_f(z_s, x_0) \le L^{(s)}_0/2 \Vert z_s - x_0\Vert^2$. 
+                \item [(a)] At the $s$ iteration of the loop in Algorithm \ref{alg:linear-rgmapg}, $z_s$ is passed into Algorithm \ref{alg:xxapg} with $x_{-1} = z_s$. Therefore, at line 3 in Algorithm \ref{alg:xxapg} it calls Algorithm \ref{alg:armijo-ls} with $x_{-1} = z_s, \alpha_0 = 1, L^+$ which means $y^+ = x_{-1} = z_s$ at line 5 and $x^+ = T_{1/L^+}(z_s)$. Coming back to line 3 in Algorithm \ref{alg:xxapg}, it assigns $y_0 = y^+ = z_s, x_0 = x^+ = T_{1/L^+}(z_s)$ and $L_0 = L^+$. Assuming the line search went successful, it will have $D_f(z_s, x_0) \le L^{(s)}_0/2 \Vert z_s - x_0\Vert^2$. 
                 \item [(b)] We used definition of gradient mapping in Definition \ref{def:gm-for-ch2}. 
-                \item [(c)] By the assumption that the line search in Algorithm \ref{alg:armijo-ls} is successful at $z_s$ back in item (a), here we can use \eqref{eqn:emp:result-item-2} in Theorem \ref{thm:gmapg-generic-gm-cnvg}. 
-                \item [(d)] GMAPG is monotone in function value for the use of $\mathbf M$ that is either Algorithm \ref{alg:beck-mono} or \ref{alg:nes-mono}, so it has $F\left(x_{p_s}^{(s)}\right) \le F\left(x_0^{(s)}\right)$. 
+                \item [(c)] By the assumption that the line search in Algorithm \ref{alg:armijo-ls} is successful at $z_s$ back in item (a), here we can use \eqref{eqn:emp:result-item-2} in Theorem \ref{thm:xxapg-gm-cnvg}. 
+                \item [(d)] \XXAPG{} is monotone in function value for the use of $\mathbf M$ that is either Algorithm \ref{alg:beck-mono} or \ref{alg:nes-mono}, so it has $F\left(x_{p_s}^{(s)}\right) \le F\left(x_0^{(s)}\right)$. 
                 \item [(e)] Here we used the assumption that no doubling occurs so $n_{t + 1} = p_t$ for all $j \le t \le s$ meaning that line 13 in Algorithm \ref{alg:linear-rgmapg} has $F(z_t) - F(z_{t + 1}) \ge e^{-1}(F(z_{t - 1}) - F(z_t))$. For that, we recursively unrolled it for $T_\epsilon$ many iterations starting with $t = s = j + T_\epsilon - 1$ ending with $t = j$. 
-                \item [(f)] We used the monotone property of subroutine $\mathbf M$ in GMAPG again so $F(z_0) \ge F(z_{j - 1})$. 
+                \item [(f)] We used the monotone property of subroutine $\mathbf M$ in \XXAPG{} again so $F(z_0) \ge F(z_{j - 1})$. 
                 \item [(g)] We substituted $T_\epsilon = \lceil\ln(2\epsilon^{-2}(F(z_0) - F^+))\rceil$ and, removing $\lceil\cdot\rceil$ to make for the $\le$ inequality. We also replaced $F(z_j)$ by $F^+$ the minimum which is always smaller. 
             \end{enumerate}
             Therefore, it has $G_0^{(s)} \le \epsilon$, hence it must have terminated at, or before iteration $s$. 
@@ -2440,7 +2445,7 @@
                 \item [(b)] $n_{j} \le n_{j + 1}$ for all $0 \le j \le J - 1$. The sequence is monotone from Observation \ref{obs:rgmapg}. 
                 \item [(c)] $n_j \le \bar p$ with $\bar p = 4\sqrt{2L(1 + e)}/\sqrt{\mu}$, proved in Lemma \ref{lemma:rgmapg-inner-bnds}. 
             \end{enumerate}
-            The upper bound on the total number of iterations of GMAPG over $J$ iteration of outer loop is given by: 
+            The upper bound on the total number of iterations of \XXAPG{} over $J$ iteration of outer loop is given by: 
             \begin{align*}
                 \sum_{i = 0}^{J} n_i &= \sum_{i = 0}^{m + nT_\epsilon} n_i
                 \\
@@ -2467,17 +2472,19 @@
             Note that $n_0 = 0$. 
         \end{proof}
         \par
-        The final results from above theorem provide the convergence rate of iterates and the complexity of restart GMAPG under Assumption \ref{ass:q-growth-ch2}. 
+        The final results from above theorem provide the convergence rate of iterates and the complexity of restart \XXAPG{} under Assumption \ref{ass:q-growth-ch2}. 
         We denote $\kappa := L/\mu$. 
-        \begin{theorem}[restarted GMAPG convergence and complexity]\;\label{thm:rgmapg-cnvg-complexity}\\
-            Let $F = f + g$ satisfy Assumption \ref{ass:q-growth-ch2}. 
-            Let $J$ be the total number of iteration performed to achieve accuracy in the outer loop.
-            Let $K := \sum_{i = 0}^{J - 1}p_i$ be the total iterations. 
-            Then, the maximum $K$ needed to achieve optimality $\Vert z_J - z_J^+\Vert \le \delta$ on the iterates is bounded by $\mathcal O\left(\frac{1}{\sqrt{\kappa}}\ln\left(\frac{1}{\kappa\delta}\right)\right)$. 
+        \begin{theorem}[restarted \XXAPG{} convergence and complexity]\;\label{thm:rgmapg-cnvg-complexity}\\
+            Let $F = f + g$ satisfy Assumption \ref{ass:q-growth-ch2}, and apply it to Algorithm \ref{alg:linear-rgmapg}. 
+            Let $J$ be the total number of iteration performed to achieve accuracy in the outer loop. 
+            For each $0 j \le J$, $p_j$ is the number of inner iterations of the inner loop. 
+            Let $K := \sum_{i = 0}^{J - 1}p_i$ be the total number of iterations of the inner loop. 
+            Let $z_j$ be the iterates returned by the inner loop. 
+            Then, the maximum $K$ needed to achieve optimality $\Vert z_J - z_J^+\Vert \le \delta$ is bounded by $\mathcal O\left(\frac{1}{\sqrt{\kappa}}\ln\left(\frac{1}{\kappa\delta}\right)\right)$. 
         \end{theorem}
         \begin{proof}
-            Suppose a total of $K := \sum_{i = 0}^{J - 1} p_i$ iteration were performed and, at line 10 of Algorithm \ref{alg:linear-rgmapg} at iteration $j = J$ it achieved $G_0 \le \epsilon$ at line 5 of Algorithm \ref{alg:gmapg}. 
-            That will cause the inner GMAPG to return $G_0$ so, at line 10 it has $G^{(J)} < \epsilon$ in Algorithm \ref{alg:linear-rgmapg}. 
+            Suppose a total of $K := \sum_{i = 0}^{J - 1} p_i$ iteration were performed and, at line 10 of Algorithm \ref{alg:linear-rgmapg} at iteration $j = J$ it achieved $G_0 \le \epsilon$ at line 5 of Algorithm \ref{alg:xxapg}. 
+            That will cause the inner \XXAPG{} to return $G_0$ so, at line 10 it has $G^{(J)} < \epsilon$ in Algorithm \ref{alg:linear-rgmapg}. 
             This is one of the ways the algorithm can terminate hence, it suffices for deriving an upper bound. 
             \par
             Now we show the convergence rate of $G^{(J)}$, let $k > 0$ and let $\epsilon = \sqrt{2}(F(z_0) - F^+)^{1/2}\exp(-k + 1)$ then: 
@@ -2509,77 +2516,103 @@
                 &\le k - \frac{K\sqrt{\mu}}{16\sqrt{2L(1 + e)}} .
             \end{align*}
             This gives us 
-            \begin{align*}
-                G^{(J)} &\le \epsilon = \sqrt{2}(F(z_0) - F^+)^{1/2}\exp(-k + 1)
-                \\
-                &=
-                e\sqrt{2}(F(z_0) - F^+)^{1/2}\exp(-k)
-                \\
-                &\le
-                e\sqrt{2}(F(z_0) - F^+)^{1/2}\exp\left(
-                    - \frac{K\sqrt{\mu}}{16\sqrt{2L(1 + e)}}
-                \right)
-                \\
-                &= e\sqrt{2}(F(z_0) - F^+)^{1/2}\exp\left(
-                    - \frac{K\sqrt{\kappa}}{16\sqrt{2 + 2e}}
-                \right). 
-            \end{align*}
-            The above inequality shows a linear convergence rate of the quantity $G_0^{(J)}$ with respect to the total number of iterations required for GMAPG. 
+            \begin{align}
+                \begin{split}
+                    G^{(J)} &\le \epsilon = \sqrt{2}(F(z_0) - F^+)^{1/2}\exp(-k + 1)
+                    \\
+                    &=
+                    e\sqrt{2}(F(z_0) - F^+)^{1/2}\exp(-k)
+                    \\
+                    &\le
+                    e\sqrt{2}(F(z_0) - F^+)^{1/2}\exp\left(
+                        - \frac{K\sqrt{\mu}}{16\sqrt{2L(1 + e)}}
+                    \right)
+                    \\
+                    &= e\sqrt{2}(F(z_0) - F^+)^{1/2}\exp\left(
+                        - \frac{K\sqrt{\kappa}}{16\sqrt{2 + 2e}}
+                    \right). 
+                \end{split}
+                \label{ineq:rgmapg-cnvg-complexity-proof-p1}
+            \end{align}
+            The above inequality shows a linear convergence rate of the quantity $G_0^{(J)}$ with respect to the total number of iterations required for \XXAPG{}. 
             Denote $z_J^+ = \Pi_{X^+}z_J$ then it has 
             {\allowdisplaybreaks
-            \begin{align*}
-                G^{(J)} 
-                &\underset{\text{(a)}}{=}\left\Vert \sqrt{L_0^{(J)}} \left(z_J - x_0^{(J)}\right) \right\Vert 
-                = \frac{1}{\sqrt{L_0^{(J)}}} \left\Vert 
-                    L_0^{(J)}\left(
-                        z_J - x_0^{(J)}
+            \begin{align}
+                \begin{split}
+                    G^{(J)} 
+                    &\underset{\text{(a)}}{=}\left\Vert \sqrt{L_0^{(J)}} \left(z_J - x_0^{(J)}\right) \right\Vert 
+                    = \frac{1}{\sqrt{L_0^{(J)}}} \left\Vert 
+                        L_0^{(J)}\left(
+                            z_J - x_0^{(J)}
+                        \right)
+                    \right\Vert
+                    \underset{\text{(a)}}{=}\frac{1}{\sqrt{L_0^{(J)}}} \left\Vert 
+                        \mathcal G_{1/L_0^{(J)}}(z_J)
+                    \right\Vert
+                    \\
+                    &\underset{\text{(b)}}{\ge} \frac{1}{\sqrt{2L}}\left\Vert\mathcal G_{1/L_0^{(J)}}(z_J)\right\Vert
+                    \\
+                    &\underset{\text{(c)}}{\ge} \frac{\sqrt{L(\mu + L)} - L}{\sqrt{L(\mu + L)}} \frac{1}{\sqrt{2L}}\left\Vert
+                        z_J - z_J^+
+                    \right\Vert
+                    \\
+                    &= \frac{1}{\sqrt{2L}}\left(
+                        1 - \frac{1}{\sqrt{1 + \mu/L}}
+                    \right)\left\Vert
+                        z_J - z_J^+
+                    \right\Vert
+                    \\
+                    &\underset{\text{(d)}}{\ge} \frac{\mu}{2\sqrt{L}}\left(
+                        \frac{\sqrt{2} - 1}{\sqrt{2}}
+                    \right)\left\Vert
+                        z_J - z_J^+
+                    \right\Vert 
+                    = 
+                    \kappa\left(
+                        \frac{\sqrt{L}\left(2 - \sqrt{2}\right)}{4}
                     \right)
-                \right\Vert
-                \underset{\text{(a)}}{=}\frac{1}{\sqrt{L_0^{(J)}}} \left\Vert 
-                    \mathcal G_{1/L_0^{(J)}}(z_J)
-                \right\Vert
-                \\
-                &\underset{\text{(b)}}{\ge} \frac{1}{\sqrt{2L}}\left\Vert\mathcal G_{1/L_0^{(J)}}(z_J)\right\Vert
-                \\
-                &\underset{\text{(c)}}{\ge} \frac{\sqrt{L(\mu + L)} - L}{\sqrt{L(\mu + L)}} \frac{1}{\sqrt{2L}}\left\Vert
-                    z_J - z_J^+
-                \right\Vert
-                \\
-                &= \frac{1}{\sqrt{2L}}\left(
-                    1 - \frac{1}{\sqrt{1 + \mu/L}}
-                \right)\left\Vert
-                    z_J - z_J^+
-                \right\Vert
-                \\
-                &\underset{\text{(d)}}{\ge} \frac{1}{2\sqrt{L}}\left(
-                    \frac{\mu}{2L}
-                \right)\left\Vert
-                    z_J - z_J^+
-                \right\Vert 
-                = \frac{\kappa}{4\sqrt{L}} \left\Vert
-                    z_J - z_J^+
-                \right\Vert. 
-            \end{align*}
+                    \left\Vert
+                        z_J - z_J^+
+                    \right\Vert. 
+                \end{split}
+                \label{ineq:rgmapg-cnvg-complexity-proof-p2}
+            \end{align}
             }
             \begin{enumerate}
-                \item [(a)] For the first equality, we assumed that $G^{(J)} < \epsilon$ in the outer loop and, it's returned by Algorithm \ref{alg:gmapg} at line 5. Therefore, it has $G_0 = G^{(J)} = \sqrt{L^{(J)}_0} \Vert z^{(J)} - x_0^{(J)}\Vert$ because it calls Algorithm \ref{alg:armijo-ls} (Armijo line search) with $\alpha_0 = 0$. The second equality comes by using Definition \ref{def:gm-for-ch2}. 
+                \item [(a)] For the first equality, we assumed that $G^{(J)} < \epsilon$ in the outer loop and, it's returned by Algorithm \ref{alg:xxapg} at line 5. Therefore, it has $G_0 = G^{(J)} = \sqrt{L^{(J)}_0} \Vert z^{(J)} - x_0^{(J)}\Vert$ because it calls Algorithm \ref{alg:armijo-ls} (Armijo line search) with $\alpha_0 = 0$. The second equality comes by using Definition \ref{def:gm-for-ch2}. 
                 \item [(b)] Proposition \ref{prop:bnded-lip-ls} has $L_0^{(J)} \le 2L$. 
                 \item [(c)] Using Theorem \ref{thm:qfg-peb-equiv} from previous chapter and take note that Assumption \ref{ass:q-growth-ch2} is Definition \ref{def:necoara-weaker-scnvx}\ref{def:necoara-qfg}. 
-                \item [(d)] The function $1/\sqrt{1 - x/L}$ is convex hence a Taylor expansion has $1/\sqrt{1 - x/L} \le 1 - x/(2L) $, substituting it with $x = \mu$ makes for a lower bound. 
+                \item [(d)] The function $x \mapsto 1 - (1 + x/L)^{-1/2}$ is concave hence for all $x \in [0, L]$ it has: 
+                \begin{align*}
+                    1 - (1 + \mu/L)^{-1/2} &= \left[x \mapsto 1 - (1 + x/L)^{-1/2}\right](0(1 - \mu) + \mu)
+                    \\
+                    &\ge 0(1 - \mu) + \mu(1 - 2^{-1/2}) 
+                    \\
+                    &= \mu\left(
+                        1 - \frac{1}{\sqrt{2}}
+                    \right) = \frac{\mu(\sqrt{2} - 1)}{\sqrt{2}}. 
+                \end{align*}
             \end{enumerate}
-            It then yields the convergence rate of 
+            Using results of \eqref{ineq:rgmapg-cnvg-complexity-proof-p1}, \eqref{ineq:rgmapg-cnvg-complexity-proof-p2} it has
             \begin{align*}
                 \left\Vert z_J - z^+_J\right\Vert 
-                &\le \frac{4eL\sqrt{2}(F(z_0) - F^+)^{1/2}}{\kappa}
+                &\le 
+                \frac{4e\sqrt{2}(F(z_0) - F^+)^{1/2}}{\kappa\sqrt{L}(2 - \sqrt{2})} 
                 \exp\left(
-                    - \frac{K\sqrt{\kappa}}{16\sqrt{2 + 2e}}
-                \right) 
-                \le 
-                \mathcal O\left(
-                    \kappa^{-1}\exp\left(-\sqrt{\kappa}K\right)
+                    -\frac{K\sqrt{\kappa}}{16\sqrt{2 + 2e}}
                 \right). 
             \end{align*}
-            To achieve accuracy $\Vert z_J - z^+_J\Vert \le \delta$, it would require $\mathcal O\left(\frac{1}{\sqrt{\kappa}}\ln\left(\frac{1}{\kappa\delta}\right)\right)$ many total iterations of GMAGP. 
+            $\Vert z_J - z^+_J\Vert \le \delta$ is achieved by substituting $K$: 
+            \begin{align*}
+                K = \left(
+                    \frac{16\sqrt{2 + 2e}}{\sqrt{\kappa}}
+                \right)
+                \ln \left(
+                    \frac{4e\sqrt{2}(F(z_0) - F^+)^{1/2}}{\kappa \sqrt{L}(2 - \sqrt{2})\delta}
+                \right). 
+            \end{align*}
+            This is an upper bound for the number of required iterations. 
+            When constants are ignored, it's $K \le \mathcal O\left(\frac{1}{\sqrt{\kappa}}\ln\left(\frac{1}{\kappa\delta}\right)\right)$. 
         \end{proof}
         
     \section{Applying them to large scale LP}
