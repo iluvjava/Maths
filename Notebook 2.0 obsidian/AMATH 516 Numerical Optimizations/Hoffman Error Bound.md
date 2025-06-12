@@ -93,7 +93,7 @@ $C_I$ is slicing the rows of $C$ and then taking the transpose.
 ---
 ### **The Hoffman constants, Examples**
 
-Let's consider the special case when $C = I$ so it's a square matrix of $n = m$ size. 
+Let's consider the special case when $C = I$ so, it's a square matrix of $n = m$ size. 
 Things are normally easier for the Hoffman constant because polytopes can be equivalent to each other by a reformulation. 
 Continuing from the previous section, consider the special case with $C = I, d = \mathbf 0$. Assume that $\mathcal P = \{x \in \R^n: Ax = b, x \in \R_+^n\} \neq \emptyset$ and, consider Euclidean norm with $\alpha = \beta = 2$. 
 Then it simplifies: 
