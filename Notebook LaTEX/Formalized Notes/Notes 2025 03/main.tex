@@ -986,6 +986,11 @@
     The writing style will change to fit this purpose better. 
     It will be very terse. 
     \par
+    \textbf{Our contributions}. We aggregate stated of the art enhancement techniques for accelerated proximal gradient method in the literatures under a unified perspective. 
+    We propose the application of conic linear feasibility problem for our algorithm and show that the convergence rate is still optimal. 
+    We conduct numerical experiment to demonstrate the relevancy of Hoffman Error bound in the practical settings for our algorithm, which is crucial for all first order methods for linear program. 
+    Using the theories of Hoffman error bound, we also demonstrate that our approach of using accelerated proximal gradient method for linear programming also yields linear convergence rate of the distance of iterates to the solution set of the best approximation problem on the linear programming KKT conditions. 
+    \par
     There are several notable enhancements of the FISTA for function that are not necessarily strongly convex. 
     Monotone variants are proposed by Beck \cite{beck_fast_2009-1} and Nesterov \cite[2.2.32]{nesterov_lectures_2018}. 
     Chambolle proposed the Backtracking strategy \cite{calatroni_backtracking_2019}.
@@ -1684,11 +1689,11 @@
                         \end{tabular}\vspace{0.5em}
                     }
                     \STATE{$\alpha^+ := (1/2)\left(\alpha\sqrt{\alpha^2 + 1} - \alpha^2\right)$.}
-                    \STATE{$y^+ := \alpha^+ v + (1 - \alpha^+)x$.}
+                    \STATE{$y^+ := \alpha^+ v + (1 - \alpha^+)x$.}\label{alg:armijo-ls-yplus}
                     \STATE{$L^+ := L$. }
                     \FOR{$i = 1, 2,\ldots, 53$}
                         \STATE{$L^+ := 2L^+$. }
-                        \STATE{$x^+ := T_{1/L^+, f, g}(y^+)$. }
+                        \STATE{$x^+ := T_{1/L^+, f, g}(y^+)$. }\label{alg:armijo-ls-xplus}
                         \IF{$D_f(x^+, y^+) \le (L^+/2)\Vert x^+ - y^+\Vert^2$}
                             \STATE{\textbf{break}}
                         \ENDIF
@@ -1837,38 +1842,51 @@
                         \end{tabular}
                     }
                     \STATE{$\alpha_0 := 1$.}
-                    \STATE{$x_0, y_0,\alpha_1, L_0 := \textbf{ArmijoLS}(f, g, x_{-1}, x_{-1}, L, \alpha_0)$.}
-                    \STATE{$\eta_0 := L_0; v_0 := x_0; G_0 = \Vert \sqrt{L_0}(x_0 - y_0)\Vert.$}
+                    \STATE{$x_0, y_0,\alpha_1, L_0 := \textbf{ArmijoLS}(f, g, x_{-1}, x_{-1}, L, \alpha_0)$.}\label{alg:xxapg-armijo}
+                    \STATE{$\eta_0 := L_0; v_0 := x_0; G_0 = \Vert \sqrt{L_0}(x_0 - y_0)\Vert.$}\label{alg:xxapg-gzero}
                     \IF{$G_0 \le \epsilon$}
                         \STATE{\textbf{Return: }$x_k, 0, L_0, G_0$}\label{alg:xxapg-exit1}
                     \ENDIF
+                    \STATE{$\overline L := L_0$}. 
                     \FOR{$k := 1, 2,\ldots, N$}
                         \STATE{\noindent
-                            $\tilde x_{k}, y_k, \alpha_{k + 1}, L_{k} := \mathbf{L}(f, g, v_{k - 1}, x_{k - 1}, L_{k - 1}, \alpha_{k}, rL_{k - 1}, \rho)$.
+                            $\tilde x_{k}, y_k, \alpha_{k + 1}, L_{k} := \mathbf{L}(f, g, v_{k - 1}, x_{k - 1}, L_{k - 1}, \alpha_{k}, r\overline L, \rho)$.
                         }
-                        \STATE{$\overline L := \max(L_k, L_{k - 1})$. }
+                        \STATE{$v_k := x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1})$.}
+                        \STATE{$\overline L := \max(L_k, L_{k - 1})$.}\label{alg:xxapg-lbar}
                         \STATE{\noindent
                             $\rho := \rho^{1/2} \textbf{ if } L_{k} > L_{k - 1} \textbf{ else } \rho$.
-                        }
+                        }\label{alg:xxapg-rhosqrt}
                         \STATE{$G_k:= \Vert \sqrt L_k(\tilde x_k - y_k)\Vert $}
                         \STATE{\noindent
                             $x_k, \eta_{k + 1}, G_k^+ := \mathbf M(f, g, \tilde x_k, x_{k - 1}, \eta_k, G_k)$.
                         }
-                        \IF{$G_k^+ < \epsilon \textbf{ or } (\mathbf E_\chi  \textbf{ and } k > N_{\min})$}
+                        \IF{$G_k^+ < \epsilon \textbf{ or } (\mathbf E_\chi  \textbf{ and } k \ge N_{\min})$}
                             \STATE{\textbf{break}}\label{alg:xxapg-exit2}
                         \ENDIF
                     \ENDFOR
                     \STATE{\textbf{Return: }$x_k, k, \overline L, G_k^+ $}
-                \caption{\XXAPG{} with Chambolle's backtracking}\label{alg:xxapg}
+                \caption{\XXAPG{} main alorithm}\label{alg:xxapg}
                 \end{algorithmic}
             \end{algorithm}
-            The above Algorithm \ref{alg:xxapg} is an implementation of \XXAPG{} in Definition \ref{alg:xxapg}. 
+            The above Algorithm \ref{alg:xxapg} is an implementation of \XXAPG{} in Definition \ref{def:xxapg}. 
             The first iterates $x_0$ is produced by a step of proximal gradient descent through Algorithm \ref{alg:armijo-ls} so, it has $x_0 = v_0 = T_{1/L_0}(x_{-1})$, and consequently all results from Theorem \ref{thm:xxapg-specialized-cnvg} apply. 
+            \par
+            There are several tricks involved with it and it deserves explaination. 
+            At line \ref{alg:xxapg-lbar} it keeps the largest Lipschitz estimate from the line search routines under the variable $\overline L$ and, the algorithm returns it after exiting the for loop, and it's used as an input for routine $\mathbf L$ to determine the lower bound of the Lipschitz estimated which is exclusived by Chambolle's backtracking (Algorithm \ref{alg:chambolle-btls}). 
+            Whenever it detects that $L_k > L_{k - 1}$, i.e: the estimated Lipschitz constant had increased, it takes the square root of the decay ratio, making it closer to one. 
+            This decay ratio parameter is exclusively utilised by Chambolle's backtracking routine (Algorithm \ref{alg:chambolle-btls}). 
+            This trick prevents triggering backtracking routine frequently if $\rho$ is a small number. 
+            \par
             Parameters $r, \rho$ are chosen in the discretion of the practitioners. 
             For example, we chose $r= 0.4, \rho = 2^{1/1024}$. 
-            \begin{observation}[\XXAPG{} exit conditions]
-                Algorithm \ref{alg:xxapg} exits and returns its results on line \ref{alg:xxapg-exit1}, or at line \ref{alg:xxapg-exit2}. 
-                If exited, then at least one of the conditions are true. 
+            \begin{observation}[\XXAPG{} exit conditions]\label{obs:xxapg-exit-cond}
+                Algorithm \ref{alg:xxapg} exits and returns its results at line \ref{alg:xxapg-exit1}, or at line \ref{alg:xxapg-exit2}. 
+                If exited, then at least one of the conditions are true.
+                \begin{enumerate}
+                    \item $\Vert \sqrt{L_0}(x_0 - x_{-1})\Vert \le \epsilon$, and the line search on $x_{-1}$ is successful so $D_f(x_{0}, x_{-1}) \le L_0/2\Vert x_0 - x_{-1}\Vert^2$. It has $y_0 = x_{-1}$ because it passes $\alpha_0 = 1$ at line \ref{alg:xxapg-armijo}. 
+                    \item $G_k^+ \le \epsilon$ or, $\mathbf E_\chi$ is true and $k > N_{\min}$. 
+                \end{enumerate}
             \end{observation}
     
     \section{Examples of \XXAPG{} in the literature}
@@ -2094,9 +2112,9 @@
         \end{assumption}
         \par
         Let's introduce our first set of restart conditions which denote it by $\mathbf E_{\chi}^{a}$. 
-        $\mathbf E_{\chi}^{a}$ only uses function values on iterates available to the inner loop to determine the exit conditions, and it achieves global fast linear convergence. 
-        The inner loop algorithm is described in Algorithm \ref{alg:xxapg}, let $k$ denote the inner loop counter and define $m = \lfloor k/2 \rfloor + 1$ the conditions are: 
-        \begin{align}\label{ineq:rgmapg-exit-cond}
+        $\mathbf E_{\chi}^{a}$ uses function values in the inner loop (Algorithm \ref{alg:xxapg}). 
+        Let $k$ denote the inner loop counter and define $m = \lfloor k/2 \rfloor + 1$, $\mathbf E_{\chi}^a$ is defined as: 
+        \begin{align}\label{ineq:rxxapg-exit-cond}
             \mathbf E_{\chi}^a \iff 
             f(x_m) - f(x_k) \le \exp(-1)(f(x_{-1}) - f(x_m)). 
         \end{align}
@@ -2122,43 +2140,47 @@
                 \IF{$M \le 0 \textbf{ or } G^{(j-1)} \le \epsilon$}
                     \STATE{\textbf{break}}                
                 \ENDIF
-                \STATE{$z_{j + 1}, p_j, \overline L_{j + 1}, G^{(j)} := \textbf{\XXAPG{}}(f, g, z_j, \overline L_j, r, \rho, N_{\min}=n_j, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}
+                \STATE{$z_{j + 1}, p_j, \overline L_{j + 1}, G^{(j)} := \textbf{\XXAPG{}}(f, g, z_j, \overline L_j, r, \rho, N_{\min}=n_j, N=M, \epsilon, \textbf{L}, \textbf{M}, \textbf{E}_{\chi}^a).$}\label{alg:rxxapg-iloop-done}
                 \STATE{$M := M - p_j$.}
                 \STATE{$\overline L_{j + 1} = \max(\overline L_{j}, \overline L_{j + 1})$.}
-                \IF{$f(z_{j}) - f(z_{j + 1}) > \exp(-1)(f(z_{j - 1}) - f(z_{j}))$}
+                \IF{$f(z_{j}) - f(z_{j + 1}) > \exp(-1)(f(z_{j - 1}) - f(z_{j}))$}\label{alg:rxxapg-restart-if}
                     \STATE{$n_{j + 1} := 2p_j$.}
                 \ELSE
                 \STATE{$n_{j + 1} := p_j$.}
                 \ENDIF
             \ENDFOR
-            \end{algorithmic}\caption{Linear convergence restarted \XXAPG{}}\label{alg:linear-rgmapg}
+            \end{algorithmic}\caption{Linear convergence restarted \XXAPG{}}\label{alg:rxxapg}
         \end{algorithm}
         \par
-        Algorithm \ref{alg:linear-rgmapg} implements a restarted \XXAPG{} with condition $\textbf{E}_{\chi}^a$ and, it has a fast linear convergence rate. 
-        The following observation on it is crucial to take notice for the convergence rate. 
-        \begin{observation}\label{obs:rgmapg}
-            If the outer loop runs for $j = 1, 2, \ldots, J$ iterations with $M \ge J$ so the algorithm terminated due $G^{(J - 1)} \le \epsilon$. 
+        Algorithm \ref{alg:rxxapg} implements a restarted \XXAPG{} with condition $\textbf{E}_{\chi}^a$ stated in \eqref{ineq:rxxapg-exit-cond} and, it has a fast linear convergence rate. 
+        The following observation about it is crucial for deriving its convergence rate. 
+        \begin{observation}\label{obs:rxxapg}
+            If the outer loop runs for $j = 1, 2, \ldots, J$ iterations with $M \ge J$, so Algorithm \ref{alg:rxxapg} terminated due to $G^{(J - 1)} \le \epsilon$. 
             Then, it has 
             \begin{enumerate}
                 \item for all $J\ge j\ge 1$ it has $n_{j}\le n_{j + 1}$ hence $(n_j)_{j \ge 0}^J$ is monotone increasing; 
-                \item for all $J -1 \ge j \ge 1 $ it has $p_{j-1}\le p_{j}$ so $(p_j)_{j \ge 1}^{J}$ is monotone excluding the last iterates $p_J$. 
+                \item for all $J -1 \ge j \ge 1 $ it has $p_{j-1}\le p_{j}$ so $(p_j)_{j \ge 1}^{J}$ is monotone excluding $p_J$ obtained by the last iteration. 
             \end{enumerate}
         \end{observation}
         \par
-        For all $1 \le j \le J$, $n_j$ is used as the lower bound $N_{\min}$ for the \XXAPG{} inner loop described in Algorithm \ref{alg:xxapg} at iteration $j$ and, $p_j$ is the actual iteration underwent by the inner loop therefore it has $p_j \ge n_{j}$. 
-        $n_{j + 1}$ is the minimum iteration for the next execution of GMAGP, and it has $n_{j + 1} = p_{j}$  if the ``if statement" isn't triggered otherwise $n_{j + 1} = 2p_{j}$. 
-        For $j < J$ so it excludes the last iteration, it has either $p_{j + 1} \ge n_{j + 1} = 2p_j \ge 2n_{j} \ge n_j$ or $p_{j + 1} \ge n_{j + 1} = p_j \ge n_j$. 
-        When $j = J$ it's not necessarily true that $p_J \ge n_J$ because on the last iteration, it can exit the for loop through conditions $G_k^+ \le \epsilon$ in line 14 of Algorithm \ref{alg:xxapg}, but $n_J \ge p_{J - 1} \ge n_{J - 1}$ still. 
+        Explanations for the observations now follow. 
+        For all $1 \le j < J$, $n_j$ is passed in as the lower bound $N_{\min}$ for \XXAPG{} inner loop (Algorithm \ref{alg:xxapg}), $p_j$ is the actual number of iteration by the inner loop therefore, it has $p_j \ge n_{j}$ because of Observation \ref{obs:xxapg-exit-cond}. 
+        $n_{j + 1}$ is the minimum iteration required for the next execution of \XXAPG{} inner loop, and it has $n_{j + 1} = p_{j}$ if at line \ref{alg:rxxapg-restart-if} is true otherwise, $n_{j + 1} = 2p_{j}$. 
+        As a consequence, for $j < J$, it has either $p_{j + 1} \ge n_{j + 1} = 2p_j \ge 2n_{j} \ge n_j$ or $p_{j + 1} \ge n_{j + 1} = p_j \ge n_j$. 
+        Both $(n_j)_{j\ge0}, (p_j)_{j\ge 0}$ are nondecreasing sequences. 
         \par
-        We now introduce the following notations for the convergence proof. 
-        Since the restarted \XXAPG{} consist of executions of an outer loop in Algorithm \ref{alg:linear-rgmapg} in variable $j$ and, an inner loop in Algorithm \ref{alg:xxapg} in variable $k$, we denote $x_{k}^{(j)}$ for the iterates $x_k$ in the inner loop during the $j$ iteration of the outer loop together. 
-        We make the choice to have $x_{-1}^{(j + 1)} = z_{j + 1} = x_{p_j}^{(j)}$ for consistencies across theorems from previous sections. 
-        For example in line 10 of Algorithm \ref{alg:linear-rgmapg} at the $j$ iteration, the inner loop returns $x_{p_j}$ as the last iterate. 
+        When $j = J$ it's not necessarily true that $p_J \ge n_J$ because on the last iteration, inner loop can exit through condition $G_k^+ \le \epsilon$ at line \ref{alg:xxapg-exit2} of Algorithm \ref{alg:xxapg}, but $n_J \ge p_{J - 1} \ge n_{J - 1}$ still. 
+        \par
+        \textbf{Notations now follow.}
+        Since the Algorithm \ref{alg:rxxapg} has a loop in variable $j$ and, an inner loop implemented by Algorithm \ref{alg:xxapg} in variable $k$, we denote $x_{k}^{(j)}$ for the iterates $x_k$ in the inner loop during the $j$ iteration of the outer loop together. 
+        We make the convention $x_{-1}^{(j + 1)} = z_{j + 1} = x_{p_j}^{(j)}$ for consistencies across the theorems from previous sections. 
+        \par
+        For example at line \ref{alg:rxxapg-iloop-done} of Algorithm \ref{alg:rxxapg} at the $j$ iteration, the inner loop returns $x_{p_j}$ as the last iterate. 
         So $x_{p_j}$ is assigned to $z_{j + 1}$ by the outer loop, and it has $x_{p_j} = x_{p_j}^{(j)} = z_{j + 1}$. 
         It continues and $z_{j + 1}$ will be the initial iterate pass into the inner loop for the $j + 1$ iteration, and hence $z_{j + 1} =x_{-1}^{(j + 1)}$. 
         \par
         Let $e$ denotes the base of natural log. 
-        The following lemma combines quadratic growth assumption of the objective to assert lower bound on the number of iteration required to achieve a certain optimality on the objective function $F$. 
+        The following lemma will assert a lower bound on the number of iteration required to achieve a certain optimality on the objective function $F$ using the quadratic growth assumption. 
         \begin{lemma}[maximum iteration needed for an optimality gap ratio]\;\label{lemma:prog-ratio}\\
             Suppose that $F = f + g$ satisfies Assumption \ref{ass:q-growth-ch2} so $F^+ := \inf_xF(x)$, $X^+$ is the set of minimizers, and $\mu > 0$ is the quadratic growth constant. 
             Let the sequence $(x_k)_{k \ge -1}$ be generated by \XXAPG{} (Definition \ref{alg:xxapg}). 
@@ -2183,7 +2205,7 @@
                 F(x_k) - F^+ \le \frac{2 \widehat L_k}{(2 + k)^2}\Vert x_k - x_{-1}^+\Vert^2 \le \frac{4 \widehat L_k}{\mu(2 + k)^2}(F(x_{-1}) - F^+). 
             \end{align*}
             The second inequality comes from Assumption \ref{ass:q-growth-ch2} directly. 
-            Suppose that $k \ge 2\sqrt{1 + e}\left(\mu\widehat L_k^{-1}\right)^{-1/2}$. 
+            Suppose that ${k \ge 2\sqrt{1 + e}\left(\mu\widehat L_k^{-1}\right)^{-1/2}}$. 
             Denote $\gamma_k = 4\widehat L_k \mu^{-1}(2 + k)^{-2}$.
             We make the following assumption first, and it will be proved later:
             \begin{enumerate}
@@ -2206,7 +2228,7 @@
                     1 - \frac{4\widehat L_k}{\mu(2 + k)^2}
                 \right)^{-1}(F(x_{-1}) - F^+)
                 \\
-                &= 4\widehat L_k(\mu(2 + k)^2 - 4 \widehat L_k)(F(x_{-1}) - F^+)
+                &= 4\widehat L_k(\mu(2 + k)^2 - 4 \widehat L_k)^{-1}(F(x_{-1}) - F^+)
                 \\
                 &\le 4\widehat L_k\left(
                     \mu\left(
@@ -2220,7 +2242,7 @@
                     \right)^2 - 4 \widehat L_k
                 \right)^{-1}(F(x_{-1}) - F^+)
                 \\
-                &\le 4\widehat L_k\left(
+                &= 4\widehat L_k\left(
                     \mu\left(
                         \frac{4(1 + e)\widehat L_k}{\mu}
                     \right) - 4 \widehat L_k
@@ -2252,12 +2274,13 @@
             \end{align*}
             }
         \end{proof}
+        \par
         The following proposition places an upper bound on the estimated Lipschitz constant from the line search routine specified in Algorithm \ref{alg:armijo-ls}, \ref{alg:chambolle-btls}. 
         This is crucial to derive a global convergence properties of the algorithm based on the parameters of the objective function. 
         \begin{proposition}[Lipschitz line search estimates are bounded]\label{prop:bnded-lip-ls}
             Suppose that $F = f + g$ satisfies Assumption \ref{ass:standard-fista}. 
             Choose such $F$ for Algorithm \ref{alg:xxapg} so, it generates the sequence $(L_k)_{k\ge 0}$. 
-            Then, the sequence $(\hat L_k)_{k \ge 1}$ from Theorem \ref{thm:xxapg-specialized-cnvg} is bounded above and, it has
+            Then, the sequence $(\widehat L_k)_{k \ge 1}$ from Theorem \ref{thm:xxapg-specialized-cnvg} is bounded above and, it has
             \begin{align*}
                 \widehat L_k &:= \max\left(
                     L_0, \left(
@@ -2267,19 +2290,21 @@
             \end{align*}
         \end{proposition}
         \begin{proof}
-            A line search is triggered in Algorithm \ref{alg:armijo-ls}, \ref{alg:chambolle-btls} if and only if $L_{k + 1} = 2L_{k}$ for some $k \ge 0$ and, there exists some $x\in \RR^n, y \in \RR^n$ such that $D_f(x, y) > L_k\Vert x - y \Vert^2$. 
-            For all $k = 0, 1, \ldots $, if $L_k \ge L$ then, it has $D_f(x, y) \le L_k/2\Vert x - y\Vert^2$ for all $x, y \in \RR^n$. 
-            Hence, $L_{k + 1} \le L_k$ because a line sarch is never triggered. 
+            The following two facts are clear. 
+            \begin{enumerate}
+                \item A line search is triggered in Algorithm \ref{alg:armijo-ls}, \ref{alg:chambolle-btls} if and only if $L_{k + 1} = 2L_{k}$ for some $k \ge 0$ and, it implies that there exists some $x\in \RR^n, y \in \RR^n$ such that $D_f(x, y) > L_k/2\Vert x - y \Vert^2$. 
+                \item For all $k = 0, 1, \ldots $, if $L_k \ge L$, then it has $D_f(x, y) \le L_k/2\Vert x - y\Vert^2$ for all $x, y \in \RR^n$ which implies $L_{k + 1} \le L_k$ because the line search wasn't triggered. 
+            \end{enumerate}
             \par
-            For contradiction let's assume that there exists $k \ge 1$ such that a line search is triggered for $L_k$ and, $L_{k + 1} = 2L_{k} > 2L$, then $L_k > L$, but we just showed that this implies $L_{k + 1} \le L_k$, which is a contradiction. 
+            For contradiction let's assume that there exists $k \ge 1$ such that a line search is triggered for $L_k > L$.
+            From (i) it has $L_{k + 1} = 2L_{k} > 2L$ so $L_{k + 1} > L_k$, but (ii) showed that assumption $L_k > L$ implies $L_{k + 1} \le L_k$, which is a contradiction. 
             Therefore, if $L_{k + 1} = 2L_k$ then it must be that $L_k < L$ so, the highest value it can achieve is either $L_0$, or $2L$. 
         \end{proof}
         \par
-        Continuing with the quadratic growth assumption, the following lemma states the fact that $p_j$ in Algorithm \ref{alg:linear-rgmapg} is bounded above and there exists a $j \ge 1$ such that $n_{j + 1 + k} = p_{j + k}$ for all $k \ge 0$ until it terminates. 
-        \begin{lemma}[inner iteration is bounded above]\label{lemma:rgmapg-inner-bnds}
+        Continuing with the quadratic growth assumption, the following lemma states the result that $p_j$ in Algorithm \ref{alg:rxxapg} is bounded above and there exists a $j \ge 1$ such that $n_{j + 1 + k} = p_{j + k}$ for all $k \ge 0$ until it terminates. 
+        \begin{lemma}[inner iteration is bounded above]\label{lemma:rxxapg-inner-bnds}
             Suppose that $F = f + g$ satisfies Assumption \ref{ass:q-growth-ch2}, denote $F^+ := \inf_xF(x)$ and, $X^+$ as the set of minimizers. 
             Consider any $j \ge 1$ iteration experienced by the outer loop. 
-            Let $\left(x_{k}^{(j)}\right)_{k\ge 0}^{p_{j}}$ be the sequence generated by Algorithm \ref{alg:linear-rgmapg} in the $j$ th iteration of outer loop. 
             Define $\bar p := \frac{4\sqrt{2L(1 + e)}}{\sqrt{\mu}}$, then $p_{j} \le \bar p, n_j \le \bar p$. 
         \end{lemma}
         \begin{proof}
@@ -2297,7 +2322,7 @@
             Therefore, for all $j \ge 0$, $p_j \le \bar p$, and $n_{j + 1} \le \bar p$. 
             \par
             \textbf{Proof of (i)}. 
-            Recall exit condition in \eqref{ineq:rgmapg-exit-cond} has $m = \lfloor k/2\rfloor + 1$. 
+            Recall exit condition in \eqref{ineq:rxxapg-exit-cond} has $m = \lfloor k/2\rfloor + 1$. 
             Starting with the statement hypothesis it has $k \ge \bar p$ therefore: 
             \begin{align*}
                 0 &\le k/2 - \bar p/2 \le \lfloor k/2\rfloor + 1 - \bar p/2
@@ -2330,11 +2355,11 @@
                 } 
                 \implies \mathbf E_{\chi}^a. 
             \end{align*}
-            Observe that line 14 of Algorithm \ref{alg:xxapg} exits as soon as possible if $\mathbf E_\chi^a$ is true and $k > N_{\min} = n_j$ and, $G_k \le \epsilon$ will only cause it to exit earlier therefore it has $p_j \le \max(\bar p, n_j)$. 
+            At line \ref{alg:xxapg-exit2} of Algorithm \ref{alg:xxapg}, Since $\mathbf E_\chi^a$ is true, it will exit if $k \ge N_{\min} = n_j$ and, $G_k \le \epsilon$ will only cause it to exit earlier therefore it has $p_j \le \max(\bar p, n_j)$. 
             \par
             \textbf{Proof of (ii)}. 
             Inductively assume that $p_{j - 1} \le p_j \le \bar p$. 
-            If $p_{j - 1} \le \bar p /2$ then Line 14, 16 in Algorithm \ref{alg:linear-rgmapg} implies that $n_{j} \le \max(p_{j - 1}, 2p_{j - 1}) \le \bar p$. 
+            If $p_{j - 1} \le \bar p /2$ then the if, else statement at line \ref{alg:rxxapg-restart-if} in Algorithm \ref{alg:rxxapg} implies that $n_{j} \le \max(p_{j - 1}, 2p_{j - 1}) \le \bar p$. 
             Otherwise, $p_{j - 1} > \bar p/2$, and using Proposition \ref{prop:bnded-lip-ls} it means 
             \begin{align*}
                 p_{j - 1} \ge \bar p /2 = \frac{2\sqrt{2L(1 + e)}}{\sqrt{\mu}} 
@@ -2352,26 +2377,29 @@
                 }
                 \ge 
                 \frac{F(z_j) - F(z_{j + 1})}
-                {F(z_{j - 1}) - F(z_{j})} \implies n_{j + 1} = p_{j + 1}.
+                {F(z_{j - 1}) - F(z_{j})} \implies n_{j + 1} = p_{j}.
             \end{align*}
-            Therefore, there is no doubling at line 14 of Algorithm \ref{alg:linear-rgmapg}, hence $n_{j + 1} \le \bar p$ still. 
+            This is true because, condition at line \ref{alg:rxxapg-restart-if} in Algorithm \ref{alg:rxxapg} is never satisfied hence $n_{j + 1} = p_j \le \bar p$. 
         \end{proof}
         \par
-        We just show that the sequence $n_j$ is bounded above, and it must have a limit because it's also monotone increasing, which implies that at some point, the doubling of $n_{j + 1} = 2p_j$ must stop for the outer loop. 
-        The following lemma shows that when that happens, the algorithm will always terminate after a finite number of iterations of the outer loop. 
-        \begin{lemma}[bounds on outer iteration counts]\label{lemma:rgmapg-outer-itr-bnd}
+        We just show that the sequence $n_j$ is bounded above, and it must have a limit because it's also non-decreasing from Observation \ref{obs:rxxapg}, which implies that at some point, the doubling of $n_{j + 1} = 2p_j$ must stop for the outer loop. 
+        The following lemma shows that when it happened, the restarted \XXAPG{} (Algorithm \ref{alg:rxxapg}) will always terminate after a finite number of iterations of the outer loop. 
+        \begin{lemma}[bounds on outer iteration counts]\label{lemma:rxxapg-outer-itr-bnd}
             Let $F = f + g$ satisfies Assumption \ref{ass:standard-fista}. 
-            Suppose we apply Algorithm \ref{alg:linear-rgmapg} on $F = f + g$. 
-            Define $T_\epsilon = \lceil\ln(2\epsilon^{-2}(F(z_0) - F^+))\rceil$
-            Assume that after iteration $j$, no doubling occurred in the if statement, i.e: $n_{t + 1} = p_t$ for $t \ge j$, then it must terminate before, or at iteration $j + T_\epsilon$. 
+            Suppose we apply Algorithm \ref{alg:rxxapg} on $F = f + g$. 
+            For all $\epsilon > 0$ used to terminate the algorithm, define $T_\epsilon = \lceil\ln(2\epsilon^{-2}(F(z_0) - F^+))\rceil$. 
+            Assume that after iteration $j$, no doubling occurred in the if statement at line \ref{alg:rxxapg-restart-if}, i.e: $n_{t + 1} = p_t$ for $t \ge j$, then it must terminate before, or at iteration $j + T_\epsilon$. 
         \end{lemma}
         \begin{proof}
-            Suppose that since the $j\ge 2$ th iteration, there is no period doubling for $T_\epsilon$ number of iterations in the outer loop of Algorithm \ref{alg:linear-rgmapg}, i.e: $n_{t + 1} = p_t$
-            for $j \le t \le j + T_\epsilon - 1$, and denote $s = j + T_\epsilon -1$ for better notations, giving us for all $j \le t \le s$, $n_{t + 1} = p_t$. 
+            Suppose that since the $j\ge 2$ th iteration, there is no period doubling for $T_\epsilon$ number of iterations in the outer loop of restarted \XXAPG{} by Algorithm \ref{alg:rxxapg}, i.e: $n_{t + 1} = p_t$ for $j \le t \le j + T_\epsilon - 1$. 
+            Let's denote $s = j + T_\epsilon -1$ for better notations, so for $t$ such that $j \le t \le s$, it has $n_{t + 1} = p_t$. 
             \par
-            Our goal now is to show that at iteration $j = s$ of Algorithm \ref{alg:linear-rgmapg} it must have $G_0 \le \epsilon$ at line 5 of Algorithm \ref{alg:xxapg}. 
+            Our goal now is to show that at iteration $j = s + 1$ of Algorithm \ref{alg:rxxapg} it must have $G^{(s)} \le \epsilon$ making an exit due to $G_0 \le \epsilon$ at line \ref{alg:xxapg-exit1} of Algorithm \ref{alg:xxapg}. 
+            This is one of many ways the restarted \XXAPG{} can exit, if we only focus on this condition it gives an upper bound on $T_\epsilon$. 
             \par
-            Consider the start of the $s$ th iteration of the outer loop, denote $L_0^{(s)}, G_0^{(s)}$ as the $L_0$ in line 4 in Algorithm \ref{alg:xxapg}, it would give the following inequalities
+            Consider the start of the $s$ th iteration of the outer loop by Algorithm \ref{alg:rxxapg-restart-if}.
+            Let's denote $L_0^{(s)}$ for the $L_0$ in the inner loop by Algorithm \ref{alg:xxapg} at line \ref{alg:armijo-ls}; denote $G_0^{(s)}$ for the $G_0$ in the inner loop by Algorithm \ref{alg:xxapg} at line \ref{alg:xxapg-gzero}. 
+            Then, it would give the following chain of inequalities
             {\allowdisplaybreaks
             \begin{align*}
                 \frac{1}{2}\left(
@@ -2407,19 +2435,19 @@
             \end{align*}
             }
             \begin{enumerate}
-                \item [(a)] At the $s$ iteration of the loop in Algorithm \ref{alg:linear-rgmapg}, $z_s$ is passed into Algorithm \ref{alg:xxapg} with $x_{-1} = z_s$. Therefore, at line 3 in Algorithm \ref{alg:xxapg} it calls Algorithm \ref{alg:armijo-ls} with $x_{-1} = z_s, \alpha_0 = 1, L^+$ which means $y^+ = x_{-1} = z_s$ at line 5 and $x^+ = T_{1/L^+}(z_s)$. Coming back to line 3 in Algorithm \ref{alg:xxapg}, it assigns $y_0 = y^+ = z_s, x_0 = x^+ = T_{1/L^+}(z_s)$ and $L_0 = L^+$. Assuming the line search went successful, it will have $D_f(z_s, x_0) \le L^{(s)}_0/2 \Vert z_s - x_0\Vert^2$. 
+                \item [(a)] At the $s$ iteration of the outer loop by Algorithm \ref{alg:rxxapg}, $z_s$ is passed into the inner loop by Algorithm \ref{alg:xxapg} with $x_{-1} = z_s$. Therefore, at line \ref{alg:xxapg-armijo} in Algorithm \ref{alg:xxapg} it calls Armijo line search by Algorithm \ref{alg:armijo-ls} with $x_{-1} = z_s, \alpha_0 = 1$ which means $y^+ = x_{-1} = z_s$ at line \ref{alg:armijo-ls-yplus} and, $x^+ = T_{1/L^+}(z_s)$ at line \ref{alg:armijo-ls-xplus}. Coming back to line \ref{alg:xxapg-armijo} in Algorithm \ref{alg:xxapg}, it assigns $y_0 = y^+ = z_s, x_0 = x^+ = T_{1/L^+}(z_s)$ and $L_0 = L^+$. Assuming the line search went successful, it will have $D_f(z_s, x_0) \le L^{(s)}_0/2 \Vert z_s - x_0\Vert^2$. 
                 \item [(b)] We used definition of gradient mapping in Definition \ref{def:gm-for-ch2}. 
-                \item [(c)] By the assumption that the line search in Algorithm \ref{alg:armijo-ls} is successful at $z_s$ back in item (a), here we can use \eqref{eqn:emp:result-item-2} in Theorem \ref{thm:xxapg-gm-cnvg}. 
-                \item [(d)] \XXAPG{} is monotone in function value for the use of $\mathbf M$ that is either Algorithm \ref{alg:beck-mono} or \ref{alg:nes-mono}, so it has $F\left(x_{p_s}^{(s)}\right) \le F\left(x_0^{(s)}\right)$. 
-                \item [(e)] Here we used the assumption that no doubling occurs so $n_{t + 1} = p_t$ for all $j \le t \le s$ meaning that line 13 in Algorithm \ref{alg:linear-rgmapg} has $F(z_t) - F(z_{t + 1}) \ge e^{-1}(F(z_{t - 1}) - F(z_t))$. For that, we recursively unrolled it for $T_\epsilon$ many iterations starting with $t = s = j + T_\epsilon - 1$ ending with $t = j$. 
+                \item [(c)] By the assumption that the line search in Algorithm \ref{alg:armijo-ls} is successful at $z_s$ back in item (a), here we can use \eqref{ineq:xxapg-gm-cnvg-prt2} in Theorem \ref{thm:xxapg-gm-cnvg}. 
+                \item [(d)] \XXAPG{} implemented via Algorithm \ref{alg:xxapg} is monotone in function value for the use of $\mathbf M$ that is either Algorithm \ref{alg:beck-mono} or \ref{alg:nes-mono}, so it has $F\left(x_{p_s}^{(s)}\right) \le F\left(x_0^{(s)}\right)$. 
+                \item [(e)] Here we used the assumption that no doubling occurs so $n_{t + 1} = p_t$ for all $j \le t \le s$ meaning that line \ref{alg:rxxapg-restart-if} in Algorithm \ref{alg:rxxapg} has $F(z_t) - F(z_{t + 1}) \ge e^{-1}(F(z_{t - 1}) - F(z_t))$. Therefore, we can recursively unroll it for $T_\epsilon$ many iterations starting with $t = s = j + T_\epsilon - 1$ ending with $t = j$. 
                 \item [(f)] We used the monotone property of subroutine $\mathbf M$ in \XXAPG{} again so $F(z_0) \ge F(z_{j - 1})$. 
                 \item [(g)] We substituted $T_\epsilon = \lceil\ln(2\epsilon^{-2}(F(z_0) - F^+))\rceil$ and, removing $\lceil\cdot\rceil$ to make for the $\le$ inequality. We also replaced $F(z_j)$ by $F^+$ the minimum which is always smaller. 
             \end{enumerate}
             Therefore, it has $G_0^{(s)} \le \epsilon$, hence it must have terminated at, or before iteration $s$. 
         \end{proof}
-        \begin{theorem}[bounds on the total iterations]\label{thm:rgmapg-total-itr-bnds}
+        \begin{theorem}[bounds on the total iterations]\label{thm:rxxapg-total-itr-bnds}
             Let $F = f + g$ satisfies Assumption \ref{ass:q-growth-ch2}. 
-            Suppose that we applied Algorithm \ref{alg:linear-rgmapg} to it. 
+            Suppose that we applied Algorithm \ref{alg:rxxapg} to $F$. 
             For any $\epsilon > 0$, assuming that it terminated at $j = J < M$ iteration.
             Then the total number of iterations has an upper bound:
             \begin{align*}
@@ -2432,18 +2460,19 @@
             \end{align*}
         \end{theorem}
         \begin{proof}
-            Firstly, Algorithm \ref{alg:linear-rgmapg} must terminate within finite many iterations under Assumption \ref{ass:q-growth-ch2} for all total budget $M \in \N$. 
-            This is because Observation \ref{obs:rgmapg} shows that $n_j$ is a non-decreasing sequence, Lemma \ref{lemma:rgmapg-inner-bnds} shows that $n_j \le \bar p$ under this quadratic growth assumption, therefore $n_j$ must converge which implies that doubling of $n_{j + 1} = 2p_{j}$ must stop. 
-            Finally, since the doubling must stop at some $j$, Lemma \ref{lemma:rgmapg-outer-itr-bnd} applies hence, it terminates at most $j + T_\epsilon$ iteration. 
+            Firstly, Algorithm \ref{alg:rxxapg} must terminate within finite many iterations under Assumption \ref{ass:q-growth-ch2} for all total budget $M \in \N$. 
+            This is because Observation \ref{obs:rxxapg} shows that $n_j$ is a non-decreasing sequence, Lemma \ref{lemma:rxxapg-inner-bnds} shows that $n_j \le \bar p$ under the quadratic growth assumption, therefore $n_j$ must converge which implies that doubling of $n_{j + 1} = 2p_{j}$ must stop. 
+            Finally, since the doubling must stop at some $j$, Lemma \ref{lemma:rxxapg-outer-itr-bnd} applies hence, it terminates at most $j + T_\epsilon$ iteration. 
             \par
-            Using it let's assume that it executed for $j = 1, 2, \cdots, J$ and $M$ is large enough to achieve optimality $G^+ \le \epsilon$ right at the start of iteration $J$.
+            Using it let's assume that it executed for $j = 1, 2, \cdots, J$ and $M$ is large enough to achieve optimality $G^{(J)} \le \epsilon$ right at the start of iteration $J + 1$.
             This is one of the way the algorithm can terminate, making it a sufficient condition for deriving the upper bound on the total number of iterations. 
-            Representing it by the maximum period between doubling: $J = m + nT_\epsilon$ with $0 \le m < T_\epsilon$. 
+            \par
+            Let's represent $J$ by: $J = m + nT_\epsilon$ with $0 \le m < T_\epsilon$. 
             The following intermediate results are important to the proof. 
             \begin{enumerate}
-                \item [(a)] $n_{J - lT_\epsilon} \le n_{J - lT_\epsilon}\le (1/2)^ln_J$ for all $l = 1, \ldots, n$. From Lemma \ref{lemma:rgmapg-outer-itr-bnd} we know that doubling must have occured within a period of $T_\epsilon$ iterations at least once.
-                \item [(b)] $n_{j} \le n_{j + 1}$ for all $0 \le j \le J - 1$. The sequence is monotone from Observation \ref{obs:rgmapg}. 
-                \item [(c)] $n_j \le \bar p$ with $\bar p = 4\sqrt{2L(1 + e)}/\sqrt{\mu}$, proved in Lemma \ref{lemma:rgmapg-inner-bnds}. 
+                \item [(a)] $n_{J - lT_\epsilon} \le n_{J - lT_\epsilon}\le (1/2)^ln_J$ for all $l = 1, \ldots, n$. This is true because Lemma \ref{lemma:rxxapg-outer-itr-bnd} showed that doubling must have occurred within a period of $T_\epsilon$ at least once.
+                \item [(b)] $n_{j} \le n_{j + 1}$ for all $0 \le j \le J - 1$. The sequence is monotone non decreasing from Observation \ref{obs:rxxapg}. In addition, $0 \le m < T_\epsilon$ by assumption. 
+                \item [(c)] $n_j \le \bar p$ with $\bar p = 4\sqrt{2L(1 + e)}/\sqrt{\mu}$, which is proved in Lemma \ref{lemma:rxxapg-inner-bnds}. 
             \end{enumerate}
             The upper bound on the total number of iterations of \XXAPG{} over $J$ iteration of outer loop is given by: 
             \begin{align*}
@@ -2451,14 +2480,13 @@
                 \\
                 &= \sum_{i = 0}^{m}n_i + \sum_{l = 0}^{n - 1}\sum_{i = 1}^{T_\epsilon} n_{m + i + lT_\epsilon}
                 \\
-                &\hspace{-0.5em}
-                \underset{\substack{(b), \\ m \le T_\epsilon.}}\le T_\epsilon n_m + \sum_{l = 0}^{n - 1} T_\epsilon n_{m + (l + 1)T_\epsilon}
+                &\underset{\text{(b)}}{\le} T_\epsilon n_m + \sum_{l = 0}^{n - 1} T_\epsilon n_{m + (l + 1)T_\epsilon}
                 \\
                 &= T_\epsilon \sum_{l = 0}^{n} n_{m + lT_\epsilon} = T_\epsilon \sum_{l = 0}^{n} n_{J - lT_\epsilon}
                 \\
                 &\underset{\text{(a)}}{\le} T_\epsilon \sum_{l = 0}^{n} (1/2)^l n_J \le T_\epsilon \sum_{l = 0}^{\infty} (1/2)^l n_J
                 \\
-                &\le 2T_\epsilon n_J \le 2T_\epsilon \bar p.
+                &\le 2T_\epsilon n_J \underset{\text{(c)}}{\le} 2T_\epsilon \bar p.
             \end{align*}
             The total number of iterations is bounded by: 
             \begin{align*}
@@ -2474,8 +2502,8 @@
         \par
         The final results from above theorem provide the convergence rate of iterates and the complexity of restart \XXAPG{} under Assumption \ref{ass:q-growth-ch2}. 
         We denote $\kappa := L/\mu$. 
-        \begin{theorem}[restarted \XXAPG{} convergence and complexity]\;\label{thm:rgmapg-cnvg-complexity}\\
-            Let $F = f + g$ satisfy Assumption \ref{ass:q-growth-ch2}, and apply it to Algorithm \ref{alg:linear-rgmapg}. 
+        \begin{theorem}[restarted \XXAPG{} convergence and complexity]\;\label{thm:rxxapg-cnvg-complexity}\\
+            Let $F = f + g$ satisfy Assumption \ref{ass:q-growth-ch2}, and apply it to Algorithm \ref{alg:rxxapg}. 
             Let $J$ be the total number of iteration performed to achieve accuracy in the outer loop. 
             For each $0 j \le J$, $p_j$ is the number of inner iterations of the inner loop. 
             Let $K := \sum_{i = 0}^{J - 1}p_i$ be the total number of iterations of the inner loop. 
@@ -2483,8 +2511,8 @@
             Then, the maximum $K$ needed to achieve optimality $\Vert z_J - z_J^+\Vert \le \delta$ is bounded by $\mathcal O\left(\frac{1}{\sqrt{\kappa}}\ln\left(\frac{1}{\kappa\delta}\right)\right)$. 
         \end{theorem}
         \begin{proof}
-            Suppose a total of $K := \sum_{i = 0}^{J - 1} p_i$ iteration were performed and, at line 10 of Algorithm \ref{alg:linear-rgmapg} at iteration $j = J$ it achieved $G_0 \le \epsilon$ at line 5 of Algorithm \ref{alg:xxapg}. 
-            That will cause the inner \XXAPG{} to return $G_0$ so, at line 10 it has $G^{(J)} < \epsilon$ in Algorithm \ref{alg:linear-rgmapg}. 
+            Suppose a total of $K := \sum_{i = 0}^{J - 1} p_i$ iteration were performed and, at line 10 of Algorithm \ref{alg:rxxapg} at iteration $j = J$ it achieved $G_0 \le \epsilon$ at line 5 of Algorithm \ref{alg:xxapg}. 
+            That will cause the inner \XXAPG{} to return $G_0$ so, at line 10 it has $G^{(J)} < \epsilon$ in Algorithm \ref{alg:rxxapg}. 
             This is one of the ways the algorithm can terminate hence, it suffices for deriving an upper bound. 
             \par
             Now we show the convergence rate of $G^{(J)}$, let $k > 0$ and let $\epsilon = \sqrt{2}(F(z_0) - F^+)^{1/2}\exp(-k + 1)$ then: 
@@ -2494,7 +2522,7 @@
                 \right)
                 &= 2(k - 1). 
             \end{align*}
-            Then it has from Theorem \ref{thm:rgmapg-total-itr-bnds} that:
+            Then it has from Theorem \ref{thm:rxxapg-total-itr-bnds} that:
             \begin{align*}
                 0 &\le 
                 \frac{8\sqrt{2L(1 + e)}}{\sqrt{\mu}}\left\lceil 
@@ -2532,7 +2560,7 @@
                         - \frac{K\sqrt{\kappa}}{16\sqrt{2 + 2e}}
                     \right). 
                 \end{split}
-                \label{ineq:rgmapg-cnvg-complexity-proof-p1}
+                \label{ineq:rxxapg-cnvg-complexity-proof-p1}
             \end{align}
             The above inequality shows a linear convergence rate of the quantity $G_0^{(J)}$ with respect to the total number of iterations required for \XXAPG{}. 
             Denote $z_J^+ = \Pi_{X^+}z_J$ then it has 
@@ -2575,7 +2603,7 @@
                         z_J - z_J^+
                     \right\Vert. 
                 \end{split}
-                \label{ineq:rgmapg-cnvg-complexity-proof-p2}
+                \label{ineq:rxxapg-cnvg-complexity-proof-p2}
             \end{align}
             }
             \begin{enumerate}
@@ -2593,7 +2621,7 @@
                     \right) = \frac{\mu(\sqrt{2} - 1)}{\sqrt{2}}. 
                 \end{align*}
             \end{enumerate}
-            Using results of \eqref{ineq:rgmapg-cnvg-complexity-proof-p1}, \eqref{ineq:rgmapg-cnvg-complexity-proof-p2} it has
+            Using results of \eqref{ineq:rxxapg-cnvg-complexity-proof-p1}, \eqref{ineq:rxxapg-cnvg-complexity-proof-p2} it has
             \begin{align*}
                 \left\Vert z_J - z^+_J\right\Vert 
                 &\le 
@@ -2614,10 +2642,12 @@
             This is an upper bound for the number of required iterations. 
             When constants are ignored, it's $K \le \mathcal O\left(\frac{1}{\sqrt{\kappa}}\ln\left(\frac{1}{\kappa\delta}\right)\right)$. 
         \end{proof}
-        
-    \section{Applying them to large scale LP}
-    
     \section{Hoffman Bounds and infeasibility detection}
+        The Hoffman error bound conditions is essential to analyzing optimization problem arises in applications with polytoptic constraints. 
+
+    \section{Numerical experiments}
+    
+    
     
 \chapter{Enhanced Primal Dual Methods for LP}
     

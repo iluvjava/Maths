@@ -1,0 +1,1 @@
+{"rule":"ON_COMPOUNDS","sentence":"^\\QIt has \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q because it passes \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q on line \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
