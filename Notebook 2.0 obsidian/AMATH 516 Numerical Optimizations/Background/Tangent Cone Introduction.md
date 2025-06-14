@@ -1,10 +1,9 @@
-- [[Introducing Cone]]
-
+- [Introducing Cone](Introducing%20Cone.md)
 
 --- 
 ### **Intro**
 
-A tangent cone is a cone that is define via the set $Q$ and a point $\bar{x}\in Q$ where $Q\in \mathbb{R}^n$: 
+A tangent cone is a cone that is define via the set $Q$ and a point $\bar{x}\in Q$ where $Q\subseteq \R^n$: 
 
 #### **Def | Bouligand Tangent Cone**
 > The Bouligand tangent cone is a set of limits defined by: 
@@ -16,36 +15,62 @@ A tangent cone is a cone that is define via the set $Q$ and a point $\bar{x}\in 
 > \right\rbrace. 
 > $$
 
-**Mathematically**: 
+**Observations**
 
-Tangent cone's elements are defined by a vector limit.
-Consider any sequence $x_i \in Q$ that satisfies the following descriptions. 
-- The sequence approaches the point $\bar{x}\in Q$. 
-- It can be weighted by a non-negative decreasing sequence: $\tau_i(x_i - \bar{x})$, then the limit is a unique vector, and that vector is the set $T_{Q}(\bar{x})$. 
-
-By changing the rate of convergence of $\tau_i\searrow 0$, we get the span of vectors that forms a cone out of all the converging sequences inside of $Q$. 
-Observe that every converging sequence $x_i\rightarrow_{\in Q} \bar x$, the norm $\Vert x - \bar x\Vert$ goes to zero. 
-Assuming $T_Q(\bar x)\neq \emptyset$ , we may assert that $\lim_{i\rightarrow \infty} |\tau_i^{-1}|\Vert x_i - \bar x\Vert < \infty$, (because the limit exists) implying that $\tau_i \in o(\Vert x_i - \bar x\Vert)$, a rate of convergence for the parameter $\tau$. 
-
-
-**Intuitively** 
-
-this is a cone because of the definition of the non-negative decreasing sequence of scalars can be scaled up, which is equivalent to scaling the the set $T_Q(\bar{x})$, which it also doesn't change the definition of the tangent cone. Therefore, it's a cone 
-
-**References**:
-
-This is from Jame Burkes at UW. 
+1. The set is a cone. If $x = \lim_{i \rightarrow \infty}\tau_i^{-1}(x_i - \bar x)$, then for all $\lambda > 0$, $\lambda x = \lim_{i\rightarrow \infty}(\lambda \tau_i^{-1})(x_i - \bar x)$ has $\lambda^{-1}\tau_i \searrow 0$, which means $\lambda x \in T_Q(\bar x)$. 
+2. The set is a closed set. It has something to do with the set limit formulation of the Bouligand Tangent cone. See [Variational Tangent Cone](../Variational%20Geometry/Variational%20Tangent%20Cone.md) for more information. 
 
 ---
 ### **Tangent Cone on A convex Set**
 
-We use the variational tangent cone definition from above to show:
+Notations. 
+$\text{cone}(Q):= \{\lambda q : q \in Q, \lambda \ge 0\}$. 
+It's not necessarily closed from this definition yet. 
 
-> Let $Q$ be a convex set, then $T(x|Q) = \text{cl.cone}(Q - x)$. Displaying the set $Q$ by $x$ and the cone of the translate set produces the tangent cone at the point $x$. Equality becomes $\subseteq$ when convexity assumption for $Q$ is removed. 
+#### **Theorem | Conic span of the set and Bouligand Tanget Cone**
+> Suppose $Q \subseteq \R^n$ is non-empty. 
+> Than it has $T_Q(\bar x) \subseteq \text{cl.cone}(Q - \bar x)$. 
+> In addition, if we assume that $\mathbf 0 \in \text{cl}(Q - \bar x)$ and, $Q$ is a convex set, then it has $\text{cl.cone}(Q - \bar x)\subseteq T_Q(\bar x)$. 
 
 **Proof**
 
+It's direct to see $T_Q(\bar x) \subseteq \text{cl.cone}(Q - \bar x)$. 
+For all $x \in T_Q(\bar x)$ there exists $\tau_i \searrow 0, x_i\rightarrow \bar x, x_i \in Q$ such that $x = \lim_{i \rightarrow \infty}\tau_i^{-1}(x_i - \bar x)$, then: 
+$$
+\begin{aligned}
+    x_i &\in Q 
+    \\
+    x_i - \bar x & \in Q - \bar x 
+    \\
+    \tau_i^{-1}(x_i - \bar x) &\in \text{cone}(Q - \bar x)
+    \\
+    \lim_{i\rightarrow \infty} \tau_i^{-1}(x_i - \bar x) 
+    &\in \text{cl.cone}(Q - \bar x).
+\end{aligned}
+$$
 
+Let's now prove $\text{cl.cone}(Q - \bar x) \subseteq T_Q(\bar x)$. 
+Take the following facts. 
+* (a): $c \in \text{cl.cone}(Q - \bar x)$ means $\exists \lambda \ge 0, \exists q \in \text{cl}(Q): c = \lambda (q - \bar x)$, because $\mathbf 0 \in \text{cl}(Q - \bar x) \iff \bar x \in \text{cl}(Q)$, hence it was $\lambda \ge 0$. 
+* (b): Consider any $\tau_i \searrow 0: \tau_i \in(0, 1)$, define sequence $q_i := (1 - \tau_i)\bar x + \tau_i q$, then it has $q_i \in Q$ for all $i \in \N$ and $\lim_{i \rightarrow \infty} q_i = \bar x$. 
+
+Fitting the sequence $q_i$ to the definition of tangent cone, assume $\lambda > 0$, it gives: 
+
+$$
+\begin{aligned}
+    0 &\underset{\text{(b)}}{=} q_i - \bar x - \tau_i (q - \bar x)
+    \\
+    &= (\lambda \tau_i^{-1})(q_i - \bar x) - \lambda(q - \bar x)
+    \\
+    &\underset{\text{(a)}}{=} \lim_{i\rightarrow \infty}(\lambda \tau_i^{-1})(q_i - \bar x) - c. 
+\end{aligned}
+$$
+
+Hence, $c \in T_Q(\bar x)$. 
+Otherwise $\lambda = 0$ then $c = 0$, and $T_Q(\bar x)$ always can contain zero. 
+To do that, for any sequence $(\lambda_i)_{i\ge 1}$ that fulfills the definition of $T_Q(\bar x)$, we make it converges to zero slower. 
+We make $\tau_i\searrow 0$ such that $\lim_{i \rightarrow \infty} \tau_i^{-1}\Vert x_i - \bar x\Vert = 0$. 
+$\blacksquare$
 
 **Remarks**: 
 

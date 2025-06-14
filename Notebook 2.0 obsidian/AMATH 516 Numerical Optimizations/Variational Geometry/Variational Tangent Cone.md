@@ -29,14 +29,12 @@ We introduce some definitions and basic properties for the tangent cone along wi
 >     \\
 >     &= 
 >     \left\lbrace
->         d \in \mathbb R^n 
->         \left | \; 
->             d = \lim_{m \rightarrow \infty} \frac{x_{m} - \bar x}{\tau_m}, 
->             \exists\; x_{m} \in C, 
->             x_{m}\rightarrow \bar x, 
->             \tau_m \searrow 0
->         \right.
->     \right\rbrace
+>         \left.
+>         \lim_{m \rightarrow \infty} \frac{x_{m} - \bar x}{\tau_m} \right|         
+>         \exists\; x_{m} \in C, 
+>         x_{m}\rightarrow \bar x, 
+>         \tau_m \searrow 0
+>     \right\rbrace. 
 > \end{aligned}
 > $$
 

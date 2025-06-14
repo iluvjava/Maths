@@ -8,7 +8,7 @@ A set $K$ is a cone if, under $\lambda K, \lambda > 0$ scaling, we have $\lambda
 In brief, the set is invariant after a strictly positive scaling transformation. 
 Immediately observe that, 
 
-**Obervations**
+**Observations**
 
 1. If $K$ is a cone and it's closed, then $\mathbf 0 \in K$. Take limits of $\lambda \searrow 0$ to see why. 
 2. The Minkowski sum of 2 cones is still a cone. 
@@ -25,7 +25,7 @@ Immediately observe that,
 
 **Remarks**: 
 
-A subspece is a special case of a cone. 
+A subspace is a special case of a cone. 
 It's a restrictions of a subspace because it describes only positively weighted elements from the subspace. 
 
 When we talk about cone, the tip of the cone is usually centered around the origin. 
