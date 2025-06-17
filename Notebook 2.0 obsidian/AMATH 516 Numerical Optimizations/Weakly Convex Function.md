@@ -79,23 +79,22 @@ $$
 \begin{aligned}
     0 &\le h(\alpha x + (1 - \alpha)y) - \alpha h(x) - (1 - \alpha) h(y)
     \\
-    &= (h(\alpha x + (1 - \alpha)y) - \alpha h(x) - (1 - \alpha) h(y))
+    &= (f(\alpha x + (1 - \alpha)y) - \alpha f(x) - (1 - \alpha) f(y))
     +  \frac{q}{2}\Vert \alpha x + (1 - \alpha)y \Vert^2 - \frac{q\alpha}{2}\Vert x\Vert^2
-    - \frac{q(1 - \alpha)}{\Vert y\Vert^2}
+    - \frac{q(1 - \alpha)}{2}\Vert y\Vert^2
     \\
     &\underset{\text{(a)}}{=}
-    h(\alpha x + (1 - \alpha)y) - \alpha h(x) - (1 - \alpha) h(y)
+    f(\alpha x + (1 - \alpha)y) - \alpha f(x) - (1 - \alpha) f(y)
     \\ &\quad 
         +  
         \frac{q}{2}\left(
-            \alpha \Vert x\Vert^2 + (1 - \alpha)\Vert y\Vert^2 - \alpha(1 - \alpha)\Vert x - y\Vert^2
+            \alpha \Vert x\Vert^2 + (1 - \alpha)\Vert y\Vert^2 + \alpha(1 - \alpha)\Vert x - y\Vert^2
         \right)
         - \frac{q\alpha}{2}\Vert x\Vert^2
         - \frac{q(1 - \alpha)}{2}\Vert y\Vert^2
     \\
-    &= 
-    h(\alpha x + (1 - \alpha)y) - \alpha h(x) - (1 - \alpha) h(y)
-    - \frac{q \alpha(1 - \alpha)}{2}\Vert x - y\Vert^2. 
+    &= f(\alpha x + (1 - \alpha)y) - \alpha f(x) - (1 - \alpha) f(y)
+    + \frac{q \alpha(1 - \alpha)}{2}\Vert x - y\Vert^2. 
 \end{aligned}
 $$
 

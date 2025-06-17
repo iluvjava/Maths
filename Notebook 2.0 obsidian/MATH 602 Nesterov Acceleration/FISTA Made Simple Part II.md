@@ -1029,7 +1029,7 @@ A line search employed for the algorithm generate $\eta$ smaller than $L + q$ be
 > \end{aligned}
 > $$
 > Here, $\overline \eta_k = \max_{i = 0, \ldots, k}\eta_i$. 
-> If the line search routine in Algorithm \ref{alg:nes-mono} is used, then it's bounded above by $2(q_g + L)$. 
+> If the line search routine like Armijo line search is used, then the Lipschitz estimate is bounded above by $2(q_g + L)$. 
 
 **Proof**
 

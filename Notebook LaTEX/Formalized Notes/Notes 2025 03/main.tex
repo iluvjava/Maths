@@ -110,66 +110,81 @@
             - \langle \beta(x - \bar x), z - \bar x\rangle. 
         \end{align*}
     \end{proof}
-    \begin{theorem}[convex proximal gradient inequality]\label{thm:cnvx-pg-ineq}
-        Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth} such that $\mu = \mu_g \ge 0$, $\beta \ge L_f$. 
-        In addition, suppose that $f:\RR^n\rightarrow \RR$ has $L_f$ Lipschitz continuous gradient, and it's $\mu_f \ge 0$ strongly convex. 
-        For all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{\beta^{-1}, f, g}(x)$ it has 
-        \begin{align*}
-            0 &\le 
-            F(z) - F(\bar x) + 
-            \frac{\beta - \mu_f}{2}\Vert z - x\Vert^2
-            - \frac{\beta + \mu_g}{2}\Vert z - \bar x\Vert^2. 
-        \end{align*}
-    \end{theorem}
-    \begin{proof}
-        The Bregman Divergence of $f$ has inequality 
-        \begin{align*}
-            \left(\forall x \in \RR^n, y \in \RR^n\right)\; 
-            \frac{\mu_f}{2}\Vert x - y\Vert^2 \le D_f(x, y) \le \frac{L_f}{2}\Vert x - y\Vert^2. 
-        \end{align*}
-        Specializing Theorem \ref{thm:pg-ineq-swcnvx-generic}, let $x \in \RR^n$ and define $\bar x = T_{\beta^{-1}, f, g}(x)$ it has $\forall z \in \RR^n:$
-        \begin{align*}
-            \frac{\mu_g}{2}\Vert z - \bar x \Vert^2 
-            &\le 
-            F(z) - F(\bar x) 
-            - D_f(z, x) + D_f(\bar x, x) 
-            - \langle \beta(x - \bar x), z - \bar x\rangle
-            \\
-            &\le 
-            F(z) - F(\bar x) 
-            - \frac{\mu_f}{2}\Vert z - x\Vert^2 
-            + \frac{L_f}{2}\Vert x - \bar x\Vert^2
-            - \langle \beta(x - \bar x), z - x + x - \bar x\rangle
-            \\
-            &= 
-            F(z) - F(\bar x) 
-            - \frac{\mu_f}{2}\Vert z - x\Vert^2 
-            + \left(
-                \frac{L_f}{2} - \beta
-            \right)\Vert x - \bar x\Vert^2
-            - \langle \beta(x - \bar x), z - x\rangle
-            \\
-            &\le 
-            F(z) - F(\bar x) 
-            - \frac{\mu_f}{2}\Vert z - x\Vert^2 
-            - \frac{\beta}{2}\Vert x - \bar x\Vert^2
-            - \langle \beta(x - \bar x), z - x\rangle
-            \\
-            &= 
-            F(z) - F(\bar x) 
-            - \frac{\mu_f}{2}\Vert z - x\Vert^2 
-            - \frac{\beta}{2}
-            \left(
-                \Vert x - \bar x\Vert^2
-                + 2\langle x - \bar x, z - x\rangle
-            \right)
-            \\
-            &= 
-            F(z) - F(\bar x) 
-            + \frac{\beta - \mu_f}{2}\Vert z - x\Vert^2 
-            - \frac{\beta}{2}\Vert z - \bar x\Vert^2. 
-        \end{align*}
-    \end{proof}
+    \section{Convexity results}
+        \begin{theorem}[convex proximal gradient inequality]\label{thm:cnvx-pg-ineq}
+            Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-add-nonsmooth} such that $\mu = \mu_g \ge 0$, $\beta \ge L_f$. 
+            In addition, suppose that $f:\RR^n\rightarrow \RR$ has $L_f$ Lipschitz continuous gradient, and it's $\mu_f \ge 0$ strongly convex. 
+            For all $x \in \RR^n, z \in \RR^n$, define $\bar x = T_{\beta^{-1}, f, g}(x)$ it has 
+            \begin{align*}
+                0 &\le 
+                F(z) - F(\bar x) + 
+                \frac{\beta - \mu_f}{2}\Vert z - x\Vert^2
+                - \frac{\beta + \mu_g}{2}\Vert z - \bar x\Vert^2. 
+            \end{align*}
+        \end{theorem}
+        \begin{proof}
+            The Bregman Divergence of $f$ has inequality 
+            \begin{align*}
+                \left(\forall x \in \RR^n, y \in \RR^n\right)\; 
+                \frac{\mu_f}{2}\Vert x - y\Vert^2 \le D_f(x, y) \le \frac{L_f}{2}\Vert x - y\Vert^2. 
+            \end{align*}
+            Specializing Theorem \ref{thm:pg-ineq-swcnvx-generic}, let $x \in \RR^n$ and define $\bar x = T_{\beta^{-1}, f, g}(x)$ it has $\forall z \in \RR^n:$
+            \begin{align*}
+                \frac{\mu_g}{2}\Vert z - \bar x \Vert^2 
+                &\le 
+                F(z) - F(\bar x) 
+                - D_f(z, x) + D_f(\bar x, x) 
+                - \langle \beta(x - \bar x), z - \bar x\rangle
+                \\
+                &\le 
+                F(z) - F(\bar x) 
+                - \frac{\mu_f}{2}\Vert z - x\Vert^2 
+                + \frac{L_f}{2}\Vert x - \bar x\Vert^2
+                - \langle \beta(x - \bar x), z - x + x - \bar x\rangle
+                \\
+                &= 
+                F(z) - F(\bar x) 
+                - \frac{\mu_f}{2}\Vert z - x\Vert^2 
+                + \left(
+                    \frac{L_f}{2} - \beta
+                \right)\Vert x - \bar x\Vert^2
+                - \langle \beta(x - \bar x), z - x\rangle
+                \\
+                &\le 
+                F(z) - F(\bar x) 
+                - \frac{\mu_f}{2}\Vert z - x\Vert^2 
+                - \frac{\beta}{2}\Vert x - \bar x\Vert^2
+                - \langle \beta(x - \bar x), z - x\rangle
+                \\
+                &= 
+                F(z) - F(\bar x) 
+                - \frac{\mu_f}{2}\Vert z - x\Vert^2 
+                - \frac{\beta}{2}
+                \left(
+                    \Vert x - \bar x\Vert^2
+                    + 2\langle x - \bar x, z - x\rangle
+                \right)
+                \\
+                &= 
+                F(z) - F(\bar x) 
+                + \frac{\beta - \mu_f}{2}\Vert z - x\Vert^2 
+                - \frac{\beta}{2}\Vert z - \bar x\Vert^2. 
+            \end{align*}
+        \end{proof}
+        \begin{definition}[strong convexity]\label{def:scnvx}
+            Let $\alpha \ge 0$. 
+            $f: \RR^n \rightarrow \RR^n$ is $\alpha$ strongly convex if and only if $f - \alpha/2\Vert \cdot\Vert^2$ is a convex function. 
+        \end{definition}
+        \begin{remark}
+            The definition doesn't exclude convex functions. 
+        \end{remark}
+        \begin{theorem}[strong convexity equivalences]\label{thm:scnvx-eqvs}
+            Let $f:\RR^n \rightarrow \RR$ be $\alpha \ge 0$ strongly convex then, it is equivalent to 
+            \begin{align*}
+                (\forall \lambda \in [0, 1])\; 
+                f(\lambda x + (1 - \lambda)y) \le \lambda f(x) + (1 - \lambda)f(y) -\alpha\frac{\lambda(1 - \lambda)}{2} \Vert y - x\Vert^2.
+            \end{align*}
+        \end{theorem}
     
 \chapter{Linear Convergence of First Order Method}
     In this chapter, we are specifically interested in characterizing linear convergence of well known first order optimization algorithms. 
@@ -216,9 +231,9 @@
                 \mathcal G_{L_f}x = L_f(x - \Pi_{X}x). 
             \end{align*}
             % ==================================================================
-            % STRONG CONVEXITY DEFINITION
+            % STRONG CONVEXITY
             % ==================================================================
-            \begin{definition}[strong convexity]\label{def:necoara-scnvx}
+            \begin{theorem}[strong convexity characterized via Bregman Divergence]\label{thm:breg-div-scnvx}
                 Suppose $f$ satisfies Assumption \ref{ass:necoara-2019-settings}. 
                 Then $f \in \mathbb S(L_f, \kappa_f, X)$ is strongly convex iff 
                 \begin{align*}
@@ -226,8 +241,8 @@
                     \kappa_f \Vert x - y\Vert^2 \le 
                     D_f(x, y) \le L_f \Vert x - y\Vert^2. 
                 \end{align*}
-            \end{definition}
-            Then it's not hard to imagine the following natural relaxation of the above conditions. 
+            \end{theorem}
+            Then, it's not hard to imagine the following natural relaxations of the above condition. 
             %===================================================================
             % DEFINITION OF WEAKER STRONG CONVEXITY 
             % ==================================================================
@@ -640,7 +655,7 @@
             \end{proof}
             \par
             The following theorem summarizes the hierarchy of the conditions listed in Definition \ref{def:necoara-weaker-scnvx}. 
-            \begin{theorem}[Hierarchy of weaker S-CNVX conditions]\label{thm:q-cnvx-hierarchy}
+            \begin{theorem}[Hierarchy of weaker SCNVX conditions]\label{thm:wcnvx-hierach}
                 Let $f$ satisfy Assumption \ref{ass:necoara-2019-settings}, assuming convexity then the following relations are true: 
                 \begin{align*}
                     \mathbb S(\kappa_f, L_f, X) 
@@ -665,8 +680,84 @@
                 It's Theorem 4 in Necoara et al. \cite{necoara_linear_2019}.
             \end{remark}
 
-        \subsection{Characterizing Q-SCNVX functions with Hoffman's Error bound}
-            Necoara et al. \cite{necoara_linear_2019} 
+        \subsection{Characterizing Q-SCNVX functions with Hoffman's error bound}
+            Back in 1955, Hoffman \cite{hoffman_approximate_1952} determined the existence of an upper bound for the distance of a point to a polyhedron can be bounded by the constraint violations of the point, uniformly. 
+            Let's adopt $[\cdot]_+$ as the notation for projecting on $\RR^n_+$. 
+            Necoara re-introduce the bound, the following theorem phrase that upper bound in the exact same way, but with only the Euclidean norm. 
+            \begin{theorem}[Polyhedral Hoffman Error bound]
+                Let $A \in \RR^{p \times n}, C \in \RR^{m\times n}$. 
+                Given non-empty polyhedron: $P := \{x \in \RR^n : Ax = b, Cx \le d\}$, there exists a constant $\theta(A, C) > 0$ such that 
+                \begin{align*}
+                    (\forall x \in \RR^n)\; \dist(x | P) \le \theta(A, C)\left\Vert
+                        \begin{bmatrix}
+                            Ax - b \\ [Cx - d]_+
+                        \end{bmatrix}
+                    \right\Vert. 
+                \end{align*}
+            \end{theorem}
+            The constant $\theta(A, C)$ is referred to as the Hoffman constant in the literature. 
+            There are two notable generalization of the inequality. 
+            Güler et al. \cite{guler_approximations_1995} found a representation of the Hoffman constant via singular values of sub matrices that defines the polyhedron. 
+            Burke and Tseng \cite{burke_unified_1996} unified the analysis for the Hoffman constant and extend it to the context of general cone over a sublinear convex function, and more. 
+            \par 
+            It's important to note at this point that the exact value of $\theta(A, C)$ is very difficult to obtain in practice. 
+            Let's go back to Necoara \cite{necoara_linear_2019}. 
+            The following theorem stated their use of the Error bound condition to capture a class of Q-SCNVX function. 
+            \begin{theorem}[Q-SCNVX and Hoffman's error bound]\label{thm:q-scnvx-hffmn-eb}
+                Let $X := \{S \in \RR^n: Cx \le d\}$ be non-empty, $g:\RR^m \rightarrow \RR$ be a $\sigma_g$ strongly convex and, $L_g$ Lipschitz smooth function. 
+                Let $A \in \RR^{m\times n}$ be a nonzero, $C \in \RR^{m\times n}$. 
+                Then $f(x):= g(Ax)$ is Q-SCNVX with $L_f = L_g\Vert A\Vert^2$, $\kappa_f = \sigma_g/\theta(A, C)^2$. 
+            \end{theorem}
+            \begin{proof}
+                $X\neq \emptyset$ determines a non-empty set of minimizers $X^+ := \argmin_{x \in X} f(x)$. 
+                We state the following intermediate results prior to their justifications at the end of the proof. 
+                \begin{enumerate}
+                    \item [(a)] $\forall x, y$ it has $\Vert \nabla f(x) - \nabla f(y)\Vert \le \Vert A\Vert^2 L_g \Vert x - y\Vert$. 
+                    \item [(b)] There exists uniquely $(t^*, T^*) \in \RR^{m\times n}$ such that for all $\bar x \in X^+$ it has $Ax^+ = t^*, \nabla f(\bar x) = T^*$. In other word, for all minimizers $\bar x$ in $X^+$, $A\bar x$ and, $\nabla f(\bar x)$ are all the same. It would mean $X^+ = \{\bar x : A\bar x = t^*, Cx^* \le d\}$ and, it's also a polyhedron. 
+                    \item [(c)] Hoffman error bound for Theorem \ref{thm:q-scnvx-hffmn-eb} applied to polyhedron $X^+$, it has 
+                    \begin{align*}
+                        \dist(x | X^+) \le \theta(A, C)\dist((Ax - t^*, Cx - d) | \{\mathbf 0\}\times \RR^n_-)
+                    \end{align*}
+                \end{enumerate}
+                Snatching these two intermediate results, the proof for the overall theorem follows. 
+                For all $x \in \RR^n$ denote $\bar x = \Pi_{X^+} x$, using strong convexity of $g$, and $f(x) = g(Ax)$: 
+                \begin{align*}
+                    f(\bar x) - f(x) - \langle \nabla f(x), \bar x - x\rangle &= 
+                    g(A\bar x) - g(x) - \left\langle A^T\nabla g(Ax), \bar x - x\right\rangle
+                    \\
+                    &= g(A\bar x) - g(x) - \langle \nabla g(Ax), A\bar x - Ax\rangle
+                    \\
+                    &\ge \sigma_g/2\Vert Ax - A\bar x\Vert^2 
+                    \\
+                    &\underset{\text{(b)}}{=} \frac{\sigma_g}{2} \Vert Ax - t^*\Vert^2 
+                    \\
+                    &\underset{\text{(c)}}{\ge} \frac{\sigma_g}{2\theta(A, C)^2} \Vert x - \bar x\Vert^2. 
+                \end{align*}
+                Therefore, the function $f$ is Q-SCNVX, i.e: $f \in \QSCNVX (L_g \Vert A\Vert^2, \sigma_g/\theta(A, C)^2)$. 
+                \\\noindent
+                \textbf{The Proof of (a)} is direct. 
+                \begin{align*}
+                    \Vert \nabla f(x) - \nabla f(y)\Vert &= \Vert A^T \nabla g(Ax) - A^T\nabla g(Ay)\Vert
+                    \\
+                    &\le \Vert A\Vert \Vert \nabla g(Ax) - \nabla g(Ax)\Vert
+                    \\
+                    &\le \Vert A\Vert L_g \Vert Ax - Ay\Vert \le \Vert A\Vert^2 L_g \Vert x - y\Vert. 
+                \end{align*}
+                \textbf{The proof of (b)} has some details. 
+                The set $X^+$ is a convex and, $f$ takes the same value all over it. 
+                Consider any $\bar x_1, \bar x_2 \in X^+$, they have
+                \begin{align*}
+                    (1/2)(f(\bar x_1) + f(\bar x_2)) &= f((1/2)(\bar x_1 + \bar x_2)) 
+                    \\
+                    &= g((1/2)(A\bar x_1 + \bar x_2)) 
+                    \\
+                    &= (1/2)(g(A\bar x_1) + g(A \bar x_2))
+                    \\
+                    &\le (1/2)g(A \bar x_1) + (1/2)g(A \bar x_2) - \frac{\sigma_g}{8}\Vert A\bar x_1 + A \bar x_2\Vert^2. 
+                \end{align*}
+                On the last inequality, we used an equivalent characterization of strong convexity (Theorem \ref{thm:scnvx-eqvs}). 
+                The last inequality implies that $0 \le - \Vert A \bar x_1 - A \bar x_2\Vert^2$, hence it must be that $A\bar x_1 = A \bar x_2$, which would mean $\nabla f(\bar x_1) = \nabla f(\bar x_2)$ because $\nabla f(x) = A^T \nabla g(A \bar x)$. 
+            \end{proof}
             
         \subsection{Feasible descent and accelerated feasible descent}
             This section summarizes results from Necoara et al. on the method of feasible descent, fast feasible descent, and fast feasible descent with restart. 
@@ -683,7 +774,7 @@
             \end{align}
 
             \begin{theorem}{feasible descent linear convergence under Q-SCNVX}
-                Under Assumption \ref{ass:necoara-2019-settings}, assume that $f$ is Q-CNVX with $\mu_f, L_f$, then the sequence that satisfies Definition \ref{def:projg-alg} has a linear convergence rate. 
+                Under Assumption \ref{ass:necoara-2019-settings}, assume that $f$ is Q-SCNVX with $\mu_f, L_f$, then the sequence that satisfies Definition \ref{def:projg-alg} has a linear convergence rate. 
                 Let $\bar x_k = \Pi_{X^+}x_k, \bar x_0 = \Pi_{X^+} x_0$. 
                 For all $k \ge 1$, the iterates satisfy
                 \begin{align*}
@@ -698,7 +789,7 @@
                     \item Inequality \eqref{ineq:projg-variational-ineq}, from the projected gradient and convexity of $X$. 
                     \item $f \in \mathbb S'$ which is the hypothesis that $f$ is Q-CNVX. 
                     \item $\alpha_k \le L_f^{-1}$, the stepsize is sufficient to apply descent lemma globally. 
-                    \item $f \in \mathbb Q$ satisfying Q-Growth, a consequence of Q-CNVX by Theorem \ref{thm:q-cnvx-hierarchy}. 
+                    \item $f \in \mathbb Q$ satisfying Q-Growth, a consequence of Q-SCNVX by Theorem \ref{thm:wcnvx-hierach}. 
                 \end{enumerate}
                 With $\overline{(\cdot)} = \Pi_{X^+}(\cdot)$ to denote the projection of a vector to the set of minimizers. 
                 The sequence of inequalities and equalities proves the theorem. 
@@ -990,7 +1081,7 @@
             \end{align*}
             For this reason, the computation overhead for $f(u) - f(v), D_f(u, v)$ is very little as well if, $\nabla f(u), \nabla f(v)$ is already known.
     \section{Hoffman error bound of linear feasibility problem}
-
+        
     \section{Quadratic growth of linear feasibility problem}
 
 \chapter{Advanced Enhancement Techniques in Accelerated Proximal Gradient}

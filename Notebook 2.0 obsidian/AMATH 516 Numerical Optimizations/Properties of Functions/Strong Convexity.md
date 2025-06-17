@@ -38,6 +38,7 @@ Recall the definition of subgradient $\partial f: \R^n \rightarrow 2^{\R^n}$.
 
 **Proof**
 
+
 Subgradient sum rule allows: 
 
 $$
@@ -45,7 +46,7 @@ $$
     \partial [f - \alpha/2\Vert \cdot\Vert^2](x) &= \partial f(x) - \alpha x. 
 \end{aligned}
 $$
-
+Let's show that **(1) implies (2) are equivalent**. 
 Starting with $f - \alpha/2\Vert \cdot\Vert^2$ is convex, the equivalent subgradient characterization has for all $y \in \R^n$, $x' \in \partial \left[f - \alpha/2\Vert \cdot\Vert^2\right](x)$ that $\exists v := x' + \alpha x \in \partial f(x)$ such that: 
 
 $$
@@ -72,7 +73,6 @@ $$
 \end{aligned}
 $$
 $v, x$ are one to one relation hence this holds for all $v \in \partial f(x)$. 
-We showed that **(1) implies (2)**. 
 Starting from here, **(2) implies (3)** is direct; take any $x, y \in \text{dom}\; \partial f$ it has $\forall x' \in \partial f(x), y' \in \partial f(y)$: 
 $$
 \begin{aligned}
@@ -108,6 +108,47 @@ $$
 $$
 
 Through subgradient characterization of convexity, the function $f - \alpha/2\Vert \cdot\Vert^2$ is convex. 
+$\blacksquare$
+
+
+#### **Theorem | Jensen inequality characterization of strong convexity**
+> Let $f:\R^n \rightarrow \R$ be $\alpha \ge 0$ strongly convex then, it is equivalent to 
+> $$
+> (\forall \lambda \in [0, 1])\; 
+> f(\lambda x + (1 - \lambda)y) \le \lambda f(x) + (1 - \lambda)f(y) -\alpha\frac{\lambda(1 - \lambda)}{2}> \Vert y - x\Vert^2
+> $$
+
+**Proof**
+
+Let $h = x\mapsto f(x) - \alpha/2 \Vert \cdot\Vert^2$, which is a convex function. 
+Then, Jensen inequality yields on $h$ the following: 
+
+$$
+\begin{aligned}
+    0 &\le h(\lambda x + (1 - \lambda)y) - \lambda h(x) - (1 - \lambda) h(y)
+    \\
+    &= (f(\lambda x + (1 - \lambda)y) - \lambda f(x) - (1 - \lambda) f(y))
+    - \frac{\alpha}{2}\Vert \lambda x + (1 - \lambda)y \Vert^2 
+    + \frac{\alpha\lambda}{2}\Vert x\Vert^2
+    + \frac{\alpha(1 - \lambda)}{2}\Vert y\Vert^2
+    \\
+    &\underset{\text{(a)}}{=}
+    f(\lambda x + (1 - \lambda)y) - \lambda f(x) - (1 - \lambda) f(y)
+    \\ &\quad 
+        -  
+        \frac{\alpha}{2}\left(
+            \lambda \Vert x\Vert^2 + (1 - \lambda)\Vert y\Vert^2 + \lambda(1 - \lambda)\Vert x - y\Vert^2
+        \right)
+        + \frac{\alpha\lambda}{2}\Vert x\Vert^2
+        + \frac{\alpha(1 - \lambda)}{2}\Vert y\Vert^2
+    \\
+    &= 
+    f(\lambda x + (1 - \lambda)y) - \lambda f(x) - (1 - \lambda) f(y)
+    - \frac{\alpha \lambda(1 - \lambda)}{2}\Vert x - y\Vert^2. 
+\end{aligned}
+$$
+
+$\blacksquare$
 
 
 ---
