@@ -37,10 +37,10 @@ We are not yet clear what consequences this definition has, but it's clear that 
 
 #### **Definition | restricted Bregman divergence condition**
 > Let $f: \R^n \rightarrow \R$ be a differentiable function. 
-> Then we say that it satisfies the restricted Bregman divergence condition with $L > \mu \ge 0$ if there exists non-empty convex set $C \subseteq \R^n$ such that for all $x \in \R^n, \lambda \in (0, 1)$, let $\bar x = \Pi_C x$, and $x_\lambda := \lambda \bar x + (1 - \lambda) x$, it has 
+> Then we say that it satisfies the restricted Bregman divergence condition with $L > \mu \ge 0$ if there exists non-empty convex set $C \subseteq \R^n$ such that for all $x \in \R^n y \in \R^n, \lambda \in (0, 1)$, let $\bar x = \Pi_C x$, and $x_\lambda := \lambda \bar x + (1 - \lambda) x$, it has 
 > $$
 > \begin{aligned}
->     \frac{\mu}{2} \Vert x - x_\lambda\Vert^2 \le D_f(x, x_\lambda) \le \frac{L}{2}\Vert x - x_\lambda\Vert^2. 
+>     \frac{\mu}{2} \Vert y - x_\lambda\Vert^2 \le D_f(y, x_\lambda) \le \frac{L}{2}\Vert y - x_\lambda\Vert^2. 
 > \end{aligned}
 > $$
 
@@ -78,11 +78,34 @@ When $g \equiv 0$, $T_L(x)$ performs a step of gradient descent with step size $
 
 Obviously, when $f$ is strongly convex, this is true. 
 
+
 ---
-### **An important inequality**
+### **Relaxed Weak Accelerated Proximal Gradient Algorithm**
+
+#### **Definition | R-WAPG Sequence**
+> Let $L > \mu \ge 0$. 
+> Let $\alpha_0 \in (0, 1)$, $(\alpha_k)_{k \ge 1}$ has $\alpha_k \in (\mu/ L, 1)$. 
+> Then define for all $k \ge 0$: 
+> $$
+> \begin{aligned}
+>     \rho_k(1 - \alpha_k)\alpha_k^2 = \alpha_{k + 1}(\alpha_{k + 1} - \mu/L). 
+> \end{aligned}
+> $$
+
+#### **Definition | similar triangle form**
+> Let $(\alpha_k)_{k \ge 0}$ be an R-WAPG sequence. 
+> Define $\tau_k = \frac{L(1 - \alpha_k)}{L\alpha_k - \mu}$. 
+$$
+\begin{aligned}
+    y_k &= (1 + )
+\end{aligned}
+$$
+
+
+---
+### **Proximal Gradient Inequality but with the Bregman Divergence pulled out**
+
+We discuss some basic consequences of the Proximal Gradient Inequality. 
 
 
 
-#### **Lemma | restricted projected gradient inequality**
-> Let $F$ satisfies Assumption 1. 
-> If in addition, the smooth part $F$ is $\mu \ge 0$ strongly convex. 
