@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1750206020.5472 "main.aux" "main.bbl" "main" 1750212933.16055 0
+["bibtex main"] 1750206020.5472 "main.aux" "main.bbl" "main" 1750282125.17215 0
   "./references/refs.bib" 1750105171.89992 20629 0e13919a1a274e71149af52c5def687f ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/siam.bst" 1292289607 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1750212932.94824 15021 305d95632375db953a6d418baf001ac4 "pdflatex"
+  "main.aux" 1750282124.84682 15021 305d95632375db953a6d418baf001ac4 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1750212932.14519 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" "main.pdf" "main" 1750212933.16067 0
-  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" 1750212931.97646 163819 a1e4429cc3d28d63a5c2c13f6e729246 ""
+["pdflatex"] 1750282123.64196 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" "main.pdf" "main" 1750282125.17232 0
+  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes 2025 03/main.tex" 1750282123.4293 163818 9c067140e62f120bd4fa2ecf95efe2d7 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -232,10 +232,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1716844513.00476 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1716844504 8221424 900989947c23303b742a586f0df8c087 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "main.aux" 1750212932.94824 15021 305d95632375db953a6d418baf001ac4 "pdflatex"
+  "main.aux" 1750282124.84682 15021 305d95632375db953a6d418baf001ac4 "pdflatex"
   "main.bbl" 1750206020.66244 2083 dc0c9132a9396e5c80a651d74d78a107 "bibtex main"
-  "main.out" 1750212932.94936 7230 ef29c8e510228d16e837c2dd51ac5424 "pdflatex"
-  "main.tex" 1750212931.97646 163819 a1e4429cc3d28d63a5c2c13f6e729246 ""
+  "main.out" 1750282124.84808 7230 ef29c8e510228d16e837c2dd51ac5424 "pdflatex"
+  "main.tex" 1750282123.4293 163818 9c067140e62f120bd4fa2ecf95efe2d7 ""
   "presets/julia_lstlisting.tex" 1734912471.75532 795 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1734912471.75575 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1750105613.46242 8804 167300e694df3fe7e26dda5d68302adf ""

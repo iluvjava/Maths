@@ -115,7 +115,7 @@ $\blacksquare$
 > Let $f:\R^n \rightarrow \R$ be $\alpha \ge 0$ strongly convex then, it is equivalent to 
 > $$
 > (\forall \lambda \in [0, 1])\; 
-> f(\lambda x + (1 - \lambda)y) \le \lambda f(x) + (1 - \lambda)f(y) -\alpha\frac{\lambda(1 - \lambda)}{2}> \Vert y - x\Vert^2
+> f(\lambda x + (1 - \lambda)y) \le \lambda f(x) + (1 - \lambda)f(y) -\alpha\frac{\lambda(1 - \lambda)}{2} \Vert y - x\Vert^2
 > $$
 
 **Proof**

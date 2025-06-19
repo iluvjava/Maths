@@ -10,3 +10,4 @@ MFISTA
 GMAPG
 infeasibility
 optimality
+Q-SCNVX

@@ -723,7 +723,7 @@
             \par 
             It's important to note at this point that the exact value of $\theta(A, C)$ is very difficult to obtain in practice. 
             Let's go back to Necoara \cite{necoara_linear_2019}. 
-            The following theorem stated their use of the this error bound to capture a class of Q-SCNVX function. 
+            The following theorem stated their use of the error bound to capture a class of Q-SCNVX function. 
             \begin{theorem}[Q-SCNVX and Hoffman's error bound]\label{thm:q-scnvx-hffmn-eb}
                 Let $X := \{S \in \RR^n: Cx \le d\}$ be non-empty, $g:\RR^m \rightarrow \RR$ be a $\sigma_g$ strongly convex and, $L_g$ Lipschitz smooth function. 
                 Let $A \in \RR^{m\times n}$ be a nonzero, $C \in \RR^{m\times n}$. 
@@ -809,8 +809,8 @@
                 Our proof makes use of the following properties which we label it in advance for swift exposition: 
                 \begin{enumerate}
                     \item Inequality \eqref{ineq:projg-variational-ineq}, from the projected gradient and convexity of $X$. 
-                    \item $f \in \mathbb S'$ which is the hypothesis that $f$ is Q-CNVX. 
-                    \item $\alpha_k \le L_f^{-1}$, the stepsize is sufficient to apply descent lemma globally. 
+                    \item $f \in \mathbb S'$ which is the hypothesis that $f$ is Q-SCNVX. 
+                    \item $\alpha_k \le L_f^{-1}$, the step size is sufficient to apply descent lemma globally. 
                     \item $f \in \mathbb Q$ satisfying Q-Growth, a consequence of Q-SCNVX by Theorem \ref{thm:wcnvx-hierach}. 
                 \end{enumerate}
                 With $\overline{(\cdot)} = \Pi_{X^+}(\cdot)$ to denote the projection of a vector to the set of minimizers. 
@@ -1945,7 +1945,7 @@
             \par
             The above Algorithm \ref{alg:nes-mono} implements and adapts Nesterov's monotone scheme from Nesterov \cite[2.2.32]{nesterov_lectures_2018} for \XXAPG{}. 
             In addition to Algorithm \ref{alg:beck-mono}, $\eta$ is a new input parameter and $G$ has a significance role. 
-            $\eta$ is a stepsize parameter for weakly convex objective $F = f + g$ satisfying Assumption \ref{ass:sum-of-wcnvx}. 
+            $\eta$ is a step size parameter for weakly convex objective $F = f + g$ satisfying Assumption \ref{ass:sum-of-wcnvx}. 
             $G$ is the norm of the gradient mapping updated at $\hat y$ which will be returned to the inner loop to verify exit conditions. 
         
         \subsection{\XXAPG{} main algorithm}
@@ -2294,7 +2294,7 @@
         For all $1 \le j < J$, $n_j$ is passed in as the lower bound $N_{\min}$ for \XXAPG{} inner loop (Algorithm \ref{alg:xxapg}), $p_j$ is the actual number of iteration by the inner loop therefore, it has $p_j \ge n_{j}$ because of Observation \ref{obs:xxapg-exit-cond}. 
         $n_{j + 1}$ is the minimum iteration required for the next execution of \XXAPG{} inner loop, and it has $n_{j + 1} = p_{j}$ if at line \ref{alg:rxxapg-restart-if} is true otherwise, $n_{j + 1} = 2p_{j}$. 
         As a consequence, for $j < J$, it has either $p_{j + 1} \ge n_{j + 1} = 2p_j \ge 2n_{j} \ge n_j$ or $p_{j + 1} \ge n_{j + 1} = p_j \ge n_j$. 
-        Both $(n_j)_{j\ge0}, (p_j)_{j\ge 0}$ are nondecreasing sequences. 
+        Both $(n_j)_{j\ge0}, (p_j)_{j\ge 0}$ are non-decreasing sequences. 
         \par
         When $j = J$ it's not necessarily true that $p_J \ge n_J$ because on the last iteration, inner loop can exit through condition $G_k^+ \le \epsilon$ at line \ref{alg:xxapg-exit2} of Algorithm \ref{alg:xxapg}, but $n_J \ge p_{J - 1} \ge n_{J - 1}$ still. 
         \par
