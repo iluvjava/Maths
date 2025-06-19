@@ -6,7 +6,7 @@
 
 Recall contents from the previous file. 
 In this file we present proximal gradient inequality in the nonconvex settings. 
-We will first introduce the nonconvex settings to set up the scope and then we will discuss the proximal gradient and the gradient mapping operator in this scope. 
+We will first introduce the nonconvex settings to set up the scope and, then we will discuss the proximal gradient and the gradient mapping operator in this scope. 
 
 #### **Assumption set 1**
 > Let $F = f + g$ where $f$ is a $L$ smooth differentiable function and $g$ is weakly/strongly convex, i.e: There exists a largest $q \in \R^n$ such that $g - q/2\Vert \cdot\Vert^2$ is a convex function. 

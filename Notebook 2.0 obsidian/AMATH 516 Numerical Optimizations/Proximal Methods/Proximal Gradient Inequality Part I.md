@@ -254,8 +254,8 @@ $\blacksquare$
 
 
 #### **Theorem 1.3 | Convex smooth proximal gradient inequality**
-> Assume that $F = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ convex. 
-> Then, for $y \in \R^n, \bar y = T_{L^{-1}, f, g}$ it has the following: 
+> Assume that $F = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex. 
+> Then, for $y \in \R^n, \bar y = T_{L^{-1}, f, g}(y)$ it has the following: 
 > $$
 > \begin{aligned}
 >     (\forall x \in \R^n)\quad 
