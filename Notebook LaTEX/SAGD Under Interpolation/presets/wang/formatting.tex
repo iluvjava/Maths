@@ -1,0 +1,26 @@
+% FORMATTING ===================================================================
+\oddsidemargin -0.1cm
+\textwidth  16.5cm
+\topmargin  0.0cm
+\headheight 0.0cm
+\textheight 21.0cm
+\parindent  4mm
+\parskip    10pt
+%\parskip    8pt
+\tolerance  3000
+
+
+% DRAFT FORMATTING =============================================================
+% These are for todo notes, advise taken from 
+% https://tex.stackexchange.com/questions/81666/extend-page-width-or-margin-for-todonotes-comments-or-other-package-comments
+
+
+\ifthenelse{\boolean{draftmode}}{
+    \evensidemargin=\dimexpr\evensidemargin  + 6cm\relax 
+    \oddsidemargin=\dimexpr\oddsidemargin + 6cm\relax
+    \paperwidth=\dimexpr \paperwidth + 12cm\relax 
+    \marginparwidth=\dimexpr \marginparwidth  + 6cm\relax
+    \paperheight=\dimexpr \paperheight + 6cm\relax
+}{
+    
+}

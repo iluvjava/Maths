@@ -1,0 +1,45 @@
+%\usepackage{showkeys}
+%\usepackage{drftcite}
+\usepackage{exscale,relsize}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[colorlinks=true, linkcolor=blue]{hyperref}
+\usepackage{amssymb}
+\usepackage{calc}
+\usepackage{theorem}
+\usepackage{pifont}      % needed by dingautolist
+\usepackage{array}
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage{bbm}
+\usepackage{graphicx} 
+% \usepackage[draft]{graphicx}  % GRAPHICS DRAFT MODE ALTERNATIVE. 
+\usepackage{subcaption}
+\usepackage{caption}
+
+% \usepackage{amsthm}
+
+
+% Hongda's packages ============================================================
+% \usepackage{booktabs}  % FOR TABLES WITH BOOKSTAB. 
+\usepackage{algcompatible, algorithm}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{soul}  % HILIGHTER
+
+% MANAGE DRAFT MODE 
+\ifthenelse{\boolean{draftmode}}{
+    \usepackage[left]{showlabels}
+    \renewcommand{\showlabelfont}{\vspace{0.4em}\small\color{gray}}
+    \usepackage[
+        colorinlistoftodos,
+        textsize=footnotesize, 
+        color=yellow
+    ]{todonotes} % see (https://tex.stackexchange.com/questions/9796/how-to-add-todo-notes) for more info. 
+    
+}{
+    \usepackage[disable]{todonotes}  % TODO NOTES DISABLE
+    \renewcommand\hl[1]{#1}  % NULLIFY HILIGHT COMMAND.
+}
+
+

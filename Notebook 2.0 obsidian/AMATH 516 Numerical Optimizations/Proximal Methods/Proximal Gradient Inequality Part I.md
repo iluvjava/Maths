@@ -150,27 +150,27 @@ This is true for all $L$, the $L$ here doesn't have to be the Lipschitz smoothne
 
 #### **Claim 1.2 | The Fundamental Proximal gradient inequality**
 > Let $F = g + f$ where $f:\R^n\rightarrow \overline \R$ is differentiable, and $g:\R^n\rightarrow \overline \R$ such that it is bounded below. 
-> Let $y \in \R^n$ and suppose that the function $\widetilde{\mathcal M}_F^{1/\beta}(\cdot, y)$ satisfies the quadratic growth condition with constant $q > 0$ such that for all $\bar y \in T_{1/\beta,f, g}(y)$ it has 
+> Let $y \in \R^n$ and suppose that the function $\widetilde{\mathcal M}_F^{1/\beta}(\cdot, y)$ satisfies the quadratic growth condition with constant $q > 0$ such that for all $y^+ \in T_{1/\beta,f, g}(y)$ it has 
 > $$
 > \begin{aligned}
 >     (\forall x \in \R^n)\quad 
 >     0 &\le \widetilde{\mathcal M}_F^{1/\beta}(x, y) - 
->     \widetilde{\mathcal M}^{1/\beta}_F(\bar y, y) - 
->     \frac{q}{2}\Vert x - \bar y\Vert^2. 
+>     \widetilde{\mathcal M}^{1/\beta}_F(y^+, y) - 
+>     \frac{q}{2}\Vert x - y^+\Vert^2. 
 > \end{aligned}
 > $$
-> Then, $\bar y$ is unique, and it has the following inequality and equality: 
+> Then, $y^+$ is unique, and it has the following inequality and equality: 
 > $$
 > \begin{aligned}
->   0 &\le F(x) - F(\bar y) + D_{\beta/2\Vert \cdot\Vert^2 - f}(x, y) -
->   D_{\beta/2\Vert \cdot\Vert^2 - f}(\bar y, y) - q/2\Vert x -
->   \bar y\Vert^2
+>   0 &\le F(x) - F(y^+) + D_{\beta/2\Vert \cdot\Vert^2 - f}(x, y) -
+>   D_{\beta/2\Vert \cdot\Vert^2 - f}(y^+, y) - q/2\Vert x -
+>   y^+\Vert^2
 >   \\
->   &= F(x) - F(\bar y)
->   - \langle \beta(y - \bar y), x - \bar y\rangle
+>   &= F(x) - F(y^+)
+>   - \langle \beta(y - y^+), x - y^+\rangle
 >   - D_f(x, y) 
->   + D_f(\bar y, y)
->   + \frac{\beta - q}{2}\Vert x - \bar y\Vert^2. 
+>   + D_f(y^+, y)
+>   + \frac{\beta - q}{2}\Vert x - y^+\Vert^2. 
 > \end{aligned}
 > $$ 
 
@@ -183,22 +183,22 @@ Using only quadratic growth $\widetilde {\mathcal M}(\cdot; y)$ and previous lem
 
 $$
 \begin{aligned}
-    0 &\le \widetilde{\mathcal M}(x; y) - \widetilde {\mathcal M}(\bar y; y) - 
-    \frac{q}{2}\Vert x - \bar y\Vert^2
+    0 &\le \widetilde{\mathcal M}(x; y) - \widetilde {\mathcal M}(y^+; y) - 
+    \frac{q}{2}\Vert x - y^+\Vert^2
     \\
     &= \mathcal M(x; y) - D_f(x, y) - \left(
-        \mathcal M(\bar y; y) - D_f(\bar y, y)
+        \mathcal M(y^+; y) - D_f(y^+, y)
     \right) 
-    - \frac{q}{2}\Vert x - \bar y\Vert^2
+    - \frac{q}{2}\Vert x - y^+\Vert^2
     \\
-    &= F(x) - F(\bar y) + 
-    \frac{\beta}{2}\Vert x - y\Vert^2 - \frac{\beta}{2}\Vert \bar y - y\Vert^2
-    - D_f(x, y) + D_f(\bar y, y)
-    - \frac{q}{2}\Vert x - \bar y\Vert^2 
+    &= F(x) - F(y^+) + 
+    \frac{\beta}{2}\Vert x - y\Vert^2 - \frac{\beta}{2}\Vert y^+ - y\Vert^2
+    - D_f(x, y) + D_f(y^+, y)
+    - \frac{q}{2}\Vert x - y^+\Vert^2 
     \\
-    &=  F(x) - F(\bar y) + 
-    D_{\beta/2\Vert \cdot\Vert^2 - f}(x, y) - D_{\beta/2\Vert \cdot\Vert^2 - f}(\bar y, y) - 
-    \frac{q}{2}\Vert x - \bar y\Vert^2. 
+    &=  F(x) - F(y^+) + 
+    D_{\beta/2\Vert \cdot\Vert^2 - f}(x, y) - D_{\beta/2\Vert \cdot\Vert^2 - f}(y^+, y) - 
+    \frac{q}{2}\Vert x - y^+\Vert^2. 
 \end{aligned}
 $$
 
@@ -208,45 +208,45 @@ $$
 {\small\begin{aligned}
     0 &\le 
     \left(
-        F(x) - F(\bar y) 
+        F(x) - F(y^+) 
         + 
         \frac{\beta}{2}\Vert x - y\Vert^2 - 
-        \frac{\beta}{2}\Vert \bar y - y\Vert^2
+        \frac{\beta}{2}\Vert y^+ - y\Vert^2
     \right)
     - D_f(x, y) 
-    + D_f(\bar y; y)
-    - \frac{q}{2}\Vert x - \bar y\Vert^2
+    + D_f(y^+; y)
+    - \frac{q}{2}\Vert x - y^+\Vert^2
     \\
     &=
     \left(
-        F(x) - F(\bar y) 
+        F(x) - F(y^+) 
         + 
         \frac{\beta}{2}
         \left(
-            \Vert x - \bar y + \bar y - y\Vert^2
+            \Vert x - y^+ + y^+ - y\Vert^2
             - 
-            \Vert y - \bar y\Vert^2
+            \Vert y - y^+\Vert^2
         \right)
     \right)
     - D_f(x, y) 
-    + D_f(\bar y; y)
-    - \frac{q}{2}\Vert x - \bar y\Vert^2
+    + D_f(y^+; y)
+    - \frac{q}{2}\Vert x - y^+\Vert^2
     \\
     &= 
     \left(
-        F(x) - F(\bar y) + \frac{\beta}{2}\Vert x - \bar y\Vert^2 
-        - \beta\langle  x - \bar y, y - \bar y\rangle
+        F(x) - F(y^+) + \frac{\beta}{2}\Vert x - y^+\Vert^2 
+        - \beta\langle  x - y^+, y - y^+\rangle
     \right)
     - D_f(x, y) 
-    + D_f(\bar y; y)
-    - \frac{q}{2}\Vert x - \bar y\Vert^2
+    + D_f(y^+; y)
+    - \frac{q}{2}\Vert x - y^+\Vert^2
     \\
     &=
-    F(x) - F(\bar y)
-    - \langle \beta(y - \bar y), x - \bar y\rangle
+    F(x) - F(y^+)
+    - \langle \beta(y - y^+), x - y^+\rangle
     - D_f(x, y) 
-    + D_f(\bar y, y)
-    + \frac{\beta - q}{2}\Vert x - \bar y\Vert^2. 
+    + D_f(y^+, y)
+    + \frac{\beta - q}{2}\Vert x - y^+\Vert^2. 
 \end{aligned}}
 $$ 
 
@@ -255,16 +255,16 @@ $\blacksquare$
 
 #### **Theorem 1.3 | Convex smooth proximal gradient inequality**
 > Assume that $F = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex. 
-> Then, for $y \in \R^n, \bar y = T_{L^{-1}, f, g}(y)$ it has the following: 
+> Then, for $y \in \R^n, y^+ = T_{L^{-1}, f, g}(y)$ it has the following: 
 > $$
 > \begin{aligned}
 >     (\forall x \in \R^n)\quad 
 >     0 &\le 
->     F(x) - F(\bar y) - \langle L(y - \bar y), x - y\rangle
+>     F(x) - F(y^+) - \langle L(y - y^+), x - y\rangle
 >     - \frac{\mu}{2}\Vert x - y\Vert^2
->     - \frac{L}{2}\Vert y - \bar y\Vert^2. 
+>     - \frac{L}{2}\Vert y - y^+\Vert^2. 
 >     \\
->     &= F(x) - F(Ty) - \frac{L}{2}\Vert x - Ty\Vert^2  + \frac{L - \mu}{2}\Vert x - y\Vert^2. 
+>     &= F(x) - F\left(y^+\right) - \frac{L}{2}\Vert x - y^+\Vert^2  + \frac{L - \mu}{2}\Vert x - y\Vert^2. 
 > \end{aligned}
 > $$
 
@@ -272,14 +272,14 @@ $\blacksquare$
 **Proof**
 
 By definition, for all $y \in \R^n$, $\widetilde {\mathcal M}_F^{1/L}(\cdot, y)$ is $L$ strongly convex. 
-Therefore, it admits quadratic growth condition over its unique minimizer $\bar y$ and hence the previous claim applies with $q = L =\beta$. 
+Therefore, it admits quadratic growth condition over its unique minimizer $y^+$ and hence the previous claim applies with $q = L =\beta$. 
 From strong $\mu \ge 0$ strong convexity and $L$ Lipschitz smoothness of $f$,it has: 
 
 $$
 \begin{aligned}
     \frac{\mu}{2}\Vert x - y\Vert^2 \le 
     D_f(x, y) \le \frac{L}{2}\Vert x - y\Vert^2. 
-\end{aligned}
+\end{aligned}\tag{a}
 $$
 
 Take Claim 1.2 it has: 
@@ -287,28 +287,23 @@ Take Claim 1.2 it has:
 $$
 \begin{aligned}
     0 &\le 
-    F(x) - F(\bar y) - \langle L(y - \bar y), x - \bar y\rangle - D_f(x, y) + D_f(\bar y, y)
+    F(x) - F(y^+) - \left\langle L(y - y^+), x - y^+\right\rangle - D_f(x, y) + D_f(y^+, y)
     & 
     \\
-    &\le 
-    F(x) - F(\bar y) - \langle L(y - \bar y), x - \bar y\rangle 
-    - D_f(x, y)
-    + \frac{L}{2}\Vert \bar y - y\Vert^2
+    &\underset{\text{(a)}}{\le}
+    F(x) - F(y^+) - \left\langle L(y - y^+), x -y + y - y^+\right\rangle 
+    - \frac{\mu}{2}\Vert x - y\Vert^2
+    + \frac{L}{2}\Vert y^+ - y\Vert^2
     \\
     &= 
-    F(x) - F(\bar y) - \langle L(y - \bar y), x -y + y - \bar y\rangle 
+    F(x) - F(y^+) - \langle L(y - y^+), x - y \rangle - L \Vert y - y^+\Vert^2
     - \frac{\mu}{2}\Vert x - y\Vert^2
-    + \frac{L}{2}\Vert \bar y - y\Vert^2
+    + \frac{L}{2}\Vert y^+ - y\Vert^2
     \\
-    &= 
-    F(x) - F(\bar y) - \langle L(y - \bar y), x -y \rangle - L \Vert y - \bar y\Vert^2
+    &=
+    F(x) - F(y^+) - \langle L(y - y^+), x - y\rangle
     - \frac{\mu}{2}\Vert x - y\Vert^2
-    + \frac{L}{2}\Vert \bar y - y\Vert^2
-    \\
-    &\le 
-    F(x) - F(\bar y) - \langle L(y - \bar y), x - y\rangle
-    - \frac{\mu}{2}\Vert x - y\Vert^2
-    - \frac{L}{2}\Vert y - \bar y\Vert^2. 
+    - \frac{L}{2}\Vert y - y^+\Vert^2. 
 \end{aligned}
 $$
 
@@ -320,24 +315,24 @@ $$
 \begin{aligned}
     0
     &\le 
-    F(x) - F(Ty) - \langle L(y - Ty), x - y\rangle 
+    F(x) - F(y^+) - \langle L(y - y^+), x - y\rangle 
     - \frac{\mu}{2}\Vert x - y\Vert^2
-    - \frac{L}{2}\Vert y - Ty\Vert^2
+    - \frac{L}{2}\Vert y - y^+\Vert^2
     \\
     &=
-    F(x) - F(Ty) - 
+    F(x) - F(y^+) - 
     \left(
-        L\langle y - Ty, x - y \rangle + \frac{L}{2}\Vert y - Ty\Vert^2
+        L\langle y - y^+, x - y \rangle + \frac{L}{2}\Vert y - y^+\Vert^2
         + \frac{L}{2}\Vert x - y\Vert^2
     \right)
     + \frac{L}{2}\Vert x - y\Vert^2 
     - \frac{\mu}{2}\Vert x - y\Vert^2
     \\
     &=
-    F(x) - F(Ty) - \frac{L}{2}\Vert x - Ty\Vert^2  + \frac{L}{2}\Vert x - y\Vert^2 
+    F(x) - F(y^+) - \frac{L}{2}\Vert x - y^+\Vert^2  + \frac{L}{2}\Vert x - y\Vert^2 
     - \frac{\mu}{2}\Vert x - y\Vert^2
     \\
-    &= F(x) - F(Ty) - \frac{L}{2}\Vert x - Ty\Vert^2  + \frac{L - \mu}{2}\Vert x - y\Vert^2. 
+    &= F(x) - F(y^+) - \frac{L}{2}\Vert x - y^+\Vert^2  + \frac{L - \mu}{2}\Vert x - y\Vert^2. 
 \end{aligned}
 }
 $$
@@ -353,20 +348,20 @@ The claim is true for all $L$ that is larger than the real Lipschitz modulus of 
 
 #### **Theorem 1.4 | Strong convexity from both smooth and nonsmooth parts**
 > Let $F = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu_f \ge 0$ strongly convex, let $g$ be $\mu_g \ge 0$ strongly convex. 
-> Then for any $x \in \R^n, y \in \R^n, \bar y = T_{L^{-1}, f, g}$, it satisfies:
+> Then for any $x \in \R^n, y \in \R^n, y^+ = T_{L^{-1}, f, g}$, it satisfies:
 >
 > $$
 > \begin{aligned}
 >     0 &\le 
->     F(x) - F(\bar y)
->     - L\langle y - \bar y, x - y\rangle
+>     F(x) - F(y^+)
+>     - L\langle y - y^+, x - y\rangle
 >     - \frac{\mu_f}{2}\Vert x - y\Vert^2
->     - \frac{L}{2}\Vert \bar y - y\Vert^2
->     + \frac{\mu_g}{2}\Vert x - \bar y\Vert^2. 
+>     - \frac{L}{2}\Vert y^+ - y\Vert^2
+>     + \frac{\mu_g}{2}\Vert x - y^+\Vert^2. 
 >     \\
 >     & =
->     F(x) - F(\bar y)
->     - \frac{L + \mu_g}{2}\Vert x - \bar y \Vert^2
+>     F(x) - F(y^+)
+>     - \frac{L + \mu_g}{2}\Vert x - y^+ \Vert^2
 >     + \frac{L - \mu_f}{2}\Vert x- y\Vert^2.     
 > \end{aligned}
 > $$
@@ -380,32 +375,32 @@ The results of Claim 1.2 applies with $\beta = L$:
 $$
 \begin{aligned}
     0 &\le
-    F(x) - F(\bar y)
-    - \langle L(y - \bar y), x - \bar y\rangle
+    F(x) - F(y^+)
+    - \langle L(y - y^+), x - y^+\rangle
     - D_f(x, y) 
-    + D_f(\bar y, y)
-    - \frac{\beta - q}{2}\Vert x - \bar y\Vert^2
+    + D_f(y^+, y)
+    - \frac{\beta - q}{2}\Vert x - y^+\Vert^2
     \\
     &\le 
-    F(x) - F(\bar y)
-    - \langle L(y - \bar y), x - \bar y\rangle
+    F(x) - F(y^+)
+    - \langle L(y - y^+), x - y^+\rangle
     - \frac{\mu_f}{2}\Vert x - y\Vert^2
-    + \frac{L}{2}\Vert \bar y - y\Vert^2
-    - \frac{\mu_g}{2}\Vert x - \bar y\Vert^2
+    + \frac{L}{2}\Vert y^+ - y\Vert^2
+    - \frac{\mu_g}{2}\Vert x - y^+\Vert^2
     \\
     &=
-    F(x) - F(\bar y)
-    - \langle L(y - \bar y), x - y + y -\bar y\rangle
+    F(x) - F(y^+)
+    - \langle L(y - y^+), x - y + y -y^+\rangle
     - \frac{\mu_f}{2}\Vert x - y\Vert^2
-    + \frac{L}{2}\Vert \bar y - y\Vert^2
-    - \frac{\mu_g}{2}\Vert x - \bar y\Vert^2
+    + \frac{L}{2}\Vert y^+ - y\Vert^2
+    - \frac{\mu_g}{2}\Vert x - y^+\Vert^2
     \\
     &= 
-    F(x) - F(\bar y)
-    - L\langle y - \bar y, x - y\rangle
+    F(x) - F(y^+)
+    - L\langle y - y^+, x - y\rangle
     - \frac{\mu_f}{2}\Vert x - y\Vert^2
-    - \frac{L}{2}\Vert \bar y - y\Vert^2
-    - \frac{\mu_g}{2}\Vert x - \bar y\Vert^2. 
+    - \frac{L}{2}\Vert y^+ - y\Vert^2
+    - \frac{\mu_g}{2}\Vert x - y^+\Vert^2. 
 \end{aligned}
 $$
 
@@ -414,21 +409,21 @@ Completing the square:
 $$
 \begin{aligned}
     0 &\le 
-    F(x) - F(\bar y)
-    - L\langle y - \bar y, x - y\rangle
+    F(x) - F(y^+)
+    - L\langle y - y^+, x - y\rangle
     - \frac{\mu_f}{2}\Vert x - y\Vert^2
-    - \frac{L}{2}\Vert \bar y - y\Vert^2
-    - \frac{\mu_g}{2}\Vert x - \bar y\Vert^2
+    - \frac{L}{2}\Vert y^+ - y\Vert^2
+    - \frac{\mu_g}{2}\Vert x - y^+\Vert^2
     \\
     &= 
-    F(x) - F(\bar y)
-    - \frac{L}{2}\Vert x - \bar y \Vert^2
+    F(x) - F(y^+)
+    - \frac{L}{2}\Vert x - y^+ \Vert^2
     + \frac{L - \mu_f}{2}\Vert x- y\Vert^2
-    - \frac{\mu_g}{2}\Vert x - \bar y\Vert^2
+    - \frac{\mu_g}{2}\Vert x - y^+\Vert^2
     \\
     &= 
-    F(x) - F(\bar y)
-    - \frac{L + \mu_g}{2}\Vert x - \bar y \Vert^2
+    F(x) - F(y^+)
+    - \frac{L + \mu_g}{2}\Vert x - y^+ \Vert^2
     + \frac{L - \mu_f}{2}\Vert x- y\Vert^2. 
 \end{aligned}
 $$

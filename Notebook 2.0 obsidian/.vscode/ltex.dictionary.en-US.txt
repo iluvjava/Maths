@@ -51,3 +51,4 @@ Chambolle
 Necoara
 polytopes
 subgradients
+R-WAPG
