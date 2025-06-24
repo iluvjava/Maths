@@ -29,7 +29,7 @@ $$
     (y^TA)x &\ge \mathbf 0
     \\
     \mathbf 0  &\le 
-    y^T(Ax) = y^Tb < 0
+    y^T(Ax) = y^Tb < 0. 
 \end{aligned}
 $$
 

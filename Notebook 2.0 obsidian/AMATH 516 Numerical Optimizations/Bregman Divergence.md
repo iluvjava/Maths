@@ -5,10 +5,10 @@
 ---
 ### **Intro**
 
-Bregman distance generalizes the Euclidean distance. Recall that the Euclidean norm between 2 points appeared Rockafellar's proximal point method; it also appeared in the [Proximal Gradient, Forward Backwards Envelope](Proximal%20Methods/Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md). 
+The Bregman distance generalizes the Euclidean distance. Recall that the Euclidean norm between 2 points appeared Rockafellar's proximal point method; it also appeared in the [Proximal Gradient, Forward Backwards Envelope](Proximal%20Methods/Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md). 
 In this article, we will faithfully follow Amir Beck's First order method[^1] chapter 9, and then we will augment it with classics Rockafellar in convex analysis, and Heinz's NoLips paper. 
 
-The important part is, this ideas can generalize the concepts of strong convexity and smoothness into a much general settings for optimizations and their analysis. 
+The important part is, these ideas can generalize the concepts of strong convexity and smoothness into much general setting for optimizations and their analysis. 
 
 #### **Definition (9.2) | Bregman Divergence**
 > Let $\omega$ be a proper closed convex function that is differentiable over $\text{dom}(\partial \omega)$. The Bregman distance associated with $\omega$ is the function $D_\omega: \text{dom}(\omega) \times \text{dom}(\partial \omega)\mapsto \mathbb R$, given by 

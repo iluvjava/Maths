@@ -4,13 +4,15 @@
 ---
 ### **Intro**
 
-A set $K$ is a cone if, under $\lambda K, \lambda > 0$ scaling, we have $\lambda K\subseteq K$, then the set is a cone. 
-In brief, the set is invariant after a strictly positive scaling transformation. 
-Immediately observe that, 
+Cone is a special type of set. 
+It appears a lot in convex analysis and optimizations. 
+
+#### **Definition | A cone**
+> A set $K$ is a cone if for all $\lambda K, \lambda > 0$: $\lambda K\subseteq K$. 
 
 **Observations**
-
-1. If $K$ is a cone and it's closed, then $\mathbf 0 \in K$. Take limits of $\lambda \searrow 0$ to see why. 
+1. If $K$ is a cone, and it's closed, then $\mathbf 0 \in K$. 
+Take limits of $\lambda \searrow 0$ to see why. 
 2. The Minkowski sum of 2 cones is still a cone. 
 3. The intersection of 2 cones is still a cone. 
 4. The union of 2 cones is still a cone. 
@@ -18,28 +20,23 @@ Immediately observe that,
 
 **Examples** 
 
-* The set $\mathbb{R}^n_+$ is a cone. 
-* The set $\{x| Ax \ge \mathbf 0\}$ is a cone, and we call it the polyhedral cone. 
-* The set $\{(x, y)\in \mathbb R^2 | xy = 0\}$ is a cone. This cone is not a convex cone compare to the previous 2. 
-* $\{y \in \mathbb R^n | \langle a, y\rangle \le 0\}$ is a cone, for all $a \in \mathbb R^n$. 
+* $\mathbb{R}^n_+$.
+* $\{x| Ax \ge \mathbf 0\}$. 
+* $\{(x, y)\in \mathbb R^2 | xy = 0\}$. It is not a convex set. 
+* $\{y \in \mathbb R^n | \langle a, y\rangle \le 0\}$. 
 
-**Remarks**: 
 
-A subspace is a special case of a cone. 
-It's a restrictions of a subspace because it describes only positively weighted elements from the subspace. 
-
-When we talk about cone, the tip of the cone is usually centered around the origin. 
-
-**Pointed Cones**
-* A cone is called pointed if $-C \cap C= \{\mathbf 0\}$
-* It's also convex. 
+#### **Definition | Pointed Cones**
+> A cone $C \subset \R^n$ is pointed when: 
+> * A cone is called pointed if $-C \cap C= \{\mathbf 0\}$. It means the origin is an extreme point of the set. 
+> * It's also convex. 
 
 **Reproducing Cones**
-* Some times, $C - C = \mathbb E$, the whole Euclidean space. Then that space is called reproducing. 
+* Sometimes, $C - C = \mathbb E$, the whole Euclidean space. Then that space is called reproducing. 
 
 **References**
 
-This is take from Prof Dimitri's teaching of MATH 516 at UW 2021. 
+This is taken from Prof Dimitri's teaching of MATH 516 at UW 2021. 
 
 ----
 ### **More Definitions about Cones**

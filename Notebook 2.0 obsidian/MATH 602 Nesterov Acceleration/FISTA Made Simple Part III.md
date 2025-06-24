@@ -24,7 +24,7 @@
 **Remarks**
 
 If the function $g \equiv 0$, then it yields the gradient descent operator $T_\beta(x) = x - \beta^{-1}\nabla f(x)$. 
-In the context where it's clear what the function $F = f + g$ is, we simply wirte $T_\beta(x)$ for short. 
+In the context where it's clear what the function $F = f + g$ is, we simply write $T_\beta(x)$ for short. 
 
 #### **Definition | Bregman Divergence**
 > Let $f:\R^n \rightarrow \overline \R$ be a differentiable function. 
@@ -671,9 +671,9 @@ In other words, the minimizer for each cost function of every sample has a non-z
 >    \\
 >    &\le (1 - \mathbb E_k [\alpha_k])
 >    \left(
->        F(x_{k - 1}) 
+>        \mathbb E \left[F(x_{k - 1})\right]
 >        - 
->        \mathbb E_k\left[F_{I_k}(\bar x)\right]
+>        F(\bar x)
 >        + 
 >        \mathbb E_k 
 >        \left[\frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2\right]
@@ -779,7 +779,7 @@ $$
     \mathbb E_k
     \left[1 - \alpha_k\right]
     \left(
-        F(x_{k - 1}) - \mathbb E_k \left[F_{I_k}(\bar x)\right]
+       \mathbb E \left[F(x_{k - 1})\right] - F(\bar x)
         + 
         \mathbb E_k \left[\frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2\right]
     \right). 
@@ -804,9 +804,9 @@ $$
     \mathbb E_k
     \left[1 - \alpha_k\right]
     \left(
-        F(x_{k - 1}) 
+        \mathbb E \left[F(x_{k - 1})\right]
         - 
-        \mathbb E_k\left[F_{I_k}(\bar x)\right]
+        F(\bar x)
         + 
         \mathbb E_k 
         \left[\frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2\right]
@@ -828,7 +828,7 @@ $$
                 - L_{k - 1}L_k^{-1}\alpha_{k - 1}^2
             \right)^2
             + 4L_{k - 1}L_k^{-1}\alpha_{k - 1}
-        }
+        }\;
     \right]
     \\
     &= 
@@ -840,7 +840,7 @@ $$
                 - L_{k - 1}L_k^{-1}\alpha_{k - 1}^2
             \right)^2
             + 4L_{k - 1}L_k^{-1}\alpha_{k - 1}
-        }
+        }\;
     \right)
     \\
     &= 

@@ -1,10 +1,12 @@
-- [[Introducing Cone]]
+- [Introducing Cone](Introducing%20Cone.md)
 
 
 ---
 ### **Intro**
 
-> A polar cone, denoted as $K^\ominus$ where $K$ is a cone is defined to be the set of all vectors $v$ that makes an obtuse angle with vectors from the set $K$: 
+#### **Definition | polar cone**
+> Let $K\subseteq \R^n$ be a cone. 
+> Then, the polar cone of $K$ denoted as $K^\ominus$ is the set of all vectors $v$ that makes an obtuse angle with all vectors from $K$, i.e.: 
 > 
 > $$
 > K^\ominus := 
@@ -18,21 +20,22 @@ The notation is borrowed from professor Heinz.
 
 **Quick Facts**: 
 
-* When $L$ is a linear subspace, we have $L^\ominus = L^\perp$. 
+* If $L$ is a linear subspace, we have $L^\ominus = L^\perp$. 
 * $(\mathbb R_+^n)^\ominus = \mathbb R_-^n$, $(\mathbb S_+^n)^\ominus =\mathbb S_-^n$
-* $K^{\ominus\ominus} = \text{cl}.\text{cvxh}(K)$: The double polar theorem, or the bipolar theorem. 
+* $K^{\ominus\ominus} = \text{cl}.\text{cvxh}(K)$: It's the double polar theorem, or the bipolar theorem. 
+* If, $K'\subseteq K$ then, $(K')^\ominus \supseteq K^\ominus$. 
 
 #### **Warnings | Notation Conflicts**
-> Prof Dimitry uses $C^\circ$ instead for polar cone definition. The $C^\ominus$ is a notation from Prof Heinz. 
+> Prof Dimitri uses $C^\circ$ instead for polar cone definition. The $C^\ominus$ is a notation from Prof Heinz. 
 
 ---
 ### **The Bipolar Theorem**
 
 > For any closed cone $K$ we have: $K^{\ominus\ominus} = \text{cl}(K)$. 
 
-**Proofs**: 
+**Proof**: 
 
-Consider the set $F_K$, consisted of all the normals of halfspaces containing the cone $K$ on its positive side: 
+Consider the set $F_K$, consisted of all the normal of half-space containing the cone $K$ on its positive side: 
 
 $$
 \begin{aligned}
@@ -42,18 +45,19 @@ $$
 \end{aligned}
 $$
 
-However at the same time because $\text{cl}.\text{cvxh}(k)$ is a convex set, it can be characterized by the intersection of all the halfspaces that contains it in one side hence: 
+However, at the same time because $\text{cl}.\text{cvxh}(k)$ is a convex set, it can be characterized by the intersection of all the half-spaces that contains it in one side hence: 
 
-
+$\blacksquare$
 
 ---
 ### **Example 1 | Polar Polyhedral Cone**
-
-> The set $A := \{x: Ax \le \mathbf 0\}$ is $B:=\{A^T y: y\ge \mathbf 0\}$. We assume that $A \in \mathbb R^{m\times n}$. 
+> Let $A \in \mathbb R^{m\times n}$. 
+> The set $A := \{x: Ax \le \mathbf 0\}$ and $B:=\{A^T y: y\ge \mathbf 0\}$ are each other's polar cone. 
 
 **Proof**: 
 
-Please recall the [[Farkas's Lama#Variants]], the polar cone variants. We state it here for convenicne: 
+Please recall the [Farkas's Lama](AMATH%20514%20Combinatorics%20Optimizations/Farkas's%20Lama.md). 
+We state it here for convenience: 
 
 $$
 (Ax \le \mathbf 0 \implies \langle c, x\rangle \le 0) \iff (\exists y\ge \mathbf 0: A^Ty = c)
