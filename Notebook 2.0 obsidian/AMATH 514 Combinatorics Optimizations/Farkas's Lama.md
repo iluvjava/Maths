@@ -1,6 +1,6 @@
-- [[Polytopes and Vertices]]
-- [[Introducing Cone]]
-- [[Strict Separations Theorem]]
+- [Polytopes and Vertices](Polytopes%20and%20Vertices.md)
+- [Introducing Cone](Introducing%20Cone.md)
+- [Strict Separations Theorem](Strict%20Separations%20Theorem.md)
 
 In fact, the wiki of this is very good: [wiki](https://en.wikipedia.org/wiki/Farkas%27_lemma). 
 
@@ -259,7 +259,7 @@ $\implies$ tells a story that, for a polytope that is bounded on the direction o
 
 This theorem is linked to the duality of linear programming because the left part of the iff statement is the bounded primal and the right part of the iff is the dual reaching at least as much as what primal is; in this case $c_0$. 
 
-For one more extension that appeared in AMATH 514, check out: [[Stiemke Theorem]]!!!
+For one more extension that appeared in AMATH 514, check out: [Stiemke Theorem](Stiemke%20Theorem.md)!!!
 
 ---
 ### **Source**:

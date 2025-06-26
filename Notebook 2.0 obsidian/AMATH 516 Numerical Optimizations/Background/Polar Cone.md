@@ -13,7 +13,7 @@
 > \left\lbrace
 >     v\in \mathbb{R}^n: 
 >     \langle v, x\rangle \le 0 \; \forall x \in K
-> \right\rbrace
+> \right\rbrace. 
 > $$
 
 The notation is borrowed from professor Heinz. 
@@ -27,6 +27,35 @@ The notation is borrowed from professor Heinz.
 
 #### **Warnings | Notation Conflicts**
 > Prof Dimitri uses $C^\circ$ instead for polar cone definition. The $C^\ominus$ is a notation from Prof Heinz. 
+
+#### **Lemma | additive cone linear dual**
+> Let $C \subseteq \R^n$ be a cone, let $L \subseteq \R^n$ be a linear subspace. 
+> Then, it has $(C + L)^\ominus = C^\ominus \cap L^\perp$. 
+
+**Proof**
+
+The proof is direct. 
+$$
+\begin{aligned}
+    & v \in (C + L)^\ominus 
+    \\
+    \iff & (\forall x_1\in C, x_2\in L): \langle v, x_1 + x_2\rangle 
+    \le 0
+    \\
+    \underset{\text{(a)}}{\iff} & 
+    \langle v, x_1\rangle \le 0 \wedge 
+    \langle v, x_2\rangle = 0. 
+\end{aligned}
+$$
+
+**(a)** holds because $x_2 \in L$ means $\lambda x_2 \in L$ for all $\lambda \in \R$, hence it must be equal to zero for it to hold for all $x_2 \in L$. 
+
+$\blacksquare$
+
+**Remarks**
+
+The converse hold true. 
+The dual of the intersection between cone and linear subspace is the addition of the dual of the linear subspace and the cone. 
 
 ---
 ### **The Bipolar Theorem**
@@ -60,7 +89,7 @@ Please recall the [Farkas's Lama](AMATH%20514%20Combinatorics%20Optimizations/Fa
 We state it here for convenience: 
 
 $$
-(Ax \le \mathbf 0 \implies \langle c, x\rangle \le 0) \iff (\exists y\ge \mathbf 0: A^Ty = c)
+(Ax \le \mathbf 0 \implies \langle c, x\rangle \le 0) \iff (\exists y\ge \mathbf 0: A^Ty = c). 
 $$
 
 We decompose the statement from left to right and in reverse to discuss how it's relevant to the definition of polar cones. 
@@ -68,7 +97,9 @@ We decompose the statement from left to right and in reverse to discuss how it's
 * $x \in A\implies \forall c \in B: \langle c, x\rangle \le 0 \implies B \subseteq A^\ominus$ 
 * $\forall x \in A, \langle c, x\rangle \le 0\;  \forall c \in B \implies A^\ominus \subseteq B$
 
-Therefore $A^\ominus = B$ and using bipolar $B^\ominus = A$. 
+Therefore, $A^\ominus = B$ and using bipolar $B^\ominus = A$. 
+
+$\blacksquare$
 
 
 ---

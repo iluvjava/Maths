@@ -52,3 +52,4 @@ Necoara
 polytopes
 subgradients
 R-WAPG
+unboundedness
