@@ -1,3 +1,4 @@
+
 - [[Topological Basics for Optimizations]]
 
 
@@ -24,9 +25,10 @@ Take limits of $\lambda \searrow 0$ to see why.
 * $\{x| Ax \ge \mathbf 0\}$. 
 * $\{(x, y)\in \mathbb R^2 | xy = 0\}$. It is not a convex set but, it's a cone.  
 * $\{y \in \mathbb R^n | \langle a, y\rangle \le 0\}$. 
+* $\{\lambda v: v \in \{v_1, v_2, v_3..., v_n\}, \lambda \ge 0\}$. It's not convex. 
 
 
-#### **Definition | Pointed Cones**
+#### **Definition | pointed cones**
 > A cone $C \subset \R^n$ is pointed when: 
 > * A cone is called pointed if $-C \cap C= \{\mathbf 0\}$. It means the origin is an extreme point of the set. 
 > * It's also convex. 
@@ -38,12 +40,25 @@ Take limits of $\lambda \searrow 0$ to see why.
 
 This is taken from Prof Dimitri's teaching of MATH 516 at UW 2021. 
 
+#### **Lemma | a property of the convex cone**
+> Let $C \subseteq \R^n$ be a convex cone. 
+> Then, for all $a \in C, b \in C$, it has $a + b \in C$. 
+
+**proof**
+
+Let $a \in C, b \in C$. 
+By convexity $(1/2)(a + b)\in C$. 
+But because it's a cone $a + b \in C$. 
+
+$\blacksquare$
+
+
 ---
 ### **Some basic properties/operations of cones**
 Some basic operations of cones and, properties are relevant. 
 Recession cone reduces set to its direction of unboundedness. 
 When the set is convex, we will have a cone. 
-#### **Definition | Recession cone**
+#### **Definition | recession cone**
 >Let $Q\subseteq \R^n$ be convex, then the recession cone of the set is defined as: $\{v\in \R^n : Q + v \subseteq Q\}$, denoted by $\text{rec}(Q)$. 
 
 **Observations**
@@ -80,6 +95,7 @@ $$
 Let $C_1, C_2$ be convex cones in $\R^n$. 
 From the definition we make the following observations: 
 1. $\text{lin}\; C_1\cap C_2 = \text{lin}\; C_1 \cap \text{lin}\; C_2$. 
+2. $C\setminus \text{lin}\; C$ will always be a pointed cone. 
 
 
 #### **Lemma | linear subspace pushes through linearity of cone**
@@ -118,7 +134,7 @@ If, a cone $C$ can be decomposed into a sum of linear subspace $L$ and a pointed
 
 
 ----
-### **More Definitions about Cones**
+### **More Concepts about Cones**
 
 - [Dual Cone](Dual%20Cone.md). Related to the Fenchel dual of indicator functions. 
 - [Polar Cone](Polar%20Cone.md). A polar cone is the result of a transformation on a cone such that it's perpendicular to the original cones. 

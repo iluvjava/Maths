@@ -287,6 +287,7 @@ $$
     \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k)
     + \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
     - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
+    \\ &\quad 
     + \frac{(\alpha_k - 1)\mu(L_k\alpha_k - \mu)}{2(L_k - \mu)}\Vert x_{k - 1} - v_{k - 1}\Vert^2
     \\
     &\underset{\text{(h)}}{\le}
@@ -318,7 +319,8 @@ $$
         + \max\left(1, \frac{L_k\rho_{k - 1}}{L_{k - 1}}\right)
         \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
     \right) 
-    + F(\bar x) - F(x_k)-  \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
+    \\
+    &\quad + F(\bar x) - F(x_k)-  \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
     \\
     &= 
     \max\left(1, \frac{L_k\rho_{k - 1}}{L_{k - 1}}\right)(1 - \alpha_k)\left(
@@ -523,10 +525,10 @@ The following theorems, definitions will clarify.
 > $$
 > \begin{aligned}
 >     \beta_k &:= \begin{cases}
->         1 & k = 0\\
+>         1 & k = 0, \\
 >         \prod_{i = 0}^{k-1} \max\left(
 >              1, \frac{L_{i + 1}\rho_{i}}{L_i}
->          \right)(1 - \alpha_{i + 1}) & k \ge 1
+>          \right)(1 - \alpha_{i + 1}) & k \ge 1. 
 >     \end{cases}
 > \end{aligned}
 > $$
@@ -562,8 +564,10 @@ Let's fix $\bar x$.
 Using Theorem 3, for all $k \ge 1$, we apply the inequality repeatedly and unroll the recursion which gives: 
 
 $$
+{\small
 \begin{aligned}
-    - F(\bar x) + F(x_k) + \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
+    & - F(\bar x) + F(x_k) + \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
+    \\
     & \le \max\left(1, \frac{L_k\rho_{k - 1}}{L_{k - 1}}\right)(1 - \alpha_k)\left(
         F(x_{k - 1}) - F(\bar x) 
         + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
@@ -596,6 +600,7 @@ $$
         + \frac{\alpha_{0}^2L_{k - 2}}{2}\Vert \bar x - v_{0}\Vert^2
     \right). 
 \end{aligned}
+}
 $$
 
 Under the assumption that $\alpha_0 = 1, v_{-1} = x_{-1}$, then the second part of Theorem 3 applies, hence the above RHS is bounded above:

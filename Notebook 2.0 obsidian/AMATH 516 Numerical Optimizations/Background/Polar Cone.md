@@ -24,6 +24,7 @@ The notation is borrowed from professor Heinz.
 * $(\mathbb R_+^n)^\ominus = \mathbb R_-^n$, $(\mathbb S_+^n)^\ominus =\mathbb S_-^n$
 * $K^{\ominus\ominus} = \text{cl}.\text{cvxh}(K)$: It's the double polar theorem, or the bipolar theorem. 
 * If, $K'\subseteq K$ then, $(K')^\ominus \supseteq K^\ominus$. 
+* The polar cone is always a convex cone. It's direct by using the properties of the inequality in the definition. 
 
 #### **Warnings | Notation Conflicts**
 > Prof Dimitri uses $C^\circ$ instead for polar cone definition. The $C^\ominus$ is a notation from Prof Heinz. 
