@@ -83,7 +83,7 @@ In preparation of the proof for the convergence rate of the algorithm for one it
 > $$
 > \begin{aligned}
 >     (\forall \lambda \in [0, 1])\; 
->     F(\lambda x + (1 - \lambda)y) \le \lambda F(x) + (1 - \lambda)F(y) -\alpha\frac{\lambda(1 - \lambda)}{2} \Vert y - x\Vert^2. 
+>     F(\lambda x + (1 - \lambda)y) \le \lambda F(x) + (1 - \lambda)F(y) -\mu\frac{\lambda(1 - \lambda)}{2} \Vert y - x\Vert^2. 
 > \end{aligned}
 > $$
 > 
@@ -643,11 +643,15 @@ In other words, the minimizer for each cost function of every sample has a non-z
 > Suppose $F = 1/n \sum_{i = 1}^{n} F_i$ is a $L$ smooth and $\mu \ge 0$ strongly convex function, where each $F_i$ satisfies Assumption 1 with Lipschitz smooth and strong convexity parameters $K_i, \mu_i$. 
 > We assume that each of the $F_i$ has $\inf_{x} F_i(x) = 0$, and has a non-empty set of minimizer, and the overall function it has $\inf_{x}F(x) = 0$ as well. 
 
+**Remarks**
+
+<mark style="background: #FF5582A6;">Writings not good</mark>
+
 #### **Definition | stochastic accelerated gradient method (SAGD)**
 > Suppose that objective function $F$ satisfies Assumption 2. 
 > Denote $K^{(i)} \ge \mu^{(i)}$ to be the list of Lipschitz smooth constant, strongly convex constant for components of $F$. 
 > Let $(I_k)_{k \ge 0}$ be a list of i.i.d random variables uniformly sampled from set $\{0, 1, 2, \cdots, n\}$. 
-> Initialize $v_{-1} = x_{-1}, \alpha_0 = 0$. 
+> Initialize $v_{-1} = x_{-1}, \alpha_0 = 1$. 
 > The SAGD generates the sequence $(y_k, x_k, v_k)_{k \ge 0}$ such that for all $k \ge 0$ they satisfy: 
 > $$
 > \begin{aligned}
@@ -784,7 +788,7 @@ $$
     \mathbb E_k
     \left[1 - \alpha_k\right]
     \left(
-       \mathbb E \left[F(x_{k - 1})\right] - F(\bar x)
+       \mathbb E_k \left[F_{I_k}(x_{k - 1})\right] - F(\bar x)
         + 
         \mathbb E_k \left[\frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2\right]
     \right). 
@@ -809,7 +813,7 @@ $$
     \mathbb E_k
     \left[1 - \alpha_k\right]
     \left(
-        \mathbb E \left[F(x_{k - 1})\right]
+        \mathbb E_k \left[F_{I_k}(x_{k - 1})\right]
         - 
         F(\bar x)
         + 
@@ -841,7 +845,7 @@ $$
         - L_{k - 1}L_k \alpha_{k - 1}^2 + \frac{\mathbb E_k\left[\mu^{(I_k)}\right]}{L_k} 
         + \sqrt{
             \left(
-                \frac{\mathbb E \left[\mu^{(I_k)}\right]}{L_k}
+                \frac{\mathbb E_k \left[\mu^{(I_k)}\right]}{L_k}
                 - L_{k - 1}L_k^{-1}\alpha_{k - 1}^2
             \right)^2
             + 4L_{k - 1}L_k^{-1}\alpha_{k - 1}
