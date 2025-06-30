@@ -77,6 +77,7 @@ $$
     \lambda Q + (1 - \lambda)Q = Q. 
 \end{aligned}
 $$
+4. $\text{rec}\; Q$ is a cone when $Q$ is convex. Consider $y \in \text{rec}\; Q$, then $Q + y \in Q$, but $Q + y \in Q$, so $Q + y + y \in Q$, and $Q + y \ldots + y \in Q$ so $Q + ny \in Q$ for all $n \in \N$. Since $\text{rec}\; C$ was convex, the convex hull of $\{n y \in \R^n : n \in \N\}$ is the ray in direction $y$ and it's in the set $\text{rec}\; Q$. Hence, $\text{rec}\; Q$ must be a cone. 
 
 #### **Lemma | recession cone characterizes cone**
 > Let $C\subseteq R^n$ be a convex set. 
@@ -84,6 +85,9 @@ $$
 
 **Proof**
 
+Exercise for the reader. 
+
+$\blacksquare$
 
 
 #### **Definition | linearity of a cone**
@@ -96,7 +100,7 @@ From the definition we make the following observations:
 1. $\text{lin}\; C_1\cap C_2 = \text{lin}\; C_1 \cap \text{lin}\; C_2$. 
 2. $C \cap (\text{lin}\; C)^{\perp}$ will always be a pointed cone. 
 3. $C = \text{lin}\; C + C\cap (\text{lin}\; C)^{\perp}$ because $\text{lin}\; C \subseteq C$ always, and it has $C \cap (\text{lin}\; C)^\perp$ being a pointed cone. This decomposes a cone into the sum of a pointed cone and a subspace. 
-4. $\text{rec}\; Q$ is a cone when $Q$ is convex. Consider $y \in \text{rec}\; Q$, then $Q + y \in Q$, but $Q + y \in Q$, so $Q + y + y \in Q$, and $Q + y \ldots + y \in Q$ so $Q + ny \in Q$ for all $n \in \N$. Since $\text{rec}\; C$ was convex, the convex hull of $\{n y \in \R^n : n \in \N\}$ is the ray in direction $y$ and it's in the set $\text{rec}\; Q$. Hence, $\text{rec}\; Q$ must be a cone. 
+
 
 
 #### **Lemma | linear subspace pushes through linearity of cone**

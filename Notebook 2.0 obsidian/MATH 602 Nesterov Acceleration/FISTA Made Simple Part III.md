@@ -843,13 +843,13 @@ $$
     &= 
     \frac{1}{2}\left(
         - L_{k - 1}L_k \alpha_{k - 1}^2 + \frac{\mathbb E_k\left[\mu^{(I_k)}\right]}{L_k} 
-        + \sqrt{
+        + \textcolor{red}{\sqrt{
             \left(
                 \frac{\mathbb E_k \left[\mu^{(I_k)}\right]}{L_k}
                 - L_{k - 1}L_k^{-1}\alpha_{k - 1}^2
             \right)^2
             + 4L_{k - 1}L_k^{-1}\alpha_{k - 1}
-        }\;
+        }}\;
     \right)
     \\
     &= 
