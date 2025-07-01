@@ -18,7 +18,7 @@
     }
 }
 
-\date{March 2, 2020}
+\date{\today}
 
 \maketitle
 \todoinline{This paper is currently in draft mode. Check source to change options. }
@@ -27,6 +27,7 @@
 \begin{abstract} 
     \noindent
     Lorem ipsum dolor sit amet, dicta iudicabit consequat ex vix, veniam legimus appetere has id, an pri graece epicuri detraxit. Ea aliquam expetendis posidonium eos, nam invenire corrumpit imperdiet ei. Et constituto dissentias usu, mel solum erant et. Mel dolorem menandri in.
+    \cite{nesterov_lectures_2018}
     \todo{This is just psuedo text. This is just psuedo text. This is just psuedo text. This is just psuedo text. }
 \end{abstract}
 
@@ -36,163 +37,446 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 
 % ==============================================================================
+\section{Nesterov's Accelerated Gradient}
+    \subsection{In preparations}
+        \begin{assumption}[Smooth add nonsmooth]\label{ass:smooth_plus_nonsmooth}
+            The function $F = f + g$ where $f:\RR^n \rightarrow \RR$ is a $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
+            The function $g:\RR^n \rightarrow \overline \RR$ is a closed convex proper function. 
+        \end{assumption}
 
-\section{Schur's Cone and Its Polar}
-    \begin{example}
-        Define
-        \begin{equation}\label{eqn:cone-1}
-            Q = \left\lbrace
-                x\in \RR^n \left|
-                    \sum_{i = 1}^{k} x_i
-                    \ge 0, \;
-                    k = 1 ,\cdots, n-1, \;
-                    x_1 + \cdots + x_n = 0
-                \right.
-            \right\rbrace.
-        \end{equation}
-        Then
-        \begin{align}
-            Q^\circ &= \left\lbrace
-               y\in\RR^n |
-               \langle y, x\rangle \ge 0 \; \forall x \in Q
-            \right\rbrace
-            \\
-            &=
-            \left\lbrace
-                y\in\RR^n | y_{1} \ge y_2\ge \cdots  \ge y_n
-            \right\rbrace.
-        \end{align}
-    \end{example}
-    \begin{proof}
-        We have $Q = H(\RR^{n - 1}_+)$, where
-        \begin{align}
-            H =
-            \begin{bmatrix}
-                1 &  & &
+        \begin{definition}[Proximal gradient operator]
+            Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth_plus_nonsmooth}. 
+            Let $\beta > 0$. 
+            Then, we define the proximal gradient operator $T_{\beta}$ as 
+            \begin{align*}
+                T_\beta (x | F) &= \argmin{z} \left\lbrace
+                    g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{\beta}{2}\Vert z - x\Vert^2
+                \right\rbrace. 
+            \end{align*}
+        \end{definition}
+        \begin{remark}
+            If the function $g \equiv 0$, then it yields the gradient descent operator $T_\beta(x) = x - \beta^{-1}\nabla f(x)$. 
+            In the context where it's clear what the function $F = f + g$ is, we simply write $T_\beta(x)$ for short. 
+        \end{remark}
+
+        \begin{definition}[Bregman Divergence]
+            Let $f:\RR^n \rightarrow \overline \RR$ be a differentiable function. 
+            Then, for all the Bregman divergence $D_f: \RR^n \times \dom\nabla f \rightarrow \RR$ is defined as: 
+            \begin{align*}
+                D_f(x, y) := f(x) - f(y) - \langle \nabla f(y), x - y\rangle. 
+            \end{align*}
+        \end{definition}
+        \begin{remark}
+            If, $f$ is $\mu \ge 0$ strongy convex and $L$ Lipschitz smooth then, its Bregman Divergence has for all $x, y \in \RR^n$: $\mu/2 \Vert x - y\Vert^2 \le D_f(x, y) \le L/2 \Vert x - y\Vert^2$. 
+        \end{remark}
+
+        \begin{definition}[R-WAPG sequence]\label{def:rwapg-seq}
+            Let $(L_k)_{k \ge 0}$ be a sequence such that $L_k > \mu$ for all $k$. 
+            Let $\alpha_0 \in (0, 1]$, $(\alpha_k)_{k \ge 1}$ has $\alpha_k \in (\mu/ L_k, 1)$. 
+            Then define for all $k \ge 0$: 
+            \begin{align*}
+                \rho_k(1 - \alpha_{k + 1})\alpha_k^2 = \alpha_{k + 1}(\alpha_{k + 1} - \mu/L_k). 
+            \end{align*}
+        \end{definition}
+        \begin{remark}
+            When $\rho_k = 1$, the recursive relation between $\alpha_k, \alpha_{k - 1}$ is the same as the well known Nesterov's sequence used in algorithm such as FISTA and Nesterov's accelerated gradient. 
+            See Li and Wang \cite{li_relaxed_2025} for more information. 
+        \end{remark}
+        
+        \begin{definition}[similar triangle representation of NAPG]\;\label{def:st-method}\\
+            Let $(\alpha_k)_{k \ge 0}$ be an R-WAPG sequence. 
+            Suppose that the base case $v_{-1}, x_{k - 1}\in \RR^n$ is given to initialize the algorithm. 
+            Then the algorithm produces the sequence of iterates $(y_k, x_k, v_k)_{k \ge 0}$ and auxilary parameter sequence $L_k, \tau_k$ satisfying these inequalities: 
+            \begin{align*}
+                & \tau_k = L_k(1 - \alpha_k)(L_k\alpha_k - \mu)^{-1}, 
                 \\
-                -1 & 1 & &
+                & y_k = (1 + \tau_k)^{-1} v_{k - 1} + \tau_k (1 + \tau_k)^{-1} x_{k - 1},
                 \\
-                 & -1 & &
+                & D_f(x_k, y_k) \le L_k/2\Vert x_k - y_k\Vert^2, 
                 \\
-                &  & \ddots&
-                \\[-1em]
-                &  & & 1
+                & x_k = T_{L_k}(y_k),
                 \\
-                &  && -1
-            \end{bmatrix},
-        \end{align}
-        $H$ is a bi-diagonal matrix with zeros on the diagonal and -1 on its sub-diagonals. Indeed, for $x = (x_1, \cdots, x_{n - 1})\in \RR^{n - 1}_+$, we have
-        \begin{align}
-            y &= H x
-            \\
-            &=
-            \begin{bmatrix}
-                1 \\ -1 \\ 0 \\ \vdots \\ 0
-            \end{bmatrix}x_1 +
-            \begin{bmatrix}
-                0 \\ 1 \\ -1 \\ \vdots \\ 0
-            \end{bmatrix}x_2 +
-            \cdots
-            +
-            \begin{bmatrix}
-                0 \\ 0 \\ \vdots \\ 1 \\ -1
-            \end{bmatrix} x_{n - 1}
-            \\
-            &=
-            \begin{bmatrix}
-                x_1 \\ x_2 - x_1 \\ x_3 - x_2
-                \\ \vdots
-                \\-x_{n - 2} + x_{n - 1}\\
-                 - x_{n - 1}
-            \end{bmatrix}
-            = \begin{bmatrix}
-                y_1 \\ y_2 \\ y_3 \\ \vdots \\ y_{n - 1} \\ y_n
-            \end{bmatrix},
-        \end{align}
-        where $y_1 \ge 0, y_2 + y_1 \ge 0, \cdots, y_{n - 1}+ \cdots + y_1 \ge 0$, and $y_1 + \cdots + y_n = 0$. So $y\in Q$. Hence $H(\RR^{n - 1}_+)\subseteq Q$. Similarly, one can write for $y\in Q$, $\exists x \in \RR_+^{n- 1}$ with $y = Hx$. In fact, $x = y_1, x_2 = y_1 + y_2, \cdots, x_{n - 1} = y_1 + \cdots + y_{n - 1}, -x_{n - 1} = y_n$ because $y_1 + \cdots + y_n = 0$. In particular, $x\in \RR^{n - 1}_+$.
-        \par
-        Note that $y\in Q^\circ\iff y^{\intercal}a_i \ge 0$ for $i = 1,\cdots, n -1$. Where
-        \begin{align}
-            a_1 = \begin{bmatrix}
-                1 \\ -1 \\ 0 \\ \vdots \\ 0,
-            \end{bmatrix},
-            a_2 = \begin{bmatrix}
-                0 \\ 1 \\ -1 \\ \vdots \\ 0,
-            \end{bmatrix},
-            & \cdots,
-            a_n =
-            \begin{bmatrix}
-                0 \\ \vdots \\ 0  \\ 1 \\ -1
-            \end{bmatrix}.
-        \end{align}
-        Now $y^{\intercal} a_i \ge 0 \iff y_i - y_{i + 1}\ge 0$, for $i = 1,\cdots, n-1$. Hence $Q^\circ = \{ y\in \RR^n | y_1 \ge y_2 \ge \cdots \ge y_n\}$.
+                & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
+            \end{align*} 
+        \end{definition}
+        The following theorems are critical in analyzing the behavior of algorithm in Definition \ref{def:st-method}. 
+        \begin{theorem}[proximal gradient inequality]\label{thm:pg-ineq}
+            Let function $F$ satisfies Assumption \ref{ass:smooth_plus_nonsmooth}, so it's $\mu \ge 0$ strongly convex. 
+            For all $x\in \RR^n$, define $x^+ = T_L(x)$, then there exists a $B \ge 0$ such that $D_f(x^+, x) \le B/2 \Vert x^+ - x\Vert^2$. 
+            Then, for all $z \in \RR^n$ it satisfies proximal gradient inequality at point $x$:  
+            \begin{align*}
+                0&\le F(z) - F(x^+) - \frac{B}{2}\Vert z - x^+\Vert^2  + \frac{B - \mu}{2}\Vert z - x\Vert^2
+                \\
+                &=  F(z) - F(x^+) - \langle B(x - x^+), z - x\rangle
+                - \frac{\mu}{2}\Vert z - x\Vert^2
+                - \frac{B}{2}\Vert x - x^+\Vert^2. 
+            \end{align*}
+            Since $f$ is assumed to be $L$ Lispchitz smooth, the above condition is true for all $x, y \in \RR^n$ for all $B \ge L$. 
+        \end{theorem}
+        \begin{remark}
+            The theorem is the same as in Nesterov's book \cite[Theorem 2.2.13]{nesterov_lectures_2018}, but with the use of proximal gradient mapping and proximal gradient instead of project gradient hence making it equivalent to the theorem in Beck's book \cite[Theorem 10.16]{beck_first-order_2017}. 
+            The only generalization here is parameter $B$ which made to accomodate algorithm that implements Definition \ref{def:st-method} with some line search routine. 
+        \end{remark}
+        \begin{theorem}[Jensen's inequality]\label{thm:jesen}
+            Let $F: \RR^n \rightarrow \overline \RR$ be a $\mu \ge 0$ strongly convex function. 
+            Then, it is equivalent to the following condition. 
+            For all $x, y \in \RR^n$, $\lambda \in (0, 1)$ it satisfies the inequality 
+            \begin{align*}
+                (\forall \lambda \in [0, 1])\; 
+                F(\lambda x + (1 - \lambda)y) \le \lambda F(x) + (1 - \lambda)F(y) -\frac{\mu\lambda(1 - \lambda)}{2} \Vert y - x\Vert^2. 
+            \end{align*}
+        \end{theorem}
+        \begin{remark}
+            If $x, y$ is out of $\dom F$, the inequality still work by convexity. 
+        \end{remark}
 
-    \end{proof}
-
-\section{Lorentz Cone and its Polar}
-    \begin{example}
-        \begin{equation}
-            L = \left\lbrace
-            (\xi, t) \in \RR^n \left| \;
-                \Vert \xi\Vert \le t, \xi \in \RR^{n - 1}
-            \right.
-            \right\rbrace.
-        \end{equation}
-        Then the polar cone of $L$ is $L^\circ = \{(x, s) \;|\; \langle (x, s), (\xi, t)\rangle \ge 0\}\} = L$.
-    \end{example}
-    \begin{proof}
-        \par
-        Let $(x, s) \in L^\circ$. Then $\langle (x, s), (\xi, t)\rangle \ge 0$, $\forall (\xi, t) \in L$, i. e. $\langle x, \xi\rangle + st \ge 0$.
-        \par
-        For $t > 0$, we have $\langle x, \xi/t\rangle \ge -s$, i.e. $\langle x, - \xi/t\rangle \le s$. Using $\Vert \xi\Vert \le t$ and by taking supremum over $\Vert \xi/t\Vert\le 1$, we obtain  $\Vert x\Vert \le s$.
-        \par
-        Hence $L^\circ = L$.
-    \end{proof}
-    \begin{corollary}
-        Let $A \in \RR^{n\times n}$ be positive definite. Define
-        $$
-            L_A =
-            \left\lbrace
-                (\xi, t)\in \RR^n \left|
-                    \sqrt{\langle \xi, A\xi\rangle} \le t
-                \right.
-            \right\rbrace.
-        $$
-        Then $(L_A)^\circ = \{ (\xi, t) \;|\; \sqrt{\langle \xi, A^{-1}\xi\rangle}\le t\}$.
-    \end{corollary}
-
-\section{Testing the references}
-    This book by Nesterov \cite{nesterov_lectures_2018}. 
-    This book by Heinz \cite{bauschke_convex_2017}. 
-
-\section{Testing figures and images}
-    In Figure \ref{fig:two-test-figures}, it has Figure \ref{fig:two-test-fig-1} on the left and Figure \ref{fig:two-test-fig-2} on the right. 
-    \begin{figure}[H]
-        \begin{subfigure}[b]{0.47\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{assets/test-image-1.png}
-            \caption{Alto the unicorn. }
-            \label{fig:two-test-fig-1}
-        \end{subfigure}
-        \hfill
-        \begin{subfigure}[b]{0.47\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{assets/test-image-2.png}
-            \caption{Alto and Minty. }
-            \label{fig:two-test-fig-2}
-        \end{subfigure}
-        \caption{The above 2 images are test images for the figure, subfigure latex commands. }
-    \label{fig:two-test-figures}
-    \end{figure}
-
-\section*{Acknowledgments}
-    XW were supported by NSERC Discovery grants.
-
-
-
+    \subsection{A compact argument for the convergence of NAPG with proximal gradient}
+        Here, the abbreviation ``NAPG" stands for ``Nesterov Acceleration Proximal Gradient". 
+        It's made in acknowledgement of Algorithm 2.2.36 in Nesterov's book \cite{nesterov_lectures_2018} and its extension known as FISTA in the literature.
+        The following theorem provide a complete proof for the convergence rate of algorithms implementing Definition \ref{def:st-method}, which is equivalent to NAG, or NAPG. 
+        It made use of Definition \ref{def:rwapg-seq} which accomodates a relaxed sequence compared to the usual sequence that gives the optimal convergence rate. 
+        \begin{theorem}[one step convergence claim of NAPG]\label{thm:onestep-napg-cnvg}
+            Let $F = f + g$ satisfies Assumption \ref{ass:smooth_plus_nonsmooth} for some $L > \mu \ge 0$. 
+            Let the sequence $(\alpha_k)_{k \ge0}$ be an R-WAPG sequence (Definition \ref{def:rwapg-seq}). 
+            Suppose that the iterates sequence $(x_k, y_k, v_k)_{k \ge 0}$ satisfy NAPG in similar triangle form (Definition \ref{def:st-method}) with initial guesses $v_{-1}, x_{-1} \in \RR^n$. 
+            Then for all $k \ge 1$, the following inequality is true for all $\bar x \in \RR^n$: 
+            \begin{align*}
+                & - F(\bar x) + F(x_k) + \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
+                \\
+                & \le \max\left(1, \frac{L_k\rho_{k - 1}}{L_{k - 1}}\right)(1 - \alpha_k)\left(
+                    F(x_{k - 1}) - F(\bar x) 
+                    + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \right). 
+            \end{align*}
+            If in addition, we choose $\alpha_0 = 1$, and let $x_{-1} = v_{-1}$, then a base case of the inequality is: 
+            \begin{align*}
+                F(x_{0}) - F(\bar x) + \frac{L_0}{2}\Vert \bar x - x_{0}\Vert^2 
+                &\le \frac{L_0 - \mu}{2}\Vert \bar x - v_{-1}\Vert^2. 
+            \end{align*}
+        \end{theorem}
+        \begin{proof}
+            The proof is very intense algebratically hence before we step into it, we present the following intermediate results in advance to their proofs given at the end. 
+            \par
+            For all $k \ge 0$, define $z_k = \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$. 
+            \begin{itemize}
+                \item [(a)] Theorem \ref{thm:pg-ineq}, with $z = z_k$, $k \ge 0$. We can use it because $F = f + g$ satisfies Assumption \ref{ass:smooth_plus_nonsmooth} . 
+                \item [(b)] Jensen's inequality (Theorem \ref{thm:jesen}), with $z = z_k$, for $k \ge 0$. We can use it because $F$ is $\mu \ge 0$ strongly convex. 
+                \item [(c)] Definition \ref{def:rwapg-seq} which has $\rho_k(1 - \alpha_{k + 1})\alpha_k^2 = \alpha_{k + 1}(\alpha_{k + 1} - \mu/L_k)$ for $k \ge 0$.
+                \item [(d)] The equality $z_k - y_k = (L_k - \mu)^{-1}((L_k\alpha_k - \mu)(\bar x - v_k) + \mu(1 - \alpha_k)(\bar x - x_{k - 1}))$ for all $k \ge 0$. 
+                \item [(e)] The equality $z_k - x_k = \alpha_k(\bar x - v_k)$ for all $k \ge 0$. 
+                \item [(f)] The following equality: 
+                \begin{align*}
+                    (\forall k \ge 1)\; \frac{1}{2}\left(
+                        \frac{\mu^2(1 - \alpha_k)^2}{L_k - \mu} - \mu \alpha_k(1 - \alpha_k)
+                    \right) &= 
+                    \frac{(\alpha_k - 1)\mu(L_k\alpha_k - \mu)}{2(L_k - \mu)}. 
+                \end{align*}
+                \item [(g)] The following equality: 
+                \begin{align*}
+                    (\forall k \ge 1)\; 
+                    \frac{1}{2}\left(
+                        \frac{(L_k\alpha_k - \mu)^2}{L_k - \mu} - 
+                        \alpha_{k - 1}^2\rho_{k - 1}L_k(1 - \alpha_k)
+                    \right)
+                    &= 
+                    \frac{\mu(L_k\alpha_k - \mu)(\alpha_k - 1)}{2(L_k - \mu)}. 
+                \end{align*}
+                \item [(h)] The equality: 
+                \begin{align*}
+                    (\forall k \ge 1)\; \frac{\mu(L_k\alpha_k - \mu)(\alpha_k - 1)}{2(L_k - \mu)} &\le 0.   
+                \end{align*}
+            \end{itemize}
+            With intermediate results (a) to (h), presented above, the proof of the theorem come smoothly from a chain of inequalities and equalities. 
+            The overall proof now follows. 
+            Start with the (a), the proximal gradient inequality it has: 
+            \begin{align*}
+                0 &\le F(z_k) - F(x_k) - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 + \frac{L_k - \mu}{2}\Vert z_k - y_k\Vert^2
+                \\
+                &\underset{\text{(b)}}{\le}
+                \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k) \\
+                    &\quad 
+                    - \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+                    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 + \frac{L_k - \mu}{2}\Vert z_k - y_k\Vert^2. 
+            \end{align*}
+            Using the chain of equality below: 
+            {\footnotesize
+            \begin{align*}
+                &- \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+                - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 + \frac{L_k - \mu}{2}\Vert z_k - y_k\Vert^2
+                \\
+                &\underset{\text{(d)}}{=} 
+                -\frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+                - \frac{L_k}{2}\Vert z_k - x_k\Vert^2\\ 
+                    &\quad +
+                    \frac{L_k - \mu}{2}
+                    \left\Vert 
+                        \frac{L_k\alpha_k - \mu}{L_k - \mu}(\bar x - v_{k - 1}) + 
+                        \frac{\mu(1 - \alpha_k)}{L_k - \mu}(\bar x - x_{k - 1})
+                    \right\Vert^2
+                \\
+                &= 
+                - \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+                - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
+                \\
+                &\quad + 
+                    \frac{(L_k\alpha_k - \mu)^2}{2(L_k - \mu)} \Vert \bar x - v_{k - 1}\Vert^2
+                    + \frac{\mu^2(1 - \alpha_k)^2}{2(L_k - \mu)} \Vert \bar x - x_{k - 1}\Vert^2
+                    + \frac{(L_k\alpha_k - \mu)\mu(1 - \alpha_k)}{L_k - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
+                \\
+                &= \left(
+                    \frac{\mu^2(1 - \alpha_k)^2}{2(L_k - \mu)} - \frac{\mu\alpha_k(1 - \alpha_k)}{2}
+                \right)\Vert \bar x - x_{k - 1}\Vert^2
+                + 
+                \left(
+                    \frac{(L_k\alpha_k - \mu)^2}{2(L_k - \mu)}
+                    - \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}
+                \right)\Vert \bar x - v_{k - 1}\Vert^2
+                \\ &\quad 
+                    + \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
+                    + \frac{(L_k\alpha_k - \mu)\mu(1 - \alpha_k)}{L_k - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
+                \\
+                &\underset{\text{(f)}}{=} 
+                \frac{(\alpha_k - 1)\mu(L_k\alpha_k - \mu)}{2(L_k - \mu)}\Vert \bar x - x_{k - 1}\Vert^2
+                + 
+                \left(
+                    \frac{(L_k\alpha_k - \mu)^2}{2(L_k - \mu)}
+                    - \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}
+                \right)\Vert \bar x - v_{k - 1}\Vert^2
+                \\ &\quad 
+                    + \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
+                    + \frac{(L_k\alpha_k - \mu)\mu(1 - \alpha_k)}{L_k - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
+                \\
+                &\underset{\text{(g)}}{=}
+                \frac{(\alpha_k - 1)\mu(L_k\alpha_k - \mu)}{2(L_k - \mu)}\Vert \bar x - x_{k - 1}\Vert^2
+                + 
+                \frac{\mu(L_k\alpha_k - \mu)(\alpha_k - 1)}{2(L_k - \mu)}\Vert \bar x - v_{k - 1}\Vert^2
+                \\ &\quad 
+                    + \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
+                    + \frac{(L_k\alpha_k - \mu)\mu(1 - \alpha_k)}{L_k - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
+                \\
+                &= \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
+                \\ & \quad
+                    \frac{(\alpha_k - 1)\mu(L_k\alpha_k - \mu)}{2(L_k - \mu)}\left(
+                        \Vert \bar x - x_{k - 1}\Vert^2 + \Vert \bar x - v_{k - 1}\Vert^2 - 2\langle\bar x - x_{k - 1},\bar x - v_{k - 1} \rangle
+                    \right)
+                \\
+                &= \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
+                + \frac{(\alpha_k - 1)\mu(L_k\alpha_k - \mu)}{2(L_k - \mu)}\Vert x_{k - 1} - v_{k - 1}\Vert^2. 
+            \end{align*}
+            }
+            The inequality from previously simplifies and it has: 
+            {\allowdisplaybreaks\small
+            \begin{align*}
+                0 &\le 
+                \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k)
+                + \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 \\ &\quad 
+                    + \frac{(\alpha_k - 1)\mu(L_k\alpha_k - \mu)}{2(L_k - \mu)}\Vert x_{k - 1} - v_{k - 1}\Vert^2
+                \\
+                &\underset{\text{(h)}}{\le}
+                \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k)
+                    \\ &\quad
+                    + \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
+                \\
+                &= (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x)) + F(\bar x) - F(x_k) \\&\quad
+                    + \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
+                \\
+                &\underset{\text{(e)}}{=} 
+                (1 - \alpha_k)\left(
+                    F(x_{k - 1}) - F(\bar x) 
+                    + \frac{L_k\rho_{k - 1}}{L_{k - 1}}\frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \right) \\ &\quad
+                    + F(\bar x) - F(x_k)-  \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
+                \\
+                &\le 
+                (1 - \alpha_k)\left(
+                    F(x_{k - 1}) - F(\bar x) 
+                    + \max\left(1, \frac{L_k\rho_{k - 1}}{L_{k - 1}}\right)
+                    \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \right) \\&\quad
+                    + F(\bar x) - F(x_k)-  \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
+                \\
+                &\le (1 - \alpha_k)\left(
+                    \max\left(1, \frac{L_k\rho_{k - 1}}{L_{k - 1}}\right)(F(x_{k - 1}) - F(\bar x))
+                    + \max\left(1, \frac{L_k\rho_{k - 1}}{L_{k - 1}}\right)
+                    \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \right) \\&\quad 
+                    + F(\bar x) - F(x_k)-  \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
+                \\
+                &= 
+                \max\left(1, \frac{L_k\rho_{k - 1}}{L_{k - 1}}\right)(1 - \alpha_k)\left(
+                    F(x_{k - 1}) - F(\bar x) 
+                    + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \right) \\&\quad
+                    + F(\bar x) - F(x_k)-  \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2. 
+            \end{align*}
+            }
+            Finally for the base case, when $\alpha_0 = 1$, it has $y_0 = v_{-1} = x_{-1}$, and it makes $z_0 = \bar x$ therefore this makes the proximal gradient inequality into:
+            \begin{align*}
+                0 &\le F(z_0) - F(x_{0}) - \frac{L_0}{2}\Vert z_0 - x_0\Vert^2 + \frac{L_0 - \mu}{2}\Vert z_0 - y_0\Vert^2
+                \\
+                &= F(\bar x) - F(x_0) - \frac{L_0}{2}\Vert \bar x - x_0\Vert^2 + \frac{L_0 - \mu}{2}\Vert \bar x - v_{-1}\Vert^2. 
+            \end{align*}
+            
+            \par
+            Going back to prove the intermediate results, the following will be useful. 
+            From Definition \ref{def:st-method} it has for all $k \ge 0$
+            \begin{align}\label{thm:onestep-napg-cnvg-i}
+                \tau_k = L_k(1 - \alpha_k)(L_k\alpha_k - \mu)^{-1}.    
+            \tag{i}\end{align}
+            Then it has: 
+            \begin{align*}\label{thm:onestep-napg-cnvg-j}
+                (1 + \tau_k)^{-1}
+                &\underset{\eqref{thm:onestep-napg-cnvg-i}}{=} 
+                \left(
+                    1 + \frac{L_k(1 - \alpha_k)}{L_k\alpha_k - \mu}
+                \right)^{-1} = \left(
+                    \frac{L_k\alpha_k - \mu + L_k(1 - \alpha_k)}{L_k\alpha_k - \mu}
+                \right)^{-1}
+                = \frac{L_k\alpha_k - \mu}{L_k - \mu}.
+            \tag{j}\end{align*}
+            And also
+            \begin{align*}\label{thm:onestep-napg-cnvg-k}
+                \tau_k(1 + \tau_k)^{-1} 
+                &\underset{\eqref{thm:onestep-napg-cnvg-i}, \eqref{thm:onestep-napg-cnvg-j}}= 
+                \frac{L_k(1 - \alpha_k)}{L_k\alpha_k - \mu}
+                \frac{L_k\alpha_k - \mu}{L_k - \mu}
+                = \frac{L_k(1 - \alpha_k)}{L_k - \mu}. 
+            \tag{k}\end{align*}
+            \textbf{Proof of (d)}
+            For all $k \ge 1$, from Definition \ref{def:st-method} it has 
+            \begin{align*}
+                0 &= (1 + \tau_k)^{-1} v_{k - 1} + \tau_k (1 + \tau_k)^{-1} x_{k - 1} - y_k
+                \\
+                &\underset{\eqref{thm:onestep-napg-cnvg-k}}{=} 
+                (1 + \tau_k)^{-1} v_{k - 1} + \frac{L_k(1 - \alpha_k)}{L_k - \mu} x_{k - 1} - y_k
+                \\
+                &= (1 + \tau_k)^{-1} v_{k - 1} +(1 - \alpha_k)x_{k - 1} \\ 
+                    &\quad 
+                    + \left(
+                        \frac{L_k(1 - \alpha_k)}{L_k - \mu} - (1 - \alpha_k)
+                    \right) x_{k - 1} - y_k
+                \\
+                &= (1 + \tau_k)^{-1} v_{k - 1} +(1 - \alpha_k)x_{k - 1}\\
+                    &\quad 
+                    + (1 - \alpha_k)\left(
+                        \frac{L_k}{L_k - \mu} - 1
+                    \right) x_{k - 1} - y_k
+                \\
+                &= (1 + \tau_k)^{-1} v_{k - 1} +(1 - \alpha_k)x_{k - 1} + 
+                \frac{\mu(1 - \alpha_k)}{L - \mu}x_{k - 1} - y_k
+                \\
+                \iff 
+                (1 - \alpha_k)x_{k - 1} - y_k 
+                &= - (1 + \tau_k)^{-1}v_{k - 1} - \frac{\mu(1 - \alpha_k)}{L_k - \mu}x_{k - 1}.
+            \end{align*}
+            Recall the definition for $z_k$ at the start of the proof and, use the above results it yields: 
+            \begin{align*}
+                z_k - y_k &= \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - y_k
+                \\
+                &= \alpha_k \bar x - (1 + \tau_k)^{-1}v_{k - 1} - \frac{\mu(1 - \alpha_k)}{L_k - \mu}x_{k - 1}
+                \\
+                &\underset{\eqref{thm:onestep-napg-cnvg-j}}{=}
+                \alpha_k \bar x - \frac{L_k\alpha_k - \mu}{L_k - \mu}v_{k - 1} 
+                - \frac{\mu(1 - \alpha_k)}{L_k - \mu}x_{k - 1}
+                \\
+                &= \frac{L_k\alpha_k - \mu}{L_k - \mu}(\bar x - v_{k - 1})
+                + \left(
+                    \alpha_k - \frac{L_k\alpha_k - \mu}{L_k - \mu}
+                \right)\bar x - \frac{\mu(1 - \alpha_k)}{L_k - \mu}x_{k - 1}
+                \\
+                &= 
+                \frac{L_k\alpha_k - \mu}{L_k - \mu}(\bar x - v_{k - 1})
+                +
+                \frac{\alpha_kL_k - \alpha_k \mu - L_k\alpha_k + \mu}{L_k - \mu}
+                \bar x - \frac{\mu(1 - \alpha_k)}{L_k - \mu}x_{k - 1}
+                \\
+                &= \frac{L_k\alpha_k - \mu}{L_k - \mu}(\bar x - v_{k - 1})
+                +
+                \frac{\mu(1 - \alpha_k)}{L_k - \mu}(\bar x - x_{k - 1}). 
+            \end{align*}
+            \textbf{Proof of (e)}. 
+            The proof is direct using the equality with $x_k$ in Definition \ref{def:st-method}. 
+            \begin{align*}
+                z_k - x_k &= \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - x_k
+                \\
+                &= \alpha_k \bar x + x_{k  1} - x_k - \alpha_k x_{k - 1}
+                \\
+                &= \alpha_k(\bar x - \alpha_k^{-1}(x_k - x_{k - 1}) - x_{k - 1})
+                \\
+                &= \alpha_k (\bar x - v_k).
+            \end{align*}
+            \textbf{Proof of (f)}. 
+            The proof is direct and it has: 
+            \begin{align*}
+                \frac{\mu^2(1 - \alpha_k)^2}{2(L_k - \mu)} - \frac{\mu\alpha_k(1 - \alpha_k)}{2}
+                &= 
+                \frac{1}{2(L_k - \mu)}\left(
+                    \mu^2(1 - \alpha_k)^2 - (L_k - \mu)\mu \alpha_k(1 - \alpha_k)
+                \right)
+                \\
+                &= \frac{1 - \alpha_k}{2(L_k - \mu)}\left(
+                    \mu^2 - \mu^2\alpha_k - (L_k \mu \alpha_k - \mu^2 \alpha_k)
+                \right)
+                \\
+                &= 
+                \frac{1 - \alpha_k}{2(L_k - \mu)}\left(
+                    \mu^2 - L_k\mu\alpha_k
+                \right)
+                \\
+                &= \frac{(1 - \alpha_k)\mu(\mu - L_k\alpha_k)}{2(L_k - \mu)} 
+                \\
+                &= \frac{(\alpha_k - 1)\mu(L_k\alpha_k - \mu)}{2(L_k - \mu)}. 
+            \end{align*}
+            \textbf{Proof of (g)}
+            The proof is direct: 
+            \begin{align*}
+                \frac{(L_k\alpha_k - \mu)^2}{2(L_k - \mu)} - \frac{\alpha_{k - 1}^2 L \rho_{k - 1}(1 - \alpha_k)}{2}
+                &\underset{\text{(c)}}{=} \frac{(L\alpha_k - \mu)^2}{2(L_k - \mu)} - \frac{L_k\alpha_k(\alpha_k - \mu/L_k)}{2}
+                \\
+                &= \frac{1}{2(L_k - \mu)}\left(
+                    (L_k\alpha_k - \mu)^2 - (L_k - \mu)L_k\alpha_k(\alpha_k - \mu/L_k)
+                \right)
+                \\
+                &= 
+                \frac{1}{2(L_k - \mu)}\left(
+                    (L_k\alpha_k - \mu)^2 - (L_k - \mu)\alpha_k(L_k\alpha_k - \mu)
+                \right)
+                \\
+                &= \frac{L_k\alpha_k - \mu}{2(L_k - \mu)}\left(
+                    L_k\alpha_k - \mu - (L - \mu)\alpha_k
+                \right)
+                \\
+                &= \frac{L_k\alpha_k - \mu}{2(L_k - \mu)}\left(
+                    \mu\alpha_k - \mu
+                \right)
+                \\
+                &= \frac{(L\alpha_k - \mu)\mu(\alpha_k - 1)}{2(L_k - \mu)}. 
+            \end{align*}
+            \textbf{Proof of (h)}. 
+            For all $k \ge 1$, by (c), the definition of the R-WAPG sequence, $\alpha_k \in (\mu/L_k, 1)$, then it has $L_k\alpha_k \in (\mu, L_k)$, so $L_k\alpha_k - \mu > 0$, and $\alpha_k - 1 < 0$. 
+            Finally, we have $L_k \ge \mu$, therefore, the fraction is negative. 
+        \end{proof}
+    \subsection{stochastic accelerated proximal gradient}
+        The following assumption about the objective function is fundamental in incremental gradient method for Machine Learning, data science other similar tasks. 
+        \begin{assumption}[sum of many]\label{ass:sum-of-many}
+            Define $F := g + (1/n)\sum_{i = 1}^{n} f_i$, assume that $f_i:\RR^n \rightarrow  \RR$ are all $K_i$ smooth and $\mu^{(i)} \ge 0$ strongly convex function and $g:\RR^n \rightarrow \overline \RR$ is a closed convex proper function. 
+            Consequently, the function $f$ cane be written as $F = g + f$ where $f = (1/n)\sum_{i = 1}^{n} f_i$ and it satisfies Assumption \ref{ass:smooth_plus_nonsmooth} with $L = \max_{i = 1, \ldots, n}K_i$ and $\mu = (1/n)\sum_{i = 1}^{n}\mu^{(i)}$. 
+        \end{assumption}
+        \begin{definition}[SNAPG]\label{def:snapg}
+            
+        \end{definition}
+    
 \bibliographystyle{siam}
 
-\bibliography{references/Books.bib}
+\bibliography{references/refs.bib}
 
 
 \end{document}

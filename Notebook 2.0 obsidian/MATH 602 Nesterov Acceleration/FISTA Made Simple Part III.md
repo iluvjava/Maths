@@ -43,7 +43,7 @@ This condition is used in line search for the proximal gradient inequality.
 ---
 ### **Relaxed Weak Accelerated Proximal Gradient Algorithm**
 
-The relaxed weak acelerated proximal gradient algorithm has a simple and compact proof behind it, if we use the similar triangle representation of the algorithm. 
+The relaxed weak accelerated proximal gradient algorithm has a simple and compact proof behind it, if we use the similar triangle representation of the algorithm. 
 
 
 #### **Definition | R-WAPG Sequence**
@@ -118,7 +118,7 @@ $$
 $$
 
 The choice of $x,y$ is restricted to only the iterates where line search occurred. 
-This inequality due to the line search cndition: 
+This inequality due to the line search condition: 
 
 $$
 \begin{aligned}
@@ -160,7 +160,7 @@ Here is a list of intermediate results labeled to prove the inequality above.
 1. **(a)**: The Proximal Gradient inequality in inequality (1), but with $z = z_k$, $k \ge 0$. 
 2. **(b)**: The Jensen's inequality, with $z = z_k$, for $k \ge 0$. 
 3. **(c)**: The definition of the R-WAPG sequence, $\rho_k(1 - \alpha_{k + 1})\alpha_k^2 = \alpha_{k + 1}(\alpha_{k + 1} - \mu/L_k)$ for $k \ge 0$.
-4. **(d)**: The equality $z_k - y_k = (L - \mu)^{-1}((L\alpha_k - \mu)(\bar x - v_k) + \mu(1 - \alpha_k)(\bar x - x_{k - 1}))$. This will be proved at the end.
+4. **(d)**: The equality $z_k - y_k = (L_k - \mu)^{-1}((L_k\alpha_k - \mu)(\bar x - v_k) + \mu(1 - \alpha_k)(\bar x - x_{k - 1}))$. This will be proved at the end.
 5. **(e)**: The equality $z_k - x_k = \alpha_k(\bar x - v_k)$. 
 6. **(f)**: This will be proved at the end:
 $$
@@ -192,7 +192,7 @@ $$
 $$
 
 Assume $k \ge 1$. 
-With these intermediate results, the proof starts with the proximal gradient ineqality: 
+With these intermediate results, the proof starts with the proximal gradient inequality: 
 
 $$
 \begin{aligned}
@@ -482,7 +482,7 @@ For all $k \ge 0$, it follows:
 $$
 \begin{aligned}
     \frac{(L_k\alpha_k - \mu)^2}{2(L_k - \mu)} - \frac{\alpha_{k - 1}^2 L \rho_{k - 1}(1 - \alpha_k)}{2}
-    &= \frac{(L\alpha_k - \mu)^2}{2(L_k - \mu)} - \frac{L_k\alpha_k(\alpha_k - \mu/L_k)}{2}
+    &\underset{\text{(c)}}{=} \frac{(L\alpha_k - \mu)^2}{2(L_k - \mu)} - \frac{L_k\alpha_k(\alpha_k - \mu/L_k)}{2}
     \\
     &= \frac{1}{2(L_k - \mu)}\left(
         (L_k\alpha_k - \mu)^2 - (L_k - \mu)L_k\alpha_k(\alpha_k - \mu/L_k)
