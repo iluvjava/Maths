@@ -39,13 +39,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 % ==============================================================================
 \section{Nesterov's Accelerated Gradient}
     \subsection{In preparations}
-        \begin{assumption}[Smooth add nonsmooth]\label{ass:smooth_plus_nonsmooth}
+        \begin{assumption}[smooth add nonsmooth]\label{ass:smooth-plus-nonsmooth}
             The function $F = f + g$ where $f:\RR^n \rightarrow \RR$ is a $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
             The function $g:\RR^n \rightarrow \overline \RR$ is a closed convex proper function. 
         \end{assumption}
+        \begin{assumption}[admitting minimizers]\label{ass:smooth-plus-nonsmooth-x}
+            Let $F = f + g$ and in addition assume that the set of minimizers $X^+ := \argmin_{x}F(x)$ is non-empty. 
+        \end{assumption}
 
         \begin{definition}[Proximal gradient operator]
-            Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth_plus_nonsmooth}. 
+            Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}. 
             Let $\beta > 0$. 
             Then, we define the proximal gradient operator $T_{\beta}$ as 
             \begin{align*}
@@ -101,7 +104,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{definition}
         The following theorems are critical in analyzing the behavior of algorithm in Definition \ref{def:st-method}. 
         \begin{theorem}[proximal gradient inequality]\label{thm:pg-ineq}
-            Let function $F$ satisfies Assumption \ref{ass:smooth_plus_nonsmooth}, so it's $\mu \ge 0$ strongly convex. 
+            Let function $F$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}, so it's $\mu \ge 0$ strongly convex. 
             For all $x\in \RR^n$, define $x^+ = T_L(x)$, then there exists a $B \ge 0$ such that $D_f(x^+, x) \le B/2 \Vert x^+ - x\Vert^2$. 
             Then, for all $z \in \RR^n$ it satisfies proximal gradient inequality at point $x$:  
             \begin{align*}
@@ -136,7 +139,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         The following theorem provide a complete proof for the convergence rate of algorithms implementing Definition \ref{def:st-method}, which is equivalent to NAG, or NAPG. 
         It made use of Definition \ref{def:rwapg-seq} which accomodates a relaxed sequence compared to the usual sequence that gives the optimal convergence rate. 
         \begin{theorem}[one step convergence claim of NAPG]\label{thm:onestep-napg-cnvg}
-            Let $F = f + g$ satisfies Assumption \ref{ass:smooth_plus_nonsmooth} for some $L > \mu \ge 0$. 
+            Let $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth} for some $L > \mu \ge 0$. 
             Let the sequence $(\alpha_k)_{k \ge0}$ be an R-WAPG sequence (Definition \ref{def:rwapg-seq}). 
             Suppose that the iterates sequence $(x_k, y_k, v_k)_{k \ge 0}$ satisfy NAPG in similar triangle form (Definition \ref{def:st-method}) with initial guesses $v_{-1}, x_{-1} \in \RR^n$. 
             Then for all $k \ge 1$, the following inequality is true for all $\bar x \in \RR^n$: 
@@ -159,7 +162,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \par
             For all $k \ge 0$, define $z_k = \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$. 
             \begin{itemize}
-                \item [(a)] Theorem \ref{thm:pg-ineq}, with $z = z_k$, $k \ge 0$. We can use it because $F = f + g$ satisfies Assumption \ref{ass:smooth_plus_nonsmooth} . 
+                \item [(a)] Theorem \ref{thm:pg-ineq}, with $z = z_k$, $k \ge 0$. We can use it because $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth} . 
                 \item [(b)] Jensen's inequality (Theorem \ref{thm:jesen}), with $z = z_k$, for $k \ge 0$. We can use it because $F$ is $\mu \ge 0$ strongly convex. 
                 \item [(c)] Definition \ref{def:rwapg-seq} which has $\rho_k(1 - \alpha_{k + 1})\alpha_k^2 = \alpha_{k + 1}(\alpha_{k + 1} - \mu/L_k)$ for $k \ge 0$.
                 \item [(d)] The equality $z_k - y_k = (L_k - \mu)^{-1}((L_k\alpha_k - \mu)(\bar x - v_k) + \mu(1 - \alpha_k)(\bar x - x_{k - 1}))$ for all $k \ge 0$. 
@@ -467,12 +470,40 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \subsection{stochastic accelerated proximal gradient}
         The following assumption about the objective function is fundamental in incremental gradient method for Machine Learning, data science other similar tasks. 
         \begin{assumption}[sum of many]\label{ass:sum-of-many}
-            Define $F := g + (1/n)\sum_{i = 1}^{n} f_i$, assume that $f_i:\RR^n \rightarrow  \RR$ are all $K_i$ smooth and $\mu^{(i)} \ge 0$ strongly convex function and $g:\RR^n \rightarrow \overline \RR$ is a closed convex proper function. 
-            Consequently, the function $f$ cane be written as $F = g + f$ where $f = (1/n)\sum_{i = 1}^{n} f_i$ and it satisfies Assumption \ref{ass:smooth_plus_nonsmooth} with $L = \max_{i = 1, \ldots, n}K_i$ and $\mu = (1/n)\sum_{i = 1}^{n}\mu^{(i)}$. 
+            Define $F := g + (1/n)\sum_{i = 1}^{n} f_i$, assume that $f_i:\RR^n \rightarrow  \RR$ are all $K_i$ smooth and $\mu^{(i)} \ge 0$ strongly convex function such that $K_i > \mu^{(i)}$ and, $g:\RR^n \rightarrow \overline \RR$ is a closed convex proper function. 
+            Consequently, the function $f$ cane be written as $F = g + f$ where $f = (1/n)\sum_{i = 1}^{n} f_i$ and it satisfies Assumption \ref{ass:smooth-plus-nonsmooth} with $L = \max_{i = 1, \ldots, n}K_i$ and $\mu = (1/n)\sum_{i = 1}^{n}\mu^{(i)}$. 
         \end{assumption}
+        This assumption is stronger than Assumption \ref{ass:smooth-plus-nonsmooth}. 
+        The interpolation hypothesis from Machine Learning stated that the model has the capacity to perfect fit all the observed data. 
+        \begin{assumption}[interpolation hypothesis]\label{ass:interp-hypothesis}
+            Suppose that $F := f + (1/n)\sum_{i = 1}^{n} f_i$ satsifying Assumption \ref{ass:sum-of-many}. 
+            In addition, assuming that it has $0 = \inf_{x}F(x)$ and, there exists some $\bar x \in \RR^n$ such that for all $i = 1, \ldots, n$ it satisfies $0 = f_i(\bar x)$. 
+            Obviously, all such $\bar x$ forms the set of minimizers of $F$. 
+        \end{assumption}
+
         \begin{definition}[SNAPG]\label{def:snapg}
-            
+            Let $F$ satisfies Assumption \ref{ass:sum-of-many}. 
+            Let $(I_k)_{k \ge 0}$ be a list of i.i.d random variables uniformly sampled from set $\{0, 1, 2, \cdots, n\}$. 
+            Initialize $v_{-1} = x_{-1}, \alpha_0 = 1$. 
+            The SAGD generates the sequence $(y_k, x_k, v_k)_{k \ge 0}$ such that for all $k \ge 0$ they satisfy: 
+            \begin{align*}
+                & L_k/L_{k - 1}(1 - \alpha_{k})\alpha_{k - 1}^2 = \alpha_{k}\left(\alpha_{k} - \mu^{(I_k)}/L_k\right), \\
+                & \tau_k = L_k(1 - \alpha_k)\left(L_\alpha \alpha_k - \mu^{(I_k)}\right)^{-1}, \\
+                & y_k = (1 + \tau_k)^{-1}v_{k - 1} + \tau_k(1 + \tau_k)^{-1}x_{k - 1}, \\
+                & x_k =  T_{L_k}(y_k | F_{I_k}) \text{ s.t: } D_f(x_k, y_k) \le L_k/2\Vert y_k - x_k\Vert^2, \\
+                & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
+            \end{align*}
         \end{definition}
+        \begin{remark}
+            The sequence $\alpha_k$ is a random variable because it changes according to variable $I_k$ at the current iteration.
+            This decision is made because if Theorem \ref{thm:pg-ineq} needs to hold during each iteration of the algorithm.
+        \end{remark}
+
+        \begin{theorem}[SNAPG one step inequality]\label{thm:snapg-one-step}
+            
+        \end{theorem}
+
+
     
 \bibliographystyle{siam}
 
