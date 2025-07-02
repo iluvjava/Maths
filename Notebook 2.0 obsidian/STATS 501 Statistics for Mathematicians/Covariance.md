@@ -19,7 +19,7 @@ Covariance needs [[Expectations of Random Variables without Measure Theory]].
 
 **Observations**
 
-Observe that $\cov[X, Y] = \var{X}$. 
+Observe that $\cov[X, X] = \var{X}$. 
 Covariance is a measurement of linear dependence between 2 random variable, it's testing some underlying generate process such as the $Y = aX + b$, where one of the random variable is linear related to the other one. 
 
 **Remarks**

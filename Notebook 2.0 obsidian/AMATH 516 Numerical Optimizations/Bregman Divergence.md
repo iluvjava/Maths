@@ -84,6 +84,20 @@ The above Euclidean distance measure is symmetric and isotropic.
 Other Legendre Type functions may not provide those properties. 
 
 
+#### **Example 2 | Normed linear composite**
+
+The function $f(x) = 1/2\Vert Ax\Vert^2$ can also induce a Bregman Divergence and it will work very similar to the function $x \rightarrow (1/2) \Vert x\Vert^2$. 
+It is a semi-norm: 
+
+$$
+\begin{aligned}
+    D_f(x, y) &= \frac{1}{2}\Vert Ax\Vert^2 - \frac{1}{2}\Vert Ay\Vert^2
+    - \langle Ay, A(x - y)\rangle
+    \\
+    &= \frac{1}{2}\Vert Ax - Ay\Vert^2. 
+\end{aligned}
+$$
+
 ---
 ### **The 3 Points Lemma**
 
@@ -136,6 +150,8 @@ $$
 
 It is simple algebra. 
 
+$\blacksquare$
+
 **Remarks**
 
 This lemma is a generalization of Consine Law in Euclidean space. 
@@ -173,12 +189,88 @@ $$
 
 And it has now become symmetric, and has only 2 points on it. 
 
+
+---
+### **The 4 points lemma**
+
+The following lemma is a type of 4 points lemma. 
+
+#### **Lemma | 4 points anchoring lemma**
+> Let $x, \bar x, y \in \R^n, \lambda \in \R^n$ be arbitrary. 
+> Let $z = \lambda x + (1 - \lambda)\bar x$, then it has the following equality
+> $$
+> \begin{aligned}
+>     D_f(z, y) &= D_f(\bar x, y) + \lambda \langle x - \bar x, \nabla f(\bar x) - \nabla f(y)\rangle + D_f(z, \bar x). \\
+>   &= D_f(\bar x, y) + \langle z - \bar x, \nabla f(\bar x) - \nabla f(y)\rangle + D_f(z, \bar x). 
+> \end{aligned}
+> $$
+
+**Proof**
+
+It's not hard to verify the following intermediate result which is direct by the definition of Bregman Divergence: 
+
+$$
+\begin{aligned}
+    f(z) = f(\bar x) + \langle \lambda(x - \bar x), \nabla f(\bar x)\rangle + D_f(\lambda(x - \bar x) + \bar x, \bar x). 
+\tag{a}\end{aligned}
+$$
+
+Then, it has 
+
+$$
+\begin{aligned}
+    & D_f(z, y)
+    \\
+    &= f(z) - f(y) - \langle \nabla f(y), z - y\rangle
+    \\
+    &\underset{\text{(a)}}{=}
+    f(\bar x) + \langle \lambda(x - \bar x), \nabla f(\bar x)\rangle + D_f(\lambda(x - \bar x) + \bar x, \bar x) - f(y) - \langle \nabla f(y), z - y\rangle
+    \\
+    &= f(\bar x) - f(y) + \lambda \langle\nabla f(\bar x) ,x - \bar x \rangle - \langle \nabla f(y), \lambda x + (1 - \lambda)\bar x - y\rangle
+    + D_f(\lambda(x - \bar x) + \bar x, \bar x)
+    \\
+    &= f(\bar x) - f(y) 
+    + \lambda \langle\nabla f(\bar x) ,x - \bar x \rangle 
+    - \langle \nabla f(y), \lambda(x - y) + (1 - \lambda)(\bar x - y)\rangle
+    + D_f(\lambda(x - \bar x) + \bar x, \bar x)
+    \\
+    &= f(\bar x) - f(y) 
+    + \lambda \langle\nabla f(\bar x) ,x - \bar x \rangle 
+    - \lambda\langle \nabla f(y), x - y \rangle - (1 - \lambda)\langle \nabla f(y), \bar x - y\rangle
+    + D_f(\lambda(x - \bar x) + \bar x, \bar x)
+    \\
+    &= 
+    f(\bar x) - f(y) 
+    + \lambda \langle\nabla f(\bar x) ,x - \bar x \rangle 
+    - \lambda\langle \nabla f(y), x - \bar x + \bar x - y \rangle \\ &\quad 
+        - (1 - \lambda)\langle \nabla f(y), \bar x - y\rangle
+        + D_f(\lambda(x - \bar x) + \bar x, \bar x)
+    \\
+    &= 
+    f(\bar x) - f(y) 
+    + \lambda \langle\nabla f(\bar x) - \nabla f(y) ,x - \bar x \rangle 
+    - \lambda\langle \nabla f(y), \bar x - y \rangle \\ &\quad 
+        - (1 - \lambda)\langle \nabla f(y), \bar x - y\rangle
+        + D_f(\lambda(x - \bar x) + \bar x, \bar x)
+    \\
+    &= 
+    f(\bar x) - f(y) 
+    + \lambda \langle\nabla f(\bar x) - \nabla f(y) ,x - \bar x \rangle 
+    - \langle \nabla f(y), \bar x - y\rangle 
+    + D_f(\lambda(x - \bar x) + \bar x, \bar x)
+    \\
+    &= D_f(\bar x, y) + \lambda \langle \nabla f(\bar x) - \nabla f(y), x - \bar x\rangle 
+    + D_f(\lambda(x - \bar x) + \bar x, \bar x). 
+\end{aligned}
+$$
+
+$\blacksquare$
+
 ---
 ### **Bregman Proximal Mapping**
 
 One important possibility introduced by Bregman divergence is the generalization of Euclidean based proximal mapping. 
 See [Bregman Proximal Mapping](Bregman%20Proximal%20Mapping.md) for more information. 
-
 
 ---
 ### **Examples of Bregman Divergence**

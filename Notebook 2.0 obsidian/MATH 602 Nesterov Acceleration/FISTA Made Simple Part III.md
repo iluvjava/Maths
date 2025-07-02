@@ -210,12 +210,11 @@ Now, the last 3 terms can be simplified through a chain of equalities, look:
 $$
 \begin{aligned}
     &- \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
-    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 + \frac{L_k - \mu}{2}\Vert z_k - y_k\Vert^2
+    + \frac{L_k - \mu}{2}\Vert z_k - y_k\Vert^2
     \\
     &\underset{\text{(d)}}{=} 
     -\frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
-    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 + 
-    \frac{L_k - \mu}{2}
+    + \frac{L_k - \mu}{2}
     \left\Vert 
         \frac{L_k\alpha_k - \mu}{L_k - \mu}(\bar x - v_{k - 1}) + 
         \frac{\mu(1 - \alpha_k)}{L_k - \mu}(\bar x - x_{k - 1})
@@ -223,7 +222,6 @@ $$
     \\
     &= 
     - \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
-    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
     \\
     &\quad + 
         \frac{(L_k\alpha_k - \mu)^2}{2(L_k - \mu)} \Vert \bar x - v_{k - 1}\Vert^2
@@ -240,7 +238,6 @@ $$
     \right)\Vert \bar x - v_{k - 1}\Vert^2
     \\ &\quad 
         + \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-        - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
         + \frac{(L_k\alpha_k - \mu)\mu(1 - \alpha_k)}{L_k - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
     \\
     &\underset{\text{(f)}}{=} 
@@ -252,7 +249,6 @@ $$
     \right)\Vert \bar x - v_{k - 1}\Vert^2
     \\ &\quad 
         + \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-        - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
         + \frac{(L_k\alpha_k - \mu)\mu(1 - \alpha_k)}{L_k - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
     \\
     &\underset{\text{(g)}}{=}
@@ -261,19 +257,16 @@ $$
     \frac{\mu(L_k\alpha_k - \mu)(\alpha_k - 1)}{2(L_k - \mu)}\Vert \bar x - v_{k - 1}\Vert^2
     \\ &\quad 
         + \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-        - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
         + \frac{(L_k\alpha_k - \mu)\mu(1 - \alpha_k)}{L_k - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
     \\
     &= 
-    + \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
+    \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
     \\ & \quad
-        \frac{(\alpha_k - 1)\mu(L_k\alpha_k - \mu)}{2(L_k - \mu)}\left(
+        + \frac{(\alpha_k - 1)\mu(L_k\alpha_k - \mu)}{2(L_k - \mu)}\left(
             \Vert \bar x - x_{k - 1}\Vert^2 + \Vert \bar x - v_{k - 1}\Vert^2 - 2\langle\bar x - x_{k - 1},\bar x - v_{k - 1} \rangle
         \right)
     \\
-    &= + \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
+    &= \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
     + \frac{(\alpha_k - 1)\mu(L_k\alpha_k - \mu)}{2(L_k - \mu)}\Vert x_{k - 1} - v_{k - 1}\Vert^2. 
 \end{aligned}
 $$
@@ -665,7 +658,8 @@ In other words, the minimizer for each cost function of every sample has a non-z
 
 #### **Theorem 5 | SAGD one step inequality**
 > Let sequence $(y_k, x_k, v_k)_{k \ge 0}$ satisfies SAGD. 
-> Denote $\mathbb E_k [\cdot]$ to be the conditional expectation on $I_{0}, I_1, \ldots, I_{k - 1}$
+> Denote $\mathbb E_k [\cdot]$ to be the conditional expectation on $I_{0}, I_1, \ldots, I_{k - 1}$.
+> Let $\bar x$ be the minimizer of $F$. 
 > Then, for all $k \ge 1$ the following inequality is true: 
 > $$
 > \begin{aligned}
@@ -691,16 +685,10 @@ In other words, the minimizer for each cost function of every sample has a non-z
 > $$
 > And, for the basecase when $k = 0$, SAGD would assert the inequality: 
 
-$$
-\begin{aligned}
-
-\end{aligned}
-$$
-
 **Proof**
 
 For one step, a speicific function $F_{I_k}$ is sampled. 
-$F_{I_k}$ is $K_{I_k} > \mu^{(I_k)} \ge 0$ strongly convex and smooth. 
+$F_{I_k}$ is $K^{(I_k)} > \mu^{(I_k)} \ge 0$ strongly convex and smooth. 
 The sequence $\alpha_k$ is a squence of random variable and, the relations between $\alpha_k, \alpha_{k - 1}$ is given by: 
 
 $$
@@ -777,12 +765,15 @@ $$
     \right]
     \\
     &\underset{\text{(b)}}{=}
-    \mathbb E_k\left[1 - \alpha_k\right]
-    \mathbb E_k
-        \left[
-            F_{I_k}(x_{k - 1}) - F_{I_k}(\bar x) 
-            + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
-        \right]
+    \textcolor{red}
+    {
+        \mathbb E_k\left[1 - \alpha_k\right]
+        \mathbb E_k
+            \left[
+                F_{I_k}(x_{k - 1}) - F_{I_k}(\bar x) 
+                + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+            \right]
+    }
     \\
     &= 
     \mathbb E_k

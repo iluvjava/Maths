@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1751347431.88297 "main.aux" "main.bbl" "main" 1751351480.2057 0
+["bibtex main copy"] 1751351530.48497 "main copy.aux" "main copy.bbl" "main copy" 1751351531.39051 0
   "./references/refs.bib" 1751330315.93896 3152 5b69efbf2f95804d44a9de754f00a38a ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/siam.bst" 1292289607 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1751351479.98789 2907 9c43591f09ad95020afb60ff62234d6a "pdflatex"
+  "main copy.aux" 1751351531.17915 2907 9c43591f09ad95020afb60ff62234d6a "pdflatex"
   (generated)
-  "main.bbl"
-  "main.blg"
+  "main copy.bbl"
+  "main copy.blg"
   (rewritten before read)
-["pdflatex"] 1751351479.32354 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" "main.pdf" "main" 1751351480.20581 0
-  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" 1751351479.15792 35778 48cf919f9d12a58ad2d2611c6c0629fa ""
+["pdflatex"] 1751351530.55459 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main copy.tex" "main copy.pdf" "main copy" 1751351531.39061 0
+  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main copy.tex" 1751351527.66976 35778 48cf919f9d12a58ad2d2611c6c0629fa ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -230,10 +230,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1716844513.00476 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1716844504 8221424 900989947c23303b742a586f0df8c087 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "main.aux" 1751351479.98789 2907 9c43591f09ad95020afb60ff62234d6a "pdflatex"
-  "main.bbl" 1751347431.95353 620 fb09bfa364d6588eff228bcec544b334 "bibtex main"
-  "main.out" 1751351479.98829 1037 0e3bb2afbe02fb72cc8bc115c17d2a90 "pdflatex"
-  "main.tex" 1751351479.15792 35778 48cf919f9d12a58ad2d2611c6c0629fa ""
+  "main copy.aux" 1751351531.17915 2907 9c43591f09ad95020afb60ff62234d6a "pdflatex"
+  "main copy.bbl" 1751351530.55222 620 fb09bfa364d6588eff228bcec544b334 "bibtex main copy"
+  "main copy.out" 1751351531.17977 1037 0e3bb2afbe02fb72cc8bc115c17d2a90 "pdflatex"
+  "main copy.tex" 1751351527.66976 35778 48cf919f9d12a58ad2d2611c6c0629fa ""
   "presets/julia_lstlisting.tex" 1734912471.75532 795 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1734912471.75575 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1737688388.3909 8751 43b1f87d5e2ad43f60c8e67f03e69d1f ""
@@ -242,8 +242,8 @@
   "presets/wang/packages.tex" 1737688388.39314 1262 cec92463849dac31ef25a1f5ef24051a ""
   "presets/wang/theorems_envs.tex" 1751330315.93885 1826 65f25f7db95442ee494b0e359f98f488 ""
   (generated)
-  "main.aux"
-  "main.log"
-  "main.out"
-  "main.pdf"
+  "main copy.aux"
+  "main copy.log"
+  "main copy.out"
+  "main copy.pdf"
   (rewritten before read)

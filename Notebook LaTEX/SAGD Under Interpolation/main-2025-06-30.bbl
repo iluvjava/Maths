@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{beck_first-order_2017}
+{\sc A.~Beck}, {\em First-order {Methods} in {Optimization}}, {MOS}-{SIAM} {Series} in {Optimization}, SIAM, 2017.
+
+\bibitem{li_relaxed_2025}
+{\sc H.~Li and X.~Wang}, {\em Relaxed {Weak} {Accelerated} {Proximal} {Gradient} {Method}: a {Unified} {Framework} for {Nesterov}'s {Accelerations}}, Apr. 2025.
+\newblock arXiv:2504.06568 [math].
+
+\bibitem{nesterov_lectures_2018}
+{\sc Y.~Nesterov}, {\em Lectures on {Convex} {Optimization}}, vol.~137 of Springer {Optimization} and {Its} {Applications}, Springer International Publishing, 2018.
+
+\end{thebibliography}

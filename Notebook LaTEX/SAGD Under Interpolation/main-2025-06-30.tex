@@ -171,7 +171,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \item [(c)] Definition \ref{def:rwapg-seq} which has $\rho_k(1 - \alpha_{k + 1})\alpha_k^2 = \alpha_{k + 1}(\alpha_{k + 1} - \mu/L_k)$ for $k \ge 0$.
                 \item [(d)] The equality $z_k - y_k = (L_k - \mu)^{-1}((L_k\alpha_k - \mu)(\bar x - v_k) + \mu(1 - \alpha_k)(\bar x - x_{k - 1}))$ for all $k \ge 0$, it comes from Definition \ref{def:st-method}. 
                 \item [(e)] The equality $z_k - x_k = \alpha_k(\bar x - v_k)$ for all $k \ge 0$ it comes from Definition \ref{def:st-method}. 
-                \item [(f)] Using Definition \ref{def:st-method}, we have the following equality: 
+                \item [(f)] Using basic algebra, we have the following equality: 
                 \begin{align*}
                     (\forall k \ge 1)\; \frac{1}{2}\left(
                         \frac{\mu^2(1 - \alpha_k)^2}{L_k - \mu} - \mu \alpha_k(1 - \alpha_k)
@@ -209,11 +209,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             {\footnotesize
             \begin{align*}
                 &- \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
-                - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 + \frac{L_k - \mu}{2}\Vert z_k - y_k\Vert^2
+                + \frac{L_k - \mu}{2}\Vert z_k - y_k\Vert^2
                 \\
                 &\underset{\text{(d)}}{=} 
-                -\frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
-                - \frac{L_k}{2}\Vert z_k - x_k\Vert^2\\ 
+                -\frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2\\ 
                     &\quad +
                     \frac{L_k - \mu}{2}
                     \left\Vert 
@@ -222,11 +221,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \right\Vert^2
                 \\
                 &= 
-                - \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
-                - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
-                \\
-                &\quad + 
-                    \frac{(L_k\alpha_k - \mu)^2}{2(L_k - \mu)} \Vert \bar x - v_{k - 1}\Vert^2
+                - \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2\\&\quad 
+                    + \frac{(L_k\alpha_k - \mu)^2}{2(L_k - \mu)} \Vert \bar x - v_{k - 1}\Vert^2
                     + \frac{\mu^2(1 - \alpha_k)^2}{2(L_k - \mu)} \Vert \bar x - x_{k - 1}\Vert^2
                     + \frac{(L_k\alpha_k - \mu)\mu(1 - \alpha_k)}{L_k - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
                 \\
@@ -237,10 +233,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \left(
                     \frac{(L_k\alpha_k - \mu)^2}{2(L_k - \mu)}
                     - \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}
-                \right)\Vert \bar x - v_{k - 1}\Vert^2
-                \\ &\quad 
+                \right)\Vert \bar x - v_{k - 1}\Vert^2 \\ &\quad 
                     + \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
                     + \frac{(L_k\alpha_k - \mu)\mu(1 - \alpha_k)}{L_k - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
                 \\
                 &\underset{\text{(f)}}{=} 
@@ -249,10 +243,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \left(
                     \frac{(L_k\alpha_k - \mu)^2}{2(L_k - \mu)}
                     - \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}
-                \right)\Vert \bar x - v_{k - 1}\Vert^2
-                \\ &\quad 
+                \right)\Vert \bar x - v_{k - 1}\Vert^2 \\ &\quad 
                     + \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
                     + \frac{(L_k\alpha_k - \mu)\mu(1 - \alpha_k)}{L_k - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
                 \\
                 &\underset{\text{(g)}}{=}
@@ -261,18 +253,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \frac{\mu(L_k\alpha_k - \mu)(\alpha_k - 1)}{2(L_k - \mu)}\Vert \bar x - v_{k - 1}\Vert^2
                 \\ &\quad 
                     + \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
                     + \frac{(L_k\alpha_k - \mu)\mu(1 - \alpha_k)}{L_k - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
                 \\
-                &= \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
-                \\ & \quad
+                &= \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2 \\ & \quad
                     \frac{(\alpha_k - 1)\mu(L_k\alpha_k - \mu)}{2(L_k - \mu)}\left(
                         \Vert \bar x - x_{k - 1}\Vert^2 + \Vert \bar x - v_{k - 1}\Vert^2 - 2\langle\bar x - x_{k - 1},\bar x - v_{k - 1} \rangle
                     \right)
                 \\
                 &= \frac{\alpha_{k - 1}^2L_k \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
                 + \frac{(\alpha_k - 1)\mu(L_k\alpha_k - \mu)}{2(L_k - \mu)}\Vert x_{k - 1} - v_{k - 1}\Vert^2. 
             \end{align*}
             }
@@ -445,7 +433,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \textbf{Proof of (g)}
             The proof is direct: 
             \begin{align*}
-                \frac{(L_k\alpha_k - \mu)^2}{2(L_k - \mu)} - \frac{\alpha_{k - 1}^2 L \rho_{k - 1}(1 - \alpha_k)}{2}
+                \frac{(L_k\alpha_k - \mu)^2}{2(L_k - \mu)} - \frac{\alpha_{k - 1}^2 L_k \rho_{k - 1}(1 - \alpha_k)}{2}
                 &\underset{\text{(c)}}{=} \frac{(L\alpha_k - \mu)^2}{2(L_k - \mu)} - \frac{L_k\alpha_k(\alpha_k - \mu/L_k)}{2}
                 \\
                 &= \frac{1}{2(L_k - \mu)}\left(
@@ -487,14 +475,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Obviously, all such $\bar x$ forms the set of minimizers of $F$. 
         \end{assumption}
 
-        \begin{definition}[SNAPG]\label{def:snapg}
+        \begin{definition}[SNAPG-V1 \textcolor{red}{DOESN'T WORK WELL}]\;\label{def:snapg-v1}\\
             Let $F$ satisfies Assumption \ref{ass:sum-of-many}. 
             Let $(I_k)_{k \ge 0}$ be a list of i.i.d random variables uniformly sampled from set $\{0, 1, 2, \cdots, n\}$. 
             Initialize $v_{-1} = x_{-1}, \alpha_0 = 1$. 
             The SNAPG generates the sequence $(y_k, x_k, v_k)_{k \ge 0}$ such that for all $k \ge 0$ they satisfy: 
             \begin{align*}
                 & (L_{k - 1}/L_k)(1 - \alpha_{k})\alpha_{k - 1}^2 = \alpha_{k}\left(\alpha_{k} - \mu^{(I_k)}/L_k\right), \\
-                & \tau_k = L_k(1 - \alpha_k)\left(L_\alpha \alpha_k - \mu^{(I_k)}\right)^{-1}, \\
+                & \tau_k = L_k(1 - \alpha_k)\left(L_k \alpha_k - \mu^{(I_k)}\right)^{-1}, \\
                 & y_k = (1 + \tau_k)^{-1}v_{k - 1} + \tau_k(1 + \tau_k)^{-1}x_{k - 1}, \\
                 & x_k =  T_{L_k}(y_k | F_{I_k}) \text{ s.t: } D_f(x_k, y_k) \le L_k/2\Vert y_k - x_k\Vert^2, \\
                 & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
@@ -504,8 +492,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             The sequence $\alpha_k$ is a random variable because it changes according to variable $I_k$ at the current iteration.
             This decision is made because if Theorem \ref{thm:pg-ineq} needs to hold during each iteration of the algorithm.
         \end{remark}
-        \begin{theorem}[SNAPG one step inequality \textcolor{red}{INVALIDATED}]\label{thm:snapg-one-step}
-            Let sequences of iterates $(y_k, x_k, v_k)_{k \ge 0}$ satisfy SNAPG (Definition \ref{def:snapg}). 
+
+
+        \begin{theorem}[SNAPG one step inequality \textcolor{red}{INVALIDATED}]
+            Let sequences of iterates $(y_k, x_k, v_k)_{k \ge 0}$ satisfy SNAPG (Definition \ref{def:snapg-v1}). 
             Denote $\mathbb E_k [\cdot]$ to be the conditional expectation on $I_{0}, I_1, \ldots, I_{k - 1}$. 
             Then, for all $k \ge 1$ the following inequality is true: 
             $$
@@ -534,7 +524,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{proof}
             For one step, a specific function $F_{I_k}$ is sampled. 
             $F_{I_k}$ is $K^{(I_k)} > \mu^{(I_k)} \ge 0$ strongly convex and smooth. 
-            The iterates $x_k, v_k$ is a function of random varaible $I_k$, conditioned on all $I_{k - 1}, I_{k - 2}, \ldots , I_0$
+            The iterates $x_k, v_k$ is a function of random variable $I_k$, conditioned on all $I_{k - 1}, I_{k - 2}, \ldots , I_0$
             The sequence $\alpha_k$ is a sequence of random variable and, the relations between $\alpha_k, \alpha_{k - 1}$ is given by: 
             \begin{align*}
                 \alpha_k &= 
@@ -617,8 +607,51 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             At (b), we need to make use of covariance between the two random variable... 
             Consider random variables $X_k = (1 - \alpha_k)$ and $Y_k = F_{I_k}(x_{k - 1}) - F_{I_k}(\bar x) + \alpha_{k - 1}L_{k - 1}/2\Vert \bar x - v_{k - 1}\Vert^2$ which are functions of $I_k$ conditioned on $\alpha_{k - 1}$ and, $x_{k - 1}, v_{k - 1}$. 
             The conditional expectation of their product has $\mathbb E_k[X_kY_k] = \mathbb E_k[X_k] \mathbb E_k[Y_k] + \cov[X_k, Y_k]$.
-            \textcolor{red}{Hence taking the expectation doesn't follow. }
+            \textcolor{red}{Hence, taking the expectation doesn't follow. }
 
+        \end{proof}
+
+        \begin{definition}[SNAPG-V2]\label{def:snapg-v2}
+            Let $F$ satisfies Assumption \ref{ass:sum-of-many}. 
+            Let $(I_k)_{k \ge 0}$ be a list of i.i.d random variables uniformly sampled from set $\{0, 1, 2, \cdots, n\}$. 
+            Initialize $v_{-1} = x_{-1}, \alpha_0 = 1$. 
+            The SNAPG generates the sequence $(y_k, x_k, v_k)_{k \ge 0}$ such that for all $k \ge 0$ they satisfy: 
+            \begin{align*}
+                & (L_{k - 1}/L_k)(1 - \alpha_{k})\alpha_{k - 1}^2 = \alpha_{k}\left(\alpha_{k} - \mu/L_k\right), \\
+                & \tau_k = L_k(1 - \alpha_k)\left(L_k \alpha_k - \mu^{(I_k)}\right)^{-1}, \\
+                & y_k = (1 + \tau_k)^{-1}v_{k - 1} + \tau_k(1 + \tau_k)^{-1}x_{k - 1}, \\
+                & x_k =  T_{L_k}(y_k | F_{I_k}) \text{ s.t: } D_f(x_k, y_k) \le L_k/2\Vert y_k - x_k\Vert^2, \\
+                & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
+            \end{align*}
+        \end{definition}
+
+        \begin{theorem}[SNAPG-V2 one step convergence]
+            
+        \end{theorem}
+        \begin{proof}
+            Let's suppose that $I_k = i$ and, for all $k \ge 0$ let $z_k = \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$ where $\bar x$ is a minimizer of $F$. 
+            From Definiton \ref{def:snapg-v2}, it has
+            \begin{align*}
+                (1 + \tau_k)^{-1}
+                &\underset{\eqref{thm:onestep-napg-cnvg-i}}{=} 
+                \left(
+                    1 + \frac{L_k(1 - \alpha_k)}{L_k\alpha_k - \mu^{(i)}}
+                \right)^{-1} = \left(
+                    \frac{L_k\alpha_k - \mu^{(i)} + L_k(1 - \alpha_k)}{L_k\alpha_k - \mu^{(i)}}
+                \right)^{-1}
+                = \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}}. 
+            \end{align*}
+            Therefore, for all $k \ge 0$ $y_k$ has 
+            \begin{align*}
+                y_k &= (1 + \tau_k)^{-1} v_{k - 1} + \tau_k (1 + \tau_k)^{-1} x_{k - 1}
+                \\
+                &= \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}} 
+                \left(
+                    v_{k - 1} + \frac{L_k(1 - \alpha_k)}{L_k\alpha_k - \mu^{(i)}} x_{k - 1}
+                \right)
+                \\
+                &= 
+            \end{align*}
         \end{proof}
 
 
