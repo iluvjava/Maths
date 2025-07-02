@@ -196,7 +196,7 @@ And it has now become symmetric, and has only 2 points on it.
 The following lemma is a type of 4 points lemma. 
 
 #### **Lemma | 4 points anchoring lemma**
-> Let $x, \bar x, y \in \R^n, \lambda \in \R^n$ be arbitrary. 
+> Let $x, \bar x, y \in \R^n, \lambda \in \R$ be arbitrary. 
 > Let $z = \lambda x + (1 - \lambda)\bar x$, then it has the following equality
 > $$
 > \begin{aligned}
