@@ -1001,7 +1001,24 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
         \end{proof}
     \subsection{\textcolor{purple}{So, what to do next?}}
-
+        Hi Arron would you like to add me for the co-authorship to continue this line of work and see how Nesterov's Accelerated Technique may work out for the stochastic gradient method? 
+        These results are solid results but they are still partial results and, below are the potential I foresee for this these ideas. 
+        \begin{enumerate}
+            \item Narrow down the sequence $\alpha_k$ and make sure that it can allow the quantity: 
+            \begin{align*}
+                \mathbb E_k\left[
+                        \frac{(\alpha_k - 1)\mu^{(I_k)}\left(L_k\alpha_k - \mu^{(I_k)}\right)}{2\left(L_k - \mu^{(I_k)}\right)}
+                    \right]\Vert x_{k - 1} - v_{k - 1} \Vert^2
+            \end{align*}
+            is negative, or at least bounded. I am not sure how this will work out, but I have some solid ideas aroud it. 
+            \item Roll up the inequality in Theorem \ref{thm:snapg2-one-step} recursively and, determine the convergence rate through $\alpha_k$ that makes the previous item true. 
+            In addition, I have the hunches that the convergence reate involves the variance of $\mu^{(I_k)}$ and, it will slower than the non-stochastic case of the algorithm. 
+        \end{enumerate}
+        For the future we can: 
+        \begin{enumerate}
+            \item Extend the definition of strong convexity to quasi-norm. 
+            \item Show the convergence of the method for objective function that is not necessarily strong convex, but quasi-strongly convex. This is a much weaker assumption it works well in practice for well known problems.  
+        \end{enumerate}
     
 \bibliographystyle{siam}
 

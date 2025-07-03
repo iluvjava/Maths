@@ -328,6 +328,7 @@ $$
 The base case is writing Inequality (1) differently. 
 When $\alpha_0 = 1$, it has $y_0 = v_{-1} = x_{-1}$, and it makes $z_0 = \bar x$ therefore this makes Inequality (1) into:
 
+
 $$
 \begin{aligned}
     0 &\le F(z_0) - F(x_{0}) - \frac{L_0}{2}\Vert z_0 - x_0\Vert^2 + \frac{L_0 - \mu}{2}\Vert z_0 - y_0\Vert^2

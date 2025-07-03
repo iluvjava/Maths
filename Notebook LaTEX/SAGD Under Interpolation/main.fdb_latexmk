@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1751501154 "main.aux" "main.bbl" "main" 1751501744
+["bibtex main"] 1751503063 "main.aux" "main.bbl" "main" 1751503217
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/siam.bst" 1291867956 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1751501743 3057 bd64178ec77e9fc8ecb7e9bf2538537f "pdflatex"
+  "main.aux" 1751503216 3057 3e89a39dcb3edd66ffe1d11824a8650f "pdflatex"
   "references/refs.bib" 1751322234 3152 5b69efbf2f95804d44a9de754f00a38a ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1751501742 "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" "main.pdf" "main" 1751501744
+["pdflatex"] 1751503215 "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" "main.pdf" "main" 1751503217
   "C:/Users/alto/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1737674572 213711 9c6a2446f46c541ed5dc6afd45bb7161 ""
   "C:/Users/alto/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0700.pk" 1713914578 8268 c8b3375c74a9fa939f1e7d12acd0ca24 ""
   "C:/Users/alto/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1713914579 11548 7b68c4a26053c7bd332a0108670e715d ""
@@ -222,11 +222,11 @@
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388494052 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
-  "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" 1751501741 59370 1c1fa270cc3e01ecc521190b66ad50a9 ""
-  "main.aux" 1751501743 3057 bd64178ec77e9fc8ecb7e9bf2538537f "pdflatex"
-  "main.bbl" 1751501155 648 c0268905affcb7d88213b09ee1145532 "bibtex main"
-  "main.out" 1751501743 774 1435d1803d91127cc9ac5984ba0b0bf4 "pdflatex"
-  "main.tex" 1751501741 59370 1c1fa270cc3e01ecc521190b66ad50a9 ""
+  "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" 1751503214 61008 65849a57b074fe91675a226ca21e3fdf ""
+  "main.aux" 1751503216 3057 3e89a39dcb3edd66ffe1d11824a8650f "pdflatex"
+  "main.bbl" 1751503063 648 c0268905affcb7d88213b09ee1145532 "bibtex main"
+  "main.out" 1751503216 774 1435d1803d91127cc9ac5984ba0b0bf4 "pdflatex"
+  "main.tex" 1751503214 61008 65849a57b074fe91675a226ca21e3fdf ""
   "presets/julia_lstlisting.tex" 1750795329 817 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1750795329 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1750795329 8931 43b1f87d5e2ad43f60c8e67f03e69d1f ""
