@@ -172,7 +172,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{definition}
         \begin{lemma}[range of the momentum sequence in SNAPG-V2]\;\label{lemma:snapg-v2-seq-range}\\
             Suppose that $(L_k)_{k \ge 0}$ is a sequence such that $L_k > 0$ for all $k \ge 0$. 
-            Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $\alpha_0 \in (0, 1]$ and, for all $k \ge 1$, it's recursively satisfies equality: 
+            Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $\alpha_0 \in (0, 1]$ and, for all $k \ge 1$, it satisfies recursively the equality: 
             \begin{align*}
                 (L_{k - 1}/L_k)(1 - \alpha_{k})\alpha_{k - 1}^2 = \alpha_{k}\left(\alpha_{k} - \mu/L_k\right). 
             \end{align*}
@@ -197,6 +197,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{theorem}[SNAPG-V2 one step convergence]\label{thm:snapg2-one-step}
             Let $F$ satisfies assumption \ref{ass:interp-hypothesis}. 
             Suppose that an algorithm satisfying Definition \ref{def:snapg-v2} uses this $F$. 
+            Let $\mathbb E_k$ denotes the expectation conditioned on $I_0, I_1, \ldots, I_{k - 1}$. 
             Then, for all $k \ge 1$, it has the following inequality 
             \begin{align*}
                 & \mathbb E_k\left[F_{I_k}(x_{k})\right] 
