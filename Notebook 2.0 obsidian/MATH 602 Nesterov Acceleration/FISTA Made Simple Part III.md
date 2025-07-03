@@ -4,6 +4,7 @@
 ---
 ### **Intro**
 
+Even with the strong convexity parameter, there is still a simple one linear proof for the convergence rate of the algorithm for a sequence that is as weak as possible. 
 
 #### **Assumption 1**
 > The function $F = f + g$ where, $f:\R^n \rightarrow \R$ is a $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
