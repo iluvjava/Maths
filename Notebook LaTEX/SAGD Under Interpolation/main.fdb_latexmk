@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1751494338 "main.aux" "main.bbl" "main" 1751494539
+["bibtex main"] 1751501154 "main.aux" "main.bbl" "main" 1751501744
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/siam.bst" 1291867956 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1751494539 3626 6dfa0819f5b07fae2a23a777146c2956 "pdflatex"
+  "main.aux" 1751501743 3057 bd64178ec77e9fc8ecb7e9bf2538537f "pdflatex"
   "references/refs.bib" 1751322234 3152 5b69efbf2f95804d44a9de754f00a38a ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1751494537 "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" "main.pdf" "main" 1751494539
+["pdflatex"] 1751501742 "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" "main.pdf" "main" 1751501744
   "C:/Users/alto/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1737674572 213711 9c6a2446f46c541ed5dc6afd45bb7161 ""
   "C:/Users/alto/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0700.pk" 1713914578 8268 c8b3375c74a9fa939f1e7d12acd0ca24 ""
   "C:/Users/alto/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1713914579 11548 7b68c4a26053c7bd332a0108670e715d ""
@@ -54,14 +54,11 @@
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1247596667 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1247596667 36741 0ee9e374ec3e30da87cdfb0ea3575226 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1247596666 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
-  "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1247596667 36281 c355509802a035cadc5f15869451dcee ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1247596666 35469 dcf3a5f2fc1862f5952e3ee5eb1d98c4 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
-  "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1247596667 32762 7fee39e011c23b3589931effd97b9702 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1247596667 32726 39f0f9e62e84beb801509898a605dbd5 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
-  "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1247596666 32716 08e384dc442464e7285e891af9f45947 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1247596667 32626 5abc8bb2f28aa647d4c70f8ea38cc0d3 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1247596667 36118 fad905eba93cff5bce1e185fe980a177 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb" 1247596667 31099 342ef5a582aacbd3346f3cf4579679fa ""
@@ -225,11 +222,11 @@
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388494052 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
-  "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" 1751494536 57006 b489ed5a4f063dbfc1e935907244a0a0 ""
-  "main.aux" 1751494539 3626 6dfa0819f5b07fae2a23a777146c2956 "pdflatex"
-  "main.bbl" 1751494338 648 c0268905affcb7d88213b09ee1145532 "bibtex main"
-  "main.out" 1751494539 1037 0e3bb2afbe02fb72cc8bc115c17d2a90 "pdflatex"
-  "main.tex" 1751494536 57006 b489ed5a4f063dbfc1e935907244a0a0 ""
+  "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" 1751501741 59370 1c1fa270cc3e01ecc521190b66ad50a9 ""
+  "main.aux" 1751501743 3057 bd64178ec77e9fc8ecb7e9bf2538537f "pdflatex"
+  "main.bbl" 1751501155 648 c0268905affcb7d88213b09ee1145532 "bibtex main"
+  "main.out" 1751501743 774 1435d1803d91127cc9ac5984ba0b0bf4 "pdflatex"
+  "main.tex" 1751501741 59370 1c1fa270cc3e01ecc521190b66ad50a9 ""
   "presets/julia_lstlisting.tex" 1750795329 817 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1750795329 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1750795329 8931 43b1f87d5e2ad43f60c8e67f03e69d1f ""
