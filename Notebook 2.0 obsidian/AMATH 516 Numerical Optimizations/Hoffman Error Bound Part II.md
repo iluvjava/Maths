@@ -172,8 +172,35 @@ $\blacksquare$
 The paper, two more theorems are given to refine upper bound when additinal assumptions are added to the settings of Theorem 1 for function $f$. 
 
 #### **Theorem 2 | First refinment**
+> Take $X, Y, K, a, x$ from Configuration 1, and, assume Assumption 1 is true. 
+> Assume in addition that $f$ be a real-valued positively homogenous convex function of degree 1 that is positive except at the origin. 
+> Then: 
+> $$
+> \begin{aligned}
+>     \inf_\xi \left\lbrace
+>     f(x - \xi) : A \xi - a \in K
+>     \right\rbrace
+>     &= \sup_{y^*} \left\lbrace
+>         \langle y^*, Ax - a\rangle - f^\star(A^* y^*) : y \in K^\circ
+>     \right\rbrace. 
+> \end{aligned}
+> $$
+> Where, $\mu_2 \in \R \cup \{\pm \infty\}$ is given by 
+> $$
+> \begin{aligned}
+>     \mu_2 := \sup_{y^*} \left\lbrace
+>         \Vert y^*\Vert_\star : y^* \in W, f^\circ(A^*y^*) \le 1
+>     \right\rbrace. 
+> \end{aligned}
+> $$
+> Where $f^\circ(x^*):= \sup_{x \neq \mathbf 0} \langle x, x^*\rangle/f(x)$. 
+> Further more, when $A^*W \neq \{\mathbf 0\}$ whenever $W \neq \{\mathbf 0\}$, then the inequality sign can be replaced by an equality so it may be $f^\circ(A^* y^*) = 1$ and, it still holds. 
+
 
 #### **Theorem 3 | Second refinement**
+> 
+
+
 
 ---
 ### **Checking the strong duaity**
@@ -256,6 +283,7 @@ The following contents explain Lemma 4, 5, 6 in the original paper.
 $\blacksquare$
 
 **Remarks**
+
 
 
 

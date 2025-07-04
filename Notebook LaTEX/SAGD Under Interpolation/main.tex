@@ -89,24 +89,24 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             When $\rho_k = 1$, the recursive relation between $\alpha_k, \alpha_{k - 1}$ is the same as the well known Nesterov's sequence used in algorithm such as FISTA and Nesterov's accelerated gradient. 
             See Li and Wang \cite{li_relaxed_2025} for more information. 
         \end{remark}
+        % \begin{definition}[similar triangle representation of NAPG]\;\label{def:st-method}\\
+        %     Let $(\alpha_k)_{k \ge 0}$ be an R-WAPG sequence. 
+        %     Suppose that the base case $v_{-1}, x_{k - 1}\in \RR^n$ is given to initialize the algorithm. 
+        %     Then the algorithm produces the sequence of iterates $(y_k, x_k, v_k)_{k \ge 0}$ and auxiliary parameter sequence $L_k, \tau_k$ satisfying these inequalities: 
+        %     \begin{align*}
+        %         & \tau_k = L_k(1 - \alpha_k)(L_k\alpha_k - \mu)^{-1}, 
+        %         \\
+        %         & y_k = (1 + \tau_k)^{-1} v_{k - 1} + \tau_k (1 + \tau_k)^{-1} x_{k - 1},
+        %         \\
+        %         & D_f(x_k, y_k) \le L_k/2\Vert x_k - y_k\Vert^2, 
+        %         \\
+        %         & x_k = T_{L_k}(y_k),
+        %         \\
+        %         & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
+        %     \end{align*} 
+        % \end{definition}
+        % The following theorems are critical in analyzing the behavior of algorithm in Definition \ref{def:st-method}. 
         
-        \begin{definition}[similar triangle representation of NAPG]\;\label{def:st-method}\\
-            Let $(\alpha_k)_{k \ge 0}$ be an R-WAPG sequence. 
-            Suppose that the base case $v_{-1}, x_{k - 1}\in \RR^n$ is given to initialize the algorithm. 
-            Then the algorithm produces the sequence of iterates $(y_k, x_k, v_k)_{k \ge 0}$ and auxiliary parameter sequence $L_k, \tau_k$ satisfying these inequalities: 
-            \begin{align*}
-                & \tau_k = L_k(1 - \alpha_k)(L_k\alpha_k - \mu)^{-1}, 
-                \\
-                & y_k = (1 + \tau_k)^{-1} v_{k - 1} + \tau_k (1 + \tau_k)^{-1} x_{k - 1},
-                \\
-                & D_f(x_k, y_k) \le L_k/2\Vert x_k - y_k\Vert^2, 
-                \\
-                & x_k = T_{L_k}(y_k),
-                \\
-                & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
-            \end{align*} 
-        \end{definition}
-        The following theorems are critical in analyzing the behavior of algorithm in Definition \ref{def:st-method}. 
         \begin{theorem}[proximal gradient inequality]\label{thm:pg-ineq}
             Let function $F$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}, so it's $\mu \ge 0$ strongly convex. 
             For all $x\in \RR^n$, define $x^+ = T_L(x)$, then there exists a $B \ge 0$ such that $D_f(x^+, x) \le B/2 \Vert x^+ - x\Vert^2$. 
@@ -525,7 +525,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &\le \frac{L_0 - \mathbb E \left[\mu^{(I_0)}\right]}{2}\Vert \bar x - v_{-1}\Vert^2
                 \\
-                &= \frac{L_0 - \mathbb E \mu}{2}\Vert \bar x - v_{-1}\Vert^2. 
+                &= \frac{L_0 - \mu}{2}\Vert \bar x - v_{-1}\Vert^2. 
             \end{align*}
             % INTERMEDIATE RESULTS
             \par
