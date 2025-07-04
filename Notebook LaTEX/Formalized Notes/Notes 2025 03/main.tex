@@ -899,18 +899,25 @@
 
 \chapter{Application, Linear Feasibility Problems}
     This chapter extends ideas by the end of Necoara et al.'s paper \cite{necoara_linear_2019}.
-    \section{Reducing LP to linear feasibility problems}
-        We first introduce the linear feasibility problem as our primary problem. 
-        \begin{definition}[a linear conic feasibility problem]\label{def:lcf-problem}
-            Let $A\in \RR^{m\times n}$, $b \in \RR^{m\times p}$
-            Let $\mathcal K \in \RR^{n \times p}$ nonempty, closed convex cone. 
-            The conic feasibility problem is defined as the following optimization problem: 
-            \begin{align*}
-                \min_{X \in \mathcal K} \Vert AX - B\Vert^2_F.
-            \end{align*}
-        \end{definition}
-        The KKT of a linear programming problem is an instance of a linear feasibility problem, with $\mathcal K$ being a cross product of one of $\RR, \RR_+, \RR_-$ and $p = 1$ making $x \in \RR^{n}$. 
-        A feasibility semidefinite program with linear constraint is another example. 
+    We first introduce the linear feasibility problem as our primary problem. 
+    \begin{definition}[a linear conic feasibility problem]\label{def:lcf-problem}
+        Let $A\in \RR^{m\times n}$, $b \in \RR^{m\times p}$
+        Let $\mathcal K \in \RR^{n \times p}$ nonempty, closed convex cone. 
+        The conic feasibility problem is defined as the following optimization problem: 
+        \begin{align*}
+            \min_{X \in \mathcal K} \Vert AX - B\Vert^2_F.
+        \end{align*}
+    \end{definition}
+    Next, we will give some examples of mathematical programming models that fit the above problem type. 
+    \begin{definition}[semidefinite programming]\label{def:SPD}
+
+    \end{definition}
+    \begin{definition}[linear feasibility problen]\label{def:LSP}
+        
+    \end{definition}
+    
+    \section{Reducing LP to linear feasibility problems}    
+        
         \subsection{Example, linear programming is a linear conic feasibility problem}
             Let $X_1, X_2, Y$ be Euclidean spaces. 
             Define linear mapping $E:X_1 \times X_2 \rightarrow Y := (x_1, x_2)\mapsto E_1 x_1 + E_2 x_2$ where $E_1, E_2$ each are mappings of $X_1 \rightarrow Y, X_2 \rightarrow Y$. 

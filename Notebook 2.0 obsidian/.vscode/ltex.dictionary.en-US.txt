@@ -54,3 +54,5 @@ subgradients
 R-WAPG
 unboundedness
 Polytope
+semidefinite
+Spectralhedral

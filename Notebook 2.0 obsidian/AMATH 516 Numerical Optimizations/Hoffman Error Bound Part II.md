@@ -60,7 +60,7 @@ It generalizes the Hoffman Error bound of the Polytope.
 ---
 #### **Starting with a lack luster upper bound**
 
-Configurations, assumption, and some losse bound that has potentials. 
+Configurations, assumptions first, then, Theorem 1 gives the general bound under the most general assumption of $f$, while Theorem 2, 3 gives some  more specialized bound when $f$ is positively homogenous function. 
 
 #### **Configuration 1**
 > Let 
@@ -72,10 +72,10 @@ Configurations, assumption, and some losse bound that has potentials.
 > 6. $x \in X$. 
 
 
-The following is assumed but it will be justified later. 
+The following is assumed but, it will be justified later. 
 
-#### **Assumption 1 | Fenchel duality and conic restruction**
-> Take $X, Y, K, A, a, x$ fro Configuration 1 and, assume that the following equality holds: 
+#### **Assumption 1 | Fenchel duality with conic construction**
+> Take $X, Y, K, A, a, x$ from Configuration 1 and, assume that the following equality holds: 
 > $$
 > \begin{aligned}
 >     \inf_\xi \left\lbrace
@@ -164,14 +164,14 @@ $$
 $$
 
 The first inequality is because $y^* \in K^\circ$ but $y \in K$. 
-The second inequality is Cauchy Schwarts. 
+The second inequality is Cauchy Schwartz. 
 Let $y'$ be projection of $y$ onto $K$, the inequality becomes $\langle y^*, y\rangle \le \Vert y^*\Vert_\star \text{dist}(y | K)$. 
 
 $\blacksquare$
 
-The paper, two more theorems are given to refine upper bound when additinal assumptions are added to the settings of Theorem 1 for function $f$. 
+The paper, two more theorems are given to refine upper bound when additional assumptions are added to the settings of Theorem 1 for function $f$. 
 
-#### **Theorem 2 | First refinment**
+#### **Theorem 2 | First refinement**
 > Take $X, Y, K, a, x$ from Configuration 1, and, assume Assumption 1 is true. 
 > Assume in addition that $f$ be a real-valued positively homogenous convex function of degree 1 that is positive except at the origin. 
 > Then: 
@@ -194,16 +194,50 @@ The paper, two more theorems are given to refine upper bound when additinal assu
 > \end{aligned}
 > $$
 > Where $f^\circ(x^*):= \sup_{x \neq \mathbf 0} \langle x, x^*\rangle/f(x)$. 
-> Further more, when $A^*W \neq \{\mathbf 0\}$ whenever $W \neq \{\mathbf 0\}$, then the inequality sign can be replaced by an equality so it may be $f^\circ(A^* y^*) = 1$ and, it still holds. 
+> Furthermore, when $A^*W \neq \{\mathbf 0\}$ whenever $W \neq \{\mathbf 0\}$, then the inequality sign can be replaced by an equality so,  it may be $f^\circ(A^* y^*) = 1$ and, it still holds. 
+
+**Proof**
+
+See the paper not proving it in the notes. $\blacksquare$
 
 
 #### **Theorem 3 | Second refinement**
-> 
+> Let $X, Y, K, A, a$ and $x$ satisfies Configuration 1, then assume that $f$ is a real-valued positively homogenous convex function on $X$ with degree $p \in (1, \infty)$ that is positive except at the origin. 
+> Suppose that Assumption 1 holds with some $K \subseteq K^\circ$.
+> Suppose that when $A^*W \neq \{\mathbf 0\}$ whenever $W \neq \{\mathbf 0\}$. 
+> Then, it has the inequality: 
+> $$
+> \begin{aligned}
+>     \inf_{\xi} \left\lbrace
+>         f(x - \xi)^{1/p} : 
+>         A\xi - a \in K
+>     \right\rbrace 
+>     &\le 
+>     \mu_3 \text{dist}\; (Ax - a | K), 
+> \end{aligned}
+> $$
+> where $\mu_3 \in \R \cup \{\pm \infty\}$ is given by: 
+> $$
+> \begin{aligned}
+>     \mu_3 = \left(
+>         \frac{1}{p}
+>     \right)^{1/p}\left(
+>         \frac{1}{q}
+>     \right)^{1/q} \sup_{y^*}\left\lbrace
+>         \Vert y^*\Vert_\star : y^* \in W, f^\star(A^*y^*) = 1
+>     \right\rbrace, 
+> \end{aligned}
+> $$
+> with $q \in (1, \infty)$ such that $1/p + 1/q = 1$. 
 
+
+**Proof**
+
+See the paper not proving it in the notes. $\blacksquare$
 
 
 ---
-### **Checking the strong duaity**
+### **Checking the strong duality**
 
 For Theorem 1, 2, 3 to validate, it requires Assumption 1. 
 This subsection focus on strong duality, which is Equation (1). 
@@ -212,7 +246,7 @@ In the paper, it's Lemma 4.
 #### **Lemma 4 | checking for strong duality**
 > Let $f$ be a real-valued function on real normed linear space $X$. 
 > Let $A: X \rightarrow \R^m$ be a continuous linear mapping. 
-> Let $K\subseteq \R^m$ be a non-empty closed convex set of form $K = K_1 \cap K_2$ for some closed convex polyhedral set $K_1$ and, closed convx set $K_2$. 
+> Let $K\subseteq \R^m$ be a non-empty closed convex set of form $K = K_1 \cap K_2$ for some closed convex polyhedral set $K_1$ and, closed convex set $K_2$. 
 > Then, for every $a \in \text{rng}\; A - (K_1 \cap \text{ri}\; K_2)$, every $x \in X$ the strong duality holds: 
 > $$
 > \begin{aligned}
@@ -262,9 +296,8 @@ The following contents explain Lemma 4, 5, 6 in the original paper.
 > \end{aligned}
 > $$
 
-
 #### **Configurations 3 | W cone, the Cartesian product case**
-
+> 
 
 
 #### **Lemma 5 | the general W cone**
@@ -291,5 +324,12 @@ $\blacksquare$
 ---
 #### **Final results of the paper | the finite generalized Hoffman bounds**
 
+The final, important results are given in the theorems below. 
+
+#### **Theorem 6 | Finite Hoffman constant in the general case**
 
 
+---
+#### **Appendix**
+
+The details of some proofs will added here, while referencing to their labels. 
