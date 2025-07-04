@@ -79,6 +79,10 @@ $$
 $$
 4. $\text{rec}\; Q$ is a cone when $Q$ is convex. Consider $y \in \text{rec}\; Q$, then $Q + y \in Q$, but $Q + y \in Q$, so $Q + y + y \in Q$, and $Q + y \ldots + y \in Q$ so $Q + ny \in Q$ for all $n \in \N$. Since $\text{rec}\; C$ was convex, the convex hull of $\{n y \in \R^n : n \in \N\}$ is the ray in direction $y$ and it's in the set $\text{rec}\; Q$. Hence, $\text{rec}\; Q$ must be a cone. 
 
+**Remarks**
+
+For a convex set, recession cone gives a direction of unboundedness. 
+
 #### **Lemma | recession cone characterizes cone**
 > Let $C\subseteq R^n$ be a convex set. 
 > Then the set is a cone if and only if $\text{rec}\; C = C$. 
