@@ -12,10 +12,10 @@
 \newcommand{\var}{\ensuremath{\operatorname{Var}}}
 
 \begin{document}
-\title{{\fontfamily{ptm}\selectfont Lorum ipsum}}
+\title{{\fontfamily{ptm}\selectfont Linear Convergence of Stochastic Nesterov's Accelerated Proximal Gradient method under Interpolation Hypothesis}}
 
 \author{
-    HONGDA LI
+    Author
     \thanks{
         University of British Columbia Okanagan,
         Canada. E-mail: \texttt{alto@mail.ubc.ca}.
@@ -29,10 +29,8 @@
 % \vskip 8mm
 
 \begin{abstract} 
-    \noindent
-    Lorem ipsum dolor sit amet, dicta iudicabit consequat ex vix, veniam legimus appetere has id, an pri graece epicuri detraxit. Ea aliquam expetendis posidonium eos, nam invenire corrumpit imperdiet ei. Et constituto dissentias usu, mel solum erant et. Mel dolorem menandri in.
-    \cite{nesterov_lectures_2018}
-    \todo{This is just psuedo text. This is just psuedo text. This is just psuedo text. This is just psuedo text. }
+    This file is for communication purposes between collaborators. 
+
 \end{abstract}
 
 \noindent{\bfseries 2010 Mathematics Subject Classification:}
@@ -44,7 +42,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 \section{Nesterov's Accelerated Gradient}
     \subsection{In preparations}
         \begin{assumption}[smooth add nonsmooth]\label{ass:smooth-plus-nonsmooth}
-            The function $F = f + g$ where $f:\RR^n \rightarrow \RR$ is a $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
+            The function $F = f + g$ where $f:\RR^n \rightarrow \RR$ is an $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
             The function $g:\RR^n \rightarrow \overline \RR$ is a closed convex proper function. 
         \end{assumption}
         \begin{assumption}[admitting minimizers]\label{ass:smooth-plus-nonsmooth-x}
@@ -142,20 +140,20 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \subsection{Stochastic accelerated proximal gradient}
         The following assumption about the objective function is fundamental in incremental gradient method for Machine Learning, data science other similar tasks. 
         \begin{assumption}[sum of many]\label{ass:sum-of-many}
-            Define $F := (1/n)\sum_{i = 1}^{n} F_i$ where $F_i = f_i + g_i$.
-            Assume that for all $i = 1, \ldots, n$, each $f_i:\RR^n \rightarrow \RR$ are $K^{(i)}$ smooth and $\mu^{(i)} \ge 0$ strongly convex function such that $K^{(i)} > \mu^{(i)}$ and, $g:\RR^n \rightarrow \overline \RR$ is a closed convex proper function. 
-            Consequently, the function $f$ can be written as $F = g + f$ with $f = (1/n)\sum_{i = 1}^{n} f_i, g = (1/n)\sum_{i = 1}^{n}f_i + g_i$ there, it also satisfies Assumption \ref{ass:smooth-plus-nonsmooth} with $L = (1/2)\sum_{i = 1}^n K^{(i)}$ and $\mu = (1/n)\sum_{i = 1}^{n}\mu^{(i)}$. 
+            Define $F := (1/n)\sum_{i = 1}^{n} F_i$ where each $F_i = f_i + g_i$.
+            Assume that for all $i = 1, \ldots, n$, each $f_i:\RR^n \rightarrow \RR$ are $K^{(i)}$ smooth and $\mu^{(i)} \ge 0$ strongly convex function such that $K^{(i)} > \mu^{(i)}$ and, $g_i:\RR^n \rightarrow \overline \RR$ is a closed convex proper function. 
+            Consequently, the function $f$ can be written as $F = g + f$ with $f = (1/n)\sum_{i = 1}^{n} f_i, g = (1/n)\sum_{i = 1}^{n}g_i$ therefore, it also satisfies Assumption \ref{ass:smooth-plus-nonsmooth} with $L = (1/n)\sum_{i = 1}^n K^{(i)}$ and $\mu = (1/n)\sum_{i = 1}^{n}\mu^{(i)}$. 
         \end{assumption}
         This assumption is stronger than Assumption \ref{ass:smooth-plus-nonsmooth}. 
-        It still appears everywhere in practice, for example if $F_i$ are all indicator function of convex set, then it solves feasibility problem $\bigcap_{i = 1}^n C_i$ and, in this case, the proximal gradient operator becomes a projection onto the convex set $C_i$. 
+        It still appears in practice, for example if $F_i$ are all indicator function of convex set, then it solves feasibility problem $\bigcap_{i = 1}^n C_i$ and, in this case, the proximal gradient operator becomes a projection onto the convex set $C_i$. 
         In practice, each of the strong convexity constant $\mu^{(i)}$ may not be easily accessible. 
         And we further note that if $\mu > 0$ strongly convex, then there exists at least one $\mu^{(i)} \ge 0$. 
         \par
         The interpolation hypothesis from Machine Learning stated that the model has the capacity to perfect fit all the observed data. 
+        The following assumption state the interpolation hypothesis in our context. 
         \begin{assumption}[interpolation hypothesis]\label{ass:interp-hypothesis}
             Suppose that $F := (1/n)\sum_{i = 1}^{n} F_i$ satisfying Assumption \ref{ass:sum-of-many}. 
             In addition, assuming that it has $0 = \inf_{x}F(x)$ and, there exists some $\bar x \in \RR^n$ such that for all $i = 1, \ldots, n$ it satisfies $0 = f_i(\bar x)$. 
-            Obviously, all such $\bar x$ forms the set of minimizers of $F$. 
         \end{assumption}
         \begin{definition}[SNAPG-V2]\label{def:snapg-v2}
             Let $F$ satisfies Assumption \ref{ass:sum-of-many}. 
@@ -485,7 +483,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             We note that at label (1), we used the fact that $\alpha_k$ is a constant and, $x_{k - 1}, v_{k - 1}$ only depends on random variable $I_0, I_1, \ldots, I_{k - 1}$ hence it falls out of the conditional expectation $\mathbb E_k$. 
             At label (2), we used assumption (Assumption \ref{ass:sum-of-many}) that the averages of all the $\mu^{(I_k)}$ on each $F_{I_k}$ equals to $\mu$ hence, the expectation evaluates to zero by linearity of the expected value operator. 
             \par
-            Combing the above results on the expectation of RHS, and LHS of \eqref{ineq:snapg2-one-step-presult1}, we have the one step inequality in expectation: 
+            Combining the above results on the expectation of RHS, and LHS of \eqref{ineq:snapg2-one-step-presult1}, we have the one-step inequality in expectation: 
             \begin{align*}
                 & \mathbb E_k\left[F_{I_k}(x_{k})\right] 
                 - F(\bar x) 

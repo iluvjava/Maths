@@ -16,6 +16,7 @@ Recall the following definitions, ideas:
 2. Linearity of cone, denoted by $\text{lin}$. 
 
 #### **Assumption | Global**
+> Unless specified, assume the following throughout. 
 > Let $X, Y$ be two normed linear spaces. 
 > Let $f: X \rightarrow \overline \R$ be a convex function such that $f^\star \ge 0$ always. 
 > One such example is, $\Vert \cdot\Vert$, or when $\text{epi}\; f$ is a cone. 
@@ -296,9 +297,6 @@ The following contents explain Lemma 4, 5, 6 in the original paper.
 > \end{aligned}
 > $$
 
-#### **Configurations 3 | W cone, the Cartesian product case**
-> 
-
 
 #### **Lemma 5 | the general W cone**
 > Let $K, A, S, \hat K, W_1$ be given by Configuration 2. 
@@ -311,13 +309,99 @@ The following contents explain Lemma 4, 5, 6 in the original paper.
 
 **Proof of (i)**. 
 
+For all $x^* \in A^* K^\circ$, define the $C(x^*):= \{ y^*\in \hat K^\circ: A^*y^* = x^*\}$. 
+I.e: $C(x^*) = (A^*)^{-1}x^* \cap \hat K^\circ$, here, $(A^*)^{-1}x^*$ denotes the pre-image of the linear mapping $A^*$ on $x^*$. 
+We make the following non-trivial observations: 
 
+$$
+\begin{aligned}
+    \hat K^\circ = \bigcup_{x^*}\left\lbrace
+        C(x^*) : x^* \in A^* \hat K^\circ
+    \right\rbrace. 
+\end{aligned}\tag{c}
+$$
+
+The following intermediate results help with claiming the final proof, their proofs can be found in the appendix. 
+- (a) $C(x^*)$ contains at least one extreme point. 
+- (b) For all $x^* \in A^* K^\circ$, the extreme points of $C(x^*)$ is in $W_1$. 
+- (d) We have the equality 
+$$
+\begin{aligned}
+    \sup_{y^*} \left\lbrace
+        \langle y^*, Ax - a\rangle  - f^\star(A^*y^*): y \in K^\circ
+    \right\rbrace
+    = 
+    \sup_{y^*} \left\lbrace
+        \langle y^*, Ax - a\rangle  - f^\star(A^*y^*): y \in \hat K^\circ
+    \right\rbrace
+\end{aligned}
+$$
+- (e) The equality 
+$$
+\begin{aligned}
+    \sup_{y^*}\left\lbrace
+        \langle  y^*, Ax - a\rangle : y \in C(x^*)
+    \right\rbrace &= 
+    \sup_{y^*} \left\lbrace
+        \langle y^*, Ax - a\rangle : 
+        y^* \in C(x^*)\cap W_1
+    \right\rbrace. 
+\end{aligned}
+$$
+
+The overall proof follows from intermediate results (a)-(c). 
+For all $a \in \text{eng}\; A - K$, for all $x \in X$ it has 
+
+$$
+\begin{aligned}
+    & \sup_{y \in K^\circ}\left\lbrace
+        \langle y^*, Ax - a\rangle - f^\star(A^*y^*) 
+    \right\rbrace
+    \\
+    &\underset{\text{(d)}}{=} 
+    \sup_{y \in \hat K^\circ}\left\lbrace
+        \langle y^*, Ax - a\rangle - f^\star(A^*y^*) 
+    \right\rbrace
+    \\
+    &\underset{\text{(c)}}{=}
+    \sup_{x^* \in A^* \hat K^\circ}
+    \left\lbrace
+        \sup_{y^*\in C(x^*)}
+        \left\lbrace
+            \langle y^*, Ax - a\rangle - f^\star(x^*)
+        \right\rbrace
+    \right\rbrace
+    \\
+    &\underset{\text{(e)}}{=}
+    \sup_{x^* \in A^* \hat K^\circ}
+    \left\lbrace
+        \sup_{y^*\in C(x^*)\cap W_1}
+        \left\lbrace
+            \langle y^*, Ax - a\rangle - f^\star(x^*)
+        \right\rbrace
+    \right\rbrace
+    \\
+    &\underset{\text{(c)}}{=}
+    \sup_{y \in \hat K^\circ\cap W_1}\left\lbrace
+        \langle y^*, Ax - a\rangle - f^\star(A^*y^*) 
+    \right\rbrace
+    \\
+    &= \sup_{y \in \hat K^\circ\cap W_1}\left\lbrace
+        \langle y^*, Ax - a\rangle - f^\star(A^*y^*) 
+    \right\rbrace. 
+\end{aligned}
+$$
+
+The last equality follows by $W_1 \subseteq \hat K^\circ$. 
+See appendix at the end for proofs for intermediate results (a)-(e). 
+
+**Proof of (ii)**. See the paper, we won't prove them here. 
 
 $\blacksquare$
 
 **Remarks**
 
-
+The construction of $W_1$ seems to be quite non-trivial. 
 
 
 
@@ -327,9 +411,170 @@ $\blacksquare$
 The final, important results are given in the theorems below. 
 
 #### **Theorem 6 | Finite Hoffman constant in the general case**
+> Take $X, K, A, \R^m, W_1$ from Configuration 2. 
+> Assume that $K = K_1 \cap K_2$ for some polyhedral cone $K_1$, and some closed convex cone $K_2\subseteq \R^m$. Then, the following hold. 
+> - (i) Let $f$ be a positively homogenous function convex function of degree $p = 1$ except at the origin. For all $a \in \text{rng}\; A - (K_1 \cap \text{ri}\; K_2)$, and $x \in X$, the bound from Theorem 2 holds. If $\text{rng}\; A \not\subseteq K$, then the inequality sign can be replaced by an equality sign and, if either $K$ is polyhedral, or $\text{rng}\; A + K = \R^m$, then $\mu_2$ is finite. 
+> - (ii) Let $f$ be a positively homogenous function convex function of degree $p \in (1, \infty)$ except at the origin. For all $a \in \text{rng}\; A - (K_1 \cap \text{ri}\; K_2)$, and $x \in X$, the bound with $\mu_3$ from Theorem 3 holds. More over, if $\text{rng}\; A \not\subseteq K$, and either $K$ is polyhedral, or $\text{rng}\;A + K = \R^m$, then $\mu_3$ is finite. 
+
+**Proof**
+
 
 
 ---
 #### **Appendix**
 
 The details of some proofs will added here, while referencing to their labels. 
+
+
+#### **Proofs | Intermediate results for Lemma 5**
+We proof intermediate results stated in the proof of Lemma 4, (a)-(e). 
+
+**Proof of (a)**. 
+
+The set $C(x^*)$ has at least one extreme point because $\text{lin.rec}\; C(x^*) = \{\mathbf 0\}$ by Corollary 18.53 in Rockafellar's convex analysis red book. 
+It has 
+
+$$
+\begin{aligned}
+    \text{lin.rec}\; C(x^*)
+    &= \text{lin}\left(
+        \text{rec}\; (A^*)^{-1} x^* \cap \hat K^\circ
+    \right)
+    \\
+    &= 
+    \text{lin}\left(
+        \text{ker}\; A^* \cap \hat K^\circ
+    \right)
+    \\
+    &= \text{lin.ker} A^* \cap \text{lin}\; \hat K^\circ
+    \\
+    &= \text{lin.ker} A^* \cap \text{lin}\; (K + S)^\circ
+    \\
+    &= 
+    \text{lin.ker} A^* \cap \text{lin}\; (K^\circ \cap S^\perp)
+    \\
+    &= 
+    \text{lin.ker} A^* \cap \text{lin}\; K^\circ 
+    \cap \text{lin}\; S^\perp
+    \\
+    &= S\cap S^\perp = \{\mathbf 0\}. 
+\end{aligned}
+$$
+
+**Proof of (b)**. We show that for all $x^* \in A^* K^\circ$, all extreme points of $C(x^*)$ is in $W_1$. 
+To do that, we show that if point $y\not \in W_1$, then it's not an extreme point of $C(x^*)$. 
+By definitions 
+$$
+\begin{aligned}
+    y &\in (W_1)^\complement = 
+    \left(
+        \hat K ^\circ \setminus \left(
+            \hat K ^\circ + (\text{ker}\; A^* \cap \hat K^\circ)\setminus \{\mathbf 0\}
+        \right)
+    \right)^\complement
+    \\
+    &= 
+    \left(
+        \hat K ^\circ \cap \left(
+            \hat K ^\circ + (\text{ker}\; A^* \cap \hat K^\circ)\setminus \{\mathbf 0\}
+        \right)^\complement
+    \right)^\complement
+    \\
+    &= 
+    (\hat K ^\circ)^\complement \cap \left(
+        \hat K ^\circ + (\text{ker}\; A^* \cap \hat K^\circ)\setminus \{\mathbf 0\}
+    \right)
+    \\
+    \iff &
+    \left(\forall y \in \hat K^\circ\right): y\in \hat K^\circ + (\text{ker}\; A^* \cap \hat K^\circ)\setminus \{\mathbf 0\}
+    \\
+    \iff & 
+    \left(\forall y \in \hat K^\circ\right)
+    \left(\exists z \in \text{ker}\; A^* \cap \hat K^\circ\right): 
+    y\in \hat K^\circ + z. 
+\end{aligned}
+$$
+
+The last line implies that $y - z \in \hat K^\circ$. 
+Next, we have $y+ z \in \hat K^\circ$ as well because 
+$$
+\begin{aligned}
+    z &\in \left(
+        \text{ker}\; A^* \cap \hat K^\circ 
+    \right)\setminus \{\mathbf 0\} \subseteq \hat K^\circ \setminus \{\mathbf 0\}
+    \\
+    \implies & 
+    z + y \in \hat K^\circ. 
+\end{aligned}
+$$
+
+The last line come from the fact that $y \in \hat K^\circ$, $z\in \hat K^\circ$ and, $\hat K^\circ$ is a convex cone. 
+Combining the results we have $y\pm z \in C(x^*)$, since $z \neq \mathbf 0$ by definition, it means that $y$ can be represented by $y = 1/2(y + z) + 1/2(y - z)$ which means that $y$ cannot be an extreme point of the $C(x^*)$. 
+
+**Proof of (c)**.It's direct, and it has 
+
+$$
+\begin{aligned}
+    &\bigcup_{x^*}\left\lbrace
+        C(x^*) : x^* \in A^* \hat K^\circ
+    \right\rbrace
+    \\
+    &= \bigcup_{x^*}\left\lbrace
+        C(x^*) : x^* \in A^* \hat K^\circ
+    \right\rbrace
+    \\
+    &= \bigcup_{x^*}
+    \left\lbrace
+        (A^*)^{-1}x^* : x^* \in A^* \hat K^\circ
+    \right\rbrace = \hat K^\circ. 
+\end{aligned}
+$$
+
+**Proof of (d)**.
+For all $y\in K^\circ$ because $S \subseteq \text{lin}\;K^\circ$, the cone has decomposition $K^\circ = S + K^\circ \cap S^\perp$. 
+Therefore, it can be written as $y^* = y_1^* + y_2^*$ such that $y_1^* \in S$ and $y_2^* \in K\cap S^\perp$, then it has 
+
+$$
+\begin{aligned}
+    \left\langle y^*, Ax - a\right\rangle - f^\star(A^*y^*) &= 
+    \left\langle y^*_1, Ax - a\right\rangle 
+    + \left\langle y^*_2, Ax - a\right\rangle
+    - f^\star(A^*y^*). 
+\end{aligned}
+$$
+
+Recall that by assumption it has $-a \in \text{rng}\; A + K\subseteq \text{rng}\; A + \text{span}\; K = S^\perp$, therefore $\langle y_1^*, -a\rangle = 0$, in addition, $y_1^* \in S = \text{ker}\; A^* \cap \text{lin}\; K^\circ\subseteq \text{ker}\; A^*$ therefore it has $\langle y_1^*, Ax\rangle = 0$ also. 
+With that the above simplifies and has: 
+
+$$
+\begin{aligned}
+    \left\langle y^*, Ax - a\right\rangle - f^\star(A^*y^*) &= 
+    \langle y_2^*, Ax - a\rangle - f^\star\left(A^*y^*_2\right). 
+\end{aligned}
+$$
+
+Finally, $y_2^* \in K^\circ \cap S = (K + S)^\circ = \hat K^\circ$ , and therefore, the supremum still holds after exchanging $K^\circ$ with the smaller set $\hat K^\circ$. 
+
+**Proof of (e)**. 
+For all $y \in C(x^*)$, $\bar x \in X$, the inner product term has 
+
+$$
+\begin{aligned}
+    \langle y^*, Ax - a\rangle &= \langle y^*, A(x - \bar x)\rangle + \langle y^*, A\bar x - a\rangle. 
+\end{aligned}
+$$
+
+Observe that $A\bar x - a \in K$ by Configuration 2 which had $a \in \text{rng}\; A - K$. 
+It also has $y\in C(x^*) \subseteq \hat K^\circ \subseteq K^\circ$, 
+Therefore, $\langle y^*, A\bar x - a\rangle \le 0$ by dual cone and hence it always has: 
+
+$$
+\begin{aligned}
+    \langle y^*, Ax - a\rangle \le \langle y^*, A(x - \bar x)\rangle. 
+\end{aligned}
+$$
+
+Next, the function in the supremum, $^*\mapsto \langle y^*, A(x - \bar x)\rangle$ is a linear function, therefore it always attains supremum at extreme faces of convex $C(x^*)$. 
+From part (a) we know all extreme points of $C(x^*)$ is in $W_1$ hence, the supremum is in fact equal and it's finite. 
+
+$\blacksquare$

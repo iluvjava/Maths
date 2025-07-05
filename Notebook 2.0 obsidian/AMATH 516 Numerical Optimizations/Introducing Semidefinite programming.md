@@ -6,6 +6,9 @@
 ### **Intro**
 
 This file introduces the basic scope of semidefinite programming. 
+Below is a list of referencing materials used for writing the file. 
+> 1. [Semidefinite program and combinatorics optimization - Lecture notes by L. Lovasz](https://sites.math.washington.edu/~thomas/teaching/m514_web/Lovasz_semidef.pdf). 
+> 
 
 
 **Semidefinite matrices**. 
@@ -17,7 +20,7 @@ Recall that a real PSD matrix $X$ is Positive semidefinite if and only if it's a
 2. Only has non-negative real eigenvalues; 
 3. The eigenvectors are orthogonal vectors. 
 
-**Traces are linear functionals on matrices**. 
+**Traces are linear functional on matrices**. 
 We make the observation that, all functions mapping from $\mathcal S^m \rightarrow \R$ has representation using the Trace of a matrix and parameterized by another matrix $A \in \R^{m \times m}$: 
 $$
 \begin{aligned}
@@ -29,7 +32,7 @@ $$
 A semidefinite programming problem has linear equality constraints and, a variable matrix that is a positive semidefinite. 
 The following definition defines semidefinite programs. 
 
-#### **Definition | Positive semidefinite program**
+#### **Definition | Positive semidefinite program, std form**
 > Let $A_i \in \R^{n\times n}$ for all $i = 1, \ldots, m$.
 > Let $C \in \R^{n\times n}$. 
 > Let $b_i \in \R$ for all $i = 1, \ldots, m$ be a sequence of real number. 
@@ -52,18 +55,19 @@ Since, the elements in the matrix $X$ doesn't have to all be variables (It can a
 Next, since $X$ is diagonal, $\text{Tr}(AX)$ simplifies into a element-wise product between diagonal elements of $X$ and the diagonal of matrix $A$. 
 This reduces the problem into a linear program. 
 
-**Inequality constraints don't matter**. 
+**Inequality, equality constraint don't matter**. 
 If there are inequality constraints associated, i.e: $\text{Tr}(AX) - b \le 0$, then it's the same as reintroducing a new diagonal element on matrix $X$ as a slack variable and reformulate the above into an equality constraint. 
 
-**In other words**;
-> SDP is made of a positive semidefinite constraint on a matrix of variables over a set of linear equality constraints. 
+**Without loss of generality**, the constants matrix $A_i$ for $i = 1, \ldots, m$ and $C$ matrix can also be symmetric matrices.
+It's obvious from $\text{Tr}(AX) = \text{Tr}(((A^T+ A)/2)X)$. 
 
----
+**In other words**;
+> SDP is made of a positive semidefinite constraint on a matrix of variables over a set of affine constraints on those variables. 
 
 ---
 ### **Some more details**
 
-We place attentions on positive semidefinite cone, since it is the new items compared to linear programming. 
+
 
 #### **Theorem | semidefinite cone**
 > The set of positive semidefinite matrix $\mathcal S^m$ is a cone, and: 
@@ -75,4 +79,4 @@ We place attentions on positive semidefinite cone, since it is the new items com
 
 #### **Definition | linear matrix inequality**
 
-#### **Definition | Spectralhedral**
+#### **Definition | spectralhedral**
