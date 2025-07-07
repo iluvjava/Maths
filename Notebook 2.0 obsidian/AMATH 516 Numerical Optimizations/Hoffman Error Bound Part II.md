@@ -305,8 +305,6 @@ The following contents explain Lemma 4, 5, 6 in the original paper.
 > - (ii) Let $D \subseteq X^*$ be any convex set such that $(A^*)^{-1}D$ is closed and, has $\text{ker}\; A^*$ as its recession cone. Then $W_1 \cap (A^*)^{-1} D$ is contained in the convex hull of the extreme points of the closed convex set $G := \hat K ^\circ \cap (A^*)^{-1}D$. 
 > - (iii) $W_1 = \{\mathbf 0\}$ if and only if $A^*W_1 = \{\mathbf 0\}$ if and only if $\text{rng}\; A \subseteq K$. 
 
-**Proof**
-
 **Proof of (i)**. 
 
 For all $x^* \in A^* K^\circ$, define the $C(x^*):= \{ y^*\in \hat K^\circ: A^*y^* = x^*\}$. 
@@ -418,19 +416,22 @@ The final, important results are given in the theorems below.
 
 **Proof**
 
+See the paper, we skip the proof here. $\blacksquare$
 
+**Remarks**
+
+The results seem very minimal 
 
 ---
 #### **Appendix**
 
-The details of some proofs will added here, while referencing to their labels. 
+The details of some are here, we reference the proof for their labels in lemmas/theorems. 
 
 
 #### **Proofs | Intermediate results for Lemma 5**
 We proof intermediate results stated in the proof of Lemma 4, (a)-(e). 
 
 **Proof of (a)**. 
-
 The set $C(x^*)$ has at least one extreme point because $\text{lin.rec}\; C(x^*) = \{\mathbf 0\}$ by Corollary 18.53 in Rockafellar's convex analysis red book. 
 It has 
 
@@ -511,7 +512,7 @@ $$
 The last line come from the fact that $y \in \hat K^\circ$, $z\in \hat K^\circ$ and, $\hat K^\circ$ is a convex cone. 
 Combining the results we have $y\pm z \in C(x^*)$, since $z \neq \mathbf 0$ by definition, it means that $y$ can be represented by $y = 1/2(y + z) + 1/2(y - z)$ which means that $y$ cannot be an extreme point of the $C(x^*)$. 
 
-**Proof of (c)**.It's direct, and it has 
+**Proof of (c)**. It's direct, and it has 
 
 $$
 \begin{aligned}
@@ -574,7 +575,7 @@ $$
 \end{aligned}
 $$
 
-Next, the function in the supremum, $^*\mapsto \langle y^*, A(x - \bar x)\rangle$ is a linear function, therefore it always attains supremum at extreme faces of convex $C(x^*)$. 
+Next, the function in the supremum, $y^*\mapsto \langle y^*, A(x - \bar x)\rangle$ is a linear function, therefore it always attains supremum at extreme faces of convex $C(x^*)$. 
 From part (a) we know all extreme points of $C(x^*)$ is in $W_1$ hence, the supremum is in fact equal and it's finite. 
 
 $\blacksquare$
