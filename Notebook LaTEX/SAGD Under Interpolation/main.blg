@@ -3,44 +3,49 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: siam.bst
 Database file #1: references/refs.bib
-You've used 3 entries,
+Warning--I didn't find a database entry for "nesterov_lectures_2018"
+Warning--I didn't find a database entry for "beck_first-order_2017"
+Warning--I didn't find a database entry for "li_relaxed_2025"
+Warning--I didn't find a database entry for "calatroni_backtracking_2019"
+You've used 1 entry,
             2030 wiz_defined-function locations,
-            516 strings with 4197 characters,
-and the built_in function-call counts, 679 in all, are:
-= -- 50
-> -- 27
+            508 strings with 4023 characters,
+and the built_in function-call counts, 267 in all, are:
+= -- 19
+> -- 13
 < -- 0
-+ -- 11
-- -- 8
-* -- 48
-:= -- 120
-add.period$ -- 4
-call.type$ -- 3
-change.case$ -- 11
++ -- 5
+- -- 4
+* -- 20
+:= -- 52
+add.period$ -- 1
+call.type$ -- 1
+change.case$ -- 4
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 34
-empty$ -- 69
-format.name$ -- 8
-if$ -- 137
+cite$ -- 1
+duplicate$ -- 13
+empty$ -- 24
+format.name$ -- 4
+if$ -- 52
 int.to.chr$ -- 0
-int.to.str$ -- 3
-missing$ -- 4
-newline$ -- 13
-num.names$ -- 6
-pop$ -- 22
+int.to.str$ -- 1
+missing$ -- 2
+newline$ -- 6
+num.names$ -- 2
+pop$ -- 6
 preamble$ -- 1
-purify$ -- 10
+purify$ -- 4
 quote$ -- 0
-skip$ -- 19
+skip$ -- 7
 stack$ -- 0
-substring$ -- 15
-swap$ -- 6
+substring$ -- 5
+swap$ -- 2
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 8
+type$ -- 2
 warning$ -- 0
-while$ -- 6
-width$ -- 4
-write$ -- 29
+while$ -- 2
+width$ -- 2
+write$ -- 12
+(There were 4 warnings)
