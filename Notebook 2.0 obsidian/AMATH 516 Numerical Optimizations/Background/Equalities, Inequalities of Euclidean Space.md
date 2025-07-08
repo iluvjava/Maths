@@ -1,5 +1,5 @@
 ---
-alias: Cute Formula
+alias: Cute Formulas
 ---
 ### **Intro**
 
@@ -10,6 +10,9 @@ See [l-p Sequence Space](../../MATH%20601%20Functional%20Analysis,%20Measure%20T
 
 
 ### **Equalities**
+
+The name "cute equality" come from our professor who think it is cute. 
+Don't ask me why. 
 
 #### **Lemma | The cute equality**
 > For any $a, b \in \mathcal H$, it has for all $\theta \in \R^n$: 
@@ -85,7 +88,7 @@ Corollary 2.14 in Heinz's Monotone Operator's textbook.
 
 **Remarks**
 
-Exchanging $\langle ,\rangle$ to be $\langle ,\rangle_H$ and $\Vert \cdot\Vert$ into $\Vert \cdot\Vert_H$ with $H$ being a positive definite operator in the space would yield the same results as the above. 
+Exchanging $\langle ,\rangle$ to be $\langle ,\rangle_H$ and $\Vert \cdot\Vert$ into $\Vert \cdot\Vert_H$ with $H$ being a positive semi-definite operator in the space would yield the same results as the above. 
 
 
 #### **A Generalized Version**

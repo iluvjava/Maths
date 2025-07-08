@@ -148,6 +148,9 @@ $$
 \end{aligned}
 $$
 
+At (a) we used the cute formula. 
+See [Cute Formula](../Background/Equalities,%20Inequalities%20of%20Euclidean%20Space.md) for more details. 
+
 $\blacksquare$
 
 

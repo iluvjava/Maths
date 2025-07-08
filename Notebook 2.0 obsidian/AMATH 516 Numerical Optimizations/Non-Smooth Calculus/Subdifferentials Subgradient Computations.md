@@ -12,7 +12,7 @@ We introduce a simple theorem and then we are going fully hardcore about it usin
 The weak subgradient is relative easier to find. 
 
 ---
-### **Theorem: Subdifferential for Separable Summations**
+### **Theorem | Subdifferential for Separable Summations**
 
 > Suppose a function is in the form of $f: \mathbb E_1 \times \mathbb E_2 \cdots \mathbb E_n \mapsto \mathbb {\bar R}$, written as $\sum_{i =1}^{n}f_i(x_i)$ where $x_i\in \mathbb E_i$, then the subdifferential of the function is: 
 > 
@@ -64,7 +64,7 @@ $$
 Unassigned Exercises in AMATH 516 FALL 2021
 
 ---
-### **Theorem: Smooth Plus Nonsmooth**
+### **Theorem | Smooth Plus Non-smooth**
 
 > Let $f, g$ be 2 proper functions, and suppose that $f$ is smooth and differentiable at the point $x$, then: 
 > $$
@@ -77,9 +77,9 @@ The proof is direct from the definition of smooth gradient and non-smooth gradie
 **Source**: Unassigned exercise from AMATH 516. 
 
 ---
-### **Theorem: Subgradient of Pointwise Maximum of Functions**
+### **Theorem | Subgradient of Point-wise Maximum of Functions**
 
-> Suppose a function is in the form of a pointwise maximum of countably many function: $f(x):= \max_{i\in [n]}f_i(x)$ for all $f_i$ that are convex. Then the strong subgradient of the function is: 
+> Suppose a function is in the form of a poin-twise maximum of countably many function: $f(x):= \max_{i\in [n]}f_i(x)$ for all $f_i$ that are convex. Then the strong subgradient of the function is: 
 > $$
 > \begin{aligned}
 >     & I(x):= \{i\in[n]: f_i(x) = f(x)\}
@@ -99,15 +99,15 @@ The $\subseteq$ direction is harder than $\supseteq$.
 **Source**: [Stack Exchange Discussion](https://math.stackexchange.com/questions/229025/subgradients-of-function). Original course notes is: [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf). 
 
 ---
-### **Theorem: Subgradient of Affine Transformation**
+### **Theorem | Subgradient of Affine Transformation**
 
 > The subgradient of the function $f(Ax + b)$ wrt to x is: 
 > $$
 >   \partial[f(Ax + b)|x](x) = A^T\partial[f](Ax + b).
 > $$
-> However, the case where $\partial[f(Ax + b)|x](x) \subseteq A^T\partial[f](Ax + b)$ is generally false, and it's true when: 
-> - (i) The range of $A$ contains a point from $\text{ri}\circ\text{dom}(f)$. 
-> - (ii) $f$ is polyhedral and the point $\text{ri}\circ\text{dom}f$ is contained in the range of $A$. 
+>  They are equal if any one of the following is true: 
+> - (i) The range of $A$ contains a point from $\text{ri}\circ\text{dom}\;(f)$. 
+> - (ii) $f$ is polyhedral and, there is a point in $\text{dom}\; f$ that is contained in the range of $A$. 
 
 **Proofs of Weak Results:**
 
@@ -143,8 +143,8 @@ where, this is always true, regardless of the regularity assmptions. Finally, we
 
 **Proofs of Strong Results**
 
-Skipped, I would need to read Rockafellar carefully to cover this topic. 
-
+The proof and non-trivial, consult Rockafellar red book, Theorem 23.9 for details. 
+$\blacksquare$
 
 **Remarks**
 
@@ -156,7 +156,7 @@ See stack exchange discussions [here](https://math.stackexchange.com/questions/2
 
 
 ---
-### **Theorem: Subgradient of Monotone Composition (Weak Results)**
+### **Theorem | Subgradient of Monotone Composition (Weak Results)**
 
 > Define $f(x):= h(f_1(x), f_2(x), \cdots, f_n(x))$, where $h(x_1, x_2, \cdots, x_n)$ is a convex and non-decreasing function in each of its parameter , and $f_i(x)$ are all convex. The weak result stated that: 
 > $$
@@ -202,7 +202,7 @@ See course notes: [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgra
 
 
 ---
-### **Theorem: Subgradient of Summations**
+### **Theorem | Subgradient of Finite Summations**
 
 > Let $f_1,f_2$ be 2 convex function such that $\text{ri}(\text{dom})(f_1) \cap \text{ri}(\text{dom})(f_2)\neq \emptyset$, then we have the following strong subgradient theorem: 
 > $$

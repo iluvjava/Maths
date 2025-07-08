@@ -1,11 +1,12 @@
-[[Subdifferentials Subgradient Computations]], 
+- [[Subdifferentials Subgradient Computations]], 
 
 ---
 ### **Intro**
 
-We introduce the need to reconsider the rule of affine composition in normal derivative and motivate the need to establish new rules for subgradient computations rule on convex function with affine composition. 
+Subgradient of $f\circ (x \mapsto Ax - b)$. 
 
-**Claim:**
+
+#### **Claim | An counter example**
 
 > there exists instance where let $f:X\mapsto \mathbb{\bar{R}}$, we have the affine composition rule $A^T\partial [f](Ax) \subsetneq \partial [f\circ A](x)$. 
 

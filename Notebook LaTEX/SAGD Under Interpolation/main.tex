@@ -61,7 +61,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Let $\beta > 0$. 
             Then, we define the proximal gradient operator $T_{\beta}$ as 
             \begin{align*}
-                T_\beta (x | F) &= \argmin{z} \left\lbrace
+                T_\beta (x | F) &= \argmin_{z} \left\lbrace
                     g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{\beta}{2}\Vert z - x\Vert^2
                 \right\rbrace. 
             \end{align*}
@@ -112,6 +112,100 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         % \end{definition}
         % The following theorems are critical in analyzing the behavior of algorithm in Definition \ref{def:st-method}. 
         
+        \begin{theorem}[Jensen's inequality]\label{thm:jesen}
+            Let $F: \RR^n \rightarrow \overline \RR$ be a $\mu \ge 0$ strongly convex function. 
+            Then, it is equivalent to the following condition. 
+            For all $x, y \in \RR^n$, $\lambda \in (0, 1)$ it satisfies the inequality 
+            \begin{align*}
+                (\forall \lambda \in [0, 1])\; 
+                F(\lambda x + (1 - \lambda)y) \le \lambda F(x) + (1 - \lambda)F(y) -\frac{\mu\lambda(1 - \lambda)}{2} \Vert y - x\Vert^2. 
+            \end{align*}
+        \end{theorem}
+        \begin{remark}
+            If $x, y$ is out of $\dom F$, the inequality still work by convexity. 
+        \end{remark}
+        \begin{definition}[semi quasi strong convexity Jensen inequality \textcolor{red}{NEW}]\label{def:sq-scnvx}
+            Let $m, n \in \N$. 
+            A function $f:\RR^n \rightarrow \overline \RR$ is semi quasi strongly convex with linear mapping $A:\RR^m \rightarrow \RR^n$ if for all $x \in \RR^n, y \in \RR^n$ and $\lambda \in [0, 1]$ it satisfies:
+            \begin{align*}
+                F(\lambda x + (1 - \lambda)y) \le \lambda F(x) + (1 - \lambda)F(y) -\frac{\lambda(1 - \lambda)}{2} \Vert Ay - Ax\Vert^2. 
+            \end{align*}
+        \end{definition}
+        \begin{remark}
+            Choose $A = \sqrt{\mu} I$, where $I$ is the identity matrix then it is equivalent to $\mu$ strongly convex. 
+            This is an example of uniform convexity because there exists some $\sigma \ge 0$ such that it fits in Bauschke \cite[Definition 10.7]{bauschke_convex_2017} with $\phi(z) = \sigma^2z^2$. 
+            \\
+            It is called ``Semi'' because of the semi norm induced by matrix $A$, followed by ``Quasi strongly convex'' because the quasi norm $\Vert Ax\Vert^2$ is the distance of an oblique projection to the kernel of $A$ which is a quasi strongly convex function. 
+        \end{remark}
+        The above definition is the special case of relatively strong convexity wrt to the Bregman divergence $D_h(x, y) = \Vert Ax - Ay\Vert^2$. 
+        \begin{theorem}[an equivalent definition for SQ-SCNVX functions]\label{thm:sq-scnvx-equiv}
+            A function $F$ is semi quasi strongly convex with $A$ if and only if the function $x \mapsto F(x) - \frac{1}{2}\Vert A x\Vert^2$ is convex. 
+        \end{theorem}
+        \begin{proof}
+            For all $\lambda \in \RR, x \in \RR^n, y \in \RR^n$ it has $-1/2\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 = (1/2)(\lambda\Vert Ax\Vert^2 + (1 - \lambda)\Vert Ay\Vert^2 - \lambda(1 - \lambda)\Vert Ax - Ay\Vert^2)$ by verifying: 
+            \begin{align*}
+                & -\frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 + 
+                \left(
+                    \frac{\lambda}{2}\Vert Ax\Vert^2 + \frac{1 - \lambda}{2}\Vert Ay\Vert^2 - \frac{\lambda(1 - \lambda)}{2}\Vert Ay - Ax\Vert^2
+                \right)
+                \\
+                &= 
+                -\frac{1}{2}\left(
+                    \lambda^2\Vert Ax\Vert^2 + (1 - \lambda)^2\Vert Ay\Vert^2 - 2\lambda(1 - \lambda) \langle Ax, Ay\rangle
+                \right)
+                    \\ &\quad 
+                    + 
+                    \left(
+                        \frac{\lambda}{2} - \frac{\lambda(1 - \lambda)}{2}
+                    \right)\Vert Ax\Vert^2 + \left(
+                        \frac{1 - \lambda}{2} - \frac{\lambda(1 - \lambda)}{2}
+                    \right)\Vert Ay\Vert^2 - \lambda(1 - \lambda)\langle Ay, Ax\rangle
+                \\
+                &= - \frac{\lambda^2}{2}\Vert Ax\Vert^2 - \frac{(1 - \lambda)^2}{2}\Vert Ay\Vert^2
+                    \\ &\quad 
+                    + 
+                    \left(
+                        \frac{\lambda}{2} - \frac{\lambda - \lambda^2}{2}
+                    \right)\Vert Ax\Vert^2 + \left(
+                        \frac{1 - \lambda}{2} - \frac{\lambda - \lambda^2}{2}
+                    \right)\Vert Ay\Vert^2
+                \\
+                &= 0
+            \end{align*}
+            Using the above result we can prove the equivalency because 
+            {\small
+            \begin{align*}
+                0 &\le F(\lambda x + (1 - \lambda)y) + \lambda F(x) + (1 - \lambda)F(y) -\frac{\lambda(1 - \lambda)}{2} \Vert Ay - Ax\Vert^2
+                \\
+                &=  F(\lambda x + (1 - \lambda)y) - \frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 
+                + \lambda F(x) - \frac{\lambda}{2}\Vert Ax\Vert^2 
+                + (1 - \lambda)F(y) - \frac{1 - \lambda}{2} \Vert Ay\Vert^2 
+                    \\ &\quad 
+                    - \frac{\lambda(1 - \lambda)}{2} \Vert Ay - Ax\Vert^2 + \frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2
+                    + \frac{1}{2}\Vert Ax\Vert^2 + \frac{1}{2}\Vert Ay\Vert^2 
+                \\
+                &= 
+                F(\lambda x + (1 - \lambda)y) - \frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 
+                    \\ &\quad 
+                    + \lambda \left(F(x) - \frac{1}{2}\Vert Ax\Vert^2\right) 
+                    + (1 - \lambda)\left(F(y) - \frac{1}{2} \Vert Ay\Vert^2\right). 
+            \end{align*}
+            }
+            So, the function $F(x) - \frac{1}{2}\Vert Ax\Vert^2$ is convex. 
+        \end{proof}
+        The following theorem classifies a class of semi quasi strongly convex function. 
+        \begin{theorem}[Affine composite differentiable SQ-SCNVX functions]\label{thm:smooth-aff-sq-scnvs-fxn}
+            
+        \end{theorem}
+        \begin{proof}
+            Let $h(x) = f(Ax - b)$. 
+            
+        \end{proof}
+        The following definition defines the concept of relative smoothness. 
+        \begin{definition}[semi relative smoothness]\label{def:semi-rel-smooth}
+            
+        \end{definition}
+        We build the proximal gradient inequality for the class of SQ-SCNVX functions. 
         \begin{theorem}[proximal gradient inequality]\label{thm:pg-ineq}
             Let function $F$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}, so it's $\mu \ge 0$ strongly convex. 
             For all $x\in \RR^n$, define $x^+ = T_L(x)$, then there exists a $B \ge 0$ such that $D_f(x^+, x) \le B/2 \Vert x^+ - x\Vert^2$. 
@@ -131,29 +225,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Each of the reference books gives a proof of the theorem. 
             But for the best consistency in notations, see Theorem 2.3 in Li and Wang \cite{li_relaxed_2025}. 
         \end{remark}
-        \begin{theorem}[Jensen's inequality]\label{thm:jesen}
-            Let $F: \RR^n \rightarrow \overline \RR$ be a $\mu \ge 0$ strongly convex function. 
-            Then, it is equivalent to the following condition. 
-            For all $x, y \in \RR^n$, $\lambda \in (0, 1)$ it satisfies the inequality 
-            \begin{align*}
-                (\forall \lambda \in [0, 1])\; 
-                F(\lambda x + (1 - \lambda)y) \le \lambda F(x) + (1 - \lambda)F(y) -\frac{\mu\lambda(1 - \lambda)}{2} \Vert y - x\Vert^2. 
-            \end{align*}
-        \end{theorem}
-        \begin{remark}
-            If $x, y$ is out of $\dom F$, the inequality still work by convexity. 
-        \end{remark}
+        
 
-        \begin{definition}[semi quasi strong convexity (\textcolor{red}{NEW})]\label{def:sq-scnvx}
-            A function $f:\RR^n \rightarrow \overline \RR$ is semi quasi strongly convex if, there exists a constant $\mu \ge 0$ and, a non-zero linear mapping $A: \RR^n\rightarrow \RR^m$ such that for all $x \in \RR^n, y \in RR^n$ and $\lambda \in [0, 1]$ it satisfies:
-            \begin{align*}
-                F(\lambda x + (1 - \lambda)y) \le \lambda F(x) + (1 - \lambda)F(y) -\frac{\mu\lambda(1 - \lambda)}{2} \Vert A(y - x)\Vert^2. 
-            \end{align*}
-        \end{definition}
-        \begin{remark}
-            It is strong convexity but instead of being strongly convex to the function $\mu/2\Vert \cdot\Vert^2$, it's $x \mapsto \mu/2\Vert Ax \Vert^2$ instead. 
-            This is an example of uniform convexity because it also fits in Bauchke \cite[Definition 10.7]{bauschke_convex_2017}, with $\phi = \Vert A\Vert^2\Vert x - y\Vert^2$. 
-        \end{remark}
     \subsection{Stochastic accelerated proximal gradient}
         The following assumption about the objective function is fundamental in incremental gradient method for Machine Learning, data science other similar tasks. 
         \begin{assumption}[sum of many]\label{ass:sum-of-many}
@@ -201,7 +274,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                         }
                     \right) &\ge 0. 
                 \end{align*}
-                \item ... \todoinline{This part is not finished yet. }
+                \item If, in addition, the sequence $\tilde \mu_k$ satisfies for all $k \ge 1$, $\frac{\tilde \mu_k}{L_{k - 1}} < L_{k - 1}/ L_k$, then the sequence also satisfies for all $k \ge 1$: $\alpha_k < 1$. 
             \end{enumerate}
         \end{lemma}
         \begin{proof}
@@ -351,15 +424,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \par
                 Well, it will still make sense because one such choice could be $\tilde \mu_k = \rho\min_{i = 1, \ldots, k} L_{i - 1}/L_i$ for some $\rho \in (0, 1)$. 
             \end{enumerate}
-            
-
         \end{remark}
         % --------------------------------------------------------------------------------------------------------------
         \begin{definition}[SNAPG-V2]\label{def:snapg-v2}
             Let $F$ satisfies Assumption \ref{ass:sum-of-many}. 
             Let $(I_k)_{k \ge 0}$ be a list of i.i.d random variables uniformly sampled from set $\{0, 1, 2, \cdots, n\}$. 
             Initialize $v_{-1} = x_{-1}, \alpha_0 = 1$. 
-            \textcolor{red}{Let $\tilde \mu \ge 0$ be a fixed constant.}
+            Let $\tilde \mu \ge 0$ be a constant that is fixed.
             The SNAPG generates the sequence $(y_k, x_k, v_k)_{k \ge 0}$ such that for all $k \ge 0$ they satisfy: 
             \begin{align*}
                 & \alpha_k \in (0, 1): (L_{k - 1}/L_k)(1 - \alpha_{k})\alpha_{k - 1}^2 = \alpha_{k}\left(\alpha_{k} - \tilde \mu/L_k\right), \\
@@ -375,12 +446,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Otherwise, all the iterates $(x_k, y_k, z_k)$ are random variable determined by $I_k$ when conditioned on all previous $I_{k - 1}, I_{k - 2}, \ldots, I_{0}$. 
             \par
             \textcolor{red}{NEW}. One may notice that $\alpha_k$ requires $L_k$ which comes before $L_k, x_k$ which are needed in advanced for $\alpha_k$. 
-            This may seems off since no algorithm can know what $L_k$ to choose in advanced to determine the line search. 
-            But, it is important to note that in here, we defined a sequence of conditions on the iterates $x_k, y_k, z_k$, and auxilary sequences $\alpha_k, L_k$ which is not a definition of any algorithm. 
+            This may seem off since no algorithm can know what $L_k$ to choose in advanced to determine the line search. 
+            But, it is important to note that in here, we defined a sequence of conditions on the iterates $x_k, y_k, z_k$, and auxiliary sequences $\alpha_k, L_k$ which is not a definition of any algorithm. 
             It is quantifying the conditions needed for an algorithm that actually implements it.
             \par
             For the trivial case where we don't need to worry about it is when $L_k = \max_{i = 1, \ldots, n} K^{(i)}$. 
-            See Chambolle, Calatroni \cite{calatroni_backtracking_2019} for an implementations of linear search with backtracking for the FISTA algorithm, it is how one would implement it in the deterministic case. 
+            See Chambolle, Calatroni \cite{calatroni_backtracking_2019} for an implementation of linear search with backtracking for the FISTA algorithm, it is how one would implement it in the deterministic case. 
         \end{remark}
         
         The following lemma state the relationships of the iterates generated by SNAPG-V2. 
@@ -924,6 +995,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             } 
         \end{proof}
     \subsection{convergence rate of the algorithm under various circumstances}
+        The previous section highlighted a generic convergence results from one iteration of the algorithm, however, there are a lot of loose ends. 
+        This section will deal with those. 
+
 
     \subsection{\textcolor{purple}{So, what to do next?}}
         Hi Arron would you like to add me for the co-authorship to continue this line of work and see how Nesterov's Accelerated Technique may work out for the stochastic gradient method? 
