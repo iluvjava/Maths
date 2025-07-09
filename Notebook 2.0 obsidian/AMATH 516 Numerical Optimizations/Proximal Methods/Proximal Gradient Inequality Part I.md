@@ -247,10 +247,6 @@ $$
 
 $\blacksquare$
 
-#### **Theorem 1.3 | generic relatively smooth and convex inequality**
-
-
-
 #### **Theorem 1.4 | convex smooth proximal gradient inequality**
 > Assume that $F = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex. 
 > Then, for $y \in \R^n, y^+ = T_{L^{-1}, f, g}(y)$ it has the following: 
