@@ -56,12 +56,6 @@ $\blacksquare$
 Convexity of $f$ is not necessary for the claim to hold. 
 This is true for all non-convex but differential $f$ as well. 
 
-A variational inequality characterize the iterates generated through the proximal gradient mapping. 
-
-#### **Lemma 0.2 | Proximal gradient optimality inequality**
-> ...
-
-
 
 ---
 ### **The envelope approach for proximal gradient inequality**
@@ -148,7 +142,7 @@ $\blacksquare$
 This should make sense since the linearizing the smooth part make the model function lower than the original model function, so it's less. 
 This is true for all $L$, the $L$ here doesn't have to be the Lipschitz smoothness constant of function $f$. 
 
-#### **Claim 1.2 | The Fundamental Proximal gradient inequality**
+#### **Claim 1.2 | generic proximal gradient inequality**
 > Let $F = g + f$ where $f:\R^n\rightarrow \overline \R$ is differentiable, and $g:\R^n\rightarrow \overline \R$ such that it is bounded below. 
 > Let $y \in \R^n$ and suppose that the function $\widetilde{\mathcal M}_F^{1/\beta}(\cdot, y)$ satisfies the quadratic growth condition with constant $q > 0$ such that for all $y^+ \in T_{1/\beta,f, g}(y)$ it has 
 > $$
@@ -159,10 +153,11 @@ This is true for all $L$, the $L$ here doesn't have to be the Lipschitz smoothne
 >     \frac{q}{2}\Vert x - y^+\Vert^2. 
 > \end{aligned}
 > $$
-> Then, $y^+$ is unique, and it has the following inequality and equality: 
+> Then, $y^+$ is unique, and it has the following equivalent representations: 
 > $$
 > \begin{aligned}
->   0 &\le F(x) - F(y^+) + D_{\beta/2\Vert \cdot\Vert^2 - f}(x, y) -
+>   0 &\le 
+>   F(x) - F(y^+) + D_{\beta/2\Vert \cdot\Vert^2 - f}(x, y) -
 >   D_{\beta/2\Vert \cdot\Vert^2 - f}(y^+, y) - q/2\Vert x -
 >   y^+\Vert^2
 >   \\
@@ -252,8 +247,11 @@ $$
 
 $\blacksquare$
 
+#### **Theorem 1.3 | generic relatively smooth and convex inequality**
 
-#### **Theorem 1.3 | Convex smooth proximal gradient inequality**
+
+
+#### **Theorem 1.4 | convex smooth proximal gradient inequality**
 > Assume that $F = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex. 
 > Then, for $y \in \R^n, y^+ = T_{L^{-1}, f, g}(y)$ it has the following: 
 > $$
@@ -282,62 +280,73 @@ $$
 \end{aligned}\tag{a}
 $$
 
-Take Claim 1.2 it has: 
+Therefore, it has 
+
+$$
+\begin{aligned}
+    & \frac{-L}{2}\Vert x - y\Vert^2 \le 
+    -D_f(x, y) \le 
+    \frac{-\mu}{2}\Vert x - y\Vert^2
+    \\
+    \iff &
+    0 \le D_{L/2\Vert \cdot\Vert^2 - f}(x, y) 
+    \le \frac{L - \mu}{2}\Vert x - y\Vert^2. 
+\end{aligned}\tag{b}
+$$
+
+Take Claim 1.2 and with $q = L = \beta$ it has: 
 
 $$
 \begin{aligned}
     0 &\le 
-    F(x) - F(y^+) - \left\langle L(y - y^+), x - y^+\right\rangle - D_f(x, y) + D_f(y^+, y)
-    & 
-    \\
-    &\underset{\text{(a)}}{\le}
-    F(x) - F(y^+) - \left\langle L(y - y^+), x -y + y - y^+\right\rangle 
-    - \frac{\mu}{2}\Vert x - y\Vert^2
-    + \frac{L}{2}\Vert y^+ - y\Vert^2
+    F(x) - F(y^+) + D_{\beta/2\Vert \cdot\Vert^2 - f}(x, y) -
+    D_{\beta/2\Vert \cdot\Vert^2 - f}(y^+, y) - q/2\Vert x -
+    y^+\Vert^2
     \\
     &= 
-    F(x) - F(y^+) - \langle L(y - y^+), x - y \rangle - L \Vert y - y^+\Vert^2
-    - \frac{\mu}{2}\Vert x - y\Vert^2
-    + \frac{L}{2}\Vert y^+ - y\Vert^2
+    F(x) - F(y^+) + D_{L/2\Vert \cdot\Vert^2 - f}(x, y) -
+    D_{L/2\Vert \cdot\Vert^2 - f}(y^+, y) - L/2\Vert x -
+    y^+\Vert^2
     \\
-    &=
-    F(x) - F(y^+) - \langle L(y - y^+), x - y\rangle
+    &\underset{\text{(b)}}{\le}
+    F(x) - F(y^+) 
+    + \frac{L - \mu}{2}\Vert x - y\Vert^2
+    - 0
+    - \frac{L}{2}\Vert x -y^+\Vert^2. 
+\end{aligned}
+$$
+
+Equivalently, from Claim 1.2: 
+
+$$
+\begin{aligned}
+    0 &\le F(x) - F(y^+)
+    - \langle \beta(y - y^+), x - y^+\rangle
+    - D_f(x, y) 
+    + D_f(y^+, y)
+    + \frac{\beta - q}{2}\Vert x - y^+\Vert^2
+    \\
+    &= F(x) - F(y^+)
+    - L\langle y - y^+, x - y^+\rangle
+    - D_f(x, y) 
+    + D_f(y^+, y)
+    + 0
+    \\
+    &\underset{\text{(a)}}{=} 
+    F(x) - F(y^+)
+    - L\langle y - y^+, x - y + y - y^+\rangle
+    - \frac{\mu}{2}\Vert x - y\Vert^2
+    + \frac{L}{2}\Vert y - y^+\Vert^2
+    \\
+    &= 
+    F(x) - F(y^+)
+    - L\langle y - y^+, x - y \rangle
     - \frac{\mu}{2}\Vert x - y\Vert^2
     - \frac{L}{2}\Vert y - y^+\Vert^2. 
 \end{aligned}
 $$
 
-On the second inequality above we made use of the upper bound of the Bregman divergence $D_f$ using the smoothness assumption. 
-Our first result is claimed, proceeding further it has: 
-
-$$
-{\small
-\begin{aligned}
-    0
-    &\le 
-    F(x) - F(y^+) - \langle L(y - y^+), x - y\rangle 
-    - \frac{\mu}{2}\Vert x - y\Vert^2
-    - \frac{L}{2}\Vert y - y^+\Vert^2
-    \\
-    &=
-    F(x) - F(y^+) - 
-    \left(
-        L\langle y - y^+, x - y \rangle + \frac{L}{2}\Vert y - y^+\Vert^2
-        + \frac{L}{2}\Vert x - y\Vert^2
-    \right)
-    + \frac{L}{2}\Vert x - y\Vert^2 
-    - \frac{\mu}{2}\Vert x - y\Vert^2
-    \\
-    &=
-    F(x) - F(y^+) - \frac{L}{2}\Vert x - y^+\Vert^2  + \frac{L}{2}\Vert x - y\Vert^2 
-    - \frac{\mu}{2}\Vert x - y\Vert^2
-    \\
-    &= F(x) - F(y^+) - \frac{L}{2}\Vert x - y^+\Vert^2  + \frac{L - \mu}{2}\Vert x - y\Vert^2. 
-\end{aligned}
-}
-$$
-
-Our second result is claimed. 
+Claim 1.2 showed that the expression we started with in both cases are equal, hence they are still equal because it's all equalities. 
 
 $\blacksquare$
 
@@ -346,7 +355,7 @@ $\blacksquare$
 The claim is true for all $L$ that is larger than the real Lipschitz modulus of $f$. 
 
 
-#### **Theorem 1.4 | Strong convexity from both smooth and nonsmooth parts**
+#### **Theorem 1.5 | Strong convexity from both smooth and nonsmooth parts**
 > Let $F = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu_f \ge 0$ strongly convex, let $g$ be $\mu_g \ge 0$ strongly convex. 
 > Then for any $x \in \R^n, y \in \R^n, y^+ = T_{L^{-1}, f, g}$, it satisfies:
 >

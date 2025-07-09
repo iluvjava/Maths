@@ -3,3 +3,4 @@ SNAPG
 NAPG
 FISTA
 Nesterov
+seminorm

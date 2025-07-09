@@ -41,190 +41,278 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 % ==============================================================================
 \section{Nesterov's Accelerated Gradient}
     \subsection{In preparations}
-        Assumption \ref{ass:smooth-plus-nonsmooth} states the standard assumption of smooth plus non-smooth structured optimization problems for proximal gradient based algorithm. 
-        Assumption \ref{ass:smooth-plus-nonsmooth-x} adds the assumption for the existence of minimizers. 
         Definition \ref{def:pg-opt} is the definition of the proximal gradient operator, which is equivalent to the gradient descent operator when the non-smooth part of the objective is the zero function. 
         \par
-        Finally, to show the convergence of a stochastic case of the Nesterov's accelerated proximal gradient, we prepared Lemma \ref{thm:jesen} and, \ref{thm:pg-ineq}. 
+        To show the convergence of a stochastic case of the Nesterov's accelerated proximal gradient, we prepared Lemma \ref{thm:jesen} and, \ref{thm:pg-ineq}. 
         They are crucial in the derivation of the convergence. 
-        The derivation for the convergence rate of a stochastic accelerated variant of Nester's accelerated  proximal gradient method is in the next section. 
-        \begin{assumption}[smooth add nonsmooth]\label{ass:smooth-plus-nonsmooth}
-            The function $F = f + g$ where $f:\RR^n \rightarrow \RR$ is an $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
-            The function $g:\RR^n \rightarrow \overline \RR$ is a closed convex proper function. 
-        \end{assumption}
-        \begin{assumption}[admitting minimizers]\label{ass:smooth-plus-nonsmooth-x}
-            Let $F = f + g$ and in addition assume that the set of minimizers $X^+ := \argmin_{x}F(x)$ is non-empty. 
-        \end{assumption}
-
-        \begin{definition}[Proximal gradient operator]\label{def:pg-opt}
-            Suppose $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}. 
-            Let $\beta > 0$. 
-            Then, we define the proximal gradient operator $T_{\beta}$ as 
-            \begin{align*}
-                T_\beta (x | F) &= \argmin_{z} \left\lbrace
-                    g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{\beta}{2}\Vert z - x\Vert^2
-                \right\rbrace. 
-            \end{align*}
-        \end{definition}
-        \begin{remark}
-            If the function $g \equiv 0$, then it yields the gradient descent operator $T_\beta(x) = x - \beta^{-1}\nabla f(x)$. 
-            In the context where it's clear what the function $F = f + g$ is, we simply write $T_\beta(x)$ for short. 
-        \end{remark}
-
-        \begin{definition}[Bregman Divergence]
-            Let $f:\RR^n \rightarrow \overline \RR$ be a differentiable function. 
-            Then, for all the Bregman divergence $D_f: \RR^n \times \dom\nabla f \rightarrow \RR$ is defined as: 
-            \begin{align*}
-                D_f(x, y) := f(x) - f(y) - \langle \nabla f(y), x - y\rangle. 
-            \end{align*}
-        \end{definition}
-        \begin{remark}
-            If, $f$ is $\mu \ge 0$ strongly convex and $L$ Lipschitz smooth then, its Bregman Divergence has for all $x, y \in \RR^n$: $\mu/2 \Vert x - y\Vert^2 \le D_f(x, y) \le L/2 \Vert x - y\Vert^2$. 
-        \end{remark}
-
-        % \begin{definition}[R-WAPG sequence]\label{def:rwapg-seq}
-        %     Let $(L_k)_{k \ge 0}$ be a sequence such that $L_k > \mu$ for all $k$. 
-        %     Let $\alpha_0 \in (0, 1]$, $(\alpha_k)_{k \ge 1}$ has $\alpha_k \in (\mu/ L_k, 1)$. 
-        %     Then define for all $k \ge 0$: 
-        %     \begin{align*}
-        %         \rho_k(1 - \alpha_{k + 1})\alpha_k^2 = \alpha_{k + 1}(\alpha_{k + 1} - \mu/L_k). 
-        %     \end{align*}
-        % \end{definition}
-        % \begin{remark}
-        %     When $\rho_k = 1$, the recursive relation between $\alpha_k, \alpha_{k - 1}$ is the same as the well known Nesterov's sequence used in algorithm such as FISTA and Nesterov's accelerated gradient. 
-        %     See Li and Wang \cite{li_relaxed_2025} for more information. 
-        % \end{remark}
-        % \begin{definition}[similar triangle representation of NAPG]\;\label{def:st-method}\\
-        %     Let $(\alpha_k)_{k \ge 0}$ be an R-WAPG sequence. 
-        %     Suppose that the base case $v_{-1}, x_{k - 1}\in \RR^n$ is given to initialize the algorithm. 
-        %     Then the algorithm produces the sequence of iterates $(y_k, x_k, v_k)_{k \ge 0}$ and auxiliary parameter sequence $L_k, \tau_k$ satisfying these inequalities: 
-        %     \begin{align*}
-        %         & \tau_k = L_k(1 - \alpha_k)(L_k\alpha_k - \mu)^{-1}, 
-        %         \\
-        %         & y_k = (1 + \tau_k)^{-1} v_{k - 1} + \tau_k (1 + \tau_k)^{-1} x_{k - 1},
-        %         \\
-        %         & D_f(x_k, y_k) \le L_k/2\Vert x_k - y_k\Vert^2, 
-        %         \\
-        %         & x_k = T_{L_k}(y_k),
-        %         \\
-        %         & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
-        %     \end{align*} 
-        % \end{definition}
-        % The following theorems are critical in analyzing the behavior of algorithm in Definition \ref{def:st-method}. 
-        
-        \begin{theorem}[Jensen's inequality]\label{thm:jesen}
-            Let $F: \RR^n \rightarrow \overline \RR$ be a $\mu \ge 0$ strongly convex function. 
-            Then, it is equivalent to the following condition. 
-            For all $x, y \in \RR^n$, $\lambda \in (0, 1)$ it satisfies the inequality 
-            \begin{align*}
-                (\forall \lambda \in [0, 1])\; 
-                F(\lambda x + (1 - \lambda)y) \le \lambda F(x) + (1 - \lambda)F(y) -\frac{\mu\lambda(1 - \lambda)}{2} \Vert y - x\Vert^2. 
-            \end{align*}
-        \end{theorem}
-        \begin{remark}
-            If $x, y$ is out of $\dom F$, the inequality still work by convexity. 
-        \end{remark}
-        \begin{definition}[semi quasi strong convexity Jensen inequality \textcolor{red}{NEW}]\label{def:sq-scnvx}
-            Let $m, n \in \N$. 
-            A function $f:\RR^n \rightarrow \overline \RR$ is semi quasi strongly convex with linear mapping $A:\RR^m \rightarrow \RR^n$ if for all $x \in \RR^n, y \in \RR^n$ and $\lambda \in [0, 1]$ it satisfies:
-            \begin{align*}
-                F(\lambda x + (1 - \lambda)y) \le \lambda F(x) + (1 - \lambda)F(y) -\frac{\lambda(1 - \lambda)}{2} \Vert Ay - Ax\Vert^2. 
-            \end{align*}
-        \end{definition}
-        \begin{remark}
-            Choose $A = \sqrt{\mu} I$, where $I$ is the identity matrix then it is equivalent to $\mu$ strongly convex. 
-            This is an example of uniform convexity because there exists some $\sigma \ge 0$ such that it fits in Bauschke \cite[Definition 10.7]{bauschke_convex_2017} with $\phi(z) = \sigma^2z^2$. 
-            \\
-            It is called ``Semi'' because of the semi norm induced by matrix $A$, followed by ``Quasi strongly convex'' because the quasi norm $\Vert Ax\Vert^2$ is the distance of an oblique projection to the kernel of $A$ which is a quasi strongly convex function. 
-        \end{remark}
-        The above definition is the special case of relatively strong convexity wrt to the Bregman divergence $D_h(x, y) = \Vert Ax - Ay\Vert^2$. 
-        \begin{theorem}[an equivalent definition for SQ-SCNVX functions]\label{thm:sq-scnvx-equiv}
-            A function $F$ is semi quasi strongly convex with $A$ if and only if the function $x \mapsto F(x) - \frac{1}{2}\Vert A x\Vert^2$ is convex. 
-        \end{theorem}
-        \begin{proof}
-            For all $\lambda \in \RR, x \in \RR^n, y \in \RR^n$ it has $-1/2\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 = (1/2)(\lambda\Vert Ax\Vert^2 + (1 - \lambda)\Vert Ay\Vert^2 - \lambda(1 - \lambda)\Vert Ax - Ay\Vert^2)$ by verifying: 
-            \begin{align*}
-                & -\frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 + 
-                \left(
-                    \frac{\lambda}{2}\Vert Ax\Vert^2 + \frac{1 - \lambda}{2}\Vert Ay\Vert^2 - \frac{\lambda(1 - \lambda)}{2}\Vert Ay - Ax\Vert^2
-                \right)
-                \\
-                &= 
-                -\frac{1}{2}\left(
-                    \lambda^2\Vert Ax\Vert^2 + (1 - \lambda)^2\Vert Ay\Vert^2 - 2\lambda(1 - \lambda) \langle Ax, Ay\rangle
-                \right)
-                    \\ &\quad 
-                    + 
+        The derivation for the convergence rate of a stochastic accelerated variant of Nesterov's accelerated  proximal gradient method is in the next section. 
+        \subsubsection{Basic definitions}
+            % --------------------------------------------------------------------------------------------------------------
+            \begin{definition}[Proximal gradient operator]\label{def:pg-opt}
+                Suppose $F = f + g$ with $\reli(\dom f) \cap \reli(\dom g) \neq \emptyset$, and $f$ is a differentiable function. 
+                Let $\beta > 0$. 
+                Then, we define the proximal gradient operator $T_{\beta}$ as 
+                \begin{align*}
+                    T_\beta (x | F) &= \argmin_{z} \left\lbrace
+                        g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{\beta}{2}\Vert z - x\Vert^2
+                    \right\rbrace. 
+                \end{align*}
+            \end{definition}
+            \begin{remark}
+                If the function $g \equiv 0$, then it yields the gradient descent operator $T_\beta(x) = x - \beta^{-1}\nabla f(x)$. 
+                In the context where it's clear what the function $F = f + g$ is, we simply write $T_\beta(x)$ for short. 
+            \end{remark}
+            % --------------------------------------------------------------------------------------------------------------
+            \begin{definition}[Bregman Divergence]
+                Let $f:\RR^n \rightarrow \overline \RR$ be a differentiable function. 
+                Then, for all the Bregman divergence $D_f: \RR^n \times \dom\nabla f \rightarrow \RR$ is defined as: 
+                \begin{align*}
+                    D_f(x, y) := f(x) - f(y) - \langle \nabla f(y), x - y\rangle. 
+                \end{align*}
+            \end{definition}
+            \begin{remark}
+                If, $f$ is $\mu \ge 0$ strongly convex and $L$ Lipschitz smooth then, its Bregman Divergence has for all $x, y \in \RR^n$: $\mu/2 \Vert x - y\Vert^2 \le D_f(x, y) \le L/2 \Vert x - y\Vert^2$. 
+            \end{remark}
+        \subsubsection{Properties of function}
+            % --------------------------------------------------------------------------------------------------------------
+            \begin{definition}[semi quasi strongly convex function \textcolor{red}{NEW}]\label{def:sq-scnvx}
+                A function $F: \RR^n \rightarrow \overline \RR$ is a semi quasi strongly convex function, abbreviated as ``SQ-SCNVX'' with respective to a linear mapping $A \in \RR^{m \times n}$ if $F - \frac{1}{2}\Vert Ax\Vert^2$ is a convex function. 
+            \end{definition}
+            \begin{remark}
+                Any $\mu \ge 0$ strongly convex function is QS-SCNVX with $A = \sqrt{\mu}I$. 
+                But the converse is not true because a seminorm is not a norm. 
+                One feature of a QS-SCNVX function is that it doesn't have a unique minimizer which differs it from strong convexity. 
+                It may not have a unique minimizer because it's not necessary that $\kernel A = \{\mathbf 0\}$. 
+            \end{remark}
+            % --------------------------------------------------------------------------------------------------------------
+            \begin{theorem}[Jensen's inequality]\label{thm:jesen}
+                Let $F: \RR^n \rightarrow \overline \RR$ be a $\mu \ge 0$ strongly convex function. 
+                Then, it is equivalent to the following condition. 
+                For all $x, y \in \RR^n$, $\lambda \in (0, 1)$ it satisfies the inequality 
+                \begin{align*}
+                    (\forall \lambda \in [0, 1])\; 
+                    F(\lambda x + (1 - \lambda)y) \le \lambda F(x) + (1 - \lambda)F(y) -\frac{\mu\lambda(1 - \lambda)}{2} \Vert y - x\Vert^2. 
+                \end{align*}
+            \end{theorem}
+            \begin{remark}
+                If $x, y$ is out of $\dom F$, the inequality still work by convexity. 
+            \end{remark}
+            % --------------------------------------------------------------------------------------------------------------
+            \begin{theorem}[quasi jesen inequality \textcolor{red}{NEW}]\label{thm:sq-scnvx-equiv}
+                A function $F$ is semi quasi strongly convex with $A \in \RR^{m \times n}$ (Definition \ref{def:sq-scnvx}) if and only if, for all $x, y \in \RR^n$ and, $\lambda \in [0, 1]$ it satisfies the inequality: 
+                \begin{align*}
+                    F(\lambda x + (1 - \lambda)y) \le \lambda F(x) + (1 - \lambda)F(y) -\frac{\lambda(1 - \lambda)}{2} \Vert Ay - Ax\Vert^2. 
+                \end{align*}
+            \end{theorem}
+            \begin{proof}
+                For all $\lambda \in \RR, x \in \RR^n, y \in \RR^n$ it has $-1/2\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 = (1/2)(\lambda\Vert Ax\Vert^2 + (1 - \lambda)\Vert Ay\Vert^2 - \lambda(1 - \lambda)\Vert Ax - Ay\Vert^2)$ by verifying: 
+                \begin{align*}
+                    & -\frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 + 
                     \left(
-                        \frac{\lambda}{2} - \frac{\lambda(1 - \lambda)}{2}
-                    \right)\Vert Ax\Vert^2 + \left(
-                        \frac{1 - \lambda}{2} - \frac{\lambda(1 - \lambda)}{2}
-                    \right)\Vert Ay\Vert^2 - \lambda(1 - \lambda)\langle Ay, Ax\rangle
-                \\
-                &= - \frac{\lambda^2}{2}\Vert Ax\Vert^2 - \frac{(1 - \lambda)^2}{2}\Vert Ay\Vert^2
-                    \\ &\quad 
-                    + 
-                    \left(
-                        \frac{\lambda}{2} - \frac{\lambda - \lambda^2}{2}
-                    \right)\Vert Ax\Vert^2 + \left(
-                        \frac{1 - \lambda}{2} - \frac{\lambda - \lambda^2}{2}
-                    \right)\Vert Ay\Vert^2
-                \\
-                &= 0
-            \end{align*}
-            Using the above result we can prove the equivalency because 
-            {\small
-            \begin{align*}
-                0 &\le F(\lambda x + (1 - \lambda)y) + \lambda F(x) + (1 - \lambda)F(y) -\frac{\lambda(1 - \lambda)}{2} \Vert Ay - Ax\Vert^2
-                \\
-                &=  F(\lambda x + (1 - \lambda)y) - \frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 
-                + \lambda F(x) - \frac{\lambda}{2}\Vert Ax\Vert^2 
-                + (1 - \lambda)F(y) - \frac{1 - \lambda}{2} \Vert Ay\Vert^2 
-                    \\ &\quad 
-                    - \frac{\lambda(1 - \lambda)}{2} \Vert Ay - Ax\Vert^2 + \frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2
-                    + \frac{1}{2}\Vert Ax\Vert^2 + \frac{1}{2}\Vert Ay\Vert^2 
-                \\
-                &= 
-                F(\lambda x + (1 - \lambda)y) - \frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 
-                    \\ &\quad 
-                    + \lambda \left(F(x) - \frac{1}{2}\Vert Ax\Vert^2\right) 
-                    + (1 - \lambda)\left(F(y) - \frac{1}{2} \Vert Ay\Vert^2\right). 
-            \end{align*}
-            }
-            So, the function $F(x) - \frac{1}{2}\Vert Ax\Vert^2$ is convex. 
-        \end{proof}
-        The following theorem classifies a class of semi quasi strongly convex function. 
-        \begin{theorem}[Affine composite differentiable SQ-SCNVX functions]\label{thm:smooth-aff-sq-scnvs-fxn}
-            
-        \end{theorem}
-        \begin{proof}
-            Let $h(x) = f(Ax - b)$. 
-            
-        \end{proof}
-        The following definition defines the concept of relative smoothness. 
-        \begin{definition}[semi relative smoothness]\label{def:semi-rel-smooth}
-            
-        \end{definition}
-        We build the proximal gradient inequality for the class of SQ-SCNVX functions. 
-        \begin{theorem}[proximal gradient inequality]\label{thm:pg-ineq}
-            Let function $F$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}, so it's $\mu \ge 0$ strongly convex. 
-            For all $x\in \RR^n$, define $x^+ = T_L(x)$, then there exists a $B \ge 0$ such that $D_f(x^+, x) \le B/2 \Vert x^+ - x\Vert^2$. 
-            Then, for all $z \in \RR^n$ it satisfies proximal gradient inequality at point $x$:  
-            \begin{align*}
-                0&\le F(z) - F(x^+) - \frac{B}{2}\Vert z - x^+\Vert^2  + \frac{B - \mu}{2}\Vert z - x\Vert^2
-                \\
-                &=  F(z) - F(x^+) - \langle B(x - x^+), z - x\rangle
-                - \frac{\mu}{2}\Vert z - x\Vert^2
-                - \frac{B}{2}\Vert x - x^+\Vert^2. 
-            \end{align*}
-            Since $f$ is assumed to be $L$ Lipschitz smooth, the above condition is true for all $x, y \in \RR^n$ for all $B \ge L$. 
-        \end{theorem}
-        \begin{remark}
-            The theorem is the same as in Nesterov's book \cite[Theorem 2.2.13]{nesterov_lectures_2018}, but with the use of proximal gradient mapping and proximal gradient instead of project gradient hence making it equivalent to the theorem in Beck's book \cite[Theorem 10.16]{beck_first-order_2017}. 
-            The only generalization here is parameter $B$ which made to accommodate algorithm that implements Definition \ref{def:snapg-v2} with line search routine to determine $L_k$. 
-            Each of the reference books gives a proof of the theorem. 
-            But for the best consistency in notations, see Theorem 2.3 in Li and Wang \cite{li_relaxed_2025}. 
-        \end{remark}
+                        \frac{\lambda}{2}\Vert Ax\Vert^2 + \frac{1 - \lambda}{2}\Vert Ay\Vert^2 - \frac{\lambda(1 - \lambda)}{2}\Vert Ay - Ax\Vert^2
+                    \right)
+                    \\
+                    &= 
+                    -\frac{1}{2}\left(
+                        \lambda^2\Vert Ax\Vert^2 + (1 - \lambda)^2\Vert Ay\Vert^2 - 2\lambda(1 - \lambda) \langle Ax, Ay\rangle
+                    \right)
+                        \\ &\quad 
+                        + 
+                        \left(
+                            \frac{\lambda}{2} - \frac{\lambda(1 - \lambda)}{2}
+                        \right)\Vert Ax\Vert^2 + \left(
+                            \frac{1 - \lambda}{2} - \frac{\lambda(1 - \lambda)}{2}
+                        \right)\Vert Ay\Vert^2 - \lambda(1 - \lambda)\langle Ay, Ax\rangle
+                    \\
+                    &= - \frac{\lambda^2}{2}\Vert Ax\Vert^2 - \frac{(1 - \lambda)^2}{2}\Vert Ay\Vert^2
+                        \\ &\quad 
+                        + 
+                        \left(
+                            \frac{\lambda}{2} - \frac{\lambda - \lambda^2}{2}
+                        \right)\Vert Ax\Vert^2 + \left(
+                            \frac{1 - \lambda}{2} - \frac{\lambda - \lambda^2}{2}
+                        \right)\Vert Ay\Vert^2
+                    \\
+                    &= 0
+                \end{align*}
+                Using the above result we can prove the equivalency because 
+                {\small
+                \begin{align*}
+                    0 &\le F(\lambda x + (1 - \lambda)y) + \lambda F(x) + (1 - \lambda)F(y) -\frac{\lambda(1 - \lambda)}{2} \Vert Ay - Ax\Vert^2
+                    \\
+                    &=  F(\lambda x + (1 - \lambda)y) - \frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 
+                    + \lambda F(x) - \frac{\lambda}{2}\Vert Ax\Vert^2 
+                    + (1 - \lambda)F(y) - \frac{1 - \lambda}{2} \Vert Ay\Vert^2 
+                        \\ &\quad 
+                        - \frac{\lambda(1 - \lambda)}{2} \Vert Ay - Ax\Vert^2 + \frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2
+                        + \frac{1}{2}\Vert Ax\Vert^2 + \frac{1}{2}\Vert Ay\Vert^2 
+                    \\
+                    &= 
+                    F(\lambda x + (1 - \lambda)y) - \frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 
+                        \\ &\quad 
+                        + \lambda \left(F(x) - \frac{1}{2}\Vert Ax\Vert^2\right) 
+                        + (1 - \lambda)\left(F(y) - \frac{1}{2} \Vert Ay\Vert^2\right). 
+                \end{align*}
+                }
+                The last line shows that the function $F(x) - \frac{1}{2}\Vert Ax\Vert^2$ is convex, the chain of equality shows the equivalence. 
+            \end{proof}
+            % --------------------------------------------------------------------------------------------------------------
+            \begin{definition}[smoothness and strong convexity with seminorm \textcolor{red}{NEW}]\label{def:seminorm-smooth-scnvx}
+                Let $f:\RR^n \rightarrow \RR$ be a differentiable function on $\reli\dom f$. 
+                Let $m \in \N$. 
+                Let $A: \RR^{m\times n}$ and $b \in \RR^n$ be arbitrary. 
+                Then, function $h: \RR^m \rightarrow \RR :=  x\mapsto f(Ax - b)$ is relatively smooth and, relatively strongly convex with respect to the function $x \mapsto (1/2)\Vert A x\Vert^2$: 
+                \begin{align*}
+                    (\forall x \in \RR^m)(\forall y \in \RR^m)\;
+                    \frac{\mu}{2}\Vert Ax - Ay\Vert^2 \le 
+                    D_f(x, y) \le \frac{L}{2}\Vert Ax - Ay\Vert^2. 
+                \end{align*}
+            \end{definition}
+            \begin{remark}
+                The definition exchanged the $\Vert \cdot\Vert^2$ for a seminorm squared: $x \mapsto \Vert Ax\Vert^2$ with some $A: \RR^m \rightarrow \RR^n$. 
+            \end{remark}
+            The following theorem classifies a class of semi quasi strongly convex function. 
+            % --------------------------------------------------------------------------------------------------------------
+            \begin{theorem}[affine composition with strong convexity and smoothness]\label{thm:smooth-aff-sq-scnvs-fxn}
+                Let $f: \RR^n \rightarrow \RR$ be an $L$ smooth and, $\mu \ge 0$ strongly convex. 
+                Let $A: \RR^m \rightarrow \RR^n$, $b \in \RR^n$ be arbitrary. 
+                Let $h: \RR^m \rightarrow \RR= x \mapsto f(Ax - b)$, then the function $h$ satisfies: 
+                \begin{align*}
+                    (\forall x \in \RR^m)(\forall y \in \RR^m)\; \frac{\mu}{2}\Vert Ax - Ay\Vert^2 
+                    \le D_h(x, y) \le \frac{L}{2}\Vert Ax - Ay\Vert^2. 
+                \end{align*}
+            \end{theorem}
+            \begin{proof}
+                Then the Bregman divergence of $h$ is: 
+                \begin{align*}
+                    D_h(x, y) &= h(x) - h(y) - \langle \nabla h(y), x - y\rangle
+                    \\
+                    &= f(Ax - b) - f(Ay - b) - \langle A^T\nabla f(Ay - b), x - y\rangle
+                    \\
+                    &= f(Ax - b) - f(Ay - b) - \langle \nabla f(Ay - b), Ax - Ay\rangle
+                    \\
+                    &= f(Ax - b) - f(Ay - b) - \langle \nabla f(Ay - b), Ax - b - (Ay - b)\rangle
+                    \\
+                    &= D_f(Ax - b, Ay - b). 
+                \end{align*}
+                Since $f$ is $L$ smooth and $\mu \ge 0$ strongly convex, it means 
+                \begin{align*}
+                    \frac{\mu}{2}\Vert Ax - Ay\Vert^2
+                    &= 
+                    \frac{\mu}{2}\Vert Ax - b - (Ay - b)\Vert^2 
+                    \\
+                    &\le D_f(Ax - b, Ay - b)
+                    \\
+                    &= D_h(x, y) 
+                    \\
+                    &\le \frac{L}{2} \Vert Ax - Ay\Vert^2. 
+                \end{align*}
+            \end{proof}
+            The following definition defines the concept of relative smoothness. 
+            We build the proximal gradient inequality for the class of SQ-SCNVX functions. 
+        \subsubsection{Important inequalities}
+            \begin{assumption}[smooth add nonsmooth]\label{ass:smooth-plus-nonsmooth}
+                The function $F = f + g$ where $f:\RR^n \rightarrow \RR$ is an $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
+                The function $g:\RR^n \rightarrow \overline \RR$ is a closed convex proper function. 
+            \end{assumption}
+            \begin{assumption}[admitting minimizers]\label{ass:smooth-plus-nonsmooth-x}
+                Let $F = f + g$ and in addition assume that the set of minimizers $X^+ := \argmin_{x}F(x)$ is non-empty. 
+            \end{assumption}
+            \begin{assumption}[seminorm smooth plus non-smooth]\label{ass:snorm-smth-p-nsmth}
+                Let $F = f + g$. Assume that: 
+                \begin{enumerate}[noitemsep]
+                    \item $f: \RR^m \rightarrow \overline \RR$ is differentiable and, it satisfies Definition \ref{def:seminorm-smooth-scnvx} with $L > \mu \ge 0$ and $A \in \RR^{m \times n}$. 
+                    \item $g:\RR^m \mapsto \overline \RR$ is a convex, proper and closed function. 
+                \end{enumerate}
+            \end{assumption}
+            % --------------------------------------------------------------------------------------------------------------
+            \begin{theorem}[proximal gradient inequality]\label{thm:pg-ineq}
+                Let function $F$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}, so it's $\mu \ge 0$ strongly convex. 
+                For any $x\in \RR^n$, define $x^+ = T_L(x)$. 
+                Then, there exists a $B \ge 0$ such that $D_f(x^+, x) \le B/2 \Vert x^+ - x\Vert^2$ and, for all $z \in \RR^n$ it satisfies the inequality: 
+                \begin{align*}
+                    0&\le F(z) - F(x^+) - \frac{B}{2}\Vert z - x^+\Vert^2  + \frac{B - \mu}{2}\Vert z - x\Vert^2
+                    \\
+                    &=  F(z) - F(x^+) - \langle B(x - x^+), z - x\rangle
+                    - \frac{\mu}{2}\Vert z - x\Vert^2
+                    - \frac{B}{2}\Vert x - x^+\Vert^2. 
+                \end{align*}
+                Since $f$ is assumed to be $L$ Lipschitz smooth, the above condition is true for all $x, y \in \RR^n$ for all $B \ge L$. 
+            \end{theorem}
+            \begin{remark}
+                The theorem is the same as in Nesterov's book \cite[Theorem 2.2.13]{nesterov_lectures_2018}, but with the use of proximal gradient mapping and proximal gradient instead of project gradient hence making it equivalent to the theorem in Beck's book \cite[Theorem 10.16]{beck_first-order_2017}. 
+                The only generalization here is parameter $B$ which made to accommodate algorithm that implements Definition \ref{def:snapg-v2} with line search routine to determine $L_k$. 
+                Each of the reference books gives a proof of the theorem. 
+                But for the best consistency in notations, see Theorem 2.3 in Li and Wang \cite{li_relaxed_2025}. 
+            \end{remark}
+            % --------------------------------------------------------------------------------------------------------------
+            \begin{theorem}[proximal gradient inequality with SQ-SCNVX \textcolor{red}{NEW}]\label{thm:pg-ineq-sq-scnvx}
+                Suppose that $F:\RR^m \rightarrow \overline \RR := x \mapsto f(x) + g(x)$ satisfies Assumption \ref{ass:snorm-smth-p-nsmth} with $L > \mu \ge 0$ and $A \in \RR^{m\times n}$. 
+                For any $x \in \RR^n$, let $x^+ = T_B(x | F)$.
+                Then, there exists some $B \ge 0$ such that $D_f(x^+, x) \le \frac{B}{2}\Vert x - x^+\Vert^2$ and, for all $z \in \RR^m, \eta \in \RR$ it satisfies the inequality: 
+                \begin{align*}
+                    0 &\le F(z) - F(x^+)
+                    + \frac{\eta}{2}\Vert z - x\Vert^2 
+                    - \frac{\mu}{2}\Vert Az - Ax\Vert^2
+                    + \frac{B - \eta}{2}\Vert z - x\Vert^2
+                    - \frac{B}{2}\Vert z - x^+\Vert^2 . 
+                \end{align*}
+            \end{theorem}
+            \begin{proof}
+                Firstly, such a $B > 0$ exists, for example $B = L\Vert A\Vert^2$ would be an option because from Definition \ref{def:seminorm-smooth-scnvx}, it for all $x, y$, $D_f(x, y) \le L/2\Vert Ax - Ay \Vert^2 \le L/2\Vert A\Vert^2\Vert x - y\Vert^2$. 
+                But it can be much smaller. 
+                \par
+                The function $z \mapsto g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2$ inside the proximal gradient operator has the minimizer $x^+$.  
+                This function is also the sum of a convex, proper closed function $g$ and, a simple quadratic and, it's $B > 0$ strongly convex hence, it satisfies the quadratic growth conditions over its minimizer $x^+ = T_B(x|F)$ so, it follows that for all $z \in \RR^m$: 
+                \begin{align*}
+                    0 &\le 
+                    -\frac{B}{2}\Vert z - x^+\Vert^2 
+                    + g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2
+                        \\&\quad 
+                        - g(x^+) - f(x) - \langle \nabla f(x), x^+ - x\rangle - \frac{B}{2}\Vert x^+ - x\Vert^2
+                    \\
+                    &= 
+                    -\frac{B}{2}\Vert z - x^+\Vert^2 
+                    + \left(g(z) + f(z) - f(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2\right)
+                        \\&\quad 
+                        +\left(- g(x^+) - f(x^+) + f(x^+) - f(x) - \langle \nabla f(x), x^+ - x\rangle - \frac{B}{2}\Vert x^+ - x\Vert^2\right)
+                    \\
+                    &=
+                    -\frac{B}{2}\Vert z - x^+\Vert^2 
+                    + \left(F(z) - D_f(z, x) + \frac{B}{2}\Vert z - x\Vert^2\right)
+                        \\&\quad
+                        + \left(- F(x^+) + D_f(x^+, x) - \frac{B}{2}\Vert x^+ - x\Vert^2\right)
+                    \\
+                    &\underset{\text{(a)}}{\le }
+                    -\frac{B}{2}\Vert z - x^+\Vert^2 
+                    + \left(F(z) - D_f(z, x) + \frac{B}{2}\Vert z - x\Vert^2\right)
+                    - F(x^+)
+                    \\
+                    &\underset{\text{(b)}}{\le} 
+                    - \frac{B}{2}\Vert z - x^+\Vert^2 
+                    + F(z) - \frac{\mu}{2}\Vert Az - Ax\Vert^2 
+                    + \frac{B}{2}\Vert z - x\Vert^2
+                    - F(x^+)
+                    \\
+                    &= F(z) - F(x^+)
+                    + \left(
+                        \frac{\eta}{2}\Vert z - x\Vert^2 
+                        - \frac{\mu}{2}\Vert Az - Ax\Vert^2
+                    \right) 
+                    + \frac{B - \eta}{2}\Vert z - x\Vert^2
+                    - \frac{B}{2}\Vert z - x^+\Vert^2 . 
+                \end{align*}
+                At (a), we used the fact that line search asserted the condition $D_f(x^+, x) \le \frac{B}{2}\Vert x^+ - x\Vert^2$. 
+                At (b), we used the fact that $f$ satisfies Definition \ref{def:seminorm-smooth-scnvx} so, it has for all $x, z \in \RR^m$, $D_f(z, x) \ge \frac{\mu}{2}\Vert z - x\Vert^2$. 
+            \end{proof}
+            % --------------------------------------------------------------------------------------------------------------
+            \begin{theorem}[seminorm smooth plus non-smooth Jensen \textcolor{red}{NEW}]\label{thm:smnrm-jnsn-smth-nsmth}
+                Suppose that $F:\RR^m \rightarrow \overline \RR := x \mapsto f(x) + g(x)$ satisfies Assumption \ref{ass:snorm-smth-p-nsmth} with $L > \mu \ge 0$ and $A \in \RR^{m\times n}$. 
+                \todoinline{NOT YET FINISHED}
+            \end{theorem}
+            \begin{proof}
+                
+            \end{proof}
         
 
     \subsection{Stochastic accelerated proximal gradient}
@@ -994,7 +1082,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}   
             } 
         \end{proof}
-    \subsection{convergence rate of the algorithm under various circumstances}
+    \subsection{Convergence rate of the algorithm under various circumstances}
         The previous section highlighted a generic convergence results from one iteration of the algorithm, however, there are a lot of loose ends. 
         This section will deal with those. 
 
