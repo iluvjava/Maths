@@ -197,12 +197,11 @@ $$
 \end{aligned}
 $$
 
-Expanding the definition of the Bregman Divergence it has: 
+Expanding the definition of the Bregman Divergence on the last equality:  
 
 $$
 {\small\begin{aligned}
-    0 &\le 
-    \left(
+    & \left(
         F(x) - F(y^+) 
         + 
         \frac{\beta}{2}\Vert x - y\Vert^2 - 

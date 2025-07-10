@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1752108223.15074 "main.aux" "main.bbl" "main" 1752108316.29152 0
+["bibtex main"] 1752188819.66196 "main.aux" "main.bbl" "main" 1752188932.98273 0
   "./references/refs.bib" 1751939765.21907 6680 0c775a87810543775e3a891e2629657d ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/siam.bst" 1292289607 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1752108315.94429 4618 77006cf9d3fd063cad5473d9d2d2aa69 "pdflatex"
+  "main.aux" 1752188932.64599 4644 83e2539ec21ce68f5b4c5ff92f53c406 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1752108314.97077 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" "main.pdf" "main" 1752108316.29175 0
-  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" 1752108314.75589 98195 605a2009d24d607dfb24a5644793276f ""
+["pdflatex"] 1752188931.6405 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" "main.pdf" "main" 1752188932.9829 0
+  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" 1752188931.44678 102117 833b5f27bf3d9088c2dc12bddb806d08 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -220,10 +220,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1716844513.00476 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1716844504 8221424 900989947c23303b742a586f0df8c087 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "main.aux" 1752108315.94429 4618 77006cf9d3fd063cad5473d9d2d2aa69 "pdflatex"
-  "main.bbl" 1752108223.26356 849 36fda195afe93e66619f0ecf6a3ddc01 "bibtex main"
-  "main.out" 1752108315.94511 1488 e6e9ce2e61f170b80bd64f1aadb8f29a "pdflatex"
-  "main.tex" 1752108314.75589 98195 605a2009d24d607dfb24a5644793276f ""
+  "main.aux" 1752188932.64599 4644 83e2539ec21ce68f5b4c5ff92f53c406 "pdflatex"
+  "main.bbl" 1752188819.7753 849 36fda195afe93e66619f0ecf6a3ddc01 "bibtex main"
+  "main.out" 1752188932.64708 1488 e6e9ce2e61f170b80bd64f1aadb8f29a "pdflatex"
+  "main.tex" 1752188931.44678 102117 833b5f27bf3d9088c2dc12bddb806d08 ""
   "presets/julia_lstlisting.tex" 1734912471.75532 795 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1734912471.75575 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1737688388.3909 8751 43b1f87d5e2ad43f60c8e67f03e69d1f ""

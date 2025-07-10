@@ -40,7 +40,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 % ==============================================================================
 \section{In preparations}
-    \textbf{Notations}. 
+    \textbf{Notations \textcolor{red}{NEW}}. 
+    Unless specifically specified in the context, we use the following notations. 
+    $\Pi_C$ denotes the projection onto a set $C$. 
+    Let $A \in \RR^{m \times n}$ be a matrix. 
+    $\sigma_{\min}(A)$ denotes the smallest non-zero absolute value of all singular values of $A$. 
+    Let $\Vert A\Vert$ denotes the spectral norm of the matrix $A$. 
+    $I$ denotes the identity operator. 
     \subsection{Basic definitions}
         % --------------------------------------------------------------------------------------------------------------
         \begin{definition}[Proximal gradient operator]\label{def:pg-opt}
@@ -72,7 +78,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         The definitions are ordered from the weakest to strongest. 
         % --------------------------------------------------------------------------------------------------------------
         \begin{definition}[semi strongly convex function \textcolor{red}{NEW}]\label{def:semi-scnvx}
-            A function $F: \RR^n \rightarrow \overline \RR$ is a semi strongly convex function, abbreviated as ``Semi-SCNVX'' with respective to a linear mapping $A \in \RR^{m \times n}$ if $F - \frac{1}{2}\Vert Ax\Vert^2$ is a convex function. 
+            A function $F: \RR^n \rightarrow \overline \RR$ is a semi strongly convex function, abbreviated as ``Semi-SCNVX'' with respect to a linear mapping $A \in \RR^{m \times n}$ if $F - \frac{1}{2}\Vert Ax\Vert^2$ is a convex function. 
         \end{definition}
         \begin{remark}
             Any $\mu \ge 0$ strongly convex function is Semi-SCNVX with $A = \sqrt{\mu}I$. 
@@ -90,11 +96,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \frac{1}{2}\Vert A_1x - A_1y\Vert^2 \le 
                 D_f(x, y) \le \frac{1}{2}\Vert A_2x - A_2y\Vert^2. 
             \end{align*}
-            Then, we call this function is semi-relative smooth with respect to $A_1$, and semi convex to $A_2$
+            Then, we call this function is $A_1, A_2$ Semi-SCNVX and smooth. 
         \end{definition}
         \begin{remark}
             The definition exchanged the $\Vert \cdot\Vert^2$ for a seminorm squared: $x \mapsto \Vert A_1x\Vert^2$ with some $A: \RR^m \rightarrow \RR^n$ for the definition of relative smoothness and relative strong convexity. 
-            Obviously, it has $\Vert A_1x\Vert \le \Vert A_2x\Vert$ for all $x\in \RR^m$, which further implies that $\ker A_1\supseteq\ker A_2$. 
+            Obviously, it has $\Vert A_1x\Vert \le \Vert A_2x\Vert$ for all $x\in \RR^m$, which further implies that $\ker A_1\supseteq\ker A_2$.
+            With some algebra it can be showned that $A^T_2A_2 \succeq A^T_1A_1$. 
         \end{remark}
         % --------------------------------------------------------------------------------------------------------------
         \begin{theorem}[semi Jesen inequality \textcolor{red}{NEW}]\label{thm:semi-scnvx-equiv}
@@ -170,10 +177,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{remark}
         The following theorem classifies a class of semi strongly convex function. 
         % --------------------------------------------------------------------------------------------------------------
-        \begin{theorem}[affine composite smooth and strongly convex]\label{thm:aff-smooth-sq-scnvx}
+        \begin{theorem}[affine composite with smooth and strongly convex]\label{thm:aff-smooth-sq-scnvx}
             Let $f: \RR^n \rightarrow \RR$ be an $L$ smooth and, $\mu \ge 0$ strongly convex.
             Let $A: \RR^m \rightarrow \RR^n$, $b \in \RR^n$ be arbitrary and, define $h: \RR^m \rightarrow \RR= x \mapsto f(Ax - b)$. 
-            Ddenote $\Pi = \Pi_{\ker A}$ to be the projection operator onto the kernel of $A$, denote $\Vert A\Vert$ to be the operator norm of the matrix, and $\sigma_{\min}(A)$ to be the smallest non-zero eigenvalues of $A$ in absolute value.
+            Denote $\Pi = \Pi_{\ker A}$ to be the projection operator onto the kernel of $A$. 
             Then, it satisfies for all $x \in \RR^m, y \in \RR^m$:  
             \begin{align*}
                 \frac{\mu \sigma_{\min}(A)^2}{2}\Vert (I - \Pi)(x - y)\Vert^2
@@ -212,14 +219,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Using some linear algebra, one can represent $x - y$ as their orthogonal components in $\ker A$, $\ker A^T$ so it has 
             \begin{align*}
                 \frac{\mu}{2}\Vert A(x - y)\Vert^2 &= 
-                \frac{\mu}{2}\Vert A(\Pi(x - y) + (1 - \Pi)(x - y))\Vert^2
+                \frac{\mu}{2}\Vert A(\Pi(x - y) + (I - \Pi)(x - y))\Vert^2
                 \\
                 &= 
-                \frac{\mu}{2}\Vert A(1 - \Pi)(x - y))\Vert^2
+                \frac{\mu}{2}\Vert A(I - \Pi)(x - y))\Vert^2
                 \\
-                &\ge \frac{\mu\sigma_{\min}(A)}{2}\Vert (1 - \Pi)(x - y)\Vert^2. 
+                &\ge \frac{\mu\sigma_{\min}(A)}{2}\Vert (I - \Pi)(x - y)\Vert^2. 
             \end{align*}
-            These results makes for the final inequalities: 
+            These results Make for the final inequalities: 
             \begin{align*}
                 \frac{\mu\sigma_{\min}(A)}{2}\Vert (I - \Pi)(x - y)\Vert^2
                 \le 
@@ -272,9 +279,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \begin{theorem}[proximal gradient inequality with semi-scnvx \textcolor{red}{NEW}]\label{thm:pg-ineq-semi-scnvx}
                 Suppose that $F:\RR^m \rightarrow \overline \RR := x \mapsto f(x) + g(x)$ satisfies Assumption \ref{ass:snorm-smth-p-nsmth} with $L > \mu \ge 0$ and $A \in \RR^{m\times n}$. 
                 For any $x \in \RR^n$, let $x^+ = T_B(x | F)$. 
-                Let $\sigma_{\min}(A)$ denotes the minimum non-zero singular value of $A$ in absolute value. 
                 Let $\Pi = \Pi_{\ker A}$ be the linear operator that project onto the kernel of $A$. 
-                Then, there exists some $B \ge 0$ such that $D_f(x^+, x) \le \frac{B}{2}\Vert x - x^+\Vert^2$ and, for all $z \in \RR^m$ it satisfies the inequality: 
+                Then, there exists some $B \ge 0$ such that $D_f(x^+, x) \le \frac{B}{2}\Vert x - x^+\Vert^2$ and, for all $z \in \RR^m$ it satisfies the inequalities: 
                 \begin{align*}
                     0 &\le F(z) - F(x^+) 
                     - \frac{\mu}{2}\Vert Az - Ax\Vert^2 
@@ -289,7 +295,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \end{align*}
             \end{theorem}
             \begin{proof}
-                Firstly, such a $B > 0$ exists, for example $B = L\Vert A\Vert^2$ would be an option because from Definition \ref{def:seminorm-smooth-scnvx}, it for all $x, y$, $D_f(x, y) \le L/2\Vert Ax - Ay \Vert^2 \le L/2\Vert A\Vert^2\Vert x - y\Vert^2$. 
+                Firstly, such a $B > 0$ exists, for example $B = L\Vert A\Vert^2$ would be an option because from Definition \ref{def:seminorm-smooth-scnvx}, it for all $x, y \ in \RR^{m}$, $D_f(x, y) \le L/2\Vert Ax - Ay \Vert^2 \le L/2\Vert A\Vert^2\Vert x - y\Vert^2$. 
                 But it can be much smaller. 
                 \par
                 The function $z \mapsto g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2$ inside the proximal gradient operator has the minimizer $x^+$.  
@@ -401,7 +407,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         So, each $h_i$ are $\nu^{(i)}$ strongly convex and $K^{(i)}$ Lipschitz smooth. 
         \par
         Take note that the function $f(x) = \frac{1}{n}\sum_{i = 1}^{n} h_i(A^{(i)} - b^{(i)})$ is the composition of the strongly convex function $h = \frac{1}{n}\sum_{i = 1}^{n} h_i$ that is a $\RR^{mn}\rightarrow \RR$ mapping with strong convexity $\frac{1}{n}\sum_{i = 1}^{n} \nu^{(i)}$ and, the affine $\RR^m \rightarrow \RR^{mn}$ mapping $\mathcal A := x \mapsto (A^{(1)}x - b^{(1)},\ldots,  A^{(n)}x - b^{(n)})$. 
-        $f$ satisifes Theorem \ref{thm:aff-smooth-sq-scnvx} and it can be written as: 
+        $f$ satisfies Theorem \ref{thm:aff-smooth-sq-scnvx} and it can be written as: 
         \begin{align*}
             f(x) = \sum_{i = 1}^{n} h_i(A^{(i)} - b^{(i)}) = h(\mathcal A x). 
         \end{align*}
@@ -679,7 +685,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{enumerate}
     \end{lemma}
     \begin{proof}
-        \textbf{Proof of \ref{lemma:snapg2-itrs-props-item1}}. 
+        \textbf{Proof of \ref{lemma:iters-snapg2-proto-item1}}. 
         From Definition \ref{def:snapg-v2-proto}:
         \begin{align*}
             (1 + \tau_k)^{-1}
@@ -753,7 +759,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             &= \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}}(\bar x - v_{k - 1})
             + \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}}(\bar x - x_{k - 1}).
         \end{align*}
-        \textbf{proof of \ref{lemma:snapg2-itrs-props-item2}.}
+        \textbf{proof of \ref{lemma:iters-snapg2-proto-item2}.}
         From Definition \ref{def:snapg-v2} it has directly: 
         \begin{align*}
             z_k - x_k &= \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - x_k
@@ -767,27 +773,32 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
     \end{proof}
     % --------------------------------------------------------------------------------------------------------------
-    \begin{lemma}[SNAPG-V2 one step convergence stage I \textcolor{red}{NEW}]\label{lemma:snagp2-one-step-s1-proto}
-        Suppose that the sequence $(y_k, x_k, v_k)$ satisfies Definition \ref{def:snapg-v2-aff}. 
-        Fix some $k \in \N, k \ge 1$, suppose that $I_k = i$.
+    \begin{lemma}[SNAPG-V2 one step convergence stage I \textcolor{red}{NEW}]\;\label{lemma:snagp2-one-step-s1}\\
+        Let the sequence $(y_k, x_k, v_k)_{k \ge 0}$ satisfies Definition \ref{def:snapg-v2-aff}. 
+        Fix any $k \in \N \cup\{0\}$, suppose that $I_k = i \in \{1, \ldots, n\}$.
         Denote $\Pi^{(i)} = \Pi_{\ker A^{(i)}}$ to be the projection matrix onto the kernel of $A^{(i)}$. 
-        Then for all $\bar x \in \RR^m$, the iterates satisfies the inequality: 
-        \begin{align*}
-            &F_i(x_{k}) - F_i(\bar x) 
-            + \frac{L_k\alpha_k^2}{2} \left\Vert \left(I - \Pi^{(i)}\right)(\bar x - v_k)\right\Vert^2
-            \\
-            &\le 
-            (1 - \alpha_k)\left(
-                F_i(x_{k - 1}) - F_i(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}
-                \left\Vert \left(I - \Pi^{(i)}\right)(v_{k - 1} - \bar x)\right\Vert^2
-            \right)     
-            + \frac{L_k}{2}\left\Vert \Pi^{(i)}(z_k - y_k)\right\Vert^2
-                \\ &\quad 
-                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                + \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2.
-        \end{align*}
+        Then for all $\bar x \in \RR^m, k \ge 1$, the iterates satisfies the inequality: 
+        \begin{align}\label{ineq:snagp2-one-step-s1-rslt1}
+            \begin{split}
+                &F_i(x_{k}) - F_i(\bar x) 
+                + \frac{L_k\alpha_k^2}{2} \left\Vert \left(I - \Pi^{(i)}\right)(\bar x - v_k)\right\Vert^2
+                \\
+                &\le 
+                (1 - \alpha_k)\left(
+                    F_i(x_{k - 1}) - F_i(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}
+                    \left\Vert \left(I - \Pi^{(i)}\right)(v_{k - 1} - \bar x)\right\Vert^2
+                \right)     
+                + \frac{L_k}{2}\left\Vert \Pi^{(i)}(z_k - y_k)\right\Vert^2
+                    \\ &\quad 
+                    + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    + \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2.
+            \end{split}
+        \end{align}
         And when $k = 0$, we have: 
-        \todoinline{HERE}
+        \begin{align}\label{ineq:snagp2-one-step-s1-rslt2}
+            F(x_0) - F(\bar x) + \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2 
+            &\le \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2. 
+        \end{align}
     \end{lemma}
     \begin{proof}
         Let's suppose that $I_k = i$ and, for all $k \ge 0$. 
@@ -831,7 +842,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
         \end{itemize}
         For all $k \ge 1$, starting with (a) we have: 
-        \begin{align}\label{ineq:snapg2-one-step-stage1-chain1}
+        \begin{align}\label{ineq:snapg2-one-step-s1-chain1}
             \begin{split}
                 0 &\le F_i(z_k) - F_i(x_k) - 
                 \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
@@ -849,57 +860,57 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     + \frac{L_k - \nu^{(i)}\sigma_{\min}(A^{(i)})^2}{2}\Vert (I - \Pi^{(i)})(z_k - y_k)\Vert^2
             \end{split}
         \end{align}
-        \textbf{For simpler notations}, we use the following notation $\Vert x\Vert_p = \Vert (I - \Pi^{(i)})x\Vert$ to denote a seminorm induced by the linear mapping $(I - \Pi^{(i)})$, and use $\langle \cdot,\cdot\rangle_p := \langle (I - \Pi^{(i)})(\cdot), \langle (I - \Pi^{(i)})(\cdot)\rangle$ for the inner product as well. 
+        \textbf{For simpler notations}, we use the following notation $\Vert x\Vert_{\bullet} = \Vert (I - \Pi^{(i)})x\Vert$ to denote a seminorm induced by the linear mapping $(I - \Pi^{(i)})$, and use $\langle \cdot,\cdot\rangle_\bullet := \langle (I - \Pi^{(i)})(\cdot), \langle (I - \Pi^{(i)})(\cdot)\rangle$ for the inner product as well. 
         We also use $\sigma^{(i)} = \nu^{(i)}\sigma_{\min}(A^{(i)})^2$ which is specified in Definition \ref{def:snapg-v2-aff}. 
         And we will simplify the last two terms from the above inequality using a chain of equalities. 
         {\allowdisplaybreaks
         \begin{align*}
-            & - \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2_p
-            + \frac{L_k - \sigma^{(i)}}{2}\Vert z_k - y_k\Vert^2_p
+            & - \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2_\bullet
+            + \frac{L_k - \sigma^{(i)}}{2}\Vert z_k - y_k\Vert^2_\bullet
             \\
             &\underset{\text{(d)}}{=}
-            - \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2_p
+            - \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2_\bullet
                 \\&\quad
                 + \frac{L_k - \sigma^{(i)}}{2}
                 \left\Vert
                     \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}}(\bar x - v_{k - 1})
                     + \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}}(\bar x - x_{k - 1})
-                \right\Vert^2_p
+                \right\Vert^2_\bullet
             \\
             &= 
-            - \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2_p 
+            - \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2_\bullet 
                 \\&\quad
-                + \frac{(L_k\alpha_k - \sigma^{(i)})^2}{2(L_k - \sigma^{(i)})} \Vert \bar x - v_{k - 1}\Vert^2_p
-                + \frac{(\sigma^{(i)})^2(1 - \alpha_k)^2}{2(L_k - \sigma^{(i)})}\Vert \bar x - x_{k - 1}\Vert^2_p 
+                + \frac{(L_k\alpha_k - \sigma^{(i)})^2}{2(L_k - \sigma^{(i)})} \Vert \bar x - v_{k - 1}\Vert^2_\bullet
+                + \frac{(\sigma^{(i)})^2(1 - \alpha_k)^2}{2(L_k - \sigma^{(i)})}\Vert \bar x - x_{k - 1}\Vert^2_\bullet 
                 \\&\quad 
-                + \frac{(L_k\alpha_k  - \sigma^{(i)})\sigma^{(i)}(1 - \alpha_k)}{(L_k - \sigma^{(i)})}\left\langle (\bar x - v_{k - 1}),(\bar x - x_{k - 1})\right\rangle_p
+                + \frac{(L_k\alpha_k  - \sigma^{(i)})\sigma^{(i)}(1 - \alpha_k)}{(L_k - \sigma^{(i)})}\left\langle (\bar x - v_{k - 1}),(\bar x - x_{k - 1})\right\rangle_\bullet
             \\
             &= 
             \left(
                 \frac{(\sigma^{(i)})^2(1 - \alpha_k)^2}{2(L_k - \sigma^{(i)})} - \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}
-            \right)\Vert \bar x - x_{k - 1}\Vert^2_p
+            \right)\Vert \bar x - x_{k - 1}\Vert^2_\bullet
                 \\ &\quad 
                 + \left(
                     \frac{(L_k\alpha_k - \sigma^{(i)})^2}{2(L_k - \sigma^{(i)})} - \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2}
-                \right) \Vert \bar x - v_{k - 1}\Vert^2_p
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_p
+                \right) \Vert \bar x - v_{k - 1}\Vert^2_\bullet
+                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_\bullet
                 \\&\quad 
-                + \frac{(L_k\alpha_k  - \sigma^{(i)})\sigma^{(i)}(1 - \alpha_k)}{(L_k - \sigma^{(i)})}\left\langle (\bar x - v_{k - 1}),(\bar x - x_{k - 1})\right\rangle_p
+                + \frac{(L_k\alpha_k  - \sigma^{(i)})\sigma^{(i)}(1 - \alpha_k)}{(L_k - \sigma^{(i)})}\left\langle (\bar x - v_{k - 1}),(\bar x - x_{k - 1})\right\rangle_\bullet
             \\
             &\underset{\text{(f)}}{=}
             \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}
-            {2\left(L_k - \sigma^{(i)}\right)} \Vert \bar x - x_{k - 1}\Vert^2_p
+            {2\left(L_k - \sigma^{(i)}\right)} \Vert \bar x - x_{k - 1}\Vert^2_\bullet
                 \\ &\quad 
                 + \left(
                     \frac{(L_k\alpha_k - \sigma^{(i)})^2}{2(L_k - \sigma^{(i)})} - \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2}
-                \right) \Vert \bar x - v_{k - 1}\Vert^2_p
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_p
+                \right) \Vert \bar x - v_{k - 1}\Vert^2_\bullet
+                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_\bullet
                 \\&\quad 
-                + \frac{(L_k\alpha_k  - \sigma^{(i)})\sigma^{(i)}(1 - \alpha_k)}{(L_k - \sigma^{(i)})}\left\langle (\bar x - v_{k - 1}),(\bar x - x_{k - 1})\right\rangle_p
+                + \frac{(L_k\alpha_k  - \sigma^{(i)})\sigma^{(i)}(1 - \alpha_k)}{(L_k - \sigma^{(i)})}\left\langle (\bar x - v_{k - 1}),(\bar x - x_{k - 1})\right\rangle_\bullet
             \\
             & \underset{\text{(g)}}{=} 
             \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}
-            {2\left(L_k - \sigma^{(i)}\right)}\Vert \bar x - x_{k - 1}\Vert^2_p
+            {2\left(L_k - \sigma^{(i)}\right)}\Vert \bar x - x_{k - 1}\Vert^2_\bullet
                 \\ &\quad 
                 + \left(
                     \frac{
@@ -909,65 +920,65 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     {2(L_k - \sigma^{(i)})}
                     + \frac{\alpha_k(\tilde\sigma - \sigma^{(i)})}{2}
                 \right) 
-                \Vert \bar x - v_{k - 1}\Vert^2_p
+                \Vert \bar x - v_{k - 1}\Vert^2_\bullet
                 \\ &\quad 
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_p
+                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_\bullet
                 \\ &\quad
-                + \frac{(L_k\alpha_k  - \sigma^{(i)})\sigma^{(i)}(1 - \alpha_k)}{(L_k - \sigma^{(i)})}\left\langle (\bar x - v_{k - 1}),(\bar x - x_{k - 1})\right\rangle_p
+                + \frac{(L_k\alpha_k  - \sigma^{(i)})\sigma^{(i)}(1 - \alpha_k)}{(L_k - \sigma^{(i)})}\left\langle (\bar x - v_{k - 1}),(\bar x - x_{k - 1})\right\rangle_\bullet
             \\
             &= 
             \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}
             \left(
-                \Vert \bar x - x_{k - 1}\Vert^2_p 
-                + \Vert \bar x - v_{k - 1}\Vert^2_p 
-                - 2\left\langle (\bar x - v_{k - 1}),(\bar x - x_{k - 1})\right\rangle_p
+                \Vert \bar x - x_{k - 1}\Vert^2_\bullet 
+                + \Vert \bar x - v_{k - 1}\Vert^2_\bullet 
+                - 2\left\langle (\bar x - v_{k - 1}),(\bar x - x_{k - 1})\right\rangle_\bullet
             \right) 
                 \\ &\quad 
-                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2_p
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_p
+                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2_\bullet
+                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_\bullet
             \\
             &= \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}
-                \Vert x_{k - 1} - v_{k - 1} \Vert^2_p
+                \Vert x_{k - 1} - v_{k - 1} \Vert^2_\bullet
                 \\ &\quad 
-                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2_p
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_p.
+                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2_\bullet
+                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_\bullet.
         \end{align*}
         }
-        Substituting the above back to the tail of Inequality \eqref{ineq:snapg2-one-step-stage1-chain1} it gives: 
+        Substituting the above back to the tail of Inequality \eqref{ineq:snapg2-one-step-s1-chain1} it gives: 
         {\allowdisplaybreaks
         \begin{align*}
             0 &\le 
             \alpha_k F_i(\bar x) + (1 - \alpha_k)F_i(x_{k - 1}) - F_i(x_k)     
             - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
                 \\ &\quad 
-                + \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2_p
+                + \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2_\bullet
                 + \frac{L_k}{2}\left\Vert \Pi^{(i)}(z_k - y_k)\right\Vert^2
                 \\ &\quad 
-                + \frac{\alpha_k(\tilde\sigma - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2_p
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_p
+                + \frac{\alpha_k(\tilde\sigma - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2_\bullet
+                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_\bullet
             \\
             &\underset{\text{(e)}}{=} 
             \alpha_k F_i(\bar x) + (1 - \alpha_k)F_i(x_{k - 1}) - F_i(x_k)     
             - \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2 
                 \\ &\quad 
-                + \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2_p
+                + \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2_\bullet
                 + \frac{L_k}{2}\left\Vert \Pi^{(i)}(z_k - y_k)\right\Vert^2
                 \\ &\quad 
-                + \frac{\alpha_k(\tilde\sigma - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2_p
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_p
+                + \frac{\alpha_k(\tilde\sigma - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2_\bullet
+                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_\bullet
             \\
             &= 
             (\alpha_k - 1) F_i(\bar x) + (1 - \alpha_k)F_i(x_{k - 1}) - F_i(x_k) + F_i(\bar x)
             - \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2 
                 \\ &\quad 
-                + \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2_p
+                + \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2_\bullet
                 + \frac{L_k}{2}\left\Vert \Pi^{(i)}(z_k - y_k)\right\Vert^2
                 \\ &\quad 
-                + \frac{\alpha_k(\tilde\sigma - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2_p
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_p
+                + \frac{\alpha_k(\tilde\sigma - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2_\bullet
+                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_\bullet
             \\
             &= (1 - \alpha_k)\left(
-                F_i(x_{k - 1}) - F_i(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert v_{k - 1} - \bar x\Vert^2_p
+                F_i(x_{k - 1}) - F_i(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert v_{k - 1} - \bar x\Vert^2_\bullet
             \right) 
                 \\ & \quad
                 - \left(
@@ -980,23 +991,41 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         }
         Re-arranging, with some linear algebra:  we get out first result: 
         \begin{align*}
-            &F_i(x_{k}) - F_i(\bar x) + \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2_p 
+            &F_i(x_{k}) - F_i(\bar x) + \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2_\bullet 
             \\
             &\le 
             F_i(x_{k}) - F_i(\bar x) + \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
             \\
             &\le 
             (1 - \alpha_k)\left(
-                F_i(x_{k - 1}) - F_i(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert v_{k - 1} - \bar x\Vert^2_p
+                F_i(x_{k - 1}) - F_i(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert v_{k - 1} - \bar x\Vert^2_\bullet
             \right)     
             + \frac{L_k}{2}\left\Vert \Pi^{(i)}(z_k - y_k)\right\Vert^2
                 \\ &\quad 
                 + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2}\Vert \bar x - v_{k - 1}\Vert^2
                 + \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2.
         \end{align*}
-        For the first inequality, recall that $\Vert \cdot\Vert_p = \Vert (I - \Pi^{(i)})(\cdot)\Vert \le \Vert \cdot\Vert$ because $(I - \Pi^{(i)})$ is a projector and, it projects to $\ker A^{(i)}$. 
-        Now, let's takle the $k = 0$ case. 
-        \todoinline{HERE}
+        For the first inequality, recall that $\Vert \cdot\Vert_\bullet = \Vert (I - \Pi^{(i)})(\cdot)\Vert \le \Vert \cdot\Vert$ because $(I - \Pi^{(i)})$ is a projector and, it projects to $\ker A^{(i)}$. 
+        Now, let's tackle the $k = 0$ case. 
+        By Definition \ref{def:snapg-v2-aff} it has $\alpha_0 = 1$ and, $v_{- 1} = x_{- 1}$, so that makes $z_0 = \bar x$, and $\tau_0 = 0$ hence, $y_0 = v_{-1} = x_{-1}$. 
+        As a consequence it chooses $x_0 = T_{L_k}(y_0 | F_{I_0})$, it means that at the $k = 0$ iteration, the algorithm simplify performs one step of proximal gradient descent at $v_{-1}$ without any momentum. 
+        So, we can use Theorem \ref{thm:pg-ineq-semi-scnvx} with $z = z_0 = \bar x, x^+ = x_0$ and, $B = L_0$: 
+        \begin{align*}
+            F(x_0) - F(\bar x) + \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2 
+            &\le 
+            \frac{L_0 - \sigma^{(i)}}{2}\Vert \bar x - v_{-1} \Vert^2_\bullet
+            + \frac{B}{2}\left\Vert \Pi^{(i)}(\bar x - v_{-1})\right\Vert^2. 
+        \end{align*}
+        RHS can be simplified further
+        \begin{align*}
+            & \frac{L_0 - \sigma^{(i)}}{2}\Vert \bar x - v_{-1} \Vert^2_\bullet
+            + \frac{L_0}{2}\left\Vert \Pi^{(i)}(\bar x - v_{-1})\right\Vert^2
+            \\
+            &\le \frac{L_0}{2}\Vert \bar x - v_{-1} \Vert^2_\bullet
+            + \frac{L_0}{2}\left\Vert \Pi^{(i)}(\bar x - v_{-1})\right\Vert^2
+            \\
+            & = \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2. 
+        \end{align*}
         % INTERMEDIATE RESULTS
         \par
         \textbf{Proof of (f)}. 
@@ -1090,6 +1119,34 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}   
         } 
     \end{proof}
+    From the previous lemma, take note that it's for all $\bar x$. 
+    The next lemma discuss some special cases of the previous lemma where some terms of the inequality can be simplified away. 
+    \begin{lemma}[SNAPG-V2 one step convergence stage II \textcolor{red}{NEW}]\;\label{snapg2-one-step-s2-proto}\\
+        Let the sequence $(y_k, x_k, v_k)_{k \ge 0}$ satisfies Definition \ref{def:snapg-v2-aff}. 
+        Fix any $k \in \N \cup\{0\}$, suppose that $I_k = i \in \{1, \ldots, n\}$.
+        Denote $\Pi^{(i)} = \Pi_{\ker A^{(i)}}$ to be the projection matrix onto the kernel of $A^{(i)}$. 
+        \begin{enumerate}[nosep]
+            \item If, each $A^{(i)} = I$, so $F$ satisfies Assumption \ref{ass:sum-of-many} with $\mu^{(i)} = \nu^{(i)}$, then for all $\bar x \in \RR^m$, $k \ge 1$ it satisfies the inequality: 
+            \begin{align}\begin{split}
+                &F_i(x_{k}) - F_i(\bar x) 
+                + \frac{L_k\alpha_k^2}{2} \left\Vert \bar x - v_k\right\Vert^2
+                \\
+                &\le 
+                (1 - \alpha_k)\left(
+                    F_i(x_{k - 1}) - F_i(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}
+                    \left\Vert v_{k - 1} - \bar x\right\Vert^2
+                \right)     
+                    \\ &\quad 
+                    + \frac{\alpha_k(\tilde\mu - \mu^{(i)})}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    + \frac{(\alpha_k - 1)\mu^{(i)}\left(L_k\alpha_k - \mu^{(i)}\right)}{2\left(L_k - \mu^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2.
+            \end{split}\end{align}
+            \item If we choose $\bar x \in \Pi_{\ker A^{(i)}}(y_k)$, then for all $k \ge 1$ it has
+        \end{enumerate}
+    \end{lemma}
+    \begin{proof}
+        
+    \end{proof}
+    The next lemma adds into the interpolation assumption and take conditional expectations on the inequality. 
     % The following lemma state the relationships of the iterates generated by SNAPG-V2. 
     % They are needed for the convergence proof. 
     % % --------------------------------------------------------------------------------------------------------------

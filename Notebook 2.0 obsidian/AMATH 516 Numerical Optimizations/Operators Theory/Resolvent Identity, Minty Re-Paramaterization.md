@@ -175,14 +175,15 @@ For (1), we consider
 
 $$
 \begin{aligned}
-    (x, y) &\in \text{gph}(J_A^{-1} - I) 
-    \iff 
-    (x, y + x) &\in \text{gph}(J_A^{-1}) = \text{gph}(I + A)
+    & (x, y) \in \text{gph}(J_A^{-1} - I) 
     \\
     \iff 
-    y + x &\in x + Ax
+    & (x, y + x) \in \text{gph}(J_A^{-1}) = \text{gph}(I + A)
     \\
-    y &\in Ax \iff (x, y) \in A. 
+    \iff 
+    & y + x \in x + Ax
+    \\
+    \iff & y \in Ax \iff (x, y) \in A. 
 \end{aligned}
 $$
 
