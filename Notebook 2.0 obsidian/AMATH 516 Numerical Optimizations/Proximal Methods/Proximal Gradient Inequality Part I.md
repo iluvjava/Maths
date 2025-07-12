@@ -433,3 +433,65 @@ $$
 $$
 
 $\blacksquare$
+
+
+---
+### **Non-trivial extension**
+
+What if, the evaluations of the gradient, or the proximal point method here is inexact, how would the same inequality changes when there are errors involved in the evaluations? 
+We will use strong convexity subgradient inequality and, a sub optimality conditions. 
+
+
+
+Make $h(z; x) = z \mapsto g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2$. 
+An inexact solution is produced to minimizer $h(z;x)$ on $z$, giving $w \in \partial h(\tilde x; x)$. 
+$h$ is $B$ strongly convex therefore subgradient inequality has for all $z$
+
+$$
+\begin{aligned}
+    0 &\le 
+    h(z; x) - h(\tilde x, x) - \langle w, z - \tilde x \rangle - \frac{B}{2}\Vert z - \tilde x \Vert^2
+\end{aligned}
+$$
+
+The only difference compared to **Claim 1.2** is the additional cross term $\langle w, z - \tilde x\rangle$. 
+Using the results of **Claim 1.2** with $B = q = \beta, x^+ = \tilde x$ with the added cross product, it yields 
+
+$$
+\begin{aligned}
+    0 &\le 
+    F(z) - F(\tilde x) + D_{B/2\Vert \cdot\Vert^2 - f}(z, x) -
+    D_{B/2\Vert \cdot\Vert^2 - f}(\tilde x, x) - \frac{B}{2}\Vert z -
+    \tilde x\Vert^2 
+    - \langle w, z - \tilde x\rangle
+    \\
+    &=
+    F(z) - F(\tilde x) + \left(
+        \frac{B}{2}\Vert z - x\Vert^2 - D_f(z, x)
+    \right)
+    - \left(
+        \frac{B}{2}\Vert \tilde x - x\Vert^2 - D_f(\tilde x, x)
+    \right)
+    \\
+        &\quad 
+        - \frac{B}{2}\Vert z - \tilde x\Vert^2 
+        - \langle w, z - \tilde x\rangle
+    \\
+    &\le 
+    F(z) - F(\tilde x) + \left(
+        \frac{B}{2}\Vert z - x\Vert^2 - D_f(z, x)
+    \right)
+    - \frac{B}{2}\Vert z - \tilde x\Vert^2 
+    - \langle w, z - \tilde x\rangle
+    \\
+    &\le 
+    F(z) - F(\tilde x) + \frac{B - \mu}{2}\Vert z - x\Vert^2
+    - \frac{B}{2}\Vert z - \tilde x\Vert^2 
+    - \langle w, z - \tilde x\rangle
+    \\
+    &\le 
+    F(z) - F(\tilde x) + \frac{B - \mu}{2}\Vert z - x\Vert^2
+    - \frac{B}{2}\Vert z - \tilde x\Vert^2 
+    + \epsilon \Vert z - x\Vert \Vert z - \tilde x\Vert.
+\end{aligned}
+$$

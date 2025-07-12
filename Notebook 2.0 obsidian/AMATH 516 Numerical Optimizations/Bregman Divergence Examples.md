@@ -10,7 +10,7 @@ Assume that the Ambient space is $\R^n$.
 Denote $\Pi_C$ to be the projection onto a set $C$. 
 Denote $D_f$ to be the Bregman Divergence of the function $f$. 
 
-#### **Distance squared to a convex set**
+#### **Example | Distance squared to a convex set**
 > Let $d_C^2 = \dist(\cdot | C)^2$.
 > Denote $\overline{(\cdot)} = \Pi_C(x)$ to be the projection of some vector onto the set $C$. 
 Then for all $x, y \in \R^n$: 
@@ -97,4 +97,4 @@ It also simplifies when $C$ is a linear subspace or a halfspace.
 When $C$ is a affine subspace, $\langle x - \bar x, \bar x - \bar y\rangle = 0$ for all $x, y \in \R^n$. 
 When $C$ is an halfspace, it has $\langle x - \bar x, \bar x - \bar y\rangle = 0$ for all $x, y \not \in \text{int}\; C$. 
 **WARNING**. 
-This is technically not a Bregman Divergence because $D_{d_C^2}(x, y) = 0 \iff  x = y$  is FALSE. 
+This is technically not a Bregman Divergence because $D_{d_C^2}(x, y) = 0 \iff  x = y$ **FALSE**, this is due to the fact that $d_C^2$ is not a Legendre type function. 
