@@ -10,6 +10,7 @@
 
 \newcommand{\cov}{\ensuremath{\operatorname{Cov}}}
 \newcommand{\var}{\ensuremath{\operatorname{Var}}}
+\newcommand{\expect}{\ensuremath{\mathbb E}}
 
 \begin{document}
 \title{{\fontfamily{ptm}\selectfont Linear Convergence of Stochastic Nesterov's Accelerated Proximal Gradient method under Interpolation Hypothesis}}
@@ -74,6 +75,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{definition}
         \begin{remark}
             If, $f$ is $\mu \ge 0$ strongly convex and $L$ Lipschitz smooth then, its Bregman Divergence has for all $x, y \in \RR^n$: $\mu/2 \Vert x - y\Vert^2 \le D_f(x, y) \le L/2 \Vert x - y\Vert^2$. 
+            \textbf{NOTE}. Contrary to definitions of Bregman Divergence found in the literatures, \textbf{We do not assume} that $D_f(x, y) \iff x = y$. 
         \end{remark}
     \subsection{Properties of functions, characterizations}
         The definitions are ordered from the weakest to strongest. 
@@ -455,10 +457,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Let 
         \begin{enumerate}[nosep]
             \item $F$ satisfies Assumption \ref{ass:sum-of-many}, 
+            \item Let $(L_k)_{k \ge 0}$ a sequence of strictly positive numbers, 
             \item $(I_k)_{k \ge 0}$ be a list of i.i.d random variables uniformly sampled from set $\{0, 1, 2, \cdots, n\}$, 
-            \item $\sigma^{(I_k)}$ be another list of i.i.d random variable, 
-            \item $\tilde \mu \ge 0$ be a constant that is fixed, 
-            \item Let $(L_k)_{k \ge 0}$ a sequence of strictly positive numbers. 
+            \item $\sigma^{(I_k)} \le L_k$ be another list of i.i.d random variable, 
+            \item $\tilde \mu \ge 0$ be a constant that is fixed.
         \end{enumerate}
         Initialize $v_{-1} = x_{-1}, \alpha_0 = 1$. 
         The SNAPG prototype specifies algorithm that generates the sequence $(y_k, x_k, v_k)_{k \ge 0}$ such that for all $k \ge 0$ they satisfy: 
@@ -488,19 +490,38 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Let $F, (I_k)_{k \ge 0}, \tilde \mu$ and, $(L_k)_{k \ge 0}$ be given as in Definition \ref{def:snapg-v2-proto}. 
         But in addition, assume that: 
         \begin{enumerate}[nosep]
-            \item $F$ also satisfies Assumption \ref{ass:sum-of-many-aff-comp} with $\RR^{m \times n}$ matrices: $A^{(1)}, A^{(2)}, \ldots, A^{(n)}$, vectors in $\RR^n$: $(b^{(1)}, \ldots, b^{(n)})$. 
+            \item $F$ also satisfies Assumption \ref{ass:sum-of-many-aff-comp} with $\RR^{m \times n}$ with matrices: $A^{(1)}, A^{(2)}, \ldots, A^{(n)}$, and vectors $b^{(1)}, \ldots, b^{(n)}$ in $\RR^n$.  
             \item Choose $\sigma^{(k)} = \nu^{(I_k)}\sigma_{\min}(A^{(I_k)})^2$. 
         \end{enumerate}
-        Then, SNAPG-V2 affine specifies algorithms that generate the sequence $(y_k, x_k, v_k)_{k \ge 0}$ satisfying conditions as specified in Definition \ref{def:snapg-v2-proto} with the above parameters. 
+        Then, SNAPG-V2 affine specifies algorithms that generate the sequence $(y_k, x_k, v_k)_{k \ge 0}$ satisfying conditions in Definition \ref{def:snapg-v2-aff} with the above parameters. 
     \end{definition}
     % --------------------------------------------------------------------------------------------------------------
     \begin{definition}[SNAPG-V2 vanilla]\label{def:snapg-v2}
-        Let $F, (I_k)_{k \ge 0}, \tilde \mu$ and, $(L_k)_{k \ge 0}$ be given as in Definition \ref{def:snapg-v2-proto}. 
+        Let $F, (I_k)_{k \ge 0}, \tilde \mu$ and, $(L_k)_{k \ge 0}$ be given as in Definition \ref{def:snapg-v2-aff}. 
         But in addition, assume that: 
         \begin{enumerate}[nosep]
+            \item $F$ satisfies Assumption \ref{ass:sum-of-many}, which is equivalently to Assumption \ref{ass:sum-of-many-aff-comp} with $A^{(i)} = I$ and, $\nu^{(i)} = \mu^{(i)}$. 
             \item Choose $\sigma^{(k)} = \mu^{(I_k)}$. 
         \end{enumerate}
-        Then, SNAPG-V2 vanilla affine specifies algorithms that generate the sequence $(y_k, x_k, v_k)_{k \ge 0}$ satisfying conditions as specified in Definition \ref{def:snapg-v2-proto} with the above parameters. 
+        Then, SNAPG-V2 vanilla specifies algorithms that generate the sequence $(y_k, x_k, v_k)_{k \ge 0}$ satisfying conditions in Definition \ref{def:snapg-v2-aff} with the above parameters. 
+    \end{definition}
+    % --------------------------------------------------------------------------------------------------------------
+    \begin{definition}[SNAPG-V2 classical]\label{def:snapg-v2-classical}
+        Let $F, (I_k)_{k \ge 0}, \tilde \mu$ and, $(L_k)_{k \ge 0}$ be given as in Definition \ref{def:snapg-v2-aff}. 
+        But in addition, assume that: 
+        \begin{enumerate}[nosep]
+            \item Choose $\sigma^{(k)} = 0$. 
+            \item Choose $\tilde \mu = 0$. 
+        \end{enumerate}
+        In this case the algorithm simplifies, it can be presented as: 
+        \begin{align*}
+            & \alpha_k \in (0, 1): (L_{k - 1}/L_k)(1 - \alpha_{k})\alpha_{k - 1}^2 = \alpha_{k}\left(\alpha_{k} - /L_k\right), \\
+            & y_k = \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1}, \\
+            & L_k > 0: D_f(x_k, y_k) \le L_k/2\Vert y_k - x_k\Vert^2, \\
+            & x_k =  T_{L_k}(y_k | F_{I_k}), \\
+            & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
+        \end{align*}
+        Then, SNAPG-V2 classical specifies algorithms that generate the sequence $(y_k, x_k, v_k)_{k \ge 0}$ satisfying conditions in Definition \ref{def:snapg-v2-aff} with the above parameters. 
     \end{definition}
     % --------------------------------------------------------------------------------------------------------------
     What is the weakest possible sequence one can use for the accelerated proximal gradient based algorithm that utilizes a strong convexity constant? 
@@ -785,13 +806,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
     \end{proof}
     % --------------------------------------------------------------------------------------------------------------
-    \begin{lemma}[SNAPG-V2 one step convergence stage I \textcolor{red}{NEW}]\;\label{lemma:snagp2-one-step-s1}\\
+    \begin{lemma}[SNAPG-V2 one step convergence stage I \textcolor{red}{NEW}]\;\label{lemma:snapg2-one-step-s1}\\
         Let the sequence $(y_k, x_k, v_k)_{k \ge 0}$ satisfies Definition \ref{def:snapg-v2-aff}. 
         Fix any $k \in \N \cup\{0\}$, suppose that $I_k = i \in \{1, \ldots, n\}$.
         Denote $\Pi^{(i)} = \Pi_{\ker A^{(i)}}$ to be the projection matrix onto the kernel of $A^{(i)}$. 
         For all $\bar x \in \RR^m, k \ge 1$, define $z_k = \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$. 
         Then, the iterates satisfy: 
-        \begin{align}\label{ineq:snagp2-one-step-s1-rslt1}
+        \begin{align}\label{ineq:snapg2-one-step-s1-rslt1}
             \begin{split}
                 & F_i(x_k) - F_i(\bar x)
                 + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
@@ -812,7 +833,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2. 
         \end{align*}
         And when $k = 0$, we have: 
-        \begin{align}\label{ineq:snagp2-one-step-s1-rslt2}
+        \begin{align}\label{ineq:snapg2-one-step-s1-rslt2}
             F(x_0) - F(\bar x) + \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2 
             &\le \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2. 
         \end{align}
@@ -1181,601 +1202,84 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         If at least one of the followings is true: 
         \begin{enumerate}[nosep]
             \item For all $i = 1, \ldots, n$ it has $A^{(i)} = I$, so $F$ satisfies Assumption \ref{ass:sum-of-many} with $\mu^{(i)} = \nu^{(i)}$, Let $\bar x \in \RR^m$ be arbitrary;
-            \item Assume $x_{k - 1}, v_{k - 1}$ are in $\left(\ker A^{(i)}\right)^\perp$, let $\bar x \in \left(\ker A^{(i)}\right)^{\perp}$ be arbitrary. 
+            \item Assume $x_{k - 1}, v_{k - 1}$ produces the same projection point $\bar x$ onto $\ker A^{(i)}$, i.e: $\bar x = \Pi^{(i)} x_{k - 1} = \Pi^{(i)} v_{k - 1}$. 
         \end{enumerate}
         Then for all $k \ge 1$ it has: 
         \begin{align}\begin{split}
-            &F_i(x_{k}) - F_i(\bar x) 
-            + \frac{L_k\alpha_k^2}{2} \left\Vert \bar x - v_k\right\Vert^2
-            \\
-            &\le 
-            (1 - \alpha_k)\left(
-                F_i(x_{k - 1}) - F_i(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}
-                \left\Vert v_{k - 1} - \bar x\right\Vert^2
-            \right)     
-                \\ &\quad 
-                + \frac{\alpha_k(\tilde\sigma - \sigma^{(i)})}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                + \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2.
+            & \mathcal R_k^{(i)} = 
+            - \frac{(1 - \alpha_k)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2
+            + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2
         \end{split}\end{align}
-        And when $k = 0$, we have \eqref{ineq:snagp2-one-step-s1-rslt2} as well. 
+        And when $k = 0$, we have \eqref{ineq:snapg2-one-step-s1-rslt2} as well. 
     \end{lemma}
     \begin{proof}
-        Firstly take note that from Lemma \ref{lemma:snagp2-one-step-s1} using the fact that $\Pi^{(i)}$ is a projection matrix it has directly: 
+        Firstly take note that from Lemma \ref{lemma:snapg2-one-step-s1} using the fact that $\Pi^{(i)}$ is a projection matrix it has directly: 
         \begin{align*}
-            & F_i(x_{k}) - F_i(\bar x) + \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-            \\
-            &\le 
-            (1 - \alpha_k)\left(
-                F_i(x_{k - 1}) - F_i(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\left\Vert (I - \Pi^{(i)})( v_{k - 1} - \bar x)\right\Vert^2
-            \right)     
-            + \frac{L_k}{2}\left\Vert \Pi^{(i)}(z_k - y_k)\right\Vert^2
-                \\ &\quad 
-                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                + \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2
-            \\
-            &\le 
-            (1 - \alpha_k)\left(
-                F_i(x_{k - 1}) - F_i(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\left\Vert v_{k - 1} - \bar x\right\Vert^2
-            \right)     
-            + \frac{L_k}{2}\left\Vert \Pi^{(i)}(z_k - y_k)\right\Vert^2
-                \\ &\quad 
-                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                + \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2
+            & \mathcal R_k^{(i)} = (1 - \alpha_k)\left(
+                \frac{\sigma^{(i)}\alpha_k}{2}\left\Vert \Pi^{(i)} (\bar x - x_{k - 1})\right\Vert^2
+                - \frac{\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2
+            \right)
+                \\&\quad
+                + \frac{\sigma^{(i)}}{2}\left\Vert \Pi^{(i)}(z_k - y_k)\right\Vert^2
+                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2. 
         \end{align*}
-        Next, we will show that $\Pi^{(i)}(z_k - y_k)$ is zero under item (i), (ii). 
+        Next, we will show that $\Pi^{(i)}(z_k - y_k), \Pi^{(i)}(\bar x - x_{k - 1})$ are zero under assumptions listed in item (i), (ii). 
         \par
-        Let's prove (i) first. 
-        Since $A^{(i)} = I$, its kernel is zero hence the $\Pi^{(i)}$ in Lemma \ref{lemma:snagp2-one-step-s1} projects to $\{0\}$ and the term $\Pi^{(i)}(z_k - y_k) = \mathbf 0$ in \eqref{ineq:snagp2-one-step-s1-rslt1}. It's done. 
+        \textbf{Let's prove (i)}. 
+        Since $A^{(i)} = I$, its kernel is zero hence the $\Pi^{(i)}$ in Lemma \ref{lemma:snapg2-one-step-s1} projects to $\{0\}$ and the term $\Pi^{(i)}(z_k - y_k) = \mathbf 0$ in \eqref{ineq:snapg2-one-step-s1-rslt1}. It's done. 
         \par
-        To see (ii), recall that $z_k = \alpha_k \bar x + (1 - \alpha_k) x_{k - 1}$ from Lemma \ref{lemma:snagp2-one-step-s1}, obviously $z_k \perp \ker A^{(i)}$ as well. 
-        Recall that $y_k$ as defined in Definition \ref{def:snapg-v2-proto} has
+        \textbf{Proof of (ii)}. 
+        When $\bar x = \Pi^{(i)} x_{k - 1} = \Pi^{(i)} v_{k - 1}$, these three points $v_{k - 1}, x_{k - 1}, \bar x$ are on the same affine span. 
+        More importantly, the vector $x_{k - 1} - \bar x \in (\ker A^{(i)})^{\perp}$, and $v_{k - 1} - \bar x \in (\ker A^{(i)})^{\perp}$. 
+        Recall that $z_k = \alpha_k \bar x + (1 - \alpha_k) x_{k - 1}$ from Lemma \ref{lemma:snapg2-one-step-s1}, obviously $z_k \perp \ker A^{(i)}$ as well. 
+        Therefore, we have: 
         \begin{align*}
-            y_k = (1 + \tau_k)^{-1}v_{k - 1} + \tau_k(1 + \tau_k)^{-1}x_{k - 1}.
+            \Pi^{(i)}(\bar x - x_{k - 1}) = \mathbf 0. 
         \end{align*}
-        So $y_k \perp \ker A^{(i)}$ because it's the linear combinations of $v_{k - 1}, x_{k - 1}$. 
-        Hence, the projection of $y_k, z_k$ onto $\ker A^{(i)}$ by $\Pi^{(i)}$ is zero, hence the results from Lemma \ref{lemma:snagp2-one-step-s1} simplifies as well. 
+        Next, using Lemma \ref{lemma:iters-snapg2-proto} \ref{lemma:iters-snapg2-proto-item1} it has 
+        \begin{align*}
+            & \left\Vert
+                \Pi^{(i)} \left(
+                    \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}}(\bar x - v_{k - 1})
+                    + \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}}(\bar x - x_{k - 1})
+                \right)
+            \right\Vert
+            \\
+            &= 
+            \left\Vert
+                \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}}\Pi^{(i)}(\bar x - v_{k - 1})
+                + 
+                \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}}\Pi^{(i)}(\bar x - x_{k - 1})
+            \right\Vert
+            \\
+            &= 0
+        \end{align*}
+        The base case $k = 0$ proof is similar to what's in \ref{lemma:snapg2-one-step-s1}. 
     \end{proof}
     The next lemma adds into the interpolation assumption and take conditional expectations on the inequality. 
-    % The following lemma state the relationships of the iterates generated by SNAPG-V2. 
-    % They are needed for the convergence proof. 
-    % % --------------------------------------------------------------------------------------------------------------
-    % \begin{lemma}[properties of the iterates \textcolor{red}{DEPRECATED}]\label{lemma:snapg2-itrs-props}
-    %     Suppose that the iterates $(z_k, x_k, y_k)_{k \ge 0}$ and sequence $(\alpha_k)_{k \ge 1}$ are produced by an algorithm satisfying Definition \ref{def:snapg-v2}. 
-    %     Let $\bar x \in \RR^n$.
-    %     Define the sequence $z_k = \alpha_k\bar x + (1 - \alpha_k)x_{k - 1}$. 
-    %     Then, the following are true: 
-    %     \begin{enumerate}
-    %         \item\label{lemma:snapg2-itrs-props-item1} For all $k \ge 1$ it has: 
-    %         \begin{align*}
-    %                 z_k - y_k 
-    %                 = 
-    %                 \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}}(\bar x - v_{k - 1})
-    %                 + \frac{\mu^{(i)}(1 - \alpha_k)}{L_k - \mu^{(i)}}(\bar x - x_{k - 1}).
-    %         \end{align*}
-    %         \item\label{lemma:snapg2-itrs-props-item2} For all $k \ge 1$, it has: $z_k - x_k = \alpha_k(x - \bar x)$
-    %     \end{enumerate}
-    % \end{lemma}
-    % \begin{proof}
-    %     \textbf{Proof of \ref{lemma:snapg2-itrs-props-item1}}. 
-    %     From Definition \ref{def:snapg-v2}, it has
-    %     \begin{align*}
-    %         (1 + \tau_k)^{-1}
-    %         &=
-    %         \left(
-    %             1 + \frac{L_k(1 - \alpha_k)}{L_k\alpha_k - \mu^{(i)}}
-    %         \right)^{-1} = \left(
-    %             \frac{L_k\alpha_k - \mu^{(i)} + L_k(1 - \alpha_k)}{L_k\alpha_k - \mu^{(i)}}
-    %         \right)^{-1}
-    %         = \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}}. 
-    %     \end{align*}
-    %     Therefore, for all $k \ge 0$, $y_k$ has 
-    %     \begin{align*}
-    %         0 &= (1 + \tau_k)^{-1} v_{k - 1} + \tau_k (1 + \tau_k)^{-1} x_{k - 1} - y_k
-    %         \\
-    %         &= \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}} 
-    %         \left(
-    %             v_{k - 1} + \frac{L_k(1 - \alpha_k)}{L_k\alpha_k - \mu^{(i)}} x_{k - 1}
-    %         \right) - y_k
-    %         \\
-    %         &= \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}} v_{k - 1}
-    %         + \frac{L_k(1 - \alpha_k)}{L_k - \mu^{(i)}} x_{k - 1} - y_k
-    %         \\
-    %         &= \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}} v_{k - 1} + (1 - \alpha_k)x_{k - 1}
-    %         + 
-    %         \left(
-    %             \frac{L_k(1 - \alpha_k)}{L_k - \mu^{(i)}} - (1 - \alpha_k)
-    %         \right) x_{k - 1} - y_k
-    %         \\
-    %         &= \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}} v_{k - 1} + (1 - \alpha_k)x_{k - 1}
-    %         + 
-    %         (1 - \alpha_k)\left(
-    %             \frac{L_k - L_k + \mu^{(i)}}{L_k - \mu^{(i)}}
-    %         \right) x_{k - 1} - y_k
-    %         \\
-    %         &= \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}} v_{k - 1} + (1 - \alpha_k)x_{k - 1}
-    %         + 
-    %         \frac{\mu^{(i)}(1 - \alpha_k)}{L_k - \mu^{(i)}}x_{k - 1} - y_k. 
-    %     \end{align*}
-    %     Therefore, we establish the equality 
-    %     \begin{align*}
-    %         (1 - \alpha_k)x_{k - 1} - y_k &= 
-    %         - \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}} v_{k - 1} 
-    %         - \frac{\mu^{(i)}(1 - \alpha_k)}{L_k - \mu^{(i)}} x_{k - 1}. 
-    %     \end{align*}
-    %     On the second equality below, we will the above equality, it goes: 
-    %     \begin{align*}
-    %         z_k - y_k &= 
-    %         \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - y_k
-    %         \\
-    %         &= \alpha_k \bar x 
-    %         - \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}} v_{k - 1} 
-    %         - \frac{\mu^{(i)}(1 - \alpha_k)}{L_k - \mu^{(i)}} x_{k - 1}
-    %         \\
-    %         &= \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}}(\bar x - v_{k - 1})
-    %         + \left(
-    %             \alpha_k - \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}}
-    %         \right)\bar x
-    %         - \frac{\mu^{(i)}(1 - \alpha_k)}{L_k - \mu^{(i)}} x_{k - 1}
-    %         \\
-    %         &= \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}}(\bar x - v_{k - 1})
-    %         + \left(
-    %             \frac{\alpha_kL_k - \alpha_k \mu^{(i)} - L_k\alpha_k + \mu^{(i)}}{L_k - \mu^{(i)}}
-    %         \right)\bar x
-    %         - \frac{\mu^{(i)}(1 - \alpha_k)}{L_k - \mu^{(i)}} x_{k - 1}
-    %         \\
-    %         &= \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}}(\bar x - v_{k - 1})
-    %         + \frac{\mu^{(i)}(1 - \alpha_k)}{L_k - \mu^{(i)}}\bar x
-    %         - \frac{\mu^{(i)}(1 - \alpha_k)}{L_k - \mu^{(i)}} x_{k - 1}
-    %         \\
-    %         &= \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}}(\bar x - v_{k - 1})
-    %         + \frac{\mu^{(i)}(1 - \alpha_k)}{L_k - \mu^{(i)}}(\bar x - x_{k - 1}).
-    %     \end{align*}
-    %     \textbf{proof of \ref{lemma:snapg2-itrs-props-item2}.}
-    %     From Definition \ref{def:snapg-v2} it has directly: 
-    %     \begin{align*}
-    %         z_k - x_k &= \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - x_k
-    %         \\
-    %         &= \alpha_k \bar x + x_{k - 1} - x_k - \alpha_k x_{k - 1}
-    %         \\
-    %         &= \alpha_k(\bar x - \alpha_k^{-1}(x_k - x_{k - 1}) - x_{k - 1})
-    %         \\
-    %         &= \alpha_k (\bar x - v_k).
-    %     \end{align*}
-
-    % \end{proof}
-    % % --------------------------------------------------------------------------------------------------------------
-    % \begin{theorem}[SNAPG-V2 one step convergence \textcolor{red}{DEPRECATED}]\label{thm:snapg2-one-step}
-    %     Let $F$ satisfies assumption \ref{ass:interp-hypothesis}. 
-    %     Suppose that an algorithm satisfying Definition \ref{def:snapg-v2} uses this $F$. 
-    %     Let $\mathbb E_k$ denotes the expectation conditioned on $I_0, I_1, \ldots, I_{k - 1}$. 
-    %     Then, for all $k \ge 1$, it has the following inequality 
-    %     \begin{align*}
-    %         & \mathbb E_k\left[F_{I_k}(x_{k})\right] 
-    %         - F(\bar x) 
-    %         + \mathbb E_k\left[
-    %             \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-    %         \right]
-    %         \\
-    %         &\le 
-    %         (1 - \alpha_k)\left(
-    %                 \mathbb E_k \left[F_{I_k}(x_{k - 1})\right] 
-    %                 - F(\bar x)
-    %                 + \mathbb E_k \left[\frac{\alpha_{k - 1}^2L_{k - 1}}{2}\right]\Vert v_{k - 1} - \bar x\Vert^2
-    %         \right)
-    %             \\ &\quad 
-    %             + \mathbb E_k\left[
-    %                 \frac{(\alpha_k - 1)\mu^{(I_k)}\left(L_k\alpha_k - \mu^{(I_k)}\right)}{2\left(L_k - \mu^{(I_k)}\right)}
-    %             \right]\Vert x_{k - 1} - v_{k - 1} \Vert^2
-    %             + \frac{\alpha_k(\tilde\mu - \mu)}{2} 
-    %             \Vert \bar x - v_{k - 1}\Vert^2. 
-    %     \end{align*}
-    %     And for $k = 0$, it has 
-    %     \begin{align*}
-    %         \mathbb E \left[ F_{I_0}\right] - F(\bar x) 
-    %         + \frac{L_0}{2}\mathbb E \left[\Vert \bar x - x_0\Vert^2\right]
-    %         &\le 
-    %         \frac{L_0 - \mu}{2}\Vert \bar x - v_{-1}\Vert^2. 
-    %     \end{align*}
-    % \end{theorem}
-    % \begin{proof}
-    %     Let's suppose that $I_k = i$ and, for all $k \ge 0$. 
-    %     Let $z_k = \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$ where $\bar x$ is a minimizer of $F$. 
-    %     The proof is long so, we use letters and subscript under relations such as $\underset{(\cdot)}{=}, \underset{(\cdot)}{\ge}$ to indicate which result is used going from the previous expression to the next. 
-    %     We list the following intermediate results, (d)-(g) are proved at the end of the proof. 
-    %     \begin{itemize}
-    %         \item[(a)] We can use proximal gradient inequality from Theorem \ref{thm:pg-ineq} with $z = z_k$ because each $F_i$ is $K_i$ Lipschitz smooth and, $\mu^{(i)}$ strongly convex with $K_i \ge \mu^{(i)}$. 
-    %         \item[(b)] We can use Jensen's inequality of Theorem \ref{thm:jesen} with $z = z_k$ on $F_i$. 
-    %         \item[(c)] The sequence $(\alpha_k)_{k \ge 0}$ has $(L_{k - 1}/L_k)(1 - \alpha_{k})\alpha_{k - 1}^2 = \alpha_{k}\left(\alpha_{k} - \mu/L_k\right)$. 
-    %         \item[(d)] Prove in Lemma \ref{lemma:snapg2-itrs-props} \ref{lemma:snapg2-itrs-props-item1} we use the equality:
-    %         \begin{align*}
-    %             (\forall k \ge 1)\; 
-    %             z_k - y_k 
-    %             = 
-    %             \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}}(\bar x - v_{k - 1})
-    %             + \frac{\mu^{(i)}(1 - \alpha_k)}{L_k - \mu^{(i)}}(\bar x - x_{k - 1}).
-    %         \end{align*}
-    %         \item [(e)] From Lemma \ref{lemma:snapg2-itrs-props} \ref{lemma:snapg2-itrs-props-item2}, we use: $(\forall k \ge 1)\; z_k - x_k = \alpha_k (\bar x - v_k)$. 
-    %         \item [(f)] Using direct algebra, we have for all $k \ge 1$: 
-    %         \begin{align*}
-    %             \frac{\left(\mu^{(i)}\right)^2(1 - \alpha_k)^2}{2(L_k - \mu^{(i)})} 
-    %             - \frac{\mu^{(i)}\alpha_k(1 - \alpha_k)}{2}
-    %             = \frac{(\alpha_k - 1)\mu^{(i)}\left(L_k\alpha_k - \mu^{(i)}\right)}
-    %             {2\left(L_k - \mu^{(i)}\right)}. 
-    %         \end{align*}
-    %         \item [(g)] Using (c), we have for all $k \ge 1$: 
-    %         \begin{align*}
-    %             \frac{\left(
-    %                 L_k\alpha_k - \mu^{(i)}
-    %             \right)^2}{2(L_k - \mu^{(i)})} 
-    %             -
-    %             \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} 
-    %             = 
-    %             \frac{
-    %             \left(L_k \alpha_k - \mu^{(i)}\right)\mu^{(i)}
-    %             \left(\alpha_k - 1\right)
-    %             }
-    %             {2(L_k - \mu^{(i)})}
-    %             + \frac{\alpha_k(\tilde \mu_k - \mu^{(i)})}{2}. 
-    %         \end{align*}
-    %         \item[(h)] Because we assumed interpolation hypothesis in Assumption \ref{ass:interp-hypothesis}, it has $\mathbb E[F_{I_k}(\bar x)] = F(\bar x)$ for all $\bar x$ that is a minimizer of $F$. 
-    %     \end{itemize}
-    %     For all $k \ge 1$, starting with (a) we have: 
-    %     \begin{align}\label{ineq:snapg2-one-step-chain1}
-    %         \begin{split}
-    %             0 &\le F_i(z_k) - F_i(x_k) - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 + \frac{L_k - \mu^{(i)}}{2}\Vert z_k - y_k\Vert^2
-    %             \\
-    %             &\underset{\text{(b)}}{\le}
-    %             \alpha_k F_i(\bar x) + (1 - \alpha_k)F_i(x_{k - 1}) - F_i(x_k) \\
-    %                 &\quad 
-    %                 - \frac{\mu^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
-    %                 - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
-    %                 + \frac{L_k - \mu^{(i)}}{2}\Vert z_k - y_k\Vert^2. 
-    %         \end{split}
-    %     \end{align}
-    %     And we have the following chain of equalities:
-    %     {\allowdisplaybreaks
-    %     \begin{align*}
-    %         & - \frac{\mu^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
-    %         + \frac{L_k - \mu^{(i)}}{2}\Vert z_k - y_k\Vert^2
-    %         \\
-    %         &\underset{\text{(d)}}{=}
-    %         - \frac{\mu^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2 
-    %             \\&\quad
-    %             + \frac{L_k - \mu^{(i)}}{2}
-    %             \left\Vert
-    %                 \frac{L_k\alpha_k - \mu^{(i)}}{L_k - \mu^{(i)}}(\bar x - v_{k - 1})
-    %                 + \frac{\mu^{(i)}(1 - \alpha_k)}{L_k - \mu^{(i)}}(\bar x - x_{k - 1})
-    %             \right\Vert^2
-    %         \\
-    %         &= 
-    %         - \frac{\mu^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2 
-    %             \\&\quad
-    %             + \frac{(L_k\alpha_k - \mu^{(i)})^2}{2(L_k - \mu^{(i)})} \Vert \bar x - v_{k - 1}\Vert^2
-    %             + \frac{(\mu^{(i)})^2(1 - \alpha_k)^2}{2(L_k - \mu^{(i)})}\Vert \bar x - x_{k - 1}\Vert^2 
-    %             \\&\quad 
-    %             + \frac{(L_k\alpha_k  - \mu^{(i)})\mu^{(i)}(1 - \alpha_k)}{(L_k - \mu^{(i)})}\langle \bar x - v_{k - 1}, \bar x - x_{k - 1}\rangle
-    %         \\
-    %         &= 
-    %         \left(
-    %             \frac{(\mu^{(i)})^2(1 - \alpha_k)^2}{2(L_k - \mu^{(i)})} - \frac{\mu^{(i)}\alpha_k(1 - \alpha_k)}{2}
-    %         \right)\Vert \bar x - x_{k - 1}\Vert^2
-    %             \\ &\quad 
-    %             + \left(
-    %                 \frac{(L_k\alpha_k - \mu^{(i)})^2}{2(L_k - \mu^{(i)})} - \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2}
-    %             \right) \Vert \bar x - v_{k - 1}\Vert^2
-    %             + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2
-    %             \\&\quad 
-    %             + \frac{(L_k\alpha_k  - \mu^{(i)})\mu^{(i)}(1 - \alpha_k)}{(L_k - \mu^{(i)})}\langle \bar x - v_{k - 1}, \bar x - x_{k - 1}\rangle
-    %         \\
-    %         &\underset{\text{(f)}}{=}
-    %         \frac{(\alpha_k - 1)\mu^{(i)}\left(L_k\alpha_k - \mu^{(i)}\right)}
-    %         {2\left(L_k - \mu^{(i)}\right)} \Vert \bar x - x_{k - 1}\Vert^2
-    %             \\ &\quad 
-    %             + \left(
-    %                 \frac{(L_k\alpha_k - \mu^{(i)})^2}{2(L_k - \mu^{(i)})} - \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2}
-    %             \right) \Vert \bar x - v_{k - 1}\Vert^2
-    %             + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2
-    %             \\&\quad 
-    %             + \frac{(L_k\alpha_k  - \mu^{(i)})\mu^{(i)}(1 - \alpha_k)}{(L_k - \mu^{(i)})}\langle \bar x - v_{k - 1}, \bar x - x_{k - 1}\rangle
-    %         \\
-    %         & \underset{\text{(g)}}{=} 
-    %         \frac{(\alpha_k - 1)\mu^{(i)}\left(L_k\alpha_k - \mu^{(i)}\right)}
-    %         {2\left(L_k - \mu^{(i)}\right)}\Vert \bar x - x_{k - 1}\Vert^2
-    %             \\ &\quad 
-    %             + \left(
-    %                 \frac{
-    %                     \left(L_k \alpha_k - \mu^{(i)}\right)\mu^{(i)}
-    %                     \left(\alpha_k - 1\right)
-    %                 }
-    %                 {2(L_k - \mu^{(i)})}
-    %                 + \frac{\alpha_k(\tilde\mu - \mu^{(i)})}{2}
-    %             \right) 
-    %             \Vert \bar x - v_{k - 1}\Vert^2
-    %             \\ &\quad 
-    %             + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2
-    %             + \frac{(L_k\alpha_k  - \mu^{(i)})\mu^{(i)}(1 - \alpha_k)}{(L_k - \mu^{(i)})}\langle \bar x - v_{k - 1}, \bar x - x_{k - 1}\rangle
-    %         \\
-    %         &= 
-    %         \frac{(\alpha_k - 1)\mu^{(i)}\left(L_k\alpha_k - \mu^{(i)}\right)}{2\left(L_k - \mu^{(i)}\right)}\left(
-    %             \Vert \bar x - x_{k - 1}\Vert^2 + \Vert \bar x - v_{k - 1}\Vert^2 - 2\langle \bar x - v_{k - 1}, \bar x - x_{k - 1}\rangle
-    %         \right) 
-    %             \\ &\quad 
-    %             + \frac{\alpha_k(\tilde\mu - \mu^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2
-    %             + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2
-    %         \\
-    %         &= \frac{(\alpha_k - 1)\mu^{(i)}\left(L_k\alpha_k - \mu^{(i)}\right)}{2\left(L_k - \mu^{(i)}\right)}
-    %             \Vert x_{k - 1} - v_{k - 1} \Vert^2
-    %             \\ &\quad 
-    %             + \frac{\alpha_k(\tilde\mu - \mu^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2
-    %             + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2.
-    %     \end{align*}
-    %     }
-    %     Substituting the above back to the tail of Inequality \eqref{ineq:snapg2-one-step-chain1} it gives: 
-    %     {\allowdisplaybreaks
-    %     \begin{align*}
-    %         0 &\le 
-    %         \alpha_k F_i(\bar x) + (1 - \alpha_k)F_i(x_{k - 1}) - F_i(x_k) 
-    %             \\&\quad 
-    %             - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
-    %             + \frac{(\alpha_k - 1)\mu^{(i)}\left(L_k\alpha_k - \mu^{(i)}\right)}{2\left(L_k - \mu^{(i)}\right)}
-    %             \Vert x_{k - 1} - v_{k - 1} \Vert^2
-    %             \\ &\quad 
-    %             + \frac{\alpha_k(\tilde\mu - \mu^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2
-    %             + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2
-    %         \\
-    %         &\underset{\text{(e)}}{=} 
-    %         \alpha_k F_i(\bar x) + (1 - \alpha_k)F_i(x_{k - 1}) - F_i(x_k) 
-    %             \\&\quad 
-    %             - \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-    %             + \frac{(\alpha_k - 1)\mu^{(i)}\left(L_k\alpha_k - \mu^{(i)}\right)}{2\left(L_k - \mu^{(i)}\right)}
-    %             \Vert x_{k - 1} - v_{k - 1} \Vert^2
-    %             \\ &\quad 
-    %             + \frac{\alpha_k(\tilde\mu - \mu^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2
-    %             + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2
-    %         \\
-    %         &= (\alpha_k - 1)F_i(\bar x) + (1 - \alpha_k)F_i(x_{k - 1}) - F_i(x_k) + F_i(\bar x)
-    %             \\&\quad 
-    %             - \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-    %             + \frac{(\alpha_k - 1)\mu^{(i)}\left(L_k\alpha_k - \mu^{(i)}\right)}{2\left(L_k - \mu^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2
-    %             \\ &\quad 
-    %             + \frac{\alpha_k(\tilde\mu - \mu^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2
-    %             + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2
-    %         \\
-    %         &= (1 - \alpha_k)\left(
-    %             F_i(x_{k - 1}) - F_i(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert v_{k - 1} - \bar x\Vert^2
-    %         \right) 
-    %             \\ & \quad
-    %             - \left(
-    %                 F_i(x_{k}) - F_i(\bar x) + \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-    %             \right)
-    %             \\ &\quad 
-    %             + \frac{\alpha_k(\tilde\mu - \mu^{(i)})}{2}\Vert \bar x - v_{k - 1}\Vert^2
-    %             + \frac{(\alpha_k - 1)\mu^{(i)}\left(L_k\alpha_k - \mu^{(i)}\right)}{2\left(L_k - \mu^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2. 
-    %     \end{align*}
-    %     }
-    %     Recall that $i = I_k$ is the random variable from Definition \ref{def:snapg-v2}. 
-    %     Rearranging the last expression in the above equality chain can be conveniently written as
-    %     \begin{align}
-    %         \begin{split}
-    %             & F_{I_k}(x_{k}) - F_{I_k}(\bar x) + \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-    %             \\ &\le 
-    %             (1 - \alpha_k)\left(
-    %                 F_{I_k}(x_{k - 1}) - F_{I_k}(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert v_{k - 1} - \bar x\Vert^2
-    %             \right) 
-    %                 \\ &\quad 
-    %                 + \frac{\alpha_k(\tilde \mu - \mu^{(I_k)})}{2} \Vert \bar x - v_{k - 1}\Vert^2
-    %                 + \frac{(\alpha_k - 1)\mu^{(I_k)}\left(L_k\alpha_k - \mu^{(I_k)}\right)}{2\left(L_k - \mu^{(I_k)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2. 
-    %         \end{split}
-    %     \label{ineq:snapg2-one-step-presult1}\end{align}
-    %     Recall $\mathbb E_k$ denotes the conditional expectation on $I_0, I_1, \ldots, I_{k - 1}$. 
-    %     Taking the conditional expectation on the LHS of the \eqref{ineq:snapg2-one-step-presult1} yields: 
-    %     \begin{align*}
-    %         & \mathbb E_k\left[
-    %             F_{I_k}(x_{k}) - F_{I_k}(\bar x) + \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-    %         \right]
-    %         \\
-    %         &\underset{\text{(h)}}{=}
-    %         \mathbb E_k\left[F_{I_k}(x_{k})\right] 
-    %         - F(\bar x) 
-    %         + \mathbb E_k\left[
-    %             \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-    %         \right]. 
-    %     \end{align*}
-    %     On the RHS of \eqref{ineq:snapg2-one-step-presult1}, using the linearity property while taking the conditional expectation yields: 
-    %     {\allowdisplaybreaks
-    %     \begin{align*}
-    %         & \mathbb E_k\left[
-    %             (1 - \alpha_k)\left(
-    %                 F_{I_k}(x_{k - 1}) - F_{I_k}(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert v_{k - 1} - \bar x\Vert^2
-    %             \right)
-    %         \right]
-    %             \\ &\quad 
-    %             + \mathbb E_k \left[
-    %                 \frac{\alpha_k(\tilde\mu - \mu^{(I_k)})}{2} \Vert \bar x - v_{k - 1}\Vert^2
-    %             \right]
-    %             + \mathbb E_k\left[
-    %                 \frac{(\alpha_k - 1)\mu^{(I_k)}\left(L_k\alpha_k - \mu^{(I_k)}\right)}{2\left(L_k - \mu^{(I_k)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2
-    %             \right]
-    %         \\
-    %         &\underset{\text{(1)}}{=} 
-    %         (1 - \alpha_k)\left(
-    %                 \mathbb E_k \left[F_{I_k}(x_{k - 1})\right] 
-    %                 -\mathbb E_k [F_{I_k}(\bar x)] 
-    %                 + \mathbb E_k \left[\frac{\alpha_{k - 1}^2L_{k - 1}}{2}\right]\Vert v_{k - 1} - \bar x\Vert^2
-    %         \right)
-    %             \\ &\quad 
-    %             + \mathbb E_k \left[
-    %                 \frac{\alpha_k(\tilde\mu - \mu^{(I_k)})}{2} 
-    %             \right]\Vert \bar x - v_{k - 1}\Vert^2
-    %             + \mathbb E_k\left[
-    %                 \frac{(\alpha_k - 1)\mu^{(I_k)}\left(L_k\alpha_k - \mu^{(I_k)}\right)}{2\left(L_k - \mu^{(I_k)}\right)}
-    %             \right]\Vert x_{k - 1} - v_{k - 1} \Vert^2. 
-    %         \\
-    %         &\underset{\text{(h)}}{=} 
-    %         (1 - \alpha_k)\left(
-    %                 \mathbb E_k \left[F_{I_k}(x_{k - 1})\right] 
-    %                 - F(\bar x)
-    %                 + \mathbb E_k \left[\frac{\alpha_{k - 1}^2L_{k - 1}}{2}\right]\Vert v_{k - 1} - \bar x\Vert^2
-    %         \right)
-    %             \\ &\quad 
-    %             + \mathbb E_k \left[
-    %                 \frac{\alpha_k(\tilde\mu - \mu^{(I_k)})}{2} 
-    %             \right]\Vert \bar x - v_{k - 1}\Vert^2
-    %             + \mathbb E_k\left[
-    %                 \frac{(\alpha_k - 1)\mu^{(I_k)}\left(L_k\alpha_k - \mu^{(I_k)}\right)}{2\left(L_k - \mu^{(I_k)}\right)}
-    %             \right]\Vert x_{k - 1} - v_{k - 1} \Vert^2
-    %         \\
-    %         &\underset{\text{(2)}}{=}
-    %         (1 - \alpha_k)\left(
-    %                 \mathbb E_k \left[F_{I_k}(x_{k - 1})\right] 
-    %                 - F(\bar x)
-    %                 + \mathbb E_k \left[\frac{\alpha_{k - 1}^2L_{k - 1}}{2}\right]\Vert v_{k - 1} - \bar x\Vert^2
-    %         \right)
-    %             \\ &\quad 
-    %             \frac{\alpha_k(\tilde\mu - \mu)}{2} 
-    %             \Vert \bar x - v_{k - 1}\Vert^2
-    %             + \mathbb E_k\left[
-    %                 \frac{(\alpha_k - 1)\mu^{(I_k)}\left(L_k\alpha_k - \mu^{(I_k)}\right)}{2\left(L_k - \mu^{(I_k)}\right)}
-    %             \right]\Vert x_{k - 1} - v_{k - 1} \Vert^2. 
-    %     \end{align*}
-    %     }
-    %     We note that at label (1), we used the fact that $\alpha_k$ is a constant and, $x_{k - 1}, v_{k - 1}$ only depends on random variable $I_0, I_1, \ldots, I_{k - 1}$ hence it falls out of the conditional expectation $\mathbb E_k$. 
-    %     At label (2), we used assumption (Assumption \ref{ass:sum-of-many}) that the averages of all the $\mu^{(I_k)}$ on each $F_{I_k}$ equals to $\mu$ hence, the expectation evaluates to zero by linearity of the expected value operator. 
-    %     \par
-    %     Combining the above results on the expectation of RHS, and LHS of \eqref{ineq:snapg2-one-step-presult1}, we have the one-step inequality in expectation: 
-    %     \begin{align*}
-    %         & \mathbb E_k\left[F_{I_k}(x_{k})\right] 
-    %         - F(\bar x) 
-    %         + \mathbb E_k\left[
-    %             \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-    %         \right]
-    %         \\
-    %         &\le 
-    %         (1 - \alpha_k)\left(
-    %                 \mathbb E_k \left[F_{I_k}(x_{k - 1})\right] 
-    %                 - F(\bar x)
-    %                 + \mathbb E_k \left[\frac{\alpha_{k - 1}^2L_{k - 1}}{2}\right]\Vert v_{k - 1} - \bar x\Vert^2
-    %         \right)
-    %             \\ &\quad 
-    %             + \mathbb E_k\left[
-    %                 \frac{(\alpha_k - 1)\mu^{(I_k)}\left(L_k\alpha_k - \mu^{(I_k)}\right)}{2\left(L_k - \mu^{(I_k)}\right)}
-    %             \right]\Vert x_{k - 1} - v_{k - 1} \Vert^2. 
-    %     \end{align*}
-    %     Finally, we show the base case. 
-    %     When $k = 0$, by assumption it had $\alpha_0 = 1$ hence $\tau_0$ in Definition \ref{def:snapg-v2} has $\tau_0 = 0$ which makes $y_0 = v_{- 1} = x_{-1}$. 
-    %     Therefore, it makes $x_0 = T_{L_0}(y_0 | F_{I_0}) = T_{L_0}(v_{-1} | F_{I_0})$. 
-    %     Similarly, it has also $z_0 = \bar x$.
-    %     Applying Theorem \ref{thm:pg-ineq} with $z = z_0$ and, assume a successful line search with $L_0$, it yields: 
-    %     \begin{align*}
-    %         0 &\le F_{I_0}(z_0) - F_{I_0}(x_0) - \frac{L_0}{2}\Vert z_0 - x_0\Vert^2 + \frac{L_0 - \mu^{(I_0)}}{2}\Vert z_0 - y_0\Vert^2
-    %         \\
-    %         &= F_{I_0}(\bar x) - F_{I_0}(x_0) - \frac{L_0}{2}\Vert \bar x - x_0\Vert^2 + \frac{L_0 - \mu^{(I_0)}}{2}\Vert \bar x - v_{-1}\Vert^2. 
-    %     \end{align*}
-    %     Re-arranging and taking the expectation it yields: 
-    %     \begin{align*}
-    %         \mathbb E \left[
-    %             F_{I_0}(x_0) - F_{I_0}(\bar x) + \frac{L_0}{2}\Vert \bar x - x_0\Vert^2
-    %         \right]
-    %         &\underset{\text{(h)}}{=}
-    %         \mathbb E \left[ F_{I_0}\right] - F(\bar x) 
-    %         + \frac{L_0}{2}\mathbb E \left[\Vert \bar x - x_0\Vert^2\right]
-    %         \\
-    %         &\le \frac{L_0 - \mathbb E \left[\mu^{(I_0)}\right]}{2}\Vert \bar x - v_{-1}\Vert^2
-    %         \\
-    %         &= \frac{L_0 - \mu}{2}\Vert \bar x - v_{-1}\Vert^2. 
-    %     \end{align*}
-    %     % INTERMEDIATE RESULTS
-    %     \textbf{Proof of (f)}. 
-    %     The proof is direct algebra and, it has: 
-    %     {\small\allowdisplaybreaks
-    %     \begin{align*}
-    %         & \frac{\left(\mu^{(i)}\right)^2(1 - \alpha_k)^2}{2(L_k - \mu^{(i)})} 
-    %         - \frac{\mu^{(i)}\alpha_k(1 - \alpha_k)}{2}
-    %         \\
-    %         &= 
-    %         \frac{1}{2\left(L_k - \mu^{(i)}\right)}
-    %         \left(
-    %             \left(\mu^{(i)}\right)^2(1 - \alpha_k)^2
-    %             - \left(L_k - \mu^{(i)}\right)\mu^{(i)} \alpha_k(1 - \alpha_k)
-    %         \right)
-    %         \\
-    %         &= \frac{1 - \alpha_k}{2\left(L_k - \mu^{(i)}\right)}\left(
-    %             \left(\mu^{(i)}\right)^2 
-    %             - \left(\mu^{(i)}\right)^2\alpha_k 
-    %             - \left(L_k \mu^{(i)} \alpha_k - \left(\mu^{(i)}\right)^2 \alpha_k\right)
-    %         \right)
-    %         \\
-    %         &= 
-    %         \frac{1 - \alpha_k}{2(L_k - \mu)}\left(
-    %             \left(\mu^{(i)}\right)^2 - L_k\left(\mu^{(i)}\right)\alpha_k
-    %         \right)
-    %         \\
-    %         &= 
-    %         \frac{(1 - \alpha_k)\mu^{(i)}\left(\mu^{(i)} - L_k\alpha_k\right)}
-    %         {2\left(L_k - \mu^{(i)}\right)}
-    %         \\
-    %         &= \frac{(\alpha_k - 1)\mu^{(i)}\left(L_k\alpha_k - \mu^{(i)}\right)}
-    %         {2\left(L_k - \mu^{(i)}\right)}. 
-    %     \end{align*}
-    %     }    
-    %     % INTERMEDIATE RESULTS 
-    %     \textbf{Proof of (g)}.
-    %     From the property of the $\alpha_k$ sequence stated in item (c), we have: 
-    %     {\allowdisplaybreaks
-    %     \begin{align*}
-    %         &\frac{\left(
-    %             L_k\alpha_k - \mu^{(i)}
-    %         \right)^2}{2(L_k - \mu^{(i)})} 
-    %         -
-    %         \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} 
-    %         \\
-    %         &= 
-    %         \frac{\left(
-    %             L_k\alpha_k - \mu^{(i)}
-    %         \right)^2}{2(L_k - \mu^{(i)})} 
-    %         -
-    %         \frac{L_k\alpha_k(\alpha_k - \tilde \mu/L_k)}{2} 
-    %         \\
-    %         &=
-    %         \frac{\left(
-    %             L_k\alpha_k - \mu^{(i)}
-    %         \right)^2}{2(L_k - \mu^{(i)})} 
-    %         - \frac{L_k\alpha_k(\alpha_k - \mu^{(i)}/L_k)}{2}
-    %         + \frac{L_k\alpha_k(\alpha_k - \mu^{(i)}/L_k)}{2} 
-    %         - \frac{L_k\alpha_k(\alpha_k - \tilde \mu/L_k)}{2} 
-    %         \\
-    %         &= 
-    %         \frac{\left(
-    %             L_k\alpha_k - \mu^{(i)}
-    %         \right)^2}{2(L_k - \mu^{(i)})} 
-    %         - \frac{\alpha_k\left(L_k\alpha_k - \mu^{(i)}\right)}{2}
-    %         + \frac{L_k\alpha_k}{2}
-    %         \frac{\left(
-    %             \tilde \mu - \mu^{(i)}
-    %         \right)}{L_k}
-    %         \\
-    %         &=
-    %         \frac{L_k \alpha_k - \mu^{(i)}}{2(L_k - \mu^{(i)})}\left(
-    %             L_k \alpha_k - \mu^{(i)} 
-    %             - \left(L_k - \mu^{(i)}\right)\alpha_k
-    %         \right)
-    %         + \frac{\alpha_k(\tilde \mu - \mu^{(i)})}{2}
-    %         \\
-    %         &= \frac{L_k \alpha_k - \mu^{(i)}}{2(L_k - \mu^{(i)})}\left(
-    %             \mu^{(i)}\alpha_k - \mu^{(i)} 
-    %         \right)
-    %         + \frac{\alpha_k(\tilde \mu - \mu^{(i)})}{2}
-    %         \\
-    %         &= 
-    %         \frac{
-    %             \left(L_k \alpha_k - \mu^{(i)}\right)\mu^{(i)}
-    %             \left(\alpha_k - 1\right)
-    %         }
-    %         {2(L_k - \mu^{(i)})}
-    %         + \frac{\alpha_k(\tilde \mu - \mu^{(i)})}{2}. 
-    %     \end{align*}   
-    %     } 
-    % \end{proof}
+    \begin{lemma}[SNAPG-V2 classical one step convergence]\label{lemma:snapg-v2-one-step-not-scnvx}
+        Suppose that the sequence $(v_k, x_k, y_k)_{k \ge 0}$ is generated by algorithms that satisfy Definition \ref{def:snapg-v2-classical}, then for all $k \ge 1$, the $\mathcal R^{(i)}_k$ in \eqref{ineq:snapg2-one-step-s1-rslt1} equals to zero. 
+        Let $\mathbb E_k$ defines the conditional expectation on $I_0, I_1, \ldots, I_{k - 1}, I_k$. 
+        If in addition, Assumption \ref{ass:interp-hypothesis} holds. 
+        Then, it has for all $k \ge 1$ the inequality: 
+        \begin{align*}
+            & \expect_{k - 1}
+            \left[
+                F_{I_k}(x_k)
+                - F(\bar x)
+                + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
+            \right]
+            \\&\le 
+            (1 - \alpha_k)\left(
+                F_{I_k}(x_{k - 1}) - F_{I_k}(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2} \Vert \bar x - v_{k - 1}\Vert^2
+            \right). 
+        \end{align*}
+        and, inequality \ref{ineq:snapg2-one-step-s1-rslt2} holds when $k = 0$. 
+    \end{lemma}
+    \begin{proof}
+        Setting $\sigma^{(i)} = 0$, it has $\mathcal R^{(i)}_k = \alpha_k(\tilde \mu - \sigma^{(i)})/2\Vert \bar x - v_{k - 1}\Vert^2$. 
+        By Definition \ref{def:snapg-v2-classical}, $\tilde \mu = 0, \sigma^{(i)} = 0$ for all $i = 1, 2, \ldots, n$, so $\mathcal R^{(i)}_k = 0$ for all $k \ge 1$. 
+    \end{proof}
 \section{Convergence rate of the algorithm under various circumstances}
     The previous section highlighted a generic convergence results from one iteration of the algorithm, however, there are a lot of loose ends. 
     This section will deal with those. 
