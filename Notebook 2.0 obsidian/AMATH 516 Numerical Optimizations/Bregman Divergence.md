@@ -212,7 +212,7 @@ It's not hard to verify the following intermediate result which is direct by the
 $$
 \begin{aligned}
     f(z) = f(\bar x) + \langle \lambda(x - \bar x), \nabla f(\bar x)\rangle + D_f(\lambda(x - \bar x) + \bar x, \bar x). 
-\tag{a}\end{aligned}
+\end{aligned}\tag{a}
 $$
 
 Then, it has 
