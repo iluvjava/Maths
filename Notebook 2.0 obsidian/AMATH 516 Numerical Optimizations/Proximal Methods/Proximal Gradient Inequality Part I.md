@@ -10,7 +10,7 @@ Pre-requisite:
 This section introduces a crucial inequality that is widely used for the convergence proof of the algorithm that involves the use of a proximal gradient operator. 
 
 #### **Assumption 0**
-> 1. $h = f + g$ where $g: \R \rightarrow \overline \R$, $f$ are closed convex and proper, and $f$ is $L$-Lipschitz smooth. 
+> 1. $h = f + g$ where $g: \R \rightarrow \overline \R$, $f, g$ are closed convex and proper, and $f$ is $L$-Lipschitz smooth. 
 
 Recall from previous sections on results of the proximal gradient operator. 
 
@@ -438,19 +438,44 @@ $\blacksquare$
 ---
 ### **Non-trivial extension**
 
-What if, the evaluations of the gradient, or the proximal point method here is inexact, how would the same inequality changes when there are errors involved in the evaluations? 
-We will use strong convexity subgradient inequality and, a sub optimality conditions. 
 
+The following lemma is similar to appeared in the Catalyst paper for the inclusion of inexact evaluation of the proximal gradient. 
 
+#### **Lemma 2.0 | inexact proximal gradient inequality with relative error**
+> Let $F = f + g$ satisfies **Assumption 0**. 
+> Fix any vector $x, z \in \R^n$. 
+> Let $B \ge L$. 
+> Suppose the evaluation of the proximal gradient operator is inexact and contains error $w$ at $\tilde x$ given $z$ is:
+> $$
+> \begin{aligned}
+>     w &\in \partial \left[z \mapsto g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2\right](\tilde x), 
+>     \\
+>     \Vert w\Vert 
+>     &\le 
+>     \epsilon\Vert z - x\Vert. 
+> \end{aligned}
+> $$
+> Then, the following inequality is true: 
+> $$
+> \begin{aligned}
+>     0 &\le 
+>     F(z) - F(\tilde x) + \frac{B - \mu}{2}\Vert z - x\Vert^2
+>     - \frac{B}{2}\Vert z - \tilde x\Vert^2 
+>     + \epsilon \Vert z - x\Vert \Vert z - \tilde x\Vert. 
+> \end{aligned}
+> $$
+
+**Proof**
 
 Make $h(z; x) = z \mapsto g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2$. 
 An inexact solution is produced to minimizer $h(z;x)$ on $z$, giving $w \in \partial h(\tilde x; x)$. 
-$h$ is $B$ strongly convex therefore subgradient inequality has for all $z$
+$h$ is $B$ strongly convex therefore subgradient inequality has for $z$
 
 $$
 \begin{aligned}
-    0 &\le 
-    h(z; x) - h(\tilde x, x) - \langle w, z - \tilde x \rangle - \frac{B}{2}\Vert z - \tilde x \Vert^2
+    0 
+    &\le 
+    h(z; x) - h(\tilde x, x) - \langle w, z - \tilde x \rangle - \frac{B}{2}\Vert z - \tilde x \Vert^2. 
 \end{aligned}
 $$
 
@@ -477,21 +502,87 @@ $$
         - \frac{B}{2}\Vert z - \tilde x\Vert^2 
         - \langle w, z - \tilde x\rangle
     \\
-    &\le 
+    &\underset{\text{(a)}}{\le} 
     F(z) - F(\tilde x) + \left(
         \frac{B}{2}\Vert z - x\Vert^2 - D_f(z, x)
     \right)
     - \frac{B}{2}\Vert z - \tilde x\Vert^2 
     - \langle w, z - \tilde x\rangle
     \\
-    &\le 
+    &\underset{\text{(b)}}{\le} 
     F(z) - F(\tilde x) + \frac{B - \mu}{2}\Vert z - x\Vert^2
     - \frac{B}{2}\Vert z - \tilde x\Vert^2 
     - \langle w, z - \tilde x\rangle
     \\
+    &\underset{\text{(c)}}{\le}  
+    F(z) - F(\tilde x) + \frac{B - \mu}{2}\Vert z - x\Vert^2
+    - \frac{B}{2}\Vert z - \tilde x\Vert^2 
+    + \epsilon \Vert \tilde x - x\Vert \Vert z - \tilde x\Vert. 
+\end{aligned}
+$$
+
+At (a), we used the fact $B \ge L$ which means $B/2\Vert \tilde x - x\Vert - D_f(\tilde x, x) \ge 0$. 
+At (b), we used the fact that $\frac{B}{2}\Vert x - x\Vert^2 - D_f(x, y)\le \frac{L - \mu}{2}\Vert x - z\Vert^2$ from the $L$ smoothness, $\mu$ strong convexity of $f$. 
+At (c), we used the assumption that $\Vert w\Vert \le \epsilon \Vert z - x\Vert$. 
+
+**Remarks**
+
+The error is relative to the choices of point $z, x$.
+Further away the point $z$ is relative to $x$, the more error it's above $\Vert w\Vert$. 
+Further simplifcations using basic algebra yields: 
+
+$$
+\begin{aligned}
+    0 &\le
+    F(z) - F(\tilde x) + \frac{B - \mu}{2}\Vert z - x\Vert^2
+    - \frac{B}{2}\Vert z - \tilde x\Vert^2 
+    + \epsilon \Vert \tilde x - x\Vert \Vert z - \tilde x\Vert
+    \\
+    &= F(z) - F(\tilde x) + \frac{B - \mu}{2}\Vert z - x\Vert^2
+    - \frac{B}{2}\Vert z - \tilde x\Vert^2 
+    + \epsilon \Vert \tilde x - x\Vert \Vert z - \tilde x\Vert
+    \\&\quad 
+        - \epsilon\Vert \tilde x - x\Vert^2 - \epsilon\Vert z - \tilde x\Vert^2
+        + \epsilon\Vert \tilde x - x\Vert^2 + \epsilon\Vert z - \tilde x\Vert^2
+    \\
+    &= 
+    F(z) - F(\tilde x) + \frac{B - \mu}{2}\Vert z - x\Vert^2
+    - \frac{B}{2}\Vert z - \tilde x\Vert^2 
+    - \left(
+        \sqrt{\epsilon}\Vert \tilde x - x\Vert - \sqrt{\epsilon}\Vert z - x \Vert
+    \right)^2
+    \\&\quad 
+        + \epsilon\Vert \tilde x - x\Vert^2 + \epsilon\Vert z - \tilde x\Vert^2
+    \\
     &\le 
     F(z) - F(\tilde x) + \frac{B - \mu}{2}\Vert z - x\Vert^2
     - \frac{B}{2}\Vert z - \tilde x\Vert^2 
-    + \epsilon \Vert z - x\Vert \Vert z - \tilde x\Vert.
+    + \Vert \tilde x - x\Vert^2 + \epsilon\Vert z - \tilde x\Vert^2
+    \\
+    &= 
+    F(z) - F(\tilde x) + \frac{B - \mu}{2}\Vert z - x\Vert^2
+    - \frac{B - \epsilon}{2}\Vert z - \tilde x\Vert^2 
+    + \epsilon\Vert \tilde x - x\Vert^2. 
 \end{aligned}
 $$
+
+Suppose inexact gradient evaluation of $\tilde\nabla f$ yields inexact point $\tilde x$ at $x$, then it has: 
+
+$$
+\begin{aligned}
+    0 &\in \partial g(\tilde x)
+    + \tilde \nabla f(x) 
+    + B(\tilde x - x)
+    \\
+    &= \partial g(\tilde x)
+    + \tilde \nabla f(x) - \nabla f(x) + \nabla f(x)
+    + B(\tilde x - x)
+    \\
+    \iff
+    \tilde \nabla  f(x) - \nabla f(x)
+    &\in 
+    \partial g(\tilde x) + \nabla f(x) + B(\tilde x - x). 
+\end{aligned}
+$$
+
+This gives $w = \tilde \nabla f(x) - \nabla f(x)$, the error terms associated with the inexact gradient evaluation. 

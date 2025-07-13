@@ -31,12 +31,9 @@ For more about Bregman divergence in general, visit [Wikipedia Bregman Divergenc
 
 #### **The Legendre Type**
 
-If we apply the Bregman distance to the $\omega$ function of Legendre Type, it will enjoy many favorable properties that make the math easier to analyze. 
-In the context of convex analysis, a function of Legendre type has a gradient mapping that is one-to-one, satisfying $(\nabla f)^{-1} = \nabla f^\star$, providing us with a crucial link to the dual of the problem.
+If we apply the Bregman distance to the $\omega$ function of Legendre Type, it will enjoy favorable properties. 
+In the context of convex analysis, a function of Legendre type has a gradient mapping that is one-to-one, satisfying $(\nabla f)^{-1} = \nabla f^\star$, giving us way to invert do inversion. 
 See more about the Legendre Type function in the prerequisite listed at the start of the file. 
-
-#### **Assumption**
-> Let's assume that the Bregman distance we use, is always applied to a function $\omega$ such that it's a Legendre Type. 
 
 
 **Remarks**
@@ -47,56 +44,7 @@ The above fact should clarify the domain of the Bregman distance being $\text{do
 
 
 
-#### **Example-1 | The Energy Function**
 
-Let's say that the energy function is $f$, defined as $\Vert x\Vert^2/2$.
-This is a Legendre function because it's differentiable on the entirety of $\mathbb R^n$. 
-Using the definition, the Bregman divergence is 
-
-$$
-\begin{aligned}
-    D_f(x, y) &= \frac{\Vert x\Vert^2}{2} - \frac{\Vert y\Vert^2}{2}
-    - \left\langle \nabla 
-        \left[ \frac{\Vert \cdot\Vert^2}{2}\right] (y), x - y
-    \right\rangle
-    \\
-    &= \frac{\Vert x\Vert^2}{2} - \frac{\Vert y\Vert^2}{2}
-    - \left\langle \nabla 
-        y, x - y
-    \right\rangle
-    \\
-    &= 
-    \frac{\Vert x\Vert^2}{2} - \frac{\Vert y\Vert^2}{2}
-    - \left\langle \nabla 
-        y, x
-    \right\rangle + \Vert y\Vert^2
-    \\
-    &= 
-    \frac{\Vert x\Vert^2}{2} - \frac{\Vert y\Vert^2}{2} - \langle y, x\rangle
-    \\
-    &= \frac{\Vert x - y\Vert^2}{2}. 
-\end{aligned}
-$$
-
-Immediately observe that the above formula is used everywhere in analyzing optimization algorithms. 
-If we generalize the above expression into different contexts, the Bregman divergence measures the proximity of 2 points, using a $f$, a function of Legendre Type. 
-The above Euclidean distance measure is symmetric and isotropic. 
-Other Legendre Type functions may not provide those properties. 
-
-
-#### **Example 2 | Normed linear composite**
-
-The function $f(x) = 1/2\Vert Ax\Vert^2$ can also induce a Bregman Divergence and it will work very similar to the function $x \rightarrow (1/2) \Vert x\Vert^2$. 
-It is a semi-norm: 
-
-$$
-\begin{aligned}
-    D_f(x, y) &= \frac{1}{2}\Vert Ax\Vert^2 - \frac{1}{2}\Vert Ay\Vert^2
-    - \langle Ay, A(x - y)\rangle
-    \\
-    &= \frac{1}{2}\Vert Ax - Ay\Vert^2. 
-\end{aligned}
-$$
 
 ---
 ### **The 3 Points Lemma**
@@ -267,6 +215,12 @@ $$
 $\blacksquare$
 
 ---
+### **Bregman Divergence of Legendre Type**
+
+We drive some more properties when the function used to induced the Bregman Divergence is of Legendre type. 
+
+
+---
 ### **Bregman Proximal Mapping**
 
 One important possibility introduced by Bregman divergence is the generalization of Euclidean based proximal mapping. 
@@ -278,7 +232,7 @@ See [Bregman Proximal Mapping](Bregman%20Proximal%20Mapping.md) for more informa
 For the first example we take a look at the famous KL-Divergence. 
 For more about KL-Divergence, visits [KL-Divergence](KL-Divergence.md). 
 
-#### **Example | KL Divergence is Bregman Div of Negative Entropy over Unit Simplex**
+#### **Example 0 | KL Divergence is Bregman Div of Negative Entropy over Unit Simplex**
 > Let $\omega(x) =\sum x\odot \log(x)$ for all $x\in \mathbb R_{++}$, then $B_\omega(x)$ gives the KL-Divergence. 
 
 **Demonstrations**
@@ -335,6 +289,59 @@ $$
 $$
 
 Which is what we aimed to demonstrate. 
+
+#### **Example 1 | The Energy Function**
+
+Let's say that the energy function is $f$, defined as $\Vert x\Vert^2/2$.
+This is a Legendre function because it's differentiable on the entirety of $\mathbb R^n$. 
+Using the definition, the Bregman divergence is 
+
+$$
+\begin{aligned}
+    D_f(x, y) &= \frac{\Vert x\Vert^2}{2} - \frac{\Vert y\Vert^2}{2}
+    - \left\langle \nabla 
+        \left[ \frac{\Vert \cdot\Vert^2}{2}\right] (y), x - y
+    \right\rangle
+    \\
+    &= \frac{\Vert x\Vert^2}{2} - \frac{\Vert y\Vert^2}{2}
+    - \left\langle \nabla 
+        y, x - y
+    \right\rangle
+    \\
+    &= 
+    \frac{\Vert x\Vert^2}{2} - \frac{\Vert y\Vert^2}{2}
+    - \left\langle \nabla 
+        y, x
+    \right\rangle + \Vert y\Vert^2
+    \\
+    &= 
+    \frac{\Vert x\Vert^2}{2} - \frac{\Vert y\Vert^2}{2} - \langle y, x\rangle
+    \\
+    &= \frac{\Vert x - y\Vert^2}{2}. 
+\end{aligned}
+$$
+
+Immediately observe that the above formula is used everywhere in analyzing optimization algorithms. 
+If we generalize the above expression into different contexts, the Bregman divergence measures the proximity of 2 points, using a $f$, a function of Legendre Type. 
+The above Euclidean distance measure is symmetric and isotropic. 
+Other Legendre Type functions may not provide those properties. 
+
+
+#### **Example 2 | Normed linear composite**
+
+The function $f(x) = 1/2\Vert Ax\Vert^2$ can also induce a Bregman Divergence and it will work very similar to the function $x \rightarrow (1/2) \Vert x\Vert^2$. 
+It is a semi-norm: 
+
+$$
+\begin{aligned}
+    D_f(x, y) &= \frac{1}{2}\Vert Ax\Vert^2 - \frac{1}{2}\Vert Ay\Vert^2
+    - \langle Ay, A(x - y)\rangle
+    \\
+    &= \frac{1}{2}\Vert Ax - Ay\Vert^2. 
+\end{aligned}
+$$
+
+**WARNING**. This is not a Legendre typed function. 
 
 [^1]: A. Beck, _First-Order Methods in Optimization | SIAM Publications Library_. in MOS-SIAM Series in Optimization. SIAM. Accessed: Oct. 19, 2023. [Online]. Available: [https://epubs.siam.org/doi/book/10.1137/1.9781611974997](https://epubs.siam.org/doi/book/10.1137/1.9781611974997)
 

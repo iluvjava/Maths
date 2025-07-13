@@ -126,7 +126,7 @@ $$
 $$
 
 
-#### **Theorem (4.1, 4.2) | Algorithm Convergence**
+#### **Theorem (4.1, 4.2) | convergence in convex, non-convex settings**
 > The algorithm generates $\bar x_k$ which is the monotone gradient descent step, and it converges to a stationary point when $F$ is $\kappa$ weakly convex: 
 > $$
 > \begin{aligned}
@@ -148,7 +148,7 @@ $$
 \end{aligned}
 $$
 
-Using Lemma B.2, set $\epsilon = \kappa \Vert \bar x_k - x_{k - 1}\Vert$, $y = x_{k - 1}$, $y^+ = \bar x_k$ then 
+Using Lemma B.2, set $\epsilon = \kappa \Vert \bar x_k - x_{k - 1}\Vert$ by the definition of the algorithm, $y = x_{k - 1}$, $y^+ = \bar x_k$ then 
 $$
 \begin{aligned}
     \dist(\mathbf 0, \partial F(\bar x_k)) \le 2 \kappa \Vert \bar x_k - x_{k - 1} \Vert. 
@@ -186,37 +186,35 @@ Where $F^*$ here is the minimum.
 This established the convergence to the stationary point by $F^*$ bounded below. 
 Next we assume that $F$ is convex. 
 From the algorithm we have $\xi_k \in \partial \mathcal M(\tilde x_k, y_k)$ such that $\Vert \xi_k\Vert \le \frac{\kappa}{k + 1}\Vert \tilde x_k - y_k\Vert$. 
-Then for any $x\in \R^n$, $\kappa$ strong convexity of $\mathcal M(\cdot, y_k)$ yields inequality: 
+Then for any $x\in \R^n$, $\kappa$ strong convexity of $\mathcal M(\cdot, y_k)$ has subgradient inequality at $\tilde x_k$: 
 $$
 \begin{aligned}
     0 &\le
     F(x) + \frac{\kappa}{2}\Vert x - y_k\Vert^2 
     - \left(
-        F(\tilde x) 
+        F(\tilde x_k) 
         + \frac{\kappa}{2}\Vert \tilde x_k - y_k\Vert^2
     \right)
     - \frac{\kappa}{2}\Vert x - \tilde x_k\Vert^2 
     - \langle \xi_k, x - \tilde x_k\rangle
-    , 
     \\
-    \implies
-    F(x_k)
-    \le F(\tilde x_k) 
-    &\le 
-    F(x) + \frac{\kappa}{2}\left(
+    &\underset{\text{(a)}}{\le} 
+    F(x) - F(x_k) + \frac{\kappa}{2}\left(
         \Vert x - y_k\Vert^2 - \Vert x - \tilde x_k\Vert^2 - \Vert \tilde x_k - y_k\Vert^2
     \right)
     + \langle  \xi_k, \tilde x_k - x \rangle 
     \\
-    &\le 
-    F(x) + \frac{\kappa}{2}\left(
+    &\underset{\text{(b)}}{\le} 
+    F(x) - F(x_k) + \frac{\kappa}{2}\left(
         \Vert x - y_k\Vert^2 - \Vert x - \tilde x_k\Vert^2 - \Vert \tilde x_k - y_k\Vert^2
     \right)
     + \frac{\kappa}{k + 1}\Vert \tilde x_k - y_k\Vert\Vert x - \tilde x_k\Vert. 
 \end{aligned}
 $$
 
-Sure, now observe that with the substitutions $x = \alpha_k x^* + (1 - \alpha_k) x_{k-1}$ where $x^*$ is the minimizer then
+At **(a)**, we used the fact that the algorithm is monotone, which has $F(x_k) \le F(\tilde x_k)$. 
+At **(b)**, it's Cauchy inequality. 
+Now, observe that with the substitutions $x = \alpha_k x^* + (1 - \alpha_k) x_{k-1}$ where $x^*$ is the minimizer, it has: 
 
 $$
 \begin{aligned}
@@ -229,19 +227,8 @@ $$
     &= \alpha_k (x^* - v_{k - 1}), 
     \\
     x - \tilde x_k 
-    &= 
+    &\underset{\text{(c)}}{=} 
     \alpha_k x^* + (1 - \alpha_k) x_{k - 1} - \tilde x_k
-    \\
-    &\quad 
-    \textcolor{gray}{
-    \begin{aligned}
-        v_{k} &= x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1})
-        \\
-        \tilde x_k - x_{k - 1} &= \alpha_k(v_k - x_{k - 1})
-        \\
-        \tilde x_k &= x_{k - 1} + \alpha_k(v_k - x_{k - 1})
-    \end{aligned}
-    }
     \\
     &= 
     \alpha_k x^* + (1 - \alpha_k) x_{k - 1} - (x_{k - 1} + \alpha_k(v_k - x_{k - 1}))
@@ -252,12 +239,23 @@ $$
 \end{aligned}
 $$
 
+At **(c)**, we used: 
+
+$$
+\begin{aligned}
+    v_{k} &= x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1})
+    \\
+    \iff \tilde x_k - x_{k - 1} &= \alpha_k(v_k - x_{k - 1})
+    \\
+    \iff \tilde x_k &= x_{k - 1} + \alpha_k(v_k - x_{k - 1}). 
+\end{aligned}
+$$
+
 Using convexity, it transforms the inequality into 
 
 $$
 \begin{aligned}
-    F(x_k) &\le 
-    \alpha_k F(x^*) + (1 - \alpha_k) F(x_{k - 1}) 
+    0 &\le - F(x_k) + \alpha_k F(x^*) + (1 - \alpha_k) F(x_{k - 1}) 
     + \frac{\alpha_k^2\kappa}{2}\left(
         \Vert x^* - v_{k - 1}\Vert^2 - 
         \Vert v_k - x^*\Vert^2
@@ -268,7 +266,7 @@ $$
         + \frac{\kappa \alpha_k}{k + 1}\Vert \tilde x - y_k\Vert\Vert v_k - x^*\Vert
     \\
     &=
-    \alpha_k F(x^*) + (1 - \alpha_k) F(x_{k - 1}) 
+    - F(x_k) + \alpha_k F(x^*) + (1 - \alpha_k) F(x_{k - 1}) 
     + \frac{\alpha_k^2\kappa}{2}\left(
         \Vert x^* - v_{k - 1}\Vert^2 - 
         \Vert v_k - x^*\Vert^2
@@ -282,28 +280,26 @@ $$
         + \frac{\kappa}{2}\left(\frac{\alpha_k}{k + 1}\right)^2\Vert v_k - x^*\Vert^2
     \\ 
     &\le 
-    \alpha_k F(x^*) + (1 - \alpha_k) F(x_{k - 1}) 
+    - F(x_k) + \alpha_k F(x^*) + (1 - \alpha_k) F(x_{k - 1}) 
     + \frac{\alpha_k^2 \kappa}{2}\left(
         \Vert x^* - v_{k - 1}\Vert^2 - 
         \Vert v_k - x^*\Vert^2
     \right)
-        \\
-        &\quad  
+        \\ &\quad  
+        - 0
         + \frac{\kappa \alpha_k^2}{2}\left(\frac{1}{k + 1}\right)^2\Vert v_k - x^*\Vert^2
     \\
-    \iff 
-    F(x_k) - F^*
-    &\le 
+    &= 
+    - F(x_k) + F^* + 
     (1 - \alpha_k)(F(x_{k - 1}) - F^*)
     \\ &\quad 
-        + 
-        \frac{\alpha_k^2\kappa}{2}
+        + \frac{\alpha_k^2\kappa}{2}
         \left(
             \Vert x^* - v_{k - 1}\Vert^2
             - \left(
                 1 - \frac{1}{(k + 1)^2}
             \right)\Vert v_k - x^*\Vert^2
-        \right)
+        \right). 
 \end{aligned}
 $$
 
@@ -387,7 +383,7 @@ $$
     &\le 
     \alpha_{k + 1}^2\left(
         \prod_{i = 1}^k A_i^{-1}
-    \right) C
+    \right) C. 
 \end{aligned}
 $$
 
