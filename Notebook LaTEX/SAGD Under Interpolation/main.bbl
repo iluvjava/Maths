@@ -1,16 +1,6 @@
 \begin{thebibliography}{1}
 
-\bibitem{beck_first-order_2017}
-{\sc A.~Beck}, {\em First-order {Methods} in {Optimization}}, {MOS}-{SIAM} {Series} in {Optimization}, SIAM, 2017.
-
-\bibitem{calatroni_backtracking_2019}
-{\sc L.~Calatroni and A.~Chambolle}, {\em Backtracking strategies for accelerated descent methods with smooth composite objectives}, SIAM Journal on Optimization, 29 (2019), pp.~1772--1798.
-
-\bibitem{li_relaxed_2025}
-{\sc H.~Li and X.~Wang}, {\em Relaxed {Weak} {Accelerated} {Proximal} {Gradient} {Method}: a {Unified} {Framework} for {Nesterov}'s {Accelerations}}, Apr. 2025.
-\newblock arXiv:2504.06568 [math].
-
-\bibitem{nesterov_lectures_2018}
-{\sc Y.~Nesterov}, {\em Lectures on {Convex} {Optimization}}, vol.~137 of Springer {Optimization} and {Its} {Applications}, Springer International Publishing, 2018.
+\bibitem{bauschke_convex_2017}
+{\sc H.~H. Bauschke and P.~L. Combettes}, {\em Convex {Analysis} and {Monotone} {Operator} {Theory} in {Hilbert} {Spaces}}, {CMS} {Books} in {Mathematics}, Springer International Publishing, Cham, 2017.
 
 \end{thebibliography}

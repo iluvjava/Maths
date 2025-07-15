@@ -40,8 +40,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 
 % ==============================================================================
+\section{Introduction}
+    Does stochastic accelerated Nesterov's acceleration (SNAG) produces accelerated convergence rate (or, any type of convergence) when the Interpolation Hypothesis is true? 
+    \cite{bauschke_convex_2017}
+    Previously we got some results, but unfortunately it was incorrect the mistake is diffcult to recover. 
+    \par
+    \textbf{However, I don't think that it's true after some mistakes from previous version of the notes and careful investigations.}
+    In this file we develop some sufficient conditions for Linear convergence of (SNAG). 
+    We will give explanations on why we don't think this is necessarily true. 
+
 \section{In preparations}
-    \textbf{Notations \textcolor{red}{NEW}}. 
     Unless specifically specified in the context, we use the following notations. 
     $\Pi_C$ denotes the projection onto a set $C$. 
     Let $A \in \RR^{m \times n}$ be a matrix. 
@@ -75,96 +83,20 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{definition}
         \begin{remark}
             If, $f$ is $\mu \ge 0$ strongly convex and $L$ Lipschitz smooth then, its Bregman Divergence has for all $x, y \in \RR^n$: $\mu/2 \Vert x - y\Vert^2 \le D_f(x, y) \le L/2 \Vert x - y\Vert^2$. 
-            \textbf{NOTE}. Contrary to definitions of Bregman Divergence found in the literatures, \textbf{We do not assume} that $D_f(x, y) \iff x = y$. 
+            We note that usually the Bregman Divergence is used with a Legendre function, but in here, we do not assume that $f$ has to be Legendre. 
         \end{remark}
-    \subsection{Properties of functions, characterizations}
-        The definitions are ordered from the weakest to strongest. 
         % --------------------------------------------------------------------------------------------------------------
-        \begin{definition}[semi strongly convex function \textcolor{red}{NEW}]\label{def:semi-scnvx}
-            A function $F: \RR^n \rightarrow \overline \RR$ is a semi strongly convex function, abbreviated as ``Semi-SCNVX'' with respect to a linear mapping $A \in \RR^{m \times n}$ if $F - \frac{1}{2}\Vert Ax\Vert^2$ is a convex function. 
+        \begin{definition}[Lipschitz smoothness and strongly convex]\label{def:lip-smooth-and-scnvx}
+            A differentiable function $f: \RR^n \rightarrow \RR$ is $L$ lipschitz smooth and, $\mu$ strong convex for some $L > \mu \ge 0$ if and only if for all $x, y \in \RR^n$ it satisfies the inequality 
+            \begin{align*}
+                \frac{\mu}{2}\Vert x - y\Vert^2 \le D_f(x, y) \le \frac{L}{2}\Vert x - y\Vert^2. 
+            \end{align*}
         \end{definition}
-        \begin{remark}
-            Any $\mu \ge 0$ strongly convex function is Semi-SCNVX with $A = \sqrt{\mu}I$. 
-            But the converse is not true because a seminorm is not a norm. 
-            One feature of a Semi-SCNVX function is that it doesn't have a unique minimizer which differs it from strong convexity. 
-            It may not have a unique minimizer because it's not necessary that $\kernel A = \{\mathbf 0\}$. 
-        \end{remark}
-        % --------------------------------------------------------------------------------------------------------------
-        \begin{definition}[smooth Semi-SCNVX \textcolor{red}{NEW}]\label{def:seminorm-smooth-scnvx}
-            Let $m, n\in \N$ be a natural numbers. 
-            Let $f:\RR^m \rightarrow \RR$ be a differentiable function and full domain. 
-            If there exists $A_1: \RR^{m\times n}$ and, $A_2 \in \RR^{m \times n}$ matrices such that it satisfies:
-            \begin{align*}
-                (\forall x \in \RR^m)(\forall y \in \RR^m)\;
-                \frac{1}{2}\Vert A_1x - A_1y\Vert^2 \le 
-                D_f(x, y) \le \frac{1}{2}\Vert A_2x - A_2y\Vert^2. 
-            \end{align*}
-            Then, we call this function is $A_1, A_2$ Semi-SCNVX and smooth. 
-        \end{definition}
-        \begin{remark}
-            The definition exchanged the $\Vert \cdot\Vert^2$ for a seminorm squared: $x \mapsto \Vert A_1x\Vert^2$ with some $A: \RR^m \rightarrow \RR^n$ for the definition of relative smoothness and relative strong convexity. 
-            Obviously, it has $\Vert A_1x\Vert \le \Vert A_2x\Vert$ for all $x\in \RR^m$, which further implies that $\ker A_1\supseteq\ker A_2$.
-            With some algebra it can be showned that $A^T_2A_2 \succeq A^T_1A_1$. 
-        \end{remark}
-        % --------------------------------------------------------------------------------------------------------------
-        \begin{theorem}[semi Jesen inequality \textcolor{red}{NEW}]\label{thm:semi-scnvx-equiv}
-            A function $F$ is Semi-SNCVX with $A \in \RR^{m \times n}$ (Definition \ref{def:semi-scnvx}) if and only if, for all $x, y \in \RR^n$ and, $\lambda \in [0, 1]$ it satisfies the inequality: 
-            \begin{align*}
-                F(\lambda x + (1 - \lambda)y) \le \lambda F(x) + (1 - \lambda)F(y) -\frac{\lambda(1 - \lambda)}{2} \Vert Ay - Ax\Vert^2. 
-            \end{align*}
-        \end{theorem}
-        \begin{proof}
-            For all $\lambda \in \RR, x \in \RR^n, y \in \RR^n$ it has $-1/2\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 = (1/2)(\lambda\Vert Ax\Vert^2 + (1 - \lambda)\Vert Ay\Vert^2 - \lambda(1 - \lambda)\Vert Ax - Ay\Vert^2)$ by verifying: 
-            \begin{align*}
-                & -\frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 + 
-                \left(
-                    \frac{\lambda}{2}\Vert Ax\Vert^2 + \frac{1 - \lambda}{2}\Vert Ay\Vert^2 - \frac{\lambda(1 - \lambda)}{2}\Vert Ay - Ax\Vert^2
-                \right)
-                \\
-                &= 
-                -\frac{1}{2}\left(
-                    \lambda^2\Vert Ax\Vert^2 + (1 - \lambda)^2\Vert Ay\Vert^2 - 2\lambda(1 - \lambda) \langle Ax, Ay\rangle
-                \right)
-                    \\ &\quad 
-                    + 
-                    \left(
-                        \frac{\lambda}{2} - \frac{\lambda(1 - \lambda)}{2}
-                    \right)\Vert Ax\Vert^2 + \left(
-                        \frac{1 - \lambda}{2} - \frac{\lambda(1 - \lambda)}{2}
-                    \right)\Vert Ay\Vert^2 - \lambda(1 - \lambda)\langle Ay, Ax\rangle
-                \\
-                &= - \frac{\lambda^2}{2}\Vert Ax\Vert^2 - \frac{(1 - \lambda)^2}{2}\Vert Ay\Vert^2
-                    \\ &\quad 
-                    + 
-                    \left(
-                        \frac{\lambda}{2} - \frac{\lambda - \lambda^2}{2}
-                    \right)\Vert Ax\Vert^2 + \left(
-                        \frac{1 - \lambda}{2} - \frac{\lambda - \lambda^2}{2}
-                    \right)\Vert Ay\Vert^2
-                \\
-                &= 0
-            \end{align*}
-            Using the above result we can prove the equivalency because 
-            {\small
-            \begin{align*}
-                0 &\le F(\lambda x + (1 - \lambda)y) + \lambda F(x) + (1 - \lambda)F(y) -\frac{\lambda(1 - \lambda)}{2} \Vert Ay - Ax\Vert^2
-                \\
-                &=  F(\lambda x + (1 - \lambda)y) - \frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 
-                + \lambda F(x) - \frac{\lambda}{2}\Vert Ax\Vert^2 
-                + (1 - \lambda)F(y) - \frac{1 - \lambda}{2} \Vert Ay\Vert^2 
-                    \\ &\quad 
-                    - \frac{\lambda(1 - \lambda)}{2} \Vert Ay - Ax\Vert^2 + \frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2
-                    + \frac{1}{2}\Vert Ax\Vert^2 + \frac{1}{2}\Vert Ay\Vert^2 
-                \\
-                &= 
-                F(\lambda x + (1 - \lambda)y) - \frac{1}{2}\Vert A(\lambda x + (1 - \lambda)y)\Vert^2 
-                    \\ &\quad 
-                    + \lambda \left(F(x) - \frac{1}{2}\Vert Ax\Vert^2\right) 
-                    + (1 - \lambda)\left(F(y) - \frac{1}{2} \Vert Ay\Vert^2\right). 
-            \end{align*}
-            }
-            The last line shows that the function $F(x) - \frac{1}{2}\Vert Ax\Vert^2$ is convex, the chain of equality shows the equivalence. 
-        \end{proof}
+    \subsection{important inequalities}
+        \begin{assumption}\label{ass:smooth-plus-nonsmooth}
+            Suppose that $F = f + g$ where $f, g$ are both convex, proper and closed. 
+            In addition, assume $f$ is $L > \mu \ge 0$ Lipschitz smooth and strongly convex satisfying Definition \ref{def:lip-smooth-and-scnvx}. 
+        \end{assumption}
         % --------------------------------------------------------------------------------------------------------------
         \begin{theorem}[Jensen's inequality]\label{thm:jesen}
             Let $F: \RR^n \rightarrow \overline \RR$ be a $\mu \ge 0$ strongly convex function. 
@@ -178,1132 +110,172 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{remark}
             If $x, y$ is out of $\dom F$, the inequality still work by convexity. 
         \end{remark}
-        The following theorem classifies a class of semi strongly convex function. 
         % --------------------------------------------------------------------------------------------------------------
-        \begin{theorem}[affine composite with smooth and strongly convex]\label{thm:aff-smooth-sq-scnvx}
-            Let $f: \RR^n \rightarrow \RR$ be an $L$ smooth and, $\mu \ge 0$ strongly convex.
-            Let $A: \RR^m \rightarrow \RR^n$, $b \in \RR^n$ be arbitrary and, define $h: \RR^m \rightarrow \RR= x \mapsto f(Ax - b)$. 
-            Denote $\Pi = \Pi_{\ker A}$ to be the projection operator onto the kernel of $A$. 
-            Then, it satisfies for all $x \in \RR^m, y \in \RR^m$:  
+        \begin{lemma}[inexact proximal gradient inequality]\label{lemma:inex-pg-ineq}
+            Let $F = f + g$ satisfies Definition \ref{def:lip-smooth-and-scnvx} with $L > \mu \ge 0$. 
+            Let $x \in \RR^n$ be fixed. 
+            Suppose an inexact evaluation of proximal gradient operator at $x$ yield an approximation $\tilde x$, characterized by: 
             \begin{align*}
-                \frac{\mu \sigma_{\min}(A)^2}{2}\Vert (I - \Pi)(x - y)\Vert^2
-                \le \frac{\mu}{2}\Vert Ax - Ay\Vert^2 
-                \le D_h(x, y) \le \frac{L\Vert A\Vert^2}{2}\Vert x - y\Vert^2. 
+                & D_f(\tilde x, x) \le \frac{B}{2}\Vert \tilde x - x\Vert^2, 
+                \\
+                & \exists: w \in \partial \left[
+                    z \mapsto  g(z) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2
+                \right](\tilde x)\; \text{s.t: } \Vert w\Vert \le \epsilon \Vert x - \tilde x\Vert. 
             \end{align*}
-            Therefore, it satisfies Definition \ref{def:semi-scnvx} with $A_1 = \sqrt{L}A, A_2 = \sqrt{\mu}A$ so it's Semi-SCNVX. 
-        \end{theorem}
+            Then, it would satisfy for all $z\in \RR^n$ the inequality: 
+            \begin{align*}
+                0 &\le 
+                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2
+                - \frac{B - \epsilon}{2}\Vert z - \tilde x\Vert^2
+                + \frac{\epsilon}{2}\Vert x - \tilde x \Vert^2. 
+            \end{align*}
+        \end{lemma}
         \begin{proof}
-            Then the Bregman divergence of $h$ is: 
+            Let $h = z \mapsto g(z) + \langle \nabla f(x), z - x\rangle + B/2\Vert z - x\Vert^2$. 
+            $h$ is a $B$ strongly convex function, using the subgradient inequality of a strongly convex function it has for all $z \in \RR^n$: 
             \begin{align*}
-                D_h(x, y) &= h(x) - h(y) - \langle \nabla h(y), x - y\rangle
-                \\
-                &= f(Ax - b) - f(Ay - b) - \langle A^T\nabla f(Ay - b), x - y\rangle
-                \\
-                &= f(Ax - b) - f(Ay - b) - \langle \nabla f(Ay - b), Ax - Ay\rangle
-                \\
-                &= f(Ax - b) - f(Ay - b) - \langle \nabla f(Ay - b), Ax - b - (Ay - b)\rangle
-                \\
-                &= D_f(Ax - b, Ay - b). 
-            \end{align*}
-            Since $f$ is $L$ smooth and $\mu \ge 0$ strongly convex, it means 
-            \begin{align*}
-                \frac{\mu}{2}\Vert Ax - Ay\Vert^2
-                &= 
-                \frac{\mu}{2}\Vert Ax - b - (Ay - b)\Vert^2 
-                \\
-                &\le D_f(Ax - b, Ay - b)
-                \\
-                &= D_h(x, y) 
-                \\
-                &\le \frac{L}{2} \Vert Ax - Ay\Vert^2
-                \\
-                &\le \frac{L\Vert A\Vert^2}{2} \Vert x - y\Vert^2. 
-            \end{align*}
-            Using some linear algebra, one can represent $x - y$ as their orthogonal components in $\ker A$, $\ker A^T$ so it has 
-            \begin{align*}
-                \frac{\mu}{2}\Vert A(x - y)\Vert^2 &= 
-                \frac{\mu}{2}\Vert A(\Pi(x - y) + (I - \Pi)(x - y))\Vert^2
+                \frac{B}{2}\Vert z - \tilde x\Vert^2
+                &\le h(z) - h(\tilde x) - \langle w, z - \tilde x\rangle
                 \\
                 &= 
-                \frac{\mu}{2}\Vert A(I - \Pi)(x - y))\Vert^2
+                \left(
+                    g(z) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2
+                \right)
+                \\ &\quad 
+                    - 
+                    \left(
+                        g(\tilde x) + \langle \nabla f(x), \tilde x - x\rangle + \frac{B}{2}\Vert \tilde x - x\Vert^2
+                    \right)
+                    - \langle w, z - \tilde x\rangle
                 \\
-                &\ge \frac{\mu\sigma_{\min}(A)}{2}\Vert (I - \Pi)(x - y)\Vert^2. 
-            \end{align*}
-            These results Make for the final inequalities: 
-            \begin{align*}
-                \frac{\mu\sigma_{\min}(A)}{2}\Vert (I - \Pi)(x - y)\Vert^2
-                \le 
-                D_h(x, y) \le 
-                \frac{L\Vert A\Vert^2}{2}\Vert x - y\Vert^2. 
-            \end{align*}
-        \end{proof}
-        \begin{theorem}[affine minimizer set for aff comp smooth strongly convex]
-            \todoinline{NOT FINISHED YET.}
-        \end{theorem}
-    \subsection{Important inequalities}
-            \begin{assumption}[smooth add nonsmooth]\label{ass:smooth-plus-nonsmooth}
-                The function $F = f + g$ where $f:\RR^n \rightarrow \RR$ is an $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
-                The function $g:\RR^n \rightarrow \overline \RR$ is a closed convex proper function. 
-            \end{assumption}
-            \begin{assumption}[admitting minimizers]\label{ass:smooth-plus-nonsmooth-x}
-                Let $F = f + g$ satisfies \ref{ass:smooth-plus-nonsmooth} and in addition assume that the set of minimizers $X^+ := \argmin_{x}F(x)$ is non-empty. 
-            \end{assumption}
-            \begin{assumption}[affine composite Semi-CNVX remative smooth plus non-smooth]\label{ass:snorm-smth-p-nsmth}
-                Let $A \in \RR^{m\times n}, b \in \RR^n$
-                Let $F(x): \RR^{m} \mapsto \overline\RR := x \mapsto f(x) + g(x)$. 
-                Assume that: 
-                \begin{enumerate}[noitemsep]
-                    \item $f:\RR^m \rightarrow \RR := x \mapsto h(Ax - b)$ where $h:\RR^n\rightarrow \RR$ is $L$ Lipschitz smooth and, $\mu\ge 0$ strongly convex, then it satisfies Theorem \ref{thm:aff-smooth-sq-scnvx} with $L > \mu \ge 0$ and $A \in \RR^{m \times n}$. 
-                    \item $g:\RR^m \mapsto \overline \RR$ is a convex, proper and closed function. 
-                \end{enumerate}
-            \end{assumption}
-            % --------------------------------------------------------------------------------------------------------------
-            \begin{theorem}[proximal gradient inequality]\label{thm:pg-ineq}
-                Let function $F$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}, so it's $\mu \ge 0$ strongly convex. 
-                For any $x\in \RR^n$, define $x^+ = T_L(x)$. 
-                Then, there exists a $B \ge 0$ such that $D_f(x^+, x) \le B/2 \Vert x^+ - x\Vert^2$ and, for all $z \in \RR^n$ it satisfies the inequality: 
-                \begin{align*}
-                    0&\le F(z) - F(x^+) - \frac{B}{2}\Vert z - x^+\Vert^2  + \frac{B - \mu}{2}\Vert z - x\Vert^2
-                    \\
-                    &=  F(z) - F(x^+) - \langle B(x - x^+), z - x\rangle
-                    - \frac{\mu}{2}\Vert z - x\Vert^2
-                    - \frac{B}{2}\Vert x - x^+\Vert^2. 
-                \end{align*}
-                Since $f$ is assumed to be $L$ Lipschitz smooth, the above condition is true for all $x, y \in \RR^n$ for all $B \ge L$. 
-            \end{theorem}
-            \begin{remark}
-                The theorem is the same as in Nesterov's book \cite[Theorem 2.2.13]{nesterov_lectures_2018}, but with the use of proximal gradient mapping and proximal gradient instead of project gradient hence making it equivalent to the theorem in Beck's book \cite[Theorem 10.16]{beck_first-order_2017}. 
-                The only generalization here is parameter $B$ which made to accommodate algorithm that implements Definition \ref{def:snapg-v2} with line search routine to determine $L_k$. 
-                Each of the reference books gives a proof of the theorem. 
-                But for the best consistency in notations, see Theorem 2.3 in Li and Wang \cite{li_relaxed_2025}. 
-            \end{remark}
-            The following theorem attempts to generalize Theorem \ref{thm:pg-ineq}. 
-            % --------------------------------------------------------------------------------------------------------------
-            \begin{theorem}[proximal gradient inequality with semi-scnvx \textcolor{red}{NEW}]\label{thm:pg-ineq-semi-scnvx}
-                Suppose that $F:\RR^m \rightarrow \overline \RR := x \mapsto f(x) + g(x)$ satisfies Assumption \ref{ass:snorm-smth-p-nsmth} with $L > \mu \ge 0$ and $A \in \RR^{m\times n}$. 
-                For any $x \in \RR^n$, let $x^+ = T_B(x | F)$. 
-                Let $\Pi = \Pi_{\ker A}$ be the linear operator that project onto the kernel of $A$. 
-                Then, there exists some $B \ge 0$ such that $D_f(x^+, x) \le \frac{B}{2}\Vert x - x^+\Vert^2$ and, for all $z \in \RR^m$ it satisfies the inequalities: 
-                \begin{align*}
-                    0 &\le F(z) - F(x^+) 
-                    - \frac{\mu}{2}\Vert Az - Ax\Vert^2 
-                    + \frac{B}{2}\Vert z - x\Vert^2
-                    - \frac{B}{2}\Vert z - x^+\Vert^2
-                    \\
-                    &\le F(z) - F(x^+) 
-                    - \frac{B}{2}\Vert z - x^+\Vert^2
-                    + \frac{B - \sigma_{\min}(A)^2\mu}{2}\Vert z - x\Vert^2
-                    + \frac{\mu\sigma_{\min}(A)^2}{2}\Vert \Pi(z - x)\Vert^2. 
-                \end{align*}
-            \end{theorem}
-            \begin{proof}
-                Firstly, such a $B > 0$ exists, for example $B = L\Vert A\Vert^2$ would be an option because from Definition \ref{def:seminorm-smooth-scnvx}, it for all $x, y \ in \RR^{m}$, $D_f(x, y) \le L/2\Vert Ax - Ay \Vert^2 \le L/2\Vert A\Vert^2\Vert x - y\Vert^2$. 
-                But it can be much smaller. 
-                \par
-                The function $z \mapsto g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2$ inside the proximal gradient operator has the minimizer $x^+$.  
-                This function is also the sum of a convex, proper closed function $g$ and, a simple quadratic and, it's $B > 0$ strongly convex hence, it satisfies the quadratic growth conditions over its minimizer $x^+ = T_B(x|F)$ so, it follows that for all $z \in \RR^m$: 
-                \begin{align*}
-                    0 &\le 
-                    -\frac{B}{2}\Vert z - x^+\Vert^2 
-                    + g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2
-                        \\&\quad 
-                        - g(x^+) - f(x) - \langle \nabla f(x), x^+ - x\rangle - \frac{B}{2}\Vert x^+ - x\Vert^2
-                    \\
-                    &= 
-                    -\frac{B}{2}\Vert z - x^+\Vert^2 
-                    + \left(g(z) + f(z) - f(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2\right)
-                        \\&\quad 
-                        +\left(- g(x^+) - f(x^+) + f(x^+) - f(x) - \langle \nabla f(x), x^+ - x\rangle - \frac{B}{2}\Vert x^+ - x\Vert^2\right)
-                    \\
-                    &=
-                    -\frac{B}{2}\Vert z - x^+\Vert^2 
-                    + \left(F(z) - D_f(z, x) + \frac{B}{2}\Vert z - x\Vert^2\right)
-                        \\&\quad
-                        + \left(- F(x^+) + D_f(x^+, x) - \frac{B}{2}\Vert x^+ - x\Vert^2\right)
-                    \\
-                    &\underset{\text{(a)}}{\le }
-                    -\frac{B}{2}\Vert z - x^+\Vert^2 
-                    + \left(F(z) - D_f(z, x) + \frac{B}{2}\Vert z - x\Vert^2\right)
-                    - F(x^+)
-                    \\
-                    &\underset{\text{(b)}}{\le} 
-                    - \frac{B}{2}\Vert z - x^+\Vert^2 
-                    + F(z) - \frac{\mu}{2}\Vert Az - Ax\Vert^2 
-                    + \frac{B}{2}\Vert z - x\Vert^2
-                    - F(x^+)
-                    \\
-                    &= F(z) - F(x^+) 
-                    - \frac{\mu}{2}\Vert Az - Ax\Vert^2 
-                    + \frac{B}{2}\Vert z - x\Vert^2
-                    - \frac{B}{2}\Vert z - x^+\Vert^2. 
-                \end{align*}
-                At (a), we used the fact that line search asserted the condition $D_f(x^+, x) \le \frac{B}{2}\Vert x^+ - x\Vert^2$. 
-                At (b) we applied results from Theorem \ref{thm:aff-smooth-sq-scnvx}. 
-                Continuing it further with the results from \ref{thm:aff-smooth-sq-scnvx} it adds another inequality: 
-                \begin{align*}
-                    0&\le  F(z) - F(x^+) 
-                    - \frac{\mu}{2}\Vert Az - Ax\Vert^2 
-                    + \frac{B}{2}\Vert z - x\Vert^2
-                    - \frac{B}{2}\Vert z - x^+\Vert^2
-                    \\
-                    &\le F(z) - F(x^+) 
-                    - \frac{\sigma_{\min}(A)^2\mu}{2}\Vert (I - \Pi)(z - x)\Vert^2
-                    + \frac{B}{2}\Vert z - x\Vert^2
-                    - \frac{B}{2}\Vert z - x^+\Vert^2
-                    \\
-                    &= F(z) - F(x^+) 
-                    - \frac{\sigma_{\min}(A)^2\mu}{2}\Vert (I - \Pi)(z - x)\Vert^2
-                        \\ &\quad
-                        + \frac{B}{2}\Vert \Pi(z - x)\Vert^2
-                        + \frac{B}{2}\Vert (I - \Pi)(z - x)\Vert^2
-                        - \frac{B}{2}\Vert z - x^+\Vert^2
-                    \\
-                    &= F(z) - F(x^+) 
-                    - \frac{B}{2}\Vert z - x^+\Vert^2
-                    + \frac{B - \sigma_{\min}(A)^2\mu}{2}\Vert (I - \Pi)(z - x)\Vert^2
-                    + \frac{B}{2}\Vert \Pi(z - x)\Vert^2
-                    \\
-                    &= F(z) - F(x^+) 
-                    - \frac{B}{2}\Vert z - x^+\Vert^2
-                    + \frac{B - \sigma_{\min}(A)^2\mu}{2}\Vert (I - \Pi)(z - x)\Vert^2
-                        \\&\quad
-                        + \frac{B - \sigma_{\min}(A)^2\mu}{2}\Vert \Pi(z - x)\Vert^2
-                        + \frac{\sigma_{\min}(A)^2}{2}\Vert \Pi(z - x)\Vert^2
-                    \\
-                    &= F(z) - F(x^+) 
-                    - \frac{B}{2}\Vert z - x^+\Vert^2
-                    + \frac{B - \sigma_{\min}(A)^2\mu}{2}\Vert z - x\Vert^2
-                    + \frac{\mu\sigma_{\min}(A)^2}{2}\Vert \Pi(z - x)\Vert^2.
-                \end{align*}
-            \end{proof}
-            \begin{remark}
-                When $\ker A = \{\mathbf 0\}$, this theorem is equivalent to Theorem \ref{thm:pg-ineq} but with $\mu$ being $\sigma_{\min}(A)$ instead. 
-            \end{remark}
-            The following theorem attempts to generalize Theorem \ref{thm:semi-scnvx-equiv} for relatively smooth plus non-smooth function. 
-            % --------------------------------------------------------------------------------------------------------------
-            \begin{theorem}[seminorm smooth plus non-smooth Jensen \textcolor{red}{NEW}]\label{thm:smnrm-jnsn-smth-nsmth}
-                Suppose that $F:\RR^m \rightarrow \overline \RR := x \mapsto f(x) + g(x)$ satisfies Assumption \ref{ass:snorm-smth-p-nsmth} with $L > \mu \ge 0$ and $A \in \RR^{m\times n}$.
-                Let $\Pi = \Pi_{\ker A}$ be the projection onto the kernel of $A$. 
-                Let $\sigma_{\min}(A)$ denote the smallest non-zero singular value of $A$ in absolute value. 
-                Then, for all $x, y \in \RR^m$ and, $\lambda \in [0, 1]$ it satisfies the inequality: 
-                \begin{align*}
-                    F(\lambda z + (1 - \lambda)y) &\le \lambda F(z) + (1 - \lambda)F(x) - \frac{\sigma_{\min}(A)^2\lambda(1 - \lambda)\mu}{2}\Vert (I - \Pi)(x - y)\Vert^2. 
-                \end{align*}
-            \end{theorem}
-            \begin{proof}
-                $f$ satisfies Definition \ref{def:seminorm-smooth-scnvx} with $L > \mu, A$, so for all $x, y \in \RR^m$ it has 
-                \begin{align*}
-                    0 &\le D_f(x, y) - \frac{\mu}{2}\Vert Ax - Ay\Vert^2 
-                    \le \frac{L - \mu}{2}\Vert Ax - Ay\Vert^2. 
-                \end{align*}
-                Using some algebra (or equivalent some properties of Bregman divergence), it shows that the function $f - \mu/2 \Vert A(\cdot)\Vert^2$ is a convex function, therefore, $f + g - \mu/2\Vert A(\cdot)\Vert^2 = F - \frac{\mu}{2}\Vert A(\cdot)\Vert^2 = F - \frac{1}{2}\Vert \sqrt{\mu}A(\cdot)\Vert^2$ is also a convex function. 
-                Applying Theorem \ref{thm:semi-scnvx-equiv} it has for all $z, x \in \RR^m$ and, $\lambda \in [0, 1]$ the inequality: 
-                \begin{align*}
-                    F(\lambda z + (1 - \lambda)y) &\le \lambda F(z) + (1 - \lambda)F(x) - \frac{\lambda(1 - \lambda)\mu}{2}\Vert Ax - Ay\Vert^2
-                    \\
-                    &\le 
-                    \lambda F(z) + (1 - \lambda)F(x) - \frac{\lambda(1 - \lambda)\mu\sigma_{\min}(A)^2}{2}\Vert (I - \Pi) x - y\Vert^2. 
-                \end{align*}
-                The second inequality uses Theorem \ref{thm:aff-smooth-sq-scnvx}. 
-            \end{proof}
-        
-
-\section{Stochastic accelerated proximal gradient}
-    First, this is an overview of this section. 
-
-    \begin{assumption}[sum of many affine composite]\label{ass:sum-of-many-aff-comp}
-        Let $A^{(1)}, A^{(2)}, \ldots A^{(n)}$ be a list of $\RR^{m\times n}$ matrices and, $b^{(1)}, b^{(2)}, \ldots, b^{(n)}$ be a list of vectors in $\RR^n$. 
-        Suppose $F:\RR^m \rightarrow \overline \RR:= \frac{1}{n}\sum_{i = 1}^{n} F_i(x)$, so it admits representations 
-        \begin{align*}
-            F(x) = f(x) + g(x) = \frac{1}{n}\sum_{i = 1}^{n} f_i(x) + g_i(x) = \frac{1}{n}\sum_{i = 1}^{n} h_i(A^{(i)}x - b^{(i)}) + g_i(x)
-        \end{align*}
-        Where, each $F_i = f_i + g_i$ satisfies Assumption \ref{ass:snorm-smth-p-nsmth} with $K^{(i)} > \nu^{(i)} \ge 0, b^{(i)} \in \RR^n$ and $A^{(i)} \in \RR^{m \times n}$. 
-        So, each $h_i$ are $\nu^{(i)}$ strongly convex and $K^{(i)}$ Lipschitz smooth. 
-        \par
-        Take note that the function $f(x) = \frac{1}{n}\sum_{i = 1}^{n} h_i(A^{(i)} - b^{(i)})$ is the composition of the strongly convex function $h = \frac{1}{n}\sum_{i = 1}^{n} h_i$ that is a $\RR^{mn}\rightarrow \RR$ mapping with strong convexity $\frac{1}{n}\sum_{i = 1}^{n} \nu^{(i)}$ and, the affine $\RR^m \rightarrow \RR^{mn}$ mapping $\mathcal A := x \mapsto (A^{(1)}x - b^{(1)},\ldots,  A^{(n)}x - b^{(n)})$. 
-        $f$ satisfies Theorem \ref{thm:aff-smooth-sq-scnvx} and it can be written as: 
-        \begin{align*}
-            f(x) = \sum_{i = 1}^{n} h_i(A^{(i)} - b^{(i)}) = h(\mathcal A x). 
-        \end{align*}
-    \end{assumption}
-
-    \begin{assumption}[sum of many]\label{ass:sum-of-many}
-        Define $F := (1/n)\sum_{i = 1}^{n} F_i$ where each $F_i = f_i + g_i$, so it can be written as: 
-        \begin{align*}
-            F(x) = f(x) + g(x) = \frac{1}{n}\sum_{i = 1}^{n} f_i(x) + g_i(x)
-        \end{align*}
-        Assume that for all $i = 1, \ldots, n$, each $f_i:\RR^n \rightarrow \RR$ are $K^{(i)}$ smooth and $\mu^{(i)} \ge 0$ strongly convex function such that $K^{(i)} > \mu^{(i)}$ and, $g_i:\RR^n \rightarrow \overline \RR$ is a closed convex proper function satisfies Assumption \ref{ass:smooth-plus-nonsmooth}. 
-        \par 
-        Take note that, the function $f$ can be written as $F = g + f$ with $f = (1/n)\sum_{i = 1}^{n} f_i, g = (1/n)\sum_{i = 1}^{n}g_i$ therefore, it also satisfies Assumption \ref{ass:smooth-plus-nonsmooth} with $L = (1/n)\sum_{i = 1}^n K^{(i)}$ and $\mu = (1/n)\sum_{i = 1}^{n}\mu^{(i)}$. 
-    \end{assumption}
-    Both assumptions are equivalent, functions satisfies one can be translated in form so it satisfies the other with some extra/fewer parameters. 
-    However, it's important to know that for a $F := \frac{1}{n}\sum_{i = 1}^{n} h_i(A^{(i)} - b^{(i)}) + g_i(x)$ satisfying Assumption \ref{ass:sum-of-many-aff-comp}, Theorem \ref{thm:pg-ineq-semi-scnvx}, \ref{thm:smnrm-jnsn-smth-nsmth} applies with parameter $\nu^{(i)}\sigma_{\min}(A^{(i)})^2$ for each summees. 
-    This can't be known if it only satisfies Assumption \ref{ass:sum-of-many}. 
-    \par
-    The interpolation hypothesis from Machine Learning stated that the model has the capacity to perfect fit all the observed data. 
-    The following assumption state the interpolation hypothesis in our context. 
-    \begin{assumption}[interpolation hypothesis]\label{ass:interp-hypothesis}
-        Suppose that $F := (1/n)\sum_{i = 1}^{n} F_i$ satisfying Assumption \ref{ass:sum-of-many}. 
-        In addition, assuming that it has $0 = \inf_{x}F(x)$ and, there exists some $\bar x \in \RR^n$ such that for all $i = 1, \ldots, n$ it satisfies $0 = f_i(\bar x)$. 
-        \par
-        Consequently, each of the $F_i$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth-x} with $X_i$ being the set of minimizers and, under interpolation hypothesis this equates to non-empty intersections between all $X_i$, i.e: $\bigcap_{i = 1}^n X_i \neq \emptyset$. 
-    \end{assumption}
-    
-    Due to the fact the algorithms have to be very different support convergence claim for different assumptions on the functions, the following definition gives a generic ideas for all algorithms that specializes on top of it for different assumptions placed on the objective functions. 
-    These definitions are not actual algorithms, they are conditions an algorithm must adhere to for the theorems based on it to be valid. 
-    Read then as specifications. 
-    % --------------------------------------------------------------------------------------------------------------
-    \begin{definition}[SNAPG-V2 prototype \textcolor{red}{NEW}]\;\label{def:snapg-v2-proto}\\
-        Let 
-        \begin{enumerate}[nosep]
-            \item $F$ satisfies Assumption \ref{ass:sum-of-many}, 
-            \item Let $(L_k)_{k \ge 0}$ a sequence of strictly positive numbers, 
-            \item $(I_k)_{k \ge 0}$ be a list of i.i.d random variables uniformly sampled from set $\{0, 1, 2, \cdots, n\}$, 
-            \item $\sigma^{(I_k)} \le L_k$ be another list of i.i.d random variable, 
-            \item $\tilde \mu \ge 0$ be a constant that is fixed.
-        \end{enumerate}
-        Initialize $v_{-1} = x_{-1}, \alpha_0 = 1$. 
-        The SNAPG prototype specifies algorithm that generates the sequence $(y_k, x_k, v_k)_{k \ge 0}$ such that for all $k \ge 0$ they satisfy: 
-        \begin{align*}
-            & \alpha_k \in (0, 1): (L_{k - 1}/L_k)(1 - \alpha_{k})\alpha_{k - 1}^2 = \alpha_{k}\left(\alpha_{k} - \tilde \mu/L_k\right), \\
-            & \tau_k = L_k(1 - \alpha_k)\left(L_k \alpha_k - \sigma^{(k)}\right)^{-1}, \\
-            & y_k = (1 + \tau_k)^{-1}v_{k - 1} + \tau_k(1 + \tau_k)^{-1}x_{k - 1}, \\
-            & L_k > 0: D_f(x_k, y_k) \le L_k/2\Vert y_k - x_k\Vert^2, \\
-            & x_k =  T_{L_k}(y_k | F_{I_k}), \\
-            & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
-        \end{align*}
-    \end{definition}
-    \begin{remark}
-        $\tilde \mu_k, L_k$ are not necessary a random variable because they are determined by a line-search like conditions, consequently $(\alpha_k)_{k\ge 0}$, whether they are a random variable depends on the line search procedures. 
-        Otherwise, all the iterates $(x_k, y_k, z_k)$ are random variable determined by $I_k$ when conditioned on all previous $I_{k - 1}, I_{k - 2}, \ldots, I_{0}$. 
-        \par
-        \textcolor{red}{NEW}. One may notice that $\alpha_k$ requires $L_k$ which comes before $L_k, x_k$ which are needed in advanced for $\alpha_k$. 
-        This may seem off since no algorithm can know what $L_k$ to choose in advanced to determine the line search. 
-        But, it is important to note that in here, we defined a sequence of conditions on the iterates $x_k, y_k, z_k$, and auxiliary sequences $\alpha_k, L_k$ which is not a definition of any algorithm. 
-        It is quantifying the conditions needed for an algorithm that actually implements it.
-        \par
-        For the trivial case where we don't need to worry about it is when $L_k = \max_{i = 1, \ldots, n} K^{(i)}$. 
-        See Chambolle, Calatroni \cite{calatroni_backtracking_2019} for an implementation of linear search with backtracking for the FISTA algorithm, it is how one would implement it in the deterministic case. 
-    \end{remark}
-    % --------------------------------------------------------------------------------------------------------------
-    \begin{definition}[SNAPG-V2 affine \textcolor{red}{NEW}]\label{def:snapg-v2-aff}
-        Let $F, (I_k)_{k \ge 0}, \tilde \mu$ and, $(L_k)_{k \ge 0}$ be given as in Definition \ref{def:snapg-v2-proto}. 
-        But in addition, assume that: 
-        \begin{enumerate}[nosep]
-            \item $F$ also satisfies Assumption \ref{ass:sum-of-many-aff-comp} with $\RR^{m \times n}$ with matrices: $A^{(1)}, A^{(2)}, \ldots, A^{(n)}$, and vectors $b^{(1)}, \ldots, b^{(n)}$ in $\RR^n$.  
-            \item Choose $\sigma^{(k)} = \nu^{(I_k)}\sigma_{\min}(A^{(I_k)})^2$. 
-        \end{enumerate}
-        Then, SNAPG-V2 affine specifies algorithms that generate the sequence $(y_k, x_k, v_k)_{k \ge 0}$ satisfying conditions in Definition \ref{def:snapg-v2-aff} with the above parameters. 
-    \end{definition}
-    % --------------------------------------------------------------------------------------------------------------
-    \begin{definition}[SNAPG-V2 vanilla]\label{def:snapg-v2}
-        Let $F, (I_k)_{k \ge 0}, \tilde \mu$ and, $(L_k)_{k \ge 0}$ be given as in Definition \ref{def:snapg-v2-aff}. 
-        But in addition, assume that: 
-        \begin{enumerate}[nosep]
-            \item $F$ satisfies Assumption \ref{ass:sum-of-many}, which is equivalently to Assumption \ref{ass:sum-of-many-aff-comp} with $A^{(i)} = I$ and, $\nu^{(i)} = \mu^{(i)}$. 
-            \item Choose $\sigma^{(k)} = \mu^{(I_k)}$. 
-        \end{enumerate}
-        Then, SNAPG-V2 vanilla specifies algorithms that generate the sequence $(y_k, x_k, v_k)_{k \ge 0}$ satisfying conditions in Definition \ref{def:snapg-v2-aff} with the above parameters. 
-    \end{definition}
-    % --------------------------------------------------------------------------------------------------------------
-    \begin{definition}[SNAPG-V2 classical]\label{def:snapg-v2-classical}
-        Let $F, (I_k)_{k \ge 0}, \tilde \mu$ and, $(L_k)_{k \ge 0}$ be given as in Definition \ref{def:snapg-v2-aff}. 
-        But in addition, assume that: 
-        \begin{enumerate}[nosep]
-            \item Choose $\sigma^{(k)} = 0$. 
-            \item Choose $\tilde \mu = 0$. 
-        \end{enumerate}
-        In this case the algorithm simplifies, it can be presented as: 
-        \begin{align*}
-            & \alpha_k \in (0, 1): (L_{k - 1}/L_k)(1 - \alpha_{k})\alpha_{k - 1}^2 = \alpha_{k}\left(\alpha_{k} - /L_k\right), \\
-            & y_k = \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1}, \\
-            & L_k > 0: D_f(x_k, y_k) \le L_k/2\Vert y_k - x_k\Vert^2, \\
-            & x_k =  T_{L_k}(y_k | F_{I_k}), \\
-            & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
-        \end{align*}
-        Then, SNAPG-V2 classical specifies algorithms that generate the sequence $(y_k, x_k, v_k)_{k \ge 0}$ satisfying conditions in Definition \ref{def:snapg-v2-aff} with the above parameters. 
-    \end{definition}
-    % --------------------------------------------------------------------------------------------------------------
-    What is the weakest possible sequence one can use for the accelerated proximal gradient based algorithm that utilizes a strong convexity constant? 
-    If we were to use the developed convergence framework for Nesterov's accelerated proximal gradient, negative momentum and, negative convergence (lower bound instead of upper bound) should be prohibited, and it means that the sequence $(\alpha_k)_{k \ge 0}$ which is going to appear in the proposed algorithm (See Definition \ref{def:snapg-v2}) must satisfy the condition $\alpha_k \in (0, 1]$ for all $k \ge 0$. 
-    The following lemma with a blunt name should clarify the sufficient conditions required for the sequence to make sense. 
-    \begin{lemma}[weakest possible momentum sequence that makes sense \textcolor{red}{NEW}]\;\label{lemma:snapg-v2-seq-range}\\
-        Suppose that $(L_k)_{k \ge 0}$ is a sequence such that $L_k > 0$ for all $k \ge 0$. 
-        Suppose that $(\tilde\mu_k)_{k\ge 0}$ is another non-negative sequence. 
-        Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $\alpha_0 \in (0, 1]$ and, for all $k \ge 1$, it satisfies recursively the equality: 
-        \begin{align*}
-            (L_{k - 1}/L_k)(1 - \alpha_{k})\alpha_{k - 1}^2 
-            &= \alpha_{k}\left(\alpha_{k} - \tilde \mu_k/L_k\right). 
-        \end{align*}
-        And, the following items are true: 
-        \begin{enumerate}
-            \item The expression of $\alpha_k$ based on previous $\alpha_{k - 1}$ is given by: 
-            \begin{align*}
-                \alpha_k = \frac{L_{k - 1}}{2L_k} \left(
-                    - \alpha_{k - 1}^2 + \frac{\tilde\mu_k}{L_{k - 1}}
-                    + \sqrt{
-                        \left(
-                            \alpha_{k - 1} - \frac{\tilde\mu_k}{L_{k - 1}}
-                        \right)^2
-                        + \frac{4\alpha_{k - 1}^2L_k}{L_{k - 1}}
-                    }
-                \right) &\ge 0. 
-            \end{align*}
-            \item If, in addition, the sequence $\tilde \mu_k$ satisfies for all $k \ge 1$, $\frac{\tilde \mu_k}{L_{k - 1}} < L_{k - 1}/ L_k$, then the sequence strictly less than one and, for all $k \ge 1$: $\alpha_k \in (0, 1)$. 
-        \end{enumerate}
-    \end{lemma}
-    \begin{proof}
-        For all $k \ge 1$, re-arranging the equality it comes to solving the following equality: 
-        \begin{align*}
-            0 &= L_k\alpha_k^2 - \tilde\mu_k\alpha_k + L_{k - 1}\alpha_{k - 1}^2\alpha_k - L_{k - 1}\alpha_{k - 1}^2
-            \\
-            &= L_k\alpha_k^2 + (L_{k - 1}\alpha_{k - 1}^2 - \tilde \mu_k)\alpha_k - L_{k - 1}\alpha_{k - 1}^2
-            \\
-            \iff 0 &=
-            \alpha_k^2 + L_k^{-1}(L_{k - 1}\alpha_{k - 1}^2 - \tilde \mu_k)\alpha_k - L_k^{-1}L_{k - 1}\alpha_{k - 1}^2
-            \\
-            \iff 
-            \alpha_k &= 
-            \frac{1}{2}\left(
-                -L^{-1}_k(L_{k - 1} \alpha_{k - 1}^2 - \tilde\mu_k)
-                + \sqrt{
-                    L_k^{-2}(L_{k - 1}\alpha_{k - 1}^2 - \tilde \mu_k)^2
-                    + 4L_k^{-1}L_{k - 1} \alpha_{k - 1}^2
-                }
-            \right)
-            \\
-            &= \frac{L_{k-1}}{2L_k}\left(
-                - \alpha_{k - 1}^2 + \frac{\tilde \mu_k}{L_{k - 1}}
-                + \sqrt{
+                &= \left(
+                    g(z) + f(z) - f(z) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2
+                \right)
+                \\ &\quad 
+                    - 
                     \left(
-                        \alpha_{k - 1}^2 - \frac{\tilde \mu_k}{L_{k - 1}}
-                    \right)^2 + \frac{4L_k}{L_{k - 1}}\alpha_{k - 1}^2
-                }
-            \right)
-        \end{align*}
-        Here, we take the positive root of the quadratic so that it ensures $\alpha_k \ge 0$. 
-        This is true by induction. 
-        If $\alpha_{k - 1} \ge 0$ then the $\frac{4L_k}{L_{k - 1}}\alpha_{k - 1}^2 \ge 0$ hence, the square root is greater than the term outside it so, $\alpha_k \ge 0$ too. 
-        \par
-        Assume inductively that $\alpha_{k - 1} \ge 0$. 
-        Next, we want to find the conditions needed such that $\alpha_k < 1$. 
-        To start, we complete the square root inside the square root: 
-        \begin{align*}
-            0&\le 
-            \left(
-                \alpha_{k - 1}^2 - \frac{\tilde \mu_k}{L_{k - 1}}
-            \right)^2 + \frac{4L_k}{L_{k - 1}}\alpha_{k - 1}^2
-            \\
-            &= \alpha_{k - 1}^4 + \left(\frac{\tilde \mu_k}{L_{k - 1}}\right)^2
-            - 2\alpha_{k - 1}^2 \frac{\tilde \mu_k}{L_{k - 1}} 
-            + \frac{4L_k}{L_{k - 1}}\alpha_{k - 1}^2
-            \\
-            &= \alpha_{k - 1}^4 + \left(\frac{\tilde \mu_k}{L_{k - 1}}\right)^2
-            + \alpha_{k - 1}^2 \left(
-                \frac{-2\tilde \mu_k}{L_{k - 1}} + \frac{4L_k}{L_{k - 1}}. 
-            \right)
-            \\
-            &= \alpha_{k - 1}^4 + \left(\frac{\tilde \mu_k}{L_{k - 1}}\right)^2
-            + \alpha_{k - 1}^2 \left(
-                \frac{4L_k - 2\tilde \mu_k}{L_{k - 1}}
-            \right)
-            \\
-            &= \alpha_{k - 1}^4
-            + \alpha_{k - 1}^2 \left(
-                \frac{4L_k - 2\tilde \mu_k}{L_{k - 1}}
-            \right) 
-            + \left(
-                \frac{2L_k - \tilde \mu_k}{L_{k - 1}}
-            \right)^2
-            - \left(
-                \frac{2L_k - \tilde \mu_k}{L_{k - 1}}
-            \right)^2
-            + \left(\frac{\tilde \mu_k}{L_{k - 1}}\right)^2
-            \\
-            &= \left(
-                \alpha_{k - 1}^2 + 
-                \frac{2L_k - \tilde \mu_k}{L_{k - 1}}
-            \right)^2
-            - \left(
-                \frac{2L_k - \tilde \mu_k}{L_{k - 1}}
-            \right)^2
-            + \left(\frac{\tilde \mu_k}{L_{k - 1}}\right)^2
-            \\
-            &= 
-            \left(
-                \alpha_{k - 1}^2 + 
-                \frac{2L_k - \tilde \mu_k}{L_{k - 1}}
-            \right)^2
-            + 
-            \frac{
-                \tilde \mu_k^2 - 4L_k^2 - \tilde \mu_k^2 + 4L_k\tilde \mu_k
-            }{L_{k - 1}^2}
-            \\
-            &= 
-            \left(
-                \alpha_{k - 1}^2 + 
-                \frac{2L_k - \tilde \mu_k}{L_{k - 1}}
-            \right)^2
-            + 
-            \frac{
-                4L_k \tilde \mu_k - 4L_k^2
-            }{L_{k - 1}^2}
-            \\
-            &= 
-            \left(
-                \alpha_{k - 1}^2 + 
-                \frac{2L_k - \tilde \mu_k}{L_{k - 1}}
-            \right)^2
-            + 
-            4\left(
-                \frac{L_k}{L_{k - 1}}\cdot \frac{\tilde \mu_k}{L_{k - 1}} - 1
-            \right)
-            \\
-            &< 
-            \left(
-                \alpha_{k - 1}^2 + 
-                \frac{2L_k - \tilde \mu_k}{L_{k - 1}}
-            \right)^2. 
-        \end{align*}
-        On the last inequality, we used our assumption that the sequence $\tilde\mu_k, L_k$ satisfies $\frac{\tilde \mu_k}{L_{k - 1}} < \frac{L_{k - 1}}{L_k}$. 
-        Substitute it back into the expression previous obtained for $\alpha_k$, using the monotone property of the function $\sqrt{\cdot}$, it gives the inequality 
-        \begin{align*}
-            \alpha_k & < 
-            \frac{L_{k-1}}{2L_k}\left(
-                - \alpha_{k - 1}^2 + \frac{\tilde \mu_k}{L_{k - 1}}
-                + \sqrt{
+                        g(\tilde x) + f(\tilde x) - f(\tilde x) 
+                        + \langle \nabla f(x), \tilde x - x\rangle + \frac{B}{2}\Vert \tilde x - x\Vert^2
+                    \right)
+                    - \langle w, z - \tilde x\rangle
+                \\
+                &= \left(
+                    F(z) - D_f(z, x) + \frac{B}{2}\Vert z - x\Vert^2
+                \right)
+                \\ &\quad 
+                    - 
                     \left(
-                        \alpha_{k - 1}^2 + 
-                        \frac{2L_k - \tilde \mu_k}{L_{k - 1}}
-                    \right)^2
-                }
-            \right)
-            \\
-            &= 
-            \frac{L_{k-1}}{2L_k}\left(
-                - \alpha_{k - 1}^2 + \frac{\tilde \mu_k}{L_{k - 1}}
-                + \alpha_{k - 1}^2 + \frac{2L_k - \tilde \mu_k}{L_{k - 1}}
-            \right) = 1. 
-        \end{align*}
-    \end{proof}
-    \begin{remark}
-        Let's do some sanity check for the lemma we just derived. 
-        The sequence $L_k$ will be from the Lipschitz line search routine of the accelerated proximal gradient method. 
-        \begin{enumerate}
-            \item Let's assume the obvious choice of $L_k = \max_{i = 1, \ldots,n} K^{(i)}$ for all $k = 1, 2, \ldots$ given an objective function $F$ satisfying Assumption \ref{ass:sum-of-many}. 
-            Then, the sufficient condition for the second item translates to $\tilde\mu_i/L_k < 1$. 
-            Hence, if we choose $\tilde \mu_i$ to be a constant sequence of $0$ then it works out to have $\alpha_k \in (0, 1)$ for all $k = 1, 2, \ldots$. 
-            \par
-            If $F$ has $L \ge \mu$ so, the function is non-trivial, then choose $\tilde \mu_i = \mu$, the true strong convexity parameter then it also works out. 
-            \item Let's assume that some type of monotone line search routine is used for the algorithm making $L_0 \le L_1 \le \ldots \le L_k \le \ldots$ to be a non-decreasing sequence, then it requires $\tilde \mu_k / L_{k - 1} \le L_{k - 1}/L_k$. 
-            \par
-            Well, it will still make sense because one such choice could be $\tilde \mu_k = \rho\min_{i = 1, \ldots, k} L_{i - 1}/L_i$ for some $\rho \in (0, 1)$. 
-        \end{enumerate}
-    \end{remark}
-    % --------------------------------------------------------------------------------------------------------------
-    \begin{lemma}[properties of the iterates on SNAPG-V2 prototype \textcolor{red}{NEW}]\label{lemma:iters-snapg2-proto}
-        Suppose that the iterates $(z_k, x_k, y_k)_{k \ge 0}$ and sequence $(\alpha_k)_{k \ge 1}$ satisfies Definition \ref{def:snapg-v2-proto}. 
-        Let $\bar x \in \RR^n$.
-        Define the sequence $z_k = \alpha_k\bar x + (1 - \alpha_k)x_{k - 1}$. 
-        Then, the following are true: 
-        \begin{enumerate}
-            \item\label{lemma:iters-snapg2-proto-item1} For all $k \ge 1$ it has: 
-            \begin{align*}
-                    z_k - y_k 
-                    = 
-                    \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}}(\bar x - v_{k - 1})
-                    + \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}}(\bar x - x_{k - 1}).
-            \end{align*}
-            \item\label{lemma:iters-snapg2-proto-item2} For all $k \ge 1$, it has: $z_k - x_k = \alpha_k(x - \bar x)$
-        \end{enumerate}
-    \end{lemma}
-    \begin{proof}
-        \textbf{Proof of \ref{lemma:iters-snapg2-proto-item1}}. 
-        From Definition \ref{def:snapg-v2-proto}:
-        \begin{align*}
-            (1 + \tau_k)^{-1}
-            &=
-            \left(
-                1 + \frac{L_k(1 - \alpha_k)}{L_k\alpha_k - \sigma^{(i)}}
-            \right)^{-1} = \left(
-                \frac{L_k\alpha_k - \sigma^{(i)} + L_k(1 - \alpha_k)}{L_k\alpha_k - \sigma^{(i)}}
-            \right)^{-1}
-            = \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}}. 
-        \end{align*}
-        Therefore, for all $k \ge 0$, $y_k$ has 
-        \begin{align*}
-            0 &= (1 + \tau_k)^{-1} v_{k - 1} + \tau_k (1 + \tau_k)^{-1} x_{k - 1} - y_k
-            \\
-            &= \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}} 
-            \left(
-                v_{k - 1} + \frac{L_k(1 - \alpha_k)}{L_k\alpha_k - \sigma^{(i)}} x_{k - 1}
-            \right) - y_k
-            \\
-            &= \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}} v_{k - 1}
-            + \frac{L_k(1 - \alpha_k)}{L_k - \sigma^{(i)}} x_{k - 1} - y_k
-            \\
-            &= \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}} v_{k - 1} + (1 - \alpha_k)x_{k - 1}
-            + 
-            \left(
-                \frac{L_k(1 - \alpha_k)}{L_k - \sigma^{(i)}} - (1 - \alpha_k)
-            \right) x_{k - 1} - y_k
-            \\
-            &= \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}} v_{k - 1} + (1 - \alpha_k)x_{k - 1}
-            + 
-            (1 - \alpha_k)\left(
-                \frac{L_k - L_k + \sigma^{(i)}}{L_k - \sigma^{(i)}}
-            \right) x_{k - 1} - y_k
-            \\
-            &= \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}} v_{k - 1} + (1 - \alpha_k)x_{k - 1}
-            + 
-            \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}}x_{k - 1} - y_k. 
-        \end{align*}
-        Therefore, we establish the equality 
-        \begin{align*}
-            (1 - \alpha_k)x_{k - 1} - y_k &= 
-            - \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}} v_{k - 1} 
-            - \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}} x_{k - 1}. 
-        \end{align*}
-        On the second equality below, we will the above equality, it goes: 
-        \begin{align*}
-            z_k - y_k &= 
-            \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - y_k
-            \\
-            &= \alpha_k \bar x 
-            - \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}} v_{k - 1} 
-            - \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}} x_{k - 1}
-            \\
-            &= \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}}(\bar x - v_{k - 1})
-            + \left(
-                \alpha_k - \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}}
-            \right)\bar x
-            - \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}} x_{k - 1}
-            \\
-            &= \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}}(\bar x - v_{k - 1})
-            + \left(
-                \frac{\alpha_kL_k - \alpha_k \sigma^{(i)} - L_k\alpha_k + \sigma^{(i)}}{L_k - \sigma^{(i)}}
-            \right)\bar x
-            - \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}} x_{k - 1}
-            \\
-            &= \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}}(\bar x - v_{k - 1})
-            + \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}}\bar x
-            - \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}} x_{k - 1}
-            \\
-            &= \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}}(\bar x - v_{k - 1})
-            + \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}}(\bar x - x_{k - 1}).
-        \end{align*}
-        \textbf{proof of \ref{lemma:iters-snapg2-proto-item2}.}
-        From Definition \ref{def:snapg-v2} it has directly: 
-        \begin{align*}
-            z_k - x_k &= \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - x_k
-            \\
-            &= \alpha_k \bar x + x_{k - 1} - x_k - \alpha_k x_{k - 1}
-            \\
-            &= \alpha_k(\bar x - \alpha_k^{-1}(x_k - x_{k - 1}) - x_{k - 1})
-            \\
-            &= \alpha_k (\bar x - v_k).
-        \end{align*}
-
-    \end{proof}
-    % --------------------------------------------------------------------------------------------------------------
-    \begin{lemma}[SNAPG-V2 one step convergence stage I \textcolor{red}{NEW}]\;\label{lemma:snapg2-one-step-s1}\\
-        Let the sequence $(y_k, x_k, v_k)_{k \ge 0}$ satisfies Definition \ref{def:snapg-v2-aff}. 
-        Fix any $k \in \N \cup\{0\}$, suppose that $I_k = i \in \{1, \ldots, n\}$.
-        Denote $\Pi^{(i)} = \Pi_{\ker A^{(i)}}$ to be the projection matrix onto the kernel of $A^{(i)}$. 
-        For all $\bar x \in \RR^m, k \ge 1$, define $z_k = \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$. 
-        Then, the iterates satisfy: 
-        \begin{align}\label{ineq:snapg2-one-step-s1-rslt1}
-            \begin{split}
-                & F_i(x_k) - F_i(\bar x)
-                + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
-                \\&\le 
-                (1 - \alpha_k)\left(
-                    F_i(x_{k - 1}) - F_i(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2} \Vert \bar x - v_{k - 1}\Vert^2
-                \right) + \mathcal R_k^{(i)}. 
-            \end{split}
-        \end{align}
-        Where: 
-        \begin{align*}
-            & \mathcal R_k^{(i)} = (1 - \alpha_k)\left(
-                \frac{\sigma^{(i)}\alpha_k}{2}\left\Vert \Pi^{(i)} (\bar x - x_{k - 1})\right\Vert^2
-                - \frac{\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2
-            \right)
-                \\&\quad
-                + \frac{\sigma^{(i)}}{2}\left\Vert \Pi^{(i)}(z_k - y_k)\right\Vert^2
-                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2. 
-        \end{align*}
-        And when $k = 0$, we have: 
-        \begin{align}\label{ineq:snapg2-one-step-s1-rslt2}
-            F(x_0) - F(\bar x) + \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2 
-            &\le \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2. 
-        \end{align}
-    \end{lemma}
-    \begin{proof}
-        We list the following intermediate results, (d)-(g) are proved at the end of the proof. 
-        \begin{itemize}
-            \item[(a)] We can use proximal gradient inequality from Theorem \ref{thm:pg-ineq-semi-scnvx} with $z = z_k, B = L_k, \Pi^{(i)} = \Pi_{\ker A^{(i)}}$ because Assumption \ref{ass:sum-of-many-aff-comp} has each $F_i = f_i + g_i$ satisfies Assumption \ref{ass:snorm-smth-p-nsmth}. 
-            \item[(b)] We can use seminorm Jensen's inequality of Theorem \ref{thm:smnrm-jnsn-smth-nsmth} with $z = z_k$ on $F_i$. 
-            \item[(c)] The sequence $(\alpha_k)_{k \ge 0}$ has $(L_{k - 1}/L_k)(1 - \alpha_{k})\alpha_{k - 1}^2 = \alpha_{k}\left(\alpha_{k} - \mu/L_k\right)$. 
-            \item[(d)] Prove in Lemma \ref{lemma:iters-snapg2-proto} \ref{lemma:iters-snapg2-proto-item1} we will the equality:
-            \begin{align*}
-                (\forall k \ge 1)\; 
-                z_k - y_k 
-                = 
-                \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}}(\bar x - v_{k - 1})
-                + \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}}(\bar x - x_{k - 1}).
-            \end{align*}
-            \item [(e)] From Lemma \ref{lemma:iters-snapg2-proto} \ref{lemma:iters-snapg2-proto-item2}, we use: $(\forall k \ge 1)\; z_k - x_k = \alpha_k (\bar x - v_k)$. 
-            \item [(f)] Using direct algebra, we have for all $k \ge 1$: 
-            \begin{align*}
-                \frac{\left(\mu^{(i)}\right)^2(1 - \alpha_k)^2}{2(L_k - \mu^{(i)})} 
-                - \frac{\mu^{(i)}\alpha_k(1 - \alpha_k)}{2}
-                = \frac{(\alpha_k - 1)\mu^{(i)}\left(L_k\alpha_k - \mu^{(i)}\right)}
-                {2\left(L_k - \mu^{(i)}\right)}. 
-            \end{align*}
-            \item [(g)] Using (c), we have for all $k \ge 1$: 
-            \begin{align*}
-                \frac{\left(
-                    L_k\alpha_k - \sigma^{(i)}
-                \right)^2}{2(L_k - \sigma^{(i)})} 
-                -
-                \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} 
-                = 
-                \frac{
-                \left(L_k \alpha_k - \sigma^{(i)}\right)\sigma^{(i)}
-                \left(\alpha_k - 1\right)
-                }
-                {2(L_k - \sigma^{(i)})}
-                + \frac{\alpha_k(\tilde \mu_k - \sigma^{(i)})}{2}. 
-            \end{align*}
-        \end{itemize}
-        \textbf{For simpler notations}
-        \begin{itemize}[nosep]
-            \item We use $\langle \cdot,\cdot\rangle_\sharp := \langle H(\cdot), H(\cdot)\rangle$ for any linear mapping $H$, and denote $\Vert x\Vert_{\sharp} = \sqrt{\langle x, x\rangle_\sharp}$. 
-            \item We denote specifically $\Vert \cdot\Vert_\bullet$ for the semi norm $\Vert (I - \Pi^{(i)})(\cdot)\Vert$, and $\Vert \cdot\Vert_{\circ}$ for the semi norm $\left\Vert \Pi^{(i)} x\right\Vert$. So it has $\Vert x\Vert^2_\circ + \Vert x\Vert^2_\bullet = \Vert x\Vert^2$. 
-        \end{itemize}
-        For all $k \ge 1$, starting with (a) we have: 
-        \begin{align}\label{ineq:snapg2-one-step-s1-chain1}
-            \begin{split}
-                0 &\underset{\text{(a)}}{\le} F_i(z_k) - F_i(x_k) - 
-                \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
-                + \frac{L_k - \nu^{(i)}\sigma_{\min}(A^{(i)})^2}{2}\left\Vert z_k - y_k\right\Vert^2
-                    \\ &\quad 
-                    + \frac{\nu^{(i)}\sigma_{\min}(A^{(i)})^2}{2}\left\Vert z_k - y_k\right\Vert^2_\circ
+                        F(\tilde x) - D_f(\tilde x, x) + \frac{B}{2}\Vert \tilde x - x\Vert^2
+                    \right)
+                    - \langle w, z - \tilde x\rangle
+                \\
+                &\underset{\text{(a)}}{\le} F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 - 0 - \langle w, z - \tilde x \rangle
                 \\
                 &\underset{\text{(b)}}{\le}
-                \alpha_k F_i(\bar x) + (1 - \alpha_k)F_i(x_{k - 1}) - F_i(x_k)     
-                - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
-                + \frac{\nu^{(i)}\sigma_{\min}(A^{(i)})^2}{2}\left\Vert z_k - y_k\right\Vert^2_\circ
+                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 - 0 + \epsilon \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert. 
+            \end{align*}
+            At (a), we used the fact that $f$ is $L > \mu \ge 0$ Lipschitz smooth and strongly convex therefore it has for all $y \in \RR^n$: 
+            \begin{align*}
+                0 
+                \le \frac{L}{2}\Vert z - y\Vert^2  - D_f(z, y)
+                \le \frac{L - \mu}{2}\Vert z - y\Vert^2. 
+            \end{align*}
+            At (b) we used the Cauchy Inequality and, the assumption $\Vert w\Vert \le \epsilon \Vert x - \tilde x\Vert$. 
+            Continuing it has 
+            \begin{align*}
+                0 &\le 
+                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2
+                + \epsilon \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert 
+                - \frac{B}{2}\Vert z - \tilde x\Vert^2
                     \\&\quad 
-                    - \frac{\nu^{(i)}\sigma_{\min}(A^{(i)})^2\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2_\bullet
-                    \\&\quad
-                    + \frac{L_k - \nu^{(i)}\sigma_{\min}(A^{(i)})^2}{2}\Vert z_k - y_k\Vert^2
+                    - \frac{\epsilon}{2}\Vert x - \tilde x\Vert^2 - \frac{\epsilon}{2}\Vert z - \tilde x \Vert^2
+                    + \frac{\epsilon}{2}\Vert x - \tilde x\Vert^2 + \frac{\epsilon}{2}\Vert z - \tilde x \Vert^2
                 \\
-                & = 
-                \alpha_k F_i(\bar x) + (1 - \alpha_k)F_i(x_{k - 1}) - F_i(x_k)     
-                - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
-                + \frac{\nu^{(i)}\sigma_{\min}(A^{(i)})^2}{2}\left\Vert z_k - y_k\right\Vert^2_\circ
-                    \\&\quad 
-                    + \frac{\nu^{(i)}\sigma_{\min}(A^{(i)})^2\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2_\circ
-                    \\&\quad
-                    + \frac{L_k - \nu^{(i)}\sigma_{\min}(A^{(i)})^2}{2}\Vert z_k - y_k\Vert^2
-                    - \frac{\nu^{(i)}\sigma_{\min}(A^{(i)})^2\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
-            \end{split}
-        \end{align}
+                &= F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2
+                - \frac{1}{2}\left(
+                    \sqrt{\epsilon}\Vert z - \tilde x\Vert - \sqrt{\epsilon}\Vert x - \tilde x\Vert
+                \right)^2
+                - \frac{B}{2}\Vert z - \tilde x\Vert^2
+                    \\
+                    &\quad 
+                    + \frac{\epsilon}{2}\Vert x - \tilde x\Vert^2 + \frac{\epsilon}{2}\Vert z - \tilde x \Vert^2
+                \\
+                &= F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2
+                - \frac{B - \epsilon}{2}\Vert z - \tilde x\Vert^2
+                + \frac{\epsilon}{2}\Vert x - \tilde x \Vert^2. 
+            \end{align*}
+        \end{proof}
+        \begin{remark}
+            Usually in practice, the precise value of $F(\tilde x)$ is never known, therefore, $B$ cannot be easily determined via $D_f(\tilde x, x)$. 
+            Hence, in this case we can only choose $B \ge L$ which gives: 
+            \begin{align*}
+                F(z) - F(\tilde x) + \frac{L - \mu}{2}\Vert z - x\Vert^2
+                - \frac{B - \epsilon}{2}\Vert z - \tilde x\Vert^2
+                + \frac{\epsilon}{2}\Vert x - \tilde x \Vert^2.
+            \end{align*}
+        \end{remark}
+        Note, an inexact evaluation of the proximal gradient operator can be caused by an inexact gradient on the smooth part. 
+        Suppose that one take $\tilde \nabla f(x)$ to be an estimate of $\nabla f(x)$ and use it for the proximal gradient operator to produce $\tilde x$, then: 
+        \begin{align*}
+            \mathbf 0 
+            &\in \partial g(\tilde x) + \tilde \nabla f(x) + B(\tilde x - x)
+            \\
+            &= 
+            \partial g(\tilde x) + \tilde\nabla f(x) - \nabla f(x) 
+            + \nabla f(x) + B(\tilde x - x)
+            \\
+            \iff &
+            \nabla f(x) - \tilde \nabla f(x) \in 
+            \partial g(\tilde x) 
+            + \nabla f(x) + B(\tilde x - x).
+        \end{align*}
+        In this case, it adds the interpretation that $w = \nabla f(x) - \tilde \nabla f(x)$. 
+        It fully characterizes the error made to estimate the true gradient $\nabla f(x)$. 
 
-        We also use $\sigma^{(i)} = \nu^{(i)}\sigma_{\min}(A^{(i)})^2$ which is specified in Definition \ref{def:snapg-v2-aff}. 
-        And we will simplify the last two terms from the above inequality using a chain of equalities. 
-        {\allowdisplaybreaks
+\section{Inexact accelerated proximal gradient algorithm}
+    The following defines the inexact proximal gradient operator where the gradient of the smooth part of the function is estimated. 
+    All algorithms satisfying the following definition will be referred to as Stochastic Nesterov's Accelerated Gradient (SNAG). 
+    % ------------------------------------------------------------------------------------------------------------------
+    \begin{definition}[inexact proximal gradient operator with relative error]
+        Let $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}, let $x \in \RR^n$ be fixed. 
+        Suppose that $\tilde \nabla f(x)$ is an estimate of the true gradient $\nabla f(x)$ with relative error $\epsilon \ge 0$. 
+        Then, the inexact proximal gradient operator is defined by: 
         \begin{align*}
-            & - \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2_\sharp
-            + \frac{L_k - \sigma^{(i)}}{2}\Vert z_k - y_k\Vert^2_\sharp
-            \\
-            &\underset{\text{(d)}}{=}
-            - \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2_\sharp
-                \\&\quad
-                + \frac{L_k - \sigma^{(i)}}{2}
-                \left\Vert
-                    \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}}(\bar x - v_{k - 1})
-                    + \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}}(\bar x - x_{k - 1})
-                \right\Vert^2_\sharp
-            \\
-            &= 
-            - \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2_\sharp 
-                \\&\quad
-                + \frac{(L_k\alpha_k - \sigma^{(i)})^2}{2(L_k - \sigma^{(i)})} \Vert \bar x - v_{k - 1}\Vert^2_\sharp
-                + \frac{(\sigma^{(i)})^2(1 - \alpha_k)^2}{2(L_k - \sigma^{(i)})}\Vert \bar x - x_{k - 1}\Vert^2_\sharp 
-                \\&\quad 
-                + \frac{(L_k\alpha_k  - \sigma^{(i)})\sigma^{(i)}(1 - \alpha_k)}{(L_k - \sigma^{(i)})}\left\langle (\bar x - v_{k - 1}),(\bar x - x_{k - 1})\right\rangle_\sharp
-            \\
-            &= 
-            \left(
-                \frac{(\sigma^{(i)})^2(1 - \alpha_k)^2}{2(L_k - \sigma^{(i)})} - \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}
-            \right)\Vert \bar x - x_{k - 1}\Vert^2_\sharp
-                \\ &\quad 
-                + \left(
-                    \frac{(L_k\alpha_k - \sigma^{(i)})^2}{2(L_k - \sigma^{(i)})} - \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2}
-                \right) \Vert \bar x - v_{k - 1}\Vert^2_\sharp
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_\sharp
-                \\&\quad 
-                + \frac{(L_k\alpha_k  - \sigma^{(i)})\sigma^{(i)}(1 - \alpha_k)}{(L_k - \sigma^{(i)})}\left\langle (\bar x - v_{k - 1}),(\bar x - x_{k - 1})\right\rangle_\sharp
-            \\
-            &\underset{\text{(f)}}{=}
-            \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}
-            {2\left(L_k - \sigma^{(i)}\right)} \Vert \bar x - x_{k - 1}\Vert^2_\sharp
-                \\ &\quad 
-                + \left(
-                    \frac{(L_k\alpha_k - \sigma^{(i)})^2}{2(L_k - \sigma^{(i)})} - \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2}
-                \right) \Vert \bar x - v_{k - 1}\Vert^2_\sharp
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_\sharp
-                \\&\quad 
-                + \frac{(L_k\alpha_k  - \sigma^{(i)})\sigma^{(i)}(1 - \alpha_k)}{(L_k - \sigma^{(i)})}\left\langle (\bar x - v_{k - 1}),(\bar x - x_{k - 1})\right\rangle_\sharp
-            \\
-            & \underset{\text{(g)}}{=} 
-            \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}
-            {2\left(L_k - \sigma^{(i)}\right)}\Vert \bar x - x_{k - 1}\Vert^2_\sharp
-                \\ &\quad 
-                + \left(
-                    \frac{
-                        \left(L_k \alpha_k - \sigma^{(i)}\right)\sigma^{(i)}
-                        \left(\alpha_k - 1\right)
-                    }
-                    {2(L_k - \sigma^{(i)})}
-                    + \frac{\alpha_k(\tilde\sigma - \sigma^{(i)})}{2}
-                \right) 
-                \Vert \bar x - v_{k - 1}\Vert^2_\sharp
-                \\ &\quad 
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_\sharp
-                \\ &\quad
-                + \frac{(L_k\alpha_k  - \sigma^{(i)})\sigma^{(i)}(1 - \alpha_k)}{(L_k - \sigma^{(i)})}\left\langle (\bar x - v_{k - 1}),(\bar x - x_{k - 1})\right\rangle_\sharp
-            \\
-            &= 
-            \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}
-            \left(
-                \Vert \bar x - x_{k - 1}\Vert^2_\sharp 
-                + \Vert \bar x - v_{k - 1}\Vert^2_\sharp 
-                - 2\left\langle (\bar x - v_{k - 1}),(\bar x - x_{k - 1})\right\rangle_\sharp
-            \right) 
-                \\ &\quad 
-                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2_\sharp
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_\sharp
-            \\
-            &= \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}
-                \Vert x_{k - 1} - v_{k - 1} \Vert^2_\sharp
-                \\ &\quad 
-                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2_\sharp
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_\sharp.
+            T_B^{(\epsilon)}(x | F) = \argmin_{z \in \RR^n}\left\lbrace
+                g(z) + \left\langle \tilde \nabla f(x), z - x\right\rangle
+                + \frac{B}{2}\Vert z - x\Vert^2
+            \right\rbrace. 
         \end{align*}
-        }
-        So, this is our results: 
-        \begin{align}\begin{split}\label{eqn:snapg2-one-spte-s1-chain2}
-            & - \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2_\sharp
-            + \frac{L_k - \sigma^{(i)}}{2}\Vert z_k - y_k\Vert^2_\sharp
-            \\
-            &= 
-            \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}
-                \Vert x_{k - 1} - v_{k - 1} \Vert^2_\sharp
-                \\ &\quad 
-                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2_\sharp
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2_\sharp.
-        \end{split}\end{align}
-        Substituting the above back to the tail of \eqref{ineq:snapg2-one-step-s1-chain1} for $\Vert \cdot\Vert_\sharp = \Vert \cdot\Vert$ it has: 
-        {\allowdisplaybreaks
+        And it satisfies 
         \begin{align*}
-            0 &\le 
-            \alpha_k F_i(\bar x) + (1 - \alpha_k)F_i(x_{k - 1}) - F_i(x_k)     
-                - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
-                + \frac{\sigma^{(i)}}{2}\left\Vert z_k - y_k\right\Vert^2_\circ
-                    \\&\quad 
-                    + \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2_\circ
-                    + \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}
-                    \Vert x_{k - 1} - v_{k - 1} \Vert^2
-                    \\ &\quad 
-                    + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2
-                    + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2
-            \\
-            &\underset{\text{(e)}}{=} 
-            \alpha_k F_i(\bar x) + (1 - \alpha_k)F_i(x_{k - 1}) - F_i(x_k)     
-            - \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2 
-            + \frac{\sigma^{(i)}}{2}\left\Vert z_k - y_k\right\Vert^2_\circ
-                \\&\quad 
-                + \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2_\circ
-                + \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}
-                \Vert x_{k - 1} - v_{k - 1} \Vert^2
-                \\ &\quad 
-                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2
-            \\
-            &= 
-            (\alpha_k - 1) F_i(\bar x) + (1 - \alpha_k)F_i(x_{k - 1}) - F_i(x_k) + F_i(\bar x)
-            - \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2 
-            + \frac{\sigma^{(i)}}{2}\left\Vert z_k - y_k\right\Vert^2_\circ
-                \\&\quad 
-                + \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2_\circ
-                + \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2
-                \\ &\quad 
-                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2
-                + \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} \Vert \bar x - v_{k - 1}\Vert^2
-            \\
-            &= (1 - \alpha_k)\left(
-                F_i(x_{k - 1}) - F_i(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2} \Vert \bar x - v_{k - 1}\Vert^2
-            \right)
-            - \left(
-                F_i(x_k) - F_i(\bar x)
-                + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2 
-            \right)
-                \\&\quad 
-                + (1 - \alpha_k)\left(
-                    \frac{\sigma^{(i)}\alpha_k}{2}\Vert \bar x - x_{k - 1}\Vert^2_\circ
-                    - \frac{\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2
-                \right)
-                \\&\quad
-                + \frac{\sigma^{(i)}}{2}\left\Vert z_k - y_k\right\Vert^2_\circ
-                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2
+            \left\Vert \tilde \nabla f(x) - \nabla f(x)\right\Vert \le \epsilon \Vert x - \tilde x\Vert. 
         \end{align*}
-        }
-        Define
+    \end{definition}
+    The inexact evaluation can be caused by an random variable. 
+    The definitions follow characterize algorithm in which the errors are related to a random variable that estimates the gradient of the objective function. 
+    % ------------------------------------------------------------------------------------------------------------------
+    \begin{definition}[stochastic proximal gradient operator with relative error]
+        
+    \end{definition}
+    % ------------------------------------------------------------------------------------------------------------------
+    \begin{definition}[inexact/stochastic SNAG]\label{def:SNAG}
+        Suppose that $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}. 
+        Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $\alpha_k \in (0, 1]$. 
+        Let $(\epsilon_k)_{k \ge 0}$ be a sequence of errors. 
+        Given initial conditions $v_{-1}, x_{- 1}$. 
+        An algorithm satisfying the SNAG definition if it generates a sequence $(y_k, x_k, v_k)_{k \ge 0}$ if for all $k \ge 0$, the following conditions are satisfied: 
         \begin{align*}
-            & \mathcal R_k^{(i)} := (1 - \alpha_k)\left(
-                \frac{\sigma^{(i)}\alpha_k}{2}\Vert \bar x - x_{k - 1}\Vert^2_\circ
-                - \frac{\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2
-            \right)
-                \\&\quad
-                + \frac{\sigma^{(i)}}{2}\left\Vert z_k - y_k\right\Vert^2_\circ
-                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2. 
+            & \tau_k = L_k(1 - \alpha_k)\left(L_k \alpha_k - \sigma^{(k)}\right)^{-1}, \\
+            & y_k = (1 + \tau_k)^{-1}v_{k - 1} + \tau_k(1 + \tau_k)^{-1}x_{k - 1}, \\
+            & x_k =  T_{L}^{(\epsilon_k)}(y_k | F_{I_k}), \\
+            & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}).
         \end{align*}
-        Then the result can be written as: 
-        \begin{align*}
-            & F_i(x_k) - F_i(\bar x)
-                + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
-            \\&\le 
-            (1 - \alpha_k)\left(
-                F_i(x_{k - 1}) - F_i(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2} \Vert \bar x - v_{k - 1}\Vert^2
-            \right) + \mathcal R_k^{(i)}. 
-        \end{align*}
-        Now, let's tackle the $k = 0$ case. 
-        By Definition \ref{def:snapg-v2-aff} it has $\alpha_0 = 1$ and, $v_{- 1} = x_{- 1}$, so that makes $z_0 = \bar x$, and $\tau_0 = 0$ hence, $y_0 = v_{-1} = x_{-1}$. 
-        As a consequence it chooses $x_0 = T_{L_k}(y_0 | F_{I_0})$, it means that at the $k = 0$ iteration, the algorithm simplify performs one step of proximal gradient descent at $v_{-1}$ without any momentum. 
-        So, we can use Theorem \ref{thm:pg-ineq-semi-scnvx} with $z = z_0 = \bar x, x^+ = x_0$ and, $B = L_0$: 
-        \begin{align*}
-            F(x_0) - F(\bar x) + \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2 
-            &\le 
-            \frac{L_0 - \sigma^{(i)}}{2}\Vert \bar x - v_{-1} \Vert^2_\bullet
-            + \frac{B}{2}\left\Vert \Pi^{(i)}(\bar x - v_{-1})\right\Vert^2. 
-        \end{align*}
-        RHS can be simplified further
-        \begin{align*}
-            & \frac{L_0 - \sigma^{(i)}}{2}\Vert \bar x - v_{-1} \Vert^2_\bullet
-            + \frac{L_0}{2}\left\Vert \Pi^{(i)}(\bar x - v_{-1})\right\Vert^2
-            \\
-            &\le \frac{L_0}{2}\Vert \bar x - v_{-1} \Vert^2_\bullet
-            + \frac{L_0}{2}\left\Vert \Pi^{(i)}(\bar x - v_{-1})\right\Vert^2
-            \\
-            & = \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2. 
-        \end{align*}
-        % INTERMEDIATE RESULTS
-        \par
-        \textbf{Proof of (f)}. 
-        The proof is direct algebra and, it has: 
-        {\small\allowdisplaybreaks
-        \begin{align*}
-            & \frac{\left(\sigma^{(i)}\right)^2(1 - \alpha_k)^2}{2(L_k - \sigma^{(i)})} 
-            - \frac{\sigma^{(i)}\alpha_k(1 - \alpha_k)}{2}
-            \\
-            &= 
-            \frac{1}{2\left(L_k - \sigma^{(i)}\right)}
-            \left(
-                \left(\sigma^{(i)}\right)^2(1 - \alpha_k)^2
-                - \left(L_k - \sigma^{(i)}\right)\sigma^{(i)} \alpha_k(1 - \alpha_k)
-            \right)
-            \\
-            &= \frac{1 - \alpha_k}{2\left(L_k - \sigma^{(i)}\right)}\left(
-                \left(\sigma^{(i)}\right)^2 
-                - \left(\sigma^{(i)}\right)^2\alpha_k 
-                - \left(L_k \sigma^{(i)} \alpha_k - \left(\sigma^{(i)}\right)^2 \alpha_k\right)
-            \right)
-            \\
-            &= 
-            \frac{1 - \alpha_k}{2(L_k - \sigma)}\left(
-                \left(\sigma^{(i)}\right)^2 - L_k\left(\sigma^{(i)}\right)\alpha_k
-            \right)
-            \\
-            &= 
-            \frac{(1 - \alpha_k)\sigma^{(i)}\left(\sigma^{(i)} - L_k\alpha_k\right)}
-            {2\left(L_k - \sigma^{(i)}\right)}
-            \\
-            &= \frac{(\alpha_k - 1)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}
-            {2\left(L_k - \sigma^{(i)}\right)}. 
-        \end{align*}
-        }    
-        % INTERMEDIATE RESULTS 
-        \textbf{Proof of (g)}.
-        From the property of the $\alpha_k$ sequence stated in item (c), we have: 
-        {\allowdisplaybreaks
-        \begin{align*}
-            &\frac{\left(
-                L_k\alpha_k - \sigma^{(i)}
-            \right)^2}{2(L_k - \sigma^{(i)})} 
-            -
-            \frac{\alpha_{k - 1}^2L_{k - 1}(1 - \alpha_k)}{2} 
-            \\
-            &= 
-            \frac{\left(
-                L_k\alpha_k - \sigma^{(i)}
-            \right)^2}{2(L_k - \sigma^{(i)})} 
-            -
-            \frac{L_k\alpha_k(\alpha_k - \tilde \sigma/L_k)}{2} 
-            \\
-            &=
-            \frac{\left(
-                L_k\alpha_k - \sigma^{(i)}
-            \right)^2}{2(L_k - \sigma^{(i)})} 
-            - \frac{L_k\alpha_k(\alpha_k - \sigma^{(i)}/L_k)}{2}
-            + \frac{L_k\alpha_k(\alpha_k - \sigma^{(i)}/L_k)}{2} 
-            - \frac{L_k\alpha_k(\alpha_k - \tilde \sigma/L_k)}{2} 
-            \\
-            &= 
-            \frac{\left(
-                L_k\alpha_k - \sigma^{(i)}
-            \right)^2}{2(L_k - \sigma^{(i)})} 
-            - \frac{\alpha_k\left(L_k\alpha_k - \sigma^{(i)}\right)}{2}
-            + \frac{L_k\alpha_k}{2}
-            \frac{\left(
-                \tilde \sigma - \sigma^{(i)}
-            \right)}{L_k}
-            \\
-            &=
-            \frac{L_k \alpha_k - \sigma^{(i)}}{2(L_k - \sigma^{(i)})}\left(
-                L_k \alpha_k - \sigma^{(i)} 
-                - \left(L_k - \sigma^{(i)}\right)\alpha_k
-            \right)
-            + \frac{\alpha_k(\tilde \sigma - \sigma^{(i)})}{2}
-            \\
-            &= \frac{L_k \alpha_k - \sigma^{(i)}}{2(L_k - \sigma^{(i)})}\left(
-                \sigma^{(i)}\alpha_k - \sigma^{(i)} 
-            \right)
-            + \frac{\alpha_k(\tilde \sigma - \sigma^{(i)})}{2}
-            \\
-            &= 
-            \frac{
-                \left(L_k \alpha_k - \sigma^{(i)}\right)\sigma^{(i)}
-                \left(\alpha_k - 1\right)
-            }
-            {2(L_k - \sigma^{(i)})}
-            + \frac{\alpha_k(\tilde \sigma - \sigma^{(i)})}{2}. 
-        \end{align*}   
-        } 
-    \end{proof}
-    From the previous lemma, take note that it's for all $\bar x$. 
-    The next lemma discuss some special cases of the previous lemma where some terms of the inequality can be simplified away. 
-    \begin{lemma}[SNAPG-V2 one step convergence stage II \textcolor{red}{NEW}]\;\label{snapg2-one-step-s2-proto}\\
-        Let the sequence $(y_k, x_k, v_k)_{k \ge 0}$ satisfies Definition \ref{def:snapg-v2-aff}. 
-        Fix any $k \in \N \cup\{0\}$, suppose that $I_k = i \in \{1, \ldots, n\}$.
-        Denote $\Pi^{(i)} = \Pi_{\ker A^{(i)}}$ to be the projection matrix onto the kernel of $A^{(i)}$. 
-        If at least one of the followings is true: 
-        \begin{enumerate}[nosep]
-            \item For all $i = 1, \ldots, n$ it has $A^{(i)} = I$, so $F$ satisfies Assumption \ref{ass:sum-of-many} with $\mu^{(i)} = \nu^{(i)}$, Let $\bar x \in \RR^m$ be arbitrary;
-            \item Assume $x_{k - 1}, v_{k - 1}$ produces the same projection point $\bar x$ onto $\ker A^{(i)}$, i.e: $\bar x = \Pi^{(i)} x_{k - 1} = \Pi^{(i)} v_{k - 1}$. 
-        \end{enumerate}
-        Then for all $k \ge 1$ it has: 
-        \begin{align}\begin{split}
-            & \mathcal R_k^{(i)} = 
-            - \frac{(1 - \alpha_k)\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2
-            + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2
-        \end{split}\end{align}
-        And when $k = 0$, we have \eqref{ineq:snapg2-one-step-s1-rslt2} as well. 
+    \end{definition}
+    The following lemma states two important relationships on the iterates generated by Definition \ref{def:SNAG}. 
+    \begin{lemma}[SNAG identities]\label{lemma:snag-identities}
+        
     \end{lemma}
-    \begin{proof}
-        Firstly take note that from Lemma \ref{lemma:snapg2-one-step-s1} using the fact that $\Pi^{(i)}$ is a projection matrix it has directly: 
-        \begin{align*}
-            & \mathcal R_k^{(i)} = (1 - \alpha_k)\left(
-                \frac{\sigma^{(i)}\alpha_k}{2}\left\Vert \Pi^{(i)} (\bar x - x_{k - 1})\right\Vert^2
-                - \frac{\sigma^{(i)}\left(L_k\alpha_k - \sigma^{(i)}\right)}{2\left(L_k - \sigma^{(i)}\right)}\Vert x_{k - 1} - v_{k - 1} \Vert^2
-            \right)
-                \\&\quad
-                + \frac{\sigma^{(i)}}{2}\left\Vert \Pi^{(i)}(z_k - y_k)\right\Vert^2
-                + \frac{\alpha_k(\tilde\mu - \sigma^{(i)})}{2} \Vert \bar x - v_{k - 1}\Vert^2. 
-        \end{align*}
-        Next, we will show that $\Pi^{(i)}(z_k - y_k), \Pi^{(i)}(\bar x - x_{k - 1})$ are zero under assumptions listed in item (i), (ii). 
-        \par
-        \textbf{Let's prove (i)}. 
-        Since $A^{(i)} = I$, its kernel is zero hence the $\Pi^{(i)}$ in Lemma \ref{lemma:snapg2-one-step-s1} projects to $\{0\}$ and the term $\Pi^{(i)}(z_k - y_k) = \mathbf 0$ in \eqref{ineq:snapg2-one-step-s1-rslt1}. It's done. 
-        \par
-        \textbf{Proof of (ii)}. 
-        When $\bar x = \Pi^{(i)} x_{k - 1} = \Pi^{(i)} v_{k - 1}$, these three points $v_{k - 1}, x_{k - 1}, \bar x$ are on the same affine span. 
-        More importantly, the vector $x_{k - 1} - \bar x \in (\ker A^{(i)})^{\perp}$, and $v_{k - 1} - \bar x \in (\ker A^{(i)})^{\perp}$. 
-        Recall that $z_k = \alpha_k \bar x + (1 - \alpha_k) x_{k - 1}$ from Lemma \ref{lemma:snapg2-one-step-s1}, obviously $z_k \perp \ker A^{(i)}$ as well. 
-        Therefore, we have: 
-        \begin{align*}
-            \Pi^{(i)}(\bar x - x_{k - 1}) = \mathbf 0. 
-        \end{align*}
-        Next, using Lemma \ref{lemma:iters-snapg2-proto} \ref{lemma:iters-snapg2-proto-item1} it has 
-        \begin{align*}
-            & \left\Vert
-                \Pi^{(i)} \left(
-                    \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}}(\bar x - v_{k - 1})
-                    + \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}}(\bar x - x_{k - 1})
-                \right)
-            \right\Vert
-            \\
-            &= 
-            \left\Vert
-                \frac{L_k\alpha_k - \sigma^{(i)}}{L_k - \sigma^{(i)}}\Pi^{(i)}(\bar x - v_{k - 1})
-                + 
-                \frac{\sigma^{(i)}(1 - \alpha_k)}{L_k - \sigma^{(i)}}\Pi^{(i)}(\bar x - x_{k - 1})
-            \right\Vert
-            \\
-            &= 0
-        \end{align*}
-        The base case $k = 0$ proof is similar to what's in \ref{lemma:snapg2-one-step-s1}. 
-    \end{proof}
-    The next lemma adds into the interpolation assumption and take conditional expectations on the inequality. 
-    \begin{lemma}[SNAPG-V2 classical one step convergence]\label{lemma:snapg-v2-one-step-not-scnvx}
-        Suppose that the sequence $(v_k, x_k, y_k)_{k \ge 0}$ is generated by algorithms that satisfy Definition \ref{def:snapg-v2-classical}, then for all $k \ge 1$, the $\mathcal R^{(i)}_k$ in \eqref{ineq:snapg2-one-step-s1-rslt1} equals to zero. 
-        Let $\mathbb E_k$ defines the conditional expectation on $I_0, I_1, \ldots, I_{k - 1}, I_k$. 
-        If in addition, Assumption \ref{ass:interp-hypothesis} holds. 
-        Then, it has for all $k \ge 1$ the inequality: 
-        \begin{align*}
-            & \expect_{k - 1}
-            \left[
-                F_{I_k}(x_k)
-                - F(\bar x)
-                + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
-            \right]
-            \\&\le 
-            (1 - \alpha_k)\left(
-                F_{I_k}(x_{k - 1}) - F_{I_k}(\bar x) + \frac{\alpha_{k - 1}^2L_{k - 1}}{2} \Vert \bar x - v_{k - 1}\Vert^2
-            \right). 
-        \end{align*}
-        and, inequality \ref{ineq:snapg2-one-step-s1-rslt2} holds when $k = 0$. 
-    \end{lemma}
-    \begin{proof}
-        Setting $\sigma^{(i)} = 0$, it has $\mathcal R^{(i)}_k = \alpha_k(\tilde \mu - \sigma^{(i)})/2\Vert \bar x - v_{k - 1}\Vert^2$. 
-        By Definition \ref{def:snapg-v2-classical}, $\tilde \mu = 0, \sigma^{(i)} = 0$ for all $i = 1, 2, \ldots, n$, so $\mathcal R^{(i)}_k = 0$ for all $k \ge 1$. 
-    \end{proof}
-\section{Convergence rate of the algorithm under various circumstances}
-    The previous section highlighted a generic convergence results from one iteration of the algorithm, however, there are a lot of loose ends. 
-    This section will deal with those. 
 
-
-\section{\textcolor{purple}{So, what to do next?}}
-    Hi Arron would you like to add me for the co-authorship to continue this line of work and see how Nesterov's Accelerated Technique may work out for the stochastic gradient method? 
-    These results are solid results but, they are still partial results and, below are the potential I foresee for this these ideas. 
-    \begin{enumerate}
-        \item Narrow down the sequence $\alpha_k$ and make sure that it can allow the quantity: 
-        \begin{align*}
-            \mathbb E_k\left[
-                    \frac{(\alpha_k - 1)\mu^{(I_k)}\left(L_k\alpha_k - \mu^{(I_k)}\right)}{2\left(L_k - \mu^{(I_k)}\right)}
-                \right]\Vert x_{k - 1} - v_{k - 1} \Vert^2
-        \end{align*}
-        is negative, or at least bounded. I am not sure how this will work out, but I have some solid ideas around it. 
-        \item Roll up the inequality in Theorem \ref{thm:snapg2-one-step} recursively and, determine the convergence rate through $\alpha_k$ that makes the previous item true. 
-        In addition, I have the hunches that the convergence rate involves the variance of $\mu^{(I_k)}$ and, it will slower than the non-stochastic case of the algorithm. 
-    \end{enumerate}
-    For the future we can: 
-    \begin{enumerate}
-        \item Extend the definition of strong convexity to relative strong convexity with respect to a quasi-norm. This would extend interpolation hypothesis in Assumption \ref{ass:interp-hypothesis} where, even if $\mu > 0$, it doesn't mean that $F$ has a unique solution through strong convexity. This is entirely possible and appeared in the literatures before so, I can give you the words of confidence. 
-        \item Show the convergence of the method for objective function based on quasi-strong convexity. This is a much weaker assumption it works well in practice for the common known problems in convex programming. 
-    \end{enumerate}
 
 \bibliographystyle{siam}
 

@@ -23,16 +23,16 @@ $$
         \mathcal M(x; x_{k - 1})
     \right\rbrace
     \text{ s.t: }
-        \left\lbrace
-            \begin{aligned}
-                & \text{dist}(\mathbf 0, \partial \mathcal M(\bar x_k; x_{k - 1})) 
-                \le 
-                \kappa\Vert \bar x_k - x_{k - 1}\Vert, 
-                \\
-                & \mathcal M(\bar x_k; x_{k - 1}) 
-                \le F(x_{k - 1}). 
-            \end{aligned}
-        \right.
+    \\
+    & \quad 
+    \begin{aligned}
+        & \text{dist}(\mathbf 0, \partial \mathcal M(\bar x_k; x_{k - 1})) 
+        \le 
+        \kappa\Vert \bar x_k - x_{k - 1}\Vert, 
+        \\
+        & \mathcal M(\bar x_k; x_{k - 1}) 
+        \le F(x_{k - 1}). 
+    \end{aligned}
     \\
     & y_k = \alpha_k v_{k - 1} + (1 - \alpha_k) x_{k - 1};
     \\
@@ -319,7 +319,7 @@ $$
     \frac{\alpha_k^2\kappa}{2}
     \Vert x^* - v_{k - 1}\Vert^2
     \\
-    \iff 
+    \underset{\text{(d)}}{\iff} 
     \alpha_k^{-2}(F(x_k) - F^*)
     + 
     \frac{\kappa A_k}{2}\Vert v_k - x^*\Vert^2
@@ -329,11 +329,7 @@ $$
     \frac{\kappa}{2}
     \Vert x^* - v_{k - 1}\Vert^2
     \\
-    \iff
-    \alpha_k^{-2}(F(x_k) - F^*)
-    + 
-    \frac{\kappa A_k}{2}\Vert v_k - x^*\Vert^2
-    &\le 
+    &\underset{\text{(e)}}{=}
     \alpha_{k - 1}^{-2}(F(x_{k - 1}) - F^*)
     + 
     \frac{\kappa}{2}
@@ -349,9 +345,11 @@ $$
 \end{aligned}
 $$
 
-The second last inequality uses the fact that $(1 - \alpha_k)/\alpha_k^2 = \alpha_{k - 1}^{-2}$ and $\alpha_1 = 1$. 
+At **(d)** we multiplied both sides by $\alpha_k^{-2}$. 
+We can do that because the sequence satisfies for all $k \ge 1$, $\alpha_k \in (0, 1)$. 
+At **(e)** we used equality $(1 - \alpha_k)/\alpha_k^2 = \alpha_{k - 1}^{-2}$ and $\alpha_1 = 1$ which defines the momentum sequence. 
 The last inequality used the fact that $A_{k - 1} \in (0, 1]$. 
-Simplifying a bit the above is the same as for all $k\ge 1$: 
+The above summarizes into the following recurrence relations for all $k\ge 1$: 
 
 $$
 \begin{aligned}

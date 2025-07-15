@@ -1,0 +1,1 @@
+{"rule":"NON_STANDARD_WORD","sentence":"^\\QSuppose an inexact evaluation of proximal gradient operator at \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q yield an approximation \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, characterized by: \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q s.t: \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}

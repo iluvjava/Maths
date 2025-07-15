@@ -201,8 +201,10 @@ $$
     \\
     &\underset{\text{(b)}}{\le}
     \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k) 
+    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 
+    \\ &\quad
     - \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
-    - \frac{L_k}{2}\Vert z_k - x_k\Vert^2 + \frac{L_k - \mu}{2}\Vert z_k - y_k\Vert^2. 
+    + \frac{L_k - \mu}{2}\Vert z_k - y_k\Vert^2. 
 \end{aligned}\tag{2}
 $$
 

@@ -434,6 +434,47 @@ $$
 
 $\blacksquare$
 
+Without the smooth part of the function, it produces the proximal point inequality.
+
+#### **Theorem 1.6 | The Proximal Point inequality**
+> Suppose $F = f + g$ satisfies **Assumption 0**, and in addition assume $f \equiv 0$. 
+> Let, $y \in \R^n$, $y^+ = T_{\beta^{-1}, f, g}(y)$. 
+> Then it satisfies for all $x \in \R^n$ the inequality: 
+> $$
+> \begin{aligned}
+>     0 &\le 
+>     F(x) - F(y^+) 
+>     + \frac{\beta}{2}\Vert x - y\Vert^2
+>     - \frac{\beta}{2}\Vert y^+ - y\Vert^2
+>     - \frac{q}{2}\Vert x - y^+\Vert^2. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+Starting from **Claim 1.2**, it has: 
+
+$$
+\begin{aligned}
+    0 &\le F(x) - F(y^+) + 
+    D_{\beta/2\Vert \cdot\Vert^2 - f}(x, y) - D_{\beta/2\Vert \cdot\Vert^2 - f}(y^+, y) - 
+    \frac{q}{2}\Vert x - y^+\Vert^2
+    \\
+    &= 
+    F(x) - F(y^+) 
+    + \frac{\beta}{2}\Vert x - y\Vert^2
+    - \frac{\beta}{2}\Vert y^+ - y\Vert^2
+    - \frac{q}{2}\Vert x - y^+\Vert^2. 
+\end{aligned}
+$$
+
+Because the Bregman Divergence of $f\equiv 0$ is simply zero. $\blacksquare$
+
+**Remarks**
+
+To see how it's used, see [Convex Proximal Point Method, Part I](Convex%20Proximal%20Point%20Method,%20Part%20I.md). 
+
+
 
 ---
 ### **Non-trivial extension**
@@ -452,7 +493,7 @@ The following lemma is similar to appeared in the Catalyst paper for the inclusi
 >     \\
 >     \Vert w\Vert 
 >     &\le 
->     \epsilon\Vert z - x\Vert. 
+>     \epsilon\Vert \tilde x - x\Vert. 
 > \end{aligned}
 > $$
 > Then, the following inequality is true: 
@@ -586,3 +627,81 @@ $$
 $$
 
 This gives $w = \tilde \nabla f(x) - \nabla f(x)$, the error terms associated with the inexact gradient evaluation. 
+The relative error conditions then yields: 
+
+$$
+\begin{aligned}
+    \left\Vert \tilde \nabla f(x) - \nabla f(x)\right\Vert
+    &\le \epsilon\Vert \tilde x - x\Vert. 
+\end{aligned}
+$$
+
+Here, $\tilde x - x$ will relate to the gradient mapping. 
+
+
+#### **Lemma 2.1 | inexact proximal gradient inequality absolute error**
+
+
+**Proof**
+
+$$
+\begin{aligned}
+    & \frac{B}{2}\Vert z - x^+\Vert^2
+    \\
+    &\le h(z) - h(x^+)
+    \\
+    &\le h(z) + \epsilon - h(\tilde x)
+    \\
+    &=  \left(
+        g(z) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert x - z\Vert^2
+    \right) + \epsilon 
+    - \left(
+        g(\tilde x) + \langle \nabla f(x), \tilde x - x\rangle + \frac{B}{2}\Vert \tilde x - x\Vert^2
+    \right)
+    \\
+    &= F(z) - F(\tilde x) + D_{B/2\Vert \cdot\Vert^2 - f}(z, x) + \epsilon
+    - D_{B/2\Vert \cdot\Vert^2 - f}(\tilde x, x)
+    \\
+    &\le 
+    F(z) + F(\tilde x) + \frac{L - \mu}{2}\Vert z - x\Vert^2
+    + \epsilon - 0. 
+\end{aligned}
+$$
+
+And 
+$$
+\begin{aligned}
+    & F(z) + F(\tilde x) + \frac{L - \mu}{2}\Vert z - x\Vert^2
+    + \epsilon - 0 
+    \\
+    &\ge \frac{B}{2}\Vert z - x^+\Vert^2
+    \\
+    &= \frac{B}{2}\Vert z - \tilde x + \tilde x - x^+\Vert^2
+    \\
+    &= \frac{B}{2}\left(
+        \Vert z - \tilde x\Vert^2 + \Vert \tilde x - x^+\Vert^2
+    \right) + B\langle z - \tilde x, \tilde x - x^+\rangle
+    \\
+    &\ge 
+    \frac{B}{2}\Vert z - \tilde x\Vert^2 
+    + \frac{B}{2}\Vert \tilde x - x^+\Vert^2
+    -  B\Vert z - \tilde x\Vert \Vert \tilde x - x^+\Vert
+    \\
+    &= \frac{B}{2}\left(
+        \Vert z - \tilde x\Vert - \Vert \tilde x - x^+\Vert
+    \right)^2. 
+\end{aligned}
+$$
+
+So, it's
+
+$$
+\begin{aligned}
+    \frac{B}{2}\left(
+        \Vert z - \tilde x\Vert - \Vert \tilde x - x^+\Vert
+    \right)^2
+    &\le 
+    F(z) + F(\tilde x) + \frac{L - \mu}{2}\Vert z - x\Vert^2
+    + \epsilon. 
+\end{aligned}
+$$
