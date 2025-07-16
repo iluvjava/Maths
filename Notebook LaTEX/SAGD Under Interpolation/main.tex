@@ -11,7 +11,13 @@
 \newcommand{\cov}{\ensuremath{\operatorname{Cov}}}
 \newcommand{\var}{\ensuremath{\operatorname{Var}}}
 \newcommand{\expect}{\ensuremath{\mathbb E}}
-\usepackage{tikz}\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.5pt](char) {#1};}}
+\usepackage{tikz}\newcommand*\circled[1]{
+    \text{
+        \hspace{-0.5em}\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=0.6pt](char){#1};
+        }\hspace{-0.5em}
+    }
+}
 
 \begin{document}
 
@@ -47,7 +53,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 % ==============================================================================
 \section{Introduction}
     \cite{bauschke_convex_2017}
-    Previously we got some results, but unfortunately it was incorrect and it was impossible to recover from the mistake. 
+    Previously we got some results, but unfortunately it was incorrect and, it was impossible to recover from the mistake. 
     \par
     Does stochastic accelerated Nesterov's acceleration (SNAG) produces accelerated convergence rate (or, any type of convergence) when the Interpolation Hypothesis is true? 
     \textbf{I don't think that it's true after some mistakes from previous version of the notes and careful investigations.}
@@ -267,7 +273,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{remark}
         Note, an inexact evaluation of the proximal gradient operator can be caused by an inexact gradient on the smooth part. 
         Suppose that one take $\tilde \nabla f(x)$ to be an estimate of $\nabla f(x)$ and use it for the proximal gradient operator to produce $\tilde x$, then: 
-        \begin{align*}
+        \begin{align}
             \mathbf 0 
             &\in \partial g(\tilde x) + \tilde \nabla f(x) + B(\tilde x - x)
             \\
@@ -278,8 +284,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \iff &
             \nabla f(x) - \tilde \nabla f(x) \in 
             \partial g(\tilde x) 
-            + \nabla f(x) + B(\tilde x - x).
-        \end{align*}
+            + \nabla f(x) + B(\tilde x - x).\label{eqn:stoch-grad-err-vec}
+        \end{align}
         In this case, it adds the interpretation that $w = \nabla f(x) - \tilde \nabla f(x)$. 
         It fully characterizes the error made to estimate the true gradient $\nabla f(x)$. 
         In that case, we have the equation: 
@@ -294,29 +300,31 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{lemma}[stochastic proximal gradient inequality]\label{lemma:stoch-pg-ineq}
             Let $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}. 
             Fix any $x, z \in \RR^n$. 
-            Suppose that, a random variable $\tilde \nabla f(x)$ is used to estimate the proximal gradient operator and it produced an error $w$, and the estimate $\tilde x$. 
-            Then, it would have $w = \nabla f(x) - \tilde \nabla f(x)$. 
+            Suppose that, a random variable $\tilde \nabla f(x)$ is used to estimate the proximal gradient operator and, it produced an error $w$, and the estimate $\tilde x$ as defined in \ref{lemma:inex-pg-ineq-proto}. 
             Let $B \ge 0$ be constant such that $D_f(\tilde x,x)\le B/2 \Vert x - \tilde x\Vert^2$. 
+            Then, it would have $w = \nabla f(x) - \tilde \nabla f(x)$. 
             Suppose that in addition, there exists $\epsilon \ge 0$ such that: 
             \begin{align*}
                 \expect \left[
                     \Vert w\Vert \Vert z - \tilde x\Vert
-                \right] &\le \epsilon \expect \left[
+                \right] &\le 
+                \epsilon \expect \left[
                     \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
                 \right]. 
             \end{align*}
             Then it makes the following inequality true: 
             \begin{align*}
-                &\le 
+                0 &\le 
                 F(z) + \expect F(\tilde x) + \frac{\max(B, L) - \mu}{2} \Vert z - x\Vert^2
                 - \frac{B - \epsilon}{2}\expect\left[\Vert z - \tilde x\Vert^2\right]
-                + \frac{\epsilon}{2} \left[\Vert x - \tilde x\Vert^2\right]. 
+                + \frac{\epsilon}{2} \expect\left[\Vert x - \tilde x\Vert^2\right]. 
             \end{align*}
         \end{lemma}
         \begin{proof}
+            The reason for $w = \nabla f(x) - \tilde \nabla f(x)$ is explained in \eqref{eqn:stoch-grad-err-vec}. 
             Using Lemma \ref{lemma:inex-pg-ineq-proto}, for any fixed $z$ it has: 
             \begin{align*}
-                \frac{B}{2}\Vert z - \tilde x\Vert &\le 
+                \frac{B}{2}\Vert z - \tilde x\Vert^2 &\le 
                 F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 - \langle w, z - \tilde x\rangle
                 \\
                 &\le 
@@ -327,21 +335,27 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             We take the expectation on both sides and move things all to the RHS then it has 
             \begin{align*}
                 0&\le 
-                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
+                F(z) - \expect F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
                 + \expect\left[
                     \Vert w\Vert\Vert z - \tilde x\Vert
                 \right]
                 - \frac{B}{2}\expect \Vert z - \tilde x\Vert^2
                 \\
+                &\le F(z) - \expect F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
+                + \epsilon \expect \left[
+                    \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
+                \right]
+                - \frac{B}{2}\expect \Vert z - \tilde x\Vert^2
+                \\
                 &= 
-                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
+                F(z) - \expect F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
                 + \expect\left[
-                    \Vert w\Vert\Vert z - \tilde x\Vert
+                    \epsilon\Vert w\Vert\Vert z - \tilde x\Vert
                     - \frac{B}{2} \Vert z - \tilde x\Vert^2
                 \right]
                 \\
                 &=
-                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
+                F(z) - \expect F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
                     \\ &\quad 
                     + \expect\left[
                         - \frac{1}{2}\left(
@@ -352,7 +366,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \right]
                 \\
                 &\le 
-                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
+                F(z) - \expect F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
                 + \expect\left[
                     \frac{\epsilon}{2}\Vert x - \tilde x\Vert^2
                     - \frac{B - \epsilon}{2} \Vert z - \tilde x\Vert^2
@@ -379,7 +393,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \nabla f(x) - \tilde \nabla f(x)
                 \right\Vert}{\Vert x - \tilde x\Vert}.
             \end{align*}
-            And in this case, it's NOT dependended on $z$. 
+            And in this case, it doesn't on $z$. 
         \end{remark}
 
 
@@ -421,7 +435,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         Then the inexact proximal gradient operator with relative error $\epsilon$ is the random variable defined as: 
         \begin{align*}
-            \widetilde T_B^{(\epsilon)} = \argmin_{z \in \RR^n}\left\lbrace
+            \widetilde T_B^{(\epsilon)}(x| F) = \argmin_{z \in \RR^n}\left\lbrace
                 g(z) + \left\langle \tilde \nabla f(x), z - x\right\rangle
                 + \frac{B}{2}\Vert z - x\Vert^2
             \right\rbrace. 
@@ -557,9 +571,84 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
         \end{enumerate}
         Using intermediate results (a), (b), (c), (d), we can prove the claim in just a few steps. 
+        For any fixed $\bar x \in \RR^n$. 
+        Define $z_k = \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$ for all $k \ge 0$. 
+        Consider the case for all $k \ge 1$. 
+        Let $\expect_{k}$ be the expectation conditioned on all $\tilde \nabla f(y_i)$ for $i = 0, 1, \ldots, k - 1$. 
+        We note that under this conditioning, the iterates $x_{k - 1}, v_{k - 1}, y_k$ are not random variables, but $x_k$, and $v_k$ are. 
+        The sequence $(\alpha_k)_{k \ge 0}, (\epsilon_k)_{k \ge 0}$ are also not random variables. 
+        \par
+        We use Lemma \ref{lemma:stoch-pg-ineq} with $x = y_k, z = z_k, \tilde x = x_{k}$ and, $B = L$ then it has: 
+        {\allowdisplaybreaks
+        \begin{align*}
+            0 &\le 
+            F(z_k) - \expect_{k - 1} F(x_k) 
+            + \frac{L - \mu}{2}\Vert z_k - y_k\Vert^2 
+            + \frac{\epsilon_k}{2}\expect_{k - 1} \left[\Vert y_k - x_k \Vert^2\right] 
+                \\&\quad
+                - \frac{L - \epsilon_k}{2}\expect_{k - 1} \left[\Vert z_k - x_k\Vert^2\right]
+            \\
+            &\underset{\circled{1}}{\le} 
+            \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - \expect_{k - 1} F(x_k) - \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+                \\&\quad 
+                + \frac{L - \mu}{2}\Vert z_k - y_k\Vert^2 
+                + \frac{\epsilon_k}{2}\expect_{k - 1} \left[\Vert y_k - x_k \Vert^2\right] 
+                - \frac{L - \epsilon_k}{2}\expect_{k - 1} \left[\Vert z_k - x_k\Vert^2\right]
+            \\
+            &\underset{\text{(d)}}{=}
+            \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - \expect_{k - 1} F(x_k) 
+                \\&\quad 
+                + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\Vert x_{k - 1} - v_{k - 1}\Vert^2
+                \\&\quad 
+                + \frac{\epsilon_k}{2}\expect_{k - 1} \left[\Vert y_k - x_k \Vert^2\right] 
+                - \frac{L - \epsilon_k}{2}\expect_{k - 1} \left[\Vert z_k - x_k\Vert^2\right]
+            \\&\underset{\textcolor{red}{(?)}}{\le}
+            \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - \expect_{k - 1} F(x_k) 
+                \\&\quad 
+                + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{\epsilon_k}{2}\expect_{k - 1} \left[\Vert y_k - x_k \Vert^2\right] 
+                - \frac{L - \epsilon_k}{2}\expect_{k - 1} \left[\Vert z_k - x_k\Vert^2\right]
+            \\&= 
+            (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x)) + F(\bar x) - \expect_{k - 1}F(x_k)
+            \\&\quad 
+                + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{\epsilon_k}{2}\expect_{k - 1} \left[\Vert y_k - x_k \Vert^2\right] 
+                - \frac{L - \epsilon_k}{2}\expect_{k - 1} \left[\Vert z_k - x_k\Vert^2\right]
+            \\&= 
+            (1 - \alpha_k)\left(
+                F(x_{k - 1}) - F(\bar x)
+                + \frac{\alpha_{k - 1}^2L\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+            \right)
+                \\ &\quad 
+                + F(\bar x) - \expect_{k - 1}F(x_k) 
+                - \frac{L - \epsilon_k}{2}\expect_{k - 1} \left[\Vert z_k - x_k\Vert^2\right]
+            \\
+            &\underset{\circled{2}}{=} 
+            (1 - \alpha_k)\left(
+                F(x_{k - 1}) - F(\bar x)
+                + \frac{\alpha_{k - 1}^2L\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+            \right)
+                \\ &\quad 
+                + F(\bar x) - \expect_{k - 1}F(x_k) 
+                - \frac{\alpha_k^2(L - \epsilon_k)}{2}\expect_{k - 1} \left[\Vert v_k - \bar x\Vert^2\right]. 
+        \end{align*}
+        }
+        \par
+        The above produces the following inequality: 
+        \begin{align}\begin{split}
+            & \expect_{k - 1}F(x_k) - F(\bar x) - \frac{\alpha_k^2(L - \epsilon_k)}{2}\expect_{k - 1} \left[\Vert v_k - \bar x\Vert^2\right]
+            \\
+            &\le 
+            (1 - \alpha_k)\left(
+                F(x_{k - 1}) - F(\bar x)
+                + \frac{\alpha_{k - 1}L\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+            \right). 
+        \end{split}\end{align}
         % INTERMEDIATE RESULTS 
-        \textbf{Proof of (a)}. 
+        \par \textbf{Proof of (a)}. 
         Using basic algebra: 
+        {\allowdisplaybreaks
         \begin{align*}
             & \frac{\mu^2(1 - \alpha_k)^2}{2(L - \mu)} 
             - \frac{\mu\alpha_k(1 - \alpha_k)}{2}
@@ -589,9 +678,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             &= \frac{(\alpha_k - 1)\mu\left(L\alpha_k - \mu\right)}
             {2\left(L - \mu\right)}. 
         \end{align*}
+        }
         % INTERMEDIATE RESULTS 
         \textbf{Proof of (c)}. 
         Using (b) and some algebra, we can derive: 
+        {\allowdisplaybreaks
         \begin{align*}
             & \frac{(L\alpha_k - \mu)^2}{2(L - \mu)} - \frac{\alpha_{k - 1}^2 L \rho_{k - 1}(1 - \alpha_k)}{2}
             \\
@@ -616,6 +707,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \\
             &= \frac{(L\alpha_k - \mu)\mu(\alpha_k - 1)}{2(L - \mu)}. 
         \end{align*}
+        }
         % INTERMEDIATE RESULTS 
         \textbf{Proof of (d)}. 
         {\allowdisplaybreaks
