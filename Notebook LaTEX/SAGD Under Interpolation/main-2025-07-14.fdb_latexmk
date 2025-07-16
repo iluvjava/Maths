@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main-2025-07-14"] 1752536409.42998 "main-2025-07-14.aux" "main-2025-07-14.bbl" "main-2025-07-14" 1752536410.86432 0
+["bibtex main-2025-07-14"] 1752555082.08358 "main-2025-07-14.aux" "main-2025-07-14.bbl" "main-2025-07-14" 1752556481.28545 0
   "./references/refs.bib" 1751939765.21907 6680 0c775a87810543775e3a891e2629657d ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/siam.bst" 1292289607 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main-2025-07-14.aux" 1752536410.52532 4948 0f19dbdc37425a4dced60cd68c93c235 "pdflatex"
+  "main-2025-07-14.aux" 1752556480.95891 4948 1b64cb89af9d6d1f570d34f874c55e8c "pdflatex"
   (generated)
   "main-2025-07-14.bbl"
   "main-2025-07-14.blg"
   (rewritten before read)
-["pdflatex"] 1752536409.54469 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main-2025-07-14.tex" "main-2025-07-14.pdf" "main-2025-07-14" 1752536410.8645 0
-  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main-2025-07-14.tex" 1752536405.55178 80772 9f1e450e192c6250d4ddb48ad9436ffa ""
+["pdflatex"] 1752556479.95101 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main-2025-07-14.tex" "main-2025-07-14.pdf" "main-2025-07-14" 1752556481.28562 0
+  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main-2025-07-14.tex" 1752556479.73648 81998 06427636b47801c6fb29b82fcd46e997 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -224,10 +224,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1716844513.00476 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1716844504 8221424 900989947c23303b742a586f0df8c087 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "main-2025-07-14.aux" 1752536410.52532 4948 0f19dbdc37425a4dced60cd68c93c235 "pdflatex"
-  "main-2025-07-14.bbl" 1752536409.54092 849 36fda195afe93e66619f0ecf6a3ddc01 "bibtex main-2025-07-14"
-  "main-2025-07-14.out" 1752536410.52647 1488 e6e9ce2e61f170b80bd64f1aadb8f29a "pdflatex"
-  "main-2025-07-14.tex" 1752536405.55178 80772 9f1e450e192c6250d4ddb48ad9436ffa ""
+  "main-2025-07-14.aux" 1752556480.95891 4948 1b64cb89af9d6d1f570d34f874c55e8c "pdflatex"
+  "main-2025-07-14.bbl" 1752555082.19379 849 36fda195afe93e66619f0ecf6a3ddc01 "bibtex main-2025-07-14"
+  "main-2025-07-14.out" 1752556480.95987 1488 e6e9ce2e61f170b80bd64f1aadb8f29a "pdflatex"
+  "main-2025-07-14.tex" 1752556479.73648 81998 06427636b47801c6fb29b82fcd46e997 ""
   "presets/julia_lstlisting.tex" 1734912471.75532 795 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1734912471.75575 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1737688388.3909 8751 43b1f87d5e2ad43f60c8e67f03e69d1f ""

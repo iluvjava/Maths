@@ -11,9 +11,12 @@
 \newcommand{\cov}{\ensuremath{\operatorname{Cov}}}
 \newcommand{\var}{\ensuremath{\operatorname{Var}}}
 \newcommand{\expect}{\ensuremath{\mathbb E}}
+\usepackage{tikz}\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.5pt](char) {#1};}}
 
 \begin{document}
-\title{{\fontfamily{ptm}\selectfont Linear Convergence of Stochastic Nesterov's Accelerated Proximal Gradient method under Interpolation Hypothesis}}
+
+
+\title{{\fontfamily{ptm}\selectfont Linear Convergence of Stochastic Nesterov's Accelerated Proximal Gradient method under Interpolation Hypothesis, Truth or Just a Dream?}}
 
 \author{
     Author
@@ -31,7 +34,9 @@
 
 \begin{abstract} 
     This file is for communication purposes between collaborators. 
-
+    In brief, we think that the conditions required for linear convergence rate of Stochastic Nesterov's accelerated gradient (or proximal gradient) is too precarious to hold, even with interpolation hypothesis. 
+    Instead of attacking the problem head on, this file will characterize the conditions required for linear convergence rate. 
+    We place specific constraints on the random variable representing the error made when estimating gradient via some random variables. 
 \end{abstract}
 
 \noindent{\bfseries 2010 Mathematics Subject Classification:}
@@ -41,13 +46,32 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 % ==============================================================================
 \section{Introduction}
-    Does stochastic accelerated Nesterov's acceleration (SNAG) produces accelerated convergence rate (or, any type of convergence) when the Interpolation Hypothesis is true? 
     \cite{bauschke_convex_2017}
-    Previously we got some results, but unfortunately it was incorrect the mistake is diffcult to recover. 
+    Previously we got some results, but unfortunately it was incorrect and it was impossible to recover from the mistake. 
     \par
-    \textbf{However, I don't think that it's true after some mistakes from previous version of the notes and careful investigations.}
+    Does stochastic accelerated Nesterov's acceleration (SNAG) produces accelerated convergence rate (or, any type of convergence) when the Interpolation Hypothesis is true? 
+    \textbf{I don't think that it's true after some mistakes from previous version of the notes and careful investigations.}
     In this file we develop some sufficient conditions for Linear convergence of (SNAG). 
     We will give explanations on why we don't think this is necessarily true. 
+    \par
+    When we use stochastic gradient to approximate the true graduate, it has an error. 
+    Fix some $x\in \RR^n$, let $\tilde \nabla f(x)$ be an estimate of $\nabla f(x)$, the error we consider is $\expect \Vert \nabla f(x) - \nabla f(x)\Vert$. 
+    To make the algebra simpler, we assume that the algorithm produced the next iterates $\tilde x$ by a step of gradient descent, and the error of the expectation satisfies a relative error conditions of the form 
+    \begin{align*}
+        \frac{
+            \expect \left[
+                \left\Vert \nabla f(x) - \tilde \nabla f(x) \right\Vert \Vert z - \tilde x\Vert
+            \right]
+            }{
+            \expect \left[
+                \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
+            \right]
+            } &= \epsilon. 
+    \end{align*}
+    Where the variable $z$ will be explained later. 
+    We will show that, the value of $\epsilon$ must decreases at a rate convergence relative to the Nesterov's accelerated sequence, under the standard Framework of analysis similar to what is in the literature. 
+    Take note that usually in the literature, people analyze the quantity $\expect\left\Vert \tilde \nabla f(x) - \tilde \nabla f(y)\right\Vert^2$ for stochastic gradient type  of method. 
+    The above expression is drastically different from what we usually have in the literature. 
 
 \section{In preparations}
     Unless specifically specified in the context, we use the following notations. 
@@ -56,7 +80,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     $\sigma_{\min}(A)$ denotes the smallest non-zero absolute value of all singular values of $A$. 
     Let $\Vert A\Vert$ denotes the spectral norm of the matrix $A$. 
     $I$ denotes the identity operator. 
+    \par
     When two expressions are connected via non-trivial results, it's expressed with $\underset{(\cdot)}{=}, \underset{(\cdot)}{\ge}$ where $(\cdot)$ is a label of some intermediate results immediately before it, or explained right after a chain of expressions. 
+    If the label is letter, like: (a), (b), ..., then they are stated in advanced at the start of the proof and they are usually non-trivial results. 
+    These labels are reused in every proof. 
+    If the label is circled numbers, like: \circled{1}, \circled{2},... they are explained right after the chain of relations, and they are often reused right after their explanations. 
     \subsection{Basic definitions}
         % --------------------------------------------------------------------------------------------------------------
         \begin{definition}[Proximal gradient operator]\label{def:pg-opt}
@@ -92,7 +120,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \frac{\mu}{2}\Vert x - y\Vert^2 \le D_f(x, y) \le \frac{L}{2}\Vert x - y\Vert^2. 
             \end{align*}
         \end{definition}
-    \subsection{important inequalities}
+    \subsection{Important inequalities}
         \begin{assumption}\label{ass:smooth-plus-nonsmooth}
             Suppose that $F = f + g$ where $f, g$ are both convex, proper and closed. 
             In addition, assume $f$ is $L > \mu \ge 0$ Lipschitz smooth and strongly convex satisfying Definition \ref{def:lip-smooth-and-scnvx}. 
@@ -110,27 +138,23 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{remark}
             If $x, y$ is out of $\dom F$, the inequality still work by convexity. 
         \end{remark}
-        % --------------------------------------------------------------------------------------------------------------
-        \begin{lemma}[inexact proximal gradient inequality]\label{lemma:inex-pg-ineq}
-            Let $F = f + g$ satisfies Definition \ref{def:lip-smooth-and-scnvx} with $L > \mu \ge 0$. 
-            Let $x \in \RR^n$ be fixed. 
-            Suppose an inexact evaluation of proximal gradient operator at $x$ yield an approximation $\tilde x$, characterized by: 
+        \begin{lemma}[inexact proximal gradient inequality prototype]\label{lemma:inex-pg-ineq-proto}
+            Let $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}. 
+            Fix some $x \in \RR^n$, and suppose that an error: $w$ is made when estimating the proximal to obtain $\tilde x$ at $x$ such that it's characterized by
             \begin{align*}
-                & D_f(\tilde x, x) \le \frac{B}{2}\Vert \tilde x - x\Vert^2, 
-                \\
-                & \exists: w \in \partial \left[
-                    z \mapsto  g(z) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2
-                \right](\tilde x)\; \text{s.t: } \Vert w\Vert \le \epsilon \Vert x - \tilde x\Vert. 
+                w \in \partial \left[
+                    z \mapsto g(z) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2
+                \right](\tilde x)
             \end{align*}
-            Then, it would satisfy for all $z\in \RR^n$ the inequality: 
+            And in addition, assume that there exists some $B \ge 0$ such that $D_f(\tilde x, x) \le \frac{B}{2}\Vert \tilde x - x\Vert^2$. 
+            Then, for all $z \in \RR^n$ it satisfies: 
             \begin{align*}
-                0 &\le 
-                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2
-                - \frac{B - \epsilon}{2}\Vert z - \tilde x\Vert^2
-                + \frac{\epsilon}{2}\Vert x - \tilde x \Vert^2. 
+                \frac{B}{2}\Vert z - \tilde x\Vert^2 &\le 
+                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 - \langle w, z - \tilde x \rangle. 
             \end{align*}
         \end{lemma}
         \begin{proof}
+            The proof is direct algebra. 
             Let $h = z \mapsto g(z) + \langle \nabla f(x), z - x\rangle + B/2\Vert z - x\Vert^2$. 
             $h$ is a $B$ strongly convex function, using the subgradient inequality of a strongly convex function it has for all $z \in \RR^n$: 
             \begin{align*}
@@ -169,18 +193,44 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \right)
                     - \langle w, z - \tilde x\rangle
                 \\
-                &\underset{\text{(a)}}{\le} F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 - 0 - \langle w, z - \tilde x \rangle
-                \\
-                &\underset{\text{(b)}}{\le}
-                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 - 0 + \epsilon \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert. 
+                &\underset{\text{\circled{1}}}{\le} F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 - 0 - \langle w, z - \tilde x \rangle
             \end{align*}
-            At (a), we used the fact that $f$ is $L > \mu \ge 0$ Lipschitz smooth and strongly convex therefore it has for all $y \in \RR^n$: 
+            At \circled{1}, we used the fact that $f$ is $L > \mu \ge 0$ Lipschitz smooth and strongly convex therefore it has for all $y \in \RR^n$: 
             \begin{align*}
                 0 
                 \le \frac{L}{2}\Vert z - y\Vert^2  - D_f(z, y)
                 \le \frac{L - \mu}{2}\Vert z - y\Vert^2. 
             \end{align*}
-            At (b) we used the Cauchy Inequality and, the assumption $\Vert w\Vert \le \epsilon \Vert x - \tilde x\Vert$. 
+        \end{proof}
+        % --------------------------------------------------------------------------------------------------------------
+        \begin{lemma}[inexact proximal gradient inequality]\label{lemma:inex-pg-ineq}
+            Let $F = f + g$ satisfies Definition \ref{def:lip-smooth-and-scnvx} with $L > \mu \ge 0$. 
+            Let $x \in \RR^n$ be fixed. 
+            Suppose an inexact evaluation of proximal gradient operator at $x$ yield an approximation $\tilde x$, characterized by: 
+            \begin{align*}
+                & \exists: w \in \partial \left[
+                    z \mapsto  g(z) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2
+                \right](\tilde x)\; \text{s.t: } \Vert w\Vert \le \epsilon \Vert x - \tilde x\Vert. 
+            \end{align*}
+            Suppose that there exists some $B \ge 0$ such that $D_f(\tilde x, x) \le \frac{B}{2}\Vert \tilde x - x\Vert^2$. 
+            Then, for all $z\in \RR^n$ it satisfies the inequality: 
+            \begin{align*}
+                0 &\le 
+                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2
+                - \frac{B - \epsilon}{2}\Vert z - \tilde x\Vert^2
+                + \frac{\epsilon}{2}\Vert x - \tilde x \Vert^2. 
+            \end{align*}
+        \end{lemma}
+        \begin{proof}
+            The error $w$ satisfies Lemma \ref{lemma:inex-pg-ineq-proto} hence, it has for all $z \in \RR^n$ the inequality: 
+            \begin{align*}
+                \frac{B}{2}\Vert z - \tilde x\Vert^2
+                &\le F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 - 0 - \langle w, z - \tilde x \rangle
+                \\
+                &\underset{\text{\circled{1}}}{\le}
+                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 + \epsilon \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert. 
+            \end{align*}
+            At \circled{1}, we used Cauchy inequality. 
             Continuing it has 
             \begin{align*}
                 0 &\le 
@@ -206,9 +256,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
         \end{proof}
         \begin{remark}
-            Usually in practice, the precise value of $F(\tilde x)$ is never known, therefore, $B$ cannot be easily determined via $D_f(\tilde x, x)$. 
-            Hence, in this case we can only choose $B \ge L$ which gives: 
+            Usually in practice, the precise value of $F(\tilde x)$ is never known and, function value is also a random variable, therefore, $B$ cannot be easily determined via $D_f(\tilde x, x)$. 
+            In that case we can only choose some $B \ge L$ which gives: 
             \begin{align*}
+                0 &\le 
                 F(z) - F(\tilde x) + \frac{L - \mu}{2}\Vert z - x\Vert^2
                 - \frac{B - \epsilon}{2}\Vert z - \tilde x\Vert^2
                 + \frac{\epsilon}{2}\Vert x - \tilde x \Vert^2.
@@ -231,8 +282,108 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         In this case, it adds the interpretation that $w = \nabla f(x) - \tilde \nabla f(x)$. 
         It fully characterizes the error made to estimate the true gradient $\nabla f(x)$. 
+        In that case, we have the equation: 
+        \begin{align*}
+            \left\Vert \nabla f(x) - \tilde \nabla f(x) \right\Vert \Vert x - \tilde x\Vert
+            = \epsilon \Vert x - \tilde x\Vert^2. 
+        \end{align*}
+        It's very unclear what LHS really is without additional details and assumptions. 
+        \textbf{We very much would like $\epsilon$ to be a constant to make the algebra possible when deriving the convergence rate of the algorithm. }
+        \par
+        The following lemma gives a proximal gradient inequality when $\tilde \nabla f(x)$ is an estimate by some random variable, \textbf{and it is the precursor.} 
+        \begin{lemma}[stochastic proximal gradient inequality]\label{lemma:stoch-pg-ineq}
+            Let $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}. 
+            Fix any $x, z \in \RR^n$. 
+            Suppose that, a random variable $\tilde \nabla f(x)$ is used to estimate the proximal gradient operator and it produced an error $w$, and the estimate $\tilde x$. 
+            Then, it would have $w = \nabla f(x) - \tilde \nabla f(x)$. 
+            Let $B \ge 0$ be constant such that $D_f(\tilde x,x)\le B/2 \Vert x - \tilde x\Vert^2$. 
+            Suppose that in addition, there exists $\epsilon \ge 0$ such that: 
+            \begin{align*}
+                \expect \left[
+                    \Vert w\Vert \Vert z - \tilde x\Vert
+                \right] &\le \epsilon \expect \left[
+                    \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
+                \right]. 
+            \end{align*}
+            Then it makes the following inequality true: 
+            \begin{align*}
+                &\le 
+                F(z) + \expect F(\tilde x) + \frac{\max(B, L) - \mu}{2} \Vert z - x\Vert^2
+                - \frac{B - \epsilon}{2}\expect\left[\Vert z - \tilde x\Vert^2\right]
+                + \frac{\epsilon}{2} \left[\Vert x - \tilde x\Vert^2\right]. 
+            \end{align*}
+        \end{lemma}
+        \begin{proof}
+            Using Lemma \ref{lemma:inex-pg-ineq-proto}, for any fixed $z$ it has: 
+            \begin{align*}
+                \frac{B}{2}\Vert z - \tilde x\Vert &\le 
+                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 - \langle w, z - \tilde x\rangle
+                \\
+                &\le 
+                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 + \Vert w\Vert\Vert z - \tilde x\Vert. 
+            \end{align*}
+            Take note that, since $w = \nabla f(x) - \tilde \nabla f(x)$ is a random variable, it determines that $\tilde x$ is also a random variable related to $w$. 
+            Here, $x, z$ is not a random variable. 
+            We take the expectation on both sides and move things all to the RHS then it has 
+            \begin{align*}
+                0&\le 
+                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
+                + \expect\left[
+                    \Vert w\Vert\Vert z - \tilde x\Vert
+                \right]
+                - \frac{B}{2}\expect \Vert z - \tilde x\Vert^2
+                \\
+                &= 
+                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
+                + \expect\left[
+                    \Vert w\Vert\Vert z - \tilde x\Vert
+                    - \frac{B}{2} \Vert z - \tilde x\Vert^2
+                \right]
+                \\
+                &=
+                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
+                    \\ &\quad 
+                    + \expect\left[
+                        - \frac{1}{2}\left(
+                            \sqrt{\epsilon}\Vert x - \tilde x\Vert - \sqrt{\epsilon}\Vert z - \tilde x\Vert
+                        \right)^2
+                        + \frac{\epsilon}{2}\Vert x - \tilde x\Vert^2 + \frac{\epsilon}{2}\Vert z - \tilde x\Vert^2
+                        - \frac{B}{2} \Vert z - \tilde x\Vert^2
+                    \right]
+                \\
+                &\le 
+                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
+                + \expect\left[
+                    \frac{\epsilon}{2}\Vert x - \tilde x\Vert^2
+                    - \frac{B - \epsilon}{2} \Vert z - \tilde x\Vert^2
+                \right]. 
+            \end{align*}
+        \end{proof}
+        \begin{remark}
+            In practice, is chosen in prior to satisfies $B \ge L$. 
+            In here, $z, x$ is not a random variable, $\epsilon$ just a constant, but it's determined by $z$ and $x$, one of the obvious choice for it in this lemma is
+            \begin{align*}
+                \frac{
+                \expect \left[
+                    \left\Vert \nabla f(x) - \tilde \nabla f(x) \right\Vert \Vert z - \tilde x\Vert
+                \right]
+                }{
+                \expect \left[
+                    \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
+                \right]
+                } &= \epsilon. 
+            \end{align*}
+            Of course, look, if there is no random variable and $\tilde \nabla f(x)$ is simply not an probailistic estimate then the expectation is gone and, it has: 
+            \begin{align*}
+                \epsilon = \frac{\left\Vert
+                    \nabla f(x) - \tilde \nabla f(x)
+                \right\Vert}{\Vert x - \tilde x\Vert}.
+            \end{align*}
+            And in this case, it's NOT dependended on $z$. 
+        \end{remark}
 
-\section{Inexact accelerated proximal gradient algorithm}
+
+\section{Stochastic/Inexact accelerated proximal gradient algorithm}
     The following defines the inexact proximal gradient operator where the gradient of the smooth part of the function is estimated. 
     All algorithms satisfying the following definition will be referred to as Stochastic Nesterov's Accelerated Gradient (SNAG). 
     % ------------------------------------------------------------------------------------------------------------------
@@ -248,14 +399,33 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         And it satisfies 
         \begin{align*}
-            \left\Vert \tilde \nabla f(x) - \nabla f(x)\right\Vert \le \epsilon \Vert x - \tilde x\Vert. 
+            \left\Vert \tilde \nabla f(x) - \nabla f(x)\right\Vert = \epsilon \Vert x - \tilde x\Vert. 
         \end{align*}
     \end{definition}
-    The inexact evaluation can be caused by an random variable. 
-    The definitions follow characterize algorithm in which the errors are related to a random variable that estimates the gradient of the objective function. 
+    The inexact evaluation can be caused by a random variable. 
+    The definition that follows characterize algorithm in which the errors are related to a random variable that estimates the gradient of the objective function. 
     % ------------------------------------------------------------------------------------------------------------------
     \begin{definition}[stochastic proximal gradient operator with relative error]
-        
+        Let $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}. 
+        Let $x \in \RR^n$ be fixed. 
+        Suppose that $\tilde \nabla f(x)$ is a random variable which is an estimate of the true gradient $\nabla f(x)$ and, let the constant $\epsilon \ge 0$ be defined as: 
+        \begin{align*}
+            \epsilon &=
+            \frac{
+            \expect \left[
+                \left\Vert \nabla f(x) - \tilde \nabla f(x) \right\Vert \Vert z - \tilde x\Vert
+            \right]
+            }{\expect \left[
+                \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
+            \right]}. 
+        \end{align*}
+        Then the inexact proximal gradient operator with relative error $\epsilon$ is the random variable defined as: 
+        \begin{align*}
+            \widetilde T_B^{(\epsilon)} = \argmin_{z \in \RR^n}\left\lbrace
+                g(z) + \left\langle \tilde \nabla f(x), z - x\right\rangle
+                + \frac{B}{2}\Vert z - x\Vert^2
+            \right\rbrace. 
+        \end{align*}
     \end{definition}
     % ------------------------------------------------------------------------------------------------------------------
     \begin{definition}[inexact/stochastic SNAG]\label{def:SNAG}
@@ -265,17 +435,255 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Given initial conditions $v_{-1}, x_{- 1}$. 
         An algorithm satisfying the SNAG definition if it generates a sequence $(y_k, x_k, v_k)_{k \ge 0}$ if for all $k \ge 0$, the following conditions are satisfied: 
         \begin{align*}
-            & \tau_k = L_k(1 - \alpha_k)\left(L_k \alpha_k - \sigma^{(k)}\right)^{-1}, \\
+            & \tau_k = L(1 - \alpha_k)\left(L \alpha_k - \mu\right)^{-1}, \\
             & y_k = (1 + \tau_k)^{-1}v_{k - 1} + \tau_k(1 + \tau_k)^{-1}x_{k - 1}, \\
-            & x_k =  T_{L}^{(\epsilon_k)}(y_k | F_{I_k}), \\
+            & x_k =  T_{L}^{(\epsilon_k)}(y_k | F_{I_k}) \text{ or }, \widetilde T_{L}^{(\epsilon_k)}(y_k | F_{I_k})\\
             & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}).
         \end{align*}
     \end{definition}
     The following lemma states two important relationships on the iterates generated by Definition \ref{def:SNAG}. 
+    Take note that it's only related to the iterates generated: $x_k, y_k, v_k$, it involves the sequence $(\alpha_k)_{k \ge 0}$, but the sequence can be anything in between $(0, 1]$ and these relations won't change. 
     \begin{lemma}[SNAG identities]\label{lemma:snag-identities}
-        
+        The iterates $(y_k, x_k, v_k)_{k \ge0}$ satisfying Definition \ref{def:SNAG} satisfies for all $k \ge 1$ the identities: 
+        \begin{enumerate}[nosep]
+            \item $z_k - y_k = (L - \mu)^{-1}((L\alpha_k - \mu)(\bar x - v_{k - 1}) + \mu(1 - \alpha_k)(\bar x - x_{k - 1})).$
+            \item $z_k - x_k = \alpha_k (\bar x - v_k).$
+        \end{enumerate}
     \end{lemma}
-
+    \begin{proof}
+        We prove (i) first. 
+        Recall the definitions of $\tau_k$ from Definition \ref{def:SNAG}, it has: 
+        \begin{align*}
+            (1 + \tau_k)^{-1}
+            &=
+            \left(
+                1 + \frac{L(1 - \alpha_k)}{L\alpha_k - \mu}
+            \right)^{-1} = \left(
+                \frac{L\alpha_k - \mu + L(1 - \alpha_k)}{L\alpha_k - \mu}
+            \right)^{-1}
+            = \frac{L\alpha_k - \mu}{L - \mu}. 
+        \end{align*}
+        Therefore, for all $k \ge 0$, $y_k$ has 
+        \begin{align*}
+            0 &= (1 + \tau_k)^{-1} v_{k - 1} + \tau_k (1 + \tau_k)^{-1} x_{k - 1} - y_k
+            \\
+            &= \frac{L\alpha_k - \mu}{L - \mu} 
+            \left(
+                v_{k - 1} + \frac{L(1 - \alpha_k)}{L\alpha_k - \mu} x_{k - 1}
+            \right) - y_k
+            \\
+            &= \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1}
+            + \frac{L(1 - \alpha_k)}{L - \mu} x_{k - 1} - y_k
+            \\
+            &= \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1} + (1 - \alpha_k)x_{k - 1}
+            + 
+            \left(
+                \frac{L(1 - \alpha_k)}{L - \mu} - (1 - \alpha_k)
+            \right) x_{k - 1} - y_k
+            \\
+            &= \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1} + (1 - \alpha_k)x_{k - 1}
+            + 
+            (1 - \alpha_k)\left(
+                \frac{L - L + \mu}{L - \mu}
+            \right) x_{k - 1} - y_k
+            \\
+            &= \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1} + (1 - \alpha_k)x_{k - 1}
+            + 
+            \frac{\mu(1 - \alpha_k)}{L - \mu}x_{k - 1} - y_k. 
+        \end{align*}
+        Therefore, we establish the equality 
+        \begin{align*}
+            (1 - \alpha_k)x_{k - 1} - y_k &= 
+            - \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1} 
+            - \frac{\mu(1 - \alpha_k)}{L - \mu} x_{k - 1}. 
+        \end{align*}
+        On the second equality below, we will the above equality, it goes: 
+        \begin{align*}
+            z_k - y_k &= 
+            \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - y_k
+            \\
+            &= \alpha_k \bar x 
+            - \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1} 
+            - \frac{\mu(1 - \alpha_k)}{L - \mu} x_{k - 1}
+            \\
+            &= \frac{L\alpha_k - \mu}{L - \mu}(\bar x - v_{k - 1})
+            + \left(
+                \alpha_k - \frac{L\alpha_k - \mu}{L - \mu}
+            \right)\bar x
+            - \frac{\mu(1 - \alpha_k)}{L - \mu} x_{k - 1}
+            \\
+            &= \frac{L\alpha_k - \mu}{L - \mu}(\bar x - v_{k - 1})
+            + \left(
+                \frac{\alpha_kL - \alpha_k \mu - L\alpha_k + \mu}{L - \mu}
+            \right)\bar x
+            - \frac{\mu(1 - \alpha_k)}{L - \mu} x_{k - 1}
+            \\
+            &= \frac{L\alpha_k - \mu}{L - \mu}(\bar x - v_{k - 1})
+            + \frac{\mu(1 - \alpha_k)}{L - \mu}\bar x
+            - \frac{\mu(1 - \alpha_k)}{L - \mu} x_{k - 1}
+            \\
+            &= \frac{L\alpha_k - \mu}{L - \mu}(\bar x - v_{k - 1})
+            + \frac{\mu(1 - \alpha_k)}{L - \mu}(\bar x - x_{k - 1}).
+        \end{align*}
+        To see item (ii), the proof is direct algebra: 
+        \begin{align*}
+            z_k - x_k &= \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - x_k
+            \\
+            &= \alpha_k \bar x + x_{k - 1} - x_k - \alpha_k x_{k - 1}
+            \\
+            &= \alpha_k(\bar x - \alpha_k^{-1}(x_k - x_{k - 1}) - x_{k - 1})
+            \\
+            &= \alpha_k (\bar x - v_k).
+        \end{align*}
+    \end{proof}
+    The following theorem given an inequality characterizing a descent relation for the SNAG algorithm. 
+    \begin{theorem}[SNAG descent lemma]\label{thm:snag-descent}
+        
+    \end{theorem}
+    \begin{proof}
+        The following intermediate results will clear out some algebras, they are all proved by the end of the proof. 
+        \begin{enumerate}
+            \item [(a)] For all $k \ge 1$, it has $\frac{\mu^2(1 - \alpha_k)^2}{2(L - \mu)} - \frac{\mu\alpha_k(1 - \alpha_k)}{2} = \frac{(\alpha_k - 1)\mu\left(L\alpha_k - \mu\right)}{2\left(L - \mu\right)}$ using some algebra. 
+            \item [(b)] We assumed that the sequence $(\alpha_k)_{k \ge 0}$ satisfies\\ for all $k \ge 1$: $\rho_{k - 1}(1 - \alpha_{k})\alpha_{k - 1}^2 = \alpha_{k}(\alpha_{k} - \mu/L)$. 
+            \item [(c)] Using (b) and some algebra, we have for all $k \ge 1$ the identity: \\
+            $\frac{(L\alpha_k - \mu)^2}{2(L - \mu)} - \frac{\alpha_{k - 1}^2 L \rho_{k - 1}(1 - \alpha_k)}{2} = \frac{(L\alpha_k - \mu)\mu(\alpha_k - 1)}{2(L - \mu)}$. 
+            \item [(d)] Using (a), and (c), we can derive for all $k\ge 1$, we have the following identity: 
+            \begin{align*}
+                & - \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+                + \frac{L - \mu}{2}\Vert z_k - y_k\Vert^2
+                \\ &= 
+                \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\Vert x_{k - 1} - v_{k - 1}\Vert^2. 
+            \end{align*}
+        \end{enumerate}
+        Using intermediate results (a), (b), (c), (d), we can prove the claim in just a few steps. 
+        % INTERMEDIATE RESULTS 
+        \textbf{Proof of (a)}. 
+        Using basic algebra: 
+        \begin{align*}
+            & \frac{\mu^2(1 - \alpha_k)^2}{2(L - \mu)} 
+            - \frac{\mu\alpha_k(1 - \alpha_k)}{2}
+            \\
+            &= 
+            \frac{1}{2\left(L - \mu\right)}
+            \left(
+                \mu^2(1 - \alpha_k)^2
+                - \left(L - \mu\right)\mu \alpha_k(1 - \alpha_k)
+            \right)
+            \\
+            &= \frac{1 - \alpha_k}{2\left(L - \mu\right)}\left(
+                \mu^2 
+                - \mu^2\alpha_k 
+                - \left(L \mu \alpha_k - \mu^2 \alpha_k\right)
+            \right)
+            \\
+            &= 
+            \frac{1 - \alpha_k}{2(L - \sigma)}\left(
+                \mu^2 - L\left(\mu\right)\alpha_k
+            \right)
+            \\
+            &= 
+            \frac{(1 - \alpha_k)\mu\left(\mu - L\alpha_k\right)}
+            {2\left(L - \mu\right)}
+            \\
+            &= \frac{(\alpha_k - 1)\mu\left(L\alpha_k - \mu\right)}
+            {2\left(L - \mu\right)}. 
+        \end{align*}
+        % INTERMEDIATE RESULTS 
+        \textbf{Proof of (c)}. 
+        Using (b) and some algebra, we can derive: 
+        \begin{align*}
+            & \frac{(L\alpha_k - \mu)^2}{2(L - \mu)} - \frac{\alpha_{k - 1}^2 L \rho_{k - 1}(1 - \alpha_k)}{2}
+            \\
+            &= \frac{(L\alpha_k - \mu)^2}{2(L - \mu)} - \frac{L\alpha_k(\alpha_k - \mu/L)}{2}
+            \\
+            &= \frac{1}{2(L - \mu)}\left(
+                (L\alpha_k - \mu)^2 - (L - \mu)L\alpha_k(\alpha_k - \mu/L)
+            \right)
+            \\
+            &= 
+            \frac{1}{2(L - \mu)}\left(
+                (L\alpha_k - \mu)^2 - (L - \mu)\alpha_k(L\alpha_k - \mu)
+            \right)
+            \\
+            &= \frac{L\alpha_k - \mu}{2(L - \mu)}\left(
+                L\alpha_k - \mu - (L - \mu)\alpha_k
+            \right)
+            \\
+            &= \frac{L\alpha_k - \mu}{2(L - \mu)}\left(
+                \mu\alpha_k - \mu
+            \right)
+            \\
+            &= \frac{(L\alpha_k - \mu)\mu(\alpha_k - 1)}{2(L - \mu)}. 
+        \end{align*}
+        % INTERMEDIATE RESULTS 
+        \textbf{Proof of (d)}. 
+        {\allowdisplaybreaks
+        \begin{align*}
+            &- \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+            + \frac{L - \mu}{2}\Vert z_k - y_k\Vert^2
+            \\
+            &\underset{\text{\circled{1}}}{=} 
+            -\frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+            + \frac{L - \mu}{2}
+            \left\Vert 
+                \frac{L\alpha_k - \mu}{L - \mu}(\bar x - v_{k - 1}) + 
+                \frac{\mu(1 - \alpha_k)}{L - \mu}(\bar x - x_{k - 1})
+            \right\Vert^2
+            \\
+            &= 
+            - \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+            + \frac{(L\alpha_k - \mu)^2}{2(L - \mu)} \Vert \bar x - v_{k - 1}\Vert^2
+            \\
+            &\quad
+                + \frac{\mu^2(1 - \alpha_k)^2}{2(L - \mu)} \Vert \bar x - x_{k - 1}\Vert^2
+                + \frac{(L\alpha_k - \mu)\mu(1 - \alpha_k)}{L - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
+            \\
+            &= \left(
+                \frac{\mu^2(1 - \alpha_k)^2}{2(L - \mu)} - \frac{\mu\alpha_k(1 - \alpha_k)}{2}
+            \right)\Vert \bar x - x_{k - 1}\Vert^2
+                \\ &\quad 
+                + 
+                \left(
+                    \frac{(L\alpha_k - \mu)^2}{2(L - \mu)}
+                    - \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}
+                \right)\Vert \bar x - v_{k - 1}\Vert^2
+                \\ &\quad 
+                + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{(L\alpha_k - \mu)\mu(1 - \alpha_k)}{L - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
+            \\
+            &\underset{\text{(a)}}{=} 
+            \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\Vert \bar x - x_{k - 1}\Vert^2
+            + 
+            \left(
+                \frac{(L\alpha_k - \mu)^2}{2(L - \mu)}
+                - \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}
+            \right)\Vert \bar x - v_{k - 1}\Vert^2
+            \\ &\quad 
+                + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{(L\alpha_k - \mu)\mu(1 - \alpha_k)}{L - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
+            \\
+            &\underset{\text{(c)}}{=}
+            \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\Vert \bar x - x_{k - 1}\Vert^2
+            + 
+            \frac{\mu(L\alpha_k - \mu)(\alpha_k - 1)}{2(L - \mu)}\Vert \bar x - v_{k - 1}\Vert^2
+            \\ &\quad 
+                + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{(L\alpha_k - \mu)\mu(1 - \alpha_k)}{L - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
+            \\
+            &= 
+            \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+            \\ & \quad
+                + \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\left(
+                    \Vert \bar x - x_{k - 1}\Vert^2 + \Vert \bar x - v_{k - 1}\Vert^2 - 2\langle\bar x - x_{k - 1},\bar x - v_{k - 1} \rangle
+                \right)
+            \\
+            &= \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+            + \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\Vert x_{k - 1} - v_{k - 1}\Vert^2. 
+        \end{align*}
+        }
+        At label \circled{1} we used results (i) from Lemma \ref{lemma:snag-identities}. 
+    \end{proof}
 
 \bibliographystyle{siam}
 

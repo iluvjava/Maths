@@ -485,17 +485,14 @@ The following lemma is similar to appeared in the Catalyst paper for the inclusi
 #### **Lemma 2.0 | inexact proximal gradient inequality with relative error**
 > Let $F = f + g$ satisfies **Assumption 0**. 
 > Fix any vector $x, z \in \R^n$. 
-> Let $B \ge L$. 
-> Suppose the evaluation of the proximal gradient operator is inexact and contains error $w$ at $\tilde x$ given $z$ is:
+> Let $B \ge L, \epsilon > 0$
+> Suppose the evaluation of the proximal gradient operator is inexact and contains error vector $w$:
 > $$
 > \begin{aligned}
 >     w &\in \partial \left[z \mapsto g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2\right](\tilde x), 
->     \\
->     \Vert w\Vert 
->     &\le 
->     \epsilon\Vert \tilde x - x\Vert. 
 > \end{aligned}
 > $$
+> such that it satisfies $\Vert w\Vert \le \epsilon \Vert x - \tilde x\Vert$. 
 > Then, the following inequality is true: 
 > $$
 > \begin{aligned}
@@ -570,7 +567,7 @@ At (c), we used the assumption that $\Vert w\Vert \le \epsilon \Vert z - x\Vert$
 
 The error is relative to the choices of point $z, x$.
 Further away the point $z$ is relative to $x$, the more error it's above $\Vert w\Vert$. 
-Further simplifcations using basic algebra yields: 
+Further simplifications using basic algebra yields: 
 
 $$
 \begin{aligned}
@@ -640,7 +637,7 @@ Here, $\tilde x - x$ will relate to the gradient mapping.
 
 
 #### **Lemma 2.1 | inexact proximal gradient inequality absolute error**
-
+> 
 
 **Proof**
 
@@ -685,11 +682,7 @@ $$
     &\ge 
     \frac{B}{2}\Vert z - \tilde x\Vert^2 
     + \frac{B}{2}\Vert \tilde x - x^+\Vert^2
-    -  B\Vert z - \tilde x\Vert \Vert \tilde x - x^+\Vert
-    \\
-    &= \frac{B}{2}\left(
-        \Vert z - \tilde x\Vert - \Vert \tilde x - x^+\Vert
-    \right)^2. 
+    -  B\Vert z - \tilde x\Vert \Vert \tilde x - x^+\Vert. 
 \end{aligned}
 $$
 
@@ -697,11 +690,15 @@ So, it's
 
 $$
 \begin{aligned}
-    \frac{B}{2}\left(
-        \Vert z - \tilde x\Vert - \Vert \tilde x - x^+\Vert
-    \right)^2
+    0
     &\le 
     F(z) + F(\tilde x) + \frac{L - \mu}{2}\Vert z - x\Vert^2
-    + \epsilon. 
+    - \frac{B}{2}\Vert z - \tilde x\Vert^2 
+    + 
+    \left(
+        \epsilon
+        - \frac{B}{2}\Vert \tilde x - x^+\Vert^2
+        - B \langle z - \tilde x, \tilde x - x^+\rangle
+    \right). 
 \end{aligned}
 $$
