@@ -490,6 +490,10 @@ $$
 
 $\blacksquare$
 
+**Remark**
+
+See [Proximal Gradient Inequality Part I](Proximal%20Gradient%20Inequality%20Part%20I.md),  which is essentially what this above lemma is about. 
+
 
 #### **Theorem 2.1 | Smooth gradient descent Lyapunov quantity**
 > Let $F:\R^n \rightarrow \overline \R$ be a convex function that is $L$ Lipschitz smooth. 
@@ -527,22 +531,6 @@ $\blacksquare$
 > $$
 
 **Proof**
-
-The proof contains the following key intermediate steps which will be proved at the end. 
-
-**(a)**: The function $F$ is convex and $L$ Lipschitz smooth hence we can invokve lemma 2.0 and it has for all $\R^n$, $t \ge 1$: 
-
-$$
-\begin{aligned}
-    \eta_{t + 1}^{-1} (F(x_{t + 1}) - F(x)) &= 
-    (\sigma_{t + 1} - \sigma_{t})(F(x_{t + 1}) - F(x))
-    \\
-    &= \sigma_{t + 1}(F(x_{t + 1}) - F(x)) - \sigma_t(F(x_{t + 1}) - F(x_t)) - \sigma_t(F(x_t) - F(x))
-    \\
-    &\ge 
-    \sigma_{t + 1}(F(x_{t + 1}) - F(x)) - (L/2 - \eta_{t + 1})\Vert x_t - x_{t + 1}\Vert^2 - \sigma_t(F(x_t) - F(x)). 
-\end{aligned}
-$$
 
 The overall proof starts with Lemma 2.0, which has for all $t \ge 1, x \in \R^n$: 
 
@@ -592,6 +580,19 @@ $$
         \frac{1}{2}
         \left(\frac{L}{\eta_{t + 1}} - 1\right)
     \right)\Vert x_{t + 1} - x_t\Vert^2. 
+\end{aligned}
+$$
+
+**(a)**: The function $F$ is convex and $L$ Lipschitz smooth hence we can invokve lemma 2.0 and it has for all $\R^n$, $t \ge 1$: 
+$$
+\begin{aligned}
+    \eta_{t + 1}^{-1} (F(x_{t + 1}) - F(x)) &= 
+    (\sigma_{t + 1} - \sigma_{t})(F(x_{t + 1}) - F(x))
+    \\
+    &= \sigma_{t + 1}(F(x_{t + 1}) - F(x)) - \sigma_t(F(x_{t + 1}) - F(x_t)) - \sigma_t(F(x_t) - F(x))
+    \\
+    &\ge 
+    \sigma_{t + 1}(F(x_{t + 1}) - F(x)) - \sigma_t(L/2 - \eta_{t + 1})\Vert x_t - x_{t + 1}\Vert^2 - \sigma_t(F(x_t) - F(x)). 
 \end{aligned}
 $$
  

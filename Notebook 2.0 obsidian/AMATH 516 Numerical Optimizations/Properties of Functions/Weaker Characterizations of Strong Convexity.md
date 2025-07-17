@@ -77,15 +77,28 @@ The theorems that follow will be given the same numberings as it appeared in the
 
 **Proof**
 
+See paper. $\blacksquare$
 
 #### **Theorem 2 | Quasi-strongly convex implies Quadratic Gradient Growth**
 > $\mathbb S' \subseteq \mathbb G$. 
 
+**Proof** 
+
+See paper. $\blacksquare$
+
 #### **Theorem 3 | Quadratic gradient growth implies Quadratic under approximations**
 > $\mathbb G \subseteq \mathbb U$. 
 
+**Proof** 
+
+See paper. $\blacksquare$
+
 #### **Theorem 4 | Strong convexity hiearchy**
 > $\mathbb S \subseteq \mathbb S' \subseteq \mathbb G \subseteq \mathbb U \subseteq \mathbb F$. 
+
+**Proof** 
+
+See paper. $\blacksquare$
 
 #### **Theorem 5**
 

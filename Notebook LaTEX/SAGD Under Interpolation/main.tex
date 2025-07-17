@@ -212,11 +212,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{lemma}[inexact proximal gradient inequality]\label{lemma:inex-pg-ineq}
             Let $F = f + g$ satisfies Definition \ref{def:lip-smooth-and-scnvx} with $L > \mu \ge 0$. 
             Let $x \in \RR^n$ be fixed. 
-            Suppose an inexact evaluation of proximal gradient operator at $x$ yield an approximation $\tilde x$, characterized by: 
+            Suppose an inexact evaluation of proximal gradient operator at $x$ yield an approximation $\tilde x$ such that: 
             \begin{align*}
-                & \exists: w \in \partial \left[
+                & (\exists w)(\exists \epsilon ): w \in \partial \left[
                     z \mapsto  g(z) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2
-                \right](\tilde x)\; \text{s.t: } \Vert w\Vert \le \epsilon \Vert x - \tilde x\Vert. 
+                \right](\tilde x), \Vert w\Vert \le \epsilon \Vert x - \tilde x\Vert. 
             \end{align*}
             Suppose that there exists some $B \ge 0$ such that $D_f(\tilde x, x) \le \frac{B}{2}\Vert \tilde x - x\Vert^2$. 
             Then, for all $z\in \RR^n$ it satisfies the inequality: 
@@ -270,6 +270,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 - \frac{B - \epsilon}{2}\Vert z - \tilde x\Vert^2
                 + \frac{\epsilon}{2}\Vert x - \tilde x \Vert^2.
             \end{align*}
+            The smallest possible choice for $\epsilon$ when $x \neq \tilde x$ is $\epsilon = \Vert w\Vert/\Vert x - \tilde x\Vert$ and, if $x = \tilde x$ then $\epsilon = 0$ is the smallest. 
         \end{remark}
         Note, an inexact evaluation of the proximal gradient operator can be caused by an inexact gradient on the smooth part. 
         Suppose that one take $\tilde \nabla f(x)$ to be an estimate of $\nabla f(x)$ and use it for the proximal gradient operator to produce $\tilde x$, then: 
@@ -300,10 +301,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{lemma}[stochastic proximal gradient inequality]\label{lemma:stoch-pg-ineq}
             Let $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}. 
             Fix any $x, z \in \RR^n$. 
-            Suppose that, a random variable $\tilde \nabla f(x)$ is used to estimate the proximal gradient operator and, it produced an error $w$, and the estimate $\tilde x$ as defined in \ref{lemma:inex-pg-ineq-proto}. 
-            Let $B \ge 0$ be constant such that $D_f(\tilde x,x)\le B/2 \Vert x - \tilde x\Vert^2$. 
+            Suppose that, $\tilde \nabla f(x)$ is a random variable which estimates $\nabla f(x)$, cause proximal gradient operator to produce error $w$, and estimate $\tilde x$ as given by \ref{lemma:inex-pg-ineq-proto}. 
+            Assume there exists $B \ge 0$ be constant such that $D_f(\tilde x,x)\le B/2 \Vert x - \tilde x\Vert^2$. 
             Then, it would have $w = \nabla f(x) - \tilde \nabla f(x)$. 
-            Suppose that in addition, there exists $\epsilon \ge 0$ such that: 
+            If in addition, there exists an $\epsilon \ge 0$: 
             \begin{align*}
                 \expect \left[
                     \Vert w\Vert \Vert z - \tilde x\Vert
@@ -312,7 +313,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
                 \right]. 
             \end{align*}
-            Then it makes the following inequality true: 
+            Then it has: 
             \begin{align*}
                 0 &\le 
                 F(z) + \expect F(\tilde x) + \frac{\max(B, L) - \mu}{2} \Vert z - x\Vert^2
@@ -375,7 +376,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{proof}
         \begin{remark}
             In practice, is chosen in prior to satisfies $B \ge L$. 
-            In here, $z, x$ is not a random variable, $\epsilon$ just a constant, but it's determined by $z$ and $x$, one of the obvious choice for it in this lemma is
+            In here, $z, x$ is not a random variable, $\epsilon$ just a constant, but it's determined by $z$ and $x$. 
+            Assuming $z \neq \tilde x$ and, $\tilde x \neq x$, then one of the smallest choice for it in this lemma is
             \begin{align*}
                 \frac{
                 \expect \left[
@@ -387,7 +389,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \right]
                 } &= \epsilon. 
             \end{align*}
-            Of course, look, if there is no random variable and $\tilde \nabla f(x)$ is simply not an probailistic estimate then the expectation is gone and, it has: 
+            Otherwise, $\epsilon = 0$ is an obvious choice and, it's the smallest. 
+            It depends on both $z$ and $x$. 
+            \par
+            Of course, look, if there is no random variable and $\tilde \nabla f(x)$ is simply not a probabilistic estimate then the expectation is gone and $x\neq \tilde x$, it has: 
             \begin{align*}
                 \epsilon = \frac{\left\Vert
                     \nabla f(x) - \tilde \nabla f(x)
@@ -403,44 +408,69 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     % ------------------------------------------------------------------------------------------------------------------
     \begin{definition}[inexact proximal gradient operator with relative error]
         Let $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}, let $x \in \RR^n$ be fixed. 
-        Suppose that $\tilde \nabla f(x)$ is an estimate of the true gradient $\nabla f(x)$ with relative error $\epsilon \ge 0$. 
-        Then, the inexact proximal gradient operator is defined by: 
+        Suppose that $\tilde \nabla f(x)$ estimates $\nabla f(x)$. 
+        We define the inexact proximal gradient operator by the relationships between: 
+        \begin{enumerate}[nosep]
+            \item $\tilde x = \mathbf T_B^{(\epsilon)}(x | F)$ is an inexact output of proximal gradient operator by evaluating on $\tilde \nabla f(x)$. 
+            \item $B \ge 0$ is any constant such that it satisfies $D_f(\tilde x, x) \le B/2\Vert \tilde x - x\Vert^2$. 
+            \item $\epsilon \ge 0$ is a constant that quantifies the error of inexact evaluation. 
+        \end{enumerate}
+        Then, we define the error $\epsilon$ by: 
         \begin{align*}
-            T_B^{(\epsilon)}(x | F) = \argmin_{z \in \RR^n}\left\lbrace
+            \epsilon = \begin{cases}
+                \frac{\left\Vert \tilde \nabla f(x) - \nabla f(x)\right\Vert}{\Vert x - \tilde x\Vert} & \text{if } x \neq \tilde x, 
+                \\
+                0 & \text{else } x = \tilde x. 
+            \end{cases}
+        \end{align*}
+        And the inexact output is defined as: 
+        \begin{align*}
+            \tilde x = \mathbf T_B(x | F) = \argmin_{z \in \RR^n}\left\lbrace
                 g(z) + \left\langle \tilde \nabla f(x), z - x\right\rangle
                 + \frac{B}{2}\Vert z - x\Vert^2
             \right\rbrace. 
-        \end{align*}
-        And it satisfies 
-        \begin{align*}
-            \left\Vert \tilde \nabla f(x) - \nabla f(x)\right\Vert = \epsilon \Vert x - \tilde x\Vert. 
         \end{align*}
     \end{definition}
     The inexact evaluation can be caused by a random variable. 
     The definition that follows characterize algorithm in which the errors are related to a random variable that estimates the gradient of the objective function. 
     % ------------------------------------------------------------------------------------------------------------------
-    \begin{definition}[stochastic proximal gradient operator with relative error]
+    \begin{definition}[stochastic proximal gradient operator with relative error]\label{def:stoch-pg-opt-rel-err}
         Let $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}. 
         Let $x \in \RR^n$ be fixed. 
-        Suppose that $\tilde \nabla f(x)$ is a random variable which is an estimate of the true gradient $\nabla f(x)$ and, let the constant $\epsilon \ge 0$ be defined as: 
+        Suppose that $\tilde \nabla f(x)$ is random variable and, it estimates $\nabla f(x)$. 
+        Then stochastic proximal gradient operator are the relationships between
+        \begin{enumerate}[nosep]
+            \item $\tilde x= \mathbf{\widetilde T}_B(x| F)$, an inexact output of proximal gradient operator by evaluating on $\tilde \nabla f(x)$. 
+            \item $\epsilon$ an error which is pre-determined constant. 
+            \item Any $B \ge 0$ such that it satisfies $D_f(\tilde x, x) \le B/2\Vert x - \tilde x\Vert^2$. 
+        \end{enumerate}
+        Here, $\epsilon$ satisfies: 
         \begin{align*}
-            \epsilon &=
-            \frac{
-            \expect \left[
-                \left\Vert \nabla f(x) - \tilde \nabla f(x) \right\Vert \Vert z - \tilde x\Vert
-            \right]
-            }{\expect \left[
-                \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
-            \right]}. 
+            \epsilon 
+            &= 
+            \begin{cases}
+                \frac{
+                \expect \left[
+                    \left\Vert \nabla f(x) - \tilde \nabla f(x) \right\Vert \Vert z - \tilde x\Vert
+                \right]
+                }{\expect \left[
+                    \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
+                \right]} & \text{if } x \neq \tilde x \;\wedge\; z \neq \tilde x
+                \\
+                0 & \text{else }
+            \end{cases}
         \end{align*}
         Then the inexact proximal gradient operator with relative error $\epsilon$ is the random variable defined as: 
         \begin{align*}
-            \widetilde T_B^{(\epsilon)}(x| F) = \argmin_{z \in \RR^n}\left\lbrace
+            \tilde x = \mathbf{\widetilde T}_B(x| F) = \argmin_{z \in \RR^n}\left\lbrace
                 g(z) + \left\langle \tilde \nabla f(x), z - x\right\rangle
                 + \frac{B}{2}\Vert z - x\Vert^2
             \right\rbrace. 
         \end{align*}
     \end{definition}
+    \begin{remark}
+        For this definition of the stochastic proximal gradient operator, Lemma \ref{lemma:stoch-pg-ineq} is applicable. 
+    \end{remark}
     % ------------------------------------------------------------------------------------------------------------------
     \begin{definition}[inexact/stochastic SNAG]\label{def:SNAG}
         Suppose that $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}. 
@@ -451,331 +481,392 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{align*}
             & \tau_k = L(1 - \alpha_k)\left(L \alpha_k - \mu\right)^{-1}, \\
             & y_k = (1 + \tau_k)^{-1}v_{k - 1} + \tau_k(1 + \tau_k)^{-1}x_{k - 1}, \\
-            & x_k =  T_{L}^{(\epsilon_k)}(y_k | F_{I_k}) \text{ or }, \widetilde T_{L}^{(\epsilon_k)}(y_k | F_{I_k})\\
+            & x_k =  \mathbf T_{L}(y_k | F) \text{ or }, \mathbf{\widetilde T}_L(y_k | F)\\
             & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}).
         \end{align*}
     \end{definition}
-    The following lemma states two important relationships on the iterates generated by Definition \ref{def:SNAG}. 
-    Take note that it's only related to the iterates generated: $x_k, y_k, v_k$, it involves the sequence $(\alpha_k)_{k \ge 0}$, but the sequence can be anything in between $(0, 1]$ and these relations won't change. 
-    \begin{lemma}[SNAG identities]\label{lemma:snag-identities}
-        The iterates $(y_k, x_k, v_k)_{k \ge0}$ satisfying Definition \ref{def:SNAG} satisfies for all $k \ge 1$ the identities: 
+    The following definition gives a momentum sequence where it makes the derivation of the convergence rate easier. 
+    % ------------------------------------------------------------------------------------------------------------------
+    \begin{definition}[relaxed momentum sequence]\label{def:relax-momen-seq}
+        Let $(\alpha_k)_{k \ge 0}$ be non-negative sequence. 
+        Let $L, \mu$ be some constant such that $L > \mu \ge 0$. 
+        It is a relaxed momentum sequence if the following conditions are satisfied: 
         \begin{enumerate}[nosep]
-            \item $z_k - y_k = (L - \mu)^{-1}((L\alpha_k - \mu)(\bar x - v_{k - 1}) + \mu(1 - \alpha_k)(\bar x - x_{k - 1})).$
-            \item $z_k - x_k = \alpha_k (\bar x - v_k).$
+            \item $\alpha_0 \in (0, 1]$ and for all $k \ge 1$, it satisfies that $\alpha_k \in (\mu/L, 1)$. 
         \end{enumerate}
+    \end{definition}
+    \begin{remark}
+        In the context of its usage, the constants $L, \mu$ are the Lipschitz smoothness constant  and, strong convexity constant associated with a smooth and strongly convex function. 
+    \end{remark}
+    
+    % ------------------------------------------------------------------------------------------------------------------
+    \begin{lemma}[properties of the sequence]\label{lemma:seq-properties}
+            
     \end{lemma}
-    \begin{proof}
-        We prove (i) first. 
-        Recall the definitions of $\tau_k$ from Definition \ref{def:SNAG}, it has: 
-        \begin{align*}
-            (1 + \tau_k)^{-1}
-            &=
-            \left(
-                1 + \frac{L(1 - \alpha_k)}{L\alpha_k - \mu}
-            \right)^{-1} = \left(
-                \frac{L\alpha_k - \mu + L(1 - \alpha_k)}{L\alpha_k - \mu}
-            \right)^{-1}
-            = \frac{L\alpha_k - \mu}{L - \mu}. 
-        \end{align*}
-        Therefore, for all $k \ge 0$, $y_k$ has 
-        \begin{align*}
-            0 &= (1 + \tau_k)^{-1} v_{k - 1} + \tau_k (1 + \tau_k)^{-1} x_{k - 1} - y_k
-            \\
-            &= \frac{L\alpha_k - \mu}{L - \mu} 
-            \left(
-                v_{k - 1} + \frac{L(1 - \alpha_k)}{L\alpha_k - \mu} x_{k - 1}
-            \right) - y_k
-            \\
-            &= \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1}
-            + \frac{L(1 - \alpha_k)}{L - \mu} x_{k - 1} - y_k
-            \\
-            &= \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1} + (1 - \alpha_k)x_{k - 1}
-            + 
-            \left(
-                \frac{L(1 - \alpha_k)}{L - \mu} - (1 - \alpha_k)
-            \right) x_{k - 1} - y_k
-            \\
-            &= \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1} + (1 - \alpha_k)x_{k - 1}
-            + 
-            (1 - \alpha_k)\left(
-                \frac{L - L + \mu}{L - \mu}
-            \right) x_{k - 1} - y_k
-            \\
-            &= \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1} + (1 - \alpha_k)x_{k - 1}
-            + 
-            \frac{\mu(1 - \alpha_k)}{L - \mu}x_{k - 1} - y_k. 
-        \end{align*}
-        Therefore, we establish the equality 
-        \begin{align*}
-            (1 - \alpha_k)x_{k - 1} - y_k &= 
-            - \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1} 
-            - \frac{\mu(1 - \alpha_k)}{L - \mu} x_{k - 1}. 
-        \end{align*}
-        On the second equality below, we will the above equality, it goes: 
-        \begin{align*}
-            z_k - y_k &= 
-            \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - y_k
-            \\
-            &= \alpha_k \bar x 
-            - \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1} 
-            - \frac{\mu(1 - \alpha_k)}{L - \mu} x_{k - 1}
-            \\
-            &= \frac{L\alpha_k - \mu}{L - \mu}(\bar x - v_{k - 1})
-            + \left(
-                \alpha_k - \frac{L\alpha_k - \mu}{L - \mu}
-            \right)\bar x
-            - \frac{\mu(1 - \alpha_k)}{L - \mu} x_{k - 1}
-            \\
-            &= \frac{L\alpha_k - \mu}{L - \mu}(\bar x - v_{k - 1})
-            + \left(
-                \frac{\alpha_kL - \alpha_k \mu - L\alpha_k + \mu}{L - \mu}
-            \right)\bar x
-            - \frac{\mu(1 - \alpha_k)}{L - \mu} x_{k - 1}
-            \\
-            &= \frac{L\alpha_k - \mu}{L - \mu}(\bar x - v_{k - 1})
-            + \frac{\mu(1 - \alpha_k)}{L - \mu}\bar x
-            - \frac{\mu(1 - \alpha_k)}{L - \mu} x_{k - 1}
-            \\
-            &= \frac{L\alpha_k - \mu}{L - \mu}(\bar x - v_{k - 1})
-            + \frac{\mu(1 - \alpha_k)}{L - \mu}(\bar x - x_{k - 1}).
-        \end{align*}
-        To see item (ii), the proof is direct algebra: 
-        \begin{align*}
-            z_k - x_k &= \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - x_k
-            \\
-            &= \alpha_k \bar x + x_{k - 1} - x_k - \alpha_k x_{k - 1}
-            \\
-            &= \alpha_k(\bar x - \alpha_k^{-1}(x_k - x_{k - 1}) - x_{k - 1})
-            \\
-            &= \alpha_k (\bar x - v_k).
-        \end{align*}
-    \end{proof}
-    The following theorem given an inequality characterizing a descent relation for the SNAG algorithm. 
-    \begin{theorem}[SNAG descent lemma]\label{thm:snag-descent}
-        
-    \end{theorem}
-    \begin{proof}
-        The following intermediate results will clear out some algebras, they are all proved by the end of the proof. 
-        \begin{enumerate}
-            \item [(a)] For all $k \ge 1$, it has $\frac{\mu^2(1 - \alpha_k)^2}{2(L - \mu)} - \frac{\mu\alpha_k(1 - \alpha_k)}{2} = \frac{(\alpha_k - 1)\mu\left(L\alpha_k - \mu\right)}{2\left(L - \mu\right)}$ using some algebra. 
-            \item [(b)] We assumed that the sequence $(\alpha_k)_{k \ge 0}$ satisfies\\ for all $k \ge 1$: $\rho_{k - 1}(1 - \alpha_{k})\alpha_{k - 1}^2 = \alpha_{k}(\alpha_{k} - \mu/L)$. 
-            \item [(c)] Using (b) and some algebra, we have for all $k \ge 1$ the identity: \\
-            $\frac{(L\alpha_k - \mu)^2}{2(L - \mu)} - \frac{\alpha_{k - 1}^2 L \rho_{k - 1}(1 - \alpha_k)}{2} = \frac{(L\alpha_k - \mu)\mu(\alpha_k - 1)}{2(L - \mu)}$. 
-            \item [(d)] Using (a), and (c), we can derive for all $k\ge 1$, we have the following identity: 
+    \subsection{building up the convergence results}
+        In this section we derive a generic convergence results. 
+        \par
+        The following lemma states two important relationships on the iterates generated by Definition \ref{def:SNAG}. 
+        Take note that it's only related to the iterates generated: $x_k, y_k, v_k$, it involves the sequence $(\alpha_k)_{k \ge 0}$, but the sequence can be anything in between $(0, 1]$ and these relations won't change. 
+        % --------------------------------------------------------------------------------------------------------------
+        \begin{lemma}[SNAG identities]\label{lemma:snag-identities}
+            The iterates $(y_k, x_k, v_k)_{k \ge0}$ satisfying Definition \ref{def:SNAG} satisfies for all $k \ge 1$ the identities: 
+            \begin{enumerate}[nosep]
+                \item $z_k - y_k = (L - \mu)^{-1}((L\alpha_k - \mu)(\bar x - v_{k - 1}) + \mu(1 - \alpha_k)(\bar x - x_{k - 1})).$
+                \item $z_k - x_k = \alpha_k (\bar x - v_k).$
+            \end{enumerate}
+        \end{lemma}
+        \begin{proof}
+            We prove (i) first. 
+            Recall the definitions of $\tau_k$ from Definition \ref{def:SNAG}, it has: 
             \begin{align*}
-                & - \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
-                + \frac{L - \mu}{2}\Vert z_k - y_k\Vert^2
-                \\ &= 
-                \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                + \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\Vert x_{k - 1} - v_{k - 1}\Vert^2. 
+                (1 + \tau_k)^{-1}
+                &=
+                \left(
+                    1 + \frac{L(1 - \alpha_k)}{L\alpha_k - \mu}
+                \right)^{-1} = \left(
+                    \frac{L\alpha_k - \mu + L(1 - \alpha_k)}{L\alpha_k - \mu}
+                \right)^{-1}
+                = \frac{L\alpha_k - \mu}{L - \mu}. 
             \end{align*}
-        \end{enumerate}
-        Using intermediate results (a), (b), (c), (d), we can prove the claim in just a few steps. 
-        For any fixed $\bar x \in \RR^n$. 
-        Define $z_k = \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$ for all $k \ge 0$. 
-        Consider the case for all $k \ge 1$. 
-        Let $\expect_{k}$ be the expectation conditioned on all $\tilde \nabla f(y_i)$ for $i = 0, 1, \ldots, k - 1$. 
-        We note that under this conditioning, the iterates $x_{k - 1}, v_{k - 1}, y_k$ are not random variables, but $x_k$, and $v_k$ are. 
-        The sequence $(\alpha_k)_{k \ge 0}, (\epsilon_k)_{k \ge 0}$ are also not random variables. 
-        \par
-        We use Lemma \ref{lemma:stoch-pg-ineq} with $x = y_k, z = z_k, \tilde x = x_{k}$ and, $B = L$ then it has: 
-        {\allowdisplaybreaks
-        \begin{align*}
-            0 &\le 
-            F(z_k) - \expect_{k - 1} F(x_k) 
-            + \frac{L - \mu}{2}\Vert z_k - y_k\Vert^2 
-            + \frac{\epsilon_k}{2}\expect_{k - 1} \left[\Vert y_k - x_k \Vert^2\right] 
-                \\&\quad
-                - \frac{L - \epsilon_k}{2}\expect_{k - 1} \left[\Vert z_k - x_k\Vert^2\right]
-            \\
-            &\underset{\circled{1}}{\le} 
-            \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - \expect_{k - 1} F(x_k) - \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
-                \\&\quad 
+            Therefore, for all $k \ge 0$, $y_k$ has 
+            \begin{align*}
+                0 &= (1 + \tau_k)^{-1} v_{k - 1} + \tau_k (1 + \tau_k)^{-1} x_{k - 1} - y_k
+                \\
+                &= \frac{L\alpha_k - \mu}{L - \mu} 
+                \left(
+                    v_{k - 1} + \frac{L(1 - \alpha_k)}{L\alpha_k - \mu} x_{k - 1}
+                \right) - y_k
+                \\
+                &= \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1}
+                + \frac{L(1 - \alpha_k)}{L - \mu} x_{k - 1} - y_k
+                \\
+                &= \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1} + (1 - \alpha_k)x_{k - 1}
+                + 
+                \left(
+                    \frac{L(1 - \alpha_k)}{L - \mu} - (1 - \alpha_k)
+                \right) x_{k - 1} - y_k
+                \\
+                &= \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1} + (1 - \alpha_k)x_{k - 1}
+                + 
+                (1 - \alpha_k)\left(
+                    \frac{L - L + \mu}{L - \mu}
+                \right) x_{k - 1} - y_k
+                \\
+                &= \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1} + (1 - \alpha_k)x_{k - 1}
+                + 
+                \frac{\mu(1 - \alpha_k)}{L - \mu}x_{k - 1} - y_k. 
+            \end{align*}
+            Therefore, we establish the equality 
+            \begin{align*}
+                (1 - \alpha_k)x_{k - 1} - y_k &= 
+                - \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1} 
+                - \frac{\mu(1 - \alpha_k)}{L - \mu} x_{k - 1}. 
+            \end{align*}
+            On the second equality below, we will the above equality, it goes: 
+            \begin{align*}
+                z_k - y_k &= 
+                \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - y_k
+                \\
+                &= \alpha_k \bar x 
+                - \frac{L\alpha_k - \mu}{L - \mu} v_{k - 1} 
+                - \frac{\mu(1 - \alpha_k)}{L - \mu} x_{k - 1}
+                \\
+                &= \frac{L\alpha_k - \mu}{L - \mu}(\bar x - v_{k - 1})
+                + \left(
+                    \alpha_k - \frac{L\alpha_k - \mu}{L - \mu}
+                \right)\bar x
+                - \frac{\mu(1 - \alpha_k)}{L - \mu} x_{k - 1}
+                \\
+                &= \frac{L\alpha_k - \mu}{L - \mu}(\bar x - v_{k - 1})
+                + \left(
+                    \frac{\alpha_kL - \alpha_k \mu - L\alpha_k + \mu}{L - \mu}
+                \right)\bar x
+                - \frac{\mu(1 - \alpha_k)}{L - \mu} x_{k - 1}
+                \\
+                &= \frac{L\alpha_k - \mu}{L - \mu}(\bar x - v_{k - 1})
+                + \frac{\mu(1 - \alpha_k)}{L - \mu}\bar x
+                - \frac{\mu(1 - \alpha_k)}{L - \mu} x_{k - 1}
+                \\
+                &= \frac{L\alpha_k - \mu}{L - \mu}(\bar x - v_{k - 1})
+                + \frac{\mu(1 - \alpha_k)}{L - \mu}(\bar x - x_{k - 1}).
+            \end{align*}
+            To see item (ii), the proof is direct algebra: 
+            \begin{align*}
+                z_k - x_k &= \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - x_k
+                \\
+                &= \alpha_k \bar x + x_{k - 1} - x_k - \alpha_k x_{k - 1}
+                \\
+                &= \alpha_k(\bar x - \alpha_k^{-1}(x_k - x_{k - 1}) - x_{k - 1})
+                \\
+                &= \alpha_k (\bar x - v_k).
+            \end{align*}
+        \end{proof}
+        The following theorem given an inequality characterizing a descent relation for the SNAG algorithm. 
+        % --------------------------------------------------------------------------------------------------------------
+        \begin{theorem}[SNAG descent lemma]\label{thm:snag-descent}
+            Suppose the iterates sequence $(y_k, x_k, v_k)_{k\ge 0}$ are generated by algorithms satisfying Definition \ref{def:SNAG}. 
+            Assume that
+            \begin{enumerate}[nosep]
+                \item it uses stochastic proximal gradient operator as in Definition \ref{def:stoch-pg-opt-rel-err}, 
+                \item it is initialized with $v_{-1} = x_{-1}$, $\alpha_0 = 1$ and, the momentum sequence $(\alpha_k)_{k \ge 0}$ satisfies Definition \ref{def:relax-momen-seq}. 
+            \end{enumerate}
+            Define $\expect_{k}$ to be the expectation conditioned on $\tilde \nabla f(y_i)$ for $i = 1, 2, \ldots, k - 1$. 
+            Then for all $k \ge 1$, for all $\bar x \in \RR^n$ it satisfies the inequality: 
+            \begin{align*}
+                & \expect_kF(x_k) - F(\bar x) - \frac{\alpha_k^2(L - \epsilon_k)}{2}\expect_k \left[\Vert v_k - \bar x\Vert^2\right]
+                \\
+                &\le 
+                (1 - \alpha_k)\left(
+                    F(x_{k - 1}) - F(\bar x)
+                    + \frac{\alpha_{k - 1}L\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \right) + \frac{\epsilon_k}{2}\expect_k \left[\Vert y_k - x_k \Vert^2\right].  
+            \end{align*}
+            Define $z_k = \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$.
+            Then, the error sequence $(\epsilon_k)_{k \ge 0}$ is given by: 
+            \begin{align*}
+                (\forall k \ge 1)\; \epsilon_k = 
+                \frac{\expect_k\left[
+                    \left\Vert
+                        \tilde \nabla f(y_k) - \nabla f(y_k)
+                    \right\Vert
+                    \Vert \bar x - v_{k}\Vert
+                \right]
+                }{
+                    \expect_k\left[
+                        \Vert \bar x - v_{k}\Vert
+                        \Vert z_k - y_k\Vert
+                    \right]
+                }. 
+            \end{align*}
+        \end{theorem}
+        \begin{proof}
+            The following intermediate results will clear out some algebras, they are all proved by the end of the proof. 
+            \begin{enumerate}
+                \item [(a)] For all $k \ge 1$, it has $\frac{\mu^2(1 - \alpha_k)^2}{2(L - \mu)} - \frac{\mu\alpha_k(1 - \alpha_k)}{2} = \frac{(\alpha_k - 1)\mu\left(L\alpha_k - \mu\right)}{2\left(L - \mu\right)}$ using some algebra. 
+                \item [(b)] We assumed that the sequence $(\alpha_k)_{k \ge 0}$ satisfies\\ for all $k \ge 1$: $\rho_{k - 1}(1 - \alpha_{k})\alpha_{k - 1}^2 = \alpha_{k}(\alpha_{k} - \mu/L)$. 
+                \item [(c)] Using (b) and some algebra, we have for all $k \ge 1$ the identity: \\
+                $\frac{(L\alpha_k - \mu)^2}{2(L - \mu)} - \frac{\alpha_{k - 1}^2 L \rho_{k - 1}(1 - \alpha_k)}{2} = \frac{(L\alpha_k - \mu)\mu(\alpha_k - 1)}{2(L - \mu)}$. 
+                \item [(d)] Using (a), and (c), we can derive for all $k\ge 1$, we have the following identity: 
+                \begin{align*}
+                    & - \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+                    + \frac{L - \mu}{2}\Vert z_k - y_k\Vert^2
+                    \\ &= 
+                    \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    + \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\Vert x_{k - 1} - v_{k - 1}\Vert^2. 
+                \end{align*}
+            \end{enumerate}
+            Using intermediate results (a), (b), (c), (d), we can prove the claim in just a few steps. 
+            For any fixed $\bar x \in \RR^n$. 
+            Define $z_k = \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$ for all $k \ge 0$. 
+            Consider the case for all $k \ge 1$. 
+            Recall $\expect_{k}$ is the expectation conditioned on all $\tilde \nabla f(y_i)$ for $i = 0, 1, \ldots, k - 1$. 
+            We note that under this conditioning the only random variable is $\tilde \nabla f(y_k)$, so iterates $x_{k - 1}, v_{k - 1}, y_k$ are not random variables, but $x_k$, and $v_k$ are. 
+            The sequence $(\alpha_k)_{k \ge 0}, (\epsilon_k)_{k \ge 0}$ are also not random variables. 
+            \par
+            We use Lemma \ref{lemma:stoch-pg-ineq} with $x = y_k, z = z_k, \tilde x = x_{k}$ and, $B = L$ then it means: 
+            {\allowdisplaybreaks
+            \begin{align*}
+                0 &\le 
+                F(z_k) - \expect_k F(x_k) 
                 + \frac{L - \mu}{2}\Vert z_k - y_k\Vert^2 
-                + \frac{\epsilon_k}{2}\expect_{k - 1} \left[\Vert y_k - x_k \Vert^2\right] 
-                - \frac{L - \epsilon_k}{2}\expect_{k - 1} \left[\Vert z_k - x_k\Vert^2\right]
-            \\
-            &\underset{\text{(d)}}{=}
-            \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - \expect_{k - 1} F(x_k) 
+                + \frac{\epsilon_k}{2}\expect_k \left[\Vert y_k - x_k \Vert^2\right] 
+                    \\&\quad
+                    - \frac{L - \epsilon_k}{2}\expect_k \left[\Vert z_k - x_k\Vert^2\right]
+                \\
+                &\underset{\circled{1}}{\le} 
+                \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - \expect_k F(x_k) - \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+                    \\&\quad 
+                    + \frac{L - \mu}{2}\Vert z_k - y_k\Vert^2 
+                    + \frac{\epsilon_k}{2}\expect_k \left[\Vert y_k - x_k \Vert^2\right] 
+                    - \frac{L - \epsilon_k}{2}\expect_k \left[\Vert z_k - x_k\Vert^2\right]
+                \\
+                &\underset{\text{(d)}}{=}
+                \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - \expect_k F(x_k) 
+                    \\&\quad 
+                    + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    + \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\Vert x_{k - 1} - v_{k - 1}\Vert^2
+                    \\&\quad 
+                    + \frac{\epsilon_k}{2}\expect_k \left[\Vert y_k - x_k \Vert^2\right] 
+                    - \frac{L - \epsilon_k}{2}\expect_k \left[\Vert z_k - x_k\Vert^2\right]
+                \\&\underset{\circled{2}}{\le}
+                \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - \expect_k F(x_k) 
+                    \\&\quad 
+                    + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    + \frac{\epsilon_k}{2}\expect_k \left[\Vert y_k - x_k \Vert^2\right] 
+                    - \frac{L - \epsilon_k}{2}\expect_k \left[\Vert z_k - x_k\Vert^2\right]
+                \\&= 
+                (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x)) + F(\bar x) - \expect_kF(x_k)
                 \\&\quad 
-                + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                + \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\Vert x_{k - 1} - v_{k - 1}\Vert^2
-                \\&\quad 
-                + \frac{\epsilon_k}{2}\expect_{k - 1} \left[\Vert y_k - x_k \Vert^2\right] 
-                - \frac{L - \epsilon_k}{2}\expect_{k - 1} \left[\Vert z_k - x_k\Vert^2\right]
-            \\&\underset{\textcolor{red}{(?)}}{\le}
-            \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - \expect_{k - 1} F(x_k) 
-                \\&\quad 
-                + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                + \frac{\epsilon_k}{2}\expect_{k - 1} \left[\Vert y_k - x_k \Vert^2\right] 
-                - \frac{L - \epsilon_k}{2}\expect_{k - 1} \left[\Vert z_k - x_k\Vert^2\right]
-            \\&= 
-            (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x)) + F(\bar x) - \expect_{k - 1}F(x_k)
-            \\&\quad 
-                + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                + \frac{\epsilon_k}{2}\expect_{k - 1} \left[\Vert y_k - x_k \Vert^2\right] 
-                - \frac{L - \epsilon_k}{2}\expect_{k - 1} \left[\Vert z_k - x_k\Vert^2\right]
-            \\&= 
-            (1 - \alpha_k)\left(
-                F(x_{k - 1}) - F(\bar x)
-                + \frac{\alpha_{k - 1}^2L\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
-            \right)
-                \\ &\quad 
-                + F(\bar x) - \expect_{k - 1}F(x_k) 
-                - \frac{L - \epsilon_k}{2}\expect_{k - 1} \left[\Vert z_k - x_k\Vert^2\right]
-            \\
-            &\underset{\circled{2}}{=} 
-            (1 - \alpha_k)\left(
-                F(x_{k - 1}) - F(\bar x)
-                + \frac{\alpha_{k - 1}^2L\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
-            \right)
-                \\ &\quad 
-                + F(\bar x) - \expect_{k - 1}F(x_k) 
-                - \frac{\alpha_k^2(L - \epsilon_k)}{2}\expect_{k - 1} \left[\Vert v_k - \bar x\Vert^2\right]. 
-        \end{align*}
-        }
-        \par
-        The above produces the following inequality: 
-        \begin{align}\begin{split}
-            & \expect_{k - 1}F(x_k) - F(\bar x) - \frac{\alpha_k^2(L - \epsilon_k)}{2}\expect_{k - 1} \left[\Vert v_k - \bar x\Vert^2\right]
-            \\
-            &\le 
-            (1 - \alpha_k)\left(
-                F(x_{k - 1}) - F(\bar x)
-                + \frac{\alpha_{k - 1}L\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
-            \right). 
-        \end{split}\end{align}
-        % INTERMEDIATE RESULTS 
-        \par \textbf{Proof of (a)}. 
-        Using basic algebra: 
-        {\allowdisplaybreaks
-        \begin{align*}
-            & \frac{\mu^2(1 - \alpha_k)^2}{2(L - \mu)} 
-            - \frac{\mu\alpha_k(1 - \alpha_k)}{2}
-            \\
-            &= 
-            \frac{1}{2\left(L - \mu\right)}
-            \left(
-                \mu^2(1 - \alpha_k)^2
-                - \left(L - \mu\right)\mu \alpha_k(1 - \alpha_k)
-            \right)
-            \\
-            &= \frac{1 - \alpha_k}{2\left(L - \mu\right)}\left(
-                \mu^2 
-                - \mu^2\alpha_k 
-                - \left(L \mu \alpha_k - \mu^2 \alpha_k\right)
-            \right)
-            \\
-            &= 
-            \frac{1 - \alpha_k}{2(L - \sigma)}\left(
-                \mu^2 - L\left(\mu\right)\alpha_k
-            \right)
-            \\
-            &= 
-            \frac{(1 - \alpha_k)\mu\left(\mu - L\alpha_k\right)}
-            {2\left(L - \mu\right)}
-            \\
-            &= \frac{(\alpha_k - 1)\mu\left(L\alpha_k - \mu\right)}
-            {2\left(L - \mu\right)}. 
-        \end{align*}
-        }
-        % INTERMEDIATE RESULTS 
-        \textbf{Proof of (c)}. 
-        Using (b) and some algebra, we can derive: 
-        {\allowdisplaybreaks
-        \begin{align*}
-            & \frac{(L\alpha_k - \mu)^2}{2(L - \mu)} - \frac{\alpha_{k - 1}^2 L \rho_{k - 1}(1 - \alpha_k)}{2}
-            \\
-            &= \frac{(L\alpha_k - \mu)^2}{2(L - \mu)} - \frac{L\alpha_k(\alpha_k - \mu/L)}{2}
-            \\
-            &= \frac{1}{2(L - \mu)}\left(
-                (L\alpha_k - \mu)^2 - (L - \mu)L\alpha_k(\alpha_k - \mu/L)
-            \right)
-            \\
-            &= 
-            \frac{1}{2(L - \mu)}\left(
-                (L\alpha_k - \mu)^2 - (L - \mu)\alpha_k(L\alpha_k - \mu)
-            \right)
-            \\
-            &= \frac{L\alpha_k - \mu}{2(L - \mu)}\left(
-                L\alpha_k - \mu - (L - \mu)\alpha_k
-            \right)
-            \\
-            &= \frac{L\alpha_k - \mu}{2(L - \mu)}\left(
-                \mu\alpha_k - \mu
-            \right)
-            \\
-            &= \frac{(L\alpha_k - \mu)\mu(\alpha_k - 1)}{2(L - \mu)}. 
-        \end{align*}
-        }
-        % INTERMEDIATE RESULTS 
-        \textbf{Proof of (d)}. 
-        {\allowdisplaybreaks
-        \begin{align*}
-            &- \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
-            + \frac{L - \mu}{2}\Vert z_k - y_k\Vert^2
-            \\
-            &\underset{\text{\circled{1}}}{=} 
-            -\frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
-            + \frac{L - \mu}{2}
-            \left\Vert 
-                \frac{L\alpha_k - \mu}{L - \mu}(\bar x - v_{k - 1}) + 
-                \frac{\mu(1 - \alpha_k)}{L - \mu}(\bar x - x_{k - 1})
-            \right\Vert^2
-            \\
-            &= 
-            - \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
-            + \frac{(L\alpha_k - \mu)^2}{2(L - \mu)} \Vert \bar x - v_{k - 1}\Vert^2
-            \\
-            &\quad
-                + \frac{\mu^2(1 - \alpha_k)^2}{2(L - \mu)} \Vert \bar x - x_{k - 1}\Vert^2
-                + \frac{(L\alpha_k - \mu)\mu(1 - \alpha_k)}{L - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
-            \\
-            &= \left(
-                \frac{\mu^2(1 - \alpha_k)^2}{2(L - \mu)} - \frac{\mu\alpha_k(1 - \alpha_k)}{2}
-            \right)\Vert \bar x - x_{k - 1}\Vert^2
-                \\ &\quad 
+                    + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    + \frac{\epsilon_k}{2}\expect_k \left[\Vert y_k - x_k \Vert^2\right] 
+                    - \frac{L - \epsilon_k}{2}\expect_k \left[\Vert z_k - x_k\Vert^2\right]
+                \\&= 
+                (1 - \alpha_k)\left(
+                    F(x_{k - 1}) - F(\bar x)
+                    + \frac{\alpha_{k - 1}^2L\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \right)
+                    \\ &\quad 
+                    + F(\bar x) - \expect_kF(x_k) 
+                    - \frac{L - \epsilon_k}{2}\expect_k \left[\Vert z_k - x_k\Vert^2\right]
+                    + \frac{\epsilon_k}{2}\expect_k \left[\Vert y_k - x_k \Vert^2\right] 
+                \\
+                &\underset{\circled{3}}{=} 
+                (1 - \alpha_k)\left(
+                    F(x_{k - 1}) - F(\bar x)
+                    + \frac{\alpha_{k - 1}^2L\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \right)
+                    \\ &\quad 
+                    + F(\bar x) - \expect_kF(x_k) 
+                    - \frac{\alpha_k^2(L - \epsilon_k)}{2}\expect_k \left[\Vert v_k - \bar x\Vert^2\right]
+                    + \frac{\epsilon_k}{2}\expect_k \left[\Vert y_k - x_k \Vert^2\right]. 
+            \end{align*}
+            }
+            \textcolor{red}{Explanations for \circled{1}, \circled{2}, \circled{3} are not done yet}. 
+            \par
+            The above produces the following inequality: 
+            \begin{align}\begin{split}
+                & \expect_kF(x_k) - F(\bar x) - \frac{\alpha_k^2(L - \epsilon_k)}{2}\expect_k \left[\Vert v_k - \bar x\Vert^2\right]
+                \\
+                &\le 
+                (1 - \alpha_k)\left(
+                    F(x_{k - 1}) - F(\bar x)
+                    + \frac{\alpha_{k - 1}L\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \right) + \frac{\epsilon_k}{2}\expect_k \left[\Vert y_k - x_k \Vert^2\right]. 
+            \end{split}\end{align}
+            % INTERMEDIATE RESULTS 
+            \par \textbf{Proof of (a)}. 
+            Using basic algebra: 
+            {\allowdisplaybreaks
+            \begin{align*}
+                & \frac{\mu^2(1 - \alpha_k)^2}{2(L - \mu)} 
+                - \frac{\mu\alpha_k(1 - \alpha_k)}{2}
+                \\
+                &= 
+                \frac{1}{2\left(L - \mu\right)}
+                \left(
+                    \mu^2(1 - \alpha_k)^2
+                    - \left(L - \mu\right)\mu \alpha_k(1 - \alpha_k)
+                \right)
+                \\
+                &= \frac{1 - \alpha_k}{2\left(L - \mu\right)}\left(
+                    \mu^2 
+                    - \mu^2\alpha_k 
+                    - \left(L \mu \alpha_k - \mu^2 \alpha_k\right)
+                \right)
+                \\
+                &= 
+                \frac{1 - \alpha_k}{2(L - \sigma)}\left(
+                    \mu^2 - L\left(\mu\right)\alpha_k
+                \right)
+                \\
+                &= 
+                \frac{(1 - \alpha_k)\mu\left(\mu - L\alpha_k\right)}
+                {2\left(L - \mu\right)}
+                \\
+                &= \frac{(\alpha_k - 1)\mu\left(L\alpha_k - \mu\right)}
+                {2\left(L - \mu\right)}. 
+            \end{align*}
+            }
+            % INTERMEDIATE RESULTS 
+            \textbf{Proof of (c)}. 
+            Using (b) and some algebra, we can derive: 
+            {\allowdisplaybreaks
+            \begin{align*}
+                & \frac{(L\alpha_k - \mu)^2}{2(L - \mu)} - \frac{\alpha_{k - 1}^2 L \rho_{k - 1}(1 - \alpha_k)}{2}
+                \\
+                &= \frac{(L\alpha_k - \mu)^2}{2(L - \mu)} - \frac{L\alpha_k(\alpha_k - \mu/L)}{2}
+                \\
+                &= \frac{1}{2(L - \mu)}\left(
+                    (L\alpha_k - \mu)^2 - (L - \mu)L\alpha_k(\alpha_k - \mu/L)
+                \right)
+                \\
+                &= 
+                \frac{1}{2(L - \mu)}\left(
+                    (L\alpha_k - \mu)^2 - (L - \mu)\alpha_k(L\alpha_k - \mu)
+                \right)
+                \\
+                &= \frac{L\alpha_k - \mu}{2(L - \mu)}\left(
+                    L\alpha_k - \mu - (L - \mu)\alpha_k
+                \right)
+                \\
+                &= \frac{L\alpha_k - \mu}{2(L - \mu)}\left(
+                    \mu\alpha_k - \mu
+                \right)
+                \\
+                &= \frac{(L\alpha_k - \mu)\mu(\alpha_k - 1)}{2(L - \mu)}. 
+            \end{align*}
+            }
+            % INTERMEDIATE RESULTS 
+            \textbf{Proof of (d)}. 
+            {\allowdisplaybreaks
+            \begin{align*}
+                &- \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+                + \frac{L - \mu}{2}\Vert z_k - y_k\Vert^2
+                \\
+                &\underset{\text{\circled{1}}}{=} 
+                -\frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+                + \frac{L - \mu}{2}
+                \left\Vert 
+                    \frac{L\alpha_k - \mu}{L - \mu}(\bar x - v_{k - 1}) + 
+                    \frac{\mu(1 - \alpha_k)}{L - \mu}(\bar x - x_{k - 1})
+                \right\Vert^2
+                \\
+                &= 
+                - \frac{\mu\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+                + \frac{(L\alpha_k - \mu)^2}{2(L - \mu)} \Vert \bar x - v_{k - 1}\Vert^2
+                \\
+                &\quad
+                    + \frac{\mu^2(1 - \alpha_k)^2}{2(L - \mu)} \Vert \bar x - x_{k - 1}\Vert^2
+                    + \frac{(L\alpha_k - \mu)\mu(1 - \alpha_k)}{L - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
+                \\
+                &= \left(
+                    \frac{\mu^2(1 - \alpha_k)^2}{2(L - \mu)} - \frac{\mu\alpha_k(1 - \alpha_k)}{2}
+                \right)\Vert \bar x - x_{k - 1}\Vert^2
+                    \\ &\quad 
+                    + 
+                    \left(
+                        \frac{(L\alpha_k - \mu)^2}{2(L - \mu)}
+                        - \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}
+                    \right)\Vert \bar x - v_{k - 1}\Vert^2
+                    \\ &\quad 
+                    + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    + \frac{(L\alpha_k - \mu)\mu(1 - \alpha_k)}{L - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
+                \\
+                &\underset{\text{(a)}}{=} 
+                \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\Vert \bar x - x_{k - 1}\Vert^2
                 + 
                 \left(
                     \frac{(L\alpha_k - \mu)^2}{2(L - \mu)}
                     - \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}
                 \right)\Vert \bar x - v_{k - 1}\Vert^2
                 \\ &\quad 
-                + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                + \frac{(L\alpha_k - \mu)\mu(1 - \alpha_k)}{L - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
-            \\
-            &\underset{\text{(a)}}{=} 
-            \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\Vert \bar x - x_{k - 1}\Vert^2
-            + 
-            \left(
-                \frac{(L\alpha_k - \mu)^2}{2(L - \mu)}
-                - \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}
-            \right)\Vert \bar x - v_{k - 1}\Vert^2
-            \\ &\quad 
-                + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                + \frac{(L\alpha_k - \mu)\mu(1 - \alpha_k)}{L - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
-            \\
-            &\underset{\text{(c)}}{=}
-            \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\Vert \bar x - x_{k - 1}\Vert^2
-            + 
-            \frac{\mu(L\alpha_k - \mu)(\alpha_k - 1)}{2(L - \mu)}\Vert \bar x - v_{k - 1}\Vert^2
-            \\ &\quad 
-                + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                + \frac{(L\alpha_k - \mu)\mu(1 - \alpha_k)}{L - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
-            \\
-            &= 
-            \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-            \\ & \quad
-                + \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\left(
-                    \Vert \bar x - x_{k - 1}\Vert^2 + \Vert \bar x - v_{k - 1}\Vert^2 - 2\langle\bar x - x_{k - 1},\bar x - v_{k - 1} \rangle
-                \right)
-            \\
-            &= \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
-            + \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\Vert x_{k - 1} - v_{k - 1}\Vert^2. 
-        \end{align*}
-        }
-        At label \circled{1} we used results (i) from Lemma \ref{lemma:snag-identities}. 
-    \end{proof}
+                    + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    + \frac{(L\alpha_k - \mu)\mu(1 - \alpha_k)}{L - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
+                \\
+                &\underset{\text{(c)}}{=}
+                \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\Vert \bar x - x_{k - 1}\Vert^2
+                + 
+                \frac{\mu(L\alpha_k - \mu)(\alpha_k - 1)}{2(L - \mu)}\Vert \bar x - v_{k - 1}\Vert^2
+                \\ &\quad 
+                    + \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    + \frac{(L\alpha_k - \mu)\mu(1 - \alpha_k)}{L - \mu}\langle \bar x - x_{k - 1}, \bar x - v_{k - 1}\rangle
+                \\
+                &= 
+                \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \\ & \quad
+                    + \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\left(
+                        \Vert \bar x - x_{k - 1}\Vert^2 + \Vert \bar x - v_{k - 1}\Vert^2 - 2\langle\bar x - x_{k - 1},\bar x - v_{k - 1} \rangle
+                    \right)
+                \\
+                &= \frac{\alpha_{k - 1}^2L \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{(\alpha_k - 1)\mu(L\alpha_k - \mu)}{2(L - \mu)}\Vert x_{k - 1} - v_{k - 1}\Vert^2. 
+            \end{align*}
+            }
+            At label \circled{1} we used results (i) from Lemma \ref{lemma:snag-identities}. 
+        \end{proof}
+
+\subsection{Discussion}
 
 \bibliographystyle{siam}
 
