@@ -11,6 +11,8 @@
 \newcommand{\cov}{\ensuremath{\operatorname{Cov}}}
 \newcommand{\var}{\ensuremath{\operatorname{Var}}}
 \newcommand{\expect}{\ensuremath{\mathbb E}}
+\newcommand{\prob}{\ensuremath{\mathbb P}}
+\newcommand{\dist}{\ensuremath{\operatorname{dist}}}
 \usepackage{tikz}\newcommand*\circled[1]{
     \text{
         \hspace{-0.5em}\tikz[baseline=(char.base)]{
@@ -88,7 +90,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     $I$ denotes the identity operator. 
     \par
     When two expressions are connected via non-trivial results, it's expressed with $\underset{(\cdot)}{=}, \underset{(\cdot)}{\ge}$ where $(\cdot)$ is a label of some intermediate results immediately before it, or explained right after a chain of expressions. 
-    If the label is letter, like: (a), (b), ..., then they are stated in advanced at the start of the proof and they are usually non-trivial results. 
+    If the label is letter, like: (a), (b), ..., then they are stated in advanced at the start of the proof and, they are usually non-trivial results. 
     These labels are reused in every proof. 
     If the label is circled numbers, like: \circled{1}, \circled{2},... they are explained right after the chain of relations, and they are often reused right after their explanations. 
     \subsection{Basic definitions}
@@ -106,6 +108,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{remark}
             If the function $g \equiv 0$, then it yields the gradient descent operator $T_\beta(x) = x - \beta^{-1}\nabla f(x)$. 
             In the context where it's clear what the function $F = f + g$ is, we simply write $T_\beta(x)$ for short. 
+            Note, it also has $T_\beta(x | f + g) = \hprox_{\beta^{-1}g}(x - \beta^{-1}\nabla f(x))$ in optimization literatures. 
         \end{remark}
         % --------------------------------------------------------------------------------------------------------------
         \begin{definition}[Bregman Divergence]
@@ -126,6 +129,23 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \frac{\mu}{2}\Vert x - y\Vert^2 \le D_f(x, y) \le \frac{L}{2}\Vert x - y\Vert^2. 
             \end{align*}
         \end{definition}
+        % --------------------------------------------------------------------------------------------------------------
+        \begin{definition}[Relative proximal gradient error ruler]\label{def:pg-err-ruler}
+            Let $F$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}. 
+            Fix any $x \in \RR^n$, suppose that $\tilde x$ is an estimated of $T_B(x|F)$. 
+            Then the relative proximal gradient error is a set defined as
+            \begin{align*}
+                S_B(\tilde x, x | F) := 
+                \partial \left[
+                    z \mapsto \partial g(x) + \langle \nabla f(x), z - x\rangle + 
+                    \frac{B}{2}\Vert x - z\Vert^2
+                \right](\tilde x). 
+            \end{align*}
+        \end{definition}
+        \begin{remark}
+            The definition exists to simplifies the notations for the discussions. 
+            When $B > 0$ by strong convexity, the set $\{z : \mathbf 0 \in S_B(z, x | F)\}$ is a singleton, conveniently. 
+        \end{remark}
     \subsection{Important inequalities}
         \begin{assumption}\label{ass:smooth-plus-nonsmooth}
             Suppose that $F = f + g$ where $f, g$ are both convex, proper and closed. 
@@ -146,20 +166,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{remark}
         \begin{lemma}[inexact proximal gradient inequality prototype]\label{lemma:inex-pg-ineq-proto}
             Let $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}. 
-            Fix some $x \in \RR^n$, and suppose that an error: $w$ is made when estimating the proximal to obtain $\tilde x$ at $x$ such that it's characterized by
-            \begin{align*}
-                w \in \partial \left[
-                    z \mapsto g(z) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2
-                \right](\tilde x)
-            \end{align*}
-            And in addition, assume that there exists some $B \ge 0$ such that $D_f(\tilde x, x) \le \frac{B}{2}\Vert \tilde x - x\Vert^2$. 
-            Then, for all $z \in \RR^n$ it satisfies: 
+            Fix any $x \in \RR^n$ there exists a $B \ge 0$,  $\tilde x$ be an estimate of $T_B(x | F)$ such that $D_f(\tilde x, x) \le B/2\Vert x - \tilde x\Vert^2$. 
+            Let $S_B(\tilde x, x | F)$ be given by Definition \ref{def:pg-err-ruler}. 
+            Then, for all $z \in \RR^n$ and, any $w \in S_B(\tilde x, x | F)$ it satisfies: 
             \begin{align*}
                 \frac{B}{2}\Vert z - \tilde x\Vert^2 &\le 
                 F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 - \langle w, z - \tilde x \rangle. 
             \end{align*}
         \end{lemma}
         \begin{proof}
+            Since $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}, for all $B \ge L$, it will be an obvious choice. 
             The proof is direct algebra. 
             Let $h = z \mapsto g(z) + \langle \nabla f(x), z - x\rangle + B/2\Vert z - x\Vert^2$. 
             $h$ is a $B$ strongly convex function, using the subgradient inequality of a strongly convex function it has for all $z \in \RR^n$: 
@@ -211,14 +227,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         % --------------------------------------------------------------------------------------------------------------
         \begin{lemma}[inexact proximal gradient inequality]\label{lemma:inex-pg-ineq}
             Let $F = f + g$ satisfies Definition \ref{def:lip-smooth-and-scnvx} with $L > \mu \ge 0$. 
-            Let $x \in \RR^n$ be fixed. 
-            Suppose an inexact evaluation of proximal gradient operator at $x$ yield an approximation $\tilde x$ such that: 
-            \begin{align*}
-                & (\exists w)(\exists \epsilon ): w \in \partial \left[
-                    z \mapsto  g(z) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2
-                \right](\tilde x), \Vert w\Vert \le \epsilon \Vert x - \tilde x\Vert. 
-            \end{align*}
-            Suppose that there exists some $B \ge 0$ such that $D_f(\tilde x, x) \le \frac{B}{2}\Vert \tilde x - x\Vert^2$. 
+            Fix arbitrary $x \in \RR^n$. 
+            Assume the followings: 
+            \begin{enumerate}[nosep]
+                \item $\tilde x$ estimates $T_B(x | F)$. 
+                \item $B \ge 0$ satisfies $D_f(\tilde x, x) \le B/2\Vert x - \tilde x\Vert^2$. 
+                \item Let $S_B(\tilde x, x | F)$ be given by Definition \ref{def:pg-err-ruler}. 
+            \end{enumerate}
+            Let $\epsilon \ge 0$ be such that $\Vert x - \tilde x\Vert\epsilon \ge \dist(\mathbf 0 |S_B(\tilde x, x | F))$.
             Then, for all $z\in \RR^n$ it satisfies the inequality: 
             \begin{align*}
                 0 &\le 
@@ -234,9 +250,19 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &\le F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 - 0 - \langle w, z - \tilde x \rangle
                 \\
                 &\underset{\text{\circled{1}}}{\le}
-                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 + \epsilon \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert. 
+                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
+                + \Vert w\Vert \Vert z - \tilde x\Vert. 
             \end{align*}
             At \circled{1}, we used Cauchy inequality. 
+            Since this is true for all $w \in S_B(\tilde x, x | F)$, it has: 
+            \begin{align*}
+                \frac{B}{2}\Vert z - \tilde x\Vert^2
+                &\le F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
+                + \dist(\mathbf 0 | S_B(\tilde x, x | F))\Vert z - \tilde x\Vert
+                \\
+                &\le
+                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 + \epsilon \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert. 
+            \end{align*}
             Continuing it has 
             \begin{align*}
                 0 &\le 
@@ -298,16 +324,19 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \textbf{We very much would like $\epsilon$ to be a constant to make the algebra possible when deriving the convergence rate of the algorithm. }
         \par
         The following lemma gives a proximal gradient inequality when $\tilde \nabla f(x)$ is an estimate by some random variable, \textbf{and it is the precursor.} 
-        \begin{lemma}[stochastic proximal gradient inequality]\label{lemma:stoch-pg-ineq}
+        \begin{lemma}[proximal stochastic gradient inequality]\label{lemma:pg-stoch-ineq}
             Let $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}. 
             Fix any $x, z \in \RR^n$. 
-            Suppose that, $\tilde \nabla f(x)$ is a random variable which estimates $\nabla f(x)$, cause proximal gradient operator to produce error $w$, and estimate $\tilde x$ as given by \ref{lemma:inex-pg-ineq-proto}. 
-            Assume there exists $B \ge 0$ be constant such that $D_f(\tilde x,x)\le B/2 \Vert x - \tilde x\Vert^2$. 
-            Then, it would have $w = \nabla f(x) - \tilde \nabla f(x)$. 
-            If in addition, there exists an $\epsilon \ge 0$: 
+            Assume the following
+            \begin{enumerate}[nosep]
+                \item $\tilde \nabla f(x)$ is a random variable which estimates $\nabla f(x)$, which produces the estimate $\tilde x$. 
+                \item There exists $B \ge 0$ such that $D_f(\tilde x,x)\le B/2 \Vert x - \tilde x\Vert^2$. 
+            \end{enumerate}
+            If in addition, there exists some $\epsilon \ge 0$: 
             \begin{align*}
                 \expect \left[
-                    \Vert w\Vert \Vert z - \tilde x\Vert
+                    \left\Vert \nabla f(x) - \tilde \nabla f(x)\right\Vert 
+                    \Vert z - \tilde x\Vert
                 \right] &\le 
                 \epsilon \expect \left[
                     \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
@@ -322,14 +351,19 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
         \end{lemma}
         \begin{proof}
-            The reason for $w = \nabla f(x) - \tilde \nabla f(x)$ is explained in \eqref{eqn:stoch-grad-err-vec}. 
+            The can choose $w = \nabla f(x) - \tilde \nabla f(x) \in S_B(\tilde x, x | F)$ which is explained in \eqref{eqn:stoch-grad-err-vec}. 
             Using Lemma \ref{lemma:inex-pg-ineq-proto}, for any fixed $z$ it has: 
             \begin{align*}
                 \frac{B}{2}\Vert z - \tilde x\Vert^2 &\le 
                 F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 - \langle w, z - \tilde x\rangle
                 \\
                 &\le 
-                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 + \Vert w\Vert\Vert z - \tilde x\Vert. 
+                F(z) - F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 + \Vert w\Vert\Vert z - \tilde x\Vert
+                \\
+                &= 
+                F(z) - F(\tilde x) 
+                + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
+                + \left\Vert \nabla f(x) - \tilde \nabla f(x)\right\Vert\Vert z - \tilde x\Vert. 
             \end{align*}
             Take note that, since $w = \nabla f(x) - \tilde \nabla f(x)$ is a random variable, it determines that $\tilde x$ is also a random variable related to $w$. 
             Here, $x, z$ is not a random variable. 
@@ -351,7 +385,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &= 
                 F(z) - \expect F(\tilde x) + \frac{\max(B, L) - \mu}{2}\Vert z - x\Vert^2 
                 + \expect\left[
-                    \epsilon\Vert w\Vert\Vert z - \tilde x\Vert
+                    \epsilon\Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
                     - \frac{B}{2} \Vert z - \tilde x\Vert^2
                 \right]
                 \\
@@ -374,53 +408,125 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \right]. 
             \end{align*}
         \end{proof}
-        \begin{remark}
-            In practice, is chosen in prior to satisfies $B \ge L$. 
-            In here, $z, x$ is not a random variable, $\epsilon$ just a constant, but it's determined by $z$ and $x$. 
-            Assuming $z \neq \tilde x$ and, $\tilde x \neq x$, then one of the smallest choice for it in this lemma is
-            \begin{align*}
-                \frac{
+        In practice, is chosen in prior to satisfies $B \ge L$. 
+        In here, $z, x$ is not a random variable, $\epsilon$ just a constant, but it's determined by $z$ and $x$. 
+        Assuming $z \neq \tilde x$ and, $\tilde x \neq x$, then one of the smallest choice for it in this lemma is
+        \begin{align*}
+            \frac{
                 \expect \left[
                     \left\Vert \nabla f(x) - \tilde \nabla f(x) \right\Vert \Vert z - \tilde x\Vert
                 \right]
-                }{
+            }{
+            \expect \left[
+                \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
+            \right]
+            } &= \epsilon. 
+        \end{align*}
+        It depends on both $z$ and $x$. 
+        Let's think about the edge case. 
+        When $\expect [\Vert x - \tilde x\Vert\Vert z - \tilde x\Vert] = 0$, it must be that both $\Vert x - \tilde x\Vert,\Vert z - \tilde x\Vert$ are zero, indicating that $\nabla f(x) = \tilde \nabla f(x)$ and, $x = \tilde x = z$. 
+        Otherwise we can assume $\prob(\Vert x - \tilde x\Vert\Vert z - \tilde x\Vert > 0) > 0$ and, the expectation has: 
+        \begin{align*}
+            & \expect \left[
+                \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
+            \right] 
+            \\&= 
+            \expect\left[
+                \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert \;|\; 
+                \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert > 0
+            \right]\prob(
+                \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert > 0
+            ). 
+        \end{align*}
+        Let's suppose that $\tilde \nabla f(x)$ is a random variable comes from the space: $\Omega(x)$, then it has the following: 
+        {\small
+        \begin{align*}
+            & \expect \left[
+                \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert \; | \; 
+                \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert > 0
+            \right] 
+            \\
+            &\ge
+            \min_{y \in \Omega(x)}\left\lbrace
+                \Vert x - \tilde x\Vert
+                :x\neq \tilde x = \argmin_{z}\left\lbrace
+                    g(z) + \langle y, z\rangle + \frac{B}{2}\Vert z - x\Vert^2
+                \right\rbrace
+            \right\rbrace
+            \prob(
+                \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert > 0
+            )
+            \expect\Vert z - \tilde x\Vert, 
+            \\
+            & \expect \left[
+                \left\Vert \nabla f(x) - \tilde \nabla f(x) \right\Vert \Vert z - \tilde x\Vert
+            \right]
+            \\
+            &\le 
+            \max_{y \in \Omega(x)}\left\lbrace
+                \Vert \nabla f(x) - y\Vert 
+            \right\rbrace\expect\Vert z - \tilde x \Vert, 
+        \end{align*}
+        }
+        And it would mean: 
+        {\small
+        \begin{align*}
+            \epsilon &= 
+            \frac{
                 \expect \left[
-                    \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
+                    \left\Vert  \nabla f(x) - \tilde \nabla f(x) \right\Vert \Vert z - \tilde x\Vert
                 \right]
-                } &= \epsilon. 
-            \end{align*}
-            Otherwise, $\epsilon = 0$ is an obvious choice and, it's the smallest. 
-            It depends on both $z$ and $x$. 
-            \par
-            Of course, look, if there is no random variable and $\tilde \nabla f(x)$ is simply not a probabilistic estimate then the expectation is gone and $x\neq \tilde x$, it has: 
-            \begin{align*}
-                \epsilon = \frac{\left\Vert
-                    \nabla f(x) - \tilde \nabla f(x)
-                \right\Vert}{\Vert x - \tilde x\Vert}.
-            \end{align*}
-            And in this case, it doesn't on $z$. 
-        \end{remark}
+            }{
+            \expect \left[
+                \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
+            \right]
+            }\\
+            &\le \frac{
+                \max_{y \in \Omega(x)}\Vert \nabla f(x) - y\Vert 
+            }{
+                \min_{y \in \Omega(x)}\left\lbrace
+                    \Vert x - \tilde x\Vert:
+                    x\neq \tilde x = \argmin_{z}\left\lbrace
+                    g(z) + \langle y, z\rangle + \frac{B}{2}\Vert z - x\Vert^2
+                \right\rbrace
+                \right\rbrace
+                \prob(
+                    \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert > 0
+                )
+            }. 
+        \end{align*}
+        }
+        \par
+        Of course, look, if there is no random variable and $\tilde \nabla f(x)$ is simply not a probabilistic estimate then the expectation is gone and $x\neq \tilde x$, it has: 
+        \begin{align*}
+            \epsilon = \frac{\left\Vert
+                \nabla f(x) - \tilde \nabla f(x)
+            \right\Vert}{\Vert x - \tilde x\Vert}.
+        \end{align*}
+        And in this case, it has nothing to do with $z$. 
 
 
 \section{Stochastic/Inexact accelerated proximal gradient algorithm}
     The following defines the inexact proximal gradient operator where the gradient of the smooth part of the function is estimated. 
     All algorithms satisfying the following definition will be referred to as Stochastic Nesterov's Accelerated Gradient (SNAG). 
     % ------------------------------------------------------------------------------------------------------------------
-    \begin{definition}[inexact proximal gradient operator with relative error]
+    \begin{definition}[proximal inexact gradient operator with relative error]
         Let $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}, let $x \in \RR^n$ be fixed. 
         Suppose that $\tilde \nabla f(x)$ estimates $\nabla f(x)$. 
         We define the inexact proximal gradient operator by the relationships between: 
         \begin{enumerate}[nosep]
-            \item $\tilde x = \mathbf T_B^{(\epsilon)}(x | F)$ is an inexact output of proximal gradient operator by evaluating on $\tilde \nabla f(x)$. 
+            \item $\tilde x = \mathbf T_B(x | F)$ is an inexact output of proximal gradient operator by evaluating on $\tilde \nabla f(x)$. 
             \item $B \ge 0$ is any constant such that it satisfies $D_f(\tilde x, x) \le B/2\Vert \tilde x - x\Vert^2$. 
             \item $\epsilon \ge 0$ is a constant that quantifies the error of inexact evaluation. 
         \end{enumerate}
-        Then, we define the error $\epsilon$ by: 
+        Then, we define the relative error $\epsilon$ by: 
         \begin{align*}
             \epsilon = \begin{cases}
                 \frac{\left\Vert \tilde \nabla f(x) - \nabla f(x)\right\Vert}{\Vert x - \tilde x\Vert} & \text{if } x \neq \tilde x, 
                 \\
-                0 & \text{else } x = \tilde x. 
+                \infty & \text{if } x = \tilde x, \nabla f(x) \neq \tilde \nabla f(x), 
+                \\
+                0 & \text{if } x = \tilde x, \nabla f(x) = \tilde \nabla f(x). 
             \end{cases}
         \end{align*}
         And the inexact output is defined as: 
@@ -441,10 +547,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Then stochastic proximal gradient operator are the relationships between
         \begin{enumerate}[nosep]
             \item $\tilde x= \mathbf{\widetilde T}_B(x| F)$, an inexact output of proximal gradient operator by evaluating on $\tilde \nabla f(x)$. 
-            \item $\epsilon$ an error which is pre-determined constant. 
             \item Any $B \ge 0$ such that it satisfies $D_f(\tilde x, x) \le B/2\Vert x - \tilde x\Vert^2$. 
+            \item $\epsilon$ is an relative error, determined by $z, x, \tilde\nabla f(x)$ and, defined immediately below. 
         \end{enumerate}
-        Here, $\epsilon$ satisfies: 
+        The relative error $\epsilon$ is defined as: 
         \begin{align*}
             \epsilon 
             &= 
@@ -455,9 +561,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \right]
                 }{\expect \left[
                     \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
-                \right]} & \text{if } x \neq \tilde x \;\wedge\; z \neq \tilde x
+                \right]} 
+                & \text{if } \expect\left[\Vert x - \tilde x\Vert\Vert z - \tilde x\Vert\right] \neq 0, 
+                \vspace{0.5em}
                 \\
-                0 & \text{else }
+                \left.\begin{cases}
+                    0 & \expect \left[\left\Vert \nabla f(x) - \tilde \nabla f(x) \right\Vert \Vert z - \tilde x\Vert\right] = 0, 
+                    \\
+                    \infty & \text{else. } 
+                \end{cases}\right\rbrace
+                & \text{else. }
             \end{cases}
         \end{align*}
         Then the inexact proximal gradient operator with relative error $\epsilon$ is the random variable defined as: 
@@ -469,7 +582,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
     \end{definition}
     \begin{remark}
-        For this definition of the stochastic proximal gradient operator, Lemma \ref{lemma:stoch-pg-ineq} is applicable. 
+        For this definition of the stochastic proximal gradient operator, Lemma \ref{lemma:pg-stoch-ineq} is applicable. 
     \end{remark}
     % ------------------------------------------------------------------------------------------------------------------
     \begin{definition}[inexact/stochastic SNAG]\label{def:SNAG}
@@ -498,12 +611,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{remark}
         In the context of its usage, the constants $L, \mu$ are the Lipschitz smoothness constant  and, strong convexity constant associated with a smooth and strongly convex function. 
     \end{remark}
-    
+    The following lemma defines the conditions required for the a momentum sequence to be compatible with convergence claims. 
     % ------------------------------------------------------------------------------------------------------------------
-    \begin{lemma}[properties of the sequence]\label{lemma:seq-properties}
-            
+    \begin{lemma}[relaxed momentum sequence conditions]\label{lemma:seq-properties}
+        \todoinline{NOT FINISHED YET!!!}
     \end{lemma}
-    \subsection{building up the convergence results}
+    \begin{proof}
+    \end{proof}
+    \subsection{Building up the convergence results}
         In this section we derive a generic convergence results. 
         \par
         The following lemma states two important relationships on the iterates generated by Definition \ref{def:SNAG}. 
@@ -622,23 +737,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     + \frac{\alpha_{k - 1}L\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
                 \right) + \frac{\epsilon_k}{2}\expect_k \left[\Vert y_k - x_k \Vert^2\right].  
             \end{align*}
-            Define $z_k = \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$.
-            Then, the error sequence $(\epsilon_k)_{k \ge 0}$ is given by: 
-            \begin{align*}
-                (\forall k \ge 1)\; \epsilon_k = 
-                \frac{\expect_k\left[
-                    \left\Vert
-                        \tilde \nabla f(y_k) - \nabla f(y_k)
-                    \right\Vert
-                    \Vert \bar x - v_{k}\Vert
-                \right]
-                }{
-                    \expect_k\left[
-                        \Vert \bar x - v_{k}\Vert
-                        \Vert z_k - y_k\Vert
-                    \right]
-                }. 
-            \end{align*}
         \end{theorem}
         \begin{proof}
             The following intermediate results will clear out some algebras, they are all proved by the end of the proof. 
@@ -664,7 +762,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             We note that under this conditioning the only random variable is $\tilde \nabla f(y_k)$, so iterates $x_{k - 1}, v_{k - 1}, y_k$ are not random variables, but $x_k$, and $v_k$ are. 
             The sequence $(\alpha_k)_{k \ge 0}, (\epsilon_k)_{k \ge 0}$ are also not random variables. 
             \par
-            We use Lemma \ref{lemma:stoch-pg-ineq} with $x = y_k, z = z_k, \tilde x = x_{k}$ and, $B = L$ then it means: 
+            We use Lemma \ref{lemma:pg-stoch-ineq} with $x = y_k, z = z_k, \tilde x = x_{k}$ and, $B = L$ then it means: 
             {\allowdisplaybreaks
             \begin{align*}
                 0 &\le 
@@ -866,7 +964,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             At label \circled{1} we used results (i) from Lemma \ref{lemma:snag-identities}. 
         \end{proof}
 
-\subsection{Discussion}
+\section{Discussion, interpolation helps but it's not enough}
+    \subsection{The no error case}
+    \subsection{The degenerate case}
 
 \bibliographystyle{siam}
 
