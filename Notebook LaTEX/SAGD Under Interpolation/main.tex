@@ -611,12 +611,140 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{remark}
         In the context of its usage, the constants $L, \mu$ are the Lipschitz smoothness constant  and, strong convexity constant associated with a smooth and strongly convex function. 
     \end{remark}
-    The following lemma defines the conditions required for the a momentum sequence to be compatible with convergence claims. 
+    The following lemma defines the conditions required for the momentum sequence to be compatible with convergence claims. 
     % ------------------------------------------------------------------------------------------------------------------
     \begin{lemma}[relaxed momentum sequence conditions]\label{lemma:seq-properties}
-        \todoinline{NOT FINISHED YET!!!}
+        Let $(\alpha_k)_{k \ge 0}$, $L, \mu$ to be two constant such that it has $L > \mu \ge 0$. 
+        If we assume that the sequence has for all $k \ge 0: \alpha_k \ge \mu/L$, then we can define a positive sequence 
+        \begin{align*}
+            (\forall k \ge 1): \rho_{k - 1} = \frac{\alpha_k(\alpha_k - \mu/L)}{(1 - \alpha_k)\alpha_{k - 1}^2}. 
+        \end{align*}
+        And under this relationship, the followings are true inductively: 
+        \begin{enumerate}[nosep]
+            \item In general, for all $\rho_{k - 1} \ge 0$, it has $0\le \alpha_k \le \min\left(1, |\rho\alpha^2 - q| + \sqrt{\rho}\alpha\right)$. 
+            \item If $\alpha_{k - 1} \ge \mu/L$, then $\alpha_k \ge \mu/L$ too. 
+            \item If $\alpha_{k - 1} > \mu/L > 0$, then $\alpha_k \in (\mu/L, 1)$ for all $\rho_{k - 1} > 0$. 
+        \end{enumerate}
     \end{lemma}
     \begin{proof}
+        \textbf{Proof of item (i), (iii)}. 
+        With $\rho_{k - 1}(1 - \alpha_k)\alpha_{k - 1}^2 = \alpha_k(\alpha_k - \mu/L)$ it gives: 
+        \begin{align*}
+            \alpha_k 
+            &= \frac{1}{2}\left(
+                \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2
+                + \sqrt{
+                    \left(
+                        \rho_{k - 1}\alpha_{k - 1}^2 - \frac{\mu}{L}
+                    \right)^2 
+                    + 4\rho_{k - 1}\alpha_{k - 1}^2
+                }
+            \right)
+            > 0. 
+        \end{align*}
+        Focusing exclusively on the RHS, we omit the subscript and write $\alpha_{k - 1}, \rho_{k - 1}$ as $\alpha, \rho$. 
+        We also just write $q = \mu / L$. 
+        By definition, we have $L > \mu \ge 0$ hence, $q \in [0, 1)$.
+        We also note that the quantity $(r \alpha^2 + q)^2 + 4\rho \alpha$ is clearly $> 0$. 
+        We will show that there is an upper bound for the RHS in terms of $\rho, q$. 
+        Completing the square should give
+        \begin{align*}
+            0 &\le 
+            \left(
+                \rho \alpha^2 - q
+            \right)^2 + 4 \rho \alpha^2
+            \\
+            &= \rho^2\alpha^4 + q^2 - 2\rho\alpha^2q + 4 \rho \alpha^2
+            \\
+            &= \rho^2\alpha^4 + 2\rho(2 - q)\alpha^2 + q^2
+            \\
+            &= 
+            \rho^2\alpha^4 + 2\rho(2 - q)\alpha^2 
+            + \rho^2(2 - q)^2
+            - \rho^2(2 - q)^2
+            + q^2
+            \\
+            &= (\rho\alpha^2 + \rho(2 - q))^2 - \rho^2 (2 - q)^2 + q^2
+            \\
+            &= \rho^2(\alpha^2 + 2 - q)^2 
+            + q^2 
+            - \rho^2 (2 - q)^2
+            \\
+            &\le 
+            \rho^2(\alpha^2 + 2 - q)^2 
+            + \max(0, q^2 - \rho^2 (2 - q)^2). 
+        \end{align*}
+        The above is non-negative, taking the square root it has: 
+        \begin{align*}
+            \sqrt{\left(\rho \alpha^2 - q\right)^2 + 4 \rho \alpha^2} 
+            &\le 
+            \rho|\alpha^2 + 2 - q| 
+            + \sqrt{\max(0, q^2 - \rho^2 (2 - q)^2)}
+            \\
+            &\le 
+            \rho|\alpha^2 + 2 - q| 
+        \end{align*}
+        But look, if we directly apply the $\sqrt{a + b} \le \sqrt{a} + \sqrt{b}$ it has another upper bound which is: 
+        \begin{align}\label{ineq:seq-properties-pr3}
+            \sqrt{\left(\rho \alpha^2 - q\right)^2 + 4 \rho \alpha^2} 
+            &\le 
+            |\rho\alpha^2 - q| + 2\sqrt{\rho}\alpha. 
+        \end{align}
+        Both upper bounds apply and hence we have: 
+        \begin{align*}
+            \alpha_k 
+            &\le
+            \frac{1}{2}\left(
+                q - \rho\alpha^2 + \min\left(
+                    \rho|\alpha^2 + 2 - q|  , 
+                    |\rho\alpha^2 - q| + 2\sqrt{\rho}\alpha
+                \right)
+            \right)
+            \\
+            &= 
+            \frac{1}{2}\left(
+                q - \rho\alpha^2 + \min\left(
+                    \rho\alpha^2 + (2 - q)  , 
+                    |\rho\alpha^2 - q| + 2\sqrt{\rho}\alpha
+                \right)
+            \right)
+            \\
+            &= 
+            \frac{1}{2}\left(
+                \min\left(
+                    2, 
+                    |\rho\alpha^2 - q| + 2\sqrt{\rho}\alpha + q - \rho\alpha^2
+                \right)
+            \right)
+            \\
+            &= 
+            \min\left(
+                    1, 
+                    (1/2)|\rho\alpha^2 - q| + \sqrt{\rho}\alpha + (1/2)(q - \rho\alpha^2)
+                \right)
+            \\
+            &\le \min\left(
+                1, 
+                |\rho\alpha^2 - q| + \sqrt{\rho}\alpha
+            \right). 
+        \end{align*}
+        \par
+        \textbf{Proof of (ii)}. 
+        To see the lower bound, we assume that $\alpha_k \ge \mu/L$ , denote $\mu/L$ by $q$, we have the following: 
+        \begin{align}\label{ineq:seq-properties-pr5}
+            \alpha_k - q 
+            \underset{\circled{1}}{\ge} \alpha_k(\alpha_k - q) 
+            = \rho_{k - 1}(1 - \alpha_k)\alpha_{k - 1}^2
+            \underset{\circled{2}}{\ge} \rho_{k - 1}(1 - \alpha_k)q^2 \ge 0. 
+        \end{align}
+        At \circled{1}, we used the fact that $\alpha_k \le 1$ and $\alpha_k \ge 0$ from previous results. 
+        At \circled{2}, we used the assumption that $\alpha_{k - 1} \ge q \ge 0$. 
+        The last inequality is true because is $\rho_{k - 1} \ge 0, \alpha_k \le 1$. 
+        \par
+        \textbf{Proof of (iii)}. 
+        In addition, if $\alpha > \mu/L >  0$, then the inequality in \eqref{ineq:seq-properties-pr3} is strict, then it would instead make $\alpha_k < 1$. 
+        It will also make the inequality chain in \eqref{ineq:seq-properties-pr5} strict. 
+        Therefore, Item (iii) is true. 
     \end{proof}
     \subsection{Building up the convergence results}
         In this section we derive a generic convergence results. 
@@ -824,7 +952,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \par
             The above produces the following inequality: 
             \begin{align}\begin{split}
-                & \expect_kF(x_k) - F(\bar x) - \frac{\alpha_k^2(L - \epsilon_k)}{2}\expect_k \left[\Vert v_k - \bar x\Vert^2\right]
+                & \expect_kF(x_k) - F(\bar x) 
+                + \frac{\alpha_k^2(L - \epsilon_k)}{2}\expect_k \left[\Vert v_k - \bar x\Vert^2\right]
                 \\
                 &\le 
                 (1 - \alpha_k)\left(
