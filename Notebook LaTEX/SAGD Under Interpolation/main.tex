@@ -345,7 +345,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Then it has: 
             \begin{align*}
                 0 &\le 
-                F(z) + \expect F(\tilde x) + \frac{\max(B, L) - \mu}{2} \Vert z - x\Vert^2
+                F(z) - \expect F(\tilde x) + \frac{\max(B, L) - \mu}{2} \Vert z - x\Vert^2
                 - \frac{B - \epsilon}{2}\expect\left[\Vert z - \tilde x\Vert^2\right]
                 + \frac{\epsilon}{2} \expect\left[\Vert x - \tilde x\Vert^2\right]. 
             \end{align*}
@@ -425,7 +425,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         It depends on both $z$ and $x$. 
         Let's think about the edge case. 
         When $\expect [\Vert x - \tilde x\Vert\Vert z - \tilde x\Vert] = 0$, it must be that both $\Vert x - \tilde x\Vert,\Vert z - \tilde x\Vert$ are zero, indicating that $\nabla f(x) = \tilde \nabla f(x)$ and, $x = \tilde x = z$. 
-        Otherwise we can assume $\prob(\Vert x - \tilde x\Vert\Vert z - \tilde x\Vert > 0) > 0$ and, the expectation has: 
+        Otherwise, we can assume $\prob(\Vert x - \tilde x\Vert\Vert z - \tilde x\Vert > 0) > 0$ and, the expectation has: 
         \begin{align*}
             & \expect \left[
                 \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
@@ -857,13 +857,23 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Define $\expect_{k}$ to be the expectation conditioned on $\tilde \nabla f(y_i)$ for $i = 1, 2, \ldots, k - 1$. 
             Then for all $k \ge 1$, for all $\bar x \in \RR^n$ it satisfies the inequality: 
             \begin{align*}
-                & \expect_kF(x_k) - F(\bar x) - \frac{\alpha_k^2(L - \epsilon_k)}{2}\expect_k \left[\Vert v_k - \bar x\Vert^2\right]
+                & \expect_kF(x_k) - F(\bar x) 
+                + \frac{\alpha_k^2(L - \epsilon_k)}{2}\expect_k \left[\Vert v_k - \bar x\Vert^2\right]
                 \\
                 &\le 
                 (1 - \alpha_k)\left(
                     F(x_{k - 1}) - F(\bar x)
-                    + \frac{\alpha_{k - 1}L\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                \right) + \frac{\epsilon_k}{2}\expect_k \left[\Vert y_k - x_k \Vert^2\right].  
+                    + \frac{\alpha_{k - 1}^2L\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \right) 
+                + \frac{\epsilon_k}{2}\expect_k \left[\Vert y_k - x_k \Vert^2\right].  
+            \end{align*}
+            In the edge case of $k = 0$, it has: 
+            \begin{align*}
+                \expect_0 F(x_0) - F(\bar x)  
+                + \frac{L - \epsilon}{2}\expect_0\left[\Vert \bar x - x_0\Vert^2\right]
+                &\le 
+                \frac{L - \mu}{2} \Vert \bar x - v_{-1}\Vert^2
+                + \frac{\epsilon}{2}\expect_0\left[\Vert v_{-1} - x_0\Vert^2\right]. 
             \end{align*}
         \end{theorem}
         \begin{proof}
@@ -948,9 +958,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     + \frac{\epsilon_k}{2}\expect_k \left[\Vert y_k - x_k \Vert^2\right]. 
             \end{align*}
             }
-            \textcolor{red}{Explanations for \circled{1}, \circled{2}, \circled{3} are not done yet}. 
-            \par
-            The above produces the following inequality: 
+            At \circled{1}, we used Lemma \ref{thm:jesen}. 
+            For \circled{3}, we used Lemma \ref{lemma:seq-properties} (i) and (b) because the sequence $\alpha_k \le 1$, therefore $1 - \alpha_k \le 1$. 
+            Next, $\alpha_0 = 1 > \mu/L$, Lemma \ref{lemma:seq-properties} (ii) applies too, hence it also has $L\alpha_k - \mu \ge 0$. 
+            Since $L > \mu$ always, the coefficient on $\Vert x_{k - 1} - v_{k - 1}\Vert^2$ is always $\le 0$, therefore the term can be removed to give an inequality. 
+            At \circled{3}, we used Lemma \ref{lemma:snag-identities} (ii). 
+            Therefore, at the end the chain of inequalities from above produced the following inequality: 
             \begin{align}\begin{split}
                 & \expect_kF(x_k) - F(\bar x) 
                 + \frac{\alpha_k^2(L - \epsilon_k)}{2}\expect_k \left[\Vert v_k - \bar x\Vert^2\right]
@@ -958,9 +971,31 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &\le 
                 (1 - \alpha_k)\left(
                     F(x_{k - 1}) - F(\bar x)
-                    + \frac{\alpha_{k - 1}L\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    + \frac{\alpha_{k - 1}^2L\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
                 \right) + \frac{\epsilon_k}{2}\expect_k \left[\Vert y_k - x_k \Vert^2\right]. 
             \end{split}\end{align}
+            Next, we handle the Edge case of $k = 0$. 
+            The base case has $\alpha_0 = 1$, and $v_{-1} = x_{-1}$. 
+            Then, the following consequences will be immediate. 
+            Fom Definition \ref{def:SNAG}, $\alpha_0 = 1$ makes $\tau_0 = 0$, so $y_0 = v_{-1}$. 
+            Followed by it, $x_0 = \tilde {\mathbf T}_L(y_0 | F) = \widetilde{\mathbf T}_L(v_{-1} | F)$. 
+            Therefore, we can apply Lemma \ref{lemma:pg-stoch-ineq} with $z = \bar x$, $\tilde x = x_0$, $x = v_{-1}$, and $\epsilon = \epsilon_0$ it yields: 
+            {\small
+            \begin{align*}
+                0
+                &\le 
+                F(z) - \expect_0 F(\tilde x)
+                + \frac{L - \mu}{2} \Vert z - x\Vert^2
+                - \frac{L - \epsilon}{2}\expect_0\left[\Vert z - \tilde x\Vert^2\right]
+                + \frac{\epsilon}{2} \expect_0\left[\Vert x - \tilde x\Vert^2\right]
+                \\
+                &= 
+                F(\bar x) - \expect_0 F(x_0)
+                + \frac{L - \mu}{2} \Vert \bar x - v_{-1}\Vert^2
+                - \frac{L - \epsilon}{2}\expect_0\left[\Vert \bar x - x_0\Vert^2\right]
+                + \frac{\epsilon}{2}\expect_0\left[\Vert v_{-1} - x_0\Vert^2\right].
+            \end{align*}
+            }
             % INTERMEDIATE RESULTS 
             \par \textbf{Proof of (a)}. 
             Using basic algebra: 
@@ -983,7 +1018,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \right)
                 \\
                 &= 
-                \frac{1 - \alpha_k}{2(L - \sigma)}\left(
+                \frac{1 - \alpha_k}{2(L - \mu)}\left(
                     \mu^2 - L\left(\mu\right)\alpha_k
                 \right)
                 \\
