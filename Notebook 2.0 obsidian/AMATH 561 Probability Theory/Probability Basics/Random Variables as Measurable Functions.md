@@ -2,7 +2,7 @@
 alias: Random variables basics with measure theory, Random variable Distribution function
 
 ---
-[[Probability Spaces]]
+- [[Probability Spaces]]
 
 
 ---

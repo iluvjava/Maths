@@ -959,7 +959,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             }
             At \circled{1}, we used Lemma \ref{thm:jesen}. 
-            For \circled{3}, we used Lemma \ref{lemma:seq-properties} (i) and (b) because the sequence $\alpha_k \le 1$, therefore $1 - \alpha_k \le 1$. 
+            For \circled{3}, we used Lemma \ref{lemma:seq-properties} (i) and (b) because the sequence $\alpha_k \le 1$, therefore $1 - \alpha_k \le 0$. 
             Next, $\alpha_0 = 1 > \mu/L$, Lemma \ref{lemma:seq-properties} (ii) applies too, hence it also has $L\alpha_k - \mu \ge 0$. 
             Since $L > \mu$ always, the coefficient on $\Vert x_{k - 1} - v_{k - 1}\Vert^2$ is always $\le 0$, therefore the term can be removed to give an inequality. 
             At \circled{3}, we used Lemma \ref{lemma:snag-identities} (ii). 
@@ -1127,8 +1127,18 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             }
             At label \circled{1} we used results (i) from Lemma \ref{lemma:snag-identities}. 
         \end{proof}
-
-\section{Discussion, interpolation helps but it's not enough}
+        Obtaining the convergence results from the lemma requires a recursive relation in expectation. 
+        Before we start, here are some techinical details regarding conditional expectations. 
+        Conditional expectation wrt to a random variable is not directly defined, it's instead only defined with respect to some Sigma algebra. 
+        \par
+        The following theorem gives necessary results to derive the convergence rate of the algorithm in expectations. 
+        \begin{theorem}[SNAG descent lemma in expectations]\label{thm:snag-descent-expe}
+            
+        \end{theorem}
+        \begin{proof}
+            
+        \end{proof}
+\section{Discussion, interpolation helps but, it's not enough}
     \subsection{The no error case}
     \subsection{The degenerate case}
 
