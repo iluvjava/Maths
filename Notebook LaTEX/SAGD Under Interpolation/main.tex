@@ -845,6 +845,19 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &= \alpha_k (\bar x - v_k).
             \end{align*}
         \end{proof}
+        Remark the following definitions
+        \begin{definition}[conditional expectations]
+            Given probability space $(\Omega, \mathcal F_0, \prob)$ and, $\mathcal F \subseteq \mathcal F_0$, and a random variable $X \in \mathcal F$ such that $\expect |X| < \infty$. 
+            We define the conditional expectation of $X$ given $\mathcal F$, $\expect [X| \mathcal F]$ to be any random variable $Y$ that has 
+            \begin{enumerate}[nosep]
+                \item $Y \in \mathcal F$, i.e: $Y$ is $\mathcal F$ measurable. 
+                \item For all $A \in \mathcal F$, $\int_A X d\prob = \int_A Y d\prob$. 
+            \end{enumerate}
+        \end{definition}
+        \begin{remark}
+            \todoinline{CITATIONS HERE NEEDED. }
+        \end{remark}
+        The conditional expectation exists and it's unique. 
         The following theorem given an inequality characterizing a descent relation for the SNAG algorithm. 
         % --------------------------------------------------------------------------------------------------------------
         \begin{theorem}[SNAG descent lemma]\label{thm:snag-descent}
@@ -1129,8 +1142,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{proof}
         Obtaining the convergence results from the lemma requires a recursive relation in expectation. 
         Before we start, here are some techinical details regarding conditional expectations. 
-        Conditional expectation wrt to a random variable is not directly defined, it's instead only defined with respect to some Sigma algebra. 
-        \par
+        Conditional expectation wrt to a random variable is not directly defined, it's instead only defined with respect to some sigma algebra. 
+        The conditional expectation exists, and it's unique. 
         The following theorem gives necessary results to derive the convergence rate of the algorithm in expectations. 
         \begin{theorem}[SNAG descent lemma in expectations]\label{thm:snag-descent-expe}
             
