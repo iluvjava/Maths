@@ -43,9 +43,6 @@ Furthermore, recall that a function of Legendre type on a convex set $C$ is only
 The above fact should clarify the domain of the Bregman distance being $\text{dom}(\omega)\times \text{dom}(\partial \omega)$ because the domain of the subgradient may not be the domain of the function, for a differentiable convex function. 
 
 
-
-
-
 ---
 ### **The 3 Points Lemma**
 

@@ -4,6 +4,7 @@ alias: Conic Programming Error Bounds
 ---
 - [Dual Cone](Background/Dual%20Cone.md)
 - [KKT, Slater's Conditions](Duality/KKT,%20Slater's%20Conditions.md)
+- [Hoffman Error Bound](Hoffman%20Error%20Bound.md)
 
 ---
 ### **Intro**
@@ -24,7 +25,6 @@ Where:
 - $b \in \R^n$. 
 - $\mathcal L$ is a subspace of $\mathcal \R^n$. 
 - $\mathcal K \subseteq \R^n$. Further, assume that $\mathcal K$ is a closed, pointed and solid cone. 
-
 
 $\mathcal K$ is pointed means $\mathcal K \cap (- \mathcal K) = \{\mathbf 0\}$, it is solid means $\text{dim}\; \mathcal K = n$. 
 
@@ -119,6 +119,21 @@ $$
 
 At (1), we used the fact that $z_l, \bar x$ are both in $b + \mathcal L$, hence $z_l - \bar x \in \mathcal L$, which cancels with $\lambda \in \mathcal L^\perp$ in the inner product. 
 This yields the following bound: $\dist(z, \mathcal F)^2 \le \Vert z_d\Vert\Vert \mu\Vert +\dist(z, b + \mathcal L)\Vert \lambda\Vert$. 
+
+---- 
+### **Some other things**
+
+Continue using the same notations as from the previous section. 
+
+
+#### **Definition 2.2 | Constraints violations**
+> For any $x \in \R^n$, define 
+> $$
+> \begin{aligned}
+>     v(x ; \mathcal F) := \dist(x, b + \mathcal L) + \Vert x_d\Vert,
+> \end{aligned}
+> $$
+> As the constraint violation function for $\mathcal F$. 
 
 #### Modified KKT
 
@@ -218,7 +233,7 @@ $$
 The following is also true for all $\mu \in (\bar x - z + \mathcal L^\perp) \cap \overline {\mathcal K^\star}$. 
 Let $p$ be the projection of $\mathbf 0$ onto $\bar x - z + \mathcal L^\perp$. 
 Denote $\varphi$ to be the angle between $\mu, \mu - p$, then $\theta \le \varphi \le \pi/2$. 
-Moreover it has 
+Moreover, it has 
 $$
 \begin{aligned}
     \Vert \mu\Vert = \Vert p\Vert/\sin\varphi 
@@ -231,9 +246,40 @@ The first equality comes from the fact that $p$ is the hypotenuse and, $p$ is th
 The second inequality is just $\sin$ being monotone and $\varphi \ge \theta$. 
 The third inequality is because $\bar x - z$ is in $\bar x - z + \mathcal L^\perp$ and, the definition of $p$. 
 
+Before stating the major results, denote 
+
+$$
+\begin{aligned}
+    \kappa = 1 + 1/\sin\theta. 
+\end{aligned}
+$$
+
 ---
 ### **Main Results in the Paper**
 
+This section states the main results of the error bounds in the paper. 
+Proofs are omitted, read the paper for the proofs. 
+
+#### **Theorem 2.5 | A basic bound**
+> If Assumption 2, 3 hold, then $\dist(z ; \mathcal F) \le k v(z; \mathcal F)$ for all $z \in \R^n$. 
+
+#### **Theorem 2.6**
+> If Assumption 4 holds, then for any $b \in \R^n$ we must have $(b + \mathcal L) \cap \text{int}\; \mathcal K\neq \emptyset$. 
+> Moreover, there is a constant $\kappa > 0$, independent of $b$, such that $\dist(z; \mathcal F) \le \kappa v(z; \mathcal F)$, where $\mathcal F = (b + \mathcal L)\cap \mathcal K$. 
+
+#### **Theorem 2.7**
+> Suppose that $\mathcal K_1$ is a closed convex cone and, $\mathcal K_2$ is a closed, convex, solid, and pointed cone.
+> Furthermore, suppose that $(b + \mathcal K_1) \cap \text{int}\; \mathcal K_2 = \emptyset$ and, $(b + \mathcal K_2 ) \cap \text{int}\; \mathcal K_2 \neq \emptyset$ is compact. 
+> Then there is a constant $\kappa > 0$ such that 
+> $$
+> \begin{aligned}
+>     \dist(z; \mathcal F) &\le \kappa (\dist(z; b + \mathcal K_1) + \dist(z\; \mathcal K_2)). 
+> \end{aligned}
+> $$
+> For all $z \in \R^n$ where $\mathcal F = (b + \mathcal K_1)\cap \mathcal K_2$. 
 
 
+---
+### **In Relations to Hoofman Error Bounds**
 
+The main results in the paper are the extension of Hoofman error bound into the world of semidefinite programming. 

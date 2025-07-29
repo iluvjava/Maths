@@ -42,8 +42,8 @@
 
 \begin{abstract} 
     This file is for communication purposes between collaborators. 
-    In brief, we think that the conditions required for linear convergence rate of Stochastic Nesterov's accelerated gradient (or proximal gradient) is too precarious to hold, even with interpolation hypothesis. 
-    Instead of attacking the problem head on, this file will characterize the conditions required for linear convergence rate. 
+    In brief, we think that the conditions required for fast linear convergence rate, with a square root on the condition number of Stochastic Nesterov's accelerated gradient (or proximal gradient) is too precarious to hold, even with interpolation hypothesis. 
+    Instead of attacking the problem head on, this file will characterize the conditions required for fast linear convergence rate. 
     We place specific constraints on the random variable representing the error made when estimating gradient via some random variables. 
 \end{abstract}
 
@@ -321,9 +321,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             = \epsilon \Vert x - \tilde x\Vert^2. 
         \end{align*}
         It's very unclear what LHS really is without additional details and assumptions. 
-        \textbf{We very much would like $\epsilon$ to be a constant to make the algebra possible when deriving the convergence rate of the algorithm. }
+        \textbf{We very much would like $\epsilon$ to be a constant instead of a random variable to make the algebra possible when deriving the convergence rate of the algorithm. }
         \par
-        The following lemma gives a proximal gradient inequality when $\tilde \nabla f(x)$ is an estimate by some random variable, \textbf{and it is the precursor.} 
+        The following lemma gives a proximal gradient inequality when $\tilde \nabla f(x)$ is an estimate by some random variable, \textbf{and it is the precursor that gives the analysis of our convergence rate.} 
         \begin{lemma}[proximal stochastic gradient inequality]\label{lemma:pg-stoch-ineq}
             Let $F = f + g$ satisfies Assumption \ref{ass:smooth-plus-nonsmooth}. 
             Fix any $x, z \in \RR^n$. 
@@ -408,10 +408,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \right]. 
             \end{align*}
         \end{proof}
+    \subsection{discussion}
         In practice, is chosen in prior to satisfies $B \ge L$. 
         In here, $z, x$ is not a random variable, $\epsilon$ just a constant, but it's determined by $z$ and $x$. 
         Assuming $z \neq \tilde x$ and, $\tilde x \neq x$, then one of the smallest choice for it in this lemma is
-        \begin{align*}
+        \begin{align}\label{eqn:stoch-grad-epsilon}
             \frac{
                 \expect \left[
                     \left\Vert \nabla f(x) - \tilde \nabla f(x) \right\Vert \Vert z - \tilde x\Vert
@@ -421,7 +422,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
             \right]
             } &= \epsilon. 
-        \end{align*}
+        \end{align}
         It depends on both $z$ and $x$. 
         Let's think about the edge case. 
         When $\expect [\Vert x - \tilde x\Vert\Vert z - \tilde x\Vert] = 0$, it must be that both $\Vert x - \tilde x\Vert,\Vert z - \tilde x\Vert$ are zero, indicating that $\nabla f(x) = \tilde \nabla f(x)$ and, $x = \tilde x = z$. 
@@ -504,6 +505,51 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \right\Vert}{\Vert x - \tilde x\Vert}.
         \end{align*}
         And in this case, it has nothing to do with $z$. 
+        \par
+        \textbf{Ok, what about the relation between this error term \eqref{eqn:stoch-grad-epsilon} and the strong growth conditions that is usually found in the literature?}
+        There is no direct equality relationship between the Strong Growth condition of the stochastic gradient which is usually used in the literature, with the condition we have here. 
+        Nonetheless, an indirect inequality relation exists. 
+        Suppose that the gradient of $f$ satisfies strong growth condition with constant $\rho$, so it has $\expect \left\Vert \tilde \nabla f(x)\right\Vert^2 \le \rho \Vert \nabla f(x)\Vert^2$, then $\left\Vert \nabla f(x) - \tilde \nabla f(x)\right\Vert$ squared has: 
+        \begin{align*}
+            & \left(
+                \expect \left \Vert \nabla f(x) - \tilde \nabla f(x)\right\Vert
+            \right)^2
+            \\
+            &\le 
+            \expect \left \Vert \nabla f(x) - \tilde \nabla f(x)\right\Vert^2 
+            \\
+            &= \expect \left\Vert \nabla f(x) - \expect \tilde \nabla f(x) \right\Vert^2 
+            \\
+            &= \expect \left\Vert \tilde \nabla f(x)\right\Vert^2 
+            - \Vert \nabla f(x)\Vert^2 
+            \le (\rho - 1)\Vert \nabla f(x)\Vert^2. 
+        \end{align*}
+        The last two equalities, we used the $\expect (X - \expect X)^2 = \expect X^2 - (\expect X)^2$ with $X$ being each of the element of the vector and, the linearity of expectations to apply it individually and them sum it up. 
+        The first inequality also uses that equality but $X = \left\Vert \nabla f(x) - \tilde \nabla f(x)\right\Vert$ instead, and $\expect (X - \expect X)^2 \ge 0$ always. 
+        The last inequality comes from the assumed strong-growth conditions. 
+        Strong growth condition does make $\epsilon$ smaller if $x$ is close to the set of minimizer and this is the result: 
+        \begin{align*}
+            \expect \left\Vert
+                \nabla f(x) - \tilde \nabla f(x)
+            \right\Vert &\le 
+            \sqrt{\rho - 1} \Vert \nabla f(x)\Vert. 
+        \end{align*}
+        \par
+        Keeping the strong growth condition, let's assume that $\tilde x$ is generated by stochastic gradient, so that the proximal operator has $g \equiv 0$, then $\tilde x = x - L^{-1}\tilde \nabla f (x)$ directly. 
+        Assuming that relation $m \le \Vert z - \tilde x\Vert \le M$ exists then \eqref{eqn:stoch-grad-epsilon} has upper bound
+        \begin{align*}
+            & \frac{M}{m} \frac{\expect\left\Vert \nabla f(x) - \tilde \nabla f(x)\right\Vert}{\expect \Vert x - \tilde x\Vert}
+            \\
+            &\le \frac{M}{m}\frac{\sqrt{\rho - 1}\Vert \nabla f(x)\Vert}{L^{-1}\expect \left\Vert\tilde \nabla f(x)\right\Vert}
+            \\
+            &\le \frac{LM}{m}
+            \frac{\sqrt{\rho - 1}\Vert \nabla f(x)\Vert}{
+                \min_{y \in \Omega(x)}\left\{
+                    \left\Vert y \right\Vert: y\neq \mathbf 0
+                \right\}\prob\left(\left\Vert\tilde \nabla f(x)\right\Vert \neq 0\right)
+            }. 
+        \end{align*}
+        \todoinline{NOT FINISHED YET. It seems like no pretty relaton exists. }
 
 
 \section{Stochastic/Inexact accelerated proximal gradient algorithm}
@@ -599,6 +645,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
     \end{definition}
     The following definition gives a momentum sequence where it makes the derivation of the convergence rate easier. 
+    The sequence is powerful, instead of an equality relation, the sequence can instead satisfies $\alpha_k \in (\mu/L, 1)$. 
     % ------------------------------------------------------------------------------------------------------------------
     \begin{definition}[relaxed momentum sequence]\label{def:relax-momen-seq}
         Let $(\alpha_k)_{k \ge 0}$ be non-negative sequence. 
@@ -865,7 +912,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Assume that
             \begin{enumerate}[nosep]
                 \item it uses stochastic proximal gradient operator as in Definition \ref{def:stoch-pg-opt-rel-err}, 
-                \item it is initialized with $v_{-1} = x_{-1}$, $\alpha_0 = 1$ and, the momentum sequence $(\alpha_k)_{k \ge 0}$ satisfies Definition \ref{def:relax-momen-seq}. 
+                \item it is initialized with $v_{-1} = x_{-1}$, $\alpha_0 = 1$ and, the momentum sequence $(\alpha_k)_{k \ge 0}$ is given as in Lemma \ref{lemma:seq-properties}. 
             \end{enumerate}
             Define $\expect_{k}$ to be the expectation conditioned on $\tilde \nabla f(y_i)$ for $i = 1, 2, \ldots, k - 1$. 
             Then for all $k \ge 1$, for all $\bar x \in \RR^n$ it satisfies the inequality: 
@@ -886,14 +933,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 + \frac{L - \epsilon}{2}\expect_0\left[\Vert \bar x - x_0\Vert^2\right]
                 &\le 
                 \frac{L - \mu}{2} \Vert \bar x - v_{-1}\Vert^2
-                + \frac{\epsilon}{2}\expect_0\left[\Vert v_{-1} - x_0\Vert^2\right]. 
+                + \frac{\epsilon_0}{2}\expect_0\left[\Vert v_{-1} - x_0\Vert^2\right]. 
             \end{align*}
         \end{theorem}
         \begin{proof}
             The following intermediate results will clear out some algebras, they are all proved by the end of the proof. 
             \begin{enumerate}
                 \item [(a)] For all $k \ge 1$, it has $\frac{\mu^2(1 - \alpha_k)^2}{2(L - \mu)} - \frac{\mu\alpha_k(1 - \alpha_k)}{2} = \frac{(\alpha_k - 1)\mu\left(L\alpha_k - \mu\right)}{2\left(L - \mu\right)}$ using some algebra. 
-                \item [(b)] We assumed that the sequence $(\alpha_k)_{k \ge 0}$ satisfies\\ for all $k \ge 1$: $\rho_{k - 1}(1 - \alpha_{k})\alpha_{k - 1}^2 = \alpha_{k}(\alpha_{k} - \mu/L)$. 
+                \item [(b)] We assumed that the sequence $(\alpha_k)_{k \ge 0}$ satisfies\\ for all $k \ge 1$: $\rho_{k - 1}(1 - \alpha_{k})\alpha_{k - 1}^2 = \alpha_{k}(\alpha_{k} - \mu/L)$, hence Lemma \ref{lemma:seq-properties} applies. 
                 \item [(c)] Using (b) and some algebra, we have for all $k \ge 1$ the identity: \\
                 $\frac{(L\alpha_k - \mu)^2}{2(L - \mu)} - \frac{\alpha_{k - 1}^2 L \rho_{k - 1}(1 - \alpha_k)}{2} = \frac{(L\alpha_k - \mu)\mu(\alpha_k - 1)}{2(L - \mu)}$. 
                 \item [(d)] Using (a), and (c), we can derive for all $k\ge 1$, we have the following identity: 
@@ -972,9 +1019,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             }
             At \circled{1}, we used Lemma \ref{thm:jesen}. 
-            For \circled{3}, we used Lemma \ref{lemma:seq-properties} (i) and (b) because the sequence $\alpha_k \le 1$, therefore $1 - \alpha_k \le 0$. 
-            Next, $\alpha_0 = 1 > \mu/L$, Lemma \ref{lemma:seq-properties} (ii) applies too, hence it also has $L\alpha_k - \mu \ge 0$. 
-            Since $L > \mu$ always, the coefficient on $\Vert x_{k - 1} - v_{k - 1}\Vert^2$ is always $\le 0$, therefore the term can be removed to give an inequality. 
+            For \circled{2}, we used Lemma \ref{lemma:seq-properties} (i) because of what is assumed in (b) so, the sequence has $\alpha_k \le 1$, therefore $1 - \alpha_k \le 0$. 
+            Next, $\alpha_0 = 1 > \mu/L$, Lemma \ref{lemma:seq-properties} (ii) applies too, hence $L\alpha_k - \mu \ge 0$. 
+            Since $L > \mu$ always, the coefficient on $\Vert x_{k - 1} - v_{k - 1}\Vert^2$ is always $\le 0$, therefore the term can be removed to keep the inequality. 
             At \circled{3}, we used Lemma \ref{lemma:snag-identities} (ii). 
             Therefore, at the end the chain of inequalities from above produced the following inequality: 
             \begin{align}\begin{split}
@@ -1142,16 +1189,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{proof}
         Obtaining the convergence results from the lemma requires a recursive relation in expectation. 
         The following theorem gives necessary results to derive the convergence rate of the algorithm in expectations. 
-        \begin{theorem}[SNAG convergence rate]\label{thm:snag-convergence}
+        \begin{theorem}[SNAG generic convergence rate]\label{thm:snag-generic-cnvg}
             Suppose that the sequence $(y_k, x_k, v_k)_{k \ge 0}$ is generated by algorithms satisfying Definition \ref{def:SNAG}. 
-            Assuming that it's generated by the stochastic gradient operator as in Definition \ref{def:stoch-pg-opt-rel-err}. 
+            Assume that the momentum sequence $(\alpha_k)_{k \ge 0}$, stochastic gradient $\tilde \nabla f$, and $v_{-1}, x_{-1}$ as in Theorem \ref{thm:snag-descent}. 
             For all $\bar x \in \RR^n$, for all $k \ge 1$, the convergence in expectation, can be compactly written as: 
             \begin{align*}
                 \expect \Phi_k &\le
                 \left(
                     \prod_{i = 1}^k \lambda_i
-                \right)\expect_k \Phi_0 + 
-                \sum_{j = 0}^{k}\left(
+                \right)\expect \Phi_0 + 
+                \sum_{j = 0}^{k - 1}\left(
                     \prod_{i = k - j}^k \lambda_i
                 \right)\expect R_{k - j - 1}
                 + \expect R_k.
@@ -1218,13 +1265,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \begin{align}\label{ineq:snag-descent-expe-pitem-1}
                 \expect_0 \Phi_{k} \le \lambda_{k + 1}\expect_0 \Phi_k + \expect_0 R_{k + 1}. 
             \end{align}
-            Since this is true for all $k \ge 0$ in $\N$, we are now in position to verify the following inductive hypothesis 
+            Let $k \ge 1$, We are now in position to verify the following inductive hypothesis: 
             \begin{align}\tag{IH}
                 \expect_0 \Phi_k &\le
                 \left(
                     \prod_{i = 1}^k \lambda_i
-                \right)\expect_k \Phi_0 + 
-                \sum_{j = 0}^{k}\left(
+                \right)\expect_0 \Phi_0 + 
+                \sum_{j = 0}^{k - 1}\left(
                     \prod_{i = k - j}^k \lambda_i
                 \right)\expect_0 R_{k - j - 1}
                 + \expect_0 R_k.
@@ -1238,8 +1285,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &\hspace{-0.2em}\underset{\text{(IH)}}{\le} \lambda_{k + 1}\left(
                     \left(
                         \prod_{i = 1}^k \lambda_i
-                    \right)\expect_k \Phi_0 
-                    + \sum_{j = 0}^{k}\left(
+                    \right)\expect_0 \Phi_0 
+                    + \sum_{j = 0}^{k - 1}\left(
                         \prod_{i = k - j}^k \lambda_i
                     \right)\expect_0 R_{k - j - 1}
                     + \expect_0 R_k
@@ -1248,8 +1295,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &= \left(
                     \prod_{i = 1}^{k + 1} \lambda_i
-                \right)\expect_k \Phi_0
-                + \sum_{j = 0}^{k}\left(
+                \right)\expect_0 \Phi_0
+                + \sum_{j = 0}^{k - 1}\left(
                     \prod_{i = k - j}^{k + 1}\lambda_i
                 \right)\expect_0 R_{k - j - 1}
                 + \lambda_{k + 1}\expect_0 R_k 
@@ -1257,35 +1304,131 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &= \left(
                     \prod_{i = 1}^{k + 1} \lambda_i
-                \right)\expect_k \Phi_0
-                + \sum_{j = 1}^{k + 1}\left(
+                \right)\expect_0 \Phi_0
+                + \sum_{j = 1}^{k}\left(
                     \prod_{i = k- j}^{k + 1}\lambda_i
-                \right)\expect_0 R_{k + 1 - j}
+                \right)\expect_0 R_{k - j}
                 + \sum_{j = 0}^0 \prod_{i = k + 1 - j}^{k + 1}\lambda_{k + 1}\expect_0 R_k 
                 + \expect_0 R_{k + 1}
                 \\
                 &= 
                 \left(
                     \prod_{i = 1}^{k + 1} \lambda_i
-                \right)\expect_k \Phi_0
-                + \sum_{j = 0}^{k + 1}\left(
+                \right)\expect_0 \Phi_0
+                + \sum_{j = 0}^{k}\left(
                     \prod_{i = k- j}^{k + 1}\lambda_i
-                \right)\expect_0 R_{k + 1 - j}
+                \right)\expect_0 R_{k - j}
                 + \expect_0 R_{k + 1}. 
             \end{align*}
             Therefore, the inductive hypothesis holds. 
         \end{proof}
-    \subsection{Discussion of he error schedules}
-        Let's talk about Theorem \ref{thm:snag-convergence} here. 
+    \subsection{Discussion of error schedules}
+        Let's talk about Theorem \ref{thm:snag-generic-cnvg} here. 
         With the compact representations, we can make see what is happening here. 
         The inequality of the convergence consists of several quantities: 
         \begin{enumerate}[nosep]
-            \item $\Phi_0$, the base case and a bounded quantities, depends on initial iterate $v_{-1}, x_{-1}$. 
-            \item $\lambda_k$, a sequence controling the convergence, involving relaxation parameters $\rho_{k - 1}$ and, the error $\epsilon_k$. 
-            \item $R_k$, an error term that, it's none trivial to group with the other terms of the inequality. 
+            \item $\Phi_0$, the base case and a bounded quantity, depends on initial iterate $v_{-1}, x_{-1}$. 
+            \item $\lambda_k$, a sequence controlling the convergence, involving relaxation parameters $\rho_{k - 1}$ and, the error $\epsilon_k$. 
+            \item $R_k$, an error term related to $\epsilon_k$ and, $\Vert y_k - x_k\Vert^2$, it's none trivial to group with the other terms. 
         \end{enumerate} 
-        Under some assumptions, and conditions, we can have some type of convergence rate. 
+        Without necessarily introducing the interpolation hypothesis, we have linear ``convergence" with an extra additive term under mild assumption. 
+        The following propositions simply stated the sufficient conditions on $\Phi_k, \lambda_k, R_k$ for the inequality to yield a linear convergence rate with additive error, nothing more. 
+        \begin{proposition}[SNAG kinda converges linearly]\;\label{prop:snag-kinda-converge}\\
+            Suppose that the sequence $(y_k, x_k, v_k)_{k \ge 0}$ is generated by algorithms satisfiying \ref{def:SNAG}. 
+            Suppose that that $\Phi_k, \lambda_k, R_k$ are as given in Theorem \ref{thm:snag-generic-cnvg}. 
+            Define
+            \begin{enumerate}[nosep]
+                \item $\Lambda = \sup_{i \in \N} \lambda_i$. 
+                \item An upper bound $\bar R \ge \expect R_k$ exists for all $k \ge 0$. 
+                \item An upper bound $\overline \epsilon = \sup_{i \in \N \cup\{0\}} \epsilon_i$ exists. 
+            \end{enumerate}
+            If in addition, we have $\overline \epsilon < \sqrt{\mu L}$, then it satisfies for all $k \ge 1$ the following inequality: 
+            \begin{align*}
+                \expect \Phi_k \le \Lambda^k \expect \Phi_0 + \frac{\overline R}{1 - \Lambda}. 
+            \end{align*}
+            Where 
+            \begin{align*}
+            \Lambda = \left(
+                1 - \sqrt{\frac{\mu}{L}}
+                \right)\left(
+                    \frac{L}{L - \overline \epsilon}
+                \right).
+            \end{align*}
+        \end{proposition}
+        \begin{proof}
+            We can prove it with the following intermediate results: 
+            \begin{enumerate}[nosep]
+                \item[(a)] For all $k \ge 1$, $\alpha_k = \sqrt{\mu/L}$ satisfies recurrences $(1 - \alpha_k)\alpha_{k - 1}^2 = \alpha_k(\alpha_k - \mu/L)$ where $\rho_k = 1$ for all $k \ge 1$, and $\rho_0 = \mu/L$. 
+                \item[(b)] When $(\epsilon_k)_{k \ge 0}$ satisfies $\epsilon_k \le  \bar \epsilon = \sup_{i \in \N\cup\{0\}} \epsilon_i < \sqrt{\mu L}$, it has $\lambda_k \in (0, 1)$ for all $k \ge 1$, with $\Lambda = \sup_{i\in\N} \lambda_i < 1$. 
+            \end{enumerate}
+            These results will be proved at the end. 
+            Consider starting with the inequality proved in Theorem \ref{thm:snag-descent}: 
+            \begin{align*}
+                \expect \Phi_k 
+                &\le \left(
+                    \prod_{i = 1}^k \lambda_i
+                \right) \expect \Phi_0
+                + \sum_{j = 1}^{k - 1}\left(
+                    \prod_{j = k - j}^{k - 1} \lambda_{i}
+                \right)\expect R_{k - j - 1}
+                + \expect R_k
+                \\
+                &\underset{\circled{1}}{\le} \Lambda^k \expect \Phi_0 + \sum_{j = 0}^{k - 1} \Lambda^{j + 1} \expect R_{k - j - 1} 
+                + \expect R_k
+                \\
+                &= \Lambda^k \expect \Phi_0 + \sum_{j = 1}^{k} \Lambda^{j} \expect R_{k - j} 
+                + \expect R_k
+                \\
+                &= \Lambda^k \expect \Phi_0 + \sum_{j = 0}^{k} \Lambda^{j} \expect R_{k - j} 
+                \\
+                &\underset{\circled{2}}{\le} \Lambda^k \expect \Phi_0 + \overline R \sum_{j = 0}^{k} \Lambda^{j} 
+                \\
+                &\underset{\circled{3}}{\le} \Lambda^k \expect \Phi_0 + \frac{\overline R}{1 - \Lambda}. 
+            \end{align*}
+            At \circled{1} we used that $\Lambda \ge \lambda_k$. 
+            At \circled{2} we used that $\overline R \ge \expect R_{k}$ for all $k \ge 0$. 
+            At \circled{3} we used the results from (b) that $\lambda_k \le \Lambda$ and $\Lambda < 1$, hence it has the convergence of the geometric series. 
+            \par \textbf{Proof of (a)}
+            When $L > \mu > 0$, so the objective $F$ is strongly convex, the usual $(1 - \alpha_k)\alpha_{k - 1}^2 = \alpha_k(\alpha_k - \mu/L)$ recurrence relations admits a constant solution $
+            \alpha_k = \sqrt{\mu/L}$ for all $k \ge 1$. 
+            As presented in Theorem \ref{thm:snag-descent}, the momentum sequence $(\alpha_k)_{k \ge 0}$ has a relaxation parameter $(\rho_k)_{k \ge 1}$. 
+            In this case, it means that $\rho_{k - 1} = 1$ for all $k \ge 1$. 
+            Since when $k = 0$, $\alpha_0 = 1$, it makes an exception on $\rho_0$, which is: 
+            \begin{align*}
+                \rho_0 &= \frac{\sqrt{\mu/L}\left(\sqrt{\mu/L} - \mu/L\right)}{1 - \sqrt{\mu/L}} = \frac{\mu}{L}. 
+            \end{align*}
+            \par \textbf{Proof of (b)}.
+            If $\sup_{k \in \N \cup \{0\}}\epsilon_{k} < \sqrt{\mu L}$ for all $k \ge 0$, by the definition of $\lambda_k$, it has: 
+            \begin{align*}
+                & \sup_{k \in \N}\lambda_k
+                \\
+                &= \sup_{k \in \N} \left(
+                    1 - \sqrt{\frac{\mu}{L}}
+                \right)\left(
+                    \frac{L\rho_{k - 1}}{L - \epsilon_{k - 1}}
+                \right)
+                \\
+                &\underset{\circled{1}}{\le} 
+                \left(
+                    1 - \sqrt{\frac{\mu}{L}}
+                \right)\left(
+                    \frac{L}{L - \sup_{k \in \N}\epsilon_{k - 1}}
+                \right)
+                \\
+                &< \left(
+                    1 - \sqrt{\frac{\mu}{L}}
+                \right)\left(
+                    \frac{L}{1 - \sqrt{\mu L}}
+                \right) = 1. 
+            \end{align*}
+            At \circled{1}, we used the fact that $\rho_k = 1$ for all $k \ge 1$ and,$\rho_k = \mu/L$ for $k = 0$, therefore, it $(\forall k \ge 0)\; \rho_k \le 1$. 
+            So $\Lambda < 1$. 
+            
+        \end{proof}
+
+
 \section{Interpolation helps but, it's very unclear if it's sufficient}
+    Under the frameworks of our analysis, the interpolation assumption helps with controlling the errors, but it's unclear to what extent, it will help us to obtain a convergence rate faster than what is already in the literatures. 
     \subsection{The no error case}
     \subsection{The degenerate case}
 

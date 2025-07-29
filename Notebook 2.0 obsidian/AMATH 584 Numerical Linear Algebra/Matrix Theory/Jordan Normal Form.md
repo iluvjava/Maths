@@ -1,17 +1,15 @@
 [[Subspace Direct Sum]]
 
-References 1: [here](https://www.maths.tcd.ie/~vdots/teaching/files/MA1111+1212-0809/113jord.pdf)
-
-References 2: A whole chapter on Jordan Normal Form in the book \<Matrix Analysis\>. 
-
-Make sure to read [[Generalized Eigenspaces]] before so we get the idea about eigen subspace of matrices. 
+- References 1: [here](https://www.maths.tcd.ie/~vdots/teaching/files/MA1111+1212-0809/113jord.pdf)
+- References 2: A whole chapter on Jordan Normal Form in the book \<Matrix Analysis\>. 
+- Make sure to read [[Generalized Eigenspaces]] before so we get the idea about eigen subspace of matrices. 
 
 ---
 ### **Intro**
 
 Given any matrices, the Jordan normal form reduces matrix such that all of them are similar to matrices to a Jordan Normal Matrix. 
 
-**Definition: Jordan Block**
+**Definition | Jordan Block**
 
 A Jordan block is a diagonal matrix of eigenvalues together with a nullpotent operator. Let the nullpotent operator be $N_k = \text{diag}(\vec{1}, + 1)\in \mathbb{R}^{k \times k}$, (diagonal of ones shifted upwards by one index). It's called nullpotent because $N^{k} = \mathbf{0}$. Then a Jordan block is defined to be: 
 

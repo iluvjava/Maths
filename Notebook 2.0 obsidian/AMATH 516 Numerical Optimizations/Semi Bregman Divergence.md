@@ -96,5 +96,8 @@ $$
 It also simplifies when $C$ is a linear subspace or a halfspace. 
 When $C$ is a affine subspace, $\langle x - \bar x, \bar x - \bar y\rangle = 0$ for all $x, y \in \R^n$. 
 When $C$ is an halfspace, it has $\langle x - \bar x, \bar x - \bar y\rangle = 0$ for all $x, y \not \in \text{int}\; C$. 
-**WARNING**. 
-This is technically not a Bregman Divergence because $D_{d_C^2}(x, y) = 0 \iff  x = y$ **FALSE**, this is due to the fact that $d_C^2$ is not a Legendre type function. 
+
+> [!Warning]
+> This is technically not a Bregman Divergence because $D_{d_C^2}(x, y) = 0 \iff  x = y$ is false, because $d_C^2$ is not a Legendre type function. 
+> The inverse of the gradient of the distance square is not invertible. 
+

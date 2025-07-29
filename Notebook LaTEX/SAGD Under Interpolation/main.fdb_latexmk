@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1753222035.47521 "main.aux" "main.bbl" "main" 1753223131.7887 0
+["bibtex main"] 1753309769.12037 "main.aux" "main.bbl" "main" 1753311418.33588 0
   "./references/refs.bib" 1751939765.21907 6680 0c775a87810543775e3a891e2629657d ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/siam.bst" 1292289607 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1753223131.46259 3699 0dd7082773b7903ccbae07fccdd78fab "pdflatex"
+  "main.aux" 1753311418.12259 4168 035467917127a77c02c2d3ef0cbcd76a "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1753223130.31079 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" "main.pdf" "main" 1753223131.78891 0
-  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" 1753223130.09115 70771 33c4fdcd59c3ff12b8e6b09607369c91 ""
+["pdflatex"] 1753311417.26853 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" "main.pdf" "main" 1753311418.336 0
+  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/SAGD Under Interpolation/main.tex" 1753311417.08913 80179 4333abc9e109cce98d4ce6d4a4ce3d62 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -222,10 +222,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1716844513.00476 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1716844504 8221424 900989947c23303b742a586f0df8c087 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "main.aux" 1753223131.46259 3699 0dd7082773b7903ccbae07fccdd78fab "pdflatex"
-  "main.bbl" 1753222035.60657 285 28495bce0206cc3c14e85103079053ca "bibtex main"
-  "main.out" 1753223131.46324 2039 5203a3a554b3c495f6c4d78fb7055269 "pdflatex"
-  "main.tex" 1753223130.09115 70771 33c4fdcd59c3ff12b8e6b09607369c91 ""
+  "main.aux" 1753311418.12259 4168 035467917127a77c02c2d3ef0cbcd76a "pdflatex"
+  "main.bbl" 1753309769.19305 285 28495bce0206cc3c14e85103079053ca "bibtex main"
+  "main.out" 1753311418.12331 2129 9d19625e364282ff89f95962f78b8847 "pdflatex"
+  "main.tex" 1753311417.08913 80179 4333abc9e109cce98d4ce6d4a4ce3d62 ""
   "presets/julia_lstlisting.tex" 1734912471.75532 795 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1734912471.75575 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1737688388.3909 8751 43b1f87d5e2ad43f60c8e67f03e69d1f ""

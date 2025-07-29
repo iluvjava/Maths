@@ -103,4 +103,5 @@ Which is the strong duality, without using hardcore mathematical proofs.
 
 **Remarks**
 
-Assuming that strong duality holds (which it does for all LP problems), we then need either one of the Strong Duality or the Comp Slack conditions to characterize the KKT conditions, we don't need both. In addition, the strong duality is just telling us that, slack variable on the primal corresponds to zero dual, and non-zero dual corresponds to tight inequality in the primal. 
+Assuming that strong duality holds (which it does for all LP problems), we then need either one of the Strong Duality or the Comp Slack conditions to characterize the KKT conditions, we don't need both. 
+In addition, the strong duality is just telling us that, slack variable on the primal corresponds to zero dual, and non-zero dual corresponds to tight inequality in the primal. 
