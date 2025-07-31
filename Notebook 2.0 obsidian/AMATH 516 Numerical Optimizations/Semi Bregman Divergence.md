@@ -13,13 +13,13 @@ Denote $D_f$ to be the Bregman Divergence of the function $f$.
 #### **Example | Distance squared to a convex set**
 > Let $d_C^2 = \dist(\cdot | C)^2$.
 > Denote $\overline{(\cdot)} = \Pi_C(x)$ to be the projection of some vector onto the set $C$. 
-Then for all $x, y \in \R^n$: 
+> Then for all $x, y \in \R^n$: 
 > $$
 > \begin{aligned}
 >     & \frac{1}{2}\Vert \bar x - \bar y\Vert^2 - \Vert x - \bar x\Vert \Vert \bar x - \bar y\Vert + \frac{1}{2}\Vert x - y\Vert^2 
 >     \\
 >     &\le 
->     D_{d_C^2}(x, y) 
+>     D_{d_C^2/2}(x, y) 
 >     \\
 >     &= 
 >     - \frac{1}{2}\Vert \bar x - \bar y\Vert^2

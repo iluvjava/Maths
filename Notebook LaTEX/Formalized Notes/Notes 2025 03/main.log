@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.27)  4 JUL 2025 01:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.27)  30 JUL 2025 14:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -735,17 +735,17 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
 l.29 \end{abstract}
                     [1]
 Chapter 1.
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 35.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 36.
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 35.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 36.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.111         \end{align*}
+l.112         \end{align*}
                            [1
 
 ] [2] [3]
@@ -753,12 +753,12 @@ Chapter 2.
 [4
 
 ]
-Overfull \hbox (6.08403pt too wide) in paragraph at lines 237--239
+Overfull \hbox (6.08403pt too wide) in paragraph at lines 238--240
 [][]\OT1/cmr/m/it/12 Suppose
  []
 
 [5] [6] [7] [8] [9] [10] [11] [12] [13]
-Overfull \hbox (15.6358pt too wide) detected at line 883
+Overfull \hbox (15.6358pt too wide) detected at line 884
 []
  []
 
@@ -766,32 +766,36 @@ Overfull \hbox (15.6358pt too wide) detected at line 883
 Chapter 3.
 [16
 
-] [17] [18] [19]
+]
 Chapter 4.
-[20
+[17
 
-] [21] [22] [23]
-Overfull \hbox (23.36021pt too wide) in paragraph at lines 1307--1310
+] [18] [19] [20]
+Chapter 5.
+[21
+
+] [22] [23] [24]
+Overfull \hbox (23.36021pt too wide) in paragraph at lines 1314--1317
 \OT1/cmr/m/it/12 If in ad-di-tion, the al-go-rithm is ini-tial-ized us-ing line search so that [],
  []
 
-[24] [25] [26]
-Overfull \hbox (10.54755pt too wide) detected at line 1540
+[25] [26] [27]
+Overfull \hbox (10.54755pt too wide) detected at line 1547
 []
  []
 
-[27] [28] [29] [30]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1837.
- [31] [32] [33] [34] [35] [36] [37] [38] [39] [40] [41] [42]
-Overfull \hbox (38.4361pt too wide) in paragraph at lines 2340--2346
-\OT1/cmr/m/n/12 The sec-ond in-equal-ity comes from As-sump-tion [][]4.6.1[][] di-rectly. Sup-pose that $[]$.
+[28] [29] [30] [31]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1844.
+ [32] [33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43]
+Overfull \hbox (38.4361pt too wide) in paragraph at lines 2347--2353
+\OT1/cmr/m/n/12 The sec-ond in-equal-ity comes from As-sump-tion [][]5.6.1[][] di-rectly. Sup-pose that $[]$.
  []
 
-[43] [44] [45] [46] [47] [48] [49] [50] [51]
-Chapter 5.
-(./main.bbl [52
+[44] [45] [46] [47] [48] [49] [50] [51] [52]
+Chapter 6.
+(./main.bbl [53
 
-]) [53
+]) [54
 
 ] (./main.aux)
  ***********
@@ -799,25 +803,25 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: EF29C8E510228D16E837C2DD51AC5424;7230.
+(rerunfilecheck)             Checksum: DFCA7E0FD99775647755945CAEC93114;7759.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 22 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 28423 strings out of 474116
- 534101 string characters out of 5743682
+ 28428 strings out of 474116
+ 534152 string characters out of 5743682
  1953187 words of memory out of 5000000
- 50065 multiletter control sequences out of 15000+600000
+ 50067 multiletter control sequences out of 15000+600000
  575424 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  93i,18n,99p,856b,3293s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (55 pages, 492210 bytes).
+Output written on main.pdf (56 pages, 492996 bytes).
 PDF statistics:
- 940 PDF objects out of 1000 (max. 8388607)
- 812 compressed objects within 9 object streams
- 219 named destinations out of 1000 (max. 500000)
- 253 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 952 PDF objects out of 1000 (max. 8388607)
+ 823 compressed objects within 9 object streams
+ 222 named destinations out of 1000 (max. 500000)
+ 269 words of extra memory for PDF output out of 10000 (max. 10000000)
 

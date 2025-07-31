@@ -324,7 +324,7 @@ The above Euclidean distance measure is symmetric and isotropic.
 Other Legendre Type functions may not provide those properties. 
 
 
-#### **Example 2 | Normed linear composite**
+#### **Example 2 | Normed linear composite squared**
 
 The function $f(x) = 1/2\Vert Ax\Vert^2$ can also induce a Bregman Divergence and it will work very similar to the function $x \rightarrow (1/2) \Vert x\Vert^2$. 
 It is a semi-norm: 
