@@ -90,7 +90,7 @@ This configuration is made to quantify variables so that the text come after it 
 Their argument is surprisingly simple, in fact. 
 We first introduce a function with a special type of Bregman Divergence. 
 
-#### **Definition | semi Bregman divergence**
+#### **Definition | semi bregman divergence**
 > Let $d_C^2 = \dist(\cdot | C)^2$.
 > Denote $\overline{(\cdot)} = \Pi_C(x)$ to be the projection of some vector onto the set $C$. 
 > Then for all $x, y \in \R^n$: 
@@ -106,6 +106,14 @@ We first introduce a function with a special type of Bregman Divergence.
 **Proof**
 
 See [Semi Bregman Divergence](../Semi%20Bregman%20Divergence.md) for the proof. 
+
+$\blacksquare$
+
+**Remarks**
+
+The following properties about semi Bregman Divergence are quite important. 
+
+
 
 The following theorem will characterize the equivalent conditions for the definition of the Quasi-strongly convex functions, using the semi Bregman Divergence. 
 
@@ -187,10 +195,12 @@ We now provide some examples of the definitions.
 
 #### **Example 1 | The most obvious and direct example**
 > Consider $(f, X, X^*)$ that satisfies Assumption 1. 
+> Suppose that in addition, $f = (1/2)\dist(x | X_f)^2$. 
 > In addition, let $X_f = \argmin{x \in \R^n} \;f(x)$, and assume that $X_f \cap X \neq \emptyset$. 
 > Then, $f$ is Q-SCNVX, QUA, QGG, QF. 
 
 **Demonstration**
 
+When $X_f \cap X \neq \emptyset$, we have the luxury of $X^* = X_f \cap X$. 
 
 

@@ -21,7 +21,7 @@ $$
 \end{aligned}
 $$
 
-The above is similar to [Bregman Divergence](Bregman%20Divergence.md), here this is a generalization to function that are not necessarily differentiable. 
+The above is similar to [Bregman Divergence Introduction](../Bregman%20Divergence%20Introduction.md), here this is a generalization to function that are not necessarily differentiable. 
 For example, this notation can represent a differentiable function (See [Frechet, Gateaux Differentiability Euclidean Space](../../MATH%20000%20Math%20Essential/Analysis/Frechet,%20Gateaux%20Differentiability%20Euclidean%20Space.md)). 
 Recall: [The Little-o Notations in Limits](../../MATH%20000%20Math%20Essential/Analysis/The%20Little-o%20Notations%20in%20Limits.md). 
 Let $f : \mathbb R^n \mapsto \R$ be a differentiable at $\bar x \in \mathbb R^n$ if and only if there exists $v \in \mathbb R^n$ such that 

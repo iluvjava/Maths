@@ -1,4 +1,4 @@
-- [Bregman Divergence](Bregman%20Divergence.md)
+- [Bregman Divergence Introduction](Bregman%20Divergence%20Introduction.md)
 
 ---
 ### **Intro**

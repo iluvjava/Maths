@@ -4,7 +4,7 @@
 ### **Intro**
 
 A Legendre function is a type of function with a one-to-one gradient operator and hence invertible. Rockafellar classic red book[^1] discussed it in section 26. 
-It's applicable to understanding duality in convex programming and relevant to concepts such as [Bregman Divergence](Bregman%20Divergence.md). 
+It's applicable to understanding duality in convex programming and relevant to concepts such as [Bregman Divergence Introduction](Bregman%20Divergence%20Introduction.md). 
 
 #### **Definition | Essential Smoothness**
 > A proper convex function is essentially smooth if, the following conditions are true on the set $C = \text{int}\circ \text{dom}(f)$: 
@@ -34,7 +34,9 @@ We took this definition from Rockafellar's red convex book.
 > A function $f$ that is closed and convex, is simply-Legendre, or of Legendre type on $\Omega = \text{int}\circ \text{dom}(f)$ if and only if 
 > 1. $\Omega \neq \emptyset$
 > 2. $f$ is strictly convex and differentiable on $\Omega$, and essentially smooth on $\Omega$. 
-> 3. for all $\bar x \in \text{bnd}(\Omega)$, we have $\lim_{x\rightarrow \bar x} \Vert \nabla f(x)\Vert = \infty$. 
+> 3. for all $\bar x \in \text{bnd}(\Omega)$, we have $\lim_{x\rightarrow \bar x} \Vert \nabla f(x)\Vert = \infty$. Here, $x \rightarrow \bar x$ in $\Omega$. 
+> 
+> If $\text{bnd}\; \Omega = \emptyset$, then the third statement is vacuously true. 
 
 **Observations**
 
@@ -50,6 +52,7 @@ We prompt the readers to consider sufficient conditions for surjective gradient 
 **Remarks**
 
 We took the definition from Rockafellar[^1], but I am unsure where it is in the book; it should be in section 26. 
+
 
 
 #### **Definition | Essential Strict Convexity**
@@ -81,7 +84,7 @@ We introduce more content from the Rockafeller's book on essential smoothness an
 #### **Theorem 26.2 | Equivalent Characterization of Essential Smoothness**
 > Assuming conditions 1., 2., are true in the definition for essential smoothness then the following condition is equivalent to condition 3. in the definition of essential smoothness.
 > 
-> 3.`*` $f'(x + \lambda(a - x) | a - x) \searrow -\infty$ as $\lambda \searrow -\infty$ for any $a \in C$, and any boundary point of $x \in C$. 
+> 3.$f'(x + \lambda(a - x) | a - x) \searrow -\infty$ as $\lambda \searrow -\infty$ for any $a \in C$, and any boundary point of $x \in C$. 
 
 **Observations**
 

@@ -200,7 +200,7 @@ Prove the above theorem, which is basic algebra like back in high school.
 
 **Remarks**
 
-This identity generalizes to the non-euclidean settings, see [Bregman Divergence](../Bregman%20Divergence.md) for more information. 
+This identity generalizes to the non-euclidean settings, see [Bregman Divergence Introduction](../Bregman%20Divergence%20Introduction.md) for more information. 
 
 #### **Lemma | A useful inequality**
 > For all $x, y , z \in \R^n$, $\theta > 0$, it has 

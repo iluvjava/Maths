@@ -3,7 +3,7 @@ alias: Relative Smoothness
 
 ---
 ### **Prerequisites**
-- [Bregman Divergence](Bregman%20Divergence.md)
+- [Bregman Divergence Introduction](Bregman%20Divergence%20Introduction.md)
 - [Bregman Proximal Mapping](Bregman%20Proximal%20Mapping.md)
 
 ---

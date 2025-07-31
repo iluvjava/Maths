@@ -85,5 +85,5 @@ The integral representations are analogous.
 
 > KL divergence is a case of Bregman Divergence where the generating function is the negative cross entropy function. 
 
-See the example in [Bregman Divergence](Bregman%20Divergence.md). 
+See the example in [Bregman Divergence Introduction](../AMATH%20516%20Numerical%20Optimizations/Bregman%20Divergence%20Introduction.md). 
 

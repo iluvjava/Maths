@@ -6,11 +6,11 @@
 ### **Intro**
 
 The Bregman distance generalizes the Euclidean distance. Recall that the Euclidean norm between 2 points appeared Rockafellar's proximal point method; it also appeared in the [Proximal Gradient, Forward Backwards Envelope](Proximal%20Methods/Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md). 
-In this article, we will faithfully follow Amir Beck's First order method[^1] chapter 9, and then we will augment it with classics Rockafellar in convex analysis, and Heinz's NoLips paper. 
+In this article, we will faithfully follow Amir Beck's First order method[^1] chapter 9, and then we will augment it with classics Rockafellar in convex analysis, and Heinz's NoLips paper [^3]. 
 
 The important part is, these ideas can generalize the concepts of strong convexity and smoothness into much general setting for optimizations and their analysis. 
 
-#### **Definition (9.2) | Bregman Divergence**
+#### **Definition (9.2) | Bregman Divergence Legendre Type**
 > Let $\omega$ be a proper closed convex function that is differentiable over $\text{dom}(\partial \omega)$. The Bregman distance associated with $\omega$ is the function $D_\omega: \text{dom}(\omega) \times \text{dom}(\partial \omega)\mapsto \mathbb R$, given by 
 >
 > $$
@@ -26,7 +26,7 @@ It contains the second-order information for the differentiable function. Becaus
 
 **Remarks**
 
-The definition is taken from Amir Beck [^1]. 
+The definition is taken from Beck [^1]. 
 For more about Bregman divergence in general, visit [Wikipedia Bregman Divergence](https://en.wikipedia.org/wiki/Bregman_divergence#cite_note-cs.utexas.edu-1). 
 
 #### **The Legendre Type**
@@ -42,6 +42,21 @@ The assumptions made in Amir's Beck [^1] writing differ entirely from those abov
 Furthermore, recall that a function of Legendre type on a convex set $C$ is only differentiable on any convex subset of $\text{dom}(\partial f)$. 
 The above fact should clarify the domain of the Bregman distance being $\text{dom}(\omega)\times \text{dom}(\partial \omega)$ because the domain of the subgradient may not be the domain of the function, for a differentiable convex function. 
 
+#### **Some Subtleties**
+
+Using a Legendre function to induce Bregman Divergence is not absolute necessary. 
+Its presence is for a certain degree of theoretical beauty and, necessary for algorithms that are relatively smooth. 
+For this reason, the following weaker definition is presented. 
+
+#### **Definition | Bregman Divergence of Differentiable functions**
+> Let $\omega: \R^n \rightarrow \overline \R$ be a differentiable function. 
+> Then, the Bregmand Divergence is a mapping $\R^n \times \text{dom}\; \nabla \omega(x) \rightarrow \R$ defined by: 
+> $$
+> \begin{aligned}
+>     D_\omega(x, y) = \omega(x) - \omega(y) - \langle \nabla \omega(y), x - y\rangle. 
+> \end{aligned}
+> $$
+
 
 ---
 ### **The 3 Points Lemma**
@@ -49,7 +64,7 @@ The above fact should clarify the domain of the Bregman distance being $\text{do
 The following lemma is famous enough to deserve a name. 
 
 #### **Lemma | 3 Points lemma, Cosine law**
-> Let $\omega: \mathbb E\mapsto (-\infty, \infty]$, and it's closed convex and proper, and it's of Legendre Type, then for all $a, b \in \text{dom}(\partial \omega)$, and $c \in \text{dom}(\omega)$, we have 
+> Let $\omega: \mathbb E\mapsto (-\infty, \infty]$, be differentiable, then for all $a, b \in \text{dom}(\partial \omega)$, and $c \in \text{dom}(\omega)$, we have 
 > $$
 > \begin{aligned}
 >     \langle \nabla \omega(b) - \nabla w(a), c - a\rangle
@@ -131,8 +146,6 @@ $$
     D_\omega(b, a) + D_\omega(a, b), 
 \end{aligned}
 $$
-
-And it has now become symmetric, and has only 2 points on it. 
 
 
 ---
