@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+
+% \input{presets/wang_full.tex}
+\usepackage{ifthen}\newboolean{draftmode}\setboolean{draftmode}{true}
+\input{presets/wang/input.tex}
+\input{presets/misc.tex}
+% \input{presets/julia_lstlisting.tex}
+
+\begin{document}
+
+\title{{\fontfamily{ptm}\selectfont My Ideas after Reading Papers}}
+
+\author{
+    Author 1 Name, Author 2 Name
+    \thanks{
+        Subject type, Some Department of Some University, Location of the University,
+        Country. E-mail: \texttt{author.name@university.edu}.
+    }
+}
+
+\date{March 2, 2020}
+
+\maketitle
+\todoinline{This paper is currently in draft mode. Check source to change options. }
+% \vskip 8mm
+
+\begin{abstract} 
+    \noindent
+    This is still a note for a draft so no abstract \cite{bauschke_convex_2017}
+\end{abstract}
+
+\noindent{\bfseries 2010 Mathematics Subject Classification:}
+Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
+\noindent{\bfseries Keywords:}
+
+
+% ==============================================================================
+\section{Introduction}
+    Necoara et al. introduced the definition of quasi strongly convex function (Q-SCNVX), Quadratic Under approximations (QUA), Quadratic Gradient Growth (QGG), Proximal Error Bound (PEB) and, Quadratic Function Growth (QFG). 
+    These conditions are relaxation of strong convexity which enables linear convergence rate of first order method, including Nesterov's accelerated variants. 
+    In this file, we showed a new perspective of their works. 
+    Our goal is to relax their definitions and, to extend the linear convergence results, using completely new ideas and perspective. 
+    \par
+    \textbf{Notations.}
+    Unless specified, our ambient space is $\RR^n$ with Euclidean norm $\Vert \cdot\Vert$.
+    Let $C\subseteq \RR^n$, $\Pi_C(\cdot)$ denotes the projection onto the set $C$, i.e: the closest point in $C$ to another point in $\RR^n$. 
+    \par
+    The following definitions and assumptions are their. 
+    % SYMBOL SET FOR THIS CHAPTER ONLY! 
+    
+    \begin{assumption}[Necoara's linear convergence assumptions]\; \label{ass:necoara-linear} \\
+        The following assumptions are about $(f, X, X^*, L_f)$. 
+        \begin{enumerate}[nosep]
+            \item $f: \RR^n \rightarrow \RR$ is an $L_f$ Lipschitz smooth function. 
+            \item $X \subseteq \RR^n$ is a closed convex non-empty set. 
+            \item $X^* = \argmin_{x \in X} f(x) \neq \emptyset$. 
+        \end{enumerate}
+    \end{assumption}
+    Under this assumption, the following definitions are proposed. 
+    \newcommand{\QSCNVX}{\ensuremath{q\mathcal{S}}}
+    \newcommand{\QUA}{\ensuremath{\mathcal U}}
+    \newcommand{\QGG}{\ensuremath{\mathcal G}}
+    \newcommand{\QFG}{\ensuremath{\mathcal F}} 
+    \newcommand{\PEB}{\ensuremath{\mathcal E}}
+    \begin{definition}[Necoara's weaker characterizations of strong convexity]\; \\
+        Suppose that $(f, X, X^*, L_f)$ are given by Assumption \ref{ass:necoara-linear}. 
+        For all $x \in X$, denote $\bar x = \Pi_{X^*}x$. 
+        The following definitions are relaxations of strong convexity. 
+        \begin{enumerate}[nosep]
+            \item $f$ is Q-SCNVX if there exists $\kappa_f > 0$ such that $f(\bar x) - f(x) - \langle \nabla f(x), \bar x - x\rangle \ge \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2$. 
+            Which we denote it by $f \in \QSCNVX(f, L_f, \kappa_f)$. 
+            \item $f$ is QUA if there exists $\kappa_f > 0$ such that $f(x) - f(\bar x) - \langle \nabla f(\bar x), x - \bar x\rangle \ge \frac{\kappa_f}{2}\Vert x -\bar x\Vert^2$. 
+            We denote it by $f \in \QUA(f, L_f, \kappa_f)$.
+            \item $f$ is QGG if there exists $\kappa_f > 0$ such that $\langle \nabla f(x) - \nabla f(\bar x), x - \bar x\rangle \ge \frac{\kappa}{2}\Vert x - \bar x\Vert^2$. 
+            We denote it by $f \in \QGG(f, L_f, \kappa_f)$. 
+            \item $f$ is PEB if there exists $\kappa_f > 0$ such that $\left\Vert x - L^{-1}\Pi_X(x - L^{-1}\nabla f(x))\right\Vert \ge \kappa_f\Vert x - \bar x\Vert$. 
+            We denote it by $f \in \PEB(f, L_f, \kappa_f)$. 
+            \item $f$ is QFG if there exists $\kappa_f > 0$ such that $f(x) - f(\bar x) \ge \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2$. 
+            We denote it by $f \in \QFG(f, L_f, \kappa_f)$. 
+        \end{enumerate}
+    \end{definition}
+    These definitions are the keys which Necoara used to prove the linear convergence of projected gradient, and Nesterov's accelerated gradient method. 
+
+\subsection{The idea of Semi Bregman Divergence}
+    
+
+
+    
+
+
+
+\bibliographystyle{siam}
+
+\bibliography{references/Books.bib}
+
+
+\end{document}

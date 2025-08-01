@@ -57,11 +57,33 @@ For this reason, the following weaker definition is presented.
 > \end{aligned}
 > $$
 
+---
+### **The basic properties**
+
+Some of the basic properties of Bregman divergence can be direct observed.
+No Legendere assumption. 
+
+#### **Claim | linear operators on the set of differentiable function**
+> Let $h: \R^n \rightarrow \R$ be a differentiable function.
+> Denote the class of differentiable functions to be $\mathcal C^1$. 
+> Then, for all $\alpha, \beta \in \R^n$, and $h_1, h_2$ from $\mathcal C^1$, it satisfies
+> $$
+> \begin{aligned}
+>     D_{\alpha h_1 + \beta h_2}(x, y) = \alpha D_{h_1}(x, y) + \beta D_{h_2} (x, y). 
+> \end{aligned}
+> $$
+> And, the null space of the linear operators are linear functions $h \in \mathcal C^1$. 
+
+**Proof**
+
+Obvious. $\blacksquare$
+
 
 ---
-### **The 3 Points Lemma**
+### **The 3, 4 Points Lemma**
 
-The following lemma is famous enough to deserve a name. 
+Bregman divergence can generalizes the cosin formula in the Euclidean space. 
+No Legendre Assumption. 
 
 #### **Lemma | 3 Points lemma, Cosine law**
 > Let $\omega: \mathbb E\mapsto (-\infty, \infty]$, be differentiable, then for all $a, b \in \text{dom}(\partial \omega)$, and $c \in \text{dom}(\omega)$, we have 
@@ -69,7 +91,7 @@ The following lemma is famous enough to deserve a name.
 > \begin{aligned}
 >     \langle \nabla \omega(b) - \nabla w(a), c - a\rangle
 >     = 
->     D_\omega(c, a) + D_\omega(a, b) - D_\omega(c, b)
+>     D_\omega(c, a) + D_\omega(a, b) - D_\omega(c, b). 
 > \end{aligned}
 > $$
 
@@ -112,33 +134,10 @@ It is simple algebra.
 
 $\blacksquare$
 
-**Remarks**
+**Remark**
 
-This lemma is a generalization of Consine Law in Euclidean space. 
-Consider a direct substitution of $\omega = \Vert \cdot\Vert^2/2$, the energy function. 
-Rewriting and substituting, it yields 
-
-$$
-\begin{aligned}
-    D_\omega(c, b) 
-    &= D_\omega(c, a) + D_\omega(a, b) - 
-    \langle \nabla \omega(b) - \nabla \omega(a), c - a\rangle
-    \\
-    (1/2)\Vert c - b \Vert^2
-    &= 
-    (1/2)\Vert c- a\Vert^2 + (1/2)\Vert b - a\Vert^2 - 
-    2 \langle b - a, c - a\rangle. 
-\end{aligned}
-$$
-
-Rewriting the LHS to be $(1/2)\Vert c- a - (b - a)\Vert^2$, then the above formula is equivalent to the vector form of the Cosine Rule.
-The original Cosine rule has two vectors, but it doesn't matter since a substitution $c - a = v, u = b - a$ would reveal the equivalence. 
-The cosine rule interpretation makes it easier to memorize and reveals some insights. 
-
-We encourage the readers to consider the case when $a, b, c$ are all on one line. 
-We speculate that if there exist points $a, b \in \text{dom}(\partial f)$ and $c \in \text{dom}(f)$ such that $\langle \nabla \omega(b) - \nabla \omega(a), c - a\rangle = 0$, then it would recover the analogous Pythagoras theorem for the Bregman divergence. 
-
-Finally, observe that if we have $c = b$, then the 3 points lemma becomes: 
+When $a, b, c$ are all on one line, the formula simplifies. 
+If we have $c = b$, then the 3 points lemma becomes: 
 
 $$
 \begin{aligned}
@@ -147,11 +146,17 @@ $$
 \end{aligned}
 $$
 
+#### **Example | Euclidean Cousin law**
+> Let $\omega = \Vert \cdot\Vert^2/2$, then the Bregman divergence cosin equality has, for all $a, b , c \in \R^n$: 
+> $$
+> \begin{aligned}
+>     (1/2)\Vert c - b\Vert^2 = (1/2)\Vert c- a\Vert^2 + (1/2)\Vert b - a\Vert^2 - 
+>     2 \langle b - a, c - a\rangle. 
+> \end{aligned}
+> $$
 
----
-### **The 4 points lemma**
 
-The following lemma is a type of 4 points lemma. 
+We speculate that if there exist points $a, b \in \text{dom}(\partial f)$ and $c \in \text{dom}(f)$ such that $\langle \nabla \omega(b) - \nabla \omega(a), c - a\rangle = 0$, then it would recover the analogous Pythagoras theorem for the Bregman divergence. 
 
 #### **Lemma | 4 points anchoring lemma**
 > Let $x, \bar x, y \in \R^n, \lambda \in \R$ be arbitrary. 

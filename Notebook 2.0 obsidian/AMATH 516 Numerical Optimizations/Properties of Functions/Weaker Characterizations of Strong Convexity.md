@@ -105,7 +105,7 @@ We first introduce a function with a special type of Bregman Divergence.
 
 **Proof**
 
-See [Semi Bregman Divergence](../Semi%20Bregman%20Divergence.md) for the proof. 
+See [Weaker than strong convexity](../Weaker%20than%20strong%20convexity.md) for the proof. 
 
 $\blacksquare$
 
@@ -120,9 +120,9 @@ The following theorem will characterize the equivalent conditions for the defini
 
 #### **Theorem | quasi strongly convex functions equivalent conditions**
 > Let $(f, X, x, \bar x)$ be given by Configuration 1. 
-> Denote $\varphi = (1/2)\dist(x | X^*)$. 
+> Denote $\varphi = (1/2)\dist(x | X^*)^2$. 
 > Then the following conditions are equivalent characterizations of quasi strong convexity. 
-> 1. There exists $\kappa_f \ge 0$ such that, it satisfies $0 \le D_f(\bar x, x) - \kappa_f D_{\varphi}(x, \bar x)$, for all $x$ . 
+> 1. There exists $\kappa_f \ge 0$ such that, it satisfies $0 \le D_f(\bar x, x) - \kappa_f D_{\varphi}(x, \bar x)$, for all $x$. 
 > 2. $f \in \mathbb S' (L_f, \kappa_f, X)$. 
 
 **Proof**
@@ -131,6 +131,10 @@ Trivial.
 Use the definition of Semi Bregman Divergence above. 
 
 $\blacksquare$ 
+
+**Remarks**
+
+Convexity is strictly required and can be removed from the definition. 
 
 A less trivial result will now follow. 
 
@@ -187,20 +191,43 @@ $$
 $$
 
 It's done. 
-For the equivalent between (1.), and (3.), it's obvious from the definition of QUA, and semi bregman divergence. 
+For the equivalent between (1.), and (3.), it's obvious from the definition of QUA, and semi Bregman divergence. 
 
 $\blacksquare$
 
-We now provide some examples of the definitions. 
 
-#### **Example 1 | The most obvious and direct example**
+We now provide some examples of the definitions of quasi strongly convex functions, using the idea of semi Bregman Divergence. 
+
+#### **Theorem 1 | Distance Squared is sometimes Q-SCNVX**
 > Consider $(f, X, X^*)$ that satisfies Assumption 1. 
-> Suppose that in addition, $f = (1/2)\dist(x | X_f)^2$. 
-> In addition, let $X_f = \argmin{x \in \R^n} \;f(x)$, and assume that $X_f \cap X \neq \emptyset$. 
-> Then, $f$ is Q-SCNVX, QUA, QGG, QF. 
+> In addition, assume $f = (1/2)\dist(x | C)^2$ where $C \subseteq \R^n$ is a closed, convex and non-empty set. 
+> Then, it is quasi strongly convex for $x \in X$ such that $\Pi_C x = \Pi_C \Pi_{X^*} x$. 
+> In addition, it admits $D_f(x, \Pi_{X^*}x) = D_f(\Pi_{X^*} x, x) = (1/2)\Vert x - \Pi_{X^*}x\Vert^2$. 
 
-**Demonstration**
+**Proof**
 
-When $X_f \cap X \neq \emptyset$, we have the luxury of $X^* = X_f \cap X$. 
+Proof is direct, we used the semi-bregman divergence for function of form $(1/2)\text{dist}(x| C)^2$. 
+Consider any $x \in X, \bar x = \Pi_{X^*} x$, then 
+
+$$
+\begin{aligned}
+    D_f(x, \bar x) &= 
+    - \frac{1}{2}\Vert \Pi_C x - \Pi_C \bar x \Vert^2
+    + \langle x - \Pi_C x, \Pi_C x - \Pi_C \bar x\rangle
+    + \frac{1}{2}\Vert x - \bar x\Vert^2
+    \\
+    &= \frac{1}{2}\Vert x - \bar x\Vert^2. 
+\end{aligned}
+$$
+
+The first equality follows from the semi bregman divergence. 
+The second equality follows from the fact that if $\Pi_C x = \Pi_C \bar x$, then $\Pi_Cx - \Pi_C \bar x = \mathbf 0$, hence the first two terms cancelled out.  
+
+$\blacksquare$
+
+**Remarks**
+
+This is a weaker class of quasi strongly convex function compared to what's said in Necoara et. al's paper. 
+
 
 
