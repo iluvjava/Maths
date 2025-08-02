@@ -8,6 +8,8 @@
 
 \begin{document}
 
+\newcommand{\dist}{\ensuremath{\operatorname{dist}}}
+
 \title{{\fontfamily{ptm}\selectfont My Ideas after Reading Papers}}
 
 \author{
@@ -81,8 +83,156 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{definition}
     These definitions are the keys which Necoara used to prove the linear convergence of projected gradient, and Nesterov's accelerated gradient method. 
 
-\subsection{The idea of Semi Bregman Divergence}
-    
+\section{Our crazy original ideas of extending their definitions}
+    In this section, we will proposed our ideas which relaxed Necoara's conditions for strong convexity.
+    \begin{definition}[Breman Divergence for differentiable funtion]\label{def:bd}
+        Let $f: \RR^n \rightarrow \RR$ be a $\mathcal C^1$ function. 
+        The Bregman divergence is a $\RR^n \times \dom \nabla f(x)\rightarrow \RR$ mapping and, it's defined by:  
+        \begin{align*}
+            D_f(x, y) = f(x) - f(y) - \langle \nabla f(y), x - y\rangle. 
+        \end{align*}
+    \end{definition}
+    semi Bregman Divergence is the Bregman Divergence of distance squared to a set. 
+    % ------------------------------------------------------------------------------------------------------------------
+    \begin{theorem}[Bregman Divergence for distance squared]\label{thm:bd-dist-sq}
+        Let $C \subseteq \RR^n$ be any closed and non-empty. 
+        Let $\varphi = (1/2)\dist(\cdot | C)^2$.
+        Then for all $x, y \in \RR^n$: 
+        \begin{align*}
+            D_{\varphi}(x, y) 
+            &= 
+            - \frac{1}{2}\Vert \Pi_C x - \Pi_C y\Vert^2
+            + \left\langle x - \Pi_C x, \Pi_C x - \Pi_C y\right\rangle
+            + \frac{1}{2} \Vert x - y\Vert^2. 
+        \end{align*}
+    \end{theorem}
+    \begin{proof}
+        For notational simplicity let $\bar x = \Pi_C x, \bar y = \Pi_C y$. 
+        Recall that $\nabla \varphi (x) = x - \bar x$. 
+        With Definition \ref{def:bd} and, basic algebra we can show that: 
+        \begin{align*}
+            D_{\varphi}(x, y) &= 
+            \varphi(x) - \varphi(y) - \left\langle \nabla \varphi(y), x - y\right\rangle
+            \\
+            &= \varphi(x) - \varphi(y) - \langle y - \bar y, x - y\rangle
+            \\
+            &= \frac{1}{2}(\Vert x - \bar x\Vert^2 - \Vert y - \bar y\Vert^2)
+            - \langle y - \bar y, x - y\rangle
+            \\
+            &= \frac{1}{2}(\Vert x - \bar x\Vert^2 - \Vert y - \bar y\Vert^2)
+            - \frac{1}{2}\Vert x - \bar y\Vert^2 
+            + \frac{1}{2}\left(
+                \Vert y - \bar y\Vert^2 + \Vert x - y\Vert^2
+            \right)
+            \\ 
+            &= \frac{1}{2}\Vert x - \bar x\Vert^2
+            - \frac{1}{2}\Vert x - \bar y\Vert^2 + \frac{1}{2}\Vert x - y\Vert^2
+            \\
+            &= 
+            \frac{1}{2}\Vert x - \bar x\Vert^2
+            - \frac{1}{2}\left(
+                \Vert x - \bar x\Vert^2 + \Vert \bar x - \bar y\Vert^2
+                + 2\langle x - \bar x, \bar x - \bar y\rangle
+            \right)
+            + \frac{1}{2}\Vert x - y\Vert^2
+            \\
+            &= - \frac{1}{2}\Vert \bar x - \bar y\Vert^2 + \langle x - \bar x, \bar x - \bar y\rangle 
+            + \frac{1}{2}\Vert x - y \Vert^2. 
+        \end{align*}
+    \end{proof}
+    \par
+    The following lemma is a precursor to extend the definition of Q-SCNVX. 
+    The abbreviation ``SBD'' stands for ``Semi Bregman Divergence''. 
+    % ------------------------------------------------------------------------------------------------------------------
+    \begin{lemma}[conditions when SBD behaves like SCNVX]
+        Let $C \subseteq \RR^n$ be closed and non-empty. 
+        Let $\varphi = (1/2)\dist(\cdot | C)^2$.
+        Define the set $\mathcal D(x | C) := \{z \in \RR^n : \Pi_C z = \Pi_C x\}$. 
+        Then, for all $x \in \RR^n$ it satisfies
+        \begin{align*}
+            (\forall z \in D(x | C))\; \mathcal D_\varphi(x, z) = \frac{1}{2}\Vert x - z\Vert^2 = D_f(z, x). 
+        \end{align*}
+    \end{lemma}
+    \begin{proof}
+        The proof is direct. 
+        For all $x \in \RR^n, z \in \mathcal D(x | C)$, the Bregman Divergence simplifies because using Theorem \ref{thm:bd-dist-sq} it has: 
+        \begin{align*}
+            D_\varphi (x, z) &= 
+            - \frac{1}{2}\Vert \Pi_C x - \Pi_C z\Vert^2 
+            + \langle x - \Pi_C x, \Pi_C x - \Pi_C z\rangle 
+            + \frac{1}{2}\Vert x - z\Vert^2
+            \\
+            &= 0 + 0 + \frac{1}{2}\Vert x - z\Vert^2. 
+        \end{align*}
+        This is true because for all $z \in \mathcal D(x | C)$, it has $\Pi_C x - \Pi_C z = 0$. 
+        Similarly, it has: 
+        \begin{align*}
+            D_\varphi(x, z) &= 
+            - \frac{1}{2}\Vert \Pi_C x - \Pi_C z\Vert^2 
+            + \langle z - \Pi_C z, \Pi_C z - \Pi_C x\rangle
+            + \frac{1}{2}\Vert z - x\Vert^2
+            \\
+            &= 0 + 0 + \frac{1}{2}\Vert z - x\Vert^2. 
+        \end{align*}
+    \end{proof}
+    \par
+    Now, the definition of $\mathcal D(x | C)$ in the above lemma is nothing outrageous. 
+    It simply denotes all points that share the same projection onto $C$ as $x$. 
+    Below, we will give some possible scenarios. 
+    \begin{enumerate}
+        \item When $C$ is convex, the set $\mathcal D(x | C) = \Pi_C x + N_C(\Pi_C x)$. 
+        \item When $C$ is nonconvex, it has $\mathcal D(x | C) \subseteq \Pi_C x + N_C(\Pi_C x)$. 
+    \end{enumerate}
+    Strong convexity is recovered when $C$ is a singleton. 
+    For example when $C = \{\mathbf 0\}$, and $\varphi = (1/2)\Vert x\Vert^2$, this is the usual euclidean Bregman Divergence used to introduce functions that are strongly convex. 
+    Furthermore, take note that $\Pi_C x \in D(x | C)$ always so we have
+    \begin{align}
+        D_\varphi(x, \Pi_C x) = \frac{1}{2}\Vert x - \Pi_C \Vert^2 = D_\varphi(\Pi_C x, x). 
+    \end{align}
+    \par
+    The following theorems will prepare us for linear convergence of first order algorithms. 
+    \begin{definition}[proximal gradient operator]\label{def:pg}
+        Let $F = f + g$, suppose that $f : \RR^n \rightarrow \RR$ is in $\mathcal C^1$ and $g: \RR^n \rightarrow \overline R$ is l.s.c. 
+        The proximal gradient operator, denoted by $T_{B, f, g}$ is defined as
+        \begin{align*}
+            T_{B, f, g}(x) &= \argmin_{z\in \RR^n} \left\lbrace
+                g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert x - z\Vert^2
+            \right\rbrace
+        \end{align*}
+    \end{definition}
+    \begin{remark}
+        Usually we can find it in the literature that, $T_{B, f, g} = \hprox_{B^{-1}g}(x - B^{-1}\nabla f(x))$. 
+    \end{remark}
+
+    \begin{assumption}[our assumptions]\label{ass:our-ass}
+        The following assumption is about $(f, g, L_f, X^*)$. 
+        \begin{enumerate}
+            \item $f: \RR^n \rightarrow \RR$ is $L_f$ Lipschitz smooth. 
+            \item $g: \RR^n \rightarrow \RR$ is l.s.c
+            \item Denote $X^*$ be the fixed point set of $T_{L_f, f, g}$ and assume $X^* \neq \emptyset$. 
+        \end{enumerate}
+    \end{assumption}
+    \begin{definition}[relatively quasi strongly convex]
+        Suppose that $(f, g, L_f, X^*)$ satisfies Assumption \ref{ass:our-ass}. 
+        The function $F = f + g$ is relatively quasi strongly convex if there exists $\kappa_f > 0$ such that for all $x \in \dom g$, let $\bar x = \Pi_{X^*}x$ it satisfies: 
+        \begin{align*}
+            \left(\forall v \in \partial F(\bar x)\right)\;
+            F(x) - F(\bar x) - \langle v, x - \bar x\rangle 
+            &\ge \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2. 
+        \end{align*}
+    \end{definition}
+    \begin{remark}
+        Take note that the RHS of the inequality $\kappa_f/2 \Vert x - \bar x\Vert^2 = D_\varphi(x, \Pi_{X^*}x)$ where $\varphi = (1/2)\dist(x | X^*)^2$. 
+    \end{remark}
+    The following discussion will give important consequences of our set up. 
+    % ------------------------------------------------------------------------------------------------------------------
+    \subsection{examples for relatively quasi strongly convex functions}
+
+    % ------------------------------------------------------------------------------------------------------------------
+    \subsection{theorems useful for convergence analysis of algorithms}
+
+
+\section{Linear convergence of first order methods}
 
 
     

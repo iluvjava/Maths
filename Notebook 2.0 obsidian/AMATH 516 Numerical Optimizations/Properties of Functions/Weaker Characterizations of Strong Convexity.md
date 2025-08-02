@@ -229,5 +229,3 @@ $\blacksquare$
 
 This is a weaker class of quasi strongly convex function compared to what's said in Necoara et. al's paper. 
 
-
-

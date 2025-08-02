@@ -59,11 +59,12 @@ $$
     \frac{1}{2}\Vert x - \bar x\Vert^2
     - \frac{1}{2}\left(
         \Vert x - \bar x\Vert^2 + \Vert \bar x - \bar y\Vert^2
-        + \langle x - \bar x, \bar x - \bar y\rangle
+        + 2\langle x - \bar x, \bar x - \bar y\rangle
     \right)
     + \frac{1}{2}\Vert x - y\Vert^2
     \\
-    &= - \frac{1}{2}\Vert \bar x - \bar y\Vert^2 + \langle x - \bar x, \bar x - \bar y\rangle 
+    &= - \frac{1}{2}\Vert \bar x - \bar y\Vert^2 
+    + \langle x - \bar x, \bar x - \bar y\rangle 
     + \frac{1}{2}\Vert x - y \Vert^2. 
 \end{align*}
 $$
