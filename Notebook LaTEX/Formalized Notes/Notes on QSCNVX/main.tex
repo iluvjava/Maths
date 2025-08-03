@@ -84,7 +84,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     These definitions are the keys which Necoara used to prove the linear convergence of projected gradient, and Nesterov's accelerated gradient method. 
 
 \section{Our crazy original ideas of extending their definitions}
-    In this section, we will proposed our ideas which relaxed Necoara's conditions for strong convexity.
+    In this section, we will propose our ideas which relaxed Necoara's conditions for strong convexity.
     \begin{definition}[Breman Divergence for differentiable funtion]\label{def:bd}
         Let $f: \RR^n \rightarrow \RR$ be a $\mathcal C^1$ function. 
         The Bregman divergence is a $\RR^n \times \dom \nabla f(x)\rightarrow \RR$ mapping and, it's defined by:  
@@ -92,9 +92,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             D_f(x, y) = f(x) - f(y) - \langle \nabla f(y), x - y\rangle. 
         \end{align*}
     \end{definition}
-    semi Bregman Divergence is the Bregman Divergence of distance squared to a set. 
     % ------------------------------------------------------------------------------------------------------------------
-    \begin{theorem}[Bregman Divergence for distance squared]\label{thm:bd-dist-sq}
+    \begin{theorem}[distance squared Bregman Divergence]\label{thm:bd-dist-sq}
         Let $C \subseteq \RR^n$ be any closed and non-empty. 
         Let $\varphi = (1/2)\dist(\cdot | C)^2$.
         Then for all $x, y \in \RR^n$: 
@@ -141,16 +140,20 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
     \end{proof}
     \par
+    In the parts that come, we will talk about the set of points that share the same projections onto a set.
+    Let $C \subseteq \RR^n$, we define for all $x \in \RR^n$ the set: 
+    \begin{align}
+        \mathcal D(x | C) = \{z \in \RR^n : \Pi_C z = \Pi_C x\}. 
+    \end{align}
     The following lemma is a precursor to extend the definition of Q-SCNVX. 
-    The abbreviation ``SBD'' stands for ``Semi Bregman Divergence''. 
+    The abbreviation ``DSBD'' stands for ``distance squared Bregman Divergence''. 
     % ------------------------------------------------------------------------------------------------------------------
-    \begin{lemma}[conditions when SBD behaves like SCNVX]
+    \begin{lemma}[conditions when DSBD behaves like norm squared]
         Let $C \subseteq \RR^n$ be closed and non-empty. 
         Let $\varphi = (1/2)\dist(\cdot | C)^2$.
-        Define the set $\mathcal D(x | C) := \{z \in \RR^n : \Pi_C z = \Pi_C x\}$. 
         Then, for all $x \in \RR^n$ it satisfies
         \begin{align*}
-            (\forall z \in D(x | C))\; \mathcal D_\varphi(x, z) = \frac{1}{2}\Vert x - z\Vert^2 = D_f(z, x). 
+            (\forall z \in \mathcal D(x | C))\; \mathcal D_\varphi(x, z) = \frac{1}{2}\Vert x - z\Vert^2 = D_f(z, x). 
         \end{align*}
     \end{lemma}
     \begin{proof}
@@ -185,7 +188,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{enumerate}
     Strong convexity is recovered when $C$ is a singleton. 
     For example when $C = \{\mathbf 0\}$, and $\varphi = (1/2)\Vert x\Vert^2$, this is the usual euclidean Bregman Divergence used to introduce functions that are strongly convex. 
-    Furthermore, take note that $\Pi_C x \in D(x | C)$ always so we have
+    Furthermore, take note that $\Pi_C x \in D(x | C)$ always so, we have
     \begin{align}
         D_\varphi(x, \Pi_C x) = \frac{1}{2}\Vert x - \Pi_C \Vert^2 = D_\varphi(\Pi_C x, x). 
     \end{align}
@@ -203,7 +206,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{remark}
         Usually we can find it in the literature that, $T_{B, f, g} = \hprox_{B^{-1}g}(x - B^{-1}\nabla f(x))$. 
     \end{remark}
-
+    The following assumption is the weakest and, it doesn't assume convexity at all. 
     \begin{assumption}[our assumptions]\label{ass:our-ass}
         The following assumption is about $(f, g, L_f, X^*)$. 
         \begin{enumerate}
@@ -212,9 +215,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \item Denote $X^*$ be the fixed point set of $T_{L_f, f, g}$ and assume $X^* \neq \emptyset$. 
         \end{enumerate}
     \end{assumption}
-    \begin{definition}[relatively quasi strongly convex]
+    \begin{definition}[restricted QUA]
         Suppose that $(f, g, L_f, X^*)$ satisfies Assumption \ref{ass:our-ass}. 
-        The function $F = f + g$ is relatively quasi strongly convex if there exists $\kappa_f > 0$ such that for all $x \in \dom g$, let $\bar x = \Pi_{X^*}x$ it satisfies: 
+        The function $F = f + g$ has restricted QUA condition if there exists $\kappa_f > 0, D \subseteq \dom g$ such that for all $x \in D$, let $\bar x = \Pi_{X^*}x$ it satisfies: 
         \begin{align*}
             \left(\forall v \in \partial F(\bar x)\right)\;
             F(x) - F(\bar x) - \langle v, x - \bar x\rangle 
@@ -223,17 +226,33 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{definition}
     \begin{remark}
         Take note that the RHS of the inequality $\kappa_f/2 \Vert x - \bar x\Vert^2 = D_\varphi(x, \Pi_{X^*}x)$ where $\varphi = (1/2)\dist(x | X^*)^2$. 
+        This definition doesn't exclude nonconvex functions. 
+        The hope is to have the set $D = \dom g$, but we don't think that is always true. 
+        Our hope is that the set $D$ is at least somewhat larger than $X^+$. 
     \end{remark}
-    The following discussion will give important consequences of our set up. 
+    The following discussion will give important consequences of this setup. 
     % ------------------------------------------------------------------------------------------------------------------
     \subsection{examples for relatively quasi strongly convex functions}
-
+        The following assumption will characterize a specific type of convex programming problem that has relative quasi strong convexity. 
+        \begin{assumption}[distance of two sets]
+            Suppose $(f, g, L_f, X^*)$ satisfies Assumption \ref{ass:our-ass}. 
+            In addition, we assume the following. 
+            \begin{enumerate}[nosep]
+                \item 
+            \end{enumerate}
+        \end{assumption}
+        \begin{theorem}[example of restricted QUA]\label{thm:example-rqua}
+            
+        \end{theorem}
+        \begin{proof}
+            
+        \end{proof}
     % ------------------------------------------------------------------------------------------------------------------
     \subsection{theorems useful for convergence analysis of algorithms}
-
+        The proximal gradient inequality and, the Jensen inequality are the most important for deriving convergence rate of first order accelerated method. 
 
 \section{Linear convergence of first order methods}
-
+    
 
     
 
