@@ -2,45 +2,45 @@ This is BibTeX, Version 0.99d (TeX Live 2024)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: siam.bst
-Database file #1: references/Books.bib
-You've used 1 entry,
+Database file #1: references/refs.bib
+You've used 2 entries,
             2030 wiz_defined-function locations,
-            504 strings with 3939 characters,
-and the built_in function-call counts, 267 in all, are:
-= -- 19
-> -- 13
+            511 strings with 4118 characters,
+and the built_in function-call counts, 669 in all, are:
+= -- 60
+> -- 31
 < -- 0
-+ -- 5
-- -- 4
-* -- 20
-:= -- 52
-add.period$ -- 1
-call.type$ -- 1
-change.case$ -- 4
++ -- 12
+- -- 10
+* -- 53
+:= -- 113
+add.period$ -- 2
+call.type$ -- 2
+change.case$ -- 10
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 13
-empty$ -- 24
-format.name$ -- 4
-if$ -- 52
+cite$ -- 2
+duplicate$ -- 30
+empty$ -- 51
+format.name$ -- 10
+if$ -- 138
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 2
-newline$ -- 6
-num.names$ -- 2
-pop$ -- 6
+int.to.str$ -- 2
+missing$ -- 3
+newline$ -- 9
+num.names$ -- 4
+pop$ -- 10
 preamble$ -- 1
-purify$ -- 4
+purify$ -- 9
 quote$ -- 0
-skip$ -- 7
+skip$ -- 23
 stack$ -- 0
-substring$ -- 5
-swap$ -- 2
+substring$ -- 37
+swap$ -- 10
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 2
+type$ -- 6
 warning$ -- 0
-while$ -- 2
-width$ -- 2
-write$ -- 12
+while$ -- 7
+width$ -- 3
+write$ -- 21

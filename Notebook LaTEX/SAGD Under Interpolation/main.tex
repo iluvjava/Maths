@@ -516,17 +516,26 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \right)^2
             \\
             &\le 
-            \expect \left \Vert \nabla f(x) - \tilde \nabla f(x)\right\Vert^2 
+            \expect \left\Vert \nabla f(x) - \tilde \nabla f(x)\right\Vert^2
             \\
-            &= \expect \left\Vert \expect \tilde \nabla f(x) - \tilde \nabla f(x) \right\Vert^2 
+            &= 
+            \Vert \nabla f(x)\Vert^2 
+            + \expect \left\Vert\tilde \nabla f(x) \right\Vert^2 
+            - 2\expect
+            \left\langle 
+                \nabla f(x), \tilde \nabla f(x)
+            \right\rangle
             \\
-            &= \expect \left\Vert \tilde \nabla f(x)\right\Vert^2 
-            - \Vert \nabla f(x)\Vert^2 
-            \le (\rho - 1)\Vert \nabla f(x)\Vert^2. 
+            &\le 
+            \Vert \nabla f(x)\Vert^2 
+            + \rho \Vert \nabla f(x)\Vert^2
+            - 2\Vert \nabla f(x)\Vert^2
+            \\
+            &= \left(\rho - 1\right) \Vert \nabla f(x)\Vert^2.
         \end{align*}
-        The last two equalities, we used the $\expect (X - \expect X)^2 = \expect X^2 - (\expect X)^2$ with $X$ being each of the element of the vector and, the linearity of expectations to apply it individually and them sum it up. 
-        The first inequality also uses that equality but $X = \left\Vert \nabla f(x) - \tilde \nabla f(x)\right\Vert$ instead, and $\expect (X - \expect X)^2 \ge 0$ always. 
-        The last inequality comes from the assumed strong-growth conditions. 
+        For the first inequality, we used the $\expect (X - \expect X)^2 = \expect X^2 - (\expect X)^2$, and the variance being a non-negative quantity. 
+        The last inequality comes from the assumed strong-growth conditions.
+        \par
         Strong growth condition does make $\epsilon$ smaller if $x$ is close to the set of minimizer and this is the result: 
         \begin{align*}
             \expect \left\Vert

@@ -10,7 +10,7 @@
 
 \newcommand{\dist}{\ensuremath{\operatorname{dist}}}
 
-\title{{\fontfamily{ptm}\selectfont My Ideas after Reading Papers}}
+\title{{\fontfamily{ptm}\selectfont My Ideas after Reading Necoara's Papers}}
 
 \author{
     Author 1 Name, Author 2 Name
@@ -38,7 +38,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 % ==============================================================================
 \section{Introduction}
-    Necoara et al. introduced the definition of quasi strongly convex function (Q-SCNVX), Quadratic Under approximations (QUA), Quadratic Gradient Growth (QGG), Proximal Error Bound (PEB) and, Quadratic Function Growth (QFG). 
+    Necoara et al. \cite{necoara_linear_2019}  introduced the definition of quasi strongly convex function (Q-SCNVX), Quadratic Under approximations (QUA), Quadratic Gradient Growth (QGG), Proximal Error Bound (PEB) and, Quadratic Function Growth (QFG). 
     These conditions are relaxation of strong convexity which enables linear convergence rate of first order method, including Nesterov's accelerated variants. 
     In this file, we showed a new perspective of their works. 
     Our goal is to relax their definitions and, to extend the linear convergence results, using completely new ideas and perspective. 
@@ -148,7 +148,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     The following lemma is a precursor to extend the definition of Q-SCNVX. 
     The abbreviation ``DSBD'' stands for ``distance squared Bregman Divergence''. 
     % ------------------------------------------------------------------------------------------------------------------
-    \begin{lemma}[conditions when DSBD behaves like norm squared]
+    \begin{lemma}[conditions when DSBD behaves like norm squared]\label{lemma:conds-dsbd-like-scnvx}
         Let $C \subseteq \RR^n$ be closed and non-empty. 
         Let $\varphi = (1/2)\dist(\cdot | C)^2$.
         Then, for all $x \in \RR^n$ it satisfies
@@ -232,24 +232,35 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{remark}
     The following discussion will give important consequences of this setup. 
     % ------------------------------------------------------------------------------------------------------------------
-    \subsection{examples for relatively quasi strongly convex functions}
+    \subsection{examples for restricted QUA}
         The following assumption will characterize a specific type of convex programming problem that has relative quasi strong convexity. 
-        \begin{assumption}[distance of two sets]
+        \begin{assumption}[two sets feasibility problem]\;\label{ass:two-sets-feasibility}\\
             Suppose $(f, g, L_f, X^*)$ satisfies Assumption \ref{ass:our-ass}. 
             In addition, we assume the following. 
             \begin{enumerate}[nosep]
-                \item 
+                \item $f = (1/2)\dist(x | C)^2$ where $C \subseteq \RR^n$ is a closed and convex set. 
+                \item $g = \delta_X(x)$ is the indicator function of $X \subseteq \RR^n$, where $X$ is a closed and convex, nonempty set. 
             \end{enumerate}
+            Consequently, the set of minimizers is the fixed point set of the alternating projection operators, $X^* = \Fix (\Pi_X \Pi_C)$. 
         \end{assumption}
-        \begin{theorem}[example of restricted QUA]\label{thm:example-rqua}
-            
+        We will show that, with additional assumptions, function in the above assumption can satisfy the restricted QUA conditions 
+        \begin{theorem}[characterizing restricted QUA]\label{thm:example-rqua}
+            Suppose that $(f, g, L_f, X^*)$ satisfies Assumption \ref{ass:two-sets-feasibility}. 
+            Then for all $x\in X$ such that $\Pi_{X^*} x\in \mathcal D(x | C)$, it has 
+            \begin{align*}
+                D_f(x, \Pi_{X^*}x) = \frac{1}{2}\Vert x - \Pi_{X^*} x\Vert^2 = D_f(\Pi_{X^*}x, x). 
+            \end{align*}
         \end{theorem}
         \begin{proof}
-            
+            We use Lemma \ref{lemma:conds-dsbd-like-scnvx}, take note that when $z = \Pi_{X^*} x \in \mathcal D(x | C)$, then the lemma says: $D_f(x, \Pi_{X^*}x) = \frac{1}{2}\Vert x - \Pi_{X^*}x\Vert^2= D_f(\Pi_{X^*}x, x)$. 
         \end{proof}
+        \begin{remark}
+            The conditions, $\Pi_{X^*}x \in \mathcal D(x | C)$ is not always a given and, it would require some careful thoughts. 
+        \end{remark}
     % ------------------------------------------------------------------------------------------------------------------
     \subsection{theorems useful for convergence analysis of algorithms}
         The proximal gradient inequality and, the Jensen inequality are the most important for deriving convergence rate of first order accelerated method. 
+
 
 \section{Linear convergence of first order methods}
     
@@ -260,7 +271,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 \bibliographystyle{siam}
 
-\bibliography{references/Books.bib}
+\bibliography{references/refs.bib}
 
 
 \end{document}
