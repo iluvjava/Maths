@@ -5,3 +5,4 @@ FISTA
 Nesterov
 seminorm
 subgradient
+Semi-SCNVX

@@ -94,7 +94,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{definition}
     % ------------------------------------------------------------------------------------------------------------------
     \begin{theorem}[distance squared Bregman Divergence]\label{thm:bd-dist-sq}
-        Let $C \subseteq \RR^n$ be any closed and non-empty. 
+        Let $C \subseteq \RR^n$ be any closed, non-empty and convex set. 
         Let $\varphi = (1/2)\dist(\cdot | C)^2$.
         Then for all $x, y \in \RR^n$: 
         \begin{align*}
@@ -106,8 +106,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
     \end{theorem}
     \begin{proof}
-        For notational simplicity let $\bar x = \Pi_C x, \bar y = \Pi_C y$. 
-        Recall that $\nabla \varphi (x) = x - \bar x$. 
+        closed, convex, non-empty $C$ gives unique projection point so $\Pi_C$ is a convex set. 
+        \par
+        For notational simplicity let $\bar x = \Pi_C x, \bar y = \Pi_C y$, then it has $\nabla \varphi (x) = x - \bar x$. 
         With Definition \ref{def:bd} and, basic algebra we can show that: 
         \begin{align*}
             D_{\varphi}(x, y) &= 
@@ -188,7 +189,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{enumerate}
     Strong convexity is recovered when $C$ is a singleton. 
     For example when $C = \{\mathbf 0\}$, and $\varphi = (1/2)\Vert x\Vert^2$, this is the usual euclidean Bregman Divergence used to introduce functions that are strongly convex. 
-    Furthermore, take note that $\Pi_C x \in D(x | C)$ always so, we have
+    Furthermore, take note that $\Pi_C x \in D(x | C)$ is always true, hence we have
     \begin{align}
         D_\varphi(x, \Pi_C x) = \frac{1}{2}\Vert x - \Pi_C \Vert^2 = D_\varphi(\Pi_C x, x). 
     \end{align}
@@ -207,14 +208,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Usually we can find it in the literature that, $T_{B, f, g} = \hprox_{B^{-1}g}(x - B^{-1}\nabla f(x))$. 
     \end{remark}
     The following assumption is the weakest and, it doesn't assume convexity at all. 
-    \begin{assumption}[our assumptions]\label{ass:our-ass}
+    \begin{assumption}\label{ass:our-ass}
         The following assumption is about $(f, g, L_f, X^*)$. 
         \begin{enumerate}
             \item $f: \RR^n \rightarrow \RR$ is $L_f$ Lipschitz smooth. 
-            \item $g: \RR^n \rightarrow \RR$ is l.s.c
+            \item $g: \RR^n \rightarrow \RR$ is closed convex and proper. 
             \item Denote $X^*$ be the fixed point set of $T_{L_f, f, g}$ and assume $X^* \neq \emptyset$. 
         \end{enumerate}
     \end{assumption}
+    We take note that, under the above assumption the function $F = f + g$ is a $L_f$ weakly convex function and, $\widehat \partial F = \partial F$. 
     \begin{definition}[restricted QUA]
         Suppose that $(f, g, L_f, X^*)$ satisfies Assumption \ref{ass:our-ass}. 
         The function $F = f + g$ has restricted QUA condition if there exists $\kappa_f > 0, D \subseteq \dom g$ such that for all $x \in D$, let $\bar x = \Pi_{X^*}x$ it satisfies: 
@@ -228,7 +230,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Take note that the RHS of the inequality $\kappa_f/2 \Vert x - \bar x\Vert^2 = D_\varphi(x, \Pi_{X^*}x)$ where $\varphi = (1/2)\dist(x | X^*)^2$. 
         This definition doesn't exclude nonconvex functions. 
         The hope is to have the set $D = \dom g$, but we don't think that is always true. 
-        Our hope is that the set $D$ is at least somewhat larger than $X^+$. 
+        Our hope is that the set $D$ is at least somewhat larger than $X^*$. 
     \end{remark}
     The following discussion will give important consequences of this setup. 
     % ------------------------------------------------------------------------------------------------------------------
@@ -240,8 +242,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \begin{enumerate}[nosep]
                 \item $f = (1/2)\dist(x | C)^2$ where $C \subseteq \RR^n$ is a closed and convex set. 
                 \item $g = \delta_X(x)$ is the indicator function of $X \subseteq \RR^n$, where $X$ is a closed and convex, nonempty set. 
+                \item The set $X^* = \Fix(\Pi_X \Pi_C) \neq \emptyset$. 
             \end{enumerate}
-            Consequently, the set of minimizers is the fixed point set of the alternating projection operators, $X^* = \Fix (\Pi_X \Pi_C)$. 
         \end{assumption}
         We will show that, with additional assumptions, function in the above assumption can satisfy the restricted QUA conditions 
         \begin{theorem}[characterizing restricted QUA]\label{thm:example-rqua}
