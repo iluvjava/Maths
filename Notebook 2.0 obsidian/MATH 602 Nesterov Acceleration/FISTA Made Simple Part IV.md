@@ -181,7 +181,7 @@ The above operator $T_B(x)$ is a singleton, and it also has $T_B(x) = \pprox{x}(
 > Consider any $x, z \in \R^n$, then there exists a $B \ge 0$ such that for $x^+ = T_B(x)$, it has $D_f(x, x^+) \le \frac{B}{2}\Vert x - x^+\Vert^2$, and it satisfies: 
 > $$
 > \begin{aligned}
->    0 &\le F(z) - F(x^+) + \frac{\max(B, L\Vert A\Vert^2) - \mu\sigma(A)^2}{2}\Vert z - x\Vert^2 
+>    0 &\le F(z) - F(x^+) + \frac{B - \mu\sigma(A)^2}{2}\Vert z - x\Vert^2 
 >   - \frac{B}{2}\Vert z - x^+\Vert^2
 >   + \frac{\mu\sigma(A)^2}{2}\Vert \Pi_{\text{ker}A}(z - x)\Vert^2. 
 > \end{aligned}
@@ -204,57 +204,47 @@ $$
         g(x^+) + \langle \nabla f(x), x^+ - x\rangle + \frac{B}{2}\Vert x - x^+\Vert^2
     \right)
     \\
-    &\le
+    &=
     \left(
-        F(z) - D_f(z, x) + \frac{\max\left(L\Vert A\Vert^2, B\right)}{2}\Vert z - x\Vert^2
+        F(z) - D_f(z, x) + \frac{B}{2}\Vert z - x\Vert^2
     \right) - 
     \left(
         F(x^+) - D_f(x^+, x) + \frac{B}{2}\Vert x - x^+\Vert^2
     \right)
     \\
     &\underset{(1)}{\le}
-    F(z) + \frac{\max(L\Vert A\Vert^2, B)}{2}\Vert z - x\Vert^2 
-    - \frac{\mu\sigma^2}{2}\Vert \Pi_{\perp}(z - x)\Vert^2
+    \left(
+        F(z) + \frac{B}{2}\Vert z - x\Vert^2 
+        - \frac{\mu\sigma^2}{2}\Vert \Pi_{\perp}(z - x)\Vert^2
+    \right)
     - \left(
         F(x^+) - D_f(x^+, x) + \frac{B}{2}\Vert x - x^+\Vert^2
     \right)
     \\
     &\underset{(2)}{\le} 
-    F(z) + \frac{\max(L\Vert A\Vert^2, B)}{2}\Vert z - x\Vert^2 
+    F(z) 
+    + \frac{B}{2}\Vert z - x\Vert^2
     - \frac{\mu\sigma^2}{2}\Vert \Pi_{\perp}(z - x)\Vert^2
     - F(x^+). 
 \end{aligned}
 $$
 
-At (1), we used the fact that $f = h(Ax + b)$, so it has 
-
-$$
-\begin{aligned}
-    &\frac{L\Vert A\Vert^2}{2}\Vert z - x\Vert^2 - D_f(x, y)
-    \\
-    &\le 
-    \frac{L\Vert A\Vert^2}{2}\Vert z - x\Vert^2 - \frac{\mu\sigma^2}{2}\Vert \Pi_{\perp}(x - y)\Vert^2 
-    \\
-    &\le 
-    \frac{\max(L\Vert A\Vert^2, B)}{2}\Vert z - x\Vert^2 - \frac{\mu\sigma^2}{2}\Vert \Pi_{\perp}(x - y)\Vert^2. 
-\end{aligned}
-$$
-
-At (2), we used the fact that $B$ makes $D_f(x, x^+)\le \frac{B}{2}\Vert x - x^+\Vert^2$. 
+At (1), we used the fact that $f = h(Ax + b)$, so it has $D_f(z, x) \ge \frac{\mu\sigma(A)^2}{2}\Vert \Pi_{\perp}(z - x)\Vert^2$. 
+At (2), we used the fact that $B$ makes $- D_f(x, x^+) + \frac{B}{2}\Vert x - x^+\Vert^2 \ge 0$. 
 Continuing it has 
 
 $$
 \begin{aligned}
     0 
     &\le 
-    F(z) + \frac{L\Vert A\Vert^2}{2}\Vert z - x\Vert^2 
+    F(z) + \frac{B}{2}\Vert z - x\Vert^2 
     - \frac{\mu\sigma^2}{2}\Vert \Pi_{\perp}(z - x)\Vert^2
     - F(x^+)
     - \frac{B}{2}\Vert z - x^+\Vert^2
     \\
     &= 
     F(z) 
-    + \frac{\max(B, L\Vert A\Vert^2)}{2}\Vert z - x\Vert^2 
+    + \frac{B}{2}\Vert z - x\Vert^2 
     - \frac{\mu\sigma^2}{2}\left(
         \Vert z - x\Vert^2 
         - \Vert \Pi(z - x)\Vert^2
@@ -263,7 +253,7 @@ $$
     - \frac{B}{2}\Vert z - x^+\Vert^2
     \\
     &\le F(z) - F(x^+)
-    + \frac{\max(B, L\Vert A\Vert^2) - \mu\sigma^2}{2}\Vert z - x\Vert^2 
+    + \frac{B - \mu\sigma^2}{2}\Vert z - x\Vert^2 
     - \frac{B}{2}\Vert z - x^+\Vert^2
     + \frac{\mu\sigma^2}{2}\Vert \Pi(z - x)\Vert^2. 
 \end{aligned}
@@ -284,7 +274,7 @@ The results from strong convexity can be adopted for this type of seminorm as we
 > Suppose that $f(x) = h(Ax + b)$, then it satisfies for all $x, y \in \R^n, \lambda\in [0, 1]$ the inequality: 
 > $$
 > \begin{aligned}
->   f(\lambda x + (1 - \lambda)y) - \lambda f(x) - (1 - \lambda)f(y)
+>   0 &\le f(\lambda x + (1 - \lambda)y) - \lambda f(x) - (1 - \lambda)f(y)
 >   - \frac{\mu\sigma(A)^2\lambda(1 - \lambda)}{2}\Vert \Pi_{\perp}(x - y)\Vert^2. 
 > \end{aligned}
 > $$
@@ -388,29 +378,34 @@ See [Strong Convexity](../AMATH%20516%20Numerical%20Optimizations/Properties%20o
 ### **Everything about the algorithm**
 
 We state the algorithm in similar triangle form. 
+This time, we will nondimensionalize the algorithm to simplify the algebra for the convergence proof. 
 
 #### **Definition | similar triangle form of accelerated proximal gradient**
-> Let $L, \mu$ be that $L > \mu \ge 0$. 
+> Let $q_k \in [0, 1)$ for all $k \ge 0$. 
 > Given the initial condition $v_{-1}, x_{-1} \in \R^n$. 
 > An algorithm is a similar triangle form of the accelerated proximal gradient method if the iterates generated $(y_k, x_k, v_k)_{k \ge 1}$ satisfies for all $k \ge 1$: 
 > $$
 > \begin{aligned}
->     y_k &= (1 + \tau_k)^{-1} v_{k - 1} + \tau_k (1 + \tau_k)^{-1} x_{k - 1},
+>     y_k &= (1 - q_k)^{-1}((\alpha_k - q_k)v_{k - 1} + (1 - \alpha_k) x_{k - 1}),
 >     \\
 >     x_k &= T_{L_k}(y_k),
 >     \\
 >     v_k &= x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
 > \end{aligned}
 > $$
-> Where, Here we make $\tau_k = L_k(1 - \alpha_k)(L_k\alpha_k - \mu)^{-1}$.
+> Where, Here we make $\tau_k = (1 - \alpha_k)(\alpha_k - q_k)^{-1}$.
+
+**Remarks**
+
+The parameter $q$ is produced via nondimensionalization, usually, $q = \mu/L \in [0, 1)$. 
 
 #### **Definition | relaxed Nesterov's momentum sequence**
-> For any $L > \mu \ge 0$. 
+> For any $q_k \in (0, 1]$. 
 > Let $(\alpha_k)_{k \ge 0}$ be a sequence such that, $\alpha_0 \in (0, 1]$. 
 > We define the relaxation sequence $(\rho_k)_{k \ge 0}$ to be: 
 > $$
 > \begin{aligned}
->     \rho_{k - 1} &= \frac{\alpha_k(\alpha_k - \mu/L_k)}{(1 - \alpha_{k})\alpha_{k - 1}^2}. 
+>     \rho_{k - 1} &= \frac{\alpha_k(\alpha_k - q_k)}{(1 - \alpha_{k})\alpha_{k - 1}^2}. 
 > \end{aligned}
 > $$
 > For all $k \ge 1$. 

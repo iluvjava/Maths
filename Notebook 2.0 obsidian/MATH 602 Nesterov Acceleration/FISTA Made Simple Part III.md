@@ -437,7 +437,7 @@ $$
 \begin{aligned}
     z_k - x_k &= \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - x_k
     \\
-    &= \alpha_k \bar x + x_{k  1} - x_k - \alpha_k x_{k - 1}
+    &= \alpha_k \bar x + x_{k - 1} - x_k - \alpha_k x_{k - 1}
     \\
     &= \alpha_k(\bar x - \alpha_k^{-1}(x_k - x_{k - 1}) - x_{k - 1})
     \\
