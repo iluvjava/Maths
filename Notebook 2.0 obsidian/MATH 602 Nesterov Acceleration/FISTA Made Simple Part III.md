@@ -59,7 +59,6 @@ The relaxed weak accelerated proximal gradient algorithm has a simple and compac
 
 #### **Definition | similar triangle form**
 > Let $(\alpha_k)_{k \ge 0}$ be an R-WAPG sequence. 
-> 
 > Suppose that the base case $v_{-1}, x_{k - 1}$ is provided. 
 > Then the algorithm produces the sequence $(y_k, x_k, v_k)_{k \ge 0}$ satisfies these inequalities: 
 > $$
@@ -84,7 +83,7 @@ In preparation of the proof for the convergence rate of the algorithm for one it
 > $$
 > \begin{aligned}
 >     (\forall \lambda \in [0, 1])\; 
->     F(\lambda x + (1 - \lambda)y) \le \lambda F(x) + (1 - \lambda)F(y) -\mu\frac{\lambda(1 - \lambda)}{2} \Vert y - x\Vert^2. 
+>     F(\lambda x + (1 - \lambda)y) \le \lambda F(x) + (1 - \lambda)F(y) -\frac{\mu\lambda(1 - \lambda)}{2} \Vert y - x\Vert^2. 
 > \end{aligned}
 > $$
 > 
@@ -139,8 +138,8 @@ Using all the tools above, we can find the convergence rate of the algorithm for
 > Then for all $k \ge 1$, the following inequality is satisfied for all $\bar x \in \R^n$: 
 > $$
 > \begin{aligned}
->    - F(\bar x) + F(x_k) + \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
->    & \le \max\left(1, \frac{L_k\rho_{k - 1}}{L_{k - 1}}\right)(1 - \alpha_k)\left(
+>    &- F(\bar x) + F(x_k) + \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
+>    \\&\le \max\left(1, \frac{L_k\rho_{k - 1}}{L_{k - 1}}\right)(1 - \alpha_k)\left(
 >        F(x_{k - 1}) - F(\bar x) 
 >        + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
 >    \right). 

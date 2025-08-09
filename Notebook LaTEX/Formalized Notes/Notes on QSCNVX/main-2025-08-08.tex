@@ -1,0 +1,280 @@
+\documentclass[12pt]{article}
+
+% \input{presets/wang_full.tex}
+\usepackage{ifthen}\newboolean{draftmode}\setboolean{draftmode}{true}
+\input{presets/wang/input.tex}
+\input{presets/misc.tex}
+% \input{presets/julia_lstlisting.tex}
+
+\begin{document}
+
+\newcommand{\dist}{\ensuremath{\operatorname{dist}}}
+
+\title{{\fontfamily{ptm}\selectfont My Ideas after Reading Necoara's Papers}}
+
+\author{
+    Author 1 Name, Author 2 Name
+    \thanks{
+        Subject type, Some Department of Some University, Location of the University,
+        Country. E-mail: \texttt{author.name@university.edu}.
+    }
+}
+
+\date{March 2, 2020}
+
+\maketitle
+\todoinline{This paper is currently in draft mode. Check source to change options. }
+% \vskip 8mm
+
+\begin{abstract} 
+    \noindent
+    This is still a note for a draft so no abstract \cite{bauschke_convex_2017}
+\end{abstract}
+
+\noindent{\bfseries 2010 Mathematics Subject Classification:}
+Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
+\noindent{\bfseries Keywords:}
+
+
+% ==============================================================================
+\section{Introduction}
+    Necoara et al. \cite{necoara_linear_2019}  introduced the definition of quasi strongly convex function (Q-SCNVX), Quadratic Under approximations (QUA), Quadratic Gradient Growth (QGG), Proximal Error Bound (PEB) and, Quadratic Function Growth (QFG). 
+    These conditions are relaxation of strong convexity which enables linear convergence rate of first order method, including Nesterov's accelerated variants. 
+    In this file, we showed a new perspective of their works. 
+    Our goal is to relax their definitions and, to extend the linear convergence results, using completely new ideas and perspective. 
+    \par
+    \textbf{Notations.}
+    Unless specified, our ambient space is $\RR^n$ with Euclidean norm $\Vert \cdot\Vert$.
+    Let $C\subseteq \RR^n$, $\Pi_C(\cdot)$ denotes the projection onto the set $C$, i.e: the closest point in $C$ to another point in $\RR^n$. 
+    \par
+    The following definitions and assumptions are their. 
+    % SYMBOL SET FOR THIS CHAPTER ONLY! 
+    
+    \begin{assumption}[Necoara's linear convergence assumptions]\; \label{ass:necoara-linear} \\
+        The following assumptions are about $(f, X, X^*, L_f)$. 
+        \begin{enumerate}[nosep]
+            \item $f: \RR^n \rightarrow \RR$ is an $L_f$ Lipschitz smooth function. 
+            \item $X \subseteq \RR^n$ is a closed convex non-empty set. 
+            \item $X^* = \argmin_{x \in X} f(x) \neq \emptyset$. 
+        \end{enumerate}
+    \end{assumption}
+    Under this assumption, the following definitions are proposed. 
+    \newcommand{\QSCNVX}{\ensuremath{q\mathcal{S}}}
+    \newcommand{\QUA}{\ensuremath{\mathcal U}}
+    \newcommand{\QGG}{\ensuremath{\mathcal G}}
+    \newcommand{\QFG}{\ensuremath{\mathcal F}} 
+    \newcommand{\PEB}{\ensuremath{\mathcal E}}
+    \begin{definition}[Necoara's weaker characterizations of strong convexity]\; \\
+        Suppose that $(f, X, X^*, L_f)$ are given by Assumption \ref{ass:necoara-linear}. 
+        For all $x \in X$, denote $\bar x = \Pi_{X^*}x$. 
+        The following definitions are relaxations of strong convexity. 
+        \begin{enumerate}[nosep]
+            \item $f$ is Q-SCNVX if there exists $\kappa_f > 0$ such that $f(\bar x) - f(x) - \langle \nabla f(x), \bar x - x\rangle \ge \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2$. 
+            Which we denote it by $f \in \QSCNVX(f, L_f, \kappa_f)$. 
+            \item $f$ is QUA if there exists $\kappa_f > 0$ such that $f(x) - f(\bar x) - \langle \nabla f(\bar x), x - \bar x\rangle \ge \frac{\kappa_f}{2}\Vert x -\bar x\Vert^2$. 
+            We denote it by $f \in \QUA(f, L_f, \kappa_f)$.
+            \item $f$ is QGG if there exists $\kappa_f > 0$ such that $\langle \nabla f(x) - \nabla f(\bar x), x - \bar x\rangle \ge \frac{\kappa}{2}\Vert x - \bar x\Vert^2$. 
+            We denote it by $f \in \QGG(f, L_f, \kappa_f)$. 
+            \item $f$ is PEB if there exists $\kappa_f > 0$ such that $\left\Vert x - L^{-1}\Pi_X(x - L^{-1}\nabla f(x))\right\Vert \ge \kappa_f\Vert x - \bar x\Vert$. 
+            We denote it by $f \in \PEB(f, L_f, \kappa_f)$. 
+            \item $f$ is QFG if there exists $\kappa_f > 0$ such that $f(x) - f(\bar x) \ge \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2$. 
+            We denote it by $f \in \QFG(f, L_f, \kappa_f)$. 
+        \end{enumerate}
+    \end{definition}
+    These definitions are the keys which Necoara used to prove the linear convergence of projected gradient, and Nesterov's accelerated gradient method. 
+
+\section{Our crazy original ideas of extending their definitions}
+    In this section, we will propose our ideas which relaxed Necoara's conditions for strong convexity.
+    \begin{definition}[Breman Divergence for differentiable funtion]\label{def:bd}
+        Let $f: \RR^n \rightarrow \RR$ be a $\mathcal C^1$ function. 
+        The Bregman divergence is a $\RR^n \times \dom \nabla f(x)\rightarrow \RR$ mapping and, it's defined by:  
+        \begin{align*}
+            D_f(x, y) = f(x) - f(y) - \langle \nabla f(y), x - y\rangle. 
+        \end{align*}
+    \end{definition}
+    % ------------------------------------------------------------------------------------------------------------------
+    \begin{theorem}[distance squared Bregman Divergence]\label{thm:bd-dist-sq}
+        Let $C \subseteq \RR^n$ be any closed, non-empty and convex set. 
+        Let $\varphi = (1/2)\dist(\cdot | C)^2$.
+        Then for all $x, y \in \RR^n$, for all $\bar x \in \Pi_C x, \bar y \in \Pi_C y$, it satisfies: 
+        \begin{align*}
+            D_{\varphi}(x, y) 
+            &= 
+            - \frac{1}{2}\Vert \bar  x - \bar  y\Vert^2
+            + \left\langle x - \bar  x, \bar x - \bar y\right\rangle
+            + \frac{1}{2} \Vert x - y\Vert^2. 
+        \end{align*}
+    \end{theorem}
+    \begin{proof}
+        closed, convex, non-empty $C$ gives unique projection point so $\Pi_C$ is a convex set. 
+        \par
+        For notational simplicity let $\bar x = \Pi_C x, \bar y = \Pi_C y$, then it has $\nabla \varphi (x) = x - \bar x$. 
+        With Definition \ref{def:bd} and, basic algebra we can show that: 
+        \begin{align*}
+            D_{\varphi}(x, y) &= 
+            \varphi(x) - \varphi(y) - \left\langle \nabla \varphi(y), x - y\right\rangle
+            \\
+            &= \varphi(x) - \varphi(y) - \langle y - \bar y, x - y\rangle
+            \\
+            &= \frac{1}{2}(\Vert x - \bar x\Vert^2 - \Vert y - \bar y\Vert^2)
+            - \langle y - \bar y, x - y\rangle
+            \\
+            &= \frac{1}{2}(\Vert x - \bar x\Vert^2 - \Vert y - \bar y\Vert^2)
+            - \frac{1}{2}\Vert x - \bar y\Vert^2 
+            + \frac{1}{2}\left(
+                \Vert y - \bar y\Vert^2 + \Vert x - y\Vert^2
+            \right)
+            \\ 
+            &= \frac{1}{2}\Vert x - \bar x\Vert^2
+            - \frac{1}{2}\Vert x - \bar y\Vert^2 + \frac{1}{2}\Vert x - y\Vert^2
+            \\
+            &= 
+            \frac{1}{2}\Vert x - \bar x\Vert^2
+            - \frac{1}{2}\left(
+                \Vert x - \bar x\Vert^2 + \Vert \bar x - \bar y\Vert^2
+                + 2\langle x - \bar x, \bar x - \bar y\rangle
+            \right)
+            + \frac{1}{2}\Vert x - y\Vert^2
+            \\
+            &= - \frac{1}{2}\Vert \bar x - \bar y\Vert^2 + \langle x - \bar x, \bar x - \bar y\rangle 
+            + \frac{1}{2}\Vert x - y \Vert^2. 
+        \end{align*}
+    \end{proof}
+    \par
+    In the parts that come, we will talk about the set of points that share the same projections onto a set.
+    Let $C \subseteq \RR^n$, we define for all $x \in \RR^n$ the set: 
+    \begin{align}
+        \mathcal D(x | C) = \{z \in \RR^n : \Pi_C z = \Pi_C x\}. 
+    \end{align}
+    The following lemma is a precursor to extend the definition of Q-SCNVX. 
+    The abbreviation ``DSBD'' stands for ``distance squared Bregman Divergence''. 
+    % ------------------------------------------------------------------------------------------------------------------
+    \begin{lemma}[conditions when DSBD behaves like norm squared]\label{lemma:conds-dsbd-like-scnvx}
+        Let $C \subseteq \RR^n$ be closed and non-empty. 
+        Let $\varphi = (1/2)\dist(\cdot | C)^2$.
+        Then, for all $x \in \RR^n$ it satisfies
+        \begin{align*}
+            (\forall z \in \mathcal D(x | C))\; \mathcal D_\varphi(x, z) = \frac{1}{2}\Vert x - z\Vert^2 = D_\varphi(z, x). 
+        \end{align*}
+    \end{lemma}
+    \begin{proof}
+        The proof is direct. 
+        For all $x \in \RR^n, z \in \mathcal D(x | C)$, the Bregman Divergence simplifies because using Theorem \ref{thm:bd-dist-sq} it has: 
+        \begin{align*}
+            D_\varphi (x, z) &= 
+            - \frac{1}{2}\Vert \Pi_C x - \Pi_C z\Vert^2 
+            + \langle x - \Pi_C x, \Pi_C x - \Pi_C z\rangle 
+            + \frac{1}{2}\Vert x - z\Vert^2
+            \\
+            &= 0 + 0 + \frac{1}{2}\Vert x - z\Vert^2. 
+        \end{align*}
+        This is true because for all $z \in \mathcal D(x | C)$, it has $\Pi_C x - \Pi_C z = 0$. 
+        Similarly, it has: 
+        \begin{align*}
+            D_\varphi(x, z) &= 
+            - \frac{1}{2}\Vert \Pi_C x - \Pi_C z\Vert^2 
+            + \langle z - \Pi_C z, \Pi_C z - \Pi_C x\rangle
+            + \frac{1}{2}\Vert z - x\Vert^2
+            \\
+            &= 0 + 0 + \frac{1}{2}\Vert z - x\Vert^2. 
+        \end{align*}
+    \end{proof}
+    \par
+    Now, the definition of $\mathcal D(x | C)$ in the above lemma is nothing outrageous. 
+    It simply denotes all points that share the same projection onto $C$ as $x$. 
+    Below, we will give some possible scenarios. 
+    \begin{enumerate}
+        \item When $C$ is convex, the set $\mathcal D(x | C) = \Pi_C x + N_C(\Pi_C x)$. 
+        \item When $C$ is nonconvex, it has $\mathcal D(x | C) \subseteq \Pi_C x + N_C(\Pi_C x)$. 
+    \end{enumerate}
+    Strong convexity is recovered when $C$ is a singleton. 
+    For example when $C = \{\mathbf 0\}$, and $\varphi = (1/2)\Vert x\Vert^2$, this is the usual euclidean Bregman Divergence used to introduce functions that are strongly convex. 
+    Furthermore, take note that $\Pi_C x \in D(x | C)$ is always true, hence we have
+    \begin{align}
+        D_\varphi(x, \Pi_C x) = \frac{1}{2}\Vert x - \Pi_C \Vert^2 = D_\varphi(\Pi_C x, x). 
+    \end{align}
+    \par
+    The following theorems will prepare us for linear convergence of first order algorithms. 
+    \begin{definition}[proximal gradient operator]\label{def:pg}
+        Let $F = f + g$, suppose that $f : \RR^n \rightarrow \RR$ is in $\mathcal C^1$ and $g: \RR^n \rightarrow \overline R$ is l.s.c. 
+        The proximal gradient operator, denoted by $T_{B, f, g}$ is defined as
+        \begin{align*}
+            T_{B, f, g}(x) &= \argmin_{z\in \RR^n} \left\lbrace
+                g(z) + f(x) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert x - z\Vert^2
+            \right\rbrace
+        \end{align*}
+    \end{definition}
+    \begin{remark}
+        Usually we can find it in the literature that, $T_{B, f, g} = \hprox_{B^{-1}g}(x - B^{-1}\nabla f(x))$. 
+    \end{remark}
+    The following assumption is the weakest and, it doesn't assume convexity at all. 
+    \begin{assumption}\label{ass:our-ass}
+        The following assumption is about $(F, f, g, L_f, X^*)$. 
+        \begin{enumerate}
+            \item $f: \RR^n \rightarrow \RR$ is $L_f$ Lipschitz smooth. 
+            \item $g: \RR^n \rightarrow \RR$ is closed convex and proper. 
+            \item Denote $X^*$ be the fixed point set of $T_{L_f, f, g}$ and assume $X^* \neq \emptyset$. 
+        \end{enumerate}
+    \end{assumption}
+    We take note that, under the above assumption the function $F = f + g$ is a $L_f$ weakly convex function and, $\widehat \partial F = \partial F$. 
+    The limiting and regular subgradients are the same. 
+    \begin{definition}[relatively restricted SCNVX]\label{def:rel-res-scnvx}
+        Suppose that $(f, g, L_f, X^*)$ satisfies Assumption \ref{ass:our-ass}. 
+        The function $F = f + g$ has restricted SCNVX condition if there exists $\kappa_f > 0, D \subseteq \dom g$ such that for all $x \in D$, let $\bar x = \Pi_{X^*}x$ it satisfies: 
+        \begin{align*}
+            \left(\forall v \in \partial F(\bar x)\right)\;
+            F(x) - F(\bar x) - \langle v, x - \bar x\rangle 
+            &\ge \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2. 
+        \end{align*}
+    \end{definition}
+    \begin{remark}
+        Take note that the RHS of the inequality $\kappa_f/2 \Vert x - \bar x\Vert^2 = D_\varphi(x, \Pi_{X^*}x)$ where $\varphi = (1/2)\dist(x | X^*)^2$. 
+        This definition doesn't exclude nonconvex functions. 
+        The hope is to have the set $D = \dom g$, but we don't think that is always true. 
+        Our hope is that the set $D$ is at least somewhat larger than $X^*$. 
+    \end{remark}
+    \begin{assumption}[two sets feasibility problem]\;\label{ass:two-sets-feasibility}\\
+        The following assumption is about $(F, f, g, L_f, X^*)$. 
+        In addition, we assume the following. 
+        \begin{enumerate}[nosep]
+            \item Let $(f, g, L_f, X^*)$ satisfies Assumption \ref{ass:our-ass}. Following that, it has $X^* = \Fix(\Pi_X \Pi_C) \neq \emptyset$. 
+            \item $f = (1/2)\dist(x | C)^2$ where $C \subseteq \RR^n$ is a closed and convex set. 
+            \item $g = \delta_X(x)$ is the indicator function of $X \subseteq \RR^n$, where $X$ is a closed and, nonempty set. 
+        \end{enumerate}
+    \end{assumption}
+    The following discussion will give important consequences of this setup. 
+    % ------------------------------------------------------------------------------------------------------------------
+    \subsection{examples for restricted SCNVX}
+        In the coming parts we look for conditions for which a function $F = f + g$ satisfying the above assumption also satisfies Definition \ref{def:rel-res-scnvx}. 
+        \begin{theorem}[characterizing restricted SCNVX]\label{thm:example-rqua}
+            Suppose that $(f, g, L_f, X^*)$ satisfies Assumption \ref{ass:two-sets-feasibility}. 
+            Then for all $x\in X, \bar x \in \Pi_{X^*} x$ such that $\bar x \in \mathcal D(x | C)$, it has 
+            \begin{align*}
+                D_f(x, \bar x) = \frac{1}{2}\Vert x - \bar x \Vert^2 = D_f(\bar x, x). 
+            \end{align*}
+        \end{theorem}
+        \begin{proof}
+            We use Lemma \ref{lemma:conds-dsbd-like-scnvx}, take note that when $z = \Pi_{X^*} x \in \mathcal D(x | C)$, then the lemma says: $D_f(x, \Pi_{X^*}x) = \frac{1}{2}\Vert x - \Pi_{X^*}x\Vert^2= D_f(\Pi_{X^*}x, x)$. 
+        \end{proof}
+        \begin{remark}
+            The conditions, $\Pi_{X^*}x \in \mathcal D(x | C)$ is not always a given and, it would require some careful thoughts. 
+        \end{remark}
+    % ------------------------------------------------------------------------------------------------------------------
+    \subsection{theorems useful for convergence analysis of algorithms}
+        The proximal gradient inequality and, the Jensen inequality are the most important for deriving convergence rate of first order accelerated method. 
+
+
+
+\section{Linear convergence of first order methods}
+    
+
+    
+
+
+
+\bibliographystyle{siam}
+
+\bibliography{references/refs.bib}
+
+
+\end{document}

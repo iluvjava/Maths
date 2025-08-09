@@ -1,3 +1,7 @@
+---
+alias: Bregman Divergence of Convex Distance Squared
+
+---
 - [Bregman Divergence Introduction](Bregman%20Divergence%20Introduction.md)
 - [Weaker Characterizations of Strong Convexity](Properties%20of%20Functions/Weaker%20Characterizations%20of%20Strong%20Convexity.md)
 
@@ -106,5 +110,6 @@ $$
 > The inverse of the gradient of the function doesn't exist at all. 
 >
 > We didn't assume that $C$ is a convex set. 
+
 
 
