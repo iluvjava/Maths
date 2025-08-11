@@ -54,9 +54,9 @@ $$
     & f(x) - f(y) - \langle \nabla f(y), x - y\rangle
     \\
     &=
-    g(Ax) - g(Ay) - \langle A^T \nabla g(y), x - y\rangle
+    h(Ax) - h(Ay) - \langle A^T \nabla h(y), x - y\rangle
     \\
-    &= g(Ax) - g(Ay) - \langle \nabla g(y), Ax - Ay\rangle
+    &= h(Ax) - h(Ay) - \langle \nabla h(y), Ax - Ay\rangle
     \\
     &\ge \frac{\mu}{2}\Vert Ax - Ay\Vert^2.
 \end{aligned}
@@ -68,7 +68,7 @@ $$
 \begin{aligned}
     & f(x) - f(y) - \langle \nabla f(y), x - y\rangle
     \\
-    &= g(Ax) - g(Ay) - \left\langle A^T\nabla g(x), x - y\right\rangle
+    &= h(Ax) - h(Ay) - \left\langle A^T\nabla h(x), x - y\right\rangle
     \\
     &\le \frac{L_g}{2} \Vert Ax - Ay\Vert^2. 
 \end{aligned}
@@ -125,7 +125,7 @@ $$
 
 $\blacksquare$
 
-In the following parts, we will assume the form of the objective function and make use of the theorems we drived above. 
+In the following parts, we will assume the form of the objective function and make use of the theorems we derived above. 
 
 #### **Assumption 4 | a basic problem**
 > The following assumption is about $(F, f, g, h, A, b, \mu, L)$. 
@@ -280,8 +280,7 @@ The results from strong convexity can be adopted for this type of seminorm as we
 
 **Proof**
 
-Recall that $f = h(Ax + b)$ by Assumption 4. 
-To simplify notations, we denote $\sigma = \sigma_{\min |\cdot|}^{\neq 0}(A)$ for short, and use $\Pi = \Pi_{\text{ker}A}$, $\Pi_{\perp} = I - \Pi_{\text{ker}A}$ for short. 
+To simplify notations, we denote $\sigma = \sigma(A)$ for short, and use $\Pi = \Pi_{\text{ker}A}$, $\Pi_{\perp} = I - \Pi_{\text{ker}A}$ for short. 
 From Assumption 4 it has $f = h(Ax + b)$ therefore it has the following
 
 $$
@@ -296,15 +295,6 @@ $$
     - \frac{\sigma^2 \mu}{2}\left\Vert \Pi_{\perp}x\right\Vert^2
     - \frac{\sigma^2 \mu}{2}\left\Vert \Pi_{\perp}y\right\Vert^2
     + \sigma^2\mu\langle \Pi_{\perp}x, \Pi_{\perp}y\rangle
-    \\
-    &= 
-    f(x) - \frac{\sigma^2 \mu}{2}\Vert \Pi_{\perp} x\Vert^2
-    - \left(
-        f(y) - \frac{\mu\sigma^2}{2}\Vert \Pi_\perp y\Vert^2 
-    \right) 
-    - \sigma^2\mu\Vert \Pi_{\perp} y\Vert^2
-    - \langle \nabla f(y), x - y\rangle
-    + \sigma^2\mu\langle \Pi_\perp x, \Pi_\perp y\rangle
     \\
     &= 
     f(x) - \frac{\sigma^2 \mu}{2}\Vert \Pi_{\perp} x\Vert^2
@@ -340,7 +330,7 @@ $$
 \end{aligned}
 $$
 
-Next, if $\phi (x) = f(x) + \frac{\sigma^2\mu}{2}\Vert \Pi_\perp x\Vert^2$, then $\nabla \phi(x) = \nabla f(x) + \Pi_{\perp}^\top \Pi_{\perp} x$. 
+Next, if $\phi (x) = f(x) + \frac{\sigma^2\mu}{2}\Vert \Pi_\perp x\Vert^2$, then $\nabla \phi(x) = \nabla f(x) + \mu\sigma^2\Pi_{\perp}^\top \Pi_{\perp} x$. 
 From here, it's not hard to see that the above inequality is: 
 
 $$
@@ -359,7 +349,7 @@ For all $x, y \in \R^n$, consider the convexity of $\phi$, it has for all $\lamb
 
 $$
 \begin{aligned}
-    0 &\le \phi(\lambda x + (1 - \lambda)y) - \lambda \phi(x) - (1 - \lambda)\phi(x)
+    0 &\le \lambda \phi(x) + (1 - \lambda)\phi(x) - \phi(\lambda x + (1 - \lambda)y)
     \\
     & \cdots
     \\
@@ -894,9 +884,11 @@ $$
 
 $\blacksquare$
 
+Some additional assumptions are needed to eliminate the remainder $\mathcal R_k$ in from the previous claim. 
+
 #### **Proposition | Assumptions needed to get convergence claim**
 > ...
 
 **Proof**
 
-The assumption we made is that, $x_k, x_{k - 1}, x_{k - 2}$ all shares the same projection points onto the kernel of matrix $A$. 
+All iterates are required to have the same projections onto the set of minimizers.
