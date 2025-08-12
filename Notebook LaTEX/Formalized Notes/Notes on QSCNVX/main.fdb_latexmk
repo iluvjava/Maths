@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1754947789.17005 "main.aux" "main.bbl" "main" 1754947926.81337 0
+["bibtex main"] 1754976175.10847 "main.aux" "main.bbl" "main" 1754976175.96067 0
   "./references/refs.bib" 1754248286.17869 21092 69552cb13098d074c66f6fd85c1698f6 ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/siam.bst" 1292289607 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1754947926.48684 2304 cfe9f9a97eddd3751edbe5244960acc5 "pdflatex"
+  "main.aux" 1754976175.74679 2552 307a75bd53f57f339e3625f6c23b3a04 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1754947925.62475 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes on QSCNVX/main.tex" "main.pdf" "main" 1754947926.81355 0
-  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes on QSCNVX/main.tex" 1754947925.42827 31664 4b1b26ffa6dd8f87772d7e049b6d1d0a ""
+["pdflatex"] 1754976175.18498 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes on QSCNVX/main.tex" "main.pdf" "main" 1754976175.96077 0
+  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Formalized Notes/Notes on QSCNVX/main.tex" 1754976174.14959 40615 9a127ce1b47993b1e9d837135dbd5e50 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -29,6 +29,8 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1246382020 940 228d6584342e91276bf566bcf9716b83 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm" 1136768653 1344 8a0be4fe4d376203000810ad4dc81558 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm" 1136768653 1332 1fde11373e221473104d6cc5993f046e ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm" 1136768653 1300 63a6111ee6274895728663cf4b4e7e81 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmex10.tfm" 1136768653 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm" 1136768653 1528 abec98dbc43e172678c11b3b9031252a ""
@@ -227,10 +229,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1716844513.00476 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1716844504 8221424 900989947c23303b742a586f0df8c087 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "main.aux" 1754947926.48684 2304 cfe9f9a97eddd3751edbe5244960acc5 "pdflatex"
-  "main.bbl" 1754947789.28666 500 09cba9a96eb76cca8b6ab6520d58d5f2 "bibtex main"
-  "main.out" 1754947926.48762 1226 4c5db6319592ef47ca9f3817d729e0de "pdflatex"
-  "main.tex" 1754947925.42827 31664 4b1b26ffa6dd8f87772d7e049b6d1d0a ""
+  "main.aux" 1754976175.74679 2552 307a75bd53f57f339e3625f6c23b3a04 "pdflatex"
+  "main.bbl" 1754976175.18238 265 bf8dfc8ef9247cdd2610eef6886a4cd8 "bibtex main"
+  "main.out" 1754976175.74738 1447 209a7936ad8a5474581c2c6bb2df37e0 "pdflatex"
+  "main.tex" 1754976174.14959 40615 9a127ce1b47993b1e9d837135dbd5e50 ""
   "presets/misc.tex" 1734912471.75575 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1737688388.3909 8751 43b1f87d5e2ad43f60c8e67f03e69d1f ""
   "presets/wang/formatting.tex" 1737688388.39179 816 b4f69aabf18334dd16d3d4d43a95bea6 ""
