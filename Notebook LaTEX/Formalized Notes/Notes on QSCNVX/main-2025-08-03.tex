@@ -1,0 +1,795 @@
+\documentclass[12pt]{article}
+
+% \input{presets/wang_full.tex}
+\usepackage{ifthen}\newboolean{draftmode}\setboolean{draftmode}{true}
+\input{presets/wang/input.tex}
+\input{presets/misc.tex}
+% \input{presets/julia_lstlisting.tex}
+
+\begin{document}
+
+\newcommand{\dist}{\ensuremath{\operatorname{dist}}}
+
+\title{{\fontfamily{ptm}\selectfont Linear Convergence of Accelerated Gradient without Restart requires strict conditions}}
+
+\author{
+    Author 1 Name, Author 2 Name
+    \thanks{
+        Subject type, Some Department of Some University, Location of the University,
+        Country. E-mail: \texttt{author.name@university.edu}.
+    }
+}
+
+\date{March 2, 2020}
+
+\maketitle
+\todoinline{This paper is currently in draft mode. Check source to change options. }
+% \vskip 8mm
+
+\begin{abstract} 
+    \noindent
+    This is still a note for a draft so no abstract. 
+\end{abstract}
+
+\noindent{\bfseries 2010 Mathematics Subject Classification:}
+Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
+\noindent{\bfseries Keywords:}
+
+
+% ==============================================================================
+\section{Introduction}
+    Necoara et al. \cite{necoara_linear_2019}  introduced the definition of quasi strongly convex function (Q-SCNVX), Quadratic Under approximations (QUA), Quadratic Gradient Growth (QGG), Proximal Error Bound (PEB) and, Quadratic Function Growth (QFG). 
+    These conditions are relaxation of strong convexity which enables linear convergence rate of first order method, including Nesterov's accelerated variants. 
+    In this file, we showed a new perspective of their works. 
+    Our goal is to relax their definitions and, to extend the linear convergence results, using completely new ideas and perspective. 
+    \par
+    \textbf{Notations.}
+    Unless specified, our ambient space is $\RR^n$ with Euclidean norm $\Vert \cdot\Vert$.
+    Let $C\subseteq \RR^n$, $\Pi_C(\cdot)$ denotes the projection onto the set $C$, i.e: the closest point in $C$ to another point in $\RR^n$. 
+    When $A$ is a matrix, we denote its minimum nonzero singular value in absolute value by: $\sigma(A)$. 
+    \par
+    The following definitions and assumptions are in Necoara. 
+    % SYMBOL SET FOR THIS CHAPTER ONLY! 
+    
+    \begin{assumption}[Necoara's linear convergence assumptions]\; \label{ass:necoara-linear} \\
+        The following assumptions are about $(f, X, X^*, L_f)$. 
+        \begin{enumerate}[nosep]
+            \item $f: \RR^n \rightarrow \RR$ is an $L_f$ Lipschitz smooth function. 
+            \item $X \subseteq \RR^n$ is a closed convex non-empty set. 
+            \item $X^* = \argmin_{x \in X} f(x) \neq \emptyset$. 
+        \end{enumerate}
+    \end{assumption}
+    Under this assumption, the following definitions are proposed. 
+    \newcommand{\QSCNVX}{\ensuremath{q\mathcal{S}}}
+    \newcommand{\QUA}{\ensuremath{\mathcal U}}
+    \newcommand{\QGG}{\ensuremath{\mathcal G}}
+    \newcommand{\QFG}{\ensuremath{\mathcal F}} 
+    \newcommand{\PEB}{\ensuremath{\mathcal E}}
+    \begin{definition}[Necoara's weaker characterizations of strong convexity]\; \\
+        Suppose that $(f, X, X^*, L_f)$ are given by Assumption \ref{ass:necoara-linear}. 
+        For all $x \in X$, denote $\bar x = \Pi_{X^*}x$. 
+        The following definitions are relaxations of strong convexity. 
+        \begin{enumerate}[nosep]
+            \item $f$ is Q-SCNVX if there exists $\kappa_f > 0$ such that $f(\bar x) - f(x) - \langle \nabla f(x), \bar x - x\rangle \ge \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2$. 
+            Which we denote it by $f \in \QSCNVX(f, L_f, \kappa_f)$. 
+            \item $f$ is QUA if there exists $\kappa_f > 0$ such that $f(x) - f(\bar x) - \langle \nabla f(\bar x), x - \bar x\rangle \ge \frac{\kappa_f}{2}\Vert x -\bar x\Vert^2$. 
+            We denote it by $f \in \QUA(f, L_f, \kappa_f)$.
+            \item $f$ is QGG if there exists $\kappa_f > 0$ such that $\langle \nabla f(x) - \nabla f(\bar x), x - \bar x\rangle \ge \frac{\kappa}{2}\Vert x - \bar x\Vert^2$. 
+            We denote it by $f \in \QGG(f, L_f, \kappa_f)$. 
+            \item $f$ is PEB if there exists $\kappa_f > 0$ such that $\left\Vert x - L^{-1}\Pi_X(x - L^{-1}\nabla f(x))\right\Vert \ge \kappa_f\Vert x - \bar x\Vert$. 
+            We denote it by $f \in \PEB(f, L_f, \kappa_f)$. 
+            \item $f$ is QFG if there exists $\kappa_f > 0$ such that $f(x) - f(\bar x) \ge \frac{\kappa_f}{2}\Vert x - \bar x\Vert^2$. 
+            We denote it by $f \in \QFG(f, L_f, \kappa_f)$. 
+        \end{enumerate}
+    \end{definition}
+    These definitions are the keys which Necoara's used to prove the linear convergence of projected gradient, and Nesterov's accelerated gradient method. 
+    In this paper, we will show a simple perspective that simplifies their arguments on linear convergence Accelerated Gradient method, without restart. 
+    \par
+    Unfortunately, and this is said at the start, so far the new perspective doesn't produce new results that are not in the literature. 
+
+\section{Precursors materials for our proofs of linear convergence}
+    For a function $f: \RR^n \rightarrow \RR$ we define its Bregman Divergence to be a mapping of $\RR^n \times \dom\nabla f\mapsto \overline \RR$ for all $x, y \in \RR^n$: 
+    \begin{align*}
+        D_f(x, y) &= 
+        f(x) - f(y) - \langle \nabla f(y), x - y\rangle 
+    \end{align*}
+    Let $F = f + g$ where $f$ is $L$ Lipschitz smooth and $g$ is convex.
+    Let $B > 0$. 
+    We define the proximal gradient operator 
+    \begin{align*}
+        T_{B}(x) = \argmin_{z}\left\lbrace
+            g(z) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2
+        \right\rbrace. 
+    \end{align*}
+    Take note that it's also $T_B(x) = \hprox_{B^{-1}g}(x - B^{-1}\nabla f(x))$, which is another equivalent representation. 
+    The following assumption encapsulate the type of objective function that we have the convergence result for after applying the Nesterov's accelerated proximal gradient algorithm. 
+    \begin{assumption}[objective function]\;\label{ass:obj-fxn}\\
+        The following assumption is about $(F, f, g, h, A, b, \mu, L)$. 
+        Let $m \in \N, n \in \N$ be arbitrary. 
+        \begin{enumerate}[nosep]
+            \item $h: \RR^m \mapsto \RR$ is a $L$ Lipschitz smooth and, $\mu \ge 0$ strongly convex function. 
+            \item $A \in \RR^{m \times n}, b \in \RR^n$ are a matrix and a vector. 
+            \item $f = h(Ax - b)$. 
+            \item $g = \delta_{X}$, so $g$ is an indicator function of the set $X \subseteq \RR^n$ which we assume that it's closed onvex and non-empty. 
+        \end{enumerate}
+    \end{assumption}
+
+    \begin{lemma}[strongly and Lipscthiz smooth convex affine composite]\;\label{lemma:aff-scnvx-smooth-lin-comp}\\
+        Let $A \in \RR^{m \times n}, b \in \RR^n$. 
+        Let $h: \RR^m \mapsto \RR$ be a $L$ Lipschitz and $\mu \ge 0$ strongly convex function. 
+        Then it has for all $x, y \in \RR^n$: 
+        \begin{align*}
+            \frac{\sigma(A)^2\mu}{2}\Vert \Pi_{\ker A}(x - y)\Vert^2 
+            &\le 
+            D_f(x, y) 
+            \le 
+            \frac{L\Vert A\Vert^2}{2}\Vert x - y\Vert^2. 
+        \end{align*}
+    \end{lemma}
+    \begin{proof}
+        The lower bound is given by: 
+        \begin{align*}
+            & f(x) - f(y) - \langle \nabla f(y), x - y\rangle
+            \\
+            &=
+            h(Ax) - h(Ay) - \langle A^T \nabla h(y), x - y\rangle
+            \\
+            &= h(Ax) - h(Ay) - \langle \nabla h(y), Ax - Ay\rangle
+            \\
+            &\ge \frac{\mu}{2}\Vert Ax - Ay\Vert^2
+            \\
+            &\ge 
+            \frac{\mu}{2}
+            \left(
+                \Vert A\Pi_{\ker\; A}(x - y)
+                + A(I - \Pi_{\ker\; A})(x - y) \Vert^2 
+            \right)
+            \\
+            &\ge
+            \frac{\mu\sigma(A)^2}{2}\Vert (I - \Pi_{\ker\; A})(x - y) \Vert^2. 
+        \end{align*}
+        The upper bound is direct from smoothness, which has: 
+        \begin{align*}
+            & f(x) - f(y) - \langle \nabla f(y), x - y\rangle
+            \\
+            &= h(Ax) - h(Ay) - \langle \nabla h(y), Ax - Ay\rangle
+            \\
+            &\le \frac{L}{2}\Vert Ax - Ay\Vert^2
+            \\
+            &\le \frac{L\Vert A\Vert^2}{2}\Vert x - y\Vert^2. 
+        \end{align*}
+    \end{proof}
+    \begin{theorem}[proximal gradient inequality]\label{thm:pg-ineq}
+        Suppose that $(F, f, g, h, A, b, \mu, L)$ satisfies Assumption \ref{ass:obj-fxn}. 
+        Consider any $x, z \in \RR^n$, then there exists a $B \ge 0$ such that for $x^+ = T_B(x)$, it has $D_f(x, x^+) \le \frac{B}{2}\Vert x - x^+\Vert^2$, and it satisfies: 
+        \begin{align*}
+            0 &\le F(z) - F(x^+) + \frac{B - \mu\sigma(A)^2}{2}\Vert z - x\Vert^2 
+            - \frac{B}{2}\Vert z - x^+\Vert^2
+            + \frac{\mu\sigma(A)^2}{2}\Vert \Pi_{\ker A}(z - x)\Vert^2. 
+        \end{align*}
+    \end{theorem}
+    \begin{proof}
+        Denote $\sigma =\sigma(A)$ for short, and $\Pi = \Pi_{\ker A}, \Pi_{\perp} = I - \Pi_{\ker A}$ for short. 
+        The function in the proximal gradient operator is $L$ strongly convex, so it has quadratic growth over the minimizer $x^+$: 
+        \begin{align*}
+            & \frac{B}{2}\Vert z - x^+\Vert^2
+            \\
+            &\le 
+            \left(
+                g(z) + \langle \nabla f(x), z - x\rangle + \frac{B}{2}\Vert z - x\Vert^2
+            \right)
+            - \left(
+                g(x^+) + \langle \nabla f(x), x^+ - x\rangle + \frac{B}{2}\Vert x - x^+\Vert^2
+            \right)
+            \\
+            &=
+            \left(
+                F(z) - D_f(z, x) + \frac{B}{2}\Vert z - x\Vert^2
+            \right) - 
+            \left(
+                F(x^+) - D_f(x^+, x) + \frac{B}{2}\Vert x - x^+\Vert^2
+            \right)
+            \\
+            &\underset{(1)}{\le}
+            \left(
+                F(z) + \frac{B}{2}\Vert z - x\Vert^2 
+                - \frac{\mu\sigma^2}{2}\Vert \Pi_{\perp}(z - x)\Vert^2
+            \right)
+            - \left(
+                F(x^+) - D_f(x^+, x) + \frac{B}{2}\Vert x - x^+\Vert^2
+            \right)
+            \\
+            &\underset{(2)}{\le} 
+            F(z) 
+            + \frac{B}{2}\Vert z - x\Vert^2
+            - \frac{\mu\sigma^2}{2}\Vert \Pi_{\perp}(z - x)\Vert^2
+            - F(x^+). 
+        \end{align*}
+        At (1), we used the fact that $f = h(Ax + b)$, so it has $D_f(z, x) \ge \frac{\mu\sigma(A)^2}{2}\Vert \Pi_{\perp}(z - x)\Vert^2$. 
+        At (2), we used the fact that $B$ makes $- D_f(x, x^+) + \frac{B}{2}\Vert x - x^+\Vert^2 \ge 0$. 
+        Continuing it has 
+        \begin{align*}
+            0 
+            &\le 
+            F(z) + \frac{B}{2}\Vert z - x\Vert^2 
+            - \frac{\mu\sigma^2}{2}\Vert \Pi_{\perp}(z - x)\Vert^2
+            - F(x^+)
+            - \frac{B}{2}\Vert z - x^+\Vert^2
+            \\
+            &= 
+            F(z) 
+            + \frac{B}{2}\Vert z - x\Vert^2 
+            - \frac{\mu\sigma^2}{2}\left(
+                \Vert z - x\Vert^2 
+                - \Vert \Pi(z - x)\Vert^2
+            \right)
+            - F(x^+)
+            - \frac{B}{2}\Vert z - x^+\Vert^2
+            \\
+            &\le F(z) - F(x^+)
+            + \frac{B - \mu\sigma^2}{2}\Vert z - x\Vert^2 
+            - \frac{B}{2}\Vert z - x^+\Vert^2
+            + \frac{\mu\sigma^2}{2}\Vert \Pi(z - x)\Vert^2. 
+        \end{align*}
+    \end{proof}
+    \begin{theorem}[Jesen's inequality]\;\label{thm:jen-ineq}
+        Let $h: \RR^n \rightarrow \RR$ be a $L$ Lipschitz smooth and $\mu\ge 0$ strongly convex function.  
+        Let $A \in \RR^{n\times m}, b \in \RR^n$. 
+        Denote $\Pi_{\perp} = I - \Pi_{\text{ker}\; A}$ for short. 
+        Suppose that $f(x) = h(Ax + b)$, then it satisfies for all $x, y \in \RR^n, \lambda\in [0, 1]$ the inequality: 
+        \begin{align*}
+            &f(\lambda x + (1 - \lambda)y) 
+            \\
+            &\le 
+            f(\lambda x + (1 - \lambda)y) + \lambda f(x) - (1 - \lambda)f(y)
+            - \frac{\mu\sigma(A)^2\lambda(1 - \lambda)}{2}\Vert \Pi_{\perp}(x - y)\Vert^2. 
+        \end{align*}
+    \end{theorem}
+    \begin{proof}   
+        To simplify notations, we denote $\sigma = \sigma(A)$ for short, and use $\Pi = \Pi_{\text{ker}A}$, $\Pi_{\perp} = I - \Pi_{\text{ker}A}$ for short. 
+        From Assumption 4 it has $f = h(Ax + b)$ therefore it has the following
+        {\small
+        \begin{align*}
+            0 &\le D_f(x, y)  - \frac{\sigma^2 \mu}{2}\Vert \Pi_{\perp}(x - y)\Vert^2
+            \\
+            &= f(x) - f(y) - \langle \nabla f(y), x - y\rangle 
+            - \frac{\sigma^2 \mu}{2}\left\Vert \Pi_{\perp}(x - y)\right\Vert^2
+            \\
+            &=
+            f(x) - f(y) - \langle \nabla f(y), x - y\rangle
+            - \frac{\sigma^2 \mu}{2}\left\Vert \Pi_{\perp}x\right\Vert^2
+            - \frac{\sigma^2 \mu}{2}\left\Vert \Pi_{\perp}y\right\Vert^2
+            + \sigma^2\mu\langle \Pi_{\perp}x, \Pi_{\perp}y\rangle
+            \\
+            &= 
+            f(x) - \frac{\sigma^2 \mu}{2}\Vert \Pi_{\perp} x\Vert^2
+            - \left(
+                f(y) - \frac{\mu\sigma^2}{2}\Vert \Pi_\perp y\Vert^2 
+            \right) 
+            \\&\quad 
+                - \sigma^2\mu\Vert \Pi_{\perp} y\Vert^2
+                - \langle \nabla f(y), x - y\rangle
+                + \sigma^2\mu\langle \Pi_\perp x, \Pi_\perp y\rangle
+            \\
+            &= 
+            f(x) - \frac{\sigma^2 \mu}{2}\Vert \Pi_{\perp} x\Vert^2
+            - \left(
+                f(y) - \frac{\mu\sigma^2}{2}\Vert \Pi_\perp y\Vert^2 
+            \right) 
+            - \langle \nabla f(y), x - y\rangle
+            + \sigma^2\mu\langle \Pi_\perp (x - y), \Pi_\perp y\rangle
+            \\
+            &= 
+            f(x) - \frac{\sigma^2 \mu}{2}\Vert \Pi_{\perp} x\Vert^2
+            - \left(
+                f(y) - \frac{\mu\sigma^2}{2}\Vert \Pi_\perp y\Vert^2 
+            \right) 
+            - \langle \nabla f(y), x - y\rangle
+            + \sigma^2\mu\left\langle x - y, \Pi_\perp^{\top}\Pi_\perp  y\right\rangle
+            \\
+            &= 
+            f(x) - \frac{\sigma^2 \mu}{2}\Vert \Pi_{\perp} x\Vert^2
+            - \left(
+                f(y) - \frac{\mu\sigma^2}{2}\Vert \Pi_\perp y\Vert^2 
+            \right) 
+            + \left\langle x - y, \sigma^2\mu\Pi_\perp^{\top}\Pi_\perp  y - \nabla f(y)\right\rangle. 
+        \end{align*}
+        }
+        Next, if $\phi (x) = f(x) + \frac{\sigma^2\mu}{2}\Vert \Pi_\perp x\Vert^2$, then $\nabla \phi(x) = \nabla f(x) + \mu\sigma^2\Pi_{\perp}^\top \Pi_{\perp} x$. 
+        From here, it's not hard to see that the above inequality is:  $ 0\le \phi(x) - \phi(y) - \left\langle \nabla \phi(y), x - y\right\rangle$. 
+        Hence, the function $f(x) - \frac{\sigma\mu}{2}\Vert \Pi_\perp x\Vert^2$ is a convex function. 
+        From here, we will be ready to show the Jensen's formula. 
+        For all $x, y \in \RR^n$, consider the convexity of $\phi$, it has for all $\lambda \in [0, 1]$ the inequality: 
+        \begin{align*}
+            0 &\le \lambda \phi(x) + (1 - \lambda)\phi(x) - \phi(\lambda x + (1 - \lambda)y)
+            \\
+            &\underset{(1)}{=} 
+            f(\lambda x + (1 - \lambda)y) - \lambda f(x) - (1 - \lambda)f(y)
+            - \frac{\mu\sigma^2\lambda(1 - \lambda)}{2}\Vert \Pi_{\perp}(x - y)\Vert^2. 
+        \end{align*}
+        At (1), we skipped a lot of algebra that the reader should be familiar if they already seem the proof in for $f$ that is strongly convex.
+    \end{proof}
+\section{the accelerated proximal gradient algorithm again}
+    In this section we introduce the algorithms usually used in Nesterov's accelerated gradient. 
+    \begin{definition}[similar triangle form]\label{def:st-form}
+        Suppose that 
+        \begin{enumerate}
+            \item $F = f + g$ with $f$ Lipschitz smooth and, $g$ closed convex proper, 
+            \item Denote $T_B$ to be the proximal gradient operator on $F = f + g$, 
+            \item Let $q_k \in [0, 1)$ for all $k \ge 0$ be a parameter of the algorithm, 
+            \item $(B_k)_{k \ge 0}$ is a sequence such that $B_k \ge 0$ for all $k \ge 0$. 
+        \end{enumerate}
+        Given the initial condition $v_{-1}, x_{-1} \in \RR^n$. 
+        An algorithm is a similar triangle form of the accelerated proximal gradient if the iterates generated $(y_k, x_k, v_k)_{k \ge 1}$ satisfies for all $k \ge 1$: 
+        \begin{align*}
+            y_k &= \left(\frac{\alpha_k - q_k}{1 - q_k}\right)v_{k - 1} 
+            + \left(\frac{1 - \alpha_k}{1 - q_k}\right) x_{k - 1},
+            \\
+            x_k &= T_{B_k}(y_k) \text{ s.t: } D_f(x_k, y_k) \le \frac{B_k}{2}\Vert x_k - y_k\Vert^2. 
+            \\
+            v_k &= x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
+        \end{align*}
+    \end{definition}
+    \begin{definition}[relaxed Nesterov's momentum sequence]\;\label{def:r-nes-seq}\\
+        We let 
+        \begin{enumerate}
+            \item $(q_k)_{k \ge 0}$ be a sequence such that $q_k \in (0, 1]$ for all $k \ge 1$, 
+            \item $(\alpha_k)_{k \ge 0}$ be a sequence such that, $\alpha_0 \in (0, 1]$, and $\alpha_k \in (q_k, 1)$ for all $k \ge 1$. 
+        \end{enumerate}
+        For all $k \ge 1$ we define the sequence $(\rho_k)_{k \ge 0}$: 
+        \begin{align*}
+            \rho_{k - 1} &= \frac{\alpha_k(\alpha_k - q_k)}{(1 - \alpha_{k})\alpha_{k - 1}^2}. 
+        \end{align*}
+    \end{definition}
+
+\section{Convergence of accelerated gradient}
+    \subsection{Preparing for the convergence proof}
+        \begin{lemma}[Convergence preparation part I]\label{lemma:cnvg-prep-part1}
+            Let the sequence $(y_k, x_k, v_k)_{k \ge 1}$ be a sequence generated by Definition \ref{def:st-form}. 
+            Let $\bar x \in \RR^n$ be arbitrary, define $z_k = \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - y_k$. 
+            Then the sequence of iterates satisfies for all $k \ge 1$ all of the following equalities: 
+            \begin{align*}
+                z_k - y_k &= (1 - q_k)^{-1}\left(
+                    (\alpha_k - q_k)(\bar x - v_{k - 1}) + q_k(1 - \alpha_k)(\bar x - x_{k - 1})
+                \right), 
+                \\
+                z_k - x_k &= \alpha_k (\bar x - v_k), 
+                \\
+                y_k &= x_{k -1} + (1 - q_k)^{-1}(\alpha_{k - 1} - 1)(\alpha_k - q_k)(x_{k - 1} - x_{k - 2}). 
+            \end{align*}
+        \end{lemma}
+        \begin{proof}
+            From the update of $y_k$ in Definition \ref{def:st-form}, we have: 
+            \begin{align*}
+                0 &= \left(
+                \frac{\alpha_k - q_k}{1 - q_k} 
+                \right)v_{k - 1} 
+                + \left(
+                    \frac{1 - \alpha_k}{1 - q_k}
+                \right)x_{k - 1} - y_k
+                \\
+                &= 
+                \left(
+                    \frac{\alpha_k - q_k}{1 - q_k} 
+                \right)v_{k - 1} 
+                + (1 - \alpha_k)x_{k - 1}
+                + \left(
+                    \frac{1 - \alpha_k}{1 - q_k} - (1 - \alpha_k)
+                \right)x_{k - 1} - y_k
+                \\
+                &= 
+                \left(
+                    \frac{\alpha_k - q_k}{1 - q_k} 
+                \right)v_{k - 1} 
+                + (1 - \alpha_k)x_{k - 1}
+                + (1 - \alpha_k)\left(
+                    \frac{1 - (1 - \alpha_k)}{1 - q_k}
+                \right)x_{k - 1} - y_k
+                \\
+                &= 
+                \left(
+                    \frac{\alpha_k - q_k}{1 - q_k} 
+                \right)v_{k - 1} 
+                + (1 - \alpha_k)x_{k - 1}
+                + \frac{q_k(1 -\alpha_k)}{1 - q_k}x_{k - 1} - y_k. 
+            \end{align*}
+            Recall that $z_k = \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - y_k$. 
+            Therefore, using previous results we have:
+            \begin{align*}
+                z_k - y_k &= 
+                \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - y_k
+                \\
+                &= \alpha_k \bar x 
+                - \left(
+                    \frac{\alpha_k - q_k}{1 - q_k}
+                \right)v_{k - 1}
+                - \frac{q_k(1 -\alpha_k)}{1 - q_k}x_{k - 1}
+                \\
+                &= 
+                \left(
+                    \frac{\alpha_k - q_k}{1 - q_k}
+                \right)(\bar x - v_{k - 1})
+                + \left(
+                    \alpha_k - \frac{\alpha_k - q_k}{1 - q_k} 
+                \right)\bar x
+                - \frac{q_k(1 -\alpha_k)}{1 - q_k}x_{k - 1}
+                \\
+                &= 
+                \left(
+                    \frac{\alpha_k - q_k}{1 - q_k}
+                \right)(\bar x - v_{k - 1})
+                + \left(
+                    \frac{\alpha_k - \alpha_kq_k - (\alpha_k - q_k)}{1 - q_k}
+                \right)\bar x
+                - \frac{q_k(1 -\alpha_k)}{1 - q_k}x_{k - 1}
+                \\
+                &= 
+                \left(
+                    \frac{\alpha_k - q_k}{1 - q_k}
+                \right)(\bar x - v_{k - 1})
+                + \left(
+                    \frac{q_k(1 - \alpha_k)}{1 - q_k}
+                \right)\left(
+                    \bar x - x_{k - 1}
+                \right). 
+            \end{align*}
+            Using some basic algebra we also have: 
+            \begin{align*}
+                z_k - x_k &= 
+                \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - x_k 
+                \\
+                &= \alpha_k \bar x + x_{k - 1} - \alpha_k x_{k -1} - x_k
+                \\
+                &= \alpha_k (\bar x  + \alpha_k^{-1}x_{k - 1} - x_{k - 1} - \alpha_k^{-1} x_k) 
+                \\
+                &= \alpha_k (\bar x  + \alpha_k^{-1}(x_{k - 1} - x_k)- x_{k - 1}) 
+                \\
+                &= \alpha_k (\bar x - v_k). 
+            \end{align*}
+            Finally, $y_k$ can be expressed using $x_k$ only. 
+            Starting with the first recurrence relation it has: 
+            \begin{align*}
+                (1 - q_k)^{-1}y_k &= 
+                (\alpha_k - q_k) v_{k - 1} 
+                + (1 - \alpha_k)x_{k - 1}
+                \\
+                &= 
+                (\alpha_k - q_k)\left(
+                    x_{k - 2} + \alpha_{k - 1}^{-1}(x_{k - 1} - x_{k - 2})
+                \right) 
+                + (1 - \alpha_k)x_{k - 1}
+                \\
+                &= 
+                (\alpha_k - q_k)x_{k - 2} 
+                + \alpha_{k - 1}^{-1}(x_{k - 1} - x_{k - 2}) + (1 - \alpha_k)x_{k - 1}
+                \\
+                &= (\alpha_k - q_k)(1 - \alpha_{k - 1}^{-1})x_{k - 2}
+                + \left(
+                    \frac{\alpha_k - q_k}{\alpha_{k - 1}} + 1 - \alpha_k
+                \right)x_{k - 1}. 
+            \end{align*}
+            After some algebra it has: 
+            \begin{align*}
+                y_k &= 
+                \frac{(\alpha_k - q_k)(1 - \alpha_{k - 1}^{-1})}{1 - q_k}x_{k - 2} 
+                + \left(
+                    \frac{\alpha_k - q_k}{\alpha_{k - 1}(1 - q_k)} + \frac{1 - \alpha_k}{1 - q_k}
+                \right)x_{k - 1}
+                \\
+                &= 
+                \frac{(\alpha_k - q_k)(1 - \alpha_{k - 1}^{-1})}{1 - q_k}x_{k - 2} 
+                + \left(
+                    \frac{
+                        (\alpha_{k - 1}^{-1} -1)(\alpha_k - q_k)
+                        + \alpha_k - q_k + 1 - \alpha_k
+                    }{1 - q_k}
+                \right)x_{k - 1}
+                \\
+                &= \frac{(\alpha_k - q_k)(1 - \alpha_{k - 1}^{-1})}{1 - q_k}x_{k - 2} 
+                + \left(
+                    \frac{
+                        (\alpha_{k - 1}^{-1} -1)(\alpha_k - q_k)
+                    }{1 - q_k} + 1
+                \right)x_{k - 1}
+                \\
+                &= x_{k -1} + (1 - q_k)^{-1}(\alpha_{k - 1} - 1)(\alpha_k - q_k)(x_{k - 1} - x_{k - 2}). 
+            \end{align*}
+        \end{proof}
+        \begin{lemma}[Convergence preparations part II]\;\label{lemma:cnvg-prep-part2}\\
+            Suppose that sequences $(y_k, x_k, v_k)_{k \ge 0}$ satisfies Definition \ref{def:st-form}. 
+            In addition assume that the sequence $(\alpha_k)_{k \ge 0}$ satisfies Definition \ref{def:r-nes-seq}. 
+            For any arbitrary $\bar x \in \RR^n$, define for all $k \ge 1$ the sequence $z_k = \alpha_k \bar x + (1 - \alpha_k) x_{k - 1}$. 
+            Then, for all $k \ge 1$, it has:
+            \begin{align*}
+                & \frac{1 - q_k}{2}\Vert z_k - y_k\Vert^2
+                - \frac{q_k\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+                \\
+                &= 
+                \frac{\alpha_{k - 1}\rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{q_k(1 - \alpha_k)(q_k - \alpha_k)}{1 - q_k}\Vert v_{k - 1} - x_{k - 1}\Vert^2
+                \\
+                &\le 
+                \frac{\alpha_{k - 1}\rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2. 
+            \end{align*}
+        \end{lemma}
+        \begin{proof}
+            \begin{align}\label{eqn:cnvg-prep-part2-eqn1}
+                \begin{split}
+                    \frac{(\alpha_k - q_k)^2}{2(1 - q_k)}
+                    - \frac{\alpha_{k - 1}\rho_{k - 1}(1 - \alpha_k)}{2}
+                    &\underset{(1)}{=} 
+                    \frac{(\alpha_k - q_k)^2}{2(1 - q_k)}
+                    - \frac{\alpha_k(\alpha_k - q_k)}{2}
+                    \\
+                    &= \frac{1}{2(1 - q_k)}\left(
+                        (\alpha_k - q_k)^2 - (1 - q_k)\alpha_k(\alpha_k - q_k)
+                    \right)
+                    \\
+                    &= \frac{\alpha_k - q_k}{2(1 - q_k)}
+                    \left(
+                        \alpha_k - q_k - (1 - q_k)\alpha_k
+                    \right)
+                    \\
+                    &= 
+                    \frac{\alpha_k - q_k}{2(1 - q_k)}
+                    \left(
+                        - q_k + q_k \alpha_k
+                    \right)
+                    \\
+                    &= \frac{(\alpha_k -q_k)q_k (\alpha_k - 1)}{1 - q_k}. 
+                \end{split}
+            \end{align}
+            At (1), we used the relation $\alpha_{k - 1} \rho_{k - 1}(1 - \alpha_k) = \alpha_k(\alpha_k - q_k)$ because the sequence $(\alpha_k)_{k \ge 1}$ satisfies Definition \ref{def:r-nes-seq}.
+            Next, we have: 
+            \begin{align}\label{eqn:cnvg-prep-part2-eqn2}
+                \begin{split}
+                    \frac{q_k^2(1 - \alpha_k)^2}{1 - q_k}
+                    - q_k\alpha_k(1 - \alpha_k)
+                    &= 
+                    \frac{q_k(1 - \alpha_k)}{1 - q_k}
+                    \left(
+                        q_k(1 - \alpha_k) - \alpha_k(1 - q_k)
+                    \right)
+                    \\
+                    &= 
+                    \frac{q_k(1 - \alpha_k)(q_k - \alpha_k)}{1 - q_k}. 
+                \end{split}
+            \end{align}
+            Next, using two of the above results we have: 
+            {\allowdisplaybreaks\small
+            \begin{align*}
+                & \frac{1 - q_k}{2}\Vert z_k - y_k\Vert^2
+                - \frac{q_k\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+                \\
+                &\underset{(1)}{=}
+                \frac{1 - q_k}{2}
+                \left\Vert
+                    \left(
+                    \frac{\alpha_k - q_k}{1 - q_k}
+                    \right)(\bar x - v_{k - 1})
+                    + \left(
+                        \frac{q_k(1 - \alpha_k)}{1 - q_k}
+                    \right)\left(
+                        \bar x - x_{k - 1}
+                    \right)
+                \right\Vert^2
+                - \frac{q_k\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+                \\
+                &= 
+                \frac{(\alpha_k - q_k)^2}{2(1 - q_k)}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{q_k^2(1 - \alpha_k)^2}{2(1 - q_k)}\Vert \bar x - x_{k - 1}\Vert^2
+                + \frac{(\alpha_k - q_k)q_k(1 - \alpha_k)}{1 - q_k}\langle \bar x - v_{k - 1}, \bar x - x_{k - 1}\rangle
+                    \\&\quad 
+                    - \frac{1}{2}q_k \alpha_k(1 - \alpha_k)\Vert \bar x - x_{k - 1}\Vert^2
+                \\
+                &= \frac{(\alpha_k - q_k)^2}{2(1 - q_k)}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{1}{2}\left(
+                    \frac{q_k^2(1 - \alpha_k)^2}{1 - q_k} - q_k \alpha_k(1 - \alpha_k)
+                \right)\Vert \bar x - x_{k - 1}\Vert^2
+                    \\ &\quad 
+                    + \frac{(\alpha_k - q_k)q_k(1 - \alpha_k)}{1 - q_k}\langle \bar x - v_{k - 1}, \bar x - x_{k - 1}\rangle
+                \\
+                &= \frac{(\alpha_k - q_k)^2}{2(1 - q_k)}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{1}{2}\left(
+                    \frac{q_k^2(1 - \alpha_k)^2}{1 - q_k} - q_k \alpha_k(1 - \alpha_k)
+                \right)\Vert \bar x - x_{k - 1}\Vert^2
+                    \\ &\quad 
+                    + \frac{(\alpha_k - q_k)q_k(1 - \alpha_k)}{1 - q_k}\langle \bar x - v_{k - 1}, \bar x - x_{k - 1}\rangle
+                \\
+                &= 
+                \frac{1}{2}\left(
+                    \frac{(\alpha_k - q_k)^2}{1 - q_k}
+                    - \alpha_{k - 1}^2 \rho_{k - 1}(1 - \alpha_k)
+                \right)\Vert \bar x - v_{k - 1}\Vert^2
+                    \\&\quad
+                    + \frac{1}{2}\left(
+                        \frac{q_k^2(1 - \alpha_k)^2}{1 - q_k} - q_k \alpha_k(1 - \alpha_k)
+                    \right)\Vert \bar x - x_{k - 1}\Vert^2
+                    \\ &\quad 
+                    + \frac{(\alpha_k - q_k)q_k(1 - \alpha_k)}{1 - q_k}\langle \bar x - v_{k - 1}, \bar x - x_{k - 1}\rangle
+                    - \frac{\alpha_{k - 1}^2 \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \\
+                &\underset{\text{(2)}}{=}
+                \frac{1}{2}\frac{(\alpha_k - q_k)q_k(\alpha_k - 1)}{1 - a_k}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{1}{2}\left(
+                    \frac{q_k^2(1 - \alpha_k)^2}{1 - q_k} - q_k \alpha_k(1 - \alpha_k)
+                \right)\Vert \bar x - x_{k - 1}\Vert^2
+                    \\ &\quad 
+                    + \frac{(\alpha_k - q_k)q_k(1 - \alpha_k)}{1 - q_k}\langle \bar x - v_{k - 1}, \bar x - x_{k - 1}\rangle
+                    - \frac{\alpha_{k - 1}^2 \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \\
+                &\underset{\text{(3)}}{=}
+                \frac{1}{2}\frac{(\alpha_k - q_k)q_k(\alpha_k - 1)}{1 - a_k}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{1}{2}\frac{q_k(1 - \alpha_k)(q_k - \alpha_k)}{1 - q_k}\Vert \bar x - x_{k - 1}\Vert^2
+                    \\ &\quad 
+                    + \frac{(\alpha_k - q_k)q_k(1 - \alpha_k)}{1 - q_k}\langle \bar x - v_{k - 1}, \bar x - x_{k - 1}\rangle
+                    - \frac{\alpha_{k - 1}^2 \rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \\
+                &= \frac{\alpha_{k - 1}^2\rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{q_k(1 - \alpha_k)(q_k - \alpha_k)}{1 - q_k}\Vert v_{k - 1} - x_{k - 1}\Vert^2. 
+                \\
+                &\underset{(4)}{\le}
+                \frac{\alpha_{k - 1}^2\rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2. 
+            \end{align*}
+            }
+            At (1) we used one of the results from Lemma \ref{lemma:cnvg-prep-part1}, at (2) we used \eqref{eqn:cnvg-prep-part2-eqn1}, and at (3) we used \eqref{eqn:cnvg-prep-part2-eqn2}. 
+            At (4), we used the fact that $\alpha_k \in (q_k, 1)$, which means that the coefficient $q_k(1 - \alpha_k)(q_k - \alpha_k) \le 0$, therefore we can simplify the term away. 
+        \end{proof}
+    \subsection{getting the convergence results}
+        \begin{theorem}[the generic convergence results]\label{thm:cnvg-generic}
+            Suppose that $(F, f, g, h, A, b, \mu, L)$ satisfies Assumption \ref{ass:obj-fxn}. 
+            Let the sequence $(y_k, x_k, v_k)_{k \ge 1}$ satisfies Definition \ref{def:st-form}, with the $F$ we just assumed, and $q_k = (\mu\sigma(A)^2)/B_k$. 
+            Then for all $k \ge 1$ it satisfies 
+            \begin{align*}
+                & F(x_k) - F(\bar x) 
+                + \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+                \\
+                &\le 
+                (1 - \alpha_k)\max\left(
+                    1, \frac{\rho_{k - 1}L_k}{L_{k - 1}}
+                \right)\left(
+                    F(x_{k - 1}) - F(\bar x) 
+                    + \frac{L_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \right) + \mathcal R_k. 
+            \end{align*}
+            Where $\mathcal R_k = \frac{\sigma(A)^2\mu}{2}\Vert \Pi_{\ker A}(z_k - y_k)\Vert^2 + \frac{\mu\sigma(A)^2\alpha_k(1 - \alpha_k)}{2}\Vert \Pi_{\ker A}(\bar x - x_{k - 1})\Vert^2$. 
+        \end{theorem}
+        \begin{proof}
+            Let $z_k = \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$. 
+            $\bar x$ remains undetermined. 
+            Denote $\Pi = \Pi_{\ker A}$, and $\Pi_{\perp} = I - \Pi_{\ker A}$. 
+            Recall that we had the parameters $q_k$ for all $k \ge 1$ set by $q_kB_k = \sigma(A)^2\mu$. 
+            Starting with the proximal gradient inequality (Theorem \ref{thm:pg-ineq}), we let $z = z_k, x = y_k, x^+ = T_{B_k}(y_k)$. 
+            {\allowdisplaybreaks
+                \begin{align*}
+                    0 &\le 
+                    F(z_k) - F(x_k) 
+                    + \frac{B_k - \mu\sigma(A)^2}{2}\Vert z_k - y_k\Vert^2 
+                    - \frac{B_k}{2}\Vert z_k - x_k\Vert^2 
+                    + \frac{\mu\sigma(A)^2}{2}\Vert \Pi(z_k - y_k)\Vert^2
+                    \\
+                    &\underset{(1)}{\le} 
+                    \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k)
+                    - \frac{\mu\sigma(A)^2\alpha_k(1 - \alpha_k)}{2}\Vert \Pi_{\perp}(\bar x - x_{k - 1})\Vert^2
+                        \\&\quad
+                        + \frac{B_k - \mu\sigma(A)^2}{2}\Vert z_k - y_k\Vert^2 
+                        - \frac{B_k}{2}\Vert z_k - x_k\Vert^2 
+                        + \frac{\mu\sigma(A)^2}{2}\Vert \Pi(z_k - y_k)\Vert^2
+                    \\
+                    &= 
+                    \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k)
+                    - \frac{\mu\sigma(A)^2\alpha_k(1 - \alpha_k)}{2}
+                        \left(
+                            \Vert \bar x - x_{k - 1}\Vert^2 - \Vert \Pi(\bar x - x_{k - 1})\Vert^2
+                        \right)
+                        \\&\quad
+                        + \frac{B_k - \mu\sigma(A)^2}{2}\Vert z_k - y_k\Vert^2 
+                        - \frac{B_k}{2}\Vert z_k - x_k\Vert^2 
+                        + \frac{\mu\sigma(A)^2}{2}\Vert \Pi(z_k - y_k)\Vert^2
+                    \\
+                    &\underset{(2)}{=}
+                    \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k)
+                    - \frac{q_kL_k\alpha_k(1 - \alpha_k)}{2}
+                        \left(
+                            \Vert \bar x - x_{k - 1}\Vert^2 - \Vert \Pi(\bar x - x_{k - 1})\Vert^2
+                        \right)
+                        \\&\quad
+                        + \frac{B_k - q_kL_k}{2}\Vert z_k - y_k\Vert^2 
+                        - \frac{B_k}{2}\Vert z_k - x_k\Vert^2 
+                        + \frac{q_kL_k}{2}\Vert \Pi(z_k - y_k)\Vert^2
+                    \\
+                    &= 
+                    \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k)
+                    + B_k\left(
+                        \frac{1 - q_k}{2}\Vert z_k - y_k\Vert^2 
+                        - \frac{q_k\alpha_k(1 - \alpha_k)}{2}\Vert \bar x - x_{k - 1}\Vert^2
+                    \right)
+                        \\&\quad
+                        - \frac{B_k}{2}\Vert z_k - x_k\Vert^2 
+                        + \frac{q_kL_k}{2}\Vert \Pi(z_k - y_k)\Vert^2
+                        + \frac{q_kL_k\alpha_k(1 - \alpha_k)}{2}\Vert \Pi(\bar x - x_{k - 1})\Vert^2
+                    \\
+                    &\underset{(3)}{\le} 
+                    \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k)
+                    + \frac{B_k\alpha_{k - 1}\rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                        \\&\quad
+                        - \frac{B_k}{2}\Vert z_k - x_k\Vert^2 
+                        + \frac{q_kL_k}{2}\Vert \Pi(z_k - y_k)\Vert^2
+                        + \frac{q_kL_k\alpha_k(1 - \alpha_k)}{2}\Vert \Pi(\bar x - x_{k - 1})\Vert^2
+                    \\
+                    &\underset{(4)}{=}
+                    \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k)
+                    + \frac{B_k\alpha_{k - 1}\rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                        \\&\quad
+                        - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k \Vert^2 
+                        + \frac{q_kL_k}{2}\Vert \Pi(z_k - y_k)\Vert^2
+                        + \frac{q_kL_k\alpha_k(1 - \alpha_k)}{2}\Vert \Pi(\bar x - x_{k - 1})\Vert^2. 
+                \end{align*}
+            }
+            At (1) we used Jesen's inequality Theorem \ref{thm:jen-ineq}. 
+            At (2) we simplified the parameters because $q_kB_k = \mu \sigma(A)^2$. 
+            At (3) we used the results from Lemma \ref{lemma:cnvg-prep-part2}. 
+            At (4) we used the equality $z_k - x_k = \bar x - v_k$ from Lemma \ref{lemma:cnvg-prep-part1}. 
+            Define for all $k \ge 1$: 
+            \begin{align*}
+                \mathcal R_k := \frac{q_kL_k}{2}\Vert \Pi(z_k - y_k)\Vert^2 
+                + \frac{q_kL_k\alpha_k(1 - \alpha_k)}{2}\Vert \Pi(\bar x - x_{k - 1})\Vert^2. 
+            \end{align*}
+            After some algebra the above inequality has: 
+            \begin{align*}
+                & 
+                F(x_k) - F(\bar x) 
+                + \frac{L_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+                \\
+                &\le 
+                (\alpha_k - 1)F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) 
+                + \frac{L_k\alpha_{k - 1}^2\rho_{k - 1}(1 - \alpha_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                + \mathcal R_k
+                \\
+                &= (1 - \alpha_k)\left(
+                    F(x_{k - 1}) - F(\bar x) 
+                    + \frac{L_k\alpha_{k - 1}^2\rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \right) + \mathcal R_k
+                \\ 
+                &= (1 - \alpha_k)\left(
+                    F(x_{k - 1}) - F(\bar x) 
+                    + \left(
+                        \frac{\rho_{k - 1}L_k}{L_{k - 1}}
+                    \right)\frac{L_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \right) + \mathcal R_k
+                \\
+                &\le 
+                (1 - \alpha_k)\max\left(
+                    1, \frac{\rho_{k - 1}L_k}{L_{k - 1}}
+                \right)\left(
+                    F(x_{k - 1}) - F(\bar x) 
+                    + \frac{L_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \right) + \mathcal R_k. 
+            \end{align*}
+        \end{proof}
+        \par
+        \textcolor{red}{Take note that if we were to get global linear convergence, we have to set $\mathcal R_k = 0$ for all $k \ge 1$.}
+        This would require restrictive assumptions. 
+        Before we delve into the restrictive assumptions, some more words are needed. 
+        \begin{assumption}[conditions sufficient for linear convergence]\;\label{ass:cond-lin-cnvg}\\
+            Let $(F, f, g, h, A, b, \mu, L)$ satisfies Assumption \ref{ass:obj-fxn}. 
+            Let $(\alpha_k)_{k\ge 0}$ satisfies Definition \ref{def:r-nes-seq}. 
+            Define $X^+ = \argmin_{z \in X} h(Ax - b)$ to be the set of minimizers. 
+            Suppose that the iterates $(y_k, x_k, v_k)_{k \ge 1}$ satisfies Definition \ref{def:st-form}, with $q_k = \sigma(A)^2\mu/B_k$. 
+            Define for all $k \ge 1$,  $\bar x \in \RR^n$, define $z_k = \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$. 
+            Assume in addition, any of the following for some $k \ge 1$:  
+            \begin{enumerate}
+                \item The matrix $A \in\RR^{n\times m}$ has $\ker A = \{\mathbf 0\}$
+                \item It has $x_{k - 1} - x_{k - 2} \in \ker A$ and, at the same time, $\bar x - x_{k - 1} \in \ker A$, and at the same time, $\bar x = \Pi_{X^+} x_{k - 1} = \Pi_{X^+} x_k$. 
+            \end{enumerate}            
+        \end{assumption}
+        \textcolor{red}{At this point I had lost the interest to continue writing it. }
+
+
+
+\bibliographystyle{siam}
+
+\bibliography{references/refs.bib}
+
+
+\end{document}
