@@ -69,11 +69,21 @@ In preprations for a better proof of convergence on ST-APG, this section will pr
 - When $f$ is convex, it has $\mathcal E (z, y, \mu, B) + \mu \Vert z - y\Vert^2 \ge 0$, for all $x, z$. 
 
 #### **Assumptions 1 | for linear rate of convergence**
-> The following assumption is about $(F, f, g, \mathcal E)$, it is the configuration we need to derive the convergence rate of ST-APG. 
-> - Let $F = f + g$ such that $X^+ = \argmin{x} \{f(x) + g(x)\}$ has $X^+ \neq \emptyset$. 
+> The following assumption is about $(F, f, g, \mathcal E, \mu, L)$, it is the configuration we need to derive the convergence rate of ST-APG. 
+> - Let $F = f + g$ where $f$ is $L$ Lipschitz smooth and, $g$ is closed convex and proper.
+> - Assume that $X^+ = \argmin{x} \{f(x) + g(x)\}$ has $X^+ \neq \emptyset$.
 > - For all $z \in \R^n$, there exists a $\mu > 0$ such that the proximal gradient gap satisfies $\mathcal E(\Pi_X^+(y), y, \mu) \ge 0$. 
 > - For all $z, y \in \R^n$, it has $\mathcal E(z, y, \mu, B) + \frac{\mu}{2}\Vert z - y\Vert^2 \ge 0$. 
 
+**Comments**. 
+For linear convergence, it requires the parameter $\mu > 0$. 
+This assumption is restrictive. 
+It doesn't improve on our previous results from Necoara et al.  
+Their definition of quasi strongly convex is the same conditions as our **Assumption 1** except that their the non-smooth function $g$ is an indicator function of a convex set.
+Therefore, our linear convergence results based on this assumption doesn't extend beyond the scope of previous works. 
+This is another dead end, unfortunately. 
+
+It remainds to understand deeper on the conditions which quasi strong convexity holds. 
 
 ---
 ### **Preparting for the convergence rate proof**
@@ -82,7 +92,7 @@ This sections states intermediate results that we used to derive the convergence
 
 #### **Lemma | Convergence Prep Part I**
 > Suppose
-> - The sequences $y_k, x_k, v_k$ satisfies ST-APG and, assume that it's that $(F, f, g, \mathcal E)$ satisfies **Assumption 1**. 
+> - The sequences $y_k, x_k, v_k$ satisfies ST-APG and, assume that it's that $(F, f, g, \mathcal E, \mu, L)$ satisfies **Assumption 1**. 
 > - The sequences $(\alpha_k)_{k\ge 0}, (\rho_{k})_{k \ge 0}, (q_k)_{k \ge 0}$ satisfies the definition of relaxed momentum sequence.
 > - The parameter $q_k$ has $q_k = \mu/B_k$, with $B_k > \mu$, for all $k \ge 0$. 
 >
@@ -350,7 +360,7 @@ $$
         x_{k - 1} - y_k
     \rangle
     - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
-    - \frac{q_k}{2\mu}\Vert \mathcal G_{B_k}(y_k)\Vert^2
+    - \frac{q_k}{2\mu}\Vert \mathcal G_{B_k}(y_k)\Vert^2。 
 \end{aligned}
 $$
 
@@ -606,4 +616,45 @@ $$
     &\le 0. 
 \end{aligned}
 $$
+
+$\blacksquare$
+
+**Remarks**
+
+Take note: 
+$$
+\begin{aligned}
+    & \Vert \overline y_k - v_{k - 1}\Vert^2 
+    \\
+    &= 
+    \Vert \overline y_k - \overline y_{k - 1} + \overline y_{k - 1} - v_{k - 1}\Vert^2 
+    \\
+    &=
+    \Vert \overline y_k - \overline y_{k - 1}\Vert^2
+    + 
+    \Vert \overline y_{k - 1} - v_{k - 1}\Vert^2
+    + 
+    2\left\langle \overline y_k - \overline y_{k - 1}, \overline y_{k - 1} - v_{k - 1}\right\rangle
+    \\
+    &\le 
+    \Vert \overline y_k - \overline y_{k - 1}\Vert^2
+    + 
+    \Vert \overline y_{k - 1} - v_{k - 1}\Vert^2
+    + 
+    2\Vert \overline y_k - \overline y_{k - 1}\Vert^2\Vert \overline y_{k - 1} - v_{k - 1}\Vert
+    \\
+    &= (\Vert \overline y_k - \overline y_{k - 1}\Vert + \Vert \overline y_{k - 1} - v_{k - 1}\Vert)^2. 
+\end{aligned}
+$$
+
+Hopeless. 
+
+
+---
+### **Sufficient Conditions for Linear Convergence**
+
+#### **Assumption 2 | sufficient for linear convergence**
+> The distance between $y_k$ and $v_{k - 1}$ is, smaller than the distance between $y_{k - 1}, v_{k - 1}$. 
+
+
 

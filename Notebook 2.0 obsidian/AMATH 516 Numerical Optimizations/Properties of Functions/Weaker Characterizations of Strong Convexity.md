@@ -105,7 +105,7 @@ We first introduce a function with a special type of Bregman Divergence.
 
 **Proof**
 
-See [Weaker than strong convexity](../Weaker%20than%20strong%20convexity.md) for the proof. 
+See [Weaker Bregman Divergence](../Weaker%20Bregman%20Divergence.md) for the proof. 
 
 $\blacksquare$
 

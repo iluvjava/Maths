@@ -114,7 +114,7 @@ $\blacksquare$
 > $$
 > \begin{aligned}
 >     y_k &= 
->     x_{k -1} + (1 - q_k)^{-1}(\alpha_{k - 1} - 1)(\alpha_k - q_k)(x_{k - 1} - x_{k - 2})
+>     x_{k -1} + (1 - q_k)^{-1}(\alpha_{k - 1}^{-1} - 1)(\alpha_k - q_k)(x_{k - 1} - x_{k - 2})
 >     \\
 >     &= \left(\frac{\alpha_k - q_k}{1 - q_k}\right)v_{k - 1} + \left(\frac{1 - \alpha_k}{1 - q_k}\right) x_{k - 1}. 
 > \end{aligned}
@@ -169,11 +169,11 @@ $$
     &= \frac{(\alpha_k - q_k)(1 - \alpha_{k - 1}^{-1})}{1 - q_k}x_{k - 2} 
     + \left(
         \frac{
-            (\alpha_{k - 1}^{-1} -1)(\alpha_k - q_k)
+            (\alpha_{k - 1}^{-1} -1)(\alpha_k - q_k)g 
         }{1 - q_k} + 1
     \right)x_{k - 1}
     \\
-    &= x_{k -1} + (1 - q_k)^{-1}(\alpha_{k - 1} - 1)(\alpha_k - q_k)(x_{k - 1} - x_{k - 2}). 
+    &= x_{k -1} + (1 - q_k)^{-1}\left(\alpha_{k - 1}^{-1} - 1\right)(\alpha_k - q_k)(x_{k - 1} - x_{k - 2}). 
 \end{aligned}
 $$
 
