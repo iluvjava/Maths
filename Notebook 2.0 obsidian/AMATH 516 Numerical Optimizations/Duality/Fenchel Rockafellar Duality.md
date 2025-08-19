@@ -29,6 +29,7 @@ We phrase the theorem and then we discuss its details, and problems.
 
 From the properties of the convex conjugate, the dual problem is obviously, concave. 
 
+
 **Standing Assumptions**: 
 
 We assume that $f, g$ are convex, closed and proper functions. This is required for the discussion of duality, but not necessary for generating the primal and the dual problem. 
@@ -48,6 +49,12 @@ The simultaneous existence of minimizers both primal and dual such that their ob
 
 **Proof**: 
 
+The equivalence between 2, 3, 4, 5, are self evident. 
+We will prove $(1)\iff (2)$. 
+
+
+$\blacksquare$
+
 Consult theorem 20.4 in Heinz's course notes for more information. 
 
 **References**: 
@@ -62,6 +69,8 @@ Theorem 20.4 in Heinz's course notes for the 563 optimization class at UBCO.
 > \end{aligned}
 > $$
 > And, it's very much possible to have an empty set for the above dual characterizations for the primal optimal solutions.
+
+The theorem follows describes a sufficient conditions for strong duality. 
 
 #### **Theorem 3 | Regularity Conditions and existence of minimizers**
 
@@ -88,14 +97,11 @@ The above theorem that characterizes the existence of the solution for the prima
 ### **Examples**
 
 For a preliminary example, see [Apply Fenchel Rockafellar Dual to Linear Program](../../AMATH%20515%20Optimization%20Fundamentals/Apply%20Fenchel%20Rockafellar%20Dual%20to%20Linear%20Program.md). 
-
 We make some examples that illustrate some subtleties behind the Fenchel Rockafaller duality, especially about the existence of the minimizers for the primal and the dual problems. 
-
-
-
 
 
 ---
 ### **Remarks**
 
 Fenchel Rockafellar is a special case of KKT duality. For an intro for KKT, see: [Introducing The KKT Conditions](Introducing%20The%20KKT%20Conditions.md) for an introduction. 
+For a derivation of the Fenchel Rockafellar Strong Duality via convex parametric pertubation Frameworks and KKT, see [Convex Parametric Minimization and Strong Duality](Convex%20Parametric%20Minimization%20and%20Strong%20Duality.md). 

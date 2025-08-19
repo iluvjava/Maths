@@ -8,7 +8,7 @@
 Let $X$ be a Hilbert space. 
 We discuss some of the properties of projection onto a cone in $X$. 
 Here we denote $\Pi_C$ to be the projection onto the set $C$. 
-Let $X$ be xome Hilbert space for generaity of our statements. 
+Let $X$ be some Hilbert space for generality of our statements. 
 
 
 #### **Thm | Projection onto Cones**

@@ -64,7 +64,7 @@ See [Averaged Operators](Averaged%20Mapping.md)
 ### **Example | Projection Operators**
 
 - [Convex Projection is Firmly Nonexpansive](Convex%20Projection%20is%20Firmly%20Nonexpansive.md)
-- [Projection onto Cones](Projection%20onto%20Cones.md)
+- [Projection onto Cones, Subspaces](../CVX%20Geometry/Projection%20onto%20Cones,%20Subspaces.md)
 
 
 

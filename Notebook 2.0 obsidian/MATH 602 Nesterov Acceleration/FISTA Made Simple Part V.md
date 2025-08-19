@@ -641,13 +641,23 @@ $$
     + 
     \Vert \overline y_{k - 1} - v_{k - 1}\Vert^2
     + 
-    2\Vert \overline y_k - \overline y_{k - 1}\Vert^2\Vert \overline y_{k - 1} - v_{k - 1}\Vert
+    2\Vert \overline y_k - \overline y_{k - 1}\Vert\Vert \overline y_{k - 1} - v_{k - 1}\Vert
     \\
     &= (\Vert \overline y_k - \overline y_{k - 1}\Vert + \Vert \overline y_{k - 1} - v_{k - 1}\Vert)^2. 
 \end{aligned}
 $$
 
-Hopeless. 
+To make algebra simple, we need some relationship between $\Vert \overline y_k - \overline y_{k - 1} \Vert$ and $\Vert \overline y_{k - 1} - v_{k - 1} \Vert$. 
+Otherwise, consider the equalities: 
+
+$$
+\begin{aligned}
+    \Vert \overline y_k - v_{k - 1}\Vert^2
+    = 
+    \Vert \overline y_{k - 1} - v_{k - 1}\Vert^2 + 
+    (\Vert \overline y_k - v_{k - 1}\Vert^2 - \Vert \overline y_{k - 1} - v_{k - 1}\Vert^2)
+\end{aligned}
+$$
 
 
 ---
