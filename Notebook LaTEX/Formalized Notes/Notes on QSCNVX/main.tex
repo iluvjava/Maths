@@ -36,7 +36,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 \noindent{\bfseries Keywords:}
 
 
-% ==============================================================================
 \section{Introduction}
     \textbf{Notations.}
     Unless specified, our ambient space is $\RR^n$ with Euclidean norm $\Vert \cdot\Vert$.
@@ -49,23 +48,210 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \\
         &= \hprox_{B^{-1}g}(x - B^{-1}\nabla f(x)). 
     \end{align*}
-    We also define the gradient mapping operator
+    We also define the gradient mapping operator $\mathcal G_B(x) = B^{-1}(x - T_B(x))$. 
 
 \section{Precursors materials for our proofs of linear convergence}
-    \begin{definition}[similar triangle form of accelerated proximal gradient]\label{def:st-apg}
-        
+    The following two definitions defines the accelerated proximal gradient algorithm. 
+    % DEFINITION =======================================================================================================
+    \begin{definition}[similar triangle form of accelerated proximal gradient]\;\label{def:st-apg}\\
+        The definition is about $((\alpha_k)_{k \ge 0}, (q_k)_{k \ge 0}, (B_k)_{k \ge 0}, (y_k)_{k \ge 0}, (x_k)_{k \ge -1}, (v_k)_{k \ge -1})$. 
+        These sequences satisfy:
+        \begin{enumerate}[nosep]
+            \item $x_{-1}, y_{- 1}\in \RR^n$ are arbitrary initial condition of the algorithm;
+            \item $(q_k)_{k \ge 1}$ be a sequence such that $q_k \in [0, 1)$ for all $k \ge 1$;
+            \item $(\alpha_k)_{k \ge 1}$ be a sequence such that $\alpha_0 \in (0, 1]$, and for all $k \ge 1$ it has $\alpha_k \in (q_k, 1)$;
+            \item $(B_k)_{k \ge 0}$ has $B_k \ge 0$. 
+        \end{enumerate}
+        Then an algorithm satisfies the similar triangle form of Nesterov's accelerated gradient if it generates iterates $(y_k, x_k, v_k)_{k \ge 1}$ such that for all $k\ge 0$: 
+        \begin{align*}
+            y_k &= \left(\frac{\alpha_k - q_k}{1 - q_k}\right)v_{k - 1} 
+            + \left(\frac{1 - \alpha_k}{1 - q_k}\right) x_{k - 1},
+            \\
+            x_k &= T_{L_k}(y_k), D_f(x_k, y_k) \le \frac{B_k}{2}\Vert x_k - y_k\Vert^2, 
+            \\
+            v_k &= x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
+        \end{align*}
     \end{definition}
-
+    % DEFINITION =======================================================================================================
+    \begin{definition}[relaxed momentum sequence]\label{def:rlx-momentum-seq}
+        The following definition is about sequences $((\alpha_k)_{k \ge 0}, (q_k)_{k \ge 0}, (\rho_k)_{k \ge 0})$. 
+        Let 
+        \begin{enumerate}[nosep]
+            \item $(q_k)_{k \ge 0}$ is a sequence such that $q_k \in [0, 1)$ for all $k \ge 0$;
+            \item $(\alpha_k)_{k \ge 0}$ be such that $\alpha_0 \in (0, 1]$, and for all $k \ge 1$ it has $\alpha_k \in (q_k, 1)$;
+            \item $(\rho_k)_{k \ge 0}$ is a strictly positive sequence for all $k \ge 1$. 
+        \end{enumerate}
+        The sequences $q_k, \alpha_k$ are considered relaxed momentum sequence if for all $k \ge 1$ it satisfies the relation that: 
+        \begin{align*}
+            \rho_{k - 1} &= \frac{\alpha_k(\alpha_k - q_k)}{(1 - \alpha_{k})\alpha_{k - 1}^2}. 
+        \end{align*}
+    \end{definition}
+    % DEFINITION =======================================================================================================
+    \begin{definition}[proximal gradient gap]\label{def:pg-gap}
+        Let $F = f + g$ where $f$ is $L$ Lipschitz smooth and $g$ is convex. 
+        Then the proximal gradient mapping $T_B(x) = \hprox_{B^{-1}g}(x -  B^{-1}\nabla f(x))$ is a singleton, which as domain on $\RR^n$. 
+        Let $\mu, B$ be parameters such that $B > \mu \ge 0$. 
+        We define the proximal gradient gap $\mathcal E(z, y, \mu)$ is a $\RR^n \times \RR^n \rightarrow \RR^n$ mapping: 
+        \begin{align*}
+            \mathcal E(z, y, \mu, B) &:= 
+            F(z) - F(T_B(y)) 
+            - \left\langle B(y - T_B(y)), z - y\right\rangle
+            - \frac{\mu}{2}\Vert z - y\Vert^2
+            - \frac{B}{2}\Vert y - T_B(y)\Vert^2. 
+        \end{align*}
+    \end{definition}
+    \begin{remark}
+        This expression is the same as the proximal gradient inequality. 
+    \end{remark}
     
-\section{deriving the convergence rate}
-    \subsection{preparations}
-        \begin{lemma}[convergence preparations part I]
+\section{Deriving the convergence rate}
+    To derive the convergence rate of algorithm satisfying Definition \ref{def:st-apg}, \ref{def:rlx-momentum-seq}, we leverage Definition \ref{def:pg-gap}. 
+    % ASSUMPTION =======================================================================================================
+    \begin{assumption}[for convergence]\label{ass:for-cnvg}
+        The following assumption is about $(F, f, g, \mathcal E, \mu, L)$, it is the configuration needed to derive the convergence rate of algorithms that satisfy Definition \ref{def:st-apg}. 
+        There exists $B > \mu \ge 0$ such that the following are true. 
+        \begin{enumerate}[nosep]
+            \item Let $F = f + g$ where $f$ is $L$ Lipschitz smooth and, $g$ is closed convex and proper.
+            \item Assume that $X^+ = \argmin_{x} \{f(x) + g(x)\}$ has $X^+ \neq \emptyset$.
+            \item $\forall z \in \RR^n$ it has $\mathcal E(\Pi_{X^+}(y), y, \mu, B) \ge 0$. 
+            \item For all $z, y \in \RR^n$, it has $\mathcal E(z, y, \mu, B) + \frac{\mu}{2}\Vert z - y\Vert^2 \ge 0$.   
+        \end{enumerate}
+        Note that, if the function is convex, all conditions are satisfies for $\mu = 0$. 
+    \end{assumption}
+    % LEMMA ========================================================================================================
+    \begin{lemma}[equivalent representations of the iterates part I]\label{lemma:st-iterates-alt-form-part1}
+        Suppose that the sequences of $\alpha_k, q_k, y_k, v_k, x_k, B_k$ satisfy the similar triangle form, then for all $k \ge 0$ the iterates $v_k$ admits the following equivalent representations: 
+        \begin{align*}
+            v_k &= x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1})
+            \\
+            &= v_{k - 1} + \alpha_k^{-1}q_k(y_k - v_{k - 1}) - \alpha_{k}^{-1}B_k^{-1}\mathcal G_{B_k}(y_k). 
+        \end{align*}
+    \end{lemma}
+    \begin{proof}
+        Consider all $k \ge 1$. 
+        The relations is direct, immediately from the update rule in Definition \ref{def:st-apg} of $y_k$ we have
+        \begin{enumerate}[nosep]
+            \item[(a)] $(\alpha_k - 1)x_{k - 1} = (\alpha_k - q_k)v_{k - 1} - (1 - q_k)y_k$. 
+            \item[(b)] $x_k = y_k - B_k^{-1}\mathcal G_{B_k}(y_k)$. 
+        \end{enumerate}
+        \begin{align*}
+            v_k &= x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1})
+            \\
+            &= (1 - \alpha_k^{-1})x_{k - 1} + \alpha_k^{-1}x_k
+            \\
+            &= \alpha_k^{-1}(\alpha_k - 1)x_{k - 1} + \alpha_k^{-1}x_k
+            \\
+            &\underset{\text{(a)}}{=} \alpha_k^{-1}(\alpha_k - q_k)v_{k - 1} - \alpha_{k}^{-1}(1 - q_k)y_k 
+            + \alpha_k^{-1}x_k
+            \\
+            &\underset{\text{(b)}}{=} (1 - \alpha_k^{-1}q_k) v_{k - 1} - (\alpha_k^{-1} - \alpha_k^{-1}q_k)y_k
+            + \alpha_k^{-1}(y_k - B_k^{-1}\mathcal G_{B_k}(y_k)). 
+            \\
+            &= 
+            (1 - \alpha_k^{-1}q_k) v_{k - 1} + \alpha_k^{-1}q_ky_k
+            - \alpha_k^{-1}B_k^{-1}\mathcal G_{B_k}(y_k)
+            \\
+            &= v_{k - 1} + \alpha_k^{-1}q_k(y_k - v_{k - 1}) - \alpha_{k}^{-1}B_k^{-1}\mathcal G_{B_k}(y_k). 
+        \end{align*}
+    \end{proof}
+    \begin{lemma}[equivalent representations of the iterates part II]\;\label{lemma:st-iterates-alt-form-part2}\\
+        Suppose the sequences of $\alpha_k, q_k, y_k, v_k, x_k, B_k$ satisfy the similar triangle form, then for all $k \ge 0$ the iterates $v_k$ admits the following equivalent representations: 
+        \begin{align*}
+            y_k &= 
+            x_{k -1} + (1 - q_k)^{-1}(\alpha_{k - 1}^{-1} - 1)(\alpha_k - q_k)(x_{k - 1} - x_{k - 2})
+            \\
+            &= \left(\frac{\alpha_k - q_k}{1 - q_k}\right)v_{k - 1} + \left(\frac{1 - \alpha_k}{1 - q_k}\right) x_{k - 1}. 
+        \end{align*}
+    \end{lemma}
+    \begin{proof}
+        For all $k\ge 1$, from the update rules in Definition \ref{def:st-apg}: 
+        \begin{align*}
+            (1 - q_k)^{-1}y_k &= 
+            (\alpha_k - q_k) v_{k - 1} 
+            + (1 - \alpha_k)x_{k - 1}
+            \\
+            &= 
+            (\alpha_k - q_k)\left(
+                x_{k - 2} + \alpha_{k - 1}^{-1}(x_{k - 1} - x_{k - 2})
+            \right) 
+            + (1 - \alpha_k)x_{k - 1}
+            \\
+            &= 
+            (\alpha_k - q_k)x_{k - 2} 
+            + \alpha_{k - 1}^{-1}(x_{k - 1} - x_{k - 2}) + (1 - \alpha_k)x_{k - 1}
+            \\
+            &= (\alpha_k - q_k)(1 - \alpha_{k - 1}^{-1})x_{k - 2}
+            + \left(
+                \frac{\alpha_k - q_k}{\alpha_{k - 1}} + 1 - \alpha_k
+            \right)x_{k - 1}. 
+        \end{align*}
+        Multiply $(1 - q_k)$ on both sides yield: 
+        \begin{align*}
+            y_k &= 
+            \frac{(\alpha_k - q_k)(1 - \alpha_{k - 1}^{-1})}{1 - q_k}x_{k - 2} 
+            + \left(
+                \frac{\alpha_k - q_k}{\alpha_{k - 1}(1 - q_k)} + \frac{1 - \alpha_k}{1 - q_k}
+            \right)x_{k - 1}
+            \\
+            &= 
+            \frac{(\alpha_k - q_k)(1 - \alpha_{k - 1}^{-1})}{1 - q_k}x_{k - 2} 
+            + \left(
+                \frac{
+                    (\alpha_{k - 1}^{-1} -1)(\alpha_k - q_k)
+                    + \alpha_k - q_k + 1 - \alpha_k
+                }{1 - q_k}
+            \right)x_{k - 1}
+            \\
+            &= \frac{(\alpha_k - q_k)(1 - \alpha_{k - 1}^{-1})}{1 - q_k}x_{k - 2} 
+            + \left(
+                \frac{
+                    (\alpha_{k - 1}^{-1} -1)(\alpha_k - q_k)g 
+                }{1 - q_k} + 1
+            \right)x_{k - 1}
+            \\
+            &= x_{k -1} + (1 - q_k)^{-1}\left(\alpha_{k - 1}^{-1} - 1\right)(\alpha_k - q_k)(x_{k - 1} - x_{k - 2}). 
+        \end{align*}
+    \end{proof}
+    
+    \subsection{preparations for the convergence rate proof}
+        The following lemma summarize important results that gives a swift exposition for the proofs show up at the end for the convergence rate. 
+        \begin{lemma}[convergence preparations part I]\label{lemma:cnvg-prep-part1}
+            Let $(F, f, g,  \mathcal E, \mu, L)$ satisfies Assumption \ref{ass:for-cnvg}. 
+            Suppose that 
+            \begin{enumerate}[nosep]
+                \item The sequence $(y_k, v_k, x_k)_{k \ge 0}$ satisfies Definition \ref{def:st-apg} where $T_B$ is defined on $F = f + g$. 
+                \item The sequences $(\alpha_k)_{k\ge 0}, (\rho_{k})_{k \ge 0}, (q_k)_{k \ge 0}$ satisfies the definition of relaxed momentum sequence.
+                \item We set the parameters $q_k$ has $q_k = \mu/B_k$, with $B_k > \mu$, for all $k \ge 0$. 
+            \end{enumerate}
+            Then, for all $\bar x \in \RR^n$, $k \ge 0$: 
+            \begin{align*}
+                & \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
+                -\frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \\
+                &=
+                \frac{\alpha_k \mu}{2}
+                \Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{q_k\mu}{2}\Vert y_k - v_{k - 1} \Vert
+                + \frac{q_k}{2\mu}\Vert \mathcal G_{B_k}(y_k)\Vert^2
+                \\ &\quad 
+                - \langle
+                    q_k(y_k - v_{k - 1}) + \alpha_k(v_{k - 1} - \bar x), \mathcal G_{B_k}(y_k)
+                \rangle
+                    + \alpha_k \mu
+                    \left\langle 
+                        v_{k - 1} - \bar x, 
+                        y_k - v_{k - 1}
+                    \right\rangle. 
+            \end{align*}
+        \end{lemma}
+        \begin{proof}
+            
+        \end{proof}
+
+        \begin{lemma}[convergence preparations part II]\label{lemma:cnvg-prep-part2}
             
         \end{lemma}
-        \begin{lemma}[convergence preparations part II]
-            
-        \end{lemma}
-        \begin{lemma}[convergence preparations part III]
+        \begin{lemma}[convergence preparations part III]\label{lemma:cnvg-prep-part3}
             
         \end{lemma}
 

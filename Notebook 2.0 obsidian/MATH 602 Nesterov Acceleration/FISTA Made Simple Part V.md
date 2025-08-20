@@ -213,7 +213,7 @@ $$
 \end{aligned}
 $$
 
-At **(1)**, we used first equality in **Previous Results**. 
+At **(1)**, we used first equality in **Previous Results 1**. 
 Take the result of the equality chain and subtract $-\frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2$ from both sides, the coefficient for $\Vert \bar x - v_{k - 1}\Vert^2$ comes out to be: 
 
 $$
@@ -621,50 +621,15 @@ $\blacksquare$
 
 **Remarks**
 
-Take note: 
-$$
-\begin{aligned}
-    & \Vert \overline y_k - v_{k - 1}\Vert^2 
-    \\
-    &= 
-    \Vert \overline y_k - \overline y_{k - 1} + \overline y_{k - 1} - v_{k - 1}\Vert^2 
-    \\
-    &=
-    \Vert \overline y_k - \overline y_{k - 1}\Vert^2
-    + 
-    \Vert \overline y_{k - 1} - v_{k - 1}\Vert^2
-    + 
-    2\left\langle \overline y_k - \overline y_{k - 1}, \overline y_{k - 1} - v_{k - 1}\right\rangle
-    \\
-    &\le 
-    \Vert \overline y_k - \overline y_{k - 1}\Vert^2
-    + 
-    \Vert \overline y_{k - 1} - v_{k - 1}\Vert^2
-    + 
-    2\Vert \overline y_k - \overline y_{k - 1}\Vert\Vert \overline y_{k - 1} - v_{k - 1}\Vert
-    \\
-    &= (\Vert \overline y_k - \overline y_{k - 1}\Vert + \Vert \overline y_{k - 1} - v_{k - 1}\Vert)^2. 
-\end{aligned}
-$$
-
-To make algebra simple, we need some relationship between $\Vert \overline y_k - \overline y_{k - 1} \Vert$ and $\Vert \overline y_{k - 1} - v_{k - 1} \Vert$. 
-Otherwise, consider the equalities: 
-
-$$
-\begin{aligned}
-    \Vert \overline y_k - v_{k - 1}\Vert^2
-    = 
-    \Vert \overline y_{k - 1} - v_{k - 1}\Vert^2 + 
-    (\Vert \overline y_k - v_{k - 1}\Vert^2 - \Vert \overline y_{k - 1} - v_{k - 1}\Vert^2)
-\end{aligned}
-$$
 
 
 ---
 ### **Sufficient Conditions for Linear Convergence**
 
+To achieve linear convergence, one assumption is needed. 
+
 #### **Assumption 2 | sufficient for linear convergence**
-> The distance between $y_k$ and $v_{k - 1}$ is, smaller than the distance between $y_{k - 1}, v_{k - 1}$. 
+
 
 
 
