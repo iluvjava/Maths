@@ -107,16 +107,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 \section{Deriving the convergence rate}
     To derive the convergence rate of algorithm satisfying Definition \ref{def:st-apg}, \ref{def:rlx-momentum-seq}, we leverage Definition \ref{def:pg-gap}. 
     % ASSUMPTION =======================================================================================================
-    \begin{assumption}[for convergence]\label{ass:for-cnvg}
+    \begin{assumption}[generic assumptions for convergence]\label{ass:for-cnvg}
         The following assumption is about $(F, f, g, \mathcal E, \mu, L)$, it is the configuration needed to derive the convergence rate of algorithms that satisfy Definition \ref{def:st-apg}. 
         There exists $B > \mu \ge 0$ such that the following are true. 
         \begin{enumerate}[nosep]
             \item Let $F = f + g$ where $f$ is $L$ Lipschitz smooth and, $g$ is closed convex and proper.
-            \item Assume that $X^+ = \argmin_{x} \{f(x) + g(x)\}$ has $X^+ \neq \emptyset$.
-            \item $\forall z \in \RR^n$ it has $\mathcal E(\Pi_{X^+}(y), y, \mu, B) \ge 0$. 
+            \item $\forall y \in \RR^n\; \exists \bar y$ such that $\mathcal E(\bar y, y, \mu, B) \ge 0$. 
             \item For all $z, y \in \RR^n$, it has $\mathcal E(z, y, \mu, B) + \frac{\mu}{2}\Vert z - y\Vert^2 \ge 0$.   
         \end{enumerate}
-        Note that, if the function is convex, all conditions are satisfies for $\mu = 0$. 
+        Note that, if the function is convex, all conditions are satisfies for $\mu = 0$, and for all $\bar y \in \RR^n$. 
     \end{assumption}
     % LEMMA ========================================================================================================
     \begin{lemma}[equivalent representations of the iterates part I]\label{lemma:st-iterates-alt-form-part1}
@@ -213,15 +212,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
     \end{proof}
     
-    \subsection{preparations for the convergence rate proof}
-        The following lemma summarize important results that gives a swift exposition for the proofs show up at the end for the convergence rate. 
+    \subsection{Preparations for the convergence rate proof}
+        The following lemma summarize important results that give a swift exposition for the proofs show up at the end for the convergence rate. 
+        % LEMMA ========================================================================================================
         \begin{lemma}[convergence preparations part I]\label{lemma:cnvg-prep-part1}
             Let $(F, f, g,  \mathcal E, \mu, L)$ satisfies Assumption \ref{ass:for-cnvg}. 
             Suppose that 
             \begin{enumerate}[nosep]
                 \item The sequence $(y_k, v_k, x_k)_{k \ge 0}$ satisfies Definition \ref{def:st-apg} where $T_B$ is defined on $F = f + g$. 
                 \item The sequences $(\alpha_k)_{k\ge 0}, (\rho_{k})_{k \ge 0}, (q_k)_{k \ge 0}$ satisfies the definition of relaxed momentum sequence.
-                \item We set the parameters $q_k$ has $q_k = \mu/B_k$, with $B_k > \mu$, for all $k \ge 0$. 
+                \item We choose the parameters $q_k$ has $q_k = \mu/B_k$, with $B_k > \mu$, for all $k \ge 0$. 
             \end{enumerate}
             Then, for all $\bar x \in \RR^n$, $k \ge 0$: 
             \begin{align*}
@@ -245,15 +245,514 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
         \end{lemma}
         \begin{proof}
-            
+            Consider any $\bar x \in \RR^n$. 
+            \begin{align*}
+                & \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
+                \\
+                &\underset{(1)}{=} \frac{B_k\alpha_k^2}{2}\left\Vert
+                    \bar x - 
+                    \left(
+                        v_{k - 1} 
+                        + \alpha_k^{-1}q_k(y_k - v_{k - 1})
+                        - \alpha_k^{-1} B_k^{-1} \mathcal G_{B_k}(y_k)
+                    \right)
+                \right\Vert^2
+                \\
+                &= \frac{B_k\alpha_k^2}{2}\left\Vert
+                    (\bar x - v_{k - 1})
+                    - \alpha_k^{-1}\left(
+                        q_k(y_k - v_{k - 1})
+                        -  B_k^{-1} \mathcal G_{B_k}(y_k)
+                    \right)
+                \right\Vert^2
+                \\
+                &= \frac{B_k\alpha_k^2}{2}
+                \Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{B_k}{2}\left\Vert 
+                    q_k(y_k - v_{k - 1})
+                    -  B_k^{-1} \mathcal G_{B_k}(y_k)
+                \right\Vert^2
+                    \\ &\quad 
+                    - \alpha_k B_k
+                    \left\langle 
+                        \bar x - v_{k - 1}, 
+                        q_k(y_k - v_{k - 1}) - B_k^{-1}\mathcal G_{B_k}(y_k)
+                    \right\rangle
+                \\
+                &= 
+                \frac{B_k\alpha_k^2}{2}
+                \Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{B_kq_k^2}{2}\Vert y_k - v_{k - 1} \Vert
+                + \frac{1}{2B_k}\Vert \mathcal G_{B_k}(y_k)\Vert^2
+                - q_k\langle 
+                    y_k - v_{k - 1}, \mathcal G_{B_k}(y_k)
+                \rangle
+                    \\ &\quad 
+                    + B_k\alpha_k
+                    \left\langle 
+                        v_{k - 1} - \bar x, 
+                        q_k(y_k - v_{k - 1}) - B_k^{-1}\mathcal G_{B_k}(y_k)
+                    \right\rangle
+                \\
+                &= 
+                \frac{B_k\alpha_k^2}{2}
+                \Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{B_kq_k^2}{2}\Vert y_k - v_{k - 1} \Vert
+                + \frac{1}{2B_k}\Vert \mathcal G_{B_k}(y_k)\Vert^2
+                - q_k\langle 
+                    y_k - v_{k - 1}, \mathcal G_{B_k}(y_k)
+                \rangle
+                    \\ &\quad 
+                    + 
+                    B_k\alpha_k\left\langle 
+                        v_{k - 1} - \bar x, 
+                        q_k(y_k - v_{k - 1}) 
+                    \right\rangle
+                    - \alpha_k \left\langle 
+                        v_{k - 1} - \bar x,
+                        \mathcal G_{B_k}(y_k)
+                    \right\rangle
+                \\
+                &= 
+                \frac{\alpha_k^2B_k}{2}
+                \Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{q_k^2B_k}{2}\Vert y_k - v_{k - 1} \Vert
+                + \frac{1}{2B_k}\Vert \mathcal G_{B_k}(y_k)\Vert^2
+                    \\ &\quad 
+                    - \langle
+                        q_k(y_k - v_{k - 1}) + \alpha_k(v_{k - 1} - \bar x), \mathcal G_{B_k}(y_k)
+                    \rangle
+                    \\ &\quad 
+                    + \alpha_k q_k B_k
+                    \left\langle 
+                        v_{k - 1} - \bar x, 
+                        y_k - v_{k - 1}
+                    \right\rangle. 
+            \end{align*}
+            At (1) we used Lemma \ref{lemma:st-iterates-alt-form-part1}. 
+            Subtracting $-\frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2$ from both sides, the coefficient for $\Vert \bar x - v_{k - 1}\Vert^2$ comes out to be: 
+            \begin{align*}
+                & \frac{\alpha_k^2B_k}{2}
+                - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2} 
+                = \frac{B_k}{2}(
+                    \alpha_k^2 + (1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2
+                )
+                \underset{(1)}{=} \frac{B_k\alpha_kq_k}{2}. 
+            \end{align*}
+            At (1), we used the relation $(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2 = \alpha_k(\alpha_k - q_k)$ as in Definition \ref{def:rlx-momentum-seq}, for all $k \ge 1$. 
+            Therefore, we have the equality: 
+            \begin{align*}
+                &
+                \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
+                -\frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                \\
+                &= 
+                \frac{\alpha_k q_k B_k}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{q_k^2B_k}{2}\Vert y_k - v_{k - 1} \Vert
+                + \frac{1}{2B_k}\Vert \mathcal G_{B_k}(y_k)\Vert^2
+                    \\ &\quad 
+                    - \langle
+                        q_k(y_k - v_{k - 1}) + \alpha_k(v_{k - 1} - \bar x), \mathcal G_{B_k}(y_k)
+                    \rangle
+                    \\ &\quad 
+                    + \alpha_k q_k B_k
+                    \left\langle 
+                        v_{k - 1} - \bar x, 
+                        y_k - v_{k - 1}
+                    \right\rangle. 
+                \\
+                &\underset{(1)}{=} 
+                \frac{\alpha_k \mu}{2}
+                \Vert \bar x - v_{k - 1}\Vert^2
+                + \frac{q_k\mu}{2}\Vert y_k - v_{k - 1} \Vert
+                + \frac{q_k}{2\mu}\Vert \mathcal G_{B_k}(y_k)\Vert^2
+                    \\ &\quad 
+                - \langle
+                        q_k(y_k - v_{k - 1}) + \alpha_k(v_{k - 1} - \bar x), \mathcal G_{B_k}(y_k)
+                    \rangle
+                    + \alpha_k \mu
+                    \left\langle 
+                        v_{k - 1} - \bar x, 
+                        y_k - v_{k - 1}
+                    \right\rangle. 
+            \end{align*}
+            At (1), we used the relation that $B_k = \mu/q_k$, for all $k \ge 0$. 
         \end{proof}
-
+        % LEMMA ========================================================================================================
         \begin{lemma}[convergence preparations part II]\label{lemma:cnvg-prep-part2}
-            
+            The iterates $(y_k, x_k, v_k)_{k \ge 0}$ satisfies Definition \ref{def:st-apg} then, for all $k \ge 0, \bar x \in \RR^n$ the following identities: 
+            \begin{align*}
+                \alpha_k(v_{k - 1} - \bar x) 
+                + q_k(y_k - v_{k - 1})
+                + x_{k - 1} - y_k
+                &= 
+                \alpha_k(x_{k - 1} - \bar x). 
+            \end{align*}
         \end{lemma}
-        \begin{lemma}[convergence preparations part III]\label{lemma:cnvg-prep-part3}
-            
+        \begin{proof}
+            We first establish two intermediate results. 
+            From Definition \ref{def:st-apg}, it has for all $k \ge 0$: 
+            \begin{align*}
+                y_k &= 
+                \left(\frac{\alpha_k - q_k}{1 - q_k}\right)v_{k - 1} 
+                + \left(\frac{1 - \alpha_k}{1 - q_k}\right) x_{k - 1}
+                \\
+                &= 
+                \left(
+                    1 - \frac{1 - \alpha_k}{1 - q_k}
+                \right)v_{k - 1} 
+                + \left(\frac{1 - \alpha_k}{1 - q_k}\right) x_{k - 1}
+                \\
+                \iff 
+                y_k - v_{k - 1}
+                &= \left(
+                    \frac{1 - \alpha_k}{1 - q_k}
+                \right)(x_{k - 1} - v_{k - 1}). 
+            \end{align*}
+            Similarly: 
+            \begin{align*}
+                y_k &= 
+                \left(\frac{\alpha_k - q_k}{1 - q_k}\right)v_{k - 1} 
+                + \left(\frac{1 - \alpha_k}{1 - q_k}\right) x_{k - 1}
+                \\
+                &= 
+                \left(\frac{\alpha_k - q_k}{1 - q_k}\right)v_{k - 1} 
+                + \left(1 - \frac{\alpha_k - q_k}{1 - q_k}\right) x_{k - 1}
+                \\
+                \iff 
+                y_k - x_{k - 1} &= 
+                \left(
+                    \frac{\alpha_k - q_k}{1 - q_k}
+                \right)(v_{k - 1} - x_{k - 1}). 
+            \end{align*}
+            Now, we use the above two results and it derives 
+            \begin{align*}
+                & \alpha_k(v_{k - 1} - \bar x) 
+                + q_k(y_k - v_{k - 1})
+                + x_{k - 1} - y_k
+                \\
+                &=
+                \alpha_k(v_{k - 1} - \bar x)
+                + q_k\left(
+                    \frac{1 - \alpha_k}{1 - q_k}
+                \right)(x_{k - 1} - v_{k - 1})
+                - \left(
+                    \frac{\alpha_k - q_k}{1 - q_k}    
+                \right)(v_{k - 1} - x_{k - 1}). 
+                \\
+                &= 
+                \alpha_k(v_{k - 1} - \bar x)
+                + (1 - q_k)^{-1}\left(
+                    q_k - q_k\alpha_k +(\alpha_k - q_k)
+                \right)
+                (x_{k - 1} - v_{k - 1})
+                \\
+                &= 
+                \alpha_k(v_{k - 1} - \bar x)
+                + \alpha_k(x_{k - 1} - v_{k - 1})
+                \\
+                &= \alpha_k(x_{k - 1} - \bar x). 
+            \end{align*}
+
+        \end{proof}
+        % LEMMA ========================================================================================================
+        \begin{lemma}[convergence preparations part III]\;\label{lemma:cnvg-prep-part3}\\
+            Suppose that all of the following are satisfied
+            \begin{enumerate}[nosep]
+                \item $(F, f, g, \mathcal E, \mu, L)$ satisfies Assumption \ref{ass:for-cnvg}. 
+                \item The sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}, (q_k)_{k \ge 0}$ satisfies Definition \ref{def:rlx-momentum-seq}. 
+                \item We choose $(q_k)_{k \ge 0}$ is given by $q_k = \mu/B_k$ for all $k \ge 0$. 
+                \item The sequence $(y_k, v_k, x_k)_{k \ge 0}$ satisfies Definition \ref{def:st-apg}. 
+            \end{enumerate}
+            Then, $\forall k \ge 1$, there exists $\bar x_k \in \RR^n$, such that: 
+            \begin{align*}
+                & F(x_k) - F(\bar x_k)
+                + \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
+                \\
+                &\le 
+                (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x_k))
+                + \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x_k - v_{k - 1}\Vert^2. 
+            \end{align*}
         \end{lemma}
+        \begin{proof}
+            Recall Definition \ref{def:pg-gap}, consider: 
+            \begin{align*}
+                &\mathcal E(x_{k - 1}, y_k, \mu, B_k) 
+                \\
+                &=
+                F(x_{k - 1}) - F(x_k)
+                - \langle 
+                    B_k(y_k - z_k), 
+                    x_{k - 1} - y_k
+                \rangle
+                - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
+                - \frac{B_k}{2}\Vert y_k - x_k\Vert^2
+                \\
+                &= 
+                F(x_{k - 1}) - F(x_k)
+                - \langle 
+                    \mathcal G_{B_k}(y_k), 
+                    x_{k - 1} - y_k
+                \rangle
+                - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
+                - \frac{q_k}{2\mu}\Vert \mathcal G_{B_k}(y_k)\Vert^2. 
+            \end{align*}
+            On the second equality above, we used $B^{-1}_k(y_k - x_k)= \mathcal G_{B_k}(y_k)$, and $B_k = \mu/q_k$.
+            For all $k \ge 0$, we define $\Xi_k$ and simplify using the above result: 
+            \begin{align*}
+                \Xi_k &\hspace{-0.3em}\defeq 
+                \mathcal E(x_{k - 1}, y_k, \mu, B_k)
+                + F(x_k) - F(\bar x_k)
+                - (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x_k))
+                \\
+                &= 
+                \mathcal E(x_{k - 1}, y_k, \mu, B_k)
+                + F(x_k) - \alpha_kF(\bar x_k) - (1 - \alpha_k)F(x_{k - 1})
+                \\
+                &=
+                \alpha_kF(x_{k - 1}) - \alpha_k F(\bar x_k)
+                - \langle \mathcal G_{B_k}(y_k), x_{k - 1} - y_k\rangle
+                - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2 
+                - \frac{q_k}{2\mu}\Vert \mathcal G_{B_k}(y_k)\Vert^2. 
+            \end{align*}
+            Now consider the new term $\Xi_k'$ which we defined and simplify below: 
+            {\allowdisplaybreaks
+            \begin{align*}
+                \Xi_k'
+                &\hspace{-0.3em}:=
+                \Xi_k + \frac{B_k\alpha_k^2}{2}\Vert \bar x_k - v_k\Vert^2 
+                - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x_k - v_{k - 1}\Vert^2
+                \\
+                &\underset{(1)}{=} 
+                \alpha_kF(x_{k - 1}) - \alpha_k F(\bar x_k)
+                - \langle \mathcal G_{B_k}(y_k), x_{k - 1} - y_k\rangle
+                - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2 
+                - \frac{q_k}{2\mu}\Vert \mathcal G_{B_k}(y_k)\Vert^2
+                    \\&\quad 
+                    + \frac{\alpha_k \mu}{2}
+                    \Vert \bar x_k - v_{k - 1}\Vert^2
+                    + \frac{q_k\mu}{2}\Vert y_k - v_{k - 1} \Vert^2
+                    + \frac{q_k}{2\mu}\Vert \mathcal G_{B_k}(y_k)\Vert^2
+                    \\ &\quad 
+                    - \langle
+                        q_k(y_k - v_{k - 1}) + \alpha_k(v_{k - 1} - \bar x_k), \mathcal G_{B_k}(y_k)
+                    \rangle
+                    + \alpha_k \mu
+                    \left\langle 
+                        v_{k - 1} - \bar x_k, 
+                        y_k - v_{k - 1}
+                    \right\rangle
+                \\
+                &= 
+                \alpha_kF(x_{k - 1}) - \alpha_k F(\bar x_k)
+                - \langle \mathcal G_{B_k}(y_k), x_{k - 1} - y_k\rangle
+                - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2 
+                    \\&\quad 
+                    + \frac{\alpha_k \mu}{2}
+                    \Vert \bar x_k - v_{k - 1}\Vert^2
+                    + \frac{q_k\mu}{2}\Vert y_k - v_{k - 1} \Vert^2
+                    \\ &\quad 
+                    - \langle
+                        q_k(y_k - v_{k - 1}) + \alpha_k(v_{k - 1} - \bar x_k), \mathcal G_{B_k}(y_k)
+                    \rangle
+                    + \alpha_k \mu
+                    \left\langle 
+                        v_{k - 1} - \bar x_k, 
+                        y_k - v_{k - 1}
+                    \right\rangle
+                \\
+                &= 
+                \alpha_kF(x_{k - 1}) - \alpha_k F(\bar x_k)
+                - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2 
+                + \frac{\alpha_k \mu}{2}
+                \Vert \bar x_k - v_{k - 1}\Vert^2
+                + \frac{q_k\mu}{2}\Vert y_k - v_{k - 1} \Vert^2
+                    \\ &\quad 
+                    - \langle
+                        x_{k - 1} - y_k + q_k(y_k - v_{k - 1}) + \alpha_k(v_{k - 1} - \bar x_k), 
+                        \mathcal G_{B_k}(y_k)
+                    \rangle
+                    \\&\quad 
+                    + \alpha_k \mu
+                    \left\langle 
+                        v_{k - 1} - \bar x_k, 
+                        q_k(y_k - v_{k - 1}) 
+                    \right\rangle
+                \\
+                &\underset{(2)}{=} 
+                \alpha_kF(x_{k - 1}) - \alpha_k F(\bar x_k)
+                - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2 
+                    \\&\quad 
+                    + \frac{\alpha_k \mu}{2}
+                    \Vert \bar x_k - v_{k - 1}\Vert^2
+                    + \frac{q_k\mu}{2}\Vert y_k - v_{k - 1} \Vert^2
+                    \\ &\quad 
+                    - \alpha_k\langle
+                        x_{k - 1} - \bar x_k, 
+                        \mathcal G_{B_k}(y_k)
+                    \rangle
+                    + \alpha_k \mu
+                    \left\langle 
+                        v_{k - 1} - \bar x_k, 
+                        q_k(y_k - v_{k - 1}) 
+                    \right\rangle
+                \\
+                &=
+                \alpha_kF(x_{k - 1}) - \alpha_k F(\bar x_k)
+                - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2 
+                    \\&\quad 
+                    + \frac{\alpha_k \mu}{2}
+                    \Vert \bar x_k - v_{k - 1}\Vert^2
+                    + \frac{\alpha_k\mu}{2}\Vert y_k - v_{k - 1}\Vert^2
+                    + \alpha_k \mu
+                    \left\langle 
+                        v_{k - 1} - \bar x_k, 
+                        q_k(y_k - v_{k - 1}) 
+                    \right\rangle
+                    \\ &\quad 
+                    - \alpha_k\langle
+                        x_{k - 1} - \bar x_k, 
+                        \mathcal G_{B_k}(y_k)
+                    \rangle
+                    + \frac{q_k\mu - \mu\alpha_k}{2}\Vert y_k - v_{k - 1} \Vert^2
+                \\
+                &= 
+                \alpha_kF(x_{k - 1}) - \alpha_k F(\bar x_k)
+                - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2 
+                    \\&\quad 
+                    \frac{\alpha_k\mu}{2}\Vert y_k - \bar x_k\Vert^2
+                    - \alpha_k\langle
+                        x_{k - 1} - \bar x_k, 
+                        \mathcal G_{B_k}(y_k)
+                    \rangle
+                    + \frac{q_k\mu - \mu\alpha_k}{2}\Vert y_k - v_{k - 1} \Vert^2
+                \\
+                &\underset{(3)}{\le} 
+                \alpha_kF(x_{k - 1}) - \alpha_k F(\bar x_k)
+                - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2 
+                    \\&\quad 
+                    \frac{\alpha_k\mu}{2}\Vert y_k - \bar x_k\Vert^2
+                    - \alpha_k\langle
+                        x_{k - 1} - \bar x_k, 
+                        \mathcal G_{B_k}(y_k)
+                    \rangle. 
+                \\
+                &= \alpha_k\left(
+                    F(x_{k  - 1}) - F(\bar x_k) 
+                    - \langle x_{k - 1} - \bar x_k, \mathcal G_{B_k}(y_k)\rangle
+                    +  \frac{\mu}{2}\Vert y_k - \bar x_k\Vert^2
+                \right)
+                - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2. 
+            \end{align*}
+            }
+            At (1), we used Lemma \ref{lemma:cnvg-prep-part3}, and substituted $\Xi_k$. 
+            At (2), we used Lemma \ref{lemma:cnvg-prep-part2} to simplify the inner product. 
+            At (3), we used the $\alpha_k > q_k$ as in Definition \ref{def:rlx-momentum-seq}, hence it makes the coefficient $q_k \mu - \mu\alpha_k \le 0$, which gives us the inequality. 
+            Now, subtracting $\mathcal E(x_{k - 1}, y_k, \mu, B_k)$ from both sides of the inequality will yield: 
+            {\allowdisplaybreaks\small
+            \begin{align*}
+                & \Xi_k' - \mathcal E(x_{k - 1}, y_k, \mu, B_k)
+                \\
+                &\le 
+                \alpha_k\left(
+                    F(x_{k  - 1}) - F(\bar x_k) 
+                    - \langle x_{k - 1} - \bar x_k, \mathcal G_{B_k}(y_k)\rangle
+                    +  \frac{\mu}{2}\Vert y_k - \bar x_k\Vert^2
+                    - \mathcal E(x_{k - 1}, y_k, \mu, B_k)
+                \right)
+                    \\ &\quad 
+                    - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
+                    - (1 - \alpha_k)\mathcal E(x_{k - 1}, y_k, \mu, B_k)
+                \\
+                &\underset{(1)}{=} 
+                \alpha_k\left(
+                    F(x_k) - F(\bar x_k) 
+                    - \langle \mathcal G_{B_k}(y_k), x_{k - 1} - \bar x_k - (x_{k - 1} - y_k)\rangle
+                \right)
+                    \\&\quad 
+                    + \alpha_k\left(
+                        \frac{\mu}{2}\Vert y_k - \bar x_k\Vert^2
+                        + \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
+                        + \frac{B_k}{2} \Vert y_k - x_k\Vert^2
+                    \right)
+                    \\ &\quad 
+                    - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
+                    - (1 - \alpha_k)\mathcal E(x_{k - 1}, y_k, \mu, B_k)
+                \\
+                &= \alpha_k\left(
+                    F(x_k) - F(\bar x_k) 
+                    - \langle \mathcal G_{B_k}(y_k), y_k - \bar x_k\rangle
+                    + \frac{\mu}{2}\Vert y_k - \bar x_k\Vert^2
+                    + \frac{B_k}{2} \Vert y_k - x_k\Vert^2
+                    + \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
+                \right)
+                    \\ &\quad 
+                    - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
+                    - (1 - \alpha_k)\mathcal E(x_{k - 1}, y_k, \mu, B_k)
+                \\
+                &=
+                \alpha_k\left(
+                    - \mathcal E(\bar x_k, y_k, \mu, B_k)
+                    + \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
+                \right)
+                    \\ &\quad 
+                    - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
+                    - (1 - \alpha_k)\mathcal E(x_{k - 1}, y_k, \mu, B_k)
+                \\
+                &\underset{(2)}{\le} 
+                \frac{\alpha_k \mu}{2}\Vert x_{k - 1} - y_k\Vert^2
+                - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
+                - (1 - \alpha_k)\mathcal E(x_{k - 1}, y_k, \mu, B_k)
+                \\
+                &= -(1 - \alpha_k)\left(
+                    \mathcal E(x_{k - 1}, y_k, \mu, B_k)
+                    + \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
+                \right) 
+                \\
+                & \underset{(3)}{\le} 0. 
+            \end{align*}
+            }
+            At (1), we substituted $\mathcal E(x_{k - 1}, y_k, \mu, B_k)$. 
+            At (2), we used the $\mathcal E(\bar x_k, y_k, \mu, B_k)\le 0$ by chosing $\bar x_k = \bar y$ in Assumption \ref{ass:for-cnvg} (iii) to make the inequality. 
+            At (3), we used Assumption \ref{ass:for-cnvg} (iv). 
+            At this point, we had proved what we wanted becaues using the definitions of $\Xi_k, \Xi_k'$ it has:
+            \begin{align*}
+                & \Xi_k' - \mathcal E(x_{k - 1}, y_k, \mu, B_k) 
+                \\
+                &= 
+                \Xi_k 
+                + \frac{B_k\alpha_k^2}{2}\Vert \bar x_k - v_k\Vert^2 
+                - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x_k - v_{k - 1}\Vert^2
+                - \mathcal E(x_{k - 1}, y_k, \mu, B_k) 
+                \\
+                &= \mathcal E(x_{k - 1}, y_k, \mu, B_k)
+                + F(x_k) - F(\bar x_k)
+                - (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x_k))
+                    \\ &\quad 
+                    + \frac{B_k\alpha_k^2}{2}\Vert \bar x_k - v_k\Vert^2 
+                    - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x_k - v_{k - 1}\Vert^2
+                    - \mathcal E(x_{k - 1}, y_k, \mu, B_k)
+                \\
+                &=  
+                F(x_k) - F(\bar x_k)
+                - (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x_k))
+                    \\ &\quad 
+                    + \frac{B_k\alpha_k^2}{2}\Vert \bar x_k - v_k\Vert^2 
+                    - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x_k - v_{k - 1}\Vert^2
+                \\
+                &\le 0. 
+            \end{align*}
+        \end{proof}
+    \subsection{Proving the convergence rate}
+        To finally find the convergence rate, we will strengthen Assumption \ref{ass:for-cnvg}. 
+        \begin{assumption}[Assumptions for linear convergence rate]
+            
+        \end{assumption}
+        \begin{assumption}[Assumption for sublinear convergence rate]
+            
+        \end{assumption}
+
+        
 
 \bibliographystyle{siam}
 

@@ -124,8 +124,8 @@ This sections states intermediate results that we used to derive the convergence
 
 **Proof**
 
-Let $\bar x \in \R^n$ be arbitrary. We will establish major intermediate results (a), (b). 
-Our first intermediate (a) starts by considering for all $k \ge 1$: 
+Let $\bar x \in \R^n$ be arbitrary.
+Consider for all $k \ge 1$: 
 
 $$
 \begin{aligned}
@@ -325,6 +325,7 @@ $\blacksquare$
 > Suppose that 
 > 1. $(F, f, g, \mathcal E)$ satisfies **Assumption 1**. 
 > 2. The sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}, (q_k)_{k \ge 0}$ satisfies **Relaxed Momentum Sequence Relations**. 
+> 3. The sequence $(q_k)_{k \ge 0}$ is given by $q_k = \mu/B_k$. 
 > 
 > Let the sequences $(y_k, x_k, v_k)_{k \ge 0}$ satisfies ST-APG. 
 > If we set $\bar x = \Pi_{X^+}y_k$, then we have for all $k \ge 0$: 
@@ -360,11 +361,11 @@ $$
         x_{k - 1} - y_k
     \rangle
     - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
-    - \frac{q_k}{2\mu}\Vert \mathcal G_{B_k}(y_k)\Vert^2。 
+    - \frac{q_k}{2\mu}\Vert \mathcal G_{B_k}(y_k)\Vert^2. 
 \end{aligned}
 $$
 
-The second equality used $B^{-1}_k(y_k - x_k)= \mathcal G_{B_k}(y_k)$, and $B_k = \mu/q_k$.
+On the second equality above, we used $B^{-1}_k(y_k - x_k)= \mathcal G_{B_k}(y_k)$, and $B_k = \mu/q_k$.
 For all $k \ge 0$, define $\Xi_k$ to be: 
 
 $$
