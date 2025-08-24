@@ -12,6 +12,7 @@ File extends results from Morducovich Metric space based PPM to functions with A
 1. Regular subdifferential of $f$. 
 2. Limiting subdifferential of $f$. 
 
+
 #### **Assumptions/Quantities**: 
 > 1. Function $f: \R^n \rightarrow \overline \R$ and let it be lsc. 
 > 2. The set $\text{crit}\; f$ is the set of limiting-critical point of $f$, i.e: $\text{crit}\;f = \{x\; | \mathbf 0 \in \partial f(x)\}$. 

@@ -249,3 +249,7 @@ $$
 $$
 $\blacksquare$
 
+---
+### **Representations commonly seen in the literatures**
+
+We hightlight some representations of the algorithm of the similar triangle form of the algorithm in the literature. 

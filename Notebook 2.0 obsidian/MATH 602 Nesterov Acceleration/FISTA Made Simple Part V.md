@@ -366,7 +366,7 @@ $$
 $$
 
 On the second equality above, we used $B^{-1}_k(y_k - x_k)= \mathcal G_{B_k}(y_k)$, and $B_k = \mu/q_k$.
-For all $k \ge 0$, define $\Xi_k$ to be: 
+For all $k \ge 0$, we define $\Xi_k$ to be: 
 
 $$
 \begin{aligned}

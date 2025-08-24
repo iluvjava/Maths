@@ -3,4 +3,7 @@
 \bibitem{bauschke_convex_2017}
 {\sc H.~H. Bauschke and P.~L. Combettes}, {\em Convex {Analysis} and {Monotone} {Operator} {Theory} in {Hilbert} {Spaces}}, {CMS} {Books} in {Mathematics}, Springer International Publishing, Cham, 2017.
 
+\bibitem{necoara_linear_2019}
+{\sc I.~Necoara, Y.~Nesterov, and F.~Glineur}, {\em Linear convergence of first order methods for non-strongly convex optimization}, Mathematical Programming, 175 (2019), pp.~69--107.
+
 \end{thebibliography}
