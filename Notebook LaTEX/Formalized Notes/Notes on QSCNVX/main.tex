@@ -75,17 +75,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{definition}
     % DEFINITION =======================================================================================================
     \begin{definition}[relaxed momentum sequence]\label{def:rlx-momentum-seq}
-        The following definition is about sequences $((\alpha_k)_{k \ge 0}, (q_k)_{k \ge 0}, (\rho_k)_{k \ge 0})$. 
-        Let 
+        The following definition is about sequences $((\alpha_k)_{k \ge 0}, (q_k)_{k \ge 0}$. 
+        They satisfy:
         \begin{enumerate}[nosep]
             \item $(q_k)_{k \ge 0}$ is a sequence such that $q_k \in [0, 1)$ for all $k \ge 0$;
-            \item $(\alpha_k)_{k \ge 0}$ be such that $\alpha_0 \in (0, 1]$, and for all $k \ge 1$ it has $\alpha_k \in (q_k, 1)$;
-            \item $(\rho_k)_{k \ge 0}$ is a strictly positive sequence for all $k \ge 1$. 
+            \item $(\alpha_k)_{k \ge 0}$ has $\alpha_k \in (0, 1]$, and for all $k \ge 0$. 
         \end{enumerate}
-        The sequences $q_k, \alpha_k$ are considered relaxed momentum sequence if for all $k \ge 1$ it satisfies the relation that: 
-        \begin{align*}
-            \rho_{k - 1} &= \frac{\alpha_k(\alpha_k - q_k)}{(1 - \alpha_{k})\alpha_{k - 1}^2}. 
-        \end{align*}
     \end{definition}
     % DEFINITION =======================================================================================================
     \begin{definition}[proximal gradient gap]\label{def:pg-gap}
@@ -107,7 +102,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     
 \section{Deriving the convergence rate}
     To derive the convergence rate of algorithm satisfying Definition \ref{def:st-apg}, \ref{def:rlx-momentum-seq}, we leverage Definition \ref{def:pg-gap}. 
-    The first two subsections prepare for the results and the the convergence results are derived by the end. 
+    The first two subsections prepare for the results and the convergence results are derived by the end. 
     \par
     The following assumption is about the Proximal Gradient gap, it's required to obtain our first result. 
     % ASSUMPTION =======================================================================================================
@@ -123,8 +118,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{remark}
         Note that:
         \begin{enumerate}
-            \item If the function is convex, all conditions are satisfies for $\mu = 0$, and for all $\bar y \in \RR^n$. 
-            \item If $\mu \ge 0$ satisfies item (ii), (iii), then it's also satisfies for all $\tilde \mu$ such that $0 \le \tilde \mu \le \mu$. For the best convergence rate, the largest such $\mu$ is of our interest. 
+            \item If the function $f$ is convex and smooth, $g$ is convex then, all conditions are satisfied for $\mu = 0$, and for all $\bar y \in \RR^n$. 
+            \item If $\mu \ge 0$ satisfies item (ii), (iii), then it also satisfies for all $\tilde \mu$ such that $0 \le \tilde \mu \le \mu$. For the best convergence rate, the largest such $\mu$ is of our interest. 
         \end{enumerate}
         
         
@@ -144,7 +139,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \item[(a)] $(\alpha_k - 1)x_{k - 1} = (\alpha_k - q_k)v_{k - 1} - (1 - q_k)y_k$. 
             \item[(b)] $x_k = y_k - B_k^{-1}\mathcal G_{B_k}(y_k)$. 
         \end{enumerate}
-        Using the the above and the update rule for $v_k$ in Definition \ref{def:st-apg}. 
+        Using the above and the update rule for $v_k$ in Definition \ref{def:st-apg}. 
         \begin{align*}
             v_k &= x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1})
             \\
@@ -175,7 +170,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{proof}
         For all $k\ge 1$, from the update rules in Definition \ref{def:st-apg}: 
         \begin{align*}
-            (1 - q_k)^{-1}y_k &= 
+            (1 - q_k)y_k &= 
             (\alpha_k - q_k) v_{k - 1} 
             + (1 - \alpha_k)x_{k - 1}
             \\
@@ -186,15 +181,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             + (1 - \alpha_k)x_{k - 1}
             \\
             &= 
-            (\alpha_k - q_k)x_{k - 2} 
-            + \alpha_{k - 1}^{-1}(x_{k - 1} - x_{k - 2}) + (1 - \alpha_k)x_{k - 1}
+            (\alpha_k - q_k)((1 - \alpha_{k - 1}^{-1})x_{k -2} + \alpha_{k - 1}^{-1}x_{k - 1}) 
+            + (1 - \alpha_k)x_{k - 1}
             \\
             &= (\alpha_k - q_k)(1 - \alpha_{k - 1}^{-1})x_{k - 2}
             + \left(
                 \frac{\alpha_k - q_k}{\alpha_{k - 1}} + 1 - \alpha_k
             \right)x_{k - 1}. 
         \end{align*}
-        Multiply $(1 - q_k)$ on both sides yield: 
+        Divide by $(1 - q_k)$ on both sides yield: 
         \begin{align*}
             y_k &= 
             \frac{(\alpha_k - q_k)(1 - \alpha_{k - 1}^{-1})}{1 - q_k}x_{k - 2} 
@@ -214,7 +209,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             &= \frac{(\alpha_k - q_k)(1 - \alpha_{k - 1}^{-1})}{1 - q_k}x_{k - 2} 
             + \left(
                 \frac{
-                    (\alpha_{k - 1}^{-1} -1)(\alpha_k - q_k)g 
+                    (\alpha_{k - 1}^{-1} -1)(\alpha_k - q_k)
                 }{1 - q_k} + 1
             \right)x_{k - 1}
             \\
@@ -230,13 +225,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Suppose that 
             \begin{enumerate}[nosep]
                 \item The iterates $(y_k, v_k, x_k)_{k \ge 0}$ satisfies Definition \ref{def:st-apg} where $T_B$ defined using $F = f + g$. 
-                \item The sequences $(\alpha_k)_{k\ge 0}, (\rho_{k})_{k \ge 0}, (q_k)_{k \ge 0}$ satisfy Definition \ref{def:rlx-momentum-seq}. 
+                \item The sequences $(\alpha_k)_{k\ge 0}, (q_k)_{k \ge 0}$ satisfy Definition \ref{def:rlx-momentum-seq}. 
                 \item We choose the parameters $q_k$ has $q_k = \mu/B_k$, with $B_k > \mu$, for all $k \ge 0$. 
             \end{enumerate}
             Then, for all $\bar x \in \RR^n$, $k \ge 0$: 
             \begin{align*}
                 & \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-                -\frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                - \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
                 \\
                 &=
                 \frac{\alpha_k \mu}{2}
@@ -340,12 +335,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \right\rangle. 
             \end{align*}
             At (1) we used Lemma \ref{lemma:st-iterates-alt-form-part1}. 
-            Subtracting $-\frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2$ from both sides, the coefficient for $\Vert \bar x - v_{k - 1}\Vert^2$ comes out to be: 
+            Subtracting $\frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2$ from both sides, the coefficient of $\Vert \bar x - v_{k - 1}\Vert^2$ comes out to be: 
             \begin{align*}
                 & \frac{\alpha_k^2B_k}{2}
-                - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2} 
+                - \frac{B_k\alpha_k(\alpha_k - q_k)}{2}
                 = \frac{B_k}{2}(
-                    \alpha_k^2 + (1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2
+                    \alpha_k^2 - \alpha_k(\alpha_k - q_k)
                 )
                 \underset{(1)}{=} \frac{B_k\alpha_kq_k}{2}. 
             \end{align*}
@@ -354,7 +349,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \begin{align*}
                 &
                 \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-                -\frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                - \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
                 \\
                 &= 
                 \frac{\alpha_k q_k B_k}{2}\Vert \bar x - v_{k - 1}\Vert^2
@@ -467,10 +462,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{proof}
         % LEMMA ========================================================================================================
         \begin{lemma}[convergence preparations part III]\;\label{lemma:cnvg-prep-part3}\\
-            Suppose that all of the following are satisfied
+            Suppose that all the following are satisfied
             \begin{enumerate}[nosep]
                 \item $(F, f, g, \mathcal E, \mu, L)$ satisfies Assumption \ref{ass:for-cnvg}. 
-                \item The sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}, (q_k)_{k \ge 0}$ satisfies Definition \ref{def:rlx-momentum-seq}. 
+                \item The sequences $(\alpha_k)_{k \ge 0}, (q_k)_{k \ge 0}$ satisfies Definition \ref{def:rlx-momentum-seq}. 
                 \item We choose $(q_k)_{k \ge 0}$ is given by $q_k = \mu/B_k$ for all $k \ge 0$. 
                 \item The sequence $(y_k, v_k, x_k)_{k \ge 0}$ satisfies Definition \ref{def:st-apg}. 
             \end{enumerate}
@@ -481,7 +476,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &\le 
                 (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x_k))
-                + \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x_k - v_{k - 1}\Vert^2. 
+                + \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x_k - v_{k - 1}\Vert^2. 
             \end{align*}
         \end{lemma}
         \begin{proof}
@@ -531,7 +526,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \Xi_k'
                 &\hspace{-0.3em}:=
                 \Xi_k + \frac{B_k\alpha_k^2}{2}\Vert \bar x_k - v_k\Vert^2 
-                - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x_k - v_{k - 1}\Vert^2
+                - \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x_k - v_{k - 1}\Vert^2
                 \\
                 &\underset{(1)}{=} 
                 \alpha_kF(x_{k - 1}) - \alpha_k F(\bar x_k)
@@ -655,7 +650,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2. 
             \end{align*}
             }
-            At (1), we used Lemma \ref{lemma:cnvg-prep-part3}, and substituted $\Xi_k$. 
+            At (1), we used Lemma \ref{lemma:cnvg-prep-part1}, and substituted $\Xi_k$. 
             At (2), we used Lemma \ref{lemma:cnvg-prep-part2} to simplify the inner product. 
             At (3), we used the $\alpha_k > q_k$ as in Definition \ref{def:rlx-momentum-seq}, hence it makes the coefficient $q_k \mu - \mu\alpha_k \le 0$, which gives us the inequality. 
             Now, subtracting $\mathcal E(x_{k - 1}, y_k, \mu, B_k)$ from both sides of the inequality will yield: 
@@ -723,16 +718,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             }
             At (1), we substituted $\mathcal E(x_{k - 1}, y_k, \mu, B_k)$. 
-            At (2), we used the $\mathcal E(\bar x_k, y_k, \mu, B_k)\le 0$ by chosing $\bar x_k = \bar y$ in Assumption \ref{ass:for-cnvg} (iii) to make the inequality. 
+            At (2), we used the $\mathcal E(\bar x_k, y_k, \mu, B_k)\le 0$ by choosing $\bar x_k = \bar y$ in Assumption \ref{ass:for-cnvg} (iii) to make the inequality. 
             At (3), we used Assumption \ref{ass:for-cnvg} (iv). 
-            At this point, we had proved what we wanted becaues using the definitions of $\Xi_k, \Xi_k'$ it has:
+            At this point, we had proved what we wanted because using the definitions of $\Xi_k, \Xi_k'$ it has:
             \begin{align*}
                 & \Xi_k' - \mathcal E(x_{k - 1}, y_k, \mu, B_k) 
                 \\
                 &= 
                 \Xi_k 
                 + \frac{B_k\alpha_k^2}{2}\Vert \bar x_k - v_k\Vert^2 
-                - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x_k - v_{k - 1}\Vert^2
+                - \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x_k - v_{k - 1}\Vert^2
                 - \mathcal E(x_{k - 1}, y_k, \mu, B_k) 
                 \\
                 &= \mathcal E(x_{k - 1}, y_k, \mu, B_k)
@@ -740,7 +735,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 - (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x_k))
                     \\ &\quad 
                     + \frac{B_k\alpha_k^2}{2}\Vert \bar x_k - v_k\Vert^2 
-                    - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x_k - v_{k - 1}\Vert^2
+                    - \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x_k - v_{k - 1}\Vert^2
                     - \mathcal E(x_{k - 1}, y_k, \mu, B_k)
                 \\
                 &=  
@@ -748,17 +743,17 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 - (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x_k))
                     \\ &\quad 
                     + \frac{B_k\alpha_k^2}{2}\Vert \bar x_k - v_k\Vert^2 
-                    - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x_k - v_{k - 1}\Vert^2
+                    - \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x_k - v_{k - 1}\Vert^2
                 \\
                 &\le 0. 
             \end{align*}
         \end{proof}
     \subsection{Proving the convergence rate}
         To finally find the convergence rate, we will strengthen Assumption \ref{ass:for-cnvg}. 
-        Our convergence rate is expressed for sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k\ge0}$ as long as they satisfies Definition \ref{def:rlx-momentum-seq}. 
+        Our convergence rate is expressed for sequences $(\alpha_k)_{k \ge 0}, (q_k)_{k \ ge 0}$ if they satisfy Definition \ref{def:rlx-momentum-seq}. 
         This means that any sequence with $\alpha_k \in (q_k, 1)$ would work. 
         \par
-        The following assumptions describes the behaviors of an algorithm satisfying Definition \ref{def:st-apg}, its parameters, and the properties of the objective function. 
+        The following assumptions describe the behaviors of an algorithm satisfying Definition \ref{def:st-apg}, its parameters, and the properties of the objective function. 
         \begin{assumption}[Assumptions for linear convergence rate]\;\label{ass:lin-cnvg}\\
             Let $(F, f, g, \mathcal E, \mu, L)$ satisfies Assumption \ref{ass:for-cnvg}. 
             In addition, we strength the prior assumptions:
@@ -782,7 +777,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{theorem}[linear convergence with generic sequence]\;\label{thm:cnvg-generic-seq}\\
             Let $(F, f, g, \mathcal E, \mu, L)$, and sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}, (q_k)_{k \ge 0}, (B_k)_{k \ge 0}$ 
             satisfy Assumption \ref{ass:lin-cnvg}. 
-            Denote $\beta_k = \prod_{i = 1}^k(1 - \alpha_i) \max \left(\frac{B_i\rho_{i - 1}}{B_{i - 1}}, 1\right)$, $\beta_0 = 1$. 
+            Denote 
+            $$
+                \beta_k = \prod_{i = 1}^k\max\left(
+                    1 - \alpha_i, 
+                    \frac{B_i\alpha_i(\alpha_i - q_i)}{\alpha_{i - 1}^2B_{i - 1}}
+                \right). 
+            $$
             Then, there exists a unique $\bar x \in \RR^n$ such that for all $k \ge 1$, $\bar x = \Pi_{X^+}y_k$, and it satisfies
             \begin{align*}
                 F(x_k) - F(\bar x) + \frac{B_k}{\alpha_k^2}\Vert \bar x - v_k\Vert^2 
@@ -804,40 +805,35 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &\le \left(
                     1 - \alpha_k
-                \right)\left(
-                    F(x_{k- 1}) - F(\bar x) + \frac{B_k\alpha_{k -1}^2 \rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                \right)
+                \right)(F(x_{k- 1}) - F(\bar x))
+                + \frac{(1 - \alpha_k)B_k\alpha_{k -1}^2 \rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
                 \\
-                &\le \left(
+                &\underset{\text{(1)}}{=} 
+                \left(
                     1 - \alpha_k
-                \right)\left(
-                    F(x_{k- 1}) - F(\bar x) + 
-                    \frac{B_k\rho_{k - 1}}{B_{k - 1}}\frac{B_{k - 1}\alpha_{k -1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                \right)
+                \right)(F(x_{k- 1}) - F(\bar x))
+                + \frac{\alpha_k(\alpha_k - q_k)B_k\alpha_{k - 1}^2}{\alpha_{k - 1}^2}\Vert \bar x - v_{k - 1}\Vert^2
                 \\
-                &= \left(
-                    1 - \alpha_k
-                \right)\max\left(
-                    \frac{B_k\rho_{k - 1}}{B_{k - 1}}, 1
+                &= \max\left(
+                    1 - \alpha_k, 
+                    \frac{B_i\alpha_k(\alpha_k - q_k)}{\alpha_{k - 1}^2B_{k - 1}}
                 \right)
                 \left(
-                    F(x_{k- 1}) - F(\bar x) + 
-                    \frac{B_{k - 1}\alpha_{k -1}^2 }{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    F(x_{k - 1}) - F(\bar x)
+                    + \frac{B_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
                 \right). 
             \end{align*}
-            From the above, an recurrence relation is formed for $k \ge 1$, unrolloing the recurrence relation it has 
+            From the above, a recurrence relation is formed for $k \ge 1$, unrolling the recurrence relation it has 
             \begin{align*}
                 & F(x_k) - F(\bar x) + \frac{B_k\alpha_k^2}{2}\Vert \bar x- v_k\Vert^2 
-                \\
-                &\le 
-                \left(
-                    1 - \alpha_k
-                \right)\max\left(
-                    \frac{B_k\rho_{k - 1}}{B_{k - 1}}, 1
+                \\&\le 
+                \prod_{i = 1}^k\max\left(
+                    1 - \alpha_i, 
+                    \frac{B_i\alpha_i(\alpha_i - q_i)}{\alpha_{i - 1}^2B_{i - 1}}
                 \right)
                 \left(
-                    F(x_{k- 1}) - F(\bar x) + 
-                    \frac{B_{k - 1}\alpha_{k -1}^2 }{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    F(x_0) - F(\bar x)
+                    + \frac{B_0\alpha_0^2}{2}\Vert \bar x - v_0\Vert^2
                 \right). 
             \end{align*}
             When $x_{-1} = v_{-1}$, from Definition \ref{def:st-apg}, when $k = 0$ it has $y_0 = v_{-1} = x_{-1}$, so $x_0 = T_{B_0}(y_0)$. 
@@ -863,7 +859,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Substitute the above into the RHS of the inequality of previous results to complete the proof. 
         \end{proof}
         \par
-        The above theorem shows that the convergence rate is exclusively depeneded on the momentum sequence. 
+        \textcolor{red}{
+            SOMETHING IS WRONG, LET US EXPLAIN.
+            The parameter $q_k = \mu/B_k$ cannot be eliminated from Definition \ref{def:st-apg}. 
+            If one were to implement any algorithm without the exact knowledge of $\mu$, then the convergence results we just derived are not applicable. 
+            Implementations of the algorithm, and the convergence results requires the presence of both parameters $q_k, \alpha_k$. 
+            Doomed. 
+            Because in the applications of our interests, the exact knowledge of $\mu$ is impossible to know. 
+        }
         The theorem below will definitively close the case to show that there exists choices for the sequence such that a linear convergence exists, meaning that $\beta_k$ will decrease at a linear rate. 
         \begin{lemma}[beta sequence bounds]\;\label{lemma:beta-seq}\\
             Let sequence $(\alpha_k)_{k \ge 0}, (\rho_{k})_{k \ge 0}, (q_k)_{k \ge 0}$ satisfies Definition \ref{def:rlx-momentum-seq}.
@@ -919,20 +922,22 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \textbf{Proof of (ii)}. 
             
         \end{proof}
+    \subsection{Parameter free representations}
+        
+        
 
 \section{Linear convergence beyond the strongly convex case}
-    In this sections, we exam Assumption \ref{ass:lin-cnvg} and, propose examples for it. 
-    In Necoara et al.'s setting, they have the following Assumptoins for their objective function. 
+    We will check Assumption \ref{ass:lin-cnvg} and, propose examples for it.
+    In Necoara et al.'s setting, they have the following assumptions for their objective function. 
     \begin{assumption}[The settings for Necoara's et al]\;\label{ass:necoara}\\
         The assumption is about $(f, X, X^+, f^+)$ where 
         \begin{enumerate}[nosep]
             \item $X \subseteq \RR^n$ is a closed convex set. 
-            \item $f: X\rightarrow \RR$ has $L$ Lipschitz continous gradient, and it's convex. 
+            \item $f: X\rightarrow \RR$ has $L$ Lipschitz continuous gradient, and it's convex. 
             \item $X^+ = \argmin_{x \in X} f(x)\neq \emptyset$, and we denote $f^+$ to be the minimum value. 
         \end{enumerate}
     \end{assumption}
     The following definition on Quasi Strongly Convex function (Q-SCNVX) is taken from \cite[Definition 1]{necoara_linear_2019}. 
-    By... the above definition satisfies Assumption \ref{ass:for-cnvg} 
     \begin{definition}[Q-SCNVX]\label{def:Q-SCNVX}
         Let $(f, X, X^+, f^+)$ be given by Assumption \ref{ass:necoara}. 
         We define $f$ to be Quasi Strong Convex on $X$ if there exists $\kappa_f  > 0$ such that $\forall x \in \RR^n$ , with $\bar x = \Pi_{X^+}x$ it has:
@@ -954,13 +959,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             - B\langle \bar x - x, x - x^+\rangle
             - \frac{\kappa_f}{2}\Vert \bar x - x\Vert^2. 
         \end{align*}
-        Therefore, it satisfies Assumtpion \ref{ass:for-cnvg}. 
+        Therefore, it satisfies Assumption \ref{ass:for-cnvg}. 
     \end{proposition}
     \begin{proof}
         Let $h = z \mapsto \delta_X(z) + \langle \nabla f(x), z\rangle + \frac{B}{2}\Vert z - x\Vert^2$.
         So it has $T_B(x) = \argmin_{z\in \RR^n} h(z)$. 
         Furthermore, $h(z)$ is a $B$ strongly convex function by convexity of $X$ and, the fact that other parts are just the sum of a linear and quadratic function. 
-        Denote $x^+ = T_B(x)$, since $x^+$ is a minimizer therefore it has $\forall x \in X\; h(z) - h(x^+) \ge \frac{B}{2}\Vert z - x^+\Vert^2$. 
+        Denote $x^+ = T_B(x)$, since $x^+$ is a minimizer therefore it has $(\forall x \in X)\; h(z) - h(x^+) \ge \frac{B}{2}\Vert z - x^+\Vert^2$. 
         That was the quadratic growth condition of $h$. 
         Next, denote $\bar x  = \Pi_{X^+}x$, let $z = \bar x$ then the condition becomes: 
         \begin{align*}
@@ -1008,10 +1013,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \\
             &= \mathcal E(\bar x, x, B, \kappa_f). 
         \end{align*}
-        The above results shows that Assumption \ref{ass:for-cnvg} has been satisfied, with $\bar y = \Pi_{X^+}y$. 
+        The above results showed that Assumption \ref{ass:for-cnvg} (ii) has been satisfied, with $\bar y = \Pi_{X^+}y$. 
+        To see (iii) in Assumption \ref{ass:for-cnvg}, observe that Assumption \ref{ass:necoara} has $f$ is convex. 
     \end{proof}
+    \subsection{A nonconvex example}
 
-    \subsection{SCNVX affine composite over simple cone}
+    \subsection{Examples of Q-SCNVX}
+
 
 
 \bibliographystyle{siam}
