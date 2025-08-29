@@ -10,7 +10,7 @@
 
 \newcommand{\dist}{\ensuremath{\operatorname{dist}}}
 
-\title{{\fontfamily{ptm}\selectfont Linear Convergence of Accelerated Gradient without Restart}}
+\title{{\fontfamily{ptm}\selectfont Extending the Convergence Results of Nesterov's Acceleration using the Proximal Gradient Gap}}
 
 \author{
     Author 1 Name, Author 2 Name
@@ -28,7 +28,7 @@
 
 \begin{abstract} 
     This paper gives definitive answers to open problems in Necoara et al. \cite{necoara_linear_2019}. 
-    Linear converence of Nesterov's accelerated gradient method is possible in a boarder context of functions. 
+    Linear convergence of Nesterov's accelerated gradient method is possible in a boarder context of functions. 
 \end{abstract}
 
 \noindent{\bfseries 2010 Mathematics Subject Classification:}
@@ -50,6 +50,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         &= \hprox_{B^{-1}g}(x - B^{-1}\nabla f(x)). 
     \end{align*}
     We also define the gradient mapping operator $\mathcal G_B(x) = B^{-1}(x - T_B(x))$. 
+    \par
+    \textbf{Major results}. 
+    
 
 \section{Precursors materials for our proofs of linear convergence}
     The following two definitions defines the accelerated proximal gradient algorithm. 
@@ -73,6 +76,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             v_k &= x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
         \end{align*}
     \end{definition}
+    \begin{remark}
+        If we choose $a_k = 1$ then the definition is equivalent to proximal gradient algorithm, with $v_k = x_k$ for all $k \ge 0$. 
+        
+    \end{remark}
     % DEFINITION =======================================================================================================
     \begin{definition}[relaxed momentum sequence]\label{def:rlx-momentum-seq}
         The following definition is about sequences $((\alpha_k)_{k \ge 0}, (q_k)_{k \ge 0}$. 
@@ -99,20 +106,24 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{remark}
         This expression is the same as the proximal gradient inequality up to a negative sign, after moving everything to one side. 
     \end{remark}
+    For the sum of smooth and nonsmooth objective, a lot can be said about the proximal gradient gap of the function. 
+    \begin{lemma}[proximal gradient gap under convexity]\label{lemma:pg-under-cnvx}
+
+    \end{lemma}
     
-\section{Deriving the convergence rate}
+\section{Deriving the proximal gap inequality}
     To derive the convergence rate of algorithm satisfying Definition \ref{def:st-apg}, \ref{def:rlx-momentum-seq}, we leverage Definition \ref{def:pg-gap}. 
     The first two subsections prepare for the results and the convergence results are derived by the end. 
     \par
-    The following assumption is about the Proximal Gradient gap, it's required to obtain our first result. 
+    The following assumption is about the Proximal Gradient gap. 
     % ASSUMPTION =======================================================================================================
-    \begin{assumption}[generic assumptions for convergence]\label{ass:for-cnvg}
+    \begin{assumption}[generic assumptions for proximal gradient gap inequality]\;\label{ass:pggap-dscnt}\\
         The following assumption is about $(F, f, g, \mathcal E, \mu, L)$, it is the configuration needed to derive the convergence rate of algorithms that satisfy Definition \ref{def:st-apg}. 
         We assume that there exists $\mu \ge 0$ such that the followings are true: 
         \begin{enumerate}[nosep]
-            \item Let $F = f + g$ where $f$ is $L$ Lipschitz smooth and, $g$ is closed convex and proper.
-            \item $\forall y \in \RR^n, \exists B \ge 0\; \exists \bar y$ such that $\mathcal E(\bar y, y, \mu, B) \ge 0$. 
-            \item For all $z, y \in \RR^n$, there exists $B > \mu$ such that $\mathcal E(z, y, \mu, B) + \frac{\mu}{2}\Vert z - y\Vert^2 \ge 0$.   
+            \item\label{ass:pggap-dscnt-itm1} Let $F = f + g$ where $f$ is $L$ Lipschitz smooth and, $g$ is closed convex and proper.
+            \item\label{ass:pggap-dscnt-itm2} $\forall y \in \RR^n, \exists B \ge 0\; \exists \bar y$ such that $\mathcal E(\bar y, y, \mu, B) \ge 0$. 
+            % \item For all $z, y \in \RR^n$, there exists $B > \mu$ such that $\mathcal E(z, y, \mu, B) + \frac{\mu}{2}\Vert z - y\Vert^2 \ge 0$.   
         \end{enumerate}
     \end{assumption}
     \begin{remark}
@@ -121,9 +132,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \item If the function $f$ is convex and smooth, $g$ is convex then, all conditions are satisfied for $\mu = 0$, and for all $\bar y \in \RR^n$. 
             \item If $\mu \ge 0$ satisfies item (ii), (iii), then it also satisfies for all $\tilde \mu$ such that $0 \le \tilde \mu \le \mu$. For the best convergence rate, the largest such $\mu$ is of our interest. 
         \end{enumerate}
-        
-        
     \end{remark}
+    Using the above assumption, in this section, we can build up to Lemma \ref{lemma:cnvg-prep-part3}. 
+    The lemma is crucially important and it gives us the an inequality on what happen between iterates $x_{k}, v_{k}$ and $v_{k - 1}, x_{k - 1}$ generated by algorithm satisfying Definition \ref{def:st-apg}. 
     % LEMMA ========================================================================================================
     \begin{lemma}[equivalent representations of the iterates part I]\label{lemma:st-iterates-alt-form-part1}
         Suppose that the sequences of $\alpha_k, q_k, y_k, v_k, x_k, B_k$ satisfy the similar triangle form, then for all $k \ge 0$ the iterates $v_k$ admits the following equivalent representations: 
@@ -221,7 +232,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         The following lemma summarize important results that give a swift exposition for the proofs show up at the end for the convergence rate. 
         % LEMMA ========================================================================================================
         \begin{lemma}[convergence preparations part I]\label{lemma:cnvg-prep-part1}
-            Let $(F, f, g,  \mathcal E, \mu, L)$ satisfies Assumption \ref{ass:for-cnvg}. 
+            Let $(F, f, g,  \mathcal E, \mu, L)$ satisfies Assumption \ref{ass:pggap-dscnt}. 
             Suppose that 
             \begin{enumerate}[nosep]
                 \item The iterates $(y_k, v_k, x_k)_{k \ge 0}$ satisfies Definition \ref{def:st-apg} where $T_B$ defined using $F = f + g$. 
@@ -430,7 +441,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \frac{\alpha_k - q_k}{1 - q_k}
                 \right)(v_{k - 1} - x_{k - 1}). 
             \end{align*}
-            Now, we use the above two results and it derives 
+            Now, we use the above two results and, it derives 
             \begin{align*}
                 & \alpha_k(v_{k - 1} - \bar x) 
                 + q_k(y_k - v_{k - 1})
@@ -464,7 +475,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{lemma}[convergence preparations part III]\;\label{lemma:cnvg-prep-part3}\\
             Suppose that all the following are satisfied
             \begin{enumerate}[nosep]
-                \item $(F, f, g, \mathcal E, \mu, L)$ satisfies Assumption \ref{ass:for-cnvg}. 
+                \item $(F, f, g, \mathcal E, \mu, L)$ satisfies Assumption \ref{ass:pggap-dscnt}. 
                 \item The sequences $(\alpha_k)_{k \ge 0}, (q_k)_{k \ge 0}$ satisfies Definition \ref{def:rlx-momentum-seq}. 
                 \item We choose $(q_k)_{k \ge 0}$ is given by $q_k = \mu/B_k$ for all $k \ge 0$. 
                 \item The sequence $(y_k, v_k, x_k)_{k \ge 0}$ satisfies Definition \ref{def:st-apg}. 
@@ -476,7 +487,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &\le 
                 (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x_k))
-                + \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x_k - v_{k - 1}\Vert^2. 
+                + \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x_k - v_{k - 1}\Vert^2
+                \\ &\quad 
+                    -(1 - \alpha_k)\left(
+                        \mathcal E(x_{k - 1}, y_k, \mu, B_k)
+                        + \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
+                    \right). 
             \end{align*}
         \end{lemma}
         \begin{proof}
@@ -485,9 +501,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &\mathcal E(x_{k - 1}, y_k, \mu, B_k) 
                 \\
                 &=
-                F(x_{k - 1}) - F(x_k)
+                F(x_{k - 1}) - F(T_{B_k}(y_k))
                 - \langle 
-                    B_k(y_k - z_k), 
+                    B_k(y_k - T_{B_k}(y_k)), 
                     x_{k - 1} - y_k
                 \rangle
                 - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
@@ -502,7 +518,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
                 - \frac{q_k}{2\mu}\Vert \mathcal G_{B_k}(y_k)\Vert^2. 
             \end{align*}
-            On the second equality above, we used $B^{-1}_k(y_k - x_k)= \mathcal G_{B_k}(y_k)$, and $B_k = \mu/q_k$.
+            On the second equality above, we used $B_k(y_k - x_k)= \mathcal G_{B_k}(y_k)$, and $B_k = \mu/q_k$.
             For all $k \ge 0$, we define $\Xi_k$ and simplify using the above result: 
             \begin{align*}
                 \Xi_k &\hspace{-0.3em}\defeq 
@@ -625,7 +641,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \alpha_kF(x_{k - 1}) - \alpha_k F(\bar x_k)
                 - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2 
                     \\&\quad 
-                    \frac{\alpha_k\mu}{2}\Vert y_k - \bar x_k\Vert^2
+                    + \frac{\alpha_k\mu}{2}\Vert y_k - \bar x_k\Vert^2
                     - \alpha_k\langle
                         x_{k - 1} - \bar x_k, 
                         \mathcal G_{B_k}(y_k)
@@ -636,7 +652,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \alpha_kF(x_{k - 1}) - \alpha_k F(\bar x_k)
                 - \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2 
                     \\&\quad 
-                    \frac{\alpha_k\mu}{2}\Vert y_k - \bar x_k\Vert^2
+                    + \frac{\alpha_k\mu}{2}\Vert y_k - \bar x_k\Vert^2
                     - \alpha_k\langle
                         x_{k - 1} - \bar x_k, 
                         \mathcal G_{B_k}(y_k)
@@ -712,15 +728,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &= -(1 - \alpha_k)\left(
                     \mathcal E(x_{k - 1}, y_k, \mu, B_k)
                     + \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
-                \right) 
-                \\
-                & \underset{(3)}{\le} 0. 
+                \right). 
             \end{align*}
             }
             At (1), we substituted $\mathcal E(x_{k - 1}, y_k, \mu, B_k)$. 
-            At (2), we used the $\mathcal E(\bar x_k, y_k, \mu, B_k)\le 0$ by choosing $\bar x_k = \bar y$ in Assumption \ref{ass:for-cnvg} (iii) to make the inequality. 
-            At (3), we used Assumption \ref{ass:for-cnvg} (iv). 
-            At this point, we had proved what we wanted because using the definitions of $\Xi_k, \Xi_k'$ it has:
+            At (2), we used the $\mathcal E(\bar x_k, y_k, \mu, B_k)\le 0$ by choosing $\bar x_k = \bar y$ in Assumption \ref{ass:pggap-dscnt}\ref{ass:pggap-dscnt-itm2}  to make the inequality. 
+            Now, recall the definitions of $\Xi_k, \Xi_k'$ which means we proved the following: 
             \begin{align*}
                 & \Xi_k' - \mathcal E(x_{k - 1}, y_k, \mu, B_k) 
                 \\
@@ -745,277 +758,302 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     + \frac{B_k\alpha_k^2}{2}\Vert \bar x_k - v_k\Vert^2 
                     - \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x_k - v_{k - 1}\Vert^2
                 \\
-                &\le 0. 
+                &\le -(1 - \alpha_k)\left(
+                    \mathcal E(x_{k - 1}, y_k, \mu, B_k)
+                    + \frac{\mu}{2}\Vert x_{k - 1} - y_k\Vert^2
+                \right). 
             \end{align*}
         \end{proof}
     \subsection{Proving the convergence rate}
-        To finally find the convergence rate, we will strengthen Assumption \ref{ass:for-cnvg}. 
+        To finally find the convergence rate, we will strengthen Assumption \ref{ass:pggap-dscnt}. 
         Our convergence rate is expressed for sequences $(\alpha_k)_{k \ge 0}, (q_k)_{k \ ge 0}$ if they satisfy Definition \ref{def:rlx-momentum-seq}. 
         This means that any sequence with $\alpha_k \in (q_k, 1)$ would work. 
         \par
         The following assumptions describe the behaviors of an algorithm satisfying Definition \ref{def:st-apg}, its parameters, and the properties of the objective function. 
         \begin{assumption}[Assumptions for linear convergence rate]\;\label{ass:lin-cnvg}\\
-            Let $(F, f, g, \mathcal E, \mu, L)$ satisfies Assumption \ref{ass:for-cnvg}. 
-            In addition, we strength the prior assumptions:
+            Let $(F, f, g, \mathcal E, \mu, L)$ satisfies Assumption \ref{ass:pggap-dscnt}. 
+            In addition, we strengthened the prior assumptions:
             \begin{enumerate}[nosep]
                 \item Define the set of minimizers $X^+ = \argmin_{z\in \RR^n}\{ f(z) + g(z)\}$, it has $X^+ \neq \emptyset$. 
-                \item $\exists \mu > 0$ such that $\forall\; y \in \RR^n$, it has $\mathcal E \left(\Pi_{X^+}y, y, \mu, B\right) \ge 0$. 
+                \item Strenghening Assumption \ref{ass:pggap-dscnt}\ref{ass:pggap-dscnt-itm2}, assume $\exists \mu > 0$ such that $\forall y \in \RR^n$, it has $\mathcal E \left(\Pi_{X^+}y, y, \mu, B\right) \ge 0$. 
+                \item For all $y, z \in \RR^n$, it satisfies that $\mathcal E(z, y, \mu, B) + \mu/2 \Vert z - y\Vert^2 \ge 0$. 
             \end{enumerate}
-            Now, suppose an algorithm which optimizes a $F = f + g$ satisfying all pervious assumptions, and it generates iterates $(y_k, x_k, v_k)_{k\ge 0}$ that satisfies Definition \ref{def:pg-gap}. 
-            In addition, we assume that the parameter sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}, (q_k)_{k \ge 0}, (B_k)_{k \ge 0}$ satisfy the following: 
+            Now, suppose an algorithm which optimizes a $F = f + g$ satisfying all previous assumptions, and it generates iterates $(y_k, x_k, v_k)_{k\ge 0}$ that satisfies Definition \ref{def:pg-gap}. 
+            In addition, we assume that the parameter sequences $(\alpha_k)_{k \ge 0},(q_k)_{k \ge 0}, (B_k)_{k \ge 0}$ satisfy the following: 
             \begin{enumerate}[nosep]\setcounter{enumi}{3}
-                \item The sequences $\alpha_k, \rho_k, q_k$ are given by Definition \ref{def:rlx-momentum-seq}. 
+                \item The sequences $\alpha_k, q_k$ are given by Definition \ref{def:rlx-momentum-seq}. 
                 \item The sequence $q_k = \mu/B_k$, with $B_k > \mu$. 
-                \item For all $k \ge 0$, $\Pi_{X^+}y_k$ is a unique. 
+                \item For all $k \ge 0$, $\Pi_{X^+}y_k$ is unique. 
             \end{enumerate}
         \end{assumption}
-        \begin{assumption}[Assumption for sublinear convergence rate]
+        \begin{assumption}[forever sublinear convergence rate in the convex case]\;\label{ass:forever-cnvx-cnvg}\\
+            Let $(F, f, g, \mathcal E, \mu, L)$ satisfies Assumption \ref{ass:pggap-dscnt}. 
+            In addition, we strengthened the prior assumptions:
+            \begin{enumerate}[nosep]
+                \item Define the set of minimizers $X^+ = \argmin_{z\in \RR^n}\{ f(z) + g(z)\}$, it has $X^+ \neq \emptyset$. 
+                \item The function $f$ is convex. Hence assumption Assumtion \ref{ass:pggap-dscnt} \ref{ass:pggap-dscnt-itm2} satisfied for all $\bar y$, $\mu = 0$. 
+            \end{enumerate}
+            Now, suppose an algorithm which optimizes a $F = f + g$ satisfying all previous assumptions, and it generates iterates $(y_k, x_k, v_k)_{k\ge 0}$ that satisfies Definition \ref{def:pg-gap}. 
+            In addition, we assume that the parameter sequences $(\alpha_k)_{k \ge 0},(q_k)_{k \ge 0}, (B_k)_{k \ge 0}$ satisfy the following: 
+            \begin{enumerate}[nosep]
+                \item The sequence $B_k \ge B_{k - 1}$, it's a non-decreasing sequence. 
+                \item $\alpha_k \ge \alpha_{k - 1}$, it's a non-increasing sequence. 
+            \end{enumerate}
+        \end{assumption}
+        \begin{assumption}[optimal convergence rate in the convex case]
             
         \end{assumption}
 
-        % THEOREM ======================================================================================================
-        \begin{theorem}[linear convergence with generic sequence]\;\label{thm:cnvg-generic-seq}\\
-            Let $(F, f, g, \mathcal E, \mu, L)$, and sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}, (q_k)_{k \ge 0}, (B_k)_{k \ge 0}$ 
-            satisfy Assumption \ref{ass:lin-cnvg}. 
-            Denote 
-            $$
-                \beta_k = \prod_{i = 1}^k\max\left(
-                    1 - \alpha_i, 
-                    \frac{B_i\alpha_i(\alpha_i - q_i)}{\alpha_{i - 1}^2B_{i - 1}}
-                \right). 
-            $$
-            Then, there exists a unique $\bar x \in \RR^n$ such that for all $k \ge 1$, $\bar x = \Pi_{X^+}y_k$, and it satisfies
-            \begin{align*}
-                F(x_k) - F(\bar x) + \frac{B_k}{\alpha_k^2}\Vert \bar x - v_k\Vert^2 
-                \le 
-                \beta_k\left(
-                    F(x_0) - F(\bar x) + \frac{\alpha_0B_0}{2}\Vert \bar x - v_0\Vert^2
-                \right). 
-            \end{align*}
-            If in addition, we assume $x_{-1} = v_{-1}, \alpha_0 = 1$, then the above inequality simplifies: 
-            \begin{align*}
-                & F(x_k) - F(\bar x) + \frac{B_k}{\alpha_k^2}\Vert \bar x - v_k\Vert^2 \le 
-                \frac{\beta_kB_0}{2}\Vert \bar x - x_{-1}\Vert^2.
-            \end{align*}
-        \end{theorem}
-        \begin{proof}
-            Set $\bar x_k = \bar x$ in Lemma \ref{lemma:cnvg-prep-part3} then for all $k\ge 1$ it has 
-            \begin{align*}
-                & F(x_k) - F(\bar x) + \frac{B_k\alpha_k^2}{2}\Vert \bar x- v_k\Vert^2 
-                \\
-                &\le \left(
-                    1 - \alpha_k
-                \right)(F(x_{k- 1}) - F(\bar x))
-                + \frac{(1 - \alpha_k)B_k\alpha_{k -1}^2 \rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                \\
-                &\underset{\text{(1)}}{=} 
-                \left(
-                    1 - \alpha_k
-                \right)(F(x_{k- 1}) - F(\bar x))
-                + \frac{\alpha_k(\alpha_k - q_k)B_k\alpha_{k - 1}^2}{\alpha_{k - 1}^2}\Vert \bar x - v_{k - 1}\Vert^2
-                \\
-                &= \max\left(
-                    1 - \alpha_k, 
-                    \frac{B_i\alpha_k(\alpha_k - q_k)}{\alpha_{k - 1}^2B_{k - 1}}
-                \right)
-                \left(
-                    F(x_{k - 1}) - F(\bar x)
-                    + \frac{B_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
-                \right). 
-            \end{align*}
-            From the above, a recurrence relation is formed for $k \ge 1$, unrolling the recurrence relation it has 
-            \begin{align*}
-                & F(x_k) - F(\bar x) + \frac{B_k\alpha_k^2}{2}\Vert \bar x- v_k\Vert^2 
-                \\&\le 
+        \subsection{convergence results based on these assumptions}
+            % THEOREM ======================================================================================================
+            \begin{theorem}[convergence with generic sequence]\;\label{thm:cnvg-generic-seq}\\
+                Let $(F, f, g, \mathcal E, \mu, L)$, and sequences $(\alpha_k)_{k \ge 0}, (q_k)_{k \ge 0}, (B_k)_{k \ge 0}$ 
+                satisfy Assumption \ref{ass:lin-cnvg}. 
+                Denote 
+                $$
+                    \beta_k = \prod_{i = 1}^k\max\left(
+                        1 - \alpha_i, 
+                        \frac{B_i\alpha_i(\alpha_i - q_i)}{\alpha_{i - 1}^2B_{i - 1}}
+                    \right). 
+                $$
+                Then, there exists a unique $\bar x \in \RR^n$ such that for all $k \ge 1$, $\bar x = \Pi_{X^+}y_k$, and it satisfies
+                \begin{align*}
+                    F(x_k) - F(\bar x) + \frac{B_k}{\alpha_k^2}\Vert \bar x - v_k\Vert^2 
+                    \le 
+                    \beta_k\left(
+                        F(x_0) - F(\bar x) + \frac{\alpha_0B_0}{2}\Vert \bar x - v_0\Vert^2
+                    \right). 
+                \end{align*}
+                If in addition, we assume $x_{-1} = v_{-1}, \alpha_0 = 1$, then the above inequality simplifies: 
+                \begin{align*}
+                    & F(x_k) - F(\bar x) + \frac{B_k}{\alpha_k^2}\Vert \bar x - v_k\Vert^2 \le 
+                    \frac{\beta_kB_0}{2}\Vert \bar x - x_{-1}\Vert^2.
+                \end{align*}
+            \end{theorem}
+            \begin{proof}
+                Set $\bar x_k = \bar x$ in Lemma \ref{lemma:cnvg-prep-part3} then for all $k\ge 1$ it has 
+                \begin{align*}
+                    & F(x_k) - F(\bar x) + \frac{B_k\alpha_k^2}{2}\Vert \bar x- v_k\Vert^2 
+                    \\
+                    &\le \left(
+                        1 - \alpha_k
+                    \right)(F(x_{k- 1}) - F(\bar x))
+                    + \frac{(1 - \alpha_k)B_k\alpha_{k -1}^2 \rho_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    \\
+                    &\underset{\text{(1)}}{=} 
+                    \left(
+                        1 - \alpha_k
+                    \right)(F(x_{k- 1}) - F(\bar x))
+                    + \frac{\alpha_k(\alpha_k - q_k)B_k\alpha_{k - 1}^2}{\alpha_{k - 1}^2}\Vert \bar x - v_{k - 1}\Vert^2
+                    \\
+                    &= \max\left(
+                        1 - \alpha_k, 
+                        \frac{B_i\alpha_k(\alpha_k - q_k)}{\alpha_{k - 1}^2B_{k - 1}}
+                    \right)
+                    \left(
+                        F(x_{k - 1}) - F(\bar x)
+                        + \frac{B_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    \right). 
+                \end{align*}
+                From the above, a recurrence relation is formed for $k \ge 1$, unrolling the recurrence relation it has 
+                \begin{align*}
+                    & F(x_k) - F(\bar x) + \frac{B_k\alpha_k^2}{2}\Vert \bar x- v_k\Vert^2 
+                    \\&\le 
+                    \prod_{i = 1}^k\max\left(
+                        1 - \alpha_i, 
+                        \frac{B_i\alpha_i(\alpha_i - q_i)}{\alpha_{i - 1}^2B_{i - 1}}
+                    \right)
+                    \left(
+                        F(x_0) - F(\bar x)
+                        + \frac{B_0\alpha_0^2}{2}\Vert \bar x - v_0\Vert^2
+                    \right). 
+                \end{align*}
+                When $x_{-1} = v_{-1}$, from Definition \ref{def:st-apg}, when $k = 0$ it has $y_0 = v_{-1} = x_{-1}$, so $x_0 = T_{B_0}(y_0)$. 
+                Because $\alpha_0 = 1$, it also has $v_0 = x_0$. 
+                Choose $z = \bar x, y = x_{-1}$ we have from Assumption \ref{ass:pggap-dscnt} (iii) that
+                \begin{align*}
+                    0 &\le \mathcal E(\bar x, x_{-1}, \mu, B_0) - \frac{\mu}{2}\Vert \bar x - x_{-1}\Vert^2
+                    \\
+                    &=
+                    F(\bar x) - F(x_{-1}) 
+                    - B_0\left\langle x_{-1} - T_{B_0}(x_{-1}), \bar x - x_{-1} \right\rangle
+                    - \frac{B_0}{2}\left\Vert x_{-1} - T_{B_0}x_{-1}\right\Vert^2
+                    \\
+                    &= 
+                    F(\bar x) - F(x_{-1}) 
+                    - \frac{B_0}{2}\Vert \bar x - T_{B_0}x_{-1}\Vert^2 
+                    + \frac{B_0}{2}\Vert \bar x - x_{-1}\Vert^2. 
+                    \\
+                    &= F(\bar x) - F(x_{-1}) 
+                    - \frac{B_0}{2}\Vert \bar x - v_0\Vert^2 
+                    + \frac{B_0}{2}\Vert \bar x - x_{-1}\Vert^2. 
+                \end{align*}
+                Substitute the above into the RHS of the inequality of previous results to complete the proof. 
+            \end{proof}
+            \par
+            \textcolor{red}{
+                SOMETHING HAS LIMITATIONS, LET US EXPLAIN.
+                The parameter $q_k = \mu/B_k$ cannot be eliminated from Definition \ref{def:st-apg}. 
+                If one were to implement any algorithm without the exact knowledge of $\mu$, then the convergence results we just derived are not applicable. 
+                Implementations of the algorithm, and the convergence results requires the presence of both parameters $q_k, \alpha_k$. 
+                Doomed. 
+                Because in the applications of our interests, the exact knowledge of $\mu$ is impossible to know. 
+            }
+            \par
+            The theorem below will definitively close the case to show that there exists choices for the sequence such that a linear convergence exists, meaning that $\beta_k$ will decrease at a linear rate. 
+            \begin{lemma}[beta sequence linear bound]\;\label{lemma:beta-seq}\\
+                Let sequences $(\alpha_k)_{k \ge 0}, (q_k)_{k \ge 0}, (B_k)_{k \ ge 0}$ satisfy Assumption \ref{ass:lin-cnvg}. 
+                Define 
+                $$
+                \beta_k := 
                 \prod_{i = 1}^k\max\left(
                     1 - \alpha_i, 
                     \frac{B_i\alpha_i(\alpha_i - q_i)}{\alpha_{i - 1}^2B_{i - 1}}
-                \right)
-                \left(
-                    F(x_0) - F(\bar x)
-                    + \frac{B_0\alpha_0^2}{2}\Vert \bar x - v_0\Vert^2
-                \right). 
-            \end{align*}
-            When $x_{-1} = v_{-1}$, from Definition \ref{def:st-apg}, when $k = 0$ it has $y_0 = v_{-1} = x_{-1}$, so $x_0 = T_{B_0}(y_0)$. 
-            Because $\alpha_0 = 1$, it also has $v_0 = x_0$. 
-            Choose $z = \bar x, y = x_{-1}$ we have from Assumption \ref{ass:for-cnvg} (iii) that
+                \right).
+                $$
+                Assume in addition $\forall k \ge 0$, $\exists B : B_k = B_{k - 1} = B$ hence there exists $q$ such that $(\forall k \ge 0)\; q_k = q$. 
+                Then, linear convergence of $\beta_k$ is possible under the following scenarios: 
+                \begin{enumerate}
+                    \item If for all $k \ge 1$, $\sqrt{q} \le \alpha_k \le \alpha_{k - 1}$ so it's non-increasing, then $\beta_k = \Pi_{i = 1}^k(1 - q/\alpha_{i - 1})$.
+                    Since $\alpha_k \in (0, 1)$ and it's monotone, it has upper bound $\beta_k \le (1 - q)^k$. 
+                    \item If for all $k \ge 1$, $\alpha_k = \alpha_{k - 1}$, so there exists $\alpha = \alpha_k$, making the sequence a constant, then $\beta_k = \max(1 - q/\alpha, 1 - \alpha)^k$. And, it's lowest when $\alpha_k = \sqrt{q}$. 
+                \end{enumerate}
+                By the assumption that $q \in (0, 1)$ hence we had a linear convergence rate in each of the above scenarios. 
+            \end{lemma}
+            \begin{proof}
+                Since $B_k$ is a constant, and by Definition \ref{def:st-apg} it has $B_k = \frac{\mu}{q_k}$ it would make $q_k$ to be a constant for all $k \ge 0$, which we denote $q := q_k$. 
+                \par
+                \textbf{Proof of (i)}. 
+                Using mononicity of sequence $\alpha_k$, it has $\alpha_i / \alpha_{i - 1} \le 1$ hence for all $i \ge 1$ it has 
+                \begin{align*}
+                    & \max\left(
+                        1 - \alpha_i, 
+                        \frac{\alpha_i(\alpha_i - q)}{\alpha_{i - 1}^2}
+                    \right)
+                    \\
+                    &\le 
+                    \max\left(
+                        1 - \alpha_i, \frac{\alpha_i - q}{\alpha_{i - 1}}
+                    \right)
+                    \\
+                    &\le \max\left(
+                        1 - \alpha_i, 1 - \frac{q}{\alpha_{i - 1}}
+                    \right)
+                \end{align*}
+                Then, observe that when $\alpha_i \ge \sqrt{q}$ it has: 
+                \begin{align*}
+                    1 - \frac{q}{\alpha_{i - 1}} &> 1 - \frac{q}{\sqrt{q}}
+                    \\
+                    &= 1 - \sqrt{q} \ge 1 - \alpha_k. 
+                \end{align*}
+                Hence
+                \begin{align*}
+                    \max\left(
+                        1 - \alpha_i, 
+                        \frac{\alpha_i(\alpha_i - q)}{\alpha_{i - 1}^2}
+                    \right)\le 
+                    \left(1 - \frac{q}{\alpha_{k - 1}}\right).
+                \end{align*}
+                The result now follows by the definition of $\beta_k$. 
+                \par 
+                \textbf{Proof of (ii)}. 
+                The proof is obvious by setting both $q_i, \alpha_i$ to be a constant. 
+            \end{proof}
+        
+        
+\section{Examples for our assumptions}
+    We will check Assumption \ref{ass:lin-cnvg} and, propose examples for it.
+    \subsection{quasi strongly convex function}
+        In Necoara et al.'s setting, they have the following assumptions for their objective function. 
+        \begin{assumption}[The settings for Necoara's et al]\;\label{ass:necoara}\\
+            The assumption is about $(f, X, X^+, f^+)$ where 
+            \begin{enumerate}[nosep]
+                \item $X \subseteq \RR^n$ is a closed convex set. 
+                \item $f: X\rightarrow \RR$ has $L$ Lipschitz continuous gradient, and it's convex. 
+                \item $X^+ = \argmin_{x \in X} f(x)\neq \emptyset$, and we denote $f^+$ to be the minimum value. 
+            \end{enumerate}
+        \end{assumption}
+        The following definition on Quasi Strongly Convex function (Q-SCNVX) is taken from \cite[Definition 1]{necoara_linear_2019}. 
+        \begin{definition}[Q-SCNVX]\label{def:Q-SCNVX}
+            Let $(f, X, X^+, f^+)$ be given by Assumption \ref{ass:necoara}. 
+            We define $f$ to be Quasi Strong Convex on $X$ if there exists $\kappa_f  > 0$ such that $\forall x \in \RR^n$ , with $\bar x = \Pi_{X^+}x$ it has:
             \begin{align*}
-                0 &\le \mathcal E(\bar x, x_{-1}, \mu, B_0) - \frac{\mu}{2}\Vert \bar x - x_{-1}\Vert^2
+                f^+ - f(x) - \langle \nabla f(x), \bar x - x\rangle - \frac{\kappa_f}{2}\Vert \bar x - x\Vert^2 
+                &\ge 0. 
+            \end{align*}
+        \end{definition}
+        
+        \begin{proposition}[Q-SCNVX is an example of our assumptions]\label{prop:qscnvx-ass-ok}
+            Let $(f, X, X^+, f^+)$ satisfies Assumption \ref{ass:necoara}.
+            Let $\mathcal E$ be given by Definition \ref{def:pg-gap} with $g = \delta_X$. 
+            Then for all $x \in \RR^n$, let $\bar x = \Pi_{X^+}x, x^+ = T_B(x)$, there exists $B \ge 0$, such that 
+            \begin{align*}
+                0 &\le 
+                \mathcal E(\bar x, x, B, \kappa_f)
+                = 
+                f(\bar x) - f(x^+) 
+                - \frac{B}{2}\Vert x - x^+\Vert^2 
+                - B\langle \bar x - x, x - x^+\rangle
+                - \frac{\kappa_f}{2}\Vert \bar x - x\Vert^2. 
+            \end{align*}
+            Therefore, it satisfies Assumption \ref{ass:pggap-dscnt}. 
+        \end{proposition}
+        \begin{proof}
+            Let $h = z \mapsto \delta_X(z) + \langle \nabla f(x), z\rangle + \frac{B}{2}\Vert z - x\Vert^2$.
+            So it has $T_B(x) = \argmin_{z\in \RR^n} h(z)$. 
+            Furthermore, $h(z)$ is a $B$ strongly convex function by convexity of $X$ and, the fact that other parts are just the sum of a linear and quadratic function. 
+            Denote $x^+ = T_B(x)$, since $x^+$ is a minimizer therefore it has $(\forall x \in X)\; h(z) - h(x^+) \ge \frac{B}{2}\Vert z - x^+\Vert^2$. 
+            That was the quadratic growth condition of $h$. 
+            Next, denote $\bar x  = \Pi_{X^+}x$, let $z = \bar x$ then the condition becomes: 
+            \begin{align*}
+                & \frac{B}{2}\Vert \bar x - x^+\Vert^2 
+                \\
+                &\le 
+                \langle \nabla f(x), \bar x\rangle + \frac{B}{2}\Vert \bar x - x\Vert^2 - 
+                \langle \nabla f(x), x^+\rangle + \frac{B}{2}\Vert x^+ - x\Vert^2
                 \\
                 &=
-                F(\bar x) - F(x_{-1}) 
-                - B_0\left\langle x_{-1} - T_{B_0}(x_{-1}), \bar x - x_{-1} \right\rangle
-                - \frac{B_0}{2}\left\Vert x_{-1} - T_{B_0}x_{-1}\right\Vert^2
+                \langle \nabla f(x), \bar x - x\rangle - \langle \nabla f(x), x^+ - x\rangle
+                + \frac{B}{2}\Vert \bar x - x\Vert^2 
+                - \frac{B}{2}\Vert x^+ - x\Vert^2
+                \\
+                &= - D_f(\bar x, x) - f(x) + f(\bar x) - f(x^+) + f(x) + D_f(x^+, x)
+                + \frac{B}{2}\Vert \bar x - x\Vert^2 
+                - \frac{B}{2}\Vert x^+ - x\Vert^2
                 \\
                 &= 
-                F(\bar x) - F(x_{-1}) 
-                - \frac{B_0}{2}\Vert \bar x - T_{B_0}x_{-1}\Vert^2 
-                + \frac{B_0}{2}\Vert \bar x - x_{-1}\Vert^2. 
+                - D_f(\bar x, x) + f(\bar x) - f(x^+) 
+                + \frac{B}{2}\Vert \bar x - x\Vert^2 
+                + D_f(x^+, x)
+                - \frac{B}{2}\Vert x^+ - x\Vert^2
                 \\
-                &= F(\bar x) - F(x_{-1}) 
-                - \frac{B_0}{2}\Vert \bar x - v_0\Vert^2 
-                + \frac{B_0}{2}\Vert \bar x - x_{-1}\Vert^2. 
+                &\underset{\text{(1)}}{\le} 
+                - \frac{\kappa_f}{2}\Vert \bar x - x\Vert^2
+                + f(\bar x) - f(x^+)
+                + \frac{B}{2}\Vert \bar x - x\Vert^2 
+                + 0
             \end{align*}
-            Substitute the above into the RHS of the inequality of previous results to complete the proof. 
+            At (1), we used the fact that $f$ is assumed satisfy \ref{def:Q-SCNVX} because $\bar x = \Pi_{X^+}x$, in addition the inequality $D_f(x^+, x) \le \frac{B}{2}\Vert x^+ - x\Vert^2$ is true because of Lipschitz gradient Assumption in \ref{ass:necoara} hence for all $B\ge L$, it's true for all $x$. 
+            Rearranging it has 
+            \begin{align*}
+                0 &\le
+                f(\bar x) - f(x^+) 
+                + \frac{B}{2}\Vert \bar x - x\Vert^2 
+                - \frac{B}{2}\Vert \bar x - x^+\Vert^2
+                - \frac{\kappa_f}{2}\Vert \bar x - x\Vert^2
+                \\
+                &= 
+                f(\bar x) - f(x^+) 
+                - \frac{B}{2}\Vert x - x^+\Vert^2 
+                - B\langle \bar x - x, x - x^+\rangle
+                - \frac{\kappa_f}{2}\Vert \bar x - x\Vert^2
+                \\
+                &= \mathcal E(\bar x, x, B, \kappa_f). 
+            \end{align*}
+            The above results showed that Assumption \ref{ass:pggap-dscnt} (ii) has been satisfied, with $\bar y = \Pi_{X^+}y$. 
+            To see (iii) in Assumption \ref{ass:pggap-dscnt}, observe that Assumption \ref{ass:necoara} has $f$ is convex. 
         \end{proof}
-        \par
-        \textcolor{red}{
-            SOMETHING IS WRONG, LET US EXPLAIN.
-            The parameter $q_k = \mu/B_k$ cannot be eliminated from Definition \ref{def:st-apg}. 
-            If one were to implement any algorithm without the exact knowledge of $\mu$, then the convergence results we just derived are not applicable. 
-            Implementations of the algorithm, and the convergence results requires the presence of both parameters $q_k, \alpha_k$. 
-            Doomed. 
-            Because in the applications of our interests, the exact knowledge of $\mu$ is impossible to know. 
-        }
-        The theorem below will definitively close the case to show that there exists choices for the sequence such that a linear convergence exists, meaning that $\beta_k$ will decrease at a linear rate. 
-        \begin{lemma}[beta sequence bounds]\;\label{lemma:beta-seq}\\
-            Let sequence $(\alpha_k)_{k \ge 0}, (\rho_{k})_{k \ge 0}, (q_k)_{k \ge 0}$ satisfies Definition \ref{def:rlx-momentum-seq}.
-            Let sequences $(B_k)_{k \ge 1}$ be given by Definition \ref{def:st-apg}. 
-            Define $\beta_k := \prod_{i = 1}^k(1 - \alpha_i) \max \left(\frac{B_i\rho_{i - 1}}{B_{i - 1}}, 1\right)$.
-            Assume in addition that for all $k \ge 0$, $B_k = B_{k - 1} = B$. 
-            Then, linear convergence of $\beta_k$ is possible under the following scenarios: 
-            \begin{enumerate}
-                \item If for all $k \ge 1$, $\sqrt{q} \le \alpha_k \le \alpha_{k - 1}$ so it's non-increasing, then $\beta_k = \Pi_{i = 1}^k(1 - q/\alpha_{i - 1})$.
-                Since $\alpha_k \in (0, 1)$ and it's monotone, it has upper bound $\beta_k \le (1 - q)^k$. 
-                \item If for all $k \ge 1$, $\alpha_k = \alpha_{k - 1}$, so there exists $\alpha = \alpha_k$, making the sequence a constant, then $\beta_k = \max(1 - q/\alpha, 1 - \alpha)^k$. And, it's lowest when $\alpha_k = \sqrt{q}$. 
-            \end{enumerate}
-        \end{lemma}
-        \begin{proof}
-            Since $B_k$ is a constant, and by Definition \ref{def:st-apg} it has $B_k = \frac{\mu}{q_k}$ it would make $q_k$ to be a constant for all $k \ge 0$, which we denote $q := q_k$. 
-            \par
-            \textbf{Proof of (i)}. 
-            For all $k \ge 1$ it has 
-            \begin{align*}
-                & (1 - \alpha_k)\max\left(
-                    \frac{B_k\rho_{k - 1}}{B_{k - 1}}, 1
-                \right)
-                \\
-                &= \max(\rho_{k - 1}(1 - \alpha_k), 1 - \alpha_k) 
-                \\
-                &\underset{\text{(1)}}{=} \max\left(
-                    \frac{\alpha_k(\alpha_k - q)}{\alpha_{k - 1}^2}, 1 - \alpha_k
-                \right)
-                \\
-                &= \max\left(
-                    \frac{\alpha_k^2}{\alpha_{k - 1}^2} - \frac{q}{\alpha_{k - 1}}, 1 - \alpha_k
-                \right)
-                \\
-                &\underset{\text{(2)}}{\le} 
-                \max\left(
-                    1 - \frac{q}{\alpha_{k - 1}}, 1 - \alpha_k
-                \right). 
-            \end{align*}
-            Then, observe that
-            \begin{align*}
-                1 - \frac{q}{\alpha_{k - 1}} &> 1 - \frac{q}{\sqrt{q}}
-                \\
-                &= 1 - \sqrt{q} \ge 1 - \alpha_k. 
-            \end{align*}
-            Combining the previous two results it has 
-            \begin{align*}
-                (1 - \alpha_k)\max\left(
-                    \frac{B_k\rho_{k - 1}}{B_{k - 1}}, 1
-                \right) \le 
-                \left(1 - \frac{q}{\alpha_{k - 1}}\right).
-            \end{align*}
-            \par 
-            \textbf{Proof of (ii)}. 
-            
-        \end{proof}
-    \subsection{Parameter free representations}
-        
-        
-
-\section{Linear convergence beyond the strongly convex case}
-    We will check Assumption \ref{ass:lin-cnvg} and, propose examples for it.
-    In Necoara et al.'s setting, they have the following assumptions for their objective function. 
-    \begin{assumption}[The settings for Necoara's et al]\;\label{ass:necoara}\\
-        The assumption is about $(f, X, X^+, f^+)$ where 
-        \begin{enumerate}[nosep]
-            \item $X \subseteq \RR^n$ is a closed convex set. 
-            \item $f: X\rightarrow \RR$ has $L$ Lipschitz continuous gradient, and it's convex. 
-            \item $X^+ = \argmin_{x \in X} f(x)\neq \emptyset$, and we denote $f^+$ to be the minimum value. 
-        \end{enumerate}
-    \end{assumption}
-    The following definition on Quasi Strongly Convex function (Q-SCNVX) is taken from \cite[Definition 1]{necoara_linear_2019}. 
-    \begin{definition}[Q-SCNVX]\label{def:Q-SCNVX}
-        Let $(f, X, X^+, f^+)$ be given by Assumption \ref{ass:necoara}. 
-        We define $f$ to be Quasi Strong Convex on $X$ if there exists $\kappa_f  > 0$ such that $\forall x \in \RR^n$ , with $\bar x = \Pi_{X^+}x$ it has:
-        \begin{align*}
-            f^+ - f(x) - \langle \nabla f(x), \bar x - x\rangle - \frac{\kappa_f}{2}\Vert \bar x - x\Vert^2 
-            &\ge 0. 
-        \end{align*}
-    \end{definition}
-    \begin{proposition}[Q-SCNVX is an example of our assumptions]\label{prop:qscnvx-ass-ok}
-        Let $(f, X, X^+, f^+)$ satisfies Assumption \ref{ass:necoara}.
-        Let $\mathcal E$ be given by Definition \ref{def:pg-gap} with $g = \delta_X$. 
-        Then for all $x \in \RR^n$, let $\bar x = \Pi_{X^+}x, x^+ = T_B(x)$, there exists $B \ge 0$, such that 
-        \begin{align*}
-            0 &\le 
-            \mathcal E(\bar x, x, B, \kappa_f)
-            = 
-            f(\bar x) - f(x^+) 
-            - \frac{B}{2}\Vert x - x^+\Vert^2 
-            - B\langle \bar x - x, x - x^+\rangle
-            - \frac{\kappa_f}{2}\Vert \bar x - x\Vert^2. 
-        \end{align*}
-        Therefore, it satisfies Assumption \ref{ass:for-cnvg}. 
-    \end{proposition}
-    \begin{proof}
-        Let $h = z \mapsto \delta_X(z) + \langle \nabla f(x), z\rangle + \frac{B}{2}\Vert z - x\Vert^2$.
-        So it has $T_B(x) = \argmin_{z\in \RR^n} h(z)$. 
-        Furthermore, $h(z)$ is a $B$ strongly convex function by convexity of $X$ and, the fact that other parts are just the sum of a linear and quadratic function. 
-        Denote $x^+ = T_B(x)$, since $x^+$ is a minimizer therefore it has $(\forall x \in X)\; h(z) - h(x^+) \ge \frac{B}{2}\Vert z - x^+\Vert^2$. 
-        That was the quadratic growth condition of $h$. 
-        Next, denote $\bar x  = \Pi_{X^+}x$, let $z = \bar x$ then the condition becomes: 
-        \begin{align*}
-            & \frac{B}{2}\Vert \bar x - x^+\Vert^2 
-            \\
-            &\le 
-            \langle \nabla f(x), \bar x\rangle + \frac{B}{2}\Vert \bar x - x\Vert^2 - 
-            \langle \nabla f(x), x^+\rangle + \frac{B}{2}\Vert x^+ - x\Vert^2
-            \\
-            &=
-            \langle \nabla f(x), \bar x - x\rangle - \langle \nabla f(x), x^+ - x\rangle
-            + \frac{B}{2}\Vert \bar x - x\Vert^2 
-            - \frac{B}{2}\Vert x^+ - x\Vert^2
-            \\
-            &= - D_f(\bar x, x) - f(x) + f(\bar x) - f(x^+) + f(x) + D_f(x^+, x)
-            + \frac{B}{2}\Vert \bar x - x\Vert^2 
-            - \frac{B}{2}\Vert x^+ - x\Vert^2
-            \\
-            &= 
-            - D_f(\bar x, x) + f(\bar x) - f(x^+) 
-            + \frac{B}{2}\Vert \bar x - x\Vert^2 
-            + D_f(x^+, x)
-            - \frac{B}{2}\Vert x^+ - x\Vert^2
-            \\
-            &\underset{\text{(1)}}{\le} 
-            - \frac{\kappa_f}{2}\Vert \bar x - x\Vert^2
-            + f(\bar x) - f(x^+)
-            + \frac{B}{2}\Vert \bar x - x\Vert^2 
-            + 0
-        \end{align*}
-        At (1), we used the fact that $f$ is assumed satisfy \ref{def:Q-SCNVX} because $\bar x = \Pi_{X^+}x$, in addition the inequality $D_f(x^+, x) \le \frac{B}{2}\Vert x^+ - x\Vert^2$ is true because of Lipschitz gradient Assumption in \ref{ass:necoara} hence for all $B\ge L$, it's true for all $x$. 
-        Rearranging it has 
-        \begin{align*}
-            0 &\le
-            f(\bar x) - f(x^+) 
-            + \frac{B}{2}\Vert \bar x - x\Vert^2 
-            - \frac{B}{2}\Vert \bar x - x^+\Vert^2
-            - \frac{\kappa_f}{2}\Vert \bar x - x\Vert^2
-            \\
-            &= 
-            f(\bar x) - f(x^+) 
-            - \frac{B}{2}\Vert x - x^+\Vert^2 
-            - B\langle \bar x - x, x - x^+\rangle
-            - \frac{\kappa_f}{2}\Vert \bar x - x\Vert^2
-            \\
-            &= \mathcal E(\bar x, x, B, \kappa_f). 
-        \end{align*}
-        The above results showed that Assumption \ref{ass:for-cnvg} (ii) has been satisfied, with $\bar y = \Pi_{X^+}y$. 
-        To see (iii) in Assumption \ref{ass:for-cnvg}, observe that Assumption \ref{ass:necoara} has $f$ is convex. 
-    \end{proof}
+    
     \subsection{A nonconvex example}
 
     \subsection{Examples of Q-SCNVX}

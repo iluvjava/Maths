@@ -149,13 +149,11 @@ $$
     z_k - y_k &= 
     \alpha_k x^+ + (1 - \alpha_k)x_{k - 1} - y_k
     \\
-    &= \alpha_k x^+ + ((1 - \alpha_k)x_{k - 1} - y_k)
-    \\
     &= \alpha_kx^+ - \alpha_k v_{k - 1}. 
 \end{aligned}
 $$
 
-Suppose that the sequence satisfy $\rho_{k - 1}(1 - \alpha_k) = \alpha_k^2/\alpha_{k - 1}^2$ for all $k \ge 1$, and $\alpha_0 \in (0, 1)$. 
+For all $k \ge 1$, and $\alpha_0 \in (0, 1]$. 
 Using the proximal gradient inequality and convexity of $F$ it has for all $k \ge 1$
 
 $$

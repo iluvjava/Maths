@@ -68,7 +68,7 @@ Since this is true for all $k, n$, the sequence is Cauchy, and therefore it also
 
 #### **Example 3 | Bounded big product sufficient but not necessary condition**
 > Suppose that sequence $\alpha_i > -1$ for all $i \in \N$, the following scenarios are true: 
-> 1. If $\sum_{i = 1}^{\infty} = A < \infty$, then $0 \le \prod_{i = 1}^{n} \left(1 + \alpha_i\right)\le \exp(A)$. The big product is bounded for all $n$. 
+> 1. If $\sum_{i = 1}^{\infty} \alpha_i = A < \infty$, then $0 \le \prod_{i = 1}^{n} \left(1 + \alpha_i\right)\le \exp(A)$. The big product is bounded for all $n$. 
 > 2. There exists a sequence $\alpha_i > -1$, $\sum_{i = 1}^{n}\alpha_i$ diverges, but $\prod_{i = 1}^n (1 + \alpha_i)$ still converges. 
 
 **Observations**

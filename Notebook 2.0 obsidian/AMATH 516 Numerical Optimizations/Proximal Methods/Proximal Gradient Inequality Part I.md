@@ -373,7 +373,7 @@ The claim is true for all $L$ that is larger than the real Lipschitz modulus of 
 **Proof**
 
 For all $y \in \R^n$, the function $\widetilde{\mathcal M}_F^{1/L, f, g}(\cdot, y)$ is $q= \mu_g + L$ strongly convex. 
-Strong convexity and L-Lipschitz smoothness create: $\forall x, y \in \R^n\;$ it has $\frac{L}{2}\Vert x - y\Vert^2 \le D_f(x, y) \ge \frac{\mu_f}{2}\Vert x - y\Vert^2$. 
+Strong convexity and L-Lipschitz smoothness create: $\forall x, y \in \R^n\;$ it has $\frac{L}{2}\Vert x - y\Vert^2 \ge D_f(x, y) \ge \frac{\mu_f}{2}\Vert x - y\Vert^2$. 
 The results of Claim 1.2 applies with $\beta = L$: 
 
 $$
