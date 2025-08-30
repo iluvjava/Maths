@@ -1,0 +1,414 @@
+\documentclass[12pt]{article}
+
+% \input{presets/wang_full.tex}
+\usepackage{ifthen}\newboolean{draftmode}\setboolean{draftmode}{true}
+\input{presets/wang/input.tex}
+\input{presets/misc.tex}
+\input{presets/julia_lstlisting.tex}
+
+\begin{document}
+
+\title{{\fontfamily{ptm}\selectfont An Inexact Accelreated Proximal Gradient Method for TV Variation Problems}}
+
+\author{
+    Author 1 Name, Author 2 Name
+    \thanks{
+        Subject type, Some Department of Some University, Location of the University,
+        Country. E-mail: \texttt{author.namee@university.edu}.
+    }
+}
+
+\date{\today}
+
+\maketitle
+\todoinline{This paper is currently in draft mode. Check source to change options. }
+% \vskip 8mm
+
+\begin{abstract} 
+    \noindent
+    Not yet added. 
+\end{abstract}
+
+\noindent{\bfseries 2010 Mathematics Subject Classification:}
+Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
+\noindent{\bfseries Keywords:}
+
+% ==============================================================================
+\section{Introduction}
+    Let's make a type of algorithm that has the niche for applications with a state of the art performance. 
+    \begin{assumption}\label{ass:smooth-nsmooth-sum}
+        We assume the following about $(F, f, g, L, X^+)$: 
+        \begin{enumerate}[nosep]
+            \item $f: \RR^n \rightarrow \RR$ is a convex, $L$ Lipschitz smooth function but doesn't support simple implementations of its proximal operator. 
+            \item $g: \RR^n \rightarrow \RR$ is convex, proper, and closed, and its proximal operator can be easily implemented, and easy to obtain some element $\partial g$ at all points of the domain. 
+            \item The over all objective has $F = f + g$. 
+        \end{enumerate}
+        Under this assumption, we denote the proximal gradient operator of $F = f+ g$ as $T_B(x) = \hprox_{B^{-1}g}(x - B^{-1}\nabla f(x))$. 
+        Note that by definition it has also:
+        \begin{align*}
+            T_B(x) &= 
+            \hprox_{B^{-1}g}\left(
+                x - B^{-1}\nabla f(x)
+            \right)
+            \\
+            &= \argmin_{z}\left\lbrace
+                g(z)
+                + \langle \nabla f(x), z\rangle
+                + \frac{B}{2}\Vert z - x \Vert^2
+            \right\rbrace. 
+        \end{align*}
+    \end{assumption}
+    \begin{definition}[A measure of error from proximal gradient evaluations]\;\\
+        Let $(F, f, g, L)$ satisfies Assumption \ref{ass:smooth-nsmooth-sum}. 
+        For all $x, z \in \RR^n$, define $S$: 
+        \begin{align*}
+            S_B(z | x) &= \partial 
+            \left[
+                z \mapsto g(z)
+                + \langle \nabla f(x), z\rangle
+                + \frac{B}{2}\Vert z - x \Vert^2
+            \right](z). 
+        \end{align*}
+    \end{definition}
+    Observe: 
+    \begin{enumerate}[nosep]
+        \item $S_B(z | x) = \partial g(z) + \nabla f(x)+ B(z - x)$,
+        \item $\mathbf 0 \in S_B(T(x) | x)$, 
+        \item $(S_B(\cdot | x))^{-1}(\mathbf 0)$ is a singleton by strong convexity. 
+    \end{enumerate}
+    Let's assume inexact evaluation of $\tilde x \approx T_B(x)$, then the error measure is the set $S_B(\tilde x | x)$. 
+    Assuming that we have accurate information on $\nabla f(x)$, then $\forall w \in S_B(\tilde x | x)\;\exists \tilde v \in \partial g(\tilde x)$. 
+    \begin{align*}
+        w &= \tilde v + \nabla f(x) + B(\tilde x - x). 
+    \end{align*}
+    We want to control $w$ in the implementations of inexact accelerated proximal gradient algorithm.
+    
+\section{Key ideas we need to get right}
+    \begin{definition}[inexact proximal gradient]\;\label{def:inxt-pg}\\
+        Let $(F, f, g, L)$ satisfies Assumption \ref{ass:smooth-nsmooth-sum}.
+        Let $\epsilon \ge 0, B \ge 0$. 
+        We Define for all $x \in \RR^n$ the inexact proximal gradient operator $T_B^{(\epsilon)}(x)$ to be such that if $\tilde x \in T^{(\epsilon)}_{B}(x)$ then, $\exists w \in S_{B}(\tilde x | x):\Vert w\Vert\le \epsilon \Vert \tilde x - x\Vert$.         
+    \end{definition}
+    The algorithm we will design must produce iterates in a way that satisfies the inexact proximal gradient operator define above. 
+    The following theorem will characterize a key inequality for convergence claim. 
+    \begin{theorem}[inexact over regularized proximal gradient inequality]\;\label{thm:inxt-pg-ineq}\\
+        Let $(F, f, g, L)$ satisfies Assumption \ref{ass:smooth-nsmooth-sum}.
+        Take $T^{(\epsilon)}_B$ as given in Definition \ref{def:inxt-pg}. 
+        Let $\epsilon \ge 0$. 
+        For all $x\in \RR^n$, if $\exists B \ge 0$ such that $\tilde x \in T_{B + \epsilon}^{(\epsilon)}(x)$ and, $D_f(\tilde x, x)\le \frac{B}{2}\Vert \tilde x - x\Vert^2$. 
+        Then for all $z, x \in \RR^n$ it has: 
+        \begin{align*}
+            0 &\le F(z) - F(\tilde x) + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+            - \frac{B}{2}\Vert z - \tilde x\Vert^2. 
+        \end{align*}
+    \end{theorem}
+    \begin{proof}
+        By Definition \ref{def:inxt-pg}, $T_{B + \epsilon}^{(\epsilon)}(x)$ minimizes a $h(z) = z \mapsto g(z) + \langle \nabla f(x), z \rangle + \frac{B + \epsilon}{2}\Vert x - z\Vert^2$ to produce $\tilde x$ so that $w \in S_{B + \epsilon}(\tilde x| x) = \partial h(x)$. 
+        $h$ is $B + \epsilon$ strongly convex by convexity of $g$. 
+        Since $w \in \partial h(\tilde x)$, it has subgradient inequality through strong convexity: 
+        $$
+            (\forall z \in \RR^n)\;  
+            \frac{B + \epsilon}{2}\Vert z - \tilde x\Vert^2 \le h(z) - h(\tilde x) - \langle w,  z - \tilde x\rangle. 
+        $$
+        This means for all $z \in \RR^n$: 
+        \begin{align*}
+            &\frac{B + \epsilon}{2}\Vert \tilde x - z \Vert^2 
+            \\
+            &\le 
+            g(z) + \langle \nabla f(x), z\rangle + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+            - \left(
+                g(\tilde x) + 
+                \langle \nabla f(x), \tilde x\rangle
+                + 
+                \frac{B + \epsilon}{2}\Vert \tilde x - x\Vert^2
+            \right)
+                \\ &\quad 
+                - \langle w, z - \tilde x\rangle
+            \\
+            &= 
+            \left(
+                g(z) - g(\tilde x)
+                + \frac{B + \epsilon}{2}\Vert z - x\Vert^2 - \frac{B + \epsilon}{2}\Vert \tilde x - x\Vert^2
+                - \langle w, z - \tilde x\rangle
+            \right)
+            \\&\quad 
+                + \langle \nabla f(x), z - x + x -\tilde x\rangle
+            \\
+            &\underset{(1)}{=} 
+            \left(
+                g(z) - g(\tilde x)
+                + \frac{B + \epsilon}{2}\Vert z - x\Vert^2 - \frac{B + \epsilon}{2}\Vert \tilde x - x\Vert^2
+                - \langle w, z - \tilde x\rangle
+            \right)
+                \\
+                &\quad 
+                - D_f(z, x) + f(z)
+                + D_f(\tilde x, x) - f(\tilde x)
+            \\
+            &=
+            \left(
+                F(z) - F(\tilde x)
+                - \langle w, z - \tilde x\rangle
+            \right)
+            + 
+            \left(
+                \frac{B + \epsilon}{2}\Vert z - x\Vert^2 - D_f(z, x)
+            \right) 
+                \\ &\quad 
+                + \left(
+                    D_f(\tilde x, x)
+                    - \frac{B + \epsilon}{2}\Vert \tilde x - x\Vert^2
+                \right)
+            \\
+            &\underset{(2)}{\le} 
+            \frac{B + \epsilon}{2}\Vert z - x\Vert^2 - D_f(z, x)
+            + \left(
+                \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+                - \frac{\epsilon}{2}\Vert \tilde x - x\Vert^2
+            \right)
+            \\
+            &\le
+            F(z) - F(\tilde x) + \Vert w \Vert\Vert z - \tilde x\Vert
+            + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+            - \frac{\epsilon}{2}\Vert \tilde x - x\Vert^2
+            \\
+            &\underset{(3)}{\le}
+            F(z) - F(\tilde x) 
+            + \epsilon\Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
+            + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+            - \frac{\epsilon}{2}\Vert \tilde x - x\Vert^2. 
+        \end{align*}
+        At (1), we used: 
+        \begin{align*}
+            & \langle \nabla f(x), z - x\rangle
+            - \langle \nabla f(x), \tilde x - x\rangle
+            \\
+            &= 
+            - D_f(z, x) + f(z) - f(x)
+            + D_f(\tilde x, x) - f(\tilde x) + f(x)
+            \\
+            &= f(z) + f(\tilde x) - D_f(z, x) + D_f(\tilde x , x). 
+        \end{align*}
+        At (2), we had $f$ convex as the assumption, hence $D_f(z, x) \le 0$. 
+        We also had the assumption that $B$ makes $D_f(\tilde x, x) \le \frac{B}{2}\Vert \tilde x - x\Vert^2$, this simplies the third term from the previous line into $- \frac{\epsilon}{2}\Vert x - \tilde x\Vert^2$. 
+        At (3), we applied the assumed inequality $\Vert w\Vert \le \epsilon \Vert x - \tilde x\Vert \Vert z - \tilde x\Vert$. 
+        Continuing: 
+        \begin{align*}
+            0 &\le
+            \left(
+                F(z) - F(\tilde x) + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+                - \frac{B + \epsilon}{2}\Vert z - \tilde x\Vert^2 
+            \right)
+            + \epsilon \Vert \tilde x - x\Vert \Vert z - \tilde x\Vert
+            - \frac{\epsilon}{2}\Vert \tilde x - x\Vert^2
+            \\
+            &\underset{(4)}{=} 
+            F(z) - F(\tilde x) + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+            - \frac{B}{2}\Vert z - \tilde x\Vert^2. 
+        \end{align*}
+        At (4), we use some algebra: 
+        \begin{align*}
+            &
+            \epsilon \Vert \tilde x - x\Vert \Vert z - \tilde x\Vert
+            - \frac{\epsilon}{2}\Vert \tilde x - x\Vert^2
+            \\
+            &=\epsilon \Vert \tilde x - x\Vert \Vert z - \tilde x\Vert
+            - \frac{\epsilon}{2}\Vert \tilde x - x\Vert^2 - \frac{\epsilon}{2}\Vert z - \tilde x\Vert^2
+            + \frac{\epsilon}{2}\Vert z - \tilde x\Vert^2
+            \\
+            &= 
+            - \epsilon(\Vert x - \tilde x\Vert - \Vert z -\tilde x\Vert)^2 
+            + \frac{\epsilon}{2}\Vert z - \tilde x\Vert^2 
+            \\
+            &\le \frac{\epsilon}{2}\Vert z - \tilde x\Vert^2. 
+        \end{align*}
+    \end{proof}
+    \subsection{The accelerated proximal gradient algorithm}
+        \begin{definition}[accelerated inexact proximal gradient algorithm]\label{def:inxt-apg}
+            Let 
+            \begin{enumerate}[nosep]
+                \item $(\alpha_k)_{k \ge 0}$ be a sequence in $(0, 1]$. 
+                \item Let $(B_k)_{k \ge 0}$ be a non-negative sequence. 
+                \item Let $(F, f, g, L)$ be given by Assumption \ref{ass:smooth-nsmooth-sum}. 
+                \item Let $(\epsilon_k)$ be a non-negative sequence that is the error schedule. 
+            \end{enumerate}
+            Initialize with any $(x_{-1}, v_{-1})$. 
+            For these given parameters, an algorithm is a type of accelerated proximal gradient if it generates $(y_k, x_k, v_k)_{k \ge 0}$ such that
+            for $k\ge 0$: 
+            \begin{align*}
+                & y_{k} = \alpha_{k} v_{k - 1} + (1 - \alpha_{k}) x_{k - 1},
+                \\
+                & x_k \in T_{B_k + \epsilon_k}^{(\epsilon_k)}y_k: D_f(x, \tilde x) \le (1/2)\Vert x - \tilde x\Vert^2, 
+                \\
+                & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}).
+            \end{align*}
+        \end{definition}
+
+\section{convergence rates results}
+    We will now show that Algorithms satisfying Definition \ref{def:inxt-apg} has desirable convergence rate. 
+    \begin{assumption}[convergence assumptions]\label{ass:apg-cnvg}
+        Let $(F, f, g, L)$ satisfies Assumption \ref{ass:smooth-nsmooth-sum} and in addition assume that $F$ admits a set of non-empty minimizers $X^+$. 
+    \end{assumption}
+    \begin{lemma}[inexact one step convergence claim]\;\label{lemma:inxt-apg-onestep}\\
+        Let $(F, f, g, L, X^+)$ satisfies Assumption \ref{ass:apg-cnvg}. 
+        Suppose that an algorithm satisfies optimizes the given $F =f + g$ also satisfying Definition \ref{def:inxt-apg}.
+        Then for the generated iterates $(y_k, x_k, v_k)_{k \ge 0}$, it has for all $k \ge 1$: 
+        \begin{align*}
+            &F(\bar x) - F(x_k)  - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+            \\
+            &\le 
+            \max\left(
+                1 - \alpha_k, 
+                \frac{\alpha_k(B_k + \epsilon_k)}{\alpha_{k -1}^2B_{k - 1}}
+            \right)
+            \left(
+                F(x_{k - 1}) - F(\bar x) 
+                + \frac{\alpha_{k - 1}^2B_{k - 1}}{2}\Vert \bar x - v_{k - 1} \Vert^2
+            \right). 
+        \end{align*}
+    \end{lemma}
+    \begin{proof}
+        Let $\bar x \in X^+$, making it a minimizer of $F$. 
+        Define $z_k := \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$. 
+        It can be verified that:
+        \begin{align}\begin{split}
+            z_k - x_k &= \alpha_k(\bar x - v_k),
+            \\
+            z_k - y_k &= \alpha_k(\bar x - v_{k - 1}).     
+        \end{split}\tag{a}\label{lemma:inxt-apg-onestep-a}
+        \end{align}
+        Because from Definition \ref{def:inxt-apg} it has for all $k \ge 1$: 
+        \begin{align*}
+            z_k - x_k &= 
+            \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - x_k
+            \\
+            &= \alpha_kx^+ + (x_{k - 1} - x_k) - \alpha_kx_{k - 1}
+            \\
+            &= \alpha_k \bar x - \alpha_k v_k, 
+            \\
+            z_k - y_k &= 
+            \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - y_k
+            \\
+            &= \alpha_k \bar x - \alpha_k v_{k - 1}. 
+        \end{align*}
+        For all $k \ge 0$, apply Theorem \ref{thm:inxt-pg-ineq} with $z = z_k, \tilde x = x_k, x = y_k, \epsilon = \epsilon_k, B = B_k$: 
+        \begin{align*}
+            0 &\le 
+            (F(z_k) - F(x_k) ) +
+            \left(
+                \frac{B_k + \epsilon_k}{2}\Vert z_k - y_k\Vert^2
+                - \frac{B_k}{2}\Vert z_k - x_k\Vert^2
+            \right)
+            \\
+            &\underset{(1)}{\le}
+            (\alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k))
+            + 
+            \left(
+                \frac{B_k + \epsilon_k}{2}\Vert z_k - y_k\Vert^2
+                - \frac{B_k}{2}\Vert z_k - x_k\Vert^2
+            \right)
+            \\
+            &\underset{\eqref{lemma:inxt-apg-onestep-a}}{=} 
+            (\alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k))
+                \\ &\quad 
+                + \left(
+                    \frac{(B_k + \epsilon_k)\alpha_k^2}{2}\Vert \bar x - v_{k - 1} \Vert^2
+                    - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+                \right)
+            \\
+            &= 
+            F(\bar x) - F(x_k)
+            + (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x))
+                \\ &\quad 
+                + \left(
+                    \frac{(B_k + \epsilon_k)\alpha_k^2}{2}\Vert \bar x - v_{k - 1} \Vert^2
+                    - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+                \right)
+            \\
+            &= 
+            F(\bar x) - F(x_k) 
+            - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+                \\ &\quad 
+                + (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x))
+                + \frac{(B_k + \epsilon_k)\alpha_k^2}{2}\Vert \bar x - v_{k - 1} \Vert^2
+            \\
+            &= F(\bar x) - F(x_k) 
+            - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+                \\ &\quad
+                + (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x))
+                + \frac{(B_k + \epsilon_k)\alpha_k^2}{\alpha_{k - 1}^2B_{k - 1}}\frac{\alpha_{k - 1}^2B_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+            \\
+            &= 
+            F(\bar x) - F(x_k) - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+            \\ &\quad 
+            + \max\left(
+                1 - \alpha_k, 
+                \frac{(B_k + \epsilon_k)\alpha_k^2}{\alpha_{k - 1}^2B_{k - 1}}
+            \right)
+            \left(
+                F(x_{k - 1}) - F(\bar x) 
+                + \frac{\alpha_{k - 1}^2B_{k - 1}}{2}\Vert \bar x - v_{k - 1} \Vert^2
+            \right). 
+        \end{align*}
+        At (1) we used convexity of $f$ which is assumed and it makes $f(z_k) \le \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1})$ because $\alpha_k \in (0, 1]$ from Definition \ref{def:inxt-apg}. 
+    \end{proof}
+    \\
+    As a prelude, to derive the convergence rate we unroll the recurrence relation proved in the above lemma.
+    It remains to create convergence criterions of the error relative sequence $\epsilon_k$ such that the original optimal convergence rate of $\mathcal O(1/k^2)$ the sequence remains unaffected. 
+    Let the sequence $(B_k)_{k \ge 0}$ be given by **Definition 2**. 
+    We suggest the following descriptors using another sequence $\rho_k$ given by for all $k \ge 1$: 
+    \begin{align*}
+        \rho_k &= \frac{B_k + \epsilon_k}{B_{k - 1}}\frac{B_{k - 1}}{B_k}.
+    \end{align*}
+    This means the following: 
+    \begin{align*}
+        \max\left(
+            1 - \alpha_k, 
+            \frac{\alpha_k^2(B_k + \epsilon_k)}{\alpha_{k - 1}^2B_{k - 1}}
+        \right)
+        &=
+        \max\left(
+            \sim, 
+            \rho_k\frac{B_k\alpha_k^2}{B_{k - 1}\alpha_{k - 1}^2}
+        \right)
+        \\
+        &\le \max(1, \rho_k)\max\left(
+            \sim, 
+            \frac{B_k\alpha_k^2}{B_{k - 1}\alpha_{k - 1}^2}
+        \right). 
+    \end{align*}
+    If we consider $\rho_k \le (1 + 2/k^2)$, it has the ability to make
+    \begin{align*}
+        \prod_{k = 1}^{n} 
+        \max \left(
+            1 - \alpha_k, 
+            \frac{\alpha_k^2(B_k + \epsilon_k)}{\alpha_{k - 1}^2B_{k - 1}}
+        \right)
+        &\le 
+        \prod_{k = 1}^{n} 
+        \max(1, \rho_k)
+        \left(
+        \prod_{i = 1}^{n}
+            \max\left(
+                1 - \alpha_k, 
+                \frac{B_k\alpha_k^2}{B_{k - 1}\alpha_{k - 1}^2}
+            \right)
+        \right)
+        \\
+        &\le \prod_{k = 1}^n
+        \left(
+            1 + \frac{2}{k^2}
+        \right)
+        (\sim)
+        \\
+        &\le 2 (\sim). 
+    \end{align*}
+
+    The following lemma will seal the case for the other remaining big product above. 
+
+\bibliographystyle{siam}
+
+\bibliography{references/Books.bib}
+
+
+\end{document}

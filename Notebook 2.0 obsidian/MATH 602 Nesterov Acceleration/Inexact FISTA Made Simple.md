@@ -58,7 +58,7 @@ Observe
 - $(S(\cdot, x))^{-1}(\mathbf 0)$ is a singleton by strong convexity. 
 
 Let's assume inexact evaluation of $\tilde x \approx T_B(x)$, then the error measure is the set $S(\tilde x | x)$. 
-Assuming the we have accurate information on $\nabla f(x)$, then $\forall w \in S(\tilde x | x)\;\exists \tilde v \in \partial g(\tilde x)$. 
+Assuming that we have accurate information on $\nabla f(x)$, then $\forall w \in S(\tilde x | x)\;\exists \tilde v \in \partial g(\tilde x)$. 
 
 $$
 \begin{aligned}
@@ -264,7 +264,7 @@ For the convergence analysis, we need the assumption below
 
 #### **Lemma | one step inequality**
 > Let $(F, f, g, L, X^+)$ satisfies **Assumption 2**. 
-> Suppose that an algorithm satisfies optimizes the given $F =f + g$ and, it satisfies **Definition 2** and it generates iterates $(y_k, x_k, v_k)_{k \ge 0}$. 
+> Suppose that an algorithm satisfies optimizes the given $F =f + g$ and, it satisfies **Definition 2** and, it generates iterates $(y_k, x_k, v_k)_{k \ge 0}$. 
 > Then for all $k \ge 1$: 
 > $$
 > \begin{aligned}
@@ -284,7 +284,7 @@ For the convergence analysis, we need the assumption below
 
 **Proof**
 
-Suppose $\bar x$ exists as a minimizer of $F$. 
+Let $\bar x \in X^+$, making it a minimizer of $F$. 
 Define $z_k := \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$. 
 It can be verified that: 
 $$
@@ -292,7 +292,7 @@ $$
     z_k - x_k &= \alpha_k(\bar x - v_k),
     \\
     z_k - y_k &= \alpha_k(\bar x - v_{k - 1}). 
-\end{aligned}
+\end{aligned}\tag{(a)}
 $$
 
 To verify, consider the definition of the algorithm: 
@@ -311,16 +311,6 @@ $$
     \\
     &= \alpha_k \bar x - \alpha_k v_{k - 1}. 
 \end{aligned}
-$$
-
-These are  our results 
-
-$$
-\begin{aligned}
-    z_k - x_k &= \alpha_k \bar x - \alpha_k v_k, 
-    \\
-    z_k - y_k &= \alpha_k\bar x - \alpha_k v_{k - 1}. 
-\end{aligned}\tag{a}
 $$
 
 Apply **Theorem 1** with $z = z_k, \tilde x = x_k, x = y_k, \epsilon = \epsilon_k, B = B_k$. 
@@ -400,9 +390,9 @@ $\blacksquare$
 
 
 **Commentary.**
-To derive the convergence rate, it remains to create convergence criterior of the error relative sequence $\epsilon_k$ such that the original optimal convergence rate of $\mathcal O(1/k^2)$ the sequence remains unaffected. 
+To derive the convergence rate, it remains to create convergence criterions of the error relative sequence $\epsilon_k$ such that the original optimal convergence rate of $\mathcal O(1/k^2)$ the sequence remains unaffected. 
 Let the sequence $(B_k)_{k \ge 0}$ be given by **Definition 2**. 
-We suggest the following descritpion using another sequence $\rho_k$ given by for all $k \ge 1$: 
+We suggest the following descriptons using another sequence $\rho_k$ given by for all $k \ge 1$: 
 
 $$
 \begin{aligned}
@@ -466,15 +456,9 @@ The following lemma will seal the case for the other remaining big product above
 #### **Lemma | Nesterov's momentum sequence bound**
 > Let $(\alpha_k)_{k \ge 0}$ be a sequence such that $1 - \alpha_k = (B_k/B_{k - 1})(\alpha_k^2/\alpha_{k - 1})$, then it satisfies: 
 
-$$
-\begin{aligned}
-
-\end{aligned}
-$$
 
 
 #### **Theorem | Overall Convergence Rate**
-
 
 
 
@@ -489,7 +473,7 @@ $$
 \end{aligned}
 $$
 
-where
+where,
 - $A \in \R^{m \times n}$
 - $g: \R^m \rightarrow \overline \R$ is a closed, convex, proper function. 
 - $f: \R^n\rightarrow \R$ is a $L$ Lipschitz smooth function. 
