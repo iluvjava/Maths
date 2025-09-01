@@ -8,7 +8,7 @@
 
 \begin{document}
 
-\title{{\fontfamily{ptm}\selectfont An Inexact Accelreated Proximal Gradient Method for TV Variation Problems}}
+\title{{\fontfamily{ptm}\selectfont An Inexact Accelreated Proximal Gradient Method for Large Scale Robust TV Variation Problems}}
 
 \author{
     Author 1 Name, Author 2 Name
@@ -26,7 +26,9 @@
 
 \begin{abstract} 
     \noindent
-    Not yet added. 
+    I read a lot of papers on Catalyst, and restart. 
+    And it just dawned on me on how simple the ideas can be, and I had identified a specific type of problem where the idea has practical advantage. 
+    This is note is a plan of our upcoming practical paper, with numerical experiments, applications and sweet theories. 
 \end{abstract}
 
 \noindent{\bfseries 2010 Mathematics Subject Classification:}
@@ -37,9 +39,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 \section{Introduction}
     Let's make a type of algorithm that has the niche for applications with a state of the art performance. 
     \begin{assumption}\label{ass:smooth-nsmooth-sum}
-        We assume the following about $(F, f, g, L, X^+)$: 
+        We assume the following about $(F, f, g, L)$: 
         \begin{enumerate}[nosep]
-            \item $f: \RR^n \rightarrow \RR$ is a convex, $L$ Lipschitz smooth function but doesn't support simple implementations of its proximal operator. 
+            \item $f: \RR^n \rightarrow \RR$ is a convex, $L$ Lipschitz smooth function but doesn't support any easy implementation of its proximal operator. 
             \item $g: \RR^n \rightarrow \RR$ is convex, proper, and closed, and its proximal operator can be easily implemented, and easy to obtain some element $\partial g$ at all points of the domain. 
             \item The over all objective has $F = f + g$. 
         \end{enumerate}
@@ -202,7 +204,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             + \epsilon \Vert \tilde x - x\Vert \Vert z - \tilde x\Vert
             - \frac{\epsilon}{2}\Vert \tilde x - x\Vert^2
             \\
-            &\underset{(4)}{=} 
+            &\underset{(4)}{\le} 
             F(z) - F(\tilde x) + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
             - \frac{B}{2}\Vert z - \tilde x\Vert^2. 
         \end{align*}
@@ -230,7 +232,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \item $(\alpha_k)_{k \ge 0}$ be a sequence in $(0, 1]$. 
                 \item Let $(B_k)_{k \ge 0}$ be a non-negative sequence. 
                 \item Let $(F, f, g, L)$ be given by Assumption \ref{ass:smooth-nsmooth-sum}. 
-                \item Let $(\epsilon_k)$ be a non-negative sequence that is the error schedule. 
+                \item Let $(\epsilon_k)_{k \ge 0}$ be a non-negative sequence that is the error schedule. 
             \end{enumerate}
             Initialize with any $(x_{-1}, v_{-1})$. 
             For these given parameters, an algorithm is a type of accelerated proximal gradient if it generates $(y_k, x_k, v_k)_{k \ge 0}$ such that
@@ -282,7 +284,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             z_k - x_k &= 
             \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - x_k
             \\
-            &= \alpha_kx^+ + (x_{k - 1} - x_k) - \alpha_kx_{k - 1}
+            &= \alpha_k\bar x + (x_{k - 1} - x_k) - \alpha_kx_{k - 1}
             \\
             &= \alpha_k \bar x - \alpha_k v_k, 
             \\
@@ -294,36 +296,28 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         For all $k \ge 0$, apply Theorem \ref{thm:inxt-pg-ineq} with $z = z_k, \tilde x = x_k, x = y_k, \epsilon = \epsilon_k, B = B_k$: 
         \begin{align*}
             0 &\le 
-            (F(z_k) - F(x_k) ) +
-            \left(
-                \frac{B_k + \epsilon_k}{2}\Vert z_k - y_k\Vert^2
-                - \frac{B_k}{2}\Vert z_k - x_k\Vert^2
-            \right)
+            F(z_k) - F(x_k) +
+            \frac{B_k + \epsilon_k}{2}\Vert z_k - y_k\Vert^2
+            - \frac{B_k}{2}\Vert z_k - x_k\Vert^2
             \\
             &\underset{(1)}{\le}
-            (\alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k))
+            \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k)
             + 
-            \left(
-                \frac{B_k + \epsilon_k}{2}\Vert z_k - y_k\Vert^2
-                - \frac{B_k}{2}\Vert z_k - x_k\Vert^2
-            \right)
+            \frac{B_k + \epsilon_k}{2}\Vert z_k - y_k\Vert^2
+            - \frac{B_k}{2}\Vert z_k - x_k\Vert^2
             \\
             &\underset{\eqref{lemma:inxt-apg-onestep-a}}{=} 
-            (\alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k))
+            \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k)
                 \\ &\quad 
-                + \left(
-                    \frac{(B_k + \epsilon_k)\alpha_k^2}{2}\Vert \bar x - v_{k - 1} \Vert^2
-                    - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
-                \right)
+                + \frac{(B_k + \epsilon_k)\alpha_k^2}{2}\Vert \bar x - v_{k - 1} \Vert^2
+                - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
             \\
             &= 
             F(\bar x) - F(x_k)
             + (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x))
                 \\ &\quad 
-                + \left(
-                    \frac{(B_k + \epsilon_k)\alpha_k^2}{2}\Vert \bar x - v_{k - 1} \Vert^2
-                    - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
-                \right)
+                + \frac{(B_k + \epsilon_k)\alpha_k^2}{2}\Vert \bar x - v_{k - 1} \Vert^2
+                - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
             \\
             &= 
             F(\bar x) - F(x_k) 
@@ -352,13 +346,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         At (1) we used convexity of $f$ which is assumed and it makes $f(z_k) \le \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1})$ because $\alpha_k \in (0, 1]$ from Definition \ref{def:inxt-apg}. 
     \end{proof}
-    \\
+    \par
     As a prelude, to derive the convergence rate we unroll the recurrence relation proved in the above lemma.
     It remains to create convergence criterions of the error relative sequence $\epsilon_k$ such that the original optimal convergence rate of $\mathcal O(1/k^2)$ the sequence remains unaffected. 
-    Let the sequence $(B_k)_{k \ge 0}$ be given by **Definition 2**. 
-    We suggest the following descriptors using another sequence $\rho_k$ given by for all $k \ge 1$: 
+    Let the sequence $(B_k)_{k \ge 0}$ be given as in Definition \ref{def:inxt-apg}. 
+    We suggest the following using another sequence $\rho_k$ given by for all $k \ge 1$: 
     \begin{align*}
-        \rho_k &= \frac{B_k + \epsilon_k}{B_{k - 1}}\frac{B_{k - 1}}{B_k}.
+        \rho_k &:= \frac{B_k + \epsilon_k}{B_{k - 1}}\frac{B_{k - 1}}{B_k} = \frac{B_k + \epsilon_k}{B_k}
     \end{align*}
     This means the following: 
     \begin{align*}
@@ -368,12 +362,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \right)
         &=
         \max\left(
-            \sim, 
+            1 - \alpha_k, 
             \rho_k\frac{B_k\alpha_k^2}{B_{k - 1}\alpha_{k - 1}^2}
         \right)
         \\
         &\le \max(1, \rho_k)\max\left(
-            \sim, 
+            1 - \alpha_k, 
             \frac{B_k\alpha_k^2}{B_{k - 1}\alpha_{k - 1}^2}
         \right). 
     \end{align*}
@@ -387,28 +381,85 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         &\le 
         \prod_{k = 1}^{n} 
         \max(1, \rho_k)
-        \left(
         \prod_{i = 1}^{n}
-            \max\left(
-                1 - \alpha_k, 
-                \frac{B_k\alpha_k^2}{B_{k - 1}\alpha_{k - 1}^2}
-            \right)
+        \max\left(
+            1 - \alpha_k, 
+            \frac{B_k\alpha_k^2}{B_{k - 1}\alpha_{k - 1}^2}
         \right)
         \\
         &\le \prod_{k = 1}^n
         \left(
             1 + \frac{2}{k^2}
         \right)
-        (\sim)
+        \prod_{i = 1}^{n}
+        \max\left(
+            1 - \alpha_k, 
+            \frac{B_k\alpha_k^2}{B_{k - 1}\alpha_{k - 1}^2}
+        \right)
         \\
-        &\le 2 (\sim). 
+        &\le 2 
+        \prod_{i = 1}^{n}\max\left(
+            1 - \alpha_k, 
+            \frac{B_k\alpha_k^2}{B_{k - 1}\alpha_{k - 1}^2}
+        \right). 
+    \end{align*}
+    Assuming no $B_k = 0$ then the error schedule $\rho_k \le (1 + 2/k^2)$ translates to 
+    \begin{align*}
+        \frac{B_k + \epsilon_k}{B_k} &\le 1 + \frac{2}{k^2}
+        \\
+        \iff 
+        \epsilon_k &\le - B_k + B_k(1 + 2/k^2) \le \frac{2B}{k^2}. 
     \end{align*}
 
-    The following lemma will seal the case for the other remaining big product above. 
-
+\section{Motivations for applications}
+    Optimization problem of the following type: 
+    $$
+        \min_{x} \left\lbrace
+            f(Ax) + g(Dx)
+        \right\rbrace, 
+    $$
+    where
+    \begin{enumerate}[nosep]
+        \item Let $A \in \RR^{m_1 \times n}, D \in \RR^{m_2 \times n}$,  where inverting $A^TA + \mu I$ exactly for some $\mu > 0$ is computationally intensive on computers. 
+        \item $f: \RR^{m_1} \rightarrow \RR$ is $L$ Lipschitz smooth and, convex but taking maybe $\hprox_f$ is computationally intensive. 
+        \item $g: \RR^{m_2} \rightarrow \overline \RR$ is convex, closed and proper. 
+    \end{enumerate}
+    Solving it using traditional method such as ADMM \cite[chapter 6]{boyd_distributed_2011}, or Chambolle Pock \cite{chambolle_first-order_2010}, would require the knowledge of $(A^TA + \mu I)^{-1}$, and $f$ has $\hprox$ that is simple to evaluate. 
+    Inverting matrix exactly is never easy, especially the sparse and large matrix in image processing (The number of elements in the matrix scales by $\mathcal O(n^4)$ for a size $n \times n$ image for storage, and inverting it with bruteforce is $\mathcal (n^{6})$). 
+    People can do it a few time but it's not practical/simple to do it in every step of some iterative algorithms! 
+    Of course, we can use other smarter method such as Krylov Subspace method for block structured sparse matrices (or most recently, their randomized variants), but they will not be perfectly accurate.
+    Our method however, it will have the advantage of being matrix inversion free. 
+    \par
+    Our proposed algorithm allows inexact evaluation of $\hprox_{B^{-1}g\circ D}$. 
+    This proximal operator can be evaluated using popular algorithm such as Chambolle Pock, or any other efficient approximation algorithm and it will bypass the need of any matrix inversion involving $D$. 
+    Because look, the problem we solve for our algorithm is $\hprox_{(B + \epsilon)^{-1}g\circ D}(x)$ which can be reformulated into: 
+    \begin{align*}
+        \argmin_{y, z} \left\lbrace
+            g(y) + \frac{B + \epsilon}{2}\Vert z - x\Vert^2 : Az = y, y\in \RR^{m_2}, z\in \RR^{n}
+        \right\rbrace. 
+    \end{align*}
+    Solving this problem inexactly is not difficult. 
+    First order method such as Chambolle Pock will suffice, and it won't need expensive matrix inversion. 
+    And, taking the gradient of $\nabla f(Ax)$ doesn't need for $(A^TA + \mu I)^{-1}$. 
+    Our method is also compatible with enhancement such as restart for objective function satisfying the quadratic growth conditions for optimal linear convergence. 
+    \par
+    This is especially useful for problem where, $A$ is massive and sparse without obvious structure. 
+    For example, a TV variational minimization approach for Robust MRI imaging that involves downsampling, blurring, or convolution \cite{zhang_robust_2022, joshi_mri_2009}\cite[Section 7.4]{chambolle_introduction_2016}. 
+    Applications as such adds another matrix $D$, or additional linear constraints to improve the robustness of MRI image reconstruction. 
+    Other potential applications with such structural optimization objective include large regression problem where the penalization term is highly non-trivial. 
+    \par
+    Why we think this paper will fly? 
+    Because: 
+    \begin{enumerate}
+        \item The core theories part for the outer loop convergence described previously are quite simple and easy to understand for interested readers and, practitioners compared to previous results like in the Catalyst Frameworks or Inexact Accelerated Proximal Gradient Method. 
+        \item I haven't found anyone that has good solutions in this type of problem which bypasses inverting $D$ or $A$. 
+        \item It will shine numerically if coupled with advanced approximation algorithm for evaluation the prox of $g\circ D$, for specific $g$ relevant for applications. 
+        \item Our theories give the flexibilities for whatever the practitioners want to do with $\hprox_{B^{-1}g\circ D}$. They can specialize and improved based our theoretical frameworks. 
+    \end{enumerate}
+    
 \bibliographystyle{siam}
 
-\bibliography{references/Books.bib}
+\bibliography{references/refs.bib}
 
 
 \end{document}

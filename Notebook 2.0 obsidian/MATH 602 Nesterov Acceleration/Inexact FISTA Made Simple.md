@@ -70,16 +70,30 @@ $$
 We want to control $w$ in the implementations of the algorithm. 
 This value is accessible. 
 
+#### **Definition 2 | Inexact Proximal Gradient Algorithm**
+> Let $(F, f, g, L)$ satisfies Assumption 1. 
+> Let $\epsilon \ge 0$. 
+> We define the inexact proximal gradient operator: 
+> $$
+> \begin{aligned}
+>     T_B^{(\epsilon)}(x):= 
+>     \left\lbrace
+>         \tilde x \in \R^n | 
+>         \exists w \in S_B(\tilde x | x): 
+>         \Vert w\Vert \le \epsilon \Vert \tilde x - x\Vert
+>     \right\rbrace. 
+> \end{aligned}
+> $$
+
+
 #### **Theorem 1 | Inexact Proximal Gradient inequality**
 > Let $(F, f, g, L)$ satisfies Assumption 0. 
 > Let $\epsilon \ge 0$. 
-> Suppose inexact evaluation $\tilde x \approx T_{B + \epsilon}(x)$ such that $\exists w \in S(\tilde x | x):\Vert w\Vert \le \epsilon \Vert x - \tilde x\Vert$ and $\exists B: D_f(\tilde x, x)\le \frac{B}{2}\Vert \tilde x - x\Vert^2$. 
-> Then for all $z, x \in \R^n$ it has: 
+> Then for all $z, x \in \R^n$ and $\tilde x \in T_B^{(\epsilon)}(\tilde x | x)$: 
 > $$
 > \begin{aligned}
->     0 &\le F(z) - F(\tilde x) + \frac{B}{2}\Vert z - x\Vert^2
->     - \frac{B - \epsilon}{2}\Vert z - \tilde x\Vert^2 
->     + \frac{\epsilon}{2}\Vert \tilde x - x\Vert^2. 
+>    0 &\le F(z) - F(\tilde x) + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+>    - \frac{B}{2}\Vert z - \tilde x\Vert^2. 
 > \end{aligned}
 > $$
 
@@ -133,10 +147,8 @@ $$
     + D_f(\tilde x, x) - f(\tilde x)
     \\
     &= 
-    \left(
-        F(z) - F(\tilde x)
-        - \langle w, z - \tilde x\rangle
-    \right)
+    F(z) - F(\tilde x)
+    - \langle w, z - \tilde x\rangle
     + 
     \left(
         \frac{B + \epsilon}{2}\Vert z - x\Vert^2 - D_f(z, x)
@@ -147,16 +159,10 @@ $$
     \right)
     \\
     &\underset{(1)}{\le} 
-    (\sim)
+    F(z) - F(\tilde x) + \Vert w\Vert\Vert z - \tilde x\Vert
     + \left(
         \frac{B + \epsilon}{2}\Vert z - x\Vert^2
         - \frac{\epsilon}{2}\Vert \tilde x - x\Vert^2
-    \right)
-    \\
-    &\le
-    F(z) - F(\tilde x) + \Vert w \Vert\Vert z - \tilde x\Vert
-    + \left(
-       \sim
     \right)
     \\
     &\underset{(2)}{\le}
@@ -166,7 +172,7 @@ $$
 \end{aligned}
 $$
 
-At (1), we used convexity which has $- D_f(z, x) \le 0$, and the linear search condition $D_f(\tilde x, x) \le \frac{B}{2}\Vert \tilde x - x\Vert^2$.
+At (1), we used convexity which has $- D_f(z, x) \le 0$, and the line search condition $D_f(\tilde x, x) \le \frac{B}{2}\Vert \tilde x - x\Vert^2$.
 At (2) we used $\Vert w\Vert \le \epsilon \Vert x - \tilde x\Vert$, this is our result:
 
 $$
@@ -234,9 +240,12 @@ We think the algorithm need to have the following advantages.
 The following definition defines the accelerated proximal gradient algorithm. 
 
 #### **Definition 2 | Accelerated proximal gradient**
-> Let $(\alpha_k)_{k \ge 0}$ be a sequence in $(0, 1]$. 
-> Let $(B_k)_{k \ge 0}$ be a non-negative sequence. 
-> Let $F = f + g$ with $f$ being a $\mathcal C^1$ function $g$ being convex. 
+> Let 
+> - $(\alpha_k)_{k \ge 0}$ be a sequence in $(0, 1]$. 
+> - $(B_k)_{k \ge 0}$ be a non-negative sequence. 
+> - $(F, f, g, L)$ satisfies Assumption 0. 
+> - Let $(\epsilon_k)_{k \ge 0}$ to be a sequence which is the error schedule. 
+> 
 > Initialize with any $(x_{-1}, v_{-1})$. 
 > The algorithm is a type of accelerated proximal gradient if it generates $(y_k, x_k, v_k)_{k \ge 0}$ such that
 > for $k\ge 0$: 
@@ -244,11 +253,12 @@ The following definition defines the accelerated proximal gradient algorithm.
 > \begin{aligned}
 >     y_{k} &= \alpha_{k} v_{k - 1} + (1 - \alpha_{k}) x_{k - 1},
 >     \\
->     x_k &= T_{B_k}y_k : D_f(x_k, y_k) \le \frac{B_k}{2}\Vert x_k - y_k\Vert^2, 
+>     x_k &\in T_{B_k + \epsilon_k}^{(\epsilon_k)}(y_k) : D_f(x_k, y_k) \le \frac{B_k}{2}\Vert x_k - y_k\Vert^2, 
 >     \\
 >     v_k &= x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}).
 > \end{aligned}
 > $$
+
 
 
 ---
@@ -392,7 +402,7 @@ $\blacksquare$
 **Commentary.**
 To derive the convergence rate, it remains to create convergence criterions of the error relative sequence $\epsilon_k$ such that the original optimal convergence rate of $\mathcal O(1/k^2)$ the sequence remains unaffected. 
 Let the sequence $(B_k)_{k \ge 0}$ be given by **Definition 2**. 
-We suggest the following descriptons using another sequence $\rho_k$ given by for all $k \ge 1$: 
+We suggest the following descriptions using another sequence $\rho_k$ given by for all $k \ge 1$: 
 
 $$
 \begin{aligned}
