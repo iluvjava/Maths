@@ -15,53 +15,33 @@ The name "cute equality" come from our professor who think it is cute.
 Don't ask me why. 
 
 #### **Lemma | The cute equality**
-> For any $a, b \in \mathcal H$, it has for all $\theta \in \R^n$: 
+> For any $a, b \in \mathcal H$, it has for all $\lambda \in \R^n$: 
 > $$
 > \begin{aligned}
->     \Vert (1 - \theta) a + \theta b\Vert^2 = (1 - \theta)\Vert  a\Vert^2 + \theta \Vert b\Vert^2 - 
->     (\theta)(1 - \theta)\Vert a - b\Vert^2 \quad \forall \theta \in \mathbb R. 
+>     (\forall \lambda \in \mathbb R)\; \Vert (1 - \lambda) a + \lambda b\Vert^2 = (1 - \lambda)\Vert  a\Vert^2 + \lambda \Vert b\Vert^2 - 
+>     (\lambda)(1 - \lambda)\Vert a - b\Vert^2. 
 > \end{aligned}
 > $$
 
 
-**Observation**
-
-The LHS is the norm of the affine combinations: $\Vert (1 - \theta) a + \theta b\Vert^2$, the first 2 terms on the RHS: $(1 - \theta)\Vert  a\Vert^2 + \theta \Vert b\Vert^2$ is the affine combination of the individual norms, and the final term is an extra term that makes the equality true. 
-
 **Proof:** 
 
-consider any $\lambda \in \mathbb R$, firstly
-
-$$
-\begin{aligned}
-    &\quad \Vert (1 - \lambda)u + \lambda v\Vert^2 
-    \\
-    &= 
-    (1 - \lambda)^2\Vert u\Vert^2 + 
-    \lambda^2\Vert v\Vert^2 + 2(1 - \lambda)\lambda\langle u, v\rangle, 
-\end{aligned}
-$$
-
-similarly
-
-$$
-\begin{aligned}
-    &\quad \lambda(1 - \lambda) \Vert u - v\Vert^2
-    \\
-    &= 
-    \lambda(1 - \lambda)\Vert u\Vert^2 + 
-    \lambda(1 - \lambda)\Vert v\Vert^2 - 
-    2(1 - \lambda)\lambda\langle u, v\rangle, 
-\end{aligned}
-$$
-
-where adding these 2 terms together yields: 
+When adding these 2 terms together yields: 
 
 $$
 \begin{aligned}
     &\quad 
-    \Vert (1 + \lambda)u + \lambda v\Vert^2 + \lambda(1 - \lambda)
-    \Vert u - v\Vert^2
+    \Vert (1 + \lambda)u + \lambda v\Vert^2 
+    + 
+    \lambda(1 - \lambda)\Vert u - v\Vert^2
+    \\
+    &= 
+    (1 - \lambda)^2\Vert u\Vert^2 + \lambda^2\Vert v\Vert^2
+    + 2\lambda(1 - \lambda)\langle u, v\rangle
+        \\&\quad
+        + \lambda(1 - \lambda)\Vert u\Vert^2 + 
+        \lambda(1 - \lambda)\Vert v\Vert^2 - 
+        2(1 - \lambda)\lambda\langle u, v\rangle
     \\
     &= 
     \lambda(1 - \lambda)\Vert u\Vert^2 + 
@@ -76,7 +56,7 @@ $$
     (\lambda^2 + \lambda - \lambda^2)\Vert v\Vert^2
     \\
     &= 
-    (1 - \lambda)\Vert u\Vert^2 + \lambda \Vert v\Vert^2
+    (1 - \lambda)\Vert u\Vert^2 + \lambda \Vert v\Vert^2. 
 \end{aligned}
 $$
 
@@ -89,6 +69,16 @@ Corollary 2.14 in Heinz's Monotone Operator's textbook.
 **Remarks**
 
 Exchanging $\langle ,\rangle$ to be $\langle ,\rangle_H$ and $\Vert \cdot\Vert$ into $\Vert \cdot\Vert_H$ with $H$ being a positive semi-definite operator in the space would yield the same results as the above. 
+
+When $\lambda(1 - \lambda) \ge 0$, which is when $\lambda \in [0, 1]$, the above equality simplifies to the Jensen's inequality: 
+
+$$
+\begin{aligned}
+    (\forall \lambda \in \R) 
+    (\forall \lambda \in \mathbb R)\; \Vert (1 - \lambda) a + \lambda b\Vert^2 
+    \le (1 - \lambda)\Vert  a\Vert^2 + \lambda \Vert b\Vert^2. 
+\end{aligned}
+$$
 
 
 #### **A Generalized Version**
@@ -174,12 +164,9 @@ Lemma 1.8, In professor's Heinz's Notes
 
 
 ---
-### **Some other inequalities**
+### **Inequalities with inner products**
 
-We introduce some other basic equalities and inequalities. 
-
-1. The cosine law. It transfers inner product involving $x, y, z \in \R^n$ terms to the difference of normed squared edges on a triangle. 
-2. The useful inequality came from the proof in Catalyst second paper. It's a cute formula being spotted me. It's using the cosine law in a peculiar manner. 
+The following identities make use of inner product a lot. 
 
 #### **Theorem | The cosine law**
 > For all $x, y , z \in \R^n$, it has 
@@ -192,7 +179,7 @@ We introduce some other basic equalities and inequalities.
 
 **Proof**
 
-See exercise below. 
+See exercise below. $\blacksquare$
 
 **Exercise**
 
@@ -201,47 +188,6 @@ Prove the above theorem, which is basic algebra like back in high school.
 **Remarks**
 
 This identity generalizes to the non-euclidean settings, see [Bregman Divergence Introduction](../Bregman%20Divergence%20Introduction.md) for more information. 
-
-#### **Lemma | A useful inequality**
-> For all $x, y , z \in \R^n$, $\theta > 0$, it has 
-> $$
-> \begin{aligned}
->     \Vert x - y\Vert^2 &\ge 
->     (1 - \theta)\Vert x - z\Vert^2 + (1 - \theta^{-1})\Vert z - y\Vert^2. 
-> \end{aligned}
-> $$
-
-**Proof**
-
-$$
-\begin{aligned}
-    \Vert x - y\Vert^2 
-    &= \Vert x - z + z - y\Vert^2
-    \\
-    &= \Vert x - z\Vert ^2 + \Vert z - y\Vert^2 + 2\langle x - z, z - y\rangle
-    \\
-    &= \Vert x - z\Vert ^2 + \Vert z - y\Vert^2 + 
-    \Vert 
-        \sqrt{\theta}(x - z) + 1/\sqrt{\theta} (z - y)
-    \Vert^2
-    - \theta \Vert x - z\Vert^2 - \theta^{-1}\Vert z - y\Vert^2
-    \\
-    &= 
-    (1 - \theta)\Vert x - z\Vert^2 + (1 - \theta^{-1})\Vert z - y\Vert^2
-    + \left\Vert 
-        \sqrt{\theta} (x - z) + 1/\sqrt{\theta}(z - y)
-    \right\Vert^2
-    \\
-    &\ge 
-    (1 - \theta)\Vert x - z\Vert^2 + (1 - \theta^{-1})\Vert z - y\Vert^2. 
-\end{aligned}
-$$
-
-$\blacksquare$
-
-**Remarks**
-
-Cosine law has generalization to Non-euclidean geometry and Bregman divergences. 
 
 
 #### **Theorem | 4 Points equality**
@@ -302,6 +248,13 @@ It feels like a cusine of Parallelogram equality immediately follows below.
 It's heavily used in the proofs for properties of Monotone operators. 
 
 
+
+---
+### **Identities, inequalities with norm, norm squared**
+
+The following make use of the squared of the norm a lot. 
+
+
 #### **Theorem | Paralellelogram equality**
 > For all $x, y \in \R^n$, it has 
 >
@@ -314,6 +267,9 @@ It's heavily used in the proofs for properties of Monotone operators.
 **Proof**
 
 The cross term cancels out. 
+Set the $\theta$ in the cute formula to be $1/2$ then we get this identity. 
+
+$\blacksquare$
 
 **Remarks**
 
@@ -321,7 +277,7 @@ Unique to Euclidean space.
 If this can be carried out in some Normed space, then that normed space has Euclidean geometry. 
 
 
-#### **Lemma | Subtle Jensen's inequality for Norms**
+#### **Lemma | Still Jensen's inequality but for Norms 1**
 > Let $\Vert \cdot\Vert$ be any norm, or semi-norm. 
 > Then for all $x, y \in \R^n$ and $\lambda \in (0, 1)$, we have the inequality
 > $$
@@ -352,3 +308,89 @@ $$
 The constants $\lambda, (1 - \lambda)$ takes out because of Jensen's inequality. 
 It applies by $\lambda \in (0, 1)$. 
 The constant $\lambda^{-1}, (1 - \lambda)^{-1}$ takes out because of the Homogeneity of $\Vert \cdot \Vert$, and no absolute value because $\lambda \in (0, 1)$. 
+
+$\blacksquare$
+
+
+
+
+#### **Lemma | A useful inequality**
+> For all $x, y , z \in \R^n$, $\theta > 0$, it has 
+> $$
+> \begin{aligned}
+>     \Vert x - y\Vert^2 &\ge 
+>     (1 - \theta)\Vert x - z\Vert^2 + (1 - \theta^{-1})\Vert z - y\Vert^2. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+$$
+\begin{aligned}
+    \Vert x - y\Vert^2 
+    &= \Vert x - z + z - y\Vert^2
+    \\
+    &= \Vert x - z\Vert ^2 + \Vert z - y\Vert^2 + 2\langle x - z, z - y\rangle
+    \\
+    &\underset{(1)}{=} \Vert x - z\Vert ^2 + \Vert z - y\Vert^2 + 
+    \Vert 
+        \sqrt{\theta}(x - z) + 1/\sqrt{\theta} (z - y)
+    \Vert^2
+    - \theta \Vert x - z\Vert^2 - \theta^{-1}\Vert z - y\Vert^2
+    \\
+    &= 
+    (1 - \theta)\Vert x - z\Vert^2 + (1 - \theta^{-1})\Vert z - y\Vert^2
+    + \left\Vert 
+        \sqrt{\theta} (x - z) + 1/\sqrt{\theta}(z - y)
+    \right\Vert^2
+    \\
+    &\ge 
+    (1 - \theta)\Vert x - z\Vert^2 + (1 - \theta^{-1})\Vert z - y\Vert^2. 
+\end{aligned}
+$$
+
+That was the cosine law at (1). 
+
+$\blacksquare$
+
+**Remarks**
+
+Cosine law has generalization to Non-euclidean geometry and Bregman divergences.
+
+
+#### **Lemma | After grand papa Cauchy**
+> It has: 
+> $$
+> (\forall \theta \in \R \setminus \{0\})(\forall a \in \R^n, b \in \R^n) 
+> \; 
+> \Vert a\Vert \Vert b\Vert \le \theta \Vert a\Vert^2 + \theta^{-1}\Vert b\Vert^2
+> $$
+
+**Proof**
+
+The proof is direct since 
+
+$$
+\begin{aligned}
+    0 &\le \left\Vert 
+        \sqrt{\theta} a -
+        \frac{b}{\sqrt{\theta}}
+    \right\Vert^2
+    \\
+    &= \theta \Vert a\Vert^2 + \theta^{-1}\Vert b\Vert^2 - 2\Vert a\Vert\Vert b\Vert. 
+\end{aligned}
+$$
+
+It's call after papa Cauchy because: 
+
+$$
+\begin{aligned}
+    - \langle a, b\rangle 
+    \ge - \Vert a\Vert\Vert b\Vert \ge 
+    \frac{-1}{2}\left(
+        \theta \Vert a\Vert^2 + \theta^{-1}\Vert b\Vert^2
+    \right). 
+\end{aligned}
+$$
+
+$\blacksquare$

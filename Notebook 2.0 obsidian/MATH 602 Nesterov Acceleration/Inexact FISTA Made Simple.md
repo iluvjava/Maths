@@ -216,7 +216,6 @@ An algorithm need to generate $\tilde x$ given $\epsilon, B$ that fits **Theorem
 Suppose that an iterative procedure were used to estimate $\tilde x$, producing $\tilde x_1, \tilde x_2, \ldots$. 
 The quantity $\Vert x - \tilde x\Vert^2$ can be measured directly in algorithm implementations, for some iterative procedures.
 The quantity $w$ is accessible by $\partial g(x_i), \nabla f(x_i)$. 
-
 Given any initial guess $\tilde x_0$. 
 Consider the following procedures:
 
@@ -366,7 +365,7 @@ $$
     + \frac{(B_k + \epsilon_k)\alpha_k^2}{\alpha_{k - 1}^2B_{k - 1}}
     \frac{\alpha_{k - 1}^2B_{k - 1}}{2}\Vert \sim \Vert^2
     \\
-    &= (\sim)
+    &\le (\sim)
     + \max\left(
         1 - \alpha_k, 
         \frac{(B_k + \epsilon_k)\alpha_k^2}{\alpha_{k - 1}^2B_{k - 1}}
@@ -383,7 +382,8 @@ Hence, for all $k \ge 1$, we have:
 
 $$
 \begin{aligned}
-    F(\bar x) - F(x_k)  - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+    & F(\bar x) - F(x_k)  - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+    \\ 
     &\le 
     \max\left(
         1 - \alpha_k, 
@@ -470,6 +470,9 @@ The following lemma will seal the case for the other remaining big product above
 
 #### **Theorem | Overall Convergence Rate**
 
+I think it follows directly, from what we know of of our previous works. 
+No need to repeat.
+$\blacksquare$
 
 
 ---
@@ -479,7 +482,7 @@ Consider problem of the form:
 
 $$
 \begin{aligned}
-    \min_x f(x) + g(Ax)
+    \min_x f(Ax) + g(Dx)
 \end{aligned}
 $$
 
@@ -489,28 +492,18 @@ where,
 - $f: \R^n\rightarrow \R$ is a $L$ Lipschitz smooth function. 
 - $F = f + g$ is a function with quadratic growth condition. 
 
-Unlike most cases, the linear mapping is in a nonsmooth term, this makes proximal gradient impossible in general because it's proxing $g(Ax)$. 
-In the above notes, we can do inexact evaluations of proximal operator on $g(Ax)$ through other means such as reformulating it and using Douglas Rach for splitting. 
-Because of its simplicity, restart can be used to obtain optimal linear convergence rate when $F$ has Quadratic Growth conditions. 
+If we were to apply primal dual methods such as ADMM, or Chambolle Pock, it would require the inversion $(A^TA + \mu I)$ on the smooth part of the objective. 
+This operation can be prohibitely expensive sometimes, especially for application in imaging. 
+Our approach gives inexact evaluation of $\pprox{B^{-1}g}$, we can use other propular, such as ADMM< or Chambolle Pock again to resolve the sub optimization problem: 
 
-It can be used to solve nontrivial problems in practice. 
-Consider the following formulation of a Total Variation (TV) problem: 
 $$
 \begin{aligned}
-    \min_x 
+    \pprox{(B + \epsilon)^{-1}g}(x) 
+    = 
+    \argmin{z, y} 
     \left\lbrace
-        \frac{1}{2}\Vert Ax - b\Vert^2
-        + \lambda\Vert 
-            Dx
-        \Vert_1
+        g(z) + \frac{B + \epsilon}{2}\Vert z - x\Vert^2 : 
+        Ay = z
     \right\rbrace. 
 \end{aligned}
 $$
-
-This is nontrivial using methods such as Douglas Rachford, ADMM, Chambolle pock, etc due to the involvement of two linear mapping $A, D$. 
-We can use primal dual method like Chambolle pock, but the proximal operator of $(1/2)\Vert Ax - b\Vert^2$ is not simple as well. 
-This makes gives our method some competitive advantage, especially when we have a quadratic growth condition on $F$. 
-
-In practice, for TV it has
-- The $A$ matrix can be a down sample matrix, a convolution matrix etc. 
-- The $D$ matrix is a discretized differential operator in which, minimizing it recovers images/signal of sharp edges. 

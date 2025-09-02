@@ -19,7 +19,7 @@
 - [**Polyak Stepsize**](#polyak-stepsize)
 - [**Lyapunouv arguments for gradient descent type algorithms**](#lyapunouv-arguments-for-gradient-descent-type-algorithms)
   - [**Claim | Lyapunov function for smooth gradient descent**](#claim--lyapunov-function-for-smooth-gradient-descent)
-- [**Lypapunov anlaysis for smooth gradient descent**](#lypapunov-anlaysis-for-smooth-gradient-descent)
+- [**Lyapunov analysis for smooth gradient descent**](#lyapunov-analysis-for-smooth-gradient-descent)
   - [**Claim | Convergence rate of gradient descent**](#claim--convergence-rate-of-gradient-descent)
 
 
@@ -332,6 +332,8 @@ $$
 $$
 
 which indicates that the convergence rate is sub-linear, in $\mathcal O(k^{-1})$ by constraints of the stepsizes that allows for descent. 
+
+$\blacksquare$
 
 **Remarks**
 

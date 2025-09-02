@@ -237,20 +237,14 @@ $$
 
 A similar upper bound can be established for the growth of $\alpha_k$ when $\mu = 0$ by considering 
 
-$$
-\begin{aligned}
-    
-\end{aligned}
-$$
-
-
-
-#### **Fixed point iteration analysis of the sequence**
-
 
 
 ---
 ### **RWAPG Sequence (Relaxed Nesterov's Momentum Sequence)**
 
 The R-WAPG sequence generalizes Nesterov's original rule for updating the momentum sequence. 
+Sometimes, in the case of line search or backtracking, the momentum sequence is made to accomodate these changes in the algorithm for deriving the convergence rate. 
+
+#### **Definition | The Nesterov's sequence relaxed**
+
 
