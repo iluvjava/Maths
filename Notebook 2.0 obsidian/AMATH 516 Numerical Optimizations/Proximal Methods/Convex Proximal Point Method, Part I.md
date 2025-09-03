@@ -392,12 +392,12 @@ See [L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexi
 
 
 #### **Algorithm | Smooth gradient descent**
-> Let $F: \R^n \rightarrow \overline{\mathbb{R}}$ be that is $L$ differentiable. 
+> Let $F: \R^n \rightarrow \overline{\mathbb{R}}$ be that is $L$ Lipschitz smooth. 
 > Then the gradient gradient descent algorithm generates iterates $(x_t)_{t \ge 0}$ by the procedure: 
 > $$
 > \begin{aligned}
 >     x_{t + 1} = \argmin{x \in \R^n} \left\lbrace
->         \langle \nabla f(x_t)\rangle
+>         \langle \nabla F(x_t), x\rangle
 >         + \frac{\eta_{t + 1}}{2}\Vert x - x_t\Vert^2
 >     \right\rbrace
 >     &= x_t - \eta_{t + 1}^{-1} \nabla F(x_t). 

@@ -198,7 +198,7 @@ $$
 \begin{aligned}
     & \quad \min_y \left\lbrace
     h(y) + \langle\nabla g(x), y - x\rangle + \frac{\beta}{2} \Vert y - x\Vert^2
-    \right\rbrace
+    \right\rbrace + g(x)
     \\
     & = \min_y\left\lbrace
         h(y) + 
@@ -206,7 +206,7 @@ $$
         \left(
             \Vert y - x\Vert^2 + 2\langle \beta^{-1} \nabla g(x), y - x\rangle
         \right)
-    \right\rbrace
+    \right\rbrace + g(x)
     \\
     & = \min_y\left\lbrace
         h(y) + 
@@ -218,7 +218,8 @@ $$
 		    }
             - \Vert \beta^{-1}\nabla g(x)\Vert^2 
         \right)
-    \right\rbrace
+    \right\rbrace 
+    + g(x)
     \\
     & = \min_y\left\lbrace
         h(y) + 
@@ -233,11 +234,13 @@ $$
             - \Vert \beta^{-1}\nabla g(x)\Vert^2 
         \right)
     \right\rbrace
+    + g(x)
     \\
     &= \text{env}_{h, \beta^{-1}}
     (
         x - \beta^{-1}\nabla g(x)
-    ) - \frac{\beta\Vert \beta^{-1}\nabla g(x)\Vert^2 }{2}, 
+    ) - \frac{\beta\Vert \beta^{-1}\nabla g(x)\Vert^2 }{2}
+    + g(x). 
 \end{aligned}
 $$
 

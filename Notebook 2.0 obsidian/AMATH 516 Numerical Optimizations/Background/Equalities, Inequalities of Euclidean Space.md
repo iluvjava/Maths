@@ -361,7 +361,7 @@ Cosine law has generalization to Non-euclidean geometry and Bregman divergences.
 #### **Lemma | After grand papa Cauchy**
 > It has: 
 > $$
-> (\forall \theta \in \R \setminus \{0\})(\forall a \in \R^n, b \in \R^n) 
+> (\forall \theta \in \R \setminus \{\mathbf 0\})(\forall a \in \R^n, b \in \R^n) 
 > \; 
 > \Vert a\Vert \Vert b\Vert \le \theta \Vert a\Vert^2 + \theta^{-1}\Vert b\Vert^2
 > $$
