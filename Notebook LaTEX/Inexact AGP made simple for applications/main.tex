@@ -8,7 +8,7 @@
 
 \begin{document}
 
-\title{{\fontfamily{ptm}\selectfont An Inexact Accelreated Proximal Gradient Method for Large Scale Robust TV Variation Problems}}
+\title{{\fontfamily{ptm}\selectfont An Inexact Accelerated Proximal Gradient Method for Large Scale Robust TV Variation Problems}}
 
 \author{
     Author 1 Name, Author 2 Name
@@ -240,7 +240,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \begin{align*}
                 & y_{k} = \alpha_{k} v_{k - 1} + (1 - \alpha_{k}) x_{k - 1},
                 \\
-                & x_k \in T_{B_k + \epsilon_k}^{(\epsilon_k)}y_k: D_f(x, \tilde x) \le (1/2)\Vert x - \tilde x\Vert^2, 
+                & x_k \in T_{B_k + \epsilon_k}^{(\epsilon_k)}(y_k): D_f(x_k, y_k) \le (B_k/2)\Vert x_k -  y_k\Vert^2, 
                 \\
                 & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}).
             \end{align*}
@@ -332,7 +332,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 + (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x))
                 + \frac{(B_k + \epsilon_k)\alpha_k^2}{\alpha_{k - 1}^2B_{k - 1}}\frac{\alpha_{k - 1}^2B_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
             \\
-            &= 
+            &\le 
             F(\bar x) - F(x_k) - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
             \\ &\quad 
             + \max\left(
@@ -430,17 +430,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     Of course, we can use other smarter method such as Krylov Subspace method for block structured sparse matrices (or most recently, their randomized variants), but they will not be perfectly accurate.
     Our method however, it will have the advantage of being matrix inversion free. 
     \par
-    Our proposed algorithm allows inexact evaluation of $\hprox_{B^{-1}g\circ D}$. 
-    This proximal operator can be evaluated using popular algorithm such as Chambolle Pock, or any other efficient approximation algorithm and it will bypass the need of any matrix inversion involving $D$. 
+    Our proposed algorithm allows inexact evaluation of the proximal operator of $g\circ D$. 
+    It can be evaluated using popular algorithm such as Chambolle Pock, or any other efficient approximation algorithm and it can bypass the need of any matrix inversion involving $D$. 
     Because look, the problem we solve for our algorithm is $\hprox_{(B + \epsilon)^{-1}g\circ D}(x)$ which can be reformulated into: 
     \begin{align*}
-        \argmin_{y, z} \left\lbrace
-            g(y) + \frac{B + \epsilon}{2}\Vert z - x\Vert^2 : Az = y, y\in \RR^{m_2}, z\in \RR^{n}
+        \argmin_{z} \left\lbrace
+            g(Dz) + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
         \right\rbrace. 
     \end{align*}
-    Solving this problem inexactly is not difficult. 
-    First order method such as Chambolle Pock will suffice, and it won't need expensive matrix inversion. 
-    And, taking the gradient of $\nabla f(Ax)$ doesn't need for $(A^TA + \mu I)^{-1}$. 
+    First order method such as Chambolle Pock can optimize the problem inexactly without matrix inversion. 
+    And, taking the gradient of $f(Ax)$ doesn't need for $(A^TA + \mu I)^{-1}$. 
     Our method is also compatible with enhancement such as restart for objective function satisfying the quadratic growth conditions for optimal linear convergence. 
     \par
     This is especially useful for problem where, $A$ is massive and sparse without obvious structure. 

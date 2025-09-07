@@ -355,7 +355,7 @@ $\blacksquare$
 
 **Remarks**
 
-Cosine law has generalization to Non-euclidean geometry and Bregman divergences.
+Used in [Inexact FISTA made Simple Part II](../../MATH%20602%20Nesterov%20Acceleration/Inexact%20FISTA%20made%20Simple%20Part%20II.md). 
 
 
 #### **Lemma | After grand papa Cauchy**

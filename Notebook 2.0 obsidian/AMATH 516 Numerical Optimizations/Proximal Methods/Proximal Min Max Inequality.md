@@ -52,11 +52,11 @@ Recall the following:
 #### **Theorem | Proximal inequality**
 > Let $\sigma > 0$. 
 > Let $f: \mathcal H \rightarrow \overline \R$, $y^+ = (I + \sigma \partial f)^{-1}y$. 
-> If,$f$ is a closed convex proper function, then: 
+> If,$f$ is a closed convex proper function and $\mu_f \ge 0$ strongly convex, then: 
 > $$
 > \begin{aligned}
 >     (\forall z \in \mathcal H)\quad
->     0 &\le 
+>     \frac{\mu_f}{2}\Vert z -  y^+ \Vert^2 &\le 
 >     f(z) - f(y^+) + \frac{1}{2\sigma}\Vert y - z\Vert^2 
 >     - \frac{1}{2\sigma} \Vert y - y^+\Vert^2 
 >     - \frac{2}{2\sigma} \Vert z - y^+\Vert^2. 
@@ -88,6 +88,10 @@ $\blacksquare$
 >     \right\rbrace. 
 > \end{aligned}
 > $$
+
+**Remarks**
+
+Restriction to compact sets $B_1, B_2$ is necessary because sometimes, the function is bounded below but it doesn't have minimizers. 
 
 The following inequality is a key result of popular primal dual algorithms. 
 
@@ -132,12 +136,15 @@ $$
 \begin{aligned}
     & y_{n + 1} = (I + \sigma \partial F^\star)^{-1}(y_n + K \bar x)
     \\
-    \iff & 
-    (\forall y \in \mathcal Y)\; 
-    0 \le F^\star(y) - F^\star(y_{n + 1})
-    + \frac{1}{2\sigma}\Vert y_n + \sigma K\bar x - y\Vert^2
-    - \frac{1}{2\sigma} \Vert y_n + \sigma K\bar x - y_{n + 1}\Vert^2
-    - \frac{1}{2\sigma} \Vert y - y_{n + 1}\Vert^2. 
+    & \begin{aligned}
+        \iff 
+        (\forall y \in \mathcal Y)\; 
+        0 &\le F^\star(y) - F^\star(y_{n + 1})
+        + \frac{1}{2\sigma}\Vert y_n + \sigma K\bar x - y\Vert^2
+        \\ &\quad
+        - \frac{1}{2\sigma} \Vert y_n + \sigma K\bar x - y_{n + 1}\Vert^2
+        - \frac{1}{2\sigma} \Vert y - y_{n + 1}\Vert^2.     
+    \end{aligned}
 \end{aligned}\tag{a}
 $$
 
@@ -145,13 +152,17 @@ And,
 $$
 \begin{aligned}
     & x_{n + 1} = (I + \tau \partial G)^{-1}(x_n - \tau K^* \bar y)
-    \\ \iff &
-    (\forall x \in \mathcal X)\; 
-    0 \le
-    G(x) - G(x_{n + 1}) 
-    + \frac{1}{2\tau} \Vert x_n - \tau K^*\bar y - x\Vert^2
-    - \frac{1}{2\tau} \Vert x_n - \tau K^* \bar y - x_{n + 1}\Vert^2
-    - \frac{1}{2\tau} \Vert x - x_{n + 1}\Vert^2. 
+    \\ &
+    \begin{aligned}
+        \iff (\forall x \in \mathcal X)\;
+        0 &\le
+        G(x) - G(x_{n + 1}) 
+        + \frac{1}{2\tau} \Vert x_n - \tau K^*\bar y - x\Vert^2
+        \\ &\quad
+        - \frac{1}{2\tau} \Vert x_n - \tau K^* \bar y - x_{n + 1}\Vert^2
+        - \frac{1}{2\tau} \Vert x - x_{n + 1}\Vert^2.     
+    \end{aligned}
+    
 \end{aligned}\tag{b}
 $$
 
@@ -264,6 +275,23 @@ $$
         K(\bar x - x_{n + 1})
     \rangle
     + \langle K (x_{n + 1} - x), y_{n + 1} - \bar y\rangle. 
-\end{aligned}
+\end{aligned}\tag{f}
 $$
+
+$\blacksquare$
+
+**Remarks**
+
+In the convergence proof, the inner product by the end of the inequality is the prime target. 
+Different algorithm has different choices for the parameter $\bar y, \bar x$. 
+
+---
+### **Let's talk about primal dual algorithms**
+
+Most of the algorithms used to solve KKT stationary point uses a semi-implicit form. 
+
+#### **Definition | Primal dual semi-implicit form**
+
+
+#### **Assumption 1 | The saddle point existence**
 

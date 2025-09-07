@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1756756616.14268 "main.aux" "main.bbl" "main" 1756758475.46161 0
+["bibtex main"] 1756756616.14268 "main.aux" "main.bbl" "main" 1757223341.99083 0
   "./references/refs.bib" 1756598534.29069 7011 0b97eeff04e2c96536cc2c2162dc18f3 ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/siam.bst" 1292289607 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1756758475.1339 1933 ea1e10b151e124206d927af2b47cd6d4 "pdflatex"
+  "main.aux" 1757223341.77711 1933 ea1e10b151e124206d927af2b47cd6d4 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1756758474.25724 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Inexact AGP made simple for applications/main.tex" "main.pdf" "main" 1756758475.46179 0
-  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Inexact AGP made simple for applications/main.tex" 1756758474.03922 23015 fc564fbd84fd61ff481bcdb4d53611c2 ""
+["pdflatex"] 1757223341.2064 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Inexact AGP made simple for applications/main.tex" "main.pdf" "main" 1757223341.99093 0
+  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Inexact AGP made simple for applications/main.tex" 1757223341.03696 22904 65f4130a3db8e97f55b3e930b6e6be9b ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -230,10 +230,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1716844513.00476 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1716844504 8221424 900989947c23303b742a586f0df8c087 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "main.aux" 1756758475.1339 1933 ea1e10b151e124206d927af2b47cd6d4 "pdflatex"
+  "main.aux" 1757223341.77711 1933 ea1e10b151e124206d927af2b47cd6d4 "pdflatex"
   "main.bbl" 1756756616.25752 1357 16484c5018ac6bae6b520e27b4b83185 "bibtex main"
-  "main.out" 1756758475.13468 961 0e0eb66176ed6c7dcb6da471d3da0d97 "pdflatex"
-  "main.tex" 1756758474.03922 23015 fc564fbd84fd61ff481bcdb4d53611c2 ""
+  "main.out" 1757223341.7777 961 0e0eb66176ed6c7dcb6da471d3da0d97 "pdflatex"
+  "main.tex" 1757223341.03696 22904 65f4130a3db8e97f55b3e930b6e6be9b ""
   "presets/julia_lstlisting.tex" 1734912471.75532 795 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1734912471.75575 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1737688388.3909 8751 43b1f87d5e2ad43f60c8e67f03e69d1f ""
