@@ -2279,7 +2279,31 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
 
 \section{The method of Free R-WAPG}\label{sec:free-rwapg}
     In this section, we propose Algorithm \ref{alg:free-rwapg} which estimates the $\mu$ constant as the algorithm executes using the Bregman divergence of $f$ estimated by previous iterates.
-    It is called \emph{Free R-WAPG} because it doesn't require any knowledge of $\mu, L$ in prior for the smooth part $f$, making it parameter-free.
+    \par
+    \textcolor{purple}{
+        We can do this because all convex function is $\mu = 0$ strongly convex. 
+        With $\mu = 0$, it has from Definition \ref{def:rwapg-seq} that for all $k \ge 0$: 
+        \begin{enumerate}[nosep]
+            \item It allows $\alpha_k \in (0, 1)$. The sequence $(\alpha_k)_{k \ge 1}$ is as loose as possible. 
+            \item It has $\rho_{k - 1} = \alpha_k/((1 - \alpha_k)\alpha_{k - 1}^2)$, hence $(1 - \alpha_k)\rho_{k - 1} = \alpha_k^2/\alpha_{k - 1}^2$. 
+        \end{enumerate}
+        Hence, the big product in Proposition \ref{prop:wapg-convergence} simplifies into
+        \begin{align*}
+            \prod_{i = 0}^{k - 1}
+            \max(1, \rho_i)(1 - \alpha_{i + 1})
+            &= 
+            \prod_{i = 0}^{k - 1}
+            \max(1 - \alpha_{i + 1}, \rho_i(1 - \alpha_{i + 1}))
+            \\
+            &= 
+            \prod_{i = 0}^{k - 1}
+            \max\left(
+                1 - \alpha_{i + 1}, \frac{\alpha_{i + 1}^2}{\alpha_i^2}\right). 
+        \end{align*}
+        Finally, since $\mu = 0$, Propisition \ref{prop:r-wapg-momentum-repr} applies with the momentum term simplifies into $\alpha_{k + 1}(\alpha_k^{-1} - 1)$. 
+    }
+    \par
+    Below, we define \emph{Free R-WAPG}. 
     \begin{algorithm}
         \begin{algorithmic}[1]
         {\footnotesize

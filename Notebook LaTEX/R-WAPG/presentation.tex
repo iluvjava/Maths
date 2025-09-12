@@ -244,7 +244,7 @@
                 Let $(\alpha_k)_{k \ge 0}$ be a sequence such that it satisfies: 
                 \begin{align*}
                     & \alpha_0 \in (0, 1], \\
-                    & \alpha_k \in (\mu, 1] \quad (\forall k \ge 1). 
+                    & \alpha_k \in (\mu/L, 1] \quad (\forall k \ge 1). 
                 \end{align*}    
                 Define $(\rho_k)_{k \ge 0}$ by 
                 \begin{align*}
@@ -503,6 +503,28 @@
         \end{frame}
 \section{Adaptive momentum sequence and numerical experiments}
     \subsection{Free R-WAPG}
+        \begin{frame}{Introducing numerical experiments}
+            All convex functions are strongly convex with strong convexity constant $\mu = 0$. 
+            With $\mu = 0$, it has from Definition \ref{def:rwapg-seq} that for all $k \ge 0$: 
+            \begin{enumerate}
+                \item It allows $\alpha_k \in (0, 1)$. The sequence $(\alpha_k)_{k \ge 1}$ is as loose as possible. 
+                \item It has $\rho_{k - 1} = \alpha_k/((1 - \alpha_k)\alpha_{k - 1}^2)$, hence $(1 - \alpha_k)\rho_{k - 1} = \alpha_k^2/\alpha_{k - 1}^2$. 
+            \end{enumerate}
+            This simplifies our convergence claim into: 
+            \begin{align*}
+                \prod_{i = 0}^{k - 1}
+                \max(1, \rho_i)(1 - \alpha_{i + 1})
+                &= 
+                \prod_{i = 0}^{k - 1}
+                \max(1 - \alpha_{i + 1}, \rho_i(1 - \alpha_{i + 1}))
+                \\
+                &= 
+                \prod_{i = 0}^{k - 1}
+                \max\left(
+                1 - \alpha_{i + 1}, \frac{\alpha_{i + 1}^2}{\alpha_i^2}\right). 
+            \end{align*}
+            This insipired our numerical experiments. 
+        \end{frame}
         \begin{frame}{Free R-WAPG}
             \begin{algorithm}[H]
                 \begin{algorithmic}
@@ -602,6 +624,22 @@
                 \label{fig:simple-quadratic-r-wapg-mu-estimates}
             \end{figure}
         \end{frame}
+        \begin{frame}{Real time R-WAPG upper bound}
+            By collecting $(\alpha_k)_{k \ge 0}$ while the algorithm is running we made the following plot for the simple quadratic experiment. 
+            \begin{figure}[H]
+                \centering
+                \begin{subfigure}[b]{0.75\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{
+                        assets/simple_regression_rwapg_upperbnd_1024.png
+                    }
+                \end{subfigure}
+                \caption{
+                    $N = 1024$, the upper bound estimates in real time from the collected $(\alpha_k)_{k \ge 0}$ sequence. 
+                }
+                \label{fig:simple-quadratic-r-wapg-rwapg-upperbnd}
+            \end{figure}
+        \end{frame} 
     \subsection{Numerical experiment, LASSO}
         \begin{frame}{The LASSO problem}
             The problem of LASSO from Tibshirani \cite{tibshirani_regression_1996} is the optimization problem $\min_{x \in \RR^n}\{(1/2)\Vert Ax - b\Vert^2 - \lambda\Vert x\Vert_1\}$. 
@@ -630,7 +668,7 @@
             \end{figure}
         \end{frame}
         \begin{frame}{Estimates of strong convexity constant}
-            The parameters in this specific trial are are $\mu = 7.432363627613958\times 10^{-18}$ and $L = 2321.737206983643$. 
+            The parameters in this specific trial are $\mu = 7.432363627613958\times 10^{-18}$ and $L = 2321.737206983643$. 
             \begin{figure}[H]
                 \begin{subfigure}[b]{0.47\textwidth}
                     \includegraphics[width=\textwidth]{assets/lasso_loss_256.png}
@@ -645,6 +683,22 @@
                 \end{subfigure}
                 \caption{A single LASSO experiment results, with $M = 64, N=256$. f}
                 \label{fig:single-lass-mu-estimates}
+            \end{figure}
+        \end{frame}
+        \begin{frame}{Real time R-WAPG upper bound}
+            Below is the plot of the real time estimates of R-WAPG convergence bound using for the LASSO experiment. 
+            \begin{figure}[H]
+                \centering
+                \begin{subfigure}[b]{0.75\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{
+                        assets/lasso_rwapg_upperbnd_256.png
+                    }
+                \end{subfigure}
+                \caption{
+                    $N = 1024$, the upper bound estimates in real time from the collected $(\alpha_k)_{k \ge 0}$ sequence. 
+                }
+                \label{fig:single-lass-r-wapg-rwapg-upperbnd}
             \end{figure}
         \end{frame}
 

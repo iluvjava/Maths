@@ -111,7 +111,7 @@ $\blacksquare$
 > $$
 
 
-#### **Definition 2 | Inexact proximal gradient operator**
+#### **Definition 2 | Inexact proximal gradient operator with relative error**
 > Let $(F, f, g, L)$ satisfies **Assumption 0**. 
 > Let $\delta \ge 0$, $\kappa \ge 0$, define $h_\kappa(z| x) := z \mapsto g(z) + \langle \nabla f(x), z\rangle + \frac{\kappa}{2}\Vert z - x\Vert^2$. 
 > Let $x^+ = T_\kappa(x)$, with $T_\kappa$ given by **Definition 1**. 

@@ -121,12 +121,9 @@ This is a more specific identification of the epsilon regular subgradient.
 This section focuses on the section in Moduchovich's book. 
 The book assume convexity, and it analyzes properties of the convex epsilon subdifferential and its calculus rules. 
 
-**Assumption**
+**Assumption | Assume it for this section**
 
-> $f: \R^n\rightarrow \overline \R$ is a convex, proper lsc function. 
-
-
-
+> $f: \R^n\rightarrow \overline \R$ is a convex, proper lsc function.
 
 
 #### **Proposition | Basic properties of convex epsilon differential**
@@ -210,7 +207,6 @@ The above inequality is true for all $x\in \text{dom}\; f$, hence equivalently $
 **Remarks**
 
 There is nothing new here in the proof, setting $\epsilon = 0$, it becomes the same proof for Fenchel inequality in the classical convex analysis case. 
-
 This is proposition 5.18 in the book. 
 
 

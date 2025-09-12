@@ -232,6 +232,12 @@ We think the algorithm need to have the following advantages.
 - Accessing $\partial g(\tilde x_i)$ is fast but not computing $\prox_g$. 
 - Computing $f, \nabla f$ is exect, and fast. 
 
+#### **Important Comment | This approach won't work in practice**
+
+Unfortuntely, no algorithm can easily optimizes the elements in a subgradient, for nonsmooth function in general, except for proximal algorithm. 
+This approach only works if the function $g$ is smooth, making the objective in the inner loop to be strongly convex and smooth. 
+In this case, it's possible to bound the norm of the gradient through the objective value of the function; which the convergence claim for gradient descent will suffice. 
+
 
 ---
 ### **The accelerated proximal gradient algorithm**
