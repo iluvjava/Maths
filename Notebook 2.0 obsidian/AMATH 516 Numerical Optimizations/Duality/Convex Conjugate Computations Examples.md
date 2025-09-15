@@ -614,7 +614,7 @@ The variable $z$ for the conjugate function is the decision variables for th dua
 ---
 ### **Conjugate of Infimal Convolutions** $(f\square g)^\star$
 
-The infimal convolution has epigraphical interpretations that makes the resulting form of the conjugate very beautiful. See [Infimal Convolution and its Properties](../CVX%20Geometry/Infimal%20Convolution%20and%20its%20Properties.md) for more information. 
+The infimal convolution has epigraphical interpretations that makes the resulting form of the conjugate very beautiful. See [Infimal Convolution and Fenchel Conjugate](../CVX%20Geometry/Infimal%20Convolution%20and%20Fenchel%20Conjugate.md) for more information. 
 
 **Remarks**: 
 

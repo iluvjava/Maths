@@ -265,7 +265,7 @@ See [Support Function](../CVX%20Analysis/Support%20Function.md) for more about s
 **Proof**
 
 The proof is rather long. 
-Showing $(f + g)^\star(x^*) \ge [f^\star + g^\star](x^*)$ for all $x^* \in \text{dom}\; ([f + g]^\star)$. 
+**Firstly, let's show** $(f + g)^\star(x^*) \ge [f^\star + g^\star](x^*)$ for all $x^* \in \text{dom}\; ([f + g]^\star)$.
 Fix any $x_1^*, x_2^* \in \R^n$, let $x^* = x_1^* + x_2^*$. 
 By definitions, it gives the chain of inequalities: 
 
@@ -305,7 +305,7 @@ Since this is true for any $x_*$, taking the infimum on both side gives:
 $$
 \begin{aligned}
     \inf \left\lbrace
-        f^\star(x_1^*) + g^\star (x_2^*) \left| 
+        f^\star(x_1^*) + g^\star (x_2^*) \left| \;
             x_1^* + x_2^* = x^*
         \right.
     \right\rbrace &= 
@@ -315,9 +315,9 @@ $$
 $$
 
 And hence the easier direction is now proved. 
-The harder direction is to show that $[f^\star\square g^\star](x^*) \le [f + g]^*(x^*)$ for all $x^* \in \text{dom}([f + g]^\star)$. 
-We start with the definition of taking the conjugate of $[f + g]$. 
-Fix any $x \in \text{dom}[f + g]^\star$. 
+**Next, we show that** for all $x^* \in \text{dom}([f + g]^\star)$ it has $[f^\star\square g^\star](x^*) \le [f + g]^*(x^*)$. 
+Fix any $x \in \text{dom}[f + g]^\star$, so we only consider the case $[f + g]^\star < \infty$. 
+By the definition of taking the conjugate of $[f + g]$.
 
 $$
 \begin{aligned}
@@ -350,9 +350,7 @@ $$
 \end{aligned}
 $$
 
-
-**Proof (Rockafellar's Approach)**
-
+Observe that if we we define 
 
 
 

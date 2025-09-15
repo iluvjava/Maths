@@ -9,9 +9,6 @@ Pre-req:
 ### **Intro**
 
 The content of the file is taken from chapter 5 of Boris Morducovhich book: Convex analysis and beyond. 
-Lemma 5.1 in the chapter showed the convergence of the sequence of "proximal point method" in metric space. 
-It has this "" quotation mark because it's directly using the metric and in Euclidean space the metric is the norm instead of norm squared which differentiate it with the proximal point method. 
-This is a very general argument as far as we see. 
 
 
 ---
@@ -21,7 +18,7 @@ Suppose $X$ is a complete metric space with metric $d$.
 The assumption of a complete metric means that we will be looking for the limit of some sequences. 
 The lemma follows prescribes an algorithm for constructing a convergence sequence of iterates given any suboptimal point initially. 
 
-#### **Lemma 5.1 | "Proximal Point Method" in Metric Space**
+#### **Lemma 5.1 | Ekeland Variational Principle Preparations**
 > Let $f: X \rightarrow \overline \R$ be an l.s.c function that is bounded below. 
 > For any $\epsilon > 0$, select $x_0$ to be such that 
 > $$

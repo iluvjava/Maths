@@ -1,4 +1,4 @@
-[[Convex Conjugation Introduction]]
+- [Convex Conjugation Introduction](Convex%20Conjugation%20Introduction.md)
 
 ---
 ### **Intro**
@@ -6,6 +6,7 @@
 Convex conjugate represents the epigraph of a function via affine minorants, or basically half spaces. We use the epigraphical interpretation to prove the theorem. 
 
 ### **The Biconjugate theorem**
+
 
 #### **Theorem statement**
 > For any proper function we have the convex closure of the epigraph of a function is the same as the epigraph of the biconjugation of that function: 
@@ -32,4 +33,9 @@ $$
 \end{aligned}
 $$
 
-The proof is now done. 
+The proof is now done. $\square$
+
+**Remark**
+
+The Biconjugate theorem means that, if the function $f$ is already closed at some point $\bar x$ in it's domain. 
+Then $f^{\star\star}(\bar x) = f(\bar x)$. 

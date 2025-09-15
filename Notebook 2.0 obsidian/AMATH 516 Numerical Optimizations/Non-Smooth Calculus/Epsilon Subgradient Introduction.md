@@ -32,6 +32,7 @@ Taken from the weakly convex function IPPM is the following definition of epsilo
 >     \right\rbrace.
 > \end{aligned}
 > $$
+> When $\bar x \not \in \text{dom}\; g$, it has $\partial g_\epsilon(\bar x) = \emptyset$. 
 
 **Observations**
 
@@ -91,7 +92,7 @@ It's a weaker normal cone description of the epigraph of $g$.
 
 **Remarks**
 
-I made this up, not sure if this is the references or not. 
+I made this up, not sure if this is in the literature. 
 
 
 #### **Definition | Weak epsilon subdifferential**
@@ -103,7 +104,7 @@ I made this up, not sure if this is the references or not.
 >     \left\lbrace
 >         v \in \R^n \left| 
 >             \langle v, x - \bar x\rangle \le 
->             g(x) - g(\bar x) + \varrho/2\Vert x - \bar x\Vert^2 \; \forall x \in \R^n
+>             g(x) - g(\bar x) + \varrho/2\Vert x - \bar x\Vert^2 + \epsilon \; \forall x \in \R^n
 >         \right.
 >     \right\rbrace. 
 > \end{aligned}
@@ -116,12 +117,12 @@ This is a more specific identification of the epsilon regular subgradient.
 
 
 ---
-### **Epsilon subgradient under the convexity assumption**
+### **Epsilon subgradient under convexity**
 
 This section focuses on the section in Moduchovich's book. 
 The book assume convexity, and it analyzes properties of the convex epsilon subdifferential and its calculus rules. 
 
-**Assumption | Assume it for this section**
+#### **Assumption | Assume it for this section**
 
 > $f: \R^n\rightarrow \overline \R$ is a convex, proper lsc function.
 
@@ -139,7 +140,7 @@ Epsilon subgradient mirrors the standard convex subgradient in an intriguing way
 
 Proposition 5.16 in the book. 
 
-#### **Proposition | Fenchel epsilon inequality**
+#### **Proposition | $\epsilon$-Fenchel inequality**
 > Take $f:\R^n\rightarrow \overline \R$ as assumed in this section. 
 > Let $\epsilon \ge 0$. 
 > Then $x^* \in \partial_\epsilon f(x)$ if and only if 
@@ -168,9 +169,8 @@ $$
 \end{aligned}
 $$
 
-We can take the supremum because the inequality of the epsilon subdifferential is true for all $x \in \text{dom}\; f$. 
-
-The inverse is by 
+We can take the supremum because the inequality of the epsilon subdifferential is true for all $x \in \text{dom}\; f$.
+To prove the converse, we have: 
 
 $$
 \begin{aligned}
@@ -202,12 +202,12 @@ $$
 \end{aligned}
 $$
 
-The above inequality is true for all $x\in \text{dom}\; f$, hence equivalently $x^*\in \partial_\epsilon f(\bar x)$. 
+The above inequality is true for all $x\in \text{dom}\; f$, hence equivalently $x^*\in \partial_\epsilon f(\bar x)$.  $\square$
 
 **Remarks**
 
 There is nothing new here in the proof, setting $\epsilon = 0$, it becomes the same proof for Fenchel inequality in the classical convex analysis case. 
-This is proposition 5.18 in the book. 
+<mark style="background: #FFF3A3A6;">This is proposition 5.18 in Moduchovich's book. </mark>
 
 
 #### **Proposition | Strong subgradient sum rule**
@@ -234,17 +234,20 @@ This is proposition 5.18 in the book.
 
 The inclusion of $\supseteq$ is obvious and the direction $\subseteq$ are not obvious and requires considerations under listed scenario 1, 2. 
 
-Let's handle the easier case first. 
+**This is the proof for $\supseteq$.**
 Fix any $\epsilon = \epsilon_1 + \epsilon_2 \ge 0$. 
-By definition of $\bar x \in \text{dom}\; f \cap \text{dom}\; g$, for all $x \in \R^n$: 
+By statement hypothesis $\bar x \in \text{dom}\; f \cap \text{dom}\; g$,
+by definition of $\epsilon$-subgradient it has for all $x \in \R^n$: 
 
 $$ 
 \begin{aligned}
+    (\forall v_1 \in \partial_{\epsilon_1} f(\bar x)):
     \langle v_1, x - \bar x\rangle 
-    &\le f(x) - f(\bar x) + \epsilon_1 \quad (\forall v_1 \in \partial_{\epsilon_1} f(\bar x)), 
+    &\le f(x) - f(\bar x) + \epsilon_1 \quad 
     \\
+    (\forall v_2 \in \partial_{\epsilon_2} g(\bar x)):
     \langle v_2, x - \bar x\rangle 
-    &\le g(x) - g(\bar x) + \epsilon_2 \quad (\forall v_2 \in \partial_{\epsilon_2} g(\bar x)). 
+    &\le g(x) - g(\bar x) + \epsilon_2. 
 \end{aligned}
 $$
 
@@ -272,4 +275,15 @@ Take note that, when $\epsilon = 0$ and/or $\bar x \not\in \text{dom}\; f\cap \t
 In this case, the subgradients $\partial_{\epsilon_1} f(\bar x), \partial_{\epsilon_2} g(\bar x)$ can be empty, which make things trivially true. 
 Therefore, the easier direction $\supseteq$ had been verified. 
 
-Let's handle the difficult case of $\subseteq$. 
+**We now prove the case of $\subseteq$.**
+
+
+...
+$\square$
+
+**Remarks**
+
+<mark style="background: #FFF3A3A6;">See Theorem 5.19, Moduchovich. </mark>
+
+This introductory part now ends. 
+See [Convex Epsilon Subgradient Deep Dive](Convex%20Epsilon%20Subgradient%20Deep%20Dive.md) for more information. 

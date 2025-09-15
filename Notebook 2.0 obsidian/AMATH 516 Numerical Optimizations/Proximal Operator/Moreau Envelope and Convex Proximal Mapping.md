@@ -512,7 +512,7 @@ $$
 
 - At \[1\] we use the conjugate formula for infimal convolution between 2 functions. 
 Also, observe that $z$ is unique because $f(\cdot)\square\frac{1}{2}\Vert\cdot\Vert^2$ is a strongly convex function that has a unique minimum to it. 
-See [Infimal Convolution and its Properties](../CVX%20Geometry/Infimal%20Convolution%20and%20its%20Properties.md) for more info regarding taking the conjugate of the infimal convolution between 2 functions. 
+See [Infimal Convolution and Fenchel Conjugate](../CVX%20Geometry/Infimal%20Convolution%20and%20Fenchel%20Conjugate.md) for more info regarding taking the conjugate of the infimal convolution between 2 functions. 
 - At \[2\] we make use of the Moreau decomposition.
 
 Finally, the conjugate $f^\star$ is convex hence, adding a quadratic makes it strongly convex. 

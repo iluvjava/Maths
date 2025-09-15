@@ -84,12 +84,9 @@ The same holds for the variational normal cone. The proof is not here yet. The c
 ---
 ### **Resolvent of the Normal Cone is Projection**
 
-
-
 #UNFINISHED
 
 
-**References**: I thought of it myself. 
 
 ---
 ### **Basic Properties**

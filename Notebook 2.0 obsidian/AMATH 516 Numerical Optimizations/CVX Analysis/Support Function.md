@@ -157,6 +157,11 @@ One can conclude this directly using the [Thm-2](#**Thm-2%20Support%20Functions%
 #UNFINISHED, #HEINZ, Lemma 8.15
 
 ---
+### **Support functions and Subgradient Constraints Qualifications**
+
+
+
+---
 ### **Example 1 | Support Function of Finite Sets**
 
 > Given a nonempty convex set of vector in $C\subset \mathbb E$: $\{b_i\}_{i = 1}^n$, the support function of the set is: $\delta_C^\star(y) = \max_{i\in [n]}\{\langle y, b_i\rangle\}$. 

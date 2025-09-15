@@ -3,6 +3,7 @@ alias: Fenchel Equality, Fenchel Identity
 ---
 * [Convex Conjugation Introduction](Convex%20Conjugation%20Introduction.md)
 * [Subgradients Intro](../Non-Smooth%20Calculus/Subgradients%20Intro.md)
+* [Biconjugate Theorem](Biconjugate%20Theorem.md)
 
 ---
 ### **Intro**
@@ -27,8 +28,9 @@ However, the equality can be achieved if, the function $f$ is closed and convex.
 > 1. $f(x) + f^\star(y) = \langle x, y\rangle$, 
 > 2. $y \in \partial f(x)$, 
 > 3. $x\in \partial f^\star(y)$ IF, $f$ is also l.s.c. 
-> 
-> The first item shows that equality can be achieved, and the second and third conditions gives what to expect for $x,y$ when equality is achieved. 
+
+The first item shows that equality can be achieved, and the second and third conditions gives what to expect for $x,y$ when equality is achieved. 
+The proof at the end of this file. 
 
 
 #### **Theorem 2 | Subgradient via dual**
@@ -158,11 +160,22 @@ $$
     \\
     &= \langle y, x - z\rangle - f(x) + f(z) 
     \\
-    &= f(z) - f(x) - \langle y, z - x\rangle 
-    \\
-    \iff y &\in \partial f(x). 
+    &= f(z) - f(x) - \langle y, z - x\rangle.
 \end{aligned}
 $$
+The last line is greater than zero which implies $y \in \partial f(x)$. 
+To see the converse, observe that Frenchel Inequality combined with the above results has for all $z \in \R^n$: 
+
+$$
+\begin{aligned}
+    0 &\le 
+    f(x) + f^\star(y) - \langle x, y\rangle
+    \le 
+    f(z) - f(x) - \langle y, z - x\rangle. 
+\end{aligned}
+$$
+
+Set $z = x$ then the third term compresses the first term to zero, which is (1). 
 
 Because $f$ is closed, bi-conjugate theorem applies and $f^{\star\star} = f$. 
 Applying (1) to $f^\star$ instead it yields: 
