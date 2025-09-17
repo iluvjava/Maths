@@ -31,7 +31,7 @@ In this file, let $g: \R^n \rightarrow \overline \R$ to be a closed, convex, and
 > $$
 
 ---
-### **Inexact Proximal gradient with absolute errors**
+### **Inexact proximal gradient based on $\epsilon$-subgradient**
 
 The inexact proximal gradient relates directly to a proximal gradient inequality with absolute errors. 
 
@@ -72,10 +72,87 @@ $\square$
 
 Make the observation that the proximal inequality had been relaxed by the introduction of inexact proximal operator. 
 
-**Commentary**
+**Commentary | Widely used in the literature**
 
 This idea is widely used in literatures for inexact proximal methods! 
 However, actual implementations require sufficient conditions that are simple to compute $x\approx_\epsilon \prox_{\lambda g}(x)$, with as little prior knowledge as possible. 
+Next, we will apply the duality results for $\epsilon$-subgradient, which can characterize the error term $\epsilon$ in computationally accessible terms. 
+
+**Commentary | Duality theory of $\epsilon$-subgradient**
+
+Look, subgradient condition of $\epsilon$-inexact subgradient has resolvent representation: 
+
+$$
+\begin{aligned}
+    \lambda^{-1}(x - \tilde x) &\in \partial_{\epsilon^2/(2\lambda)}g(x)
+    \iff 
+    \tilde x &\in (I + \lambda\partial_{\epsilon^2/(2\lambda)}g)^{-1}x. 
+\end{aligned}
+$$
+
+When $g$ is a closed, convex, and proper function, the duality theory of Epsilon subgradient allows for: 
+
+$$
+\begin{aligned}
+    \lambda^{-1}(x - \tilde x) \in \partial_{\epsilon^2/(2\lambda)} g(x)
+    \iff 
+    x \in \partial_{\epsilon^2/(2\lambda)}g^\star(\lambda^{-1}(x - \tilde x)). 
+\end{aligned}
+$$
+
+Reminding us of the fact that $\partial g_{\epsilon^2/(2\lambda)}$ is not necessarily maximal monotone but the genrealized resolvent identity still applies.
+Let $\delta = \epsilon^2/(2\lambda)$, then it has the following chain of equivalences: 
+
+$$
+\begin{aligned}
+    \tilde x &\in (I + \lambda \partial_\delta g)^{-1} x
+    \\
+    \underset{(1)}{\iff}
+    \tilde x &= x - (I + \partial_\delta g^\star\circ(\lambda^{-1}I))^{-1}x
+    \\
+    \iff 
+    (x - \tilde x, x) &\in
+    \text{gph}\; (I + \partial_\delta g^\star\circ(\lambda^{-1}I))
+    \\
+    \iff
+    (\lambda^{-1}(x - \tilde x), x) &\in
+    \text{gph}\; (\lambda I + \partial_\delta g^\star)
+    \\
+    \iff
+    (\lambda^{-1}(x - \tilde x), \lambda^{-1}x) &\in
+    \text{gph}\; (I + \lambda^{-1}\partial_\delta g^\star)
+    \\
+    \iff 
+    \lambda^{-1}(x - \tilde x) &\in 
+    (I + \lambda^{-1}\partial_\delta g^\star)^{-1}(\lambda^{-1}x). 
+\end{aligned}
+$$
+
+At (1), we used the resolvent identity for multi-valued mapping. 
+This gives us the relation: 
+
+$$
+\begin{aligned}
+    &\lambda^{-1}(x - \tilde x) 
+    \in \partial_{\epsilon^2/(2\lambda)}g(x)
+    \\
+    \iff &
+    \tilde x \approx_\epsilon \pprox{\lambda g}(x)
+    \\
+    \iff &
+    \lambda^{-1}(x - \tilde x) \approx_\epsilon 
+    \pprox{\lambda g^\star}\left(\lambda^{-1}x\right)
+    \\
+    \iff &
+    x \in \partial_{\epsilon^2/(2\lambda)}g^\star(\lambda^{-1}(x - \tilde x)). 
+\end{aligned}
+$$
+
+**Text**
+
+We are now ready to describe the approximation error made. 
+
+
 
 
 ---
@@ -83,7 +160,8 @@ However, actual implementations require sufficient conditions that are simple to
 
 One technique used in the literature is from Catalyst. 
 See [Catalyst Accelerations Part IV, Inexact Oracles](../../MATH%20602%20Nesterov%20Acceleration/Catalyst%20Accelerations%20Part%20IV,%20Inexact%20Oracles.md) for more information 
-Catalyst as introduced by Hongzhou Lin et al. characterizes the error of the inner loop by the optimality gap of the proximal point problem presented to the algorithm in the inner loop. 
+Catalyst as introduced by Hongzhou Lin et al. 
+They Characterize the error of the inner loop by the optimality gap of the proximal point problem presented to the algorithm in the inner loop. 
 We make the following assumptions, notations in this section. 
 
 1. $f: \R^n \rightarrow \R$ is a convex differentiable function with $L$ Lipschitz smooth gradient. 

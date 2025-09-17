@@ -36,16 +36,16 @@ Taken from the weakly convex function IPPM is the following definition of epsilo
 
 **Observations**
 
-$\partial g_0(x)$ is the same as the convex subdifferential. 
+1. $\partial g_0(x)$ is the same as the convex subdifferential. 
 Regular subgradient had $\epsilon = o(\Vert x - \bar x\Vert)$. 
 Which is changing WRT to whatever $x$ is given in relation to $\bar x$, but here $\epsilon \ge 0$ is fixed. 
-
-
-When $g:\R \rightarrow \R = - x^2, \bar x = 0$, $\partial g_\epsilon(0) = \emptyset \;\forall \epsilon \ge 0$. 
+2. When $g:\R \rightarrow \R = - x^2, \bar x = 0$, $\partial g_\epsilon(0) = \emptyset \;\forall \epsilon \ge 0$. 
 Because from the definition it tries to assert $\exists \epsilon \ge 0, v \in \R$ such that $vx \le \bar x + \epsilon$. 
 Which is simply impossible. 
+3. A more, permissible interpretation is to uplift the dimension. 
+4. The $\epsilon$-subgradient operator is not maximally monotone. And it has $\partial_{\epsilon_1}f(x)\subseteq \partial_{\epsilon_2}f (x)$ for all $\epsilon_2 \ge \epsilon_1$ 
 
-A more, permissible interpretation is to uplift the dimension. 
+(3.)
 Consider any $v \in \partial g_\epsilon(\bar x), \bar x \in \text{dom }g$ and $\epsilon \ge 0$, the inequality in the definition has $\forall x \in \R^n$: 
 
 $$
@@ -67,8 +67,7 @@ $$
         \end{bmatrix}
     \right\rangle &\le \epsilon. 
 \end{aligned}
-$$
-
+$$ 
 The last line of inequality resembles the normal cone definition of epigraph of $g$ at the point $\bar x$. 
 It's a weaker normal cone description of the epigraph of $g$. 
 
@@ -128,7 +127,7 @@ The book assume convexity, and it analyzes properties of the convex epsilon subd
 
 
 #### **Proposition | Basic properties of convex epsilon differential**
-> Let $f:\R^n\rightarrow \overline \R$, choose any $\bar x \in \text{dom }f$, the $\partial f(\bar x)$ has 
+> $\forall \bar x \in \text{dom }f$, $\partial f(\bar x)$ has 
 > 1. $0\le\epsilon_1\le \epsilon_2\implies \partial_{\epsilon_1}f(\bar x)\subseteq \partial_{\epsilon_2}f(\bar x)$. 
 > 2. $\partial f(\bar x) = \bigcap_{\epsilon > 0}\partial f_\epsilon(\bar x)$. 
 
@@ -141,68 +140,51 @@ Epsilon subgradient mirrors the standard convex subgradient in an intriguing way
 Proposition 5.16 in the book. 
 
 #### **Proposition | $\epsilon$-Fenchel inequality**
-> Take $f:\R^n\rightarrow \overline \R$ as assumed in this section. 
-> Let $\epsilon \ge 0$. 
-> Then $x^* \in \partial_\epsilon f(x)$ if and only if 
+> Let $\epsilon \ge 0$, then:
 > $$
->     f^\star(x^*) + f(\bar x) \le \langle x^*, \bar x\rangle + \epsilon.
+>     x^* \in \partial_\epsilon f(\bar x)\iff f^\star(x^*) + f(\bar x) \le \langle x^*, \bar x\rangle + \epsilon \implies \bar x \in \partial_\epsilon f(x^*).
 > $$
+> They only equivalent when biconjugation holds at $\bar x$ for $f$. 
 
 **Proof**
 
-The forward direction shows that the inequality is true for any $x^* \in \partial_\epsilon f(\bar x), \bar x \in \text{dom}\; f$. 
-By definition of the epsilon subdifferential, for all $x \in \R^n$: 
+By the definition of $\partial_\epsilon f$, it has for all $x^* \in \partial_\epsilon f(\bar x), \bar x \in \text{dom}\; f$, for all $x \in \R^n$: 
 
 $$
 \begin{aligned}
-    \langle x^*, x - \bar x\rangle 
-    &\le f(x) - f(\bar x) + \epsilon
+    & (\forall x \in X )\; \langle x^*, x - \bar x\rangle 
+    \le f(x) - f(\bar x) + \epsilon
     \\
-    \iff 
-    \langle x^*, x\rangle - f(x) &\le 
-    \langle x^*, \bar x\rangle - f(\bar x) + \epsilon
+    \iff & 
+    (\forall x \in X )\; \langle x^*, x \rangle - f(x)
+    \le 
+    \langle x^*, x\rangle - f(\bar x) + \epsilon
     \\
-    \implies 
-    \sup_{y\in \R^n}\{\langle x^*, y\rangle - f(y)\} = 
-    f^\star(x^*) &\le 
-    \langle x^*, \bar x\rangle - f(\bar x) + \epsilon. 
+    \iff & 
+    \sup_{x \in \R^n}\left\lbrace
+        \langle x^*, x\rangle - f(x)
+    \right\rbrace
+    \le 
+    \langle x^*, x\rangle - f(\bar x) + \epsilon
+    \\
+    \iff & 
+    f^\star(x^*)
+    \le
+    \langle x^*, x\rangle - f(\bar x) + \epsilon
+    \\
+    \underset{(1)}{\implies}
+    & 
+    f^\star(x^*) + f^{\star\star}(\bar x)
+    \le \langle x^*, x\rangle + \epsilon
+    \\
+    \iff &
+    \bar x \in \partial_\epsilon f^\star(x^*). 
 \end{aligned}
 $$
 
-We can take the supremum because the inequality of the epsilon subdifferential is true for all $x \in \text{dom}\; f$.
-To prove the converse, we have: 
+At (1) we used the fact that $f^{\star\star}(x) \le f(\bar x)$, which means that it's all equivalent when $f(\bar x) = f^{\star\star}(\bar x)$, which happens definitively when $\text{epi} f = \text{cl.cnvxh.epi}(f)$, or when $f$ is closed, convex and proper. 
 
-$$
-\begin{aligned}
-    f^\star(x^*) + f(\bar x) 
-    &\le \langle x^*, \bar x\rangle + \epsilon
-    \\
-    f^\star(x^*) = 
-    \sup_{y\in \R^n}\left\lbrace\langle y, x^*\rangle - f(y) \right\rbrace
-    &\le 
-    \langle x^*, \bar x\rangle - f(\bar x)  + \epsilon. 
-\end{aligned}
-$$
-
-If we specify any $x \in \text{dom}\; f$, then it implies: 
-
-$$
-\begin{aligned}
-    \langle x, x^*\rangle - f(x) 
-    &\le f^\star(x^*) 
-    \le \langle x^*, \bar x\rangle - f(\bar x) + \epsilon
-    \\
-    \implies 
-    \langle x, x^*\rangle - f(x) 
-    &\le
-    \langle x^*, \bar x\rangle - f(\bar x) + \epsilon
-    \\
-    \langle x^*, x - \bar x\rangle&\le 
-    f(x) - f(\bar x) + \epsilon. 
-\end{aligned}
-$$
-
-The above inequality is true for all $x\in \text{dom}\; f$, hence equivalently $x^*\in \partial_\epsilon f(\bar x)$.  $\square$
+$\square$
 
 **Remarks**
 
@@ -210,7 +192,7 @@ There is nothing new here in the proof, setting $\epsilon = 0$, it becomes the s
 <mark style="background: #FFF3A3A6;">This is proposition 5.18 in Moduchovich's book. </mark>
 
 
-#### **Proposition | Strong subgradient sum rule**
+#### **Proposition | Strong $\epsilon$ subgradient sum rule**
 > Take both $f, g: \R^n\rightarrow \overline \R$ to satisfy assumption in this section. 
 > Let $\epsilon \ge 0$. 
 > Then the $\epsilon$ subdifferential sum rule states that 

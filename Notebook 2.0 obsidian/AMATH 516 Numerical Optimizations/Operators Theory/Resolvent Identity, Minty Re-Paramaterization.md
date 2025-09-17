@@ -1,15 +1,15 @@
-- [[Monotone Operators Introduction]]
-- [[Minty's Theorem, The Surjectivity Theorem]]
-- [[Firmly Nonexpansive Operators]]. 
+- [Monotone Operators Introduction](Monotone%20Operators%20Introduction.md)
+- [Minty's Theorem, The Surjectivity Theorem](Minty's%20Theorem,%20The%20Surjectivity%20Theorem.md)
+- [Firmly Nonexpansive Operators](Firmly%20Nonexpansive%20Operators.md). 
 - [Resolvent Operators](Resolvent%20Operators.md)
 
 ---
 ### **Resolvent Identity and Minty Paramatrizations**
 
 The resolvent operator serves an important role in the theory of optimizations, it's part of the operator theory. 
+Throughout, the strongest assumption on ambience space $X$ is Inner product space. 
 
 #### **Definition | Resolvent**
-
 > Denote $\mathcal J_A^{\alpha}:= (I - \alpha A)$ to be the resolvent of the operator $A: \mathbb E \mapsto 2^{\mathbb E}$. This is by definition. 
 
 **Observations**
@@ -28,39 +28,41 @@ It can have other convention, but in the references I have we stick to this one.
 
 #### **Thm | Resolvent Identity**
 
-> Let $T$ be maximally monotone, then $\mathcal J_{T^{-1}} = I - \mathcal{J}_{T}$. 
+> For all $T: X \rightarrow 2^X$ , it has $\mathcal J_{T^{-1}} = I - \mathcal{J}_{T}$. 
 
 **Proof**:
 
+Accept the following rules for multi-valued operators for all $(x, y) \in \text{gph}\; T$: 
+- $(x, y) \in \text{gph}\; T \iff (y, x) \in \text{gph}\; T$. 
+- $(x, y) \in \text{gph}\; T \iff (x, y + x)\in \text{gph}\; (I + T)$. 
+
+Then the resolvent identity follows directly by the following sequence of equivalences: 
+
 $$
 \begin{aligned}
-    \mathcal J_{T^{-1}} &= I - \mathcal J_T
+    (x, y) &\in \text{gph}\; \mathcal J_{T^{-1}}
     \\
-    I &= \mathcal J^{-1}_{T^{-1}} - \mathcal J_{T} \mathcal J_{T^{-1}}^{-1}
+    \iff 
+    (y, x) &\in \text{gph}\; \mathcal (I + T^{-1})
     \\
-    &= 
-    (I + T^{-1}) - (I + T)^{-1}(I + T^{-1})
+    \iff 
+    (y, x - y) &\in \text{gph}\; T^{-1}
     \\
-    &= 
-    I + T^{-1} - (I + T)^{-1} - (I + T)^{-1}T^{-1}
+    \iff 
+    (x - y, y) &\in \text{gph}\; T
     \\
-    &= 
-    I - (I + T)^{-1} + T^{-1} - (I + T)^{-1}T^{-1}
+    \iff (x - y, x) &\in \text{gph}\; (I + T)
     \\
-    &= 
-    I - (I + T)^{-1} + (I - (I + T)^{-1})T^{-1}
+    \iff (x, x - y) &\in \text{gph}\; \mathcal J_{T}
     \\
-    &= 
-    (I - (I + T)^{-1})(I + T^{-1})
+    \iff (x, y - x) &\in \text{gph}\; (-\mathcal J_{T})
     \\
-    &= (I - (I + T)^{-1})\mathcal J^{-1}_{T^{-1}}
-    \\
-    \implies  \mathcal J_{T^{-1}} &= 
-    (I + (I + T)^{-1}) = I + \mathcal J_{T}, 
+    \iff 
+    (x, y) &\in \text{gph}\; (I -\mathcal J_{T}). 
 \end{aligned}
 $$
 
-which completes the proof. 
+$\square$
 
 **References**: 
 
