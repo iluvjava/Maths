@@ -16,7 +16,7 @@ Unfortunately, there are many different approaches and they all play an importan
 
 In this file, let $g: \R^n \rightarrow \overline \R$ to be a closed, convex, and proper function. 
 
-#### **Define | $\epsilon$-subgradient**
+#### **Recall Definition | $\epsilon$-subgradient**
 > Let $\epsilon \ge 0$, we define 
 > $$
 > \begin{aligned}
@@ -88,7 +88,7 @@ Next, we will apply the duality results for $\epsilon$-subgradient, which can ch
 
 #### **Definition | Inexact Proximal Gradient**
 > Let $(f, g, L)$ satisfies **Assumption 1**. 
-> Let $\epsilon \ge 0$. 
+> Let $\epsilon \ge 0, B \ge 0$, define $\delta = \frac{B\epsilon^2}{2}$. 
 > Then, $\tilde x \approx_\epsilon T_B(x)$ solves the proximal gradient problem approximately if it satisfies variational inequality: 
 > $$
 > \begin{aligned}
@@ -96,7 +96,7 @@ Next, we will apply the duality results for $\epsilon$-subgradient, which can ch
 >         z \mapsto \langle \nabla f(x), z\rangle
 >         + \frac{B}{2}\Vert z - x\Vert^2 + g(z)
 >     \right](\tilde x)
->     = \nabla f(x) + B(x - \tilde x) + \partial_\epsilon g(\tilde x). 
+>     = \nabla f(x) + B(x - \tilde x) + \partial_{\delta} g(\tilde x). 
 > \end{aligned}
 > $$
 
@@ -104,8 +104,7 @@ Next, we will apply the duality results for $\epsilon$-subgradient, which can ch
 
 There is an implict use of calculus rules for the Epsilon subgradient here. 
 
-
-#### **Theorem | Inexact proximal gradient inequality**
+#### **Theorem | Inexact Proximal Gradient Inequality**
 > Let $(f, g, L)$ satisfies **Assumption 1**. 
 > Let $\epsilon \ge 0$. 
 > Consider $\tilde x \approx_\epsilon T_{B + \beta}(x)$. 

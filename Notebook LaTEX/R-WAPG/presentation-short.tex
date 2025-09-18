@@ -227,7 +227,7 @@
             Note that in Chambolle and Dossal \cite{chambolle_convergence_2015} and their sequence $t_k = \alpha_k^{-1}$ and $\alpha_k = a/(k + 1)$ satisfies $\alpha_k^{-1} \le \alpha_{k + 1}^{-1} - \alpha_{k + 1}^{-2}$. 
         \end{frame}
         \begin{frame}{A practical realization inspired by the theories}
-            Our theories sugguest that, the upperbound for function value in the R-WAPG algorithm is ultimately described by the sequence $(\alpha_k)_{k \ge 0}$.
+            Our theories suggest that, the upperbound for function value in the R-WAPG algorithm is ultimately described by the sequence $(\alpha_k)_{k \ge 0}$.
             \textbf{Taking this idea further, this is what we did for numerical experiments}: 
             \begin{tcolorbox}
                 We made a Free R-WAPG algorithm which estimates the strong convexity constant $\mu$ through the Bregman Divergence at two successive iterates while the algorithm is running and, we check the upper bound using our convergence theory. 
@@ -236,24 +236,6 @@
 
 \section{The R-WAPG framework and convergence rate}
     \subsection{Introducing the R-WAPG framework}
-        \begin{frame}{The R-WAPG sequences}
-            In this section, we highlight key theoretical results that allowed us to unify convergence rate for various variants of FISTA in the literature.
-            \begin{definition}{R-WAPG sequences}\label{def:rwapg-seq}
-                Assume $0 \le \mu < L$. 
-                Let $(\alpha_k)_{k \ge 0}$ be such that: 
-                \begin{align*}
-                    & \alpha_0 \in (0, 1], \\
-                    & \alpha_k \in (\mu/L, 1) \quad (\forall k \ge 1). 
-                \end{align*}    
-                Define $(\rho_k)_{k \ge 0}$
-                \begin{align*}
-                    \rho_k := \frac{\alpha_{k + 1}^2 - (\mu/L) \alpha_{k + 1}}{
-                        (1 - \alpha_{k + 1}) \alpha_k^2.
-                    }
-                \end{align*}
-                We call the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ the R-WAPG sequences. 
-            \end{definition}
-        \end{frame}
         \begin{frame}{Proximal gradient, gradient mapping}
             \begin{definition}[The proximal gradient operator]
                 Define for all $x\in \RR^n$: 
@@ -272,6 +254,24 @@
             \end{definition}
             Note, the $I$ here is the identity operator in $\RR^n$. 
             $L > 0$ is the Lipschitz smoothness parameter for $f$. 
+        \end{frame}
+        \begin{frame}{The R-WAPG sequences}
+            In this section, we highlight key theoretical results that allowed us to unify convergence rate for various variants of FISTA in the literature.
+            \begin{definition}{R-WAPG sequences}\label{def:rwapg-seq}
+                Assume $0 \le \mu < L$. 
+                Let $(\alpha_k)_{k \ge 0}$ be such that: 
+                \begin{align*}
+                    & \alpha_0 \in (0, 1], \\
+                    & \alpha_k \in (\mu/L, 1) \quad (\forall k \ge 1). 
+                \end{align*}    
+                Define $(\rho_k)_{k \ge 0}$
+                \begin{align*}
+                    \rho_k := \frac{\alpha_{k + 1}^2 - (\mu/L) \alpha_{k + 1}}{
+                        (1 - \alpha_{k + 1}) \alpha_k^2.
+                    }
+                \end{align*}
+                We call the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ the R-WAPG sequences. 
+            \end{definition}
         \end{frame}
         \begin{frame}{R-WAPG}
             \begin{definition}[relaxed weak accelerated proximal gradient (R-WAPG)]\label{def:wapg}
@@ -610,9 +610,7 @@
             \end{figure}
         \end{frame}
 
-
-
-\section{references and draft on arxiv}
+\section{References and draft on arxiv}
     \begin{frame}{Thanks for the participations. Merci pour les participations.}
         Our paper can be found on arxiv using the following QR code: 
         \begin{figure}
