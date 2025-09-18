@@ -38,8 +38,12 @@ Taken from Morducovhich Theorem 5.19, we have the following strong sum rule:
 > 1. $f$ is continuous at some point $\bar u \in \text{dom}\; f$. 
 > 2. $\text{ri.dom}\; f \cap \text{ri.dom}\;g \neq \emptyset$. 
 
+**Proof**
 
-#### **Proposition | Affine composition fule of $\epsilon$-subgradient**
+see [Epsilon Subgradient Introduction](Epsilon%20Subgradient%20Introduction.md). $\square$
+
+
+#### **Proposition | Affine composition rule of $\epsilon$-subgradient**
 > Let matrix $A\in \R^{p\times n}$ for $p, n \in \N$. 
 > Let $g: \R^p \rightarrow \overline \R$ be a closed, convex, proper function. 
 > Then, for all $\epsilon \ge 0, x \in \R^n$ such that $A \bar x \in \text{dom}\; g$, it has the chain rule
@@ -49,8 +53,6 @@ Taken from Morducovhich Theorem 5.19, we have the following strong sum rule:
 > \end{aligned}
 > $$
 > Under the condition that $\text{rng}\;A \cap \text{ri}\; \text{dom}\; g \neq \emptyset$. 
-
-
 
 ---
 ### **Duality of $\epsilon$-subgradient**
@@ -65,8 +67,34 @@ Recall the following theorem from the previous section.
 > $$
 > They only equivalent when biconjugation holds at $\bar x$ for $f$. 
 
-**Proof** see original file listed at the top. $\square$
+**Proof** see [Epsilon Subgradient Introduction](Epsilon%20Subgradient%20Introduction.md). $\square$
 
+This duality results gives proximal decomposition in the inexact case as well. 
+See [Inexact Proximal Evaluations](../Proximal%20Operator/Inexact%20Proximal%20Evaluations.md) for more information. 
 
+---
+### **$\epsilon$-subgradient is Not Monotone**
 
+Observe the fact that $\partial_\epsilon g(x)$ is not a monotone operator and it's in general, a multi-valued mapping. 
+It violates the monotone property. 
+Consider for all $x, y \in \text{dom}\; g$, for all $u \in \partial_\epsilon g(x)$, $v \in \partial_\epsilon g(y)$, it then has: 
+
+$$
+\begin{aligned}
+    \langle u - v, x - y\rangle 
+    &= 
+    \langle u, x - y\rangle - \langle v, x - y\rangle
+    \\
+    &= - \langle u, y - x\rangle - \langle v, x - y\rangle
+    \\
+    &\ge f(x) - f(y) - \epsilon - \langle v, x - y\rangle 
+    \\
+    &\ge f(x) - g(y) - \epsilon - f(x) + g(y) - \epsilon
+    \\
+    &\ge -2 \epsilon. 
+\end{aligned}
+$$
+
+It is not quite monotone but close. 
+The following lemma applies the resolvent identity to $\epsilon$-subgradient to obtain duality results of proximal operator. 
 

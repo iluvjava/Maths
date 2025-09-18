@@ -1,5 +1,5 @@
-- [FISTA Made Simple Part IV](FISTA%20Made%20Simple%20Part%20IV.md)
-- [Weak Accelerated Proximal Gradient Part I](Weak%20Accelerated%20Proximal%20Gradient%20Part%20I.md)
+- [Similar Triangle Form Deep Dive](Similar%20Triangle%20Form%20Deep%20Dive.md)
+
 ---
 ### **Intro**
 
@@ -43,8 +43,30 @@ From previous section, we also have the following results.
 > $$
 
 
+#### **Recall | Similar triangle form of accelerated proximal gradient (nondimensionalize)**
+> The definition is about $((\alpha_k)_{k \ge 0}, (q_k)_{k \ge 0}, (B_k)_{k \ge 0}, (y_k)_{k \ge 0}, (x_k)_{k \ge -1}, (v_k)_{k \ge -1})$. 
+> Define the following. 
+> - $x_{-1}, y_{- 1}\in \R^n$ are arbitrary initial condition of the algorithm. 
+> - $(q_k)_{k \ge 1}$ be a sequence such that $q_k \in [0, 1)$ for all $k \ge 1$. 
+> - $(\alpha_k)_{k \ge 1}$ be a sequence such that $\alpha_0 \in (0, 1]$, and for all $k \ge 1$ it has $\alpha_k \in (q_k, 1)$
+> - The sequence $(B_k)_{k \ge 0}$ has $B_k \ge 0$. 
+> 
+> Then an algorithm satisfies the similar triangle form of Nesterov's accelerated gradient if it generates iterates $(y_k, x_k, v_k)_{k \ge 1}$ such that for all $k\ge 0$: 
+> $$
+> \begin{aligned}
+>     y_k &= \left(\frac{\alpha_k - q_k}{1 - q_k}\right)v_{k - 1} 
+>     + \left(\frac{1 - \alpha_k}{1 - q_k}\right) x_{k - 1},
+>     \\
+>     x_k &= T_{L_k}(y_k), D_f(x_k, y_k) \le \frac{B_k}{2}\Vert x_k - y_k\Vert^2, 
+>     \\
+>     v_k &= x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
+> \end{aligned}
+> $$
+
+
+
 ---
-### **Some new Definitions and Assumptions**
+### **Some new definitions and assumptions**
 
 In preprations for a better proof of convergence on ST-APG, this section will propose several new definitions. 
 
@@ -52,7 +74,7 @@ In preprations for a better proof of convergence on ST-APG, this section will pr
 > Let $F = f + g$ where $f$ is $L$ Lipschitz smooth and $g$ is convex. 
 > Then the proximal gradient mapping $T_B(x) = \pprox{B^{-1}g}(x -  B^{-1}\nabla f(x))$ is a singleton, everywhere on $\R^n$. 
 > Let parameter $\mu \ge 0$. 
-> We define the proximal gradient gap $\mathcal E(z, y, \mu)$ is a $\R^n \times \R^n \rightarrow \R^n$ mapping by: 
+> We define the proximal gradient gap $\mathcal E(z, y; \mu, B)$ is a $\R^n \times \R^n \rightarrow \R^n$ mapping by: 
 > $$
 > \begin{aligned}
 >     \mathcal E(z, y, \mu, B) &:= 
@@ -68,7 +90,7 @@ In preprations for a better proof of convergence on ST-APG, this section will pr
 - In addition, if $f$ is $\mu \ge 0$ strongly convex, then $\mathcal E(z, y, \mu, B) \ge 0$ for all $z, y$. 
 - When $f$ is convex, it has $\mathcal E (z, y, \mu, B) + \mu \Vert z - y\Vert^2 \ge 0$, for all $x, z$. 
 
-#### **Assumptions 1 | for linear rate of convergence**
+#### **Assumptions 1 | for a basic inequality**
 > The following assumption is about $(F, f, g, \mathcal E, \mu, L)$, it is the configuration we need to derive the convergence rate of ST-APG. 
 > - Let $F = f + g$ where $f$ is $L$ Lipschitz smooth and, $g$ is closed convex and proper.
 > - Assume that $X^+ = \argmin{x} \{f(x) + g(x)\}$ has $X^+ \neq \emptyset$.
@@ -101,7 +123,7 @@ This sections states intermediate results that we used to derive the convergence
 > \begin{aligned}
 >     & 
 >     \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
->     -\frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
+>     - \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
 >     \\
 >     &=
 >     \frac{\alpha_k \mu}{2}
@@ -119,8 +141,6 @@ This sections states intermediate results that we used to derive the convergence
 >         \right\rangle. 
 > \end{aligned}
 > $$
-
-
 
 **Proof**
 
@@ -214,27 +234,23 @@ $$
 $$
 
 At **(1)**, we used first equality in **Previous Results 1**. 
-Take the result of the equality chain and subtract $-\frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2$ from both sides, the coefficient for $\Vert \bar x - v_{k - 1}\Vert^2$ comes out to be: 
+Take the result of the equality chain and subtract $\frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2$ from both sides, the coefficient for $\Vert \bar x - v_{k - 1}\Vert^2$ comes out to be: 
 
 $$
 \begin{aligned}
     & \frac{\alpha_k^2B_k}{2}
-    - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2} 
-    = \frac{B_k}{2}(
-        \alpha_k^2 + (1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2
-    )
-    \underset{(1)}{=} \frac{B_k\alpha_kq_k}{2}. 
+    - \frac{B_k\alpha_k(\alpha_k - q_k)}{2}
+    = \frac{B_k\alpha_kq_k}{2}. 
 \end{aligned}
 $$
 
-At (1), we used the relation $(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2 = \alpha_k(\alpha_k - q_k)$, for all $k \ge 1$. 
 Therefore we have the equality: 
 
 $$
 \begin{aligned}
     &
     \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-    -\frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
+    -\frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
     \\
     &= 
     \frac{\alpha_k q_k B_k}{2}\Vert \bar x - v_{k - 1}\Vert^2
@@ -331,11 +347,10 @@ $\blacksquare$
 > If we set $\bar x = \Pi_{X^+}y_k$, then we have for all $k \ge 0$: 
 > $$
 > \begin{aligned}
->     F(x_k) - F(\bar x)
->     - (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x))
->     + \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
->     - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
->     &\le 0. 
+>    F(x_k) - F(\bar x)
+>    - (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x))
+>    + \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
+>    - \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2 \le 0. 
 > \end{aligned}
 > $$
 
@@ -365,7 +380,7 @@ $$
 \end{aligned}
 $$
 
-On the second equality above, we used $B^{-1}_k(y_k - x_k)= \mathcal G_{B_k}(y_k)$, and $B_k = \mu/q_k$.
+On the second equality above, we used $B_k(y_k - x_k)= \mathcal G_{B_k}(y_k)$, and $B_k = \mu/q_k$.
 For all $k \ge 0$, we define $\Xi_k$ to be: 
 
 $$
@@ -386,14 +401,14 @@ $$
 \end{aligned}
 $$
 
-then consider the new term $\Xi_k'$ which we defined as: 
+then we define the new term $\Xi_k'$ as: 
 
 $$
 \begin{aligned}
     \Xi_k'
     &=
     \Xi_k + \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-    - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
+    - \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
     \\
     &\underset{(1)}{=} 
     \alpha_kF(x_{k - 1}) - \alpha_k F(\bar x)
@@ -596,7 +611,7 @@ $$
     &= 
     \Xi_k 
     + \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-    - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
+    - \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
     - \mathcal E(x_{k - 1}, y_k, \mu, B_k) 
     \\
     &= \mathcal E(x_{k - 1}, y_k, \mu, B_k)
@@ -604,7 +619,7 @@ $$
     - (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x))
         \\ &\quad 
         + \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-        - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
+        - \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
         - \mathcal E(x_{k - 1}, y_k, \mu, B_k)
     \\
     &=  
@@ -612,7 +627,7 @@ $$
     - (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x))
         \\ &\quad 
         + \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2 
-        - \frac{B_k(1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2}{2}\Vert \bar x - v_{k - 1}\Vert^2
+        - \frac{B_k\alpha_k(\alpha_k - q_k)}{2}\Vert \bar x - v_{k - 1}\Vert^2
     \\
     &\le 0. 
 \end{aligned}
@@ -625,12 +640,6 @@ $\blacksquare$
 
 
 ---
-### **Sufficient Conditions for Linear Convergence**
-
-To achieve linear convergence, one assumption is needed. 
-
-#### **Assumption 2 | sufficient for linear convergence**
-
-
+### **Ignoring the strong convexity make things simpler**
 
 

@@ -31,32 +31,35 @@ In this file, let $g: \R^n \rightarrow \overline \R$ to be a closed, convex, and
 > $$
 
 ---
-### **Inexact proximal gradient based on $\epsilon$-subgradient**
+### **Inexact proximal point/gradient based on $\epsilon$-subgradient**
 
 The inexact proximal gradient relates directly to a proximal gradient inequality with absolute errors. 
+Recall from [Inexact Proximal Evaluations](../Proximal%20Operator/Inexact%20Proximal%20Evaluations.md) the following: 
 
-#### **Definition | $\epsilon$-Inexact proximal operator**
+#### **Recall Definition | $\epsilon$-Inexact proximal operator**
 > For all $x \in \R^n, \epsilon \ge 0, \lambda > 0$, $\tilde x$ is an inexact evaluation of proximal point at $x$, if and only if it satisfies: 
 > $$
 > \begin{aligned}
->     \lambda^{-1}(x - \tilde x) \in \partial_{\epsilon^2/(2\lambda)} g(x). 
+>     \lambda^{-1}(x - \tilde x) \in \partial_{\epsilon^2/(2\lambda)} g(\tilde x). 
 > \end{aligned}
 > $$
 > which we denote by $\tilde x \approx_\epsilon \prox_{\lambda g}(x)$. 
 
-#### **Theorem | Inexact proximal inequality**
+#### **Theorem 1 | Inexact proximal inequality**
 > Let $\epsilon \ge 0, x \in \R^n$. 
 > $\tilde x \approx_\epsilon \prox_{\lambda g}(x)$ if and only if for all $z \in \R^n$ it satisfies: 
 > $$
 > \begin{aligned}
 >     0 &\le 
->     g(z) - g(x) 
->     - \lambda^{-1}\langle x - \tilde x, z - x \rangle 
+>     g(z) - g(\tilde x) 
+>     - \lambda^{-1}\langle x - \tilde x, z - \tilde x \rangle 
 >     + \frac{\epsilon^2}{2\lambda}. 
 >     \\
->     &= g(z) - g(x) + \frac{1}{2\lambda}\Vert \tilde x - z\Vert^2 
->     - \frac{1}{2\lambda} \Vert x - \tilde x \Vert^2 - \frac{1}{2\lambda} \Vert z - x\Vert^2
->     + \frac{\epsilon_2}{2\lambda}. 
+>     &= g(z) - g(\tilde x)  
+>     + \frac{1}{2\lambda}\Vert x - z\Vert^2
+>     - \frac{1}{2\lambda}\Vert x - \tilde x\Vert^2
+>     - \frac{1}{2\lambda}\Vert z - \tilde x\Vert^2
+>     + \frac{\epsilon^2}{2\lambda}. 
 > \end{aligned}
 > $$
 
@@ -78,79 +81,37 @@ This idea is widely used in literatures for inexact proximal methods!
 However, actual implementations require sufficient conditions that are simple to compute $x\approx_\epsilon \prox_{\lambda g}(x)$, with as little prior knowledge as possible. 
 Next, we will apply the duality results for $\epsilon$-subgradient, which can characterize the error term $\epsilon$ in computationally accessible terms. 
 
-**Commentary | Duality theory of $\epsilon$-subgradient**
+#### **Assumption 1 | for inexact proximal gradient**
+> This assumption is about $(f, g, L)$ in the space of $\R^n$ where 
+> - $f: \R^n \rightarrow \R$ is a $L$-Lipschitz smooth function that is also convex. 
+> - $g: \R^n \rightarrow \overline \R$ is a closed, convex and proper function. 
 
-Look, subgradient condition of $\epsilon$-inexact subgradient has resolvent representation: 
+#### **Definition | Inexact Proximal Gradient**
+> Let $(f, g, L)$ satisfies **Assumption 1**. 
+> Let $\epsilon \ge 0$. 
+> Then, $\tilde x \approx_\epsilon T_B(x)$ solves the proximal gradient problem approximately if it satisfies variational inequality: 
+> $$
+> \begin{aligned}
+>     \mathbf 0 \in \partial_\epsilon\left[
+>         z \mapsto \langle \nabla f(x), z\rangle
+>         + \frac{B}{2}\Vert z - x\Vert^2 + g(z)
+>     \right](\tilde x)
+>     = \nabla f(x) + B(x - \tilde x) + \partial_\epsilon g(\tilde x). 
+> \end{aligned}
+> $$
 
-$$
-\begin{aligned}
-    \lambda^{-1}(x - \tilde x) &\in \partial_{\epsilon^2/(2\lambda)}g(x)
-    \iff 
-    \tilde x &\in (I + \lambda\partial_{\epsilon^2/(2\lambda)}g)^{-1}x. 
-\end{aligned}
-$$
+**Remarks**
 
-When $g$ is a closed, convex, and proper function, the duality theory of Epsilon subgradient allows for: 
+There is an implict use of calculus rules for the Epsilon subgradient here. 
 
-$$
-\begin{aligned}
-    \lambda^{-1}(x - \tilde x) \in \partial_{\epsilon^2/(2\lambda)} g(x)
-    \iff 
-    x \in \partial_{\epsilon^2/(2\lambda)}g^\star(\lambda^{-1}(x - \tilde x)). 
-\end{aligned}
-$$
 
-Reminding us of the fact that $\partial g_{\epsilon^2/(2\lambda)}$ is not necessarily maximal monotone but the genrealized resolvent identity still applies.
-Let $\delta = \epsilon^2/(2\lambda)$, then it has the following chain of equivalences: 
+#### **Theorem | Inexact proximal gradient inequality**
+> Let $(f, g, L)$ satisfies **Assumption 1**. 
+> Let $\epsilon \ge 0$. 
+> Consider $\tilde x \approx_\epsilon T_{B + \beta}(x)$. 
+> If in addition, it satisfies $D_f(\tilde x, x) \le B/2\Vert x - \tilde x\Vert^2$. 
 
-$$
-\begin{aligned}
-    \tilde x &\in (I + \lambda \partial_\delta g)^{-1} x
-    \\
-    \underset{(1)}{\iff}
-    \tilde x &= x - (I + \partial_\delta g^\star\circ(\lambda^{-1}I))^{-1}x
-    \\
-    \iff 
-    (x - \tilde x, x) &\in
-    \text{gph}\; (I + \partial_\delta g^\star\circ(\lambda^{-1}I))
-    \\
-    \iff
-    (\lambda^{-1}(x - \tilde x), x) &\in
-    \text{gph}\; (\lambda I + \partial_\delta g^\star)
-    \\
-    \iff
-    (\lambda^{-1}(x - \tilde x), \lambda^{-1}x) &\in
-    \text{gph}\; (I + \lambda^{-1}\partial_\delta g^\star)
-    \\
-    \iff 
-    \lambda^{-1}(x - \tilde x) &\in 
-    (I + \lambda^{-1}\partial_\delta g^\star)^{-1}(\lambda^{-1}x). 
-\end{aligned}
-$$
-
-At (1), we used the resolvent identity for multi-valued mapping. 
-This gives us the relation: 
-
-$$
-\begin{aligned}
-    &\lambda^{-1}(x - \tilde x) 
-    \in \partial_{\epsilon^2/(2\lambda)}g(x)
-    \\
-    \iff &
-    \tilde x \approx_\epsilon \pprox{\lambda g}(x)
-    \\
-    \iff &
-    \lambda^{-1}(x - \tilde x) \approx_\epsilon 
-    \pprox{\lambda g^\star}\left(\lambda^{-1}x\right)
-    \\
-    \iff &
-    x \in \partial_{\epsilon^2/(2\lambda)}g^\star(\lambda^{-1}(x - \tilde x)). 
-\end{aligned}
-$$
-
-**Text**
-
-We are now ready to describe the approximation error made. 
+**Proofs**
 
 
 

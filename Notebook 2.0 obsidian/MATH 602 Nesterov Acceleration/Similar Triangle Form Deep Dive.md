@@ -15,9 +15,7 @@ $T_B(x)$ is the proximal gradient operator for a smooth plus non-smooth objectiv
 $\mathcal G_B(x) = B^{-1}(x - T_B(x))$ is the proximal gradient mapping. 
 
 
-
-
-#### **Definition | similar triangle form of accelerated proximal gradient (nondimensionalize)**
+#### **Definition | Similar triangle form of accelerated proximal gradient (nondimensionalize)**
 > The definition is about $((\alpha_k)_{k \ge 0}, (q_k)_{k \ge 0}, (B_k)_{k \ge 0}, (y_k)_{k \ge 0}, (x_k)_{k \ge -1}, (v_k)_{k \ge -1})$. 
 > Define the following. 
 > - $x_{-1}, y_{- 1}\in \R^n$ are arbitrary initial condition of the algorithm. 
@@ -186,7 +184,7 @@ $\blacksquare$
 This section is exclusively about the relationship between the iterates of the similar triangle form. 
 
 
-#### **Theorem | the same line relation**
+#### **Theorem | The same line relation**
 > Suppose the sequences of $\alpha_k, q_k, y_k, v_k, x_k, B_k$ satisfy the similar triangle form. 
 > Suppose in addition that the sequence $(\alpha_k)_{k \ge 0}$ is a generalized momentum sequence. 
 > Then for all $k \ge 0$, the iterates $y_k, x_{k - 1}, v_{k - 1}$ are on the same line and, they satisfy: 
