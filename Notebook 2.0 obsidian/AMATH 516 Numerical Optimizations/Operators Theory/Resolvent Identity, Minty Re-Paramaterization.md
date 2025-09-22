@@ -66,7 +66,8 @@ $\square$
 
 **References**: 
 
-Heniz's book, 23.18
+- Heniz's book, 23.18
+- Rockafellar Variational, Lemma 12.14, Inverse resolvant. 
 
 **Remarks**
 

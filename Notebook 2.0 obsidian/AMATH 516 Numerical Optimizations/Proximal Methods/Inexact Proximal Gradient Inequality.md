@@ -40,7 +40,7 @@ Recall from [Inexact Proximal Evaluations](../Proximal%20Operator/Inexact%20Prox
 > For all $x \in \R^n, \epsilon \ge 0, \lambda > 0$, $\tilde x$ is an inexact evaluation of proximal point at $x$, if and only if it satisfies: 
 > $$
 > \begin{aligned}
->     \lambda^{-1}(x - \tilde x) \in \partial_{\epsilon^2/(2\lambda)} g(\tilde x). 
+>     \lambda^{-1}(x - \tilde x) \in \partial_{\epsilon} g(\tilde x). 
 > \end{aligned}
 > $$
 > which we denote by $\tilde x \approx_\epsilon \prox_{\lambda g}(x)$. 
@@ -53,13 +53,13 @@ Recall from [Inexact Proximal Evaluations](../Proximal%20Operator/Inexact%20Prox
 >     0 &\le 
 >     g(z) - g(\tilde x) 
 >     - \lambda^{-1}\langle x - \tilde x, z - \tilde x \rangle 
->     + \frac{\epsilon^2}{2\lambda}. 
+>     + \epsilon
 >     \\
 >     &= g(z) - g(\tilde x)  
 >     + \frac{1}{2\lambda}\Vert x - z\Vert^2
 >     - \frac{1}{2\lambda}\Vert x - \tilde x\Vert^2
 >     - \frac{1}{2\lambda}\Vert z - \tilde x\Vert^2
->     + \frac{\epsilon^2}{2\lambda}. 
+>     + \epsilon. 
 > \end{aligned}
 > $$
 
@@ -81,14 +81,14 @@ This idea is widely used in literatures for inexact proximal methods!
 However, actual implementations require sufficient conditions that are simple to compute $x\approx_\epsilon \prox_{\lambda g}(x)$, with as little prior knowledge as possible. 
 Next, we will apply the duality results for $\epsilon$-subgradient, which can characterize the error term $\epsilon$ in computationally accessible terms. 
 
-#### **Assumption 1 | for inexact proximal gradient**
+#### **Assumption 1 | For Inexact Proximal Gradient**
 > This assumption is about $(f, g, L)$ in the space of $\R^n$ where 
 > - $f: \R^n \rightarrow \R$ is a $L$-Lipschitz smooth function that is also convex. 
 > - $g: \R^n \rightarrow \overline \R$ is a closed, convex and proper function. 
 
 #### **Definition | Inexact Proximal Gradient**
 > Let $(f, g, L)$ satisfies **Assumption 1**. 
-> Let $\epsilon \ge 0, B \ge 0$, define $\delta = \frac{B\epsilon^2}{2}$. 
+> Let $\epsilon \ge 0, B \ge 0$. 
 > Then, $\tilde x \approx_\epsilon T_B(x)$ solves the proximal gradient problem approximately if it satisfies variational inequality: 
 > $$
 > \begin{aligned}
@@ -96,27 +96,135 @@ Next, we will apply the duality results for $\epsilon$-subgradient, which can ch
 >         z \mapsto \langle \nabla f(x), z\rangle
 >         + \frac{B}{2}\Vert z - x\Vert^2 + g(z)
 >     \right](\tilde x)
->     = \nabla f(x) + B(x - \tilde x) + \partial_{\delta} g(\tilde x). 
+>     = \nabla f(x) + B(x - \tilde x) + \partial_{\epsilon} g(\tilde x). 
 > \end{aligned}
 > $$
 
 **Remarks**
 
 There is an implict use of calculus rules for the Epsilon subgradient here. 
+Let's make a comparison of the above with the exact evaluation of proximal gradient. 
+Suppose that $x^+ = T_B(x)$ is the exact evaluation of proximal gradient. 
+From optimality condition, $\exists v \in \partial g(x^+), \exists \tilde v \in \partial_\epsilon g(\tilde x)$ such that: 
+
+$$
+\begin{aligned}
+    \mathbf 0 = \nabla f(x) + B(x - \tilde x) + \tilde v 
+    = \nabla f(x) + B(x - \tilde x) + v. 
+\end{aligned}
+$$
+
+Taking the difference of the first, and the second expression yields: 
+
+$$
+\begin{aligned}
+    \mathbf 0 
+    &= B(\tilde x - x^+) + v - \tilde v. 
+\end{aligned}
+$$
+
+#### **Lemma | Inexact Proximal Gradient Alternative Representation**
+> Let $(f, g, L)$ satisfies **Assumption 1**.
+> Let $\epsilon \ge 0, B \ge 0$, then for all $x \approx_\epsilon T_B(x)$, it has the following equivalent representations: 
+> $$
+> \begin{aligned}
+>     & (x - B^{-1}\nabla f(x)) - \tilde x 
+>     \in B^{-1} \partial_\epsilon g(\tilde x)
+>     \\
+>     \iff 
+>     & \tilde x \in (I + B^{-1}\partial_\epsilon g(\tilde x))^{-1}
+>     (x - B^{-1}\nabla f(x))
+>     \\
+>     \iff 
+>     & x \approx_\epsilon \pprox{B^{-1} g}
+>     \left(x - B^{-1}\nabla f(x)\right)
+> \end{aligned}
+> $$
+
+**Proof**
+
+It's direct. $\square$
+
+**Remarks**
+
+Therefore, if we can compute Inexact Proximal Point for $g$ at any $x$, then, we can compute the Inexact Proximal Gradient of $g$ as well. 
+
 
 #### **Theorem | Inexact Proximal Gradient Inequality**
 > Let $(f, g, L)$ satisfies **Assumption 1**. 
 > Let $\epsilon \ge 0$. 
 > Consider $\tilde x \approx_\epsilon T_{B + \beta}(x)$. 
-> If in addition, it satisfies $D_f(\tilde x, x) \le B/2\Vert x - \tilde x\Vert^2$. 
+> If in addition, it satisfies $D_f(\tilde x, x) \le B/2\Vert x - \tilde x\Vert^2$, then it has $\forall z \in \R^n$: 
+> $$
+> \begin{aligned}
+>     - \epsilon &\le 
+>     F(z) - F(\tilde x)
+>     + \frac{B + \beta}{2}\Vert x - z\Vert^2
+>     - \frac{B + \beta}{2}\Vert z - \tilde x\Vert^2
+>     - \frac{\beta}{2}\Vert \tilde x - x\Vert^2. 
+> \end{aligned}
+> $$
 
 **Proofs**
 
+By **Inexact Proximal Gradient**, $\tilde x$ has variational inequality $(B + \beta)(\tilde x - x) - \nabla f(x) \in \partial_\delta g(\tilde x)$. 
+By definition of **$\epsilon$-Subgradient** it has for all $z$: 
 
+$$
+\begin{aligned}
+    - \epsilon &\le 
+    g(z) - g(\tilde x) - \langle (B + \beta)(\tilde x - x) - \nabla f(x), z - \tilde x\rangle
+    \\
+    &= 
+    g(z) - g(\tilde x) 
+    - (B + \beta)\langle \tilde x - x, z - \tilde x\rangle
+    + \langle \nabla f(x), z - \tilde x\rangle
+    \\
+    &\underset{(1)}{\le} 
+    g(z) + f(z) - g(\tilde x) - f(\tilde x)
+    - (B + \beta)\langle \tilde x - x, z - \tilde x\rangle
+    - D_f(z, x) + D_f(\tilde x, x)
+    \\
+    &\underset{(2)}{\le} 
+    F(z) - F(\tilde x)
+    - (B + \beta)\langle \tilde x - x, z - \tilde x\rangle
+    + \frac{B}{2}\Vert \tilde x - x\Vert^2
+    \\
+    &=
+    F(z) - F(\tilde x) + \frac{B + \beta}{2}\left(
+        \Vert x - z\Vert^2
+        - \Vert \tilde x - x\Vert^2
+        - \Vert z - \tilde x\Vert^2
+    \right)
+    + \frac{B}{2}\Vert \tilde x - x\Vert^2
+    \\
+    &= 
+    F(z) - F(\tilde x)
+    + \frac{B + \beta}{2}\Vert x - z\Vert^2
+    - \frac{B + \beta}{2}\Vert z - \tilde x\Vert^2
+    - \frac{\beta}{2}\Vert \tilde x - x\Vert^2. 
+\end{aligned}
+$$
+
+**At (1)**, we used considered the following: 
+$$
+\begin{aligned}
+    \langle \nabla f(x), z - x\rangle &= \langle \nabla f(x), z - x + x - \tilde x\rangle
+    \\
+    &= \langle \nabla f(x), z - x\rangle + \langle \nabla f(x), x - \tilde x\rangle
+    \\
+    &= -D_f(z, x) + f(z) - f(x) + D_f(\tilde x, x) - f(\tilde x) + f(x)
+    \\
+    &= -D_f(z, x) + f(z) + D_f(\tilde x, x) - f(\tilde x). 
+\end{aligned}
+$$
+
+**At (2)**, we used the fact that $f$ is convex hence $- D_f(z, x) \le 0$ always, and in the statement hypothesis we assumed that $B$ has $D_f(\tilde x, x) \le B/2\Vert \tilde x - x\Vert^2$. 
+$\square$
 
 
 ---
-### **Inexact proximal gradient with relative errors**
+### **Inexact proximal gradient Based on Optimality Gap of the Proximal Problem**
 
 One technique used in the literature is from Catalyst. 
 See [Catalyst Accelerations Part IV, Inexact Oracles](../../MATH%20602%20Nesterov%20Acceleration/Catalyst%20Accelerations%20Part%20IV,%20Inexact%20Oracles.md) for more information 

@@ -1,0 +1,531 @@
+\documentclass[12pt]{article}
+
+% \input{presets/wang_full.tex}
+\usepackage{ifthen}\newboolean{draftmode}\setboolean{draftmode}{true}
+\input{presets/wang/input.tex}
+\input{presets/misc.tex}
+\input{presets/julia_lstlisting.tex}
+
+% NOTATIONS FOR THIS PAPER 
+\DeclareMathOperator{\dist}{\mathop{dist}}
+\DeclareMathOperator{\rng}{\mathop{rng}}
+
+\begin{document}
+
+\title{{\fontfamily{ptm}\selectfont Resolving a Fundamental Challenge in Inexct Proximal Method: The Unknown Constant of the Error Bound }}
+
+\author{
+    Author 1 Name, Author 2 Name
+    \thanks{
+        Subject type, Some Department of Some University, Location of the University,
+        Country. E-mail: \texttt{author.namee@university.edu}.
+    }
+}
+
+\date{\today}
+
+\maketitle
+\todoinline{This paper is currently in draft mode. Check source to change options. }
+% \vskip 8mm
+
+\begin{abstract} 
+    \noindent
+    I read a lot of papers on Catalyst, and restart. 
+    And it just dawned on me on how simple the ideas can be, and I had identified a specific type of problem where the idea has practical advantage. 
+    This is note is a plan of our upcoming practical paper, with numerical experiments, applications and sweet theories. 
+\end{abstract}
+
+\noindent{\bfseries 2010 Mathematics Subject Classification:}
+Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
+\noindent{\bfseries Keywords:}
+
+% ==============================================================================
+\section{Introduction}
+    Let $Q \subseteq \RR^n$, we use the notation: $\dist(x | Q) = \inf_{z \in Q}\Vert x - z \Vert$. 
+    When $Q \subseteq \RR^n$ is closed, nonempty and convex, we denote the closest point projection to the set by $\Pi(x | Q)$. 
+    For any matrix $A$, we denote its kernel by $\ker A$, and its range $\rng A$. 
+    \par
+    Definte some matrix $A \in \RR^{m \times n}$ and, let vector $b \in \RR^m$ be such that $b \in \rng A$. 
+    Consider the following optimization problem: 
+    \begin{align}\label{eqn:prblm-exmp}
+        \min_{x \in \RR^n}\left\lbrace
+            \lambda\Vert x\Vert_1 + \frac{1}{2}\dist(x |\; \{z:Az = b \})^2
+        \right\rbrace. 
+    \end{align}
+    This problem is not easy to solve because taking the gradient of the second function (denote $f(x) = \frac{1}{2}\dist(x | \{z: Ax = b\})$) in \eqref{eqn:prblm-exmp} requires the left pseudo inverse of matrix $A$. Since the gradient is given by: 
+    \begin{align*}
+        \nabla f(z) = z - A^\dagger (Az - b) = z - \Pi(z | \{x | Ax = b\}). 
+    \end{align*}
+    When $A$ is sparse or large.
+    Taking the gradient of the function is a fundamental challenge for numerical algorithms. 
+    \par
+    The difficulty doesn't stop here at all and, the next issue about error bound condition is worse.  
+    If we were to approximate $\nabla f(z)$ with $\tilde \nabla f(z)$ to minimize the error $\Vert \nabla f(z) - \tilde \nabla f(z)\Vert$ using some type of optimization algorithm that solves the projection problem approximately: 
+    \begin{align*}
+        \tilde z \approx z^+ = \Pi(z | \{x | Ax = b\}) &= 
+        \argmin_{y}\left\lbrace
+            \frac{1}{2}\Vert y - z \Vert^2 : Ay = b
+        \right\rbrace.
+    \end{align*}
+    This approach has a fundamental challenge because the approximation error is $\Vert \tilde z - z^+\Vert$. 
+    To estimate this quantity for inexact algorithm, in general would require some error bound conditions. 
+    In this case, let $\sigma_{\min}(A)$ be the minimal nonzero singular value of $A$, the error bound is
+    \begin{align*}
+        \sigma_{\min}(A)\Vert \tilde z - z^+\Vert \le \Vert A\tilde z - b\Vert. 
+    \end{align*}
+    Look, this error bound condition requires knowing $\sigma_{\min}(A)$ which is just as hard as looking for the inverse of $A$. 
+    A lot of the algorithm for estimating singular value are iterative method, or their specialized variants for sparse, or structured matrices. 
+    This is a fundamental challenge when applying inexact methods in general. 
+    To convince, consider changing the second function in the objective to $f(x) = (1/2)\dist(x | \{z: Ax \in \RR^n_+\})^2$. 
+    In this case, the error bound condition is known as ``Hoffman Error Bound", and lower bounding the constant is a combinatorics problem, hence, extremely difficult to obtain in practice. 
+    % \par
+    % To construct our theoretical framework, We formulate the following abstraction representation:
+    % \begin{align*}
+    %     \min_{x \in \RR^n}\left\lbrace
+    %         g(x) + 
+    %         \dist\left(
+    %             x \left|\; \bigcap_{i = 1}^m C_i \right.
+    %         \right)^2
+    %     \right\rbrace.
+    % \end{align*}
+    % Where 
+    % \begin{enumerate}[nosep]
+    %     \item 
+    % \end{enumerate}
+    \par
+    \textbf{Contributions of the paper (hopefully)}.
+    \begin{enumerate}[nosep]
+        \item We show that an accelerated proximal gradient method with inexact gradient evaluation can converge under a relative error conditions. 
+        \item We show that we don't need to know the constant for the error bound condition and we can still get convergence for the algorithm. 
+        \item We give outer loop complexity analysis for our algorithm, if the inner loop error bound condition exists, and asymptoptic convergence rate when it doesn't exist. 
+    \end{enumerate}
+
+    \begin{assumption}\label{ass:smooth-nsmooth-sum}
+        We assume the following about $(F, f, g, L)$: 
+        \begin{enumerate}[nosep]
+            \item $f: \RR^n \rightarrow \RR$ is a convex, $L$ Lipschitz smooth function but doesn't support any easy implementation of its proximal operator. 
+            \item $g: \RR^n \rightarrow \RR$ is convex, proper, and closed, and its proximal operator can be easily implemented, and easy to obtain some element $\partial g$ at all points of the domain. 
+            \item The over all objective has $F = f + g$. 
+        \end{enumerate}
+        Under this assumption, we denote the proximal gradient operator of $F = f+ g$ as $T_B(x) = \hprox_{B^{-1}g}(x - B^{-1}\nabla f(x))$. 
+        Note that by definition it has also:
+        \begin{align*}
+            T_B(x) &= 
+            \hprox_{B^{-1}g}\left(
+                x - B^{-1}\nabla f(x)
+            \right)
+            \\
+            &= \argmin_{z}\left\lbrace
+                g(z)
+                + \langle \nabla f(x), z\rangle
+                + \frac{B}{2}\Vert z - x \Vert^2
+            \right\rbrace. 
+        \end{align*}
+    \end{assumption}
+    \begin{definition}[A measure of error from proximal gradient evaluations]\;\\
+        Let $(F, f, g, L)$ satisfies Assumption \ref{ass:smooth-nsmooth-sum}. 
+        For all $x, z \in \RR^n$, define $S$: 
+        \begin{align*}
+            S_B(z | x) &= \partial 
+            \left[
+                z \mapsto g(z)
+                + \langle \nabla f(x), z\rangle
+                + \frac{B}{2}\Vert z - x \Vert^2
+            \right](z). 
+        \end{align*}
+    \end{definition}
+    Observe: 
+    \begin{enumerate}[nosep]
+        \item $S_B(z | x) = \partial g(z) + \nabla f(x)+ B(z - x)$,
+        \item $\mathbf 0 \in S_B(T(x) | x)$, 
+        \item $(S_B(\cdot | x))^{-1}(\mathbf 0)$ is a singleton by strong convexity. 
+    \end{enumerate}
+    Let's assume inexact evaluation of $\tilde x \approx T_B(x)$ where $\nabla f$ is inexact. 
+    Assuming that we have the estimate $\tilde \nabla f(x)$ for $\nabla f(x)$, then $\exists v \in \partial g(\tilde x)$. 
+    \begin{align*}
+        0 &= v + \tilde \nabla f(x) + B(\tilde x - x)
+        \\
+        \iff
+        \nabla f(x) - \tilde \nabla f(x)
+        &= v + \nabla f(x) + B(\tilde x - x). 
+    \end{align*}
+    This means $\nabla f(x) - \tilde \nabla f(x) \in S_B(\tilde x | x)$. 
+    We want to control $w$ in the implementations of inexact accelerated proximal gradient algorithm.
+    
+\section{Key ideas we need to get right}
+    \begin{definition}[inexact proximal gradient]\;\label{def:inxt-pg}\\
+        Let $(F, f, g, L)$ satisfies Assumption \ref{ass:smooth-nsmooth-sum}.
+        Let $\epsilon \ge 0, B \ge 0$. 
+        We Define for all $x \in \RR^n$ the inexact proximal gradient operator $T_B^{(\epsilon)}(x)$ to be such that if $\tilde x \in T^{(\epsilon)}_{B}(x)$ then, $\exists w \in S_{B}(\tilde x | x):\Vert w\Vert\le \epsilon \Vert \tilde x - x\Vert$.         
+    \end{definition}
+    The algorithm we will design must produce iterates in a way that satisfies the inexact proximal gradient operator define above. 
+    The following theorem will characterize a key inequality for convergence claim. 
+    \begin{theorem}[inexact over regularized proximal gradient inequality]\;\label{thm:inxt-pg-ineq}\\
+        Let $(F, f, g, L)$ satisfies Assumption \ref{ass:smooth-nsmooth-sum}.
+        Take $T^{(\epsilon)}_B$ as given in Definition \ref{def:inxt-pg}. 
+        Let $\epsilon \ge 0$. 
+        For all $x\in \RR^n$, if $\exists B \ge 0$ such that $\tilde x \in T_{B + \epsilon}^{(\epsilon)}(x)$ and, $D_f(\tilde x, x)\le \frac{B}{2}\Vert \tilde x - x\Vert^2$. 
+        Then for all $z, x \in \RR^n$ it has: 
+        \begin{align*}
+            0 &\le F(z) - F(\tilde x) + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+            - \frac{B}{2}\Vert z - \tilde x\Vert^2. 
+        \end{align*}
+    \end{theorem}
+    \begin{proof}
+        By Definition \ref{def:inxt-pg}, $T_{B + \epsilon}^{(\epsilon)}(x)$ minimizes a $h(z) = z \mapsto g(z) + \langle \nabla f(x), z \rangle + \frac{B + \epsilon}{2}\Vert x - z\Vert^2$ to produce $\tilde x$ so that $w \in S_{B + \epsilon}(\tilde x| x) = \partial h(x)$. 
+        $h$ is $B + \epsilon$ strongly convex by convexity of $g$. 
+        Since $w \in \partial h(\tilde x)$, it has subgradient inequality through strong convexity: 
+        $$
+            (\forall z \in \RR^n)\;  
+            \frac{B + \epsilon}{2}\Vert z - \tilde x\Vert^2 \le h(z) - h(\tilde x) - \langle w,  z - \tilde x\rangle. 
+        $$
+        This means for all $z \in \RR^n$: 
+        \begin{align*}
+            &\frac{B + \epsilon}{2}\Vert \tilde x - z \Vert^2 
+            \\
+            &\le 
+            g(z) + \langle \nabla f(x), z\rangle + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+            - \left(
+                g(\tilde x) + 
+                \langle \nabla f(x), \tilde x\rangle
+                + 
+                \frac{B + \epsilon}{2}\Vert \tilde x - x\Vert^2
+            \right)
+                \\ &\quad 
+                - \langle w, z - \tilde x\rangle
+            \\
+            &= 
+            \left(
+                g(z) - g(\tilde x)
+                + \frac{B + \epsilon}{2}\Vert z - x\Vert^2 - \frac{B + \epsilon}{2}\Vert \tilde x - x\Vert^2
+                - \langle w, z - \tilde x\rangle
+            \right)
+            \\&\quad 
+                + \langle \nabla f(x), z - x + x -\tilde x\rangle
+            \\
+            &\underset{(1)}{=} 
+            \left(
+                g(z) - g(\tilde x)
+                + \frac{B + \epsilon}{2}\Vert z - x\Vert^2 - \frac{B + \epsilon}{2}\Vert \tilde x - x\Vert^2
+                - \langle w, z - \tilde x\rangle
+            \right)
+                \\
+                &\quad 
+                - D_f(z, x) + f(z)
+                + D_f(\tilde x, x) - f(\tilde x)
+            \\
+            &=
+            \left(
+                F(z) - F(\tilde x)
+                - \langle w, z - \tilde x\rangle
+            \right)
+            + 
+            \left(
+                \frac{B + \epsilon}{2}\Vert z - x\Vert^2 - D_f(z, x)
+            \right) 
+                \\ &\quad 
+                + \left(
+                    D_f(\tilde x, x)
+                    - \frac{B + \epsilon}{2}\Vert \tilde x - x\Vert^2
+                \right)
+            \\
+            &\underset{(2)}{\le} 
+            \frac{B + \epsilon}{2}\Vert z - x\Vert^2 - D_f(z, x)
+            + \left(
+                \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+                - \frac{\epsilon}{2}\Vert \tilde x - x\Vert^2
+            \right)
+            \\
+            &\le
+            F(z) - F(\tilde x) + \Vert w \Vert\Vert z - \tilde x\Vert
+            + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+            - \frac{\epsilon}{2}\Vert \tilde x - x\Vert^2
+            \\
+            &\underset{(3)}{\le}
+            F(z) - F(\tilde x) 
+            + \epsilon\Vert x - \tilde x\Vert\Vert z - \tilde x\Vert
+            + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+            - \frac{\epsilon}{2}\Vert \tilde x - x\Vert^2. 
+        \end{align*}
+        At (1), we used: 
+        \begin{align*}
+            & \langle \nabla f(x), z - x\rangle
+            - \langle \nabla f(x), \tilde x - x\rangle
+            \\
+            &= 
+            - D_f(z, x) + f(z) - f(x)
+            + D_f(\tilde x, x) - f(\tilde x) + f(x)
+            \\
+            &= f(z) + f(\tilde x) - D_f(z, x) + D_f(\tilde x , x). 
+        \end{align*}
+        At (2), we had $f$ convex as the assumption, hence $D_f(z, x) \le 0$. 
+        We also had the assumption that $B$ makes $D_f(\tilde x, x) \le \frac{B}{2}\Vert \tilde x - x\Vert^2$, this simplies the third term from the previous line into $- \frac{\epsilon}{2}\Vert x - \tilde x\Vert^2$. 
+        At (3), we applied the assumed inequality $\Vert w\Vert \le \epsilon \Vert x - \tilde x\Vert \Vert z - \tilde x\Vert$. 
+        Continuing: 
+        \begin{align*}
+            0 &\le
+            \left(
+                F(z) - F(\tilde x) + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+                - \frac{B + \epsilon}{2}\Vert z - \tilde x\Vert^2 
+            \right)
+            + \epsilon \Vert \tilde x - x\Vert \Vert z - \tilde x\Vert
+            - \frac{\epsilon}{2}\Vert \tilde x - x\Vert^2
+            \\
+            &\underset{(4)}{\le} 
+            F(z) - F(\tilde x) + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+            - \frac{B}{2}\Vert z - \tilde x\Vert^2. 
+        \end{align*}
+        At (4), we use some algebra: 
+        \begin{align*}
+            &
+            \epsilon \Vert \tilde x - x\Vert \Vert z - \tilde x\Vert
+            - \frac{\epsilon}{2}\Vert \tilde x - x\Vert^2
+            \\
+            &=\epsilon \Vert \tilde x - x\Vert \Vert z - \tilde x\Vert
+            - \frac{\epsilon}{2}\Vert \tilde x - x\Vert^2 - \frac{\epsilon}{2}\Vert z - \tilde x\Vert^2
+            + \frac{\epsilon}{2}\Vert z - \tilde x\Vert^2
+            \\
+            &= 
+            - \epsilon(\Vert x - \tilde x\Vert - \Vert z -\tilde x\Vert)^2 
+            + \frac{\epsilon}{2}\Vert z - \tilde x\Vert^2 
+            \\
+            &\le \frac{\epsilon}{2}\Vert z - \tilde x\Vert^2. 
+        \end{align*}
+    \end{proof}
+    \subsection{The accelerated proximal gradient algorithm}
+        \begin{definition}[accelerated inexact proximal gradient algorithm]\label{def:inxt-apg}
+            Let 
+            \begin{enumerate}[nosep]
+                \item $(\alpha_k)_{k \ge 0}$ be a sequence in $(0, 1]$. 
+                \item Let $(B_k)_{k \ge 0}$ be a non-negative sequence. 
+                \item Let $(F, f, g, L)$ be given by Assumption \ref{ass:smooth-nsmooth-sum}. 
+                \item Let $(\epsilon_k)_{k \ge 0}$ be a non-negative sequence that is the error schedule. 
+            \end{enumerate}
+            Initialize with any $(x_{-1}, v_{-1})$. 
+            For these given parameters, an algorithm is a type of accelerated proximal gradient if it generates $(y_k, x_k, v_k)_{k \ge 0}$ such that
+            for $k\ge 0$: 
+            \begin{align*}
+                & y_{k} = \alpha_{k} v_{k - 1} + (1 - \alpha_{k}) x_{k - 1},
+                \\
+                & x_k \in T_{B_k + \epsilon_k}^{(\epsilon_k)}(y_k): D_f(x_k, y_k) \le (B_k/2)\Vert x_k -  y_k\Vert^2, 
+                \\
+                & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}).
+            \end{align*}
+        \end{definition}
+
+\section{convergence rates results}
+    We will now show that Algorithms satisfying Definition \ref{def:inxt-apg} has desirable convergence rate. 
+    \begin{assumption}[convergence assumptions]\label{ass:apg-cnvg}
+        Let $(F, f, g, L)$ satisfies Assumption \ref{ass:smooth-nsmooth-sum} and in addition assume that $F$ admits a set of non-empty minimizers $X^+$. 
+    \end{assumption}
+    \begin{lemma}[inexact one step convergence claim]\;\label{lemma:inxt-apg-onestep}\\
+        Let $(F, f, g, L, X^+)$ satisfies Assumption \ref{ass:apg-cnvg}. 
+        Suppose that an algorithm satisfies optimizes the given $F =f + g$ also satisfying Definition \ref{def:inxt-apg}.
+        Then for the generated iterates $(y_k, x_k, v_k)_{k \ge 0}$, it has for all $k \ge 1$: 
+        \begin{align*}
+            &F(\bar x) - F(x_k)  - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+            \\
+            &\le 
+            \max\left(
+                1 - \alpha_k, 
+                \frac{\alpha_k(B_k + \epsilon_k)}{\alpha_{k -1}^2B_{k - 1}}
+            \right)
+            \left(
+                F(x_{k - 1}) - F(\bar x) 
+                + \frac{\alpha_{k - 1}^2B_{k - 1}}{2}\Vert \bar x - v_{k - 1} \Vert^2
+            \right). 
+        \end{align*}
+    \end{lemma}
+    \begin{proof}
+        Let $\bar x \in X^+$, making it a minimizer of $F$. 
+        Define $z_k := \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$. 
+        It can be verified that:
+        \begin{align}\begin{split}
+            z_k - x_k &= \alpha_k(\bar x - v_k),
+            \\
+            z_k - y_k &= \alpha_k(\bar x - v_{k - 1}).     
+        \end{split}\tag{a}\label{lemma:inxt-apg-onestep-a}
+        \end{align}
+        Because from Definition \ref{def:inxt-apg} it has for all $k \ge 1$: 
+        \begin{align*}
+            z_k - x_k &= 
+            \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - x_k
+            \\
+            &= \alpha_k\bar x + (x_{k - 1} - x_k) - \alpha_kx_{k - 1}
+            \\
+            &= \alpha_k \bar x - \alpha_k v_k, 
+            \\
+            z_k - y_k &= 
+            \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - y_k
+            \\
+            &= \alpha_k \bar x - \alpha_k v_{k - 1}. 
+        \end{align*}
+        For all $k \ge 0$, apply Theorem \ref{thm:inxt-pg-ineq} with $z = z_k, \tilde x = x_k, x = y_k, \epsilon = \epsilon_k, B = B_k$: 
+        \begin{align*}
+            0 &\le 
+            F(z_k) - F(x_k) +
+            \frac{B_k + \epsilon_k}{2}\Vert z_k - y_k\Vert^2
+            - \frac{B_k}{2}\Vert z_k - x_k\Vert^2
+            \\
+            &\underset{(1)}{\le}
+            \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k)
+            + 
+            \frac{B_k + \epsilon_k}{2}\Vert z_k - y_k\Vert^2
+            - \frac{B_k}{2}\Vert z_k - x_k\Vert^2
+            \\
+            &\underset{\eqref{lemma:inxt-apg-onestep-a}}{=} 
+            \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k)
+                \\ &\quad 
+                + \frac{(B_k + \epsilon_k)\alpha_k^2}{2}\Vert \bar x - v_{k - 1} \Vert^2
+                - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+            \\
+            &= 
+            F(\bar x) - F(x_k)
+            + (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x))
+                \\ &\quad 
+                + \frac{(B_k + \epsilon_k)\alpha_k^2}{2}\Vert \bar x - v_{k - 1} \Vert^2
+                - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+            \\
+            &= 
+            F(\bar x) - F(x_k) 
+            - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+                \\ &\quad 
+                + (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x))
+                + \frac{(B_k + \epsilon_k)\alpha_k^2}{2}\Vert \bar x - v_{k - 1} \Vert^2
+            \\
+            &= F(\bar x) - F(x_k) 
+            - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+                \\ &\quad
+                + (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x))
+                + \frac{(B_k + \epsilon_k)\alpha_k^2}{\alpha_{k - 1}^2B_{k - 1}}\frac{\alpha_{k - 1}^2B_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2
+            \\
+            &\le 
+            F(\bar x) - F(x_k) - \frac{B_k\alpha_k^2}{2}\Vert \bar x - v_k\Vert^2
+            \\ &\quad 
+            + \max\left(
+                1 - \alpha_k, 
+                \frac{(B_k + \epsilon_k)\alpha_k^2}{\alpha_{k - 1}^2B_{k - 1}}
+            \right)
+            \left(
+                F(x_{k - 1}) - F(\bar x) 
+                + \frac{\alpha_{k - 1}^2B_{k - 1}}{2}\Vert \bar x - v_{k - 1} \Vert^2
+            \right). 
+        \end{align*}
+        At (1) we used convexity of $f$ which is assumed and it makes $f(z_k) \le \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1})$ because $\alpha_k \in (0, 1]$ from Definition \ref{def:inxt-apg}. 
+    \end{proof}
+    \par
+    As a prelude, to derive the convergence rate we unroll the recurrence relation proved in the above lemma.
+    It remains to create convergence criterions of the error relative sequence $\epsilon_k$ such that the original optimal convergence rate of $\mathcal O(1/k^2)$ the sequence remains unaffected. 
+    Let the sequence $(B_k)_{k \ge 0}$ be given as in Definition \ref{def:inxt-apg}. 
+    We suggest the following using another sequence $\rho_k$ given by for all $k \ge 1$: 
+    \begin{align*}
+        \rho_k &:= \frac{B_k + \epsilon_k}{B_{k - 1}}\frac{B_{k - 1}}{B_k} = \frac{B_k + \epsilon_k}{B_k}
+    \end{align*}
+    This means the following: 
+    \begin{align*}
+        \max\left(
+            1 - \alpha_k, 
+            \frac{\alpha_k^2(B_k + \epsilon_k)}{\alpha_{k - 1}^2B_{k - 1}}
+        \right)
+        &=
+        \max\left(
+            1 - \alpha_k, 
+            \rho_k\frac{B_k\alpha_k^2}{B_{k - 1}\alpha_{k - 1}^2}
+        \right)
+        \\
+        &\le \max(1, \rho_k)\max\left(
+            1 - \alpha_k, 
+            \frac{B_k\alpha_k^2}{B_{k - 1}\alpha_{k - 1}^2}
+        \right). 
+    \end{align*}
+    If we consider $\rho_k \le (1 + 2/k^2)$, it has the ability to make
+    \begin{align*}
+        \prod_{k = 1}^{n} 
+        \max \left(
+            1 - \alpha_k, 
+            \frac{\alpha_k^2(B_k + \epsilon_k)}{\alpha_{k - 1}^2B_{k - 1}}
+        \right)
+        &\le 
+        \prod_{k = 1}^{n} 
+        \max(1, \rho_k)
+        \prod_{i = 1}^{n}
+        \max\left(
+            1 - \alpha_k, 
+            \frac{B_k\alpha_k^2}{B_{k - 1}\alpha_{k - 1}^2}
+        \right)
+        \\
+        &\le \prod_{k = 1}^n
+        \left(
+            1 + \frac{2}{k^2}
+        \right)
+        \prod_{i = 1}^{n}
+        \max\left(
+            1 - \alpha_k, 
+            \frac{B_k\alpha_k^2}{B_{k - 1}\alpha_{k - 1}^2}
+        \right)
+        \\
+        &\le 2 
+        \prod_{i = 1}^{n}\max\left(
+            1 - \alpha_k, 
+            \frac{B_k\alpha_k^2}{B_{k - 1}\alpha_{k - 1}^2}
+        \right). 
+    \end{align*}
+    Assuming no $B_k = 0$ then the error schedule $\rho_k \le (1 + 2/k^2)$ translates to 
+    \begin{align*}
+        \frac{B_k + \epsilon_k}{B_k} &\le 1 + \frac{2}{k^2}
+        \\
+        \iff 
+        \epsilon_k &\le - B_k + B_k(1 + 2/k^2) \le \frac{2B}{k^2}. 
+    \end{align*}
+
+\section{Motivations for applications}
+    % Optimization problem of the following type: 
+    % $$
+    %     \min_{x} \left\lbrace
+    %         f(Ax) + g(Dx)
+    %     \right\rbrace, 
+    % $$
+    % where
+    % \begin{enumerate}[nosep]
+    %     \item Let $A \in \RR^{m_1 \times n}, D \in \RR^{m_2 \times n}$,  where inverting $A^TA + \mu I$ exactly for some $\mu > 0$ is computationally intensive on computers. 
+    %     \item $f: \RR^{m_1} \rightarrow \RR$ is $L$ Lipschitz smooth and, convex but taking maybe $\hprox_f$ is computationally intensive. 
+    %     \item $g: \RR^{m_2} \rightarrow \overline \RR$ is convex, closed and proper. 
+    % \end{enumerate}
+    % Solving it using traditional method such as ADMM \cite[chapter 6]{boyd_distributed_2011}, or Chambolle Pock \cite{chambolle_first-order_2010}, would require the knowledge of $(A^TA + \mu I)^{-1}$, and $f$ has $\hprox$ that is simple to evaluate. 
+    % Inverting matrix exactly is never easy, especially the sparse and large matrix in image processing (The number of elements in the matrix scales by $\mathcal O(n^4)$ for a size $n \times n$ image for storage, and inverting it with bruteforce is $\mathcal (n^{6})$). 
+    % People can do it a few time but it's not practical/simple to do it in every step of some iterative algorithms! 
+    % Of course, we can use other smarter method such as Krylov Subspace method for block structured sparse matrices (or most recently, their randomized variants), but they will not be perfectly accurate.
+    % Our method however, it will have the advantage of being matrix inversion free. 
+    % \par
+    % Our proposed algorithm allows inexact evaluation of the proximal operator of $g\circ D$. 
+    % It can be evaluated using popular algorithm such as Chambolle Pock, or any other efficient approximation algorithm and it can bypass the need of any matrix inversion involving $D$. 
+    % Because look, the problem we solve for our algorithm is $\hprox_{(B + \epsilon)^{-1}g\circ D}(x)$ which can be reformulated into: 
+    % \begin{align*}
+    %     \argmin_{z} \left\lbrace
+    %         g(Dz) + \frac{B + \epsilon}{2}\Vert z - x\Vert^2
+    %     \right\rbrace. 
+    % \end{align*}
+    % First order method such as Chambolle Pock can optimize the problem inexactly without matrix inversion. 
+    % And, taking the gradient of $f(Ax)$ doesn't need for $(A^TA + \mu I)^{-1}$. 
+    % Our method is also compatible with enhancement such as restart for objective function satisfying the quadratic growth conditions for optimal linear convergence. 
+    % \par
+    % This is especially useful for problem where, $A$ is massive and sparse without obvious structure. 
+    % For example, a TV variational minimization approach for Robust MRI imaging that involves downsampling, blurring, or convolution \cite{zhang_robust_2022, joshi_mri_2009}\cite[Section 7.4]{chambolle_introduction_2016}. 
+    % Applications as such adds another matrix $D$, or additional linear constraints to improve the robustness of MRI image reconstruction. 
+    % Other potential applications with such structural optimization objective include large regression problem where the penalization term is highly non-trivial. 
+    % \par
+    % Why we think this paper will fly? 
+    % Because: 
+    % \begin{enumerate}
+    %     \item The core theories part for the outer loop convergence described previously are quite simple and easy to understand for interested readers and, practitioners compared to previous results like in the Catalyst Frameworks or Inexact Accelerated Proximal Gradient Method. 
+    %     \item I haven't found anyone that has good solutions in this type of problem which bypasses inverting $D$ or $A$. 
+    %     \item It will shine numerically if coupled with advanced approximation algorithm for evaluation the prox of $g\circ D$, for specific $g$ relevant for applications. 
+    %     \item Our theories give the flexibilities for whatever the practitioners want to do with $\hprox_{B^{-1}g\circ D}$. They can specialize and improved based our theoretical frameworks. 
+    % \end{enumerate}
+    
+\bibliographystyle{siam}
+
+\bibliography{references/refs.bib}
+
+
+\end{document}

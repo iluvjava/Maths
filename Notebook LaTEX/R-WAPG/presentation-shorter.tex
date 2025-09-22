@@ -103,7 +103,6 @@
         \end{block}
         When $F$ is convex and, $L$ Lipschitz smooth. 
         If minimizer $x^+$ exists, then: 
-        Then it has
         \begin{itemize}
             \item a convergence rate of $\mathcal O(1/k^2)$ for $(F(x_k) - F(x^+))_{k \ge 1}$;
             \item this convergence rate is optimal in the sense as proposed by Nesterov \cite{nesterov_lectures_2018}.
@@ -148,7 +147,7 @@
         \end{itemize}
     \end{frame}
 
-\section{The R-WAPG Framework}
+\section{The R-WAPG framework}
     \begin{frame}{The assumptions we make throughout}
         \begin{assumption}[Convex smooth plus nonsmooth]
             Let the ambient space be $\RR^n$, equipped with Euclidean inner product and norm. 
@@ -159,7 +158,7 @@
                 \item A minimizer exists for the optimization problem: $F^+ = \min_x \left\lbrace f(x) + g(x)\right\rbrace$.
             \end{enumerate}
         \end{assumption}
-        \textbf{This assumption the full scope of the theoretical and practical discussion, assume it throughout.}
+        \textbf{This assumption is the full scope of the theoretical and practical discussion. }
     \end{frame}
     \begin{frame}{Proximal gradient, gradient mapping}
         \begin{definition}[The proximal gradient operator]
@@ -174,14 +173,14 @@
                 \left(I - L^{-1}\nabla f\right)(y),
                 \\
                 \mathcal G_L(y)
-                &:= L(I - T_L)y.
+                &:= L(y - T_L(y)).
             \end{align*}
         \end{definition}
         Note, the $I$ here is the identity operator in $\RR^n$. 
         $L > 0$ is the Lipschitz smoothness parameter for $f$. 
     \end{frame}
     \begin{frame}{The R-WAPG sequences}
-        In this section, we highlight key theoretical results that allowed us to unify convergence rate for various variants of FISTA in the literature.
+        We highlight key theoretical results that allowed us to unify convergence rate for various variants of FISTA in the literature.
         \begin{definition}[R-WAPG sequences]\label{def:rwapg-seq}
             Assume $0 \le \mu < L$. 
             Let $(\alpha_k)_{k \ge 0}$ be such that: 
@@ -192,8 +191,8 @@
             Define $(\rho_k)_{k \ge 0}$
             \begin{align*}
                 \rho_k := \frac{\alpha_{k + 1}^2 - (\mu/L) \alpha_{k + 1}}{
-                    (1 - \alpha_{k + 1}) \alpha_k^2.
-                }
+                    (1 - \alpha_{k + 1}) \alpha_k^2
+                }. 
             \end{align*}
             We call the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ the R-WAPG sequences. 
         \end{definition}
@@ -220,16 +219,16 @@
                     \hat\gamma^{-1}_{k + 1}
                     (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k),
                     \\
-                    x_{k + 1} &= T_L y_k.
+                    x_{k + 1} &= T_L (y_k).
                 \end{align*}
             \end{tcolorbox}
         \end{definition}
     \end{frame}
 
-\section{Our Theoretical Results}
+\section{Our theoretical results}
     \begin{frame}{Iterates by R-WAPG has other representations}
         \begin{proposition}[Alternative representations of the iterates]\label{prop:wapg-first-equivalent-repr}
-            If the sequence $(y_k, v_k, x_k)_{k \ge 1}$ is produced by R-WAPG (Definition \ref{def:wapg}),
+            If the sequence $(y_k, v_k, x_k)_{k \ge 1}$ is produced by R-WAPG (Definition \ref{def:wapg}), and $\alpha_0 = 1, x_1 = v_1$. 
             Then they satisfy for all $k\ge 1$: 
             {\footnotesize
             \begin{align}
@@ -243,9 +242,9 @@
                         \left(\frac{L - L\alpha_{k}}{L\alpha_{k} - \mu} \right) x_{k}
                     \right)
                     \\
-                    &= x_{k + 1} +
-                    \frac{\rho_k\alpha_k(1 - \alpha_k)}
-                    {\rho_k\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k), 
+                    &= x_{k} +
+                    \frac{\rho_{k - 1}\alpha_{k - 1}(1 - \alpha_{k - 1})}
+                    {\rho_{k - 1}\alpha_{k - 1}^2 + \alpha_{k}}(x_{k} - x_{k - 1}), 
                 \end{aligned}
                 % \label{eqn:rwapg-first-equiv-form-eqn-1}
                 \\
@@ -283,7 +282,7 @@
         \begin{proposition}[R-WAPG convergence]\label{prop:wapg-convergence}
             Fix any arbitrary $x^* \in \RR^n, N \in \mathbb N$.
             Let $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ be R-WAPG sequences.
-            Let vector sequences $(y_k, v_{k}, x_{k})_{k \ge 1}$ given by Definition \ref{def:wapg}. 
+            Let vector sequences $(y_k, v_{k}, x_{k})_{k \ge 1}$ be given by Definition \ref{def:wapg}. 
             Then for all $k = 1, 2, \ldots, N$:
             {\small
             \begin{align*}
@@ -428,7 +427,7 @@
         We are measuring: 
         \begin{align*}
             \delta_k := \log_2\left(
-                \frac{F(x) - F^+}{F(x_0) - F^+}\right).  
+                \frac{F(x_k) - F^+}{F(x_0) - F^+}\right).  
         \end{align*}
         Here are the parameters. 
         \begin{enumerate}

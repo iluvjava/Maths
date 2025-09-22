@@ -29,7 +29,7 @@ Recall the following definitions, from the files listed in the header.
 > For all $x \in \R^n, \epsilon \ge 0, \lambda > 0$, $\tilde x$ is an inexact evaluation of proximal point at $x$, if and only if it satisfies: 
 > $$
 > \begin{aligned}
->     \lambda^{-1}(x - \tilde x) \in \partial_{\epsilon^2/(2\lambda)} g(\tilde x). 
+>     \lambda^{-1}(x - \tilde x) \in \partial_{\epsilon} g(\tilde x). 
 > \end{aligned}
 > $$
 > which we denote by $\tilde x \approx_\epsilon \prox_{\lambda g}(x)$. 
@@ -39,10 +39,10 @@ Recall the following definitions, from the files listed in the header.
 
 The resolvent identity gives the equivalent duality theory for the inexact proximal operator. 
 
-#### **Theorem | $\epsilon$-Fenchel inequality**
+#### **Recall Theorem | $\epsilon$-Fenchel inequality**
 > Let $\epsilon \ge 0$, then:
 > $$
->     x^* \in \partial_\epsilon f(\bar x)\iff f^\star(x^*) + f(\bar x) \le \langle x^*, \bar x\rangle + \epsilon \implies \bar x \in \partial_\epsilon f(x^*).
+>     x^* \in \partial_\epsilon f(\bar x)\iff f^\star(x^*) + f(\bar x) \le \langle x^*, \bar x\rangle + \epsilon \implies \bar x \in \partial_\epsilon f^\star(x^*).
 > $$
 > They only equivalent when biconjugation holds at $\bar x$ for $f$. 
 
@@ -52,41 +52,47 @@ The resolvent identity gives the equivalent duality theory for the inexact proxi
 > It has the equivalence
 > $$
 > \begin{aligned}
->     \tilde x \approx_\epsilon \pprox{\lambda g}(x) \iff 
->     \lambda^{-1}(x - \tilde x)\approx_\epsilon \pprox{\lambda^{-1} g^\star}\left(\lambda^{-1}x\right). 
+>     & \tilde x \approx_\epsilon \pprox{\lambda g}(x) \iff 
+>     \lambda^{-1}(x - \tilde x)\approx_\epsilon \pprox{\lambda^{-1} g^\star}\left(\lambda^{-1}x\right), 
+>     \\
+>     & \tilde y \approx_\epsilon \pprox{g^\star/\lambda}(y/\lambda)
+>     \iff 
+>     y - \lambda \tilde y \approx_\epsilon \pprox{\lambda g}(y). 
 > \end{aligned}
 > $$
 
-Reminding us of the fact that $\partial g_{\epsilon^2/(2\lambda)}$ is not necessarily maximal monotone but the genrealized resolvent identity still applies because it can be used for multi-valued mapping in general. 
-Let $\delta := \epsilon^2/(2\lambda)$ for simpler notation, then it has the following chain of equivalences: 
+**Proof**
+
+Reminding us of the fact that $\partial g_{\epsilon}$ is not necessarily maximal monotone but the genrealized resolvent identity still applies because it can be used for multi-valued mapping in general. 
+Then it has the following chain of equivalences: 
 
 $$
 \begin{aligned}
     \tilde x \approx_\epsilon \pprox{\lambda g}(x)
     \iff & 
-    \lambda^{-1}(x - \tilde x) \in \partial_{\delta} g(\tilde x)
+    \lambda^{-1}(x - \tilde x) \in \partial_{\epsilon} g(\tilde x)
     \\
     \iff &
-    \tilde x \in (I + \lambda \partial_\delta g)^{-1} x
+    \tilde x \in (I + \lambda \partial_\epsilon g)^{-1} x
     \\
     \underset{(1)}{\iff} &
-    \tilde x = x - (I + \partial_\delta g^\star\circ(\lambda^{-1}I))^{-1}x
+    \tilde x = x - (I + \partial_\epsilon g^\star\circ(\lambda^{-1}I))^{-1}x
     \\
     \iff &
     (x - \tilde x, x) \in
-    \text{gph}\; (I + \partial_\delta g^\star\circ(\lambda^{-1}I))
+    \text{gph}\; (I + \partial_\epsilon g^\star\circ(\lambda^{-1}I))
     \\
     \iff &
     (\lambda^{-1}(x - \tilde x), x) \in
-    \text{gph}\; (\lambda I + \partial_\delta g^\star)
+    \text{gph}\; (\lambda I + \partial_\epsilon g^\star)
     \\
     \iff &
     (\lambda^{-1}(x - \tilde x), \lambda^{-1}x) \in
-    \text{gph}\; (I + \lambda^{-1}\partial_\delta g^\star)
+    \text{gph}\; (I + \lambda^{-1}\partial_\epsilon g^\star)
     \\
     \iff &
     \lambda^{-1}(x - \tilde x) \in 
-    (I + \lambda^{-1}\partial_\delta g^\star)^{-1}(\lambda^{-1}x). 
+    (I + \lambda^{-1}\partial_\epsilon g^\star)^{-1}(\lambda^{-1}x). 
 \end{aligned}
 $$
 
@@ -98,17 +104,59 @@ $$
     & \tilde x \approx_\epsilon \pprox{\lambda g}(x)
     \\
     \iff &
-    \tilde x \in (I + \lambda \partial_\delta g)^{-1} x
+    \tilde x \in (I + \lambda \partial_\epsilon g)^{-1} x
     \\
     \iff &
     \lambda^{-1}(x - \tilde x) \in 
-    (I + \lambda^{-1}\partial_\delta g^\star)^{-1}(\lambda^{-1}x). 
+    (I + \lambda^{-1}\partial_\epsilon g^\star)^{-1}(\lambda^{-1}x). 
     \\
     \iff &
     \lambda^{-1}(x - \tilde x) \approx_\epsilon 
     \pprox{\lambda^{-1} g^\star}\left(\lambda^{-1}x\right). 
 \end{aligned}
 $$
+
+In a similar way, we have for $\tilde y \approx_\epsilon \pprox{g^\star/\lambda}(y/\lambda)$ it would mean: 
+
+$$
+\begin{aligned}
+    & 
+    \tilde y 
+    \in (I + \lambda^{-1}\partial_\epsilon g^\star)^{-1}(\lambda^{-1}y)
+    \\
+    \iff &
+    (\lambda^{-1}y, \tilde y)\in 
+    \text{gph}(I + \lambda^{-1}\partial_\epsilon g^\star)^{-1}
+    \\
+    \iff &
+    (\lambda^{-1}y, \tilde y)\in 
+    \text{gph}(I - (I + \partial_\epsilon g\circ(\lambda I))^{-1})
+    \\
+    \iff &
+    (\lambda^{-1}y, \lambda^{-1}y - \tilde y)\in 
+    \text{gph}(I + \partial_\epsilon g\circ(\lambda I))^{-1}
+    \\
+    \iff &
+    (\lambda^{-1}y - \tilde y, \lambda^{-1}y)\in 
+    \text{gph}(I + \partial_\epsilon g\circ(\lambda I))
+    \\
+    \iff &
+    (y - \lambda\tilde y, \lambda^{-1}y)\in 
+    \text{gph}(\lambda^{-1}I + \partial_\epsilon g)
+    \\
+    \iff &
+    (y - \lambda\tilde y, y)\in 
+    \text{gph}(I + \lambda\partial_\epsilon g)
+    \\
+    \iff& 
+    y - \lambda \tilde y \in 
+    (I + \lambda \partial_\epsilon g)^{-1}y
+    \\
+    \iff& 
+    y - \lambda \tilde y \approx_\epsilon \pprox{\lambda g}(y)
+\end{aligned}
+$$
+
 
 $\square$
 
@@ -134,8 +182,8 @@ Before we start, when we do proximal point method, this is one of the form of pr
 > Then the objective of the problem of the proximal problem evaluated at point $y$ is given by: 
 > $$
 > \begin{aligned}
->     \Phi_\lambda(x) &:= 
->     \omega(Bx) + \frac{1}{2\lambda} \Vert x - y\Vert^2
+>     \Phi_\lambda(u) &:= 
+>     \omega(Bu) + \frac{1}{2\lambda} \Vert u - y\Vert^2
 > \end{aligned}
 > $$
 > Its dual has objective function for which we minimize: 
@@ -150,7 +198,7 @@ Before we start, when we do proximal point method, this is one of the form of pr
 > $$
 > \begin{aligned}
 >     \mathbf G_\lambda(u, v) &:= 
->     \Phi_\lambda(x) + \Psi_\lambda(v). 
+>     \Phi_\lambda(u) + \Psi_\lambda(v). 
 > \end{aligned}
 > $$
 > If the strong duality holds, and constraint qualification passes, then there exists $(\hat u, \hat v)$ such that $\min_{u} \Phi_\lambda(v) = -\min_{v} \Psi_\lambda(u)$, which gives $\mathbf G_\lambda(\hat u,\hat v) = 0$. 
@@ -173,7 +221,12 @@ The following lemma will explain how to get there.
 > - (a) $\mathbf G_\lambda(y - \lambda B^\top v, v) \le \frac{\epsilon^2}{2\lambda}$. 
 > - (b) $B^\top v \approx_\epsilon \prox_{\lambda^{-1}g^\star}(\lambda^{-1}y)$. 
 > - (c) $y - \lambda B^\top v \approx_{\epsilon} \prox_{\lambda g}(y)$. 
-> They have $(a)\implies (b) \iff (c)$. 
 > 
+> They have $(a)\implies (b) \iff (c)$. 
 > If in addition $\omega^\star(v) = g^\star(B^\top v)$, then all three conditions are equivalent. 
 
+
+---
+### **Algorithms for minimizing the proximal point error**
+
+The previous section had established the minimizing the duality gap is sufficient to evaluate inexact proximal point. 

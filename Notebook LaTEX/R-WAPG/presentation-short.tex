@@ -103,7 +103,6 @@
                 }
             \end{block}
             If $F$ is convex and has $L$ Lipschitz smooth gradient and a minimizer $x^+$ exists. 
-            Then it has
             \begin{itemize}
                 \item a convergence rate of $\mathcal O(1/k^2)$ for $(F(x_k) - F(x^+))_{k \ge 1}$;
                 \item this convergence rate is optimal in the sense as proposed by Nesterov \cite{nesterov_lectures_2018}.
@@ -249,7 +248,7 @@
                     \left(I - L^{-1}\nabla f\right)(y),
                     \\
                     \mathcal G_L(y)
-                    &:= L(I - T_L)y.
+                    &:= L(y - T_L(y)).
                 \end{align*}
             \end{definition}
             Note, the $I$ here is the identity operator in $\RR^n$. 
@@ -274,7 +273,7 @@
             \end{definition}
         \end{frame}
         \begin{frame}{R-WAPG}
-            \begin{definition}[relaxed weak accelerated proximal gradient (R-WAPG)]\label{def:wapg}
+            \begin{definition}[R-WAPG]\label{def:wapg}
                 Choose any $x_1 \in \RR^n, v_1 \in \RR^n$.
                 Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be given by Definition \ref{def:rwapg-seq}.
                 The algorithm generates a sequence of vector $(y_k, x_{k + 1}, v_{k + 1})_{k \ge 1}$ for all $k\ge 1$ by such that:
@@ -295,7 +294,7 @@
                         \hat\gamma^{-1}_{k + 1}
                         (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k),
                         \\
-                        x_{k + 1} &= T_L y_k.
+                        x_{k + 1} &= T_L (y_k).
                     \end{align*}
                 \end{tcolorbox}
             \end{definition}
@@ -329,8 +328,8 @@
     \subsection{Different representation of accelerated proximal gradient}
         \begin{frame}{Iterates by R-WAPG has other representations}
             \begin{proposition}[Alternative representations of the iterates]\label{prop:wapg-first-equivalent-repr}
-                If the sequence $(y_k, v_k, x_k)_{k \ge 1}$ is produced by R-WAPG (Definition \ref{def:wapg}),
-                then the iterates can be expressed without $(\gamma_k)_{k \ge1},(\hat \gamma_k)_{k \ge 2}$, and they satisfy for all $k\ge 1$: 
+                If the sequence $(y_k, v_k, x_k)_{k \ge 1}$ is produced by R-WAPG (Definition \ref{def:wapg}), and $\alpha_0 = 1, x_1 = v_1$. 
+                Then they satisfy for all $k\ge 1$: 
                 {\footnotesize
                 \begin{align}
                     & \begin{aligned}
@@ -343,9 +342,9 @@
                             \left(\frac{L - L\alpha_{k}}{L\alpha_{k} - \mu} \right) x_{k}
                         \right)
                         \\
-                        &= x_{k + 1} +
-                        \frac{\rho_k\alpha_k(1 - \alpha_k)}
-                        {\rho_k\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k), 
+                        &= x_{k} +
+                        \frac{\rho_{k - 1}\alpha_{k - 1}(1 - \alpha_{k - 1})}
+                        {\rho_{k - 1}\alpha_{k - 1}^2 + \alpha_{k}}(x_{k} - x_{k - 1}), 
                     \end{aligned}
                     % \label{eqn:rwapg-first-equiv-form-eqn-1}
                     \\
@@ -370,11 +369,13 @@
                 }
             \end{proposition}
             If $\mu = 0$, then it simplifies:
+            {\small
             \begin{align*}
                 (\forall k \ge 1) \quad
                 \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}
                 & = \alpha_{k + 1}(\alpha_k^{-1} - 1).
             \end{align*}
+            }
         \end{frame}
     \subsection{Unifying different variants of accelerated proximal gradient}
         \begin{frame}{Convergence of Chambolle and Dossal variant of FISTA}

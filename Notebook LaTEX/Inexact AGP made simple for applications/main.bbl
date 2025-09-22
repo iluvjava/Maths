@@ -1,3 +1,12 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{villa_accelerated_2013}
+{\sc S.~Villa, S.~Salzo, L.~Baldassarre, and A.~Verri}, {\em Accelerated and inexact forward-backward algorithms}, SIAM Journal on Optimization, 23 (2013), pp.~1607--1633.
+
+\bibitem{zalinescu_convex_2002}
+{\sc C.~Zalinescu}, {\em Convex analysis in general vector spaces}, World Scientific, River Edge, N.J. ; London, 2002.
+
+\bibitem{zhang_robust_2022}
+{\sc M.~Zhang, M.~Zhang, F.~Zhang, A.~Chaddad, and A.~Evans}, {\em Robust brain {MR} image compressive sensing via re-weighted total variation and sparse regression}, Magnetic Resonance Imaging, 85 (2022), pp.~271--286.
 
 \end{thebibliography}

@@ -142,9 +142,9 @@ Proposition 5.16 in the book.
 #### **Proposition | $\epsilon$-Fenchel inequality**
 > Let $\epsilon \ge 0$, then:
 > $$
->     x^* \in \partial_\epsilon f(\bar x)\iff f^\star(x^*) + f(\bar x) \le \langle x^*, \bar x\rangle + \epsilon \implies \bar x \in \partial_\epsilon f(x^*).
+>     x^* \in \partial_\epsilon f(\bar x)\iff f^\star(x^*) + f(\bar x) \le \langle x^*, \bar x\rangle + \epsilon \implies \bar x \in \partial_\epsilon f^\star(x^*).
 > $$
-> They only equivalent when biconjugation holds at $\bar x$ for $f$. 
+> They are all equivalent if $f^{\star\star}(\bar x) = f(\bar x)$. 
 
 **Proof**
 
