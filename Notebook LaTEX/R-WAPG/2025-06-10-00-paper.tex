@@ -1158,27 +1158,27 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
         {\small
         \begin{align*}
             &
-            F(x_{k + 1}) - F^* + R_{k + 1} + \frac{\hat\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
+            F(x_{k + 1}) - F(x^*) + R_{k + 1} + \frac{\hat\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
             \\
             &=
-            F(x_{k + 1}) - F^* + R_{k + 1} + \frac{L \alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
+            F(x_{k + 1}) - F(x^*) + R_{k + 1} + \frac{L \alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
             \\
             &\le
             (1 - \alpha_k)
             \left(
-                F(x_k) - F^* + R_k + \frac{\rho_{k - 1}L \alpha_{k - 1}^2}{2}\Vert v_k - x^*\Vert^2
+                F(x_k) - F(x^*) + R_k + \frac{\rho_{k - 1}L \alpha_{k - 1}^2}{2}\Vert v_k - x^*\Vert^2
             \right)
             \\
             &\le
             (1 - \alpha_k)
             \left(
-                F(x_k) - F^* + R_k + \max(1, \rho_{k - 1})\frac{L \alpha_{k - 1}^2}{2}\Vert v_k - x^*\Vert^2
+                F(x_k) - F(x^*) + R_k + \max(1, \rho_{k - 1})\frac{L \alpha_{k - 1}^2}{2}\Vert v_k - x^*\Vert^2
             \right)
             \\
             &\le
             \max(1, \rho_{k - 1})(1 - \alpha_k)
             \left(
-                F(x_k) - F^* + R_k + \frac{L \alpha_{k - 1}^2}{2}\Vert v_k - x^*\Vert^2
+                F(x_k) - F(x^*) + R_k + \frac{L \alpha_{k - 1}^2}{2}\Vert v_k - x^*\Vert^2
             \right)
             \\
             &\le
@@ -1189,7 +1189,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
             \right)
             \left(
-                F(x_1) - F^* + R_1 + \frac{L\alpha_0^2}{2}\Vert v_1 - x^*\Vert^2
+                F(x_1) - F(x^*) + R_1 + \frac{L\alpha_0^2}{2}\Vert v_1 - x^*\Vert^2
             \right).
         \end{align*}
         }

@@ -42,7 +42,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     $I: \RR^n \rightarrow \RR^n$ denotes the identity operator.
     For a multivalued mapping $T: \RR^n \rightarrow 2^{\RR^n}$, $\gra T$ denotes the graph of the operator, defined as $\{(x, y)\in \RR^n \times \RR^n : y \in Tx\}$. 
     \subsection{Epsilon subgradient and inexact proximal point}
-        \begin{definition}[epsilon subgradient]\label{def:esp-subgrad}
+        \begin{definition}[$\epsilon$-subgradient]\label{def:esp-subgrad}
             Let $g: \RR^n \rightarrow \overline \RR$ be proper, lsc. 
             Let $\epsilon \ge 0$. 
             Then the $\epsilon$-subgradient of $g$ at some $\bar x \in \dom g$ is given by: 
@@ -63,7 +63,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             $\partial_\epsilon g$ is a multivalued operator and, it's not monotone, unless $\epsilon = 0$, which makes it equivalent to French subgradient $\partial g$. 
         \end{remark}
         If we assume lsc, proper and convex $g$, we will now introduce results in the literatures that we will use. 
-        \begin{fact}[epsilon Fenchel inequality]\label{fact:esp-fenchel-ineq}
+        \begin{fact}[$\epsilon$-Fenchel inequality]\label{fact:esp-fenchel-ineq}
             Let $\epsilon \ge 0$, then:
             \begin{align*}
                 x^* \in \partial_\epsilon f(\bar x)\iff f^\star(x^*) + f(\bar x) \le \langle x^*, \bar x\rangle + \epsilon \implies \bar x \in \partial_\epsilon f^\star(x^*).
@@ -92,8 +92,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         % \begin{remark}
         %     The above is taken from Morduchovich, Mau Nam \cite[Theorem 5.19]{mordukhovich_convex_2022}. 
         % \end{remark}
-        We will now define inexact proximal point based on epsilon subgradient
-        \begin{definition}[inexact proximal point]
+        We will now define inexact proximal point based on $\epsilon$-subgradient
+        \begin{definition}[inexact proximal point]\label{def:inxt-pp}
             For all $x \in \RR^n, \epsilon \ge 0, \lambda > 0$, $\tilde x$ is an inexact evaluation of proximal point at $x$, if and only if it satisfies: 
             \begin{align*}
                 \lambda^{-1}(x - \tilde x) \in \partial_{\epsilon} g(\tilde x). 
@@ -171,70 +171,69 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         We develop the theory based on the use of epsilon subgradient as in Definition \ref{def:esp-subgrad}. 
         \begin{definition}[inexact proximal gradient]\label{def:inxt-pg}
             Let $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}. 
-            Let $\epsilon \ge 0, B \ge 0$. 
-            Then, $\tilde x \approx_\epsilon T_B(x)$ is an inexact proximal gradient if it satisfies variational inequality: 
+            Let $\epsilon \ge 0, \rho > 0$. 
+            Then, $\tilde x \approx_\epsilon T_\rho(x)$ is an inexact proximal gradient if it satisfies variational inequality: 
             \begin{align*}
-                \mathbf 0 \in \nabla f(x) + B(x - \tilde x) + \partial_{\epsilon} g(\tilde x). 
+                \mathbf 0 \in \nabla f(x) + \rho(x - \tilde x) + \partial_{\epsilon} g(\tilde x). 
             \end{align*}
         \end{definition}
         \begin{remark}
             We assumed that we can get exact evaluation of $\nabla f$ at any points $x \in \RR^n$. 
         \end{remark}
         \begin{lemma}[other representations of inexact proximal gradient]\;\\
-            Let $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}.
-            Let $\epsilon \ge 0, B \ge 0$, then for all $x \approx_\epsilon T_B(x)$, it has the following equivalent representations: 
+            Let $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, $\epsilon \ge 0, \rho > 0$, then for all $x \approx_\epsilon T_\rho(x)$, it has the following equivalent representations: 
             \begin{align*}
-                & (x - B^{-1}\nabla f(x)) - \tilde x 
-                \in B^{-1} \partial_\epsilon g(\tilde x)
+                & (x - \rho^{-1}\nabla f(x)) - \tilde x 
+                \in \rho^{-1} \partial_\epsilon g(\tilde x)
                 \\
                 \iff 
-                & \tilde x \in (I + B^{-1}\partial_\epsilon g(\tilde x))^{-1}
-                (x - B^{-1}\nabla f(x))
+                & \tilde x \in (I + \rho^{-1}\partial_\epsilon g(\tilde x))^{-1}
+                (x - \rho^{-1}\nabla f(x))
                 \\
                 \iff 
-                & x \approx_\epsilon \hprox_{B^{-1} g}
-                \left(x - B^{-1}\nabla f(x)\right)
+                & x \approx_\epsilon \hprox_{\rho^{-1} g}
+                \left(x - \rho^{-1}\nabla f(x)\right)
             \end{align*}
         \end{lemma}
         \begin{proof}
             It's direct. 
         \end{proof}
         \begin{theorem}[inexact over-regularized proximal gradient inequality]\;\label{thm:inxt-pg-ineq}\\
-            Let $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq} . 
-            Let $\epsilon \ge 0$. 
-            Consider $\tilde x \approx_\epsilon T_{B + \beta}(x)$. 
-            If in addition, it satisfies $D_f(\tilde x, x) \le B/2\Vert x - \tilde x\Vert^2$, then it has $\forall z \in \RR^n$: 
+            Let $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, $\epsilon \ge 0, B \ge 0, \rho > 0$. 
+            Consider $\tilde x \approx_\epsilon T_{B + \rho}(x)$. 
+            Denote $F = f + g$. 
+            If in addition, $\tilde x, B$ satisfies the line search condition $D_f(\tilde x, x) \le B/2\Vert x - \tilde x\Vert^2$, then it has $\forall z \in \RR^n$: 
             \begin{align*}
                 - \epsilon &\le 
                 F(z) - F(\tilde x)
-                + \frac{B + \beta}{2}\Vert x - z\Vert^2
-                - \frac{B + \beta}{2}\Vert z - \tilde x\Vert^2
-                - \frac{\beta}{2}\Vert \tilde x - x\Vert^2. 
+                + \frac{B + \rho}{2}\Vert x - z\Vert^2
+                - \frac{B + \rho}{2}\Vert z - \tilde x\Vert^2
+                - \frac{\rho}{2}\Vert \tilde x - x\Vert^2. 
             \end{align*}
         \end{theorem}
         \begin{proof}
             By Definition \ref{def:inxt-pg} write the variational inequality that describes $\tilde x \approx_\epsilon T_B(x)$, and the definition of epsilon subgradient (Definition \ref{def:esp-subgrad}) it has for all $z \in \RR^n$: 
             \begin{align*}
                 - \epsilon &\le 
-                g(z) - g(\tilde x) - \langle (B + \beta)(\tilde x - x) - \nabla f(x), z - \tilde x\rangle
+                g(z) - g(\tilde x) - \langle (B + \rho)(\tilde x - x) - \nabla f(x), z - \tilde x\rangle
                 \\
                 &= 
                 g(z) - g(\tilde x) 
-                - (B + \beta)\langle \tilde x - x, z - \tilde x\rangle
+                - (B + \rho)\langle \tilde x - x, z - \tilde x\rangle
                 + \langle \nabla f(x), z - \tilde x\rangle
                 \\
                 &\underset{(1)}{\le} 
                 g(z) + f(z) - g(\tilde x) - f(\tilde x)
-                - (B + \beta)\langle \tilde x - x, z - \tilde x\rangle
+                - (B + \rho)\langle \tilde x - x, z - \tilde x\rangle
                 - D_f(z, x) + D_f(\tilde x, x)
                 \\
                 &\underset{(2)}{\le} 
                 F(z) - F(\tilde x)
-                - (B + \beta)\langle \tilde x - x, z - \tilde x\rangle
+                - (B + \rho)\langle \tilde x - x, z - \tilde x\rangle
                 + \frac{B}{2}\Vert \tilde x - x\Vert^2
                 \\
                 &=
-                F(z) - F(\tilde x) + \frac{B + \beta}{2}\left(
+                F(z) - F(\tilde x) + \frac{B + \rho}{2}\left(
                     \Vert x - z\Vert^2
                     - \Vert \tilde x - x\Vert^2
                     - \Vert z - \tilde x\Vert^2
@@ -243,9 +242,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &= 
                 F(z) - F(\tilde x)
-                + \frac{B + \beta}{2}\Vert x - z\Vert^2
-                - \frac{B + \beta}{2}\Vert z - \tilde x\Vert^2
-                - \frac{\beta}{2}\Vert \tilde x - x\Vert^2. 
+                + \frac{B + \rho}{2}\Vert x - z\Vert^2
+                - \frac{B + \rho}{2}\Vert z - \tilde x\Vert^2
+                - \frac{\rho}{2}\Vert \tilde x - x\Vert^2. 
             \end{align*}
             At (1), we used considered the following: 
             \begin{align*}
@@ -259,7 +258,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             At (2), we used the fact that $f$ is convex hence $- D_f(z, x) \le 0$ always, and in the statement hypothesis we assumed that $B$ has $D_f(\tilde x, x) \le B/2\Vert \tilde x - x\Vert^2$. 
         \end{proof}
-    \subsection{optimizing the inexact proximal point problem}
+    \subsection{Optimizing the inexact proximal point problem}
         In this section we will show an optimization problem that allows us to solve for some $\tilde x \approx_\epsilon \hprox_{\lambda g}(z)$. 
         Most of these results are from the literature. 
         To start, we must assume the following about a function $g: \RR^n \rightarrow \overline \RR$, with $g$ closed, convex and proper. 
@@ -294,32 +293,272 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         The following theorem quantifies a sufficient conditions for $\tilde x \approx_\epsilon \hprox_{\lambda g}(x)$. 
         The theorem below is from \cite[Proposition 2.2]{villa_accelerated_2013}. 
         \begin{theorem}[primal translate to dual]\label{thm:primal-dual-trans}
-            Let $\epsilon \ge 0$, $g:\RR^n \rightarrow \overline \RR$ be convex, proper and closed then 
+            Let $(g, \omega, A)$ satisfies Assumptiom \ref{ass:for-inxt-prox}, $\epsilon \ge 0$, then 
             \begin{align*}
                 \left(
                     \forall z \approx_\epsilon \hprox_{\lambda g}(y) 
-                \right)(\exists v \in \dom \omega^\star): z = y - \lambda B^\top v. 
+                \right)(\exists v \in \dom \omega^\star): z = y - \lambda A^\top v. 
             \end{align*}
         \end{theorem}
-        The theorem is from Villa et al. \cite[Proposition 2.3]{villa_accelerated_2013}
+        This theorem that follows is from Villa et al. \cite[Proposition 2.3]{villa_accelerated_2013}, but put into our symbols and, Definition 
         \begin{theorem}[duality gap of inexact proximal problem]\label{thm:dlty-gap-inxt-pp}
-            For all $\epsilon \ge 0$, $v \in \RR^n$. 
-            Consider conditions 
+            Let $(g, \omega, A)$ satisfies Assumption \ref{ass:for-inxt-prox}, for all $\epsilon \ge 0$, $v \in \RR^n$ consider the following conditions: 
             \begin{enumerate}[nosep]
-                \item $\mathbf G_\lambda(y - \lambda B^\top v, v) \le \epsilon$. 
-                \item $B^\top v \approx_\epsilon \hprox_{\lambda^{-1}g^\star}(\lambda^{-1}y)$. 
-                \item $y - \lambda B^\top v \approx_{\epsilon} \hprox_{\lambda g}(y)$. 
+                \item $\mathbf G_\lambda(y - \lambda A^\top v, v) \le \epsilon$. 
+                \item $A^\top v \approx_\epsilon \hprox_{\lambda^{-1}g^\star}(\lambda^{-1}y)$. 
+                \item $y - \lambda A^\top v \approx_{\epsilon} \hprox_{\lambda g}(y)$. 
             \end{enumerate}
             They have $(a)\implies (b) \iff (c)$. 
-            If in addition $\omega^\star(v) = g^\star(B^\top v)$, then all three conditions are equivalent. 
+            If in addition $\omega^\star(v) = g^\star(A^\top v)$, then all three conditions are equivalent. 
         \end{theorem}
         Next, let's explore some options for minimizing the duality gap of the proximal problem. 
         \todoinline{
             STILL WRITING AND NOT FINISHED YET! 
         }
-
-
     \subsection{Literature reviews}
+    \subsection{Our contributions}
+
+\section{The accelerated proximal gradient with controlled errors}
+    In this section, we present an accelerated algorithm with controlled error using Definition \ref{def:inxt-pg}, and show that it can have a convergence rate under certain error conditions. 
+    \begin{definition}[our inexact accelerated proximal gradient]\;\label{def:inxt-apg}\\
+        Suppose that $(F, f, g, L)$ and, sequences $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$ satisfies the following
+        \begin{enumerate}[nosep]
+            \item $(\alpha_k)_{k \ge 0}$ is a sequence such that $\alpha \in (0, 1]$ for all $k \ge 0$. 
+            \item $(B_k)_{k \ge 0}$ is a non-negative sequence, characterizing the potential line search routine. 
+            \item $(\rho_k)_{k \ge 0}$ be a sequence such that $\rho_k > 0$, characterizing the over-relaxation of the proximal gradient operator. 
+            \item $(\epsilon_k)_{k \ge 0}$ is a non-negative sequence characterizing the errors of inexact proximal evaluation.
+            \item $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, and let $F = f + g$. 
+        \end{enumerate}
+        Denote $L_k = B_k + \rho_k$ for short. 
+        Given any initial condition $v_{-1}, x_{-1} \in \RR^n$, the algorithm generates the sequences $(y_k, x_k, v_k)_{k \ge 0}$ such that they satisfies for all $k \ge 0$: 
+        \begin{align*}
+            & y_k = \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1}, 
+            \\
+            & x_k \approx_{\epsilon_k} T_{L_k}(y_k), 
+            \\
+            & D_f(x_k, y_k) \le \frac{B_k}{2}\Vert x_k - y_k\Vert^2, 
+            \\
+            & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
+        \end{align*}
+    \end{definition}
+    \begin{lemma}[inexact accelerated proximal gradient preparation stage I]\; \label{lemma:inxt-apg-cnvg-prep1}\\
+        Let $(f, g, L)$, and $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, be given by Definition \ref{def:inxt-apg}. 
+        Denote $L_k = B_k + \rho_k$. 
+        Then, for any $\bar x \in \RR^n$, the sequences $(y_k, x_k, v_k)_{k \ge 0}$ generated satisfy for all $k \ge 1$ the inequality: 
+        \begin{align*}
+            & \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k
+            \\
+            &\le 
+            (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x)) + F(\bar x) - F(x_k) 
+            \\ &
+            + \max\left(
+                    1 - \alpha_k, \frac{\alpha_k^2L_k}{\alpha_{k - 1}^2L_{k - 1}}
+                \right)\frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2 
+            - \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2. 
+        \end{align*}
+        When, $k = 1$ it instead have: 
+        \begin{align*}
+            & \frac{\rho_0}{2}\Vert x_0 - y_0\Vert^2 - \epsilon_0 
+            \\
+            &\le 
+            (1 - \alpha_0)(F(x_{-1}) - F(\bar x)) + F(\bar x) - F(x_0) 
+            + \frac{\alpha_0^2L_0}{2}\Vert \bar x - v_{-1}\Vert^2
+            - \frac{\alpha_0^2L_0}{2}\Vert \bar x - v_0\Vert^2. 
+        \end{align*}
+    \end{lemma}
+    \begin{proof}
+        Two intermediate results are in order before we can prove the inequality. 
+        Define $z_k := \alpha_k \bar x + (1 - \alpha_k)x_{k - 1}$ for short. 
+        It has for all $k \ge 1$ the equality: 
+        \begin{align}\tag{a}\label{eqn:inxt-apg-cnvg-prep1-a}\begin{split}
+            z_k - x_k &= 
+            \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - x_k
+            \\
+            &= \alpha_kx^+ + (x_{k - 1} - x_k) - \alpha_kx_{k - 1}
+            \\
+            &= \alpha_k \bar x - \alpha_k v_k. 
+        \end{split}\end{align}
+        It also has for all $k \ge 1$ the equality: 
+        \begin{align}\tag{b}\label{eqn:inxt-apg-cnvg-prep1-b}\begin{split}
+            z_k - y_k &= 
+            \alpha_k \bar x + (1 - \alpha_k)x_{k - 1} - y_k
+            \\
+            &= \alpha_k \bar x - \alpha_k v_{k - 1}. 
+        \end{split}\end{align}
+        Let's denote $L_k = B_k + \rho_k$ for short. 
+        Recall that $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, if we choose $x = y_k$ so $\tilde x = x_k \approx_\epsilon T_{L_k}(y_k)$, and set $z = z_k, \epsilon = \epsilon_k$ then Theorem \ref{thm:inxt-pg-ineq} has: 
+        \begin{align*}
+            & \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k
+            \\
+            &\le
+            F(z_k) - F(x_k) + \frac{L_k}{2}\Vert y_k - z_k\Vert^2 - \frac{L_k}{2}\Vert z_k - x_k\Vert^2
+            \\
+            &\underset{(1)}{\le} \alpha_k F(\bar x) + (1 - \alpha_k)F(x_{k - 1}) - F(x_k)
+            + \frac{L_k}{2}\Vert y_k - z_k\Vert^2 - \frac{L_k}{2}\Vert z_k - x_k\Vert^2
+            \\
+            &\underset{(2)}{=} 
+            (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x)) + F(\bar x) - F(x_k) 
+            + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_{k - 1}\Vert^2 
+            - \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_{k}\Vert^2 
+            \\
+            &\le 
+            (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x)) + F(\bar x) - F(x_k) 
+            \\ &
+            + \max\left(
+                    1 - \alpha_k, \frac{\alpha_k^2L_k}{\alpha_{k - 1}^2L_{k - 1}}
+                \right)\frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2 
+            - \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2. 
+        \end{align*}
+        At (1) we used the fact that $F = f + g$ hence $F$ is convex. 
+        At (2) we used \eqref{eqn:inxt-apg-cnvg-prep1-a}, \eqref{eqn:inxt-apg-cnvg-prep1-b}. 
+        Finally, if $k = 0$, then take the RHS of $\underset{(1)}{=}$ then:
+        \begin{align*}
+            & \frac{\rho_0}{2}\Vert x_0 - y_0\Vert^2 - \epsilon_0 
+            \\
+            &\le 
+            (1 - \alpha_0)(F(x_{-1}) - F(\bar x)) + F(\bar x) - F(x_0) 
+            + \frac{\alpha_0^2L_0}{2}\Vert \bar x - v_{-1}\Vert^2
+            - \frac{\alpha_0^2L_0}{2}\Vert \bar x - v_0\Vert^2. 
+        \end{align*}
+    \end{proof}
+    \par
+    The following proposition is a prototype of the convergence rate together with the error schedule that delivers convergence of algorithms satisfying Definition \ref{def:inxt-apg}. 
+    \begin{proposition}[valid error schedule and convergence rate]\;\label{prop:inxt-apg-cnvg-generic}\\
+        Let $(f, g, L)$, $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$ be given by Definition \ref{def:inxt-apg}. 
+        Fix any $\bar x \in \RR^n$ for all $k \ge 0$ and assume that $\alpha_0 = 1$. 
+        Denote for brevity $\beta_0 = 1$, $\beta_k = \prod_{i = 1}^{k} \max\left(1 - \alpha_i, \frac{\alpha_i^2L_i}{\alpha_{i - 1}^2L_{i - 1}}\right)$ and $L_k = B_k + \rho_k$. 
+        If for some fixed $\mathcal E_0 \ge 0, p \ge 1$ the parameter $\rho_k, \epsilon_k$ can satisfy for all $k \ge 0$ the condition
+        \begin{align*}
+            \frac{- \mathcal E_0\beta_k}{k^p} &\le 
+            \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k. 
+        \end{align*}
+        Then for the sequence generated $(y_k, x_k, v_k)_{k \ge 0}$ by the algorithm, for all $k \ge 0$ they satisfy: 
+        \begin{align*}
+            & F(x_k) - F(\bar x) + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
+            \le 
+            \beta_k \left(
+                \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2
+                + \mathcal E_0 \sum_{i = 1}^{k} \frac{1}{n^p}
+            \right). 
+        \end{align*}
+    \end{proposition}
+    \begin{proof}
+        Conside results from Lemma \ref{lemma:inxt-apg-cnvg-prep1} has $\forall k \ge 1$: 
+        \begin{align*}
+            & \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k
+            \\
+            &\le 
+            (1 - \alpha_k)(F(x_{k - 1}) - F(\bar x)) + F(\bar x) - F(x_k) 
+            \\ &
+            + \max\left(
+                    1 - \alpha_k, \frac{\alpha_k^2L_k}{\alpha_{k - 1}^2L_{k - 1}}
+                \right)\frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2 
+            - \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2. 
+            \\
+            &\le \max\left(
+                1 - \alpha_k, \frac{\alpha_k^2L_k}{\alpha_{k - 1}^2L_{k - 1}}
+            \right)\left(
+                F(x_{k - 1}) - F(\bar x)
+                + \frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2 
+            \right)
+            \\&\quad 
+                + F(\bar x) - F(x_k) - \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
+        \end{align*}
+        For notation brevity, we introduce $\beta_k, \Lambda_k$: 
+        \begin{align*}
+            \beta_0 &= 1, 
+            \\
+            \beta_k &:= \prod_{i = 1}^{k} \max\left(
+                1 - \alpha_i, \frac{\alpha_i^2L_i}{\alpha_{i - 1}^2L_{i - 1}}
+            \right),
+            \\
+            \Lambda_k &:= 
+            - F(\bar x) + F(x_k) + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2. 
+        \end{align*}
+        Now, suppose that in addition there is a non-negative sequence $(\mathcal  E_k)_{k \ge 0}$ such that 
+        \begin{enumerate}[nosep]
+            \item For all $k \ge 0$, it has $\frac{-\mathcal E_k}{k^p} \le \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k$ where $p \ge 1$, 
+            \item For all $k \ge 1$, it has $\mathcal E_k = \frac{\beta_k}{\beta_{k - 1}}\mathcal E_{k - 1}$, with $\mathcal E_0 \ge 0$. 
+        \end{enumerate}
+        These conditions are equivalent to the assumption that $\frac{- \mathcal E_0\beta_k}{k^p} \le \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k$. 
+        One can show that by unrolling recurrence on $\mathcal E_k$. 
+        Then \eqref{ineq:inxt-apg-cnvg-generic-pitem-1} implies $\forall k \ge 1$: 
+        \begin{align}\label{ineq:inxt-apg-cnvg-generic-pitem-1}
+            \frac{- \mathcal E_k}{k^p} &\le 
+            \frac{\beta_k}{\beta_{k - 1}}\Lambda_{k - 1} - \Lambda_k
+            \iff 
+            \Lambda_k \le 
+            \frac{\beta_k}{\beta_{k - 1}}\Lambda_{k - 1} + \frac{\mathcal E_k}{k^p}. 
+        \end{align}
+        Now, we show the convergence of $\Lambda_k$, using the relations of $\mathcal E_k, \Lambda_k, \beta_k$ above. 
+        \begin{align*}\begin{split}
+            \Lambda_k &\le 
+            \frac{\beta_k}{\beta_{k - 1}}\Lambda_{k - 1} + \frac{\mathcal E_k}{k^p}
+            \\
+            &\le \frac{\beta_k}{\beta_{k - 1}}\Lambda_{k - 1} 
+            + \frac{\beta_k}{\beta_{k -1}}\frac{\mathcal E_{k - 1}}{k^p}
+            \\
+            &= 
+            \frac{\beta_k}{\beta_{k - 1}}
+            \left(
+                \Lambda_{k - 1} + \frac{\mathcal E_{k - 1}}{k^p}
+            \right)
+            \\
+            &\le 
+            \frac{\beta_k}{\beta_{k - 1}}
+            \left(
+                \frac{\beta_{k - 1}}{\beta_{k - 2}}\Lambda_{k - 2}
+                + \frac{\mathcal E_{k - 1}}{(k - 1)^p}
+                + \frac{\mathcal E_{k - 1}}{k^p}
+            \right)
+            \\
+            &= 
+            \frac{\beta_k}{\beta_{k - 2}}
+            \left(
+                \Lambda_{k - 2}
+                + \frac{\mathcal E_{k - 2}}{(k - 1)^p}
+                + \frac{\mathcal E_{k - 2}}{k^p}
+            \right)
+            \\
+            & ...
+            \\
+            &\le \frac{\beta_k}{\beta_1}\left(
+                \Lambda_1 + \mathcal E_1\sum_{n = 2}^{k} \frac{1}{n^p}
+            \right)
+            \\
+            &\le \frac{\beta_k}{\beta_1}\left(
+                \frac{\beta_1}{\beta_0}\Lambda_0 
+                + \mathcal E_1\sum_{n = 1}^{k} \frac{1}{n^p}
+            \right)
+            \\
+            &= \frac{\beta_k}{\beta_0}\left(
+                \Lambda_0 
+                + \mathcal E_0\sum_{n = 1}^{k} \frac{1}{n^p}
+            \right). 
+        \end{split}\end{align*}
+        Therefore it points to the following inequality: 
+        \begin{align*}
+            & F(x_k) - F(\bar x) + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
+            \\
+            &\le 
+            \beta_k \left(
+                F(x_0) - F(\bar x) + \frac{\alpha_0^2L_0}{2}\Vert \bar x - v_0\Vert^2
+                + \mathcal E_0 \sum_{i = 1}^{k} \frac{1}{n^p}
+            \right). 
+        \end{align*}
+        Finally, when $\alpha_0 = 1$, then the results from \ref{lemma:inxt-apg-cnvg-prep1} with $k = 0$ simplifies the above inequality and give: 
+        \begin{align*}
+            & F(x_k) - F(\bar x) + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
+            \le 
+            \beta_k \left(
+                \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2
+                + \mathcal E_0 \sum_{i = 1}^{k} \frac{1}{n^p}
+            \right). 
+        \end{align*}
+    \end{proof}
+    \par
+    Now, it only remains to determine the sequence $\alpha_k$ to derive a type of convergence rate for the algorithm because from the above theorem, we have the convergence rate $\beta_k$ and, the error parameters $\epsilon_k, \rho_k$ both controlled by the sequence $(\alpha_k)_{k \ge 0}$. 
+
 \bibliographystyle{siam}
 \bibliography{references/refs.bib}
 \end{document}
