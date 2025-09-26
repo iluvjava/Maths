@@ -293,7 +293,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         The following theorem quantifies a sufficient conditions for $\tilde x \approx_\epsilon \hprox_{\lambda g}(x)$. 
         The theorem below is from \cite[Proposition 2.2]{villa_accelerated_2013}. 
         \begin{theorem}[primal translate to dual]\label{thm:primal-dual-trans}
-            Let $(g, \omega, A)$ satisfies Assumptiom \ref{ass:for-inxt-prox}, $\epsilon \ge 0$, then 
+            Let $(g, \omega, A)$ satisfies assumption \ref{ass:for-inxt-prox}, $\epsilon \ge 0$, then 
             \begin{align*}
                 \left(
                     \forall z \approx_\epsilon \hprox_{\lambda g}(y) 
@@ -311,12 +311,28 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             They have $(a)\implies (b) \iff (c)$. 
             If in addition $\omega^\star(v) = g^\star(A^\top v)$, then all three conditions are equivalent. 
         \end{theorem}
-        Next, let's explore some options for minimizing the duality gap of the proximal problem. 
+        The following fact from the literature indicates that it's sufficient to minimize the dual problem $\Psi_\lambda$ to obtain an element of the inexact proximal point operator. 
+        The following fact is Proposition \cite[Theorem 5.1]{villa_accelerated_2013}. 
+        \begin{fact}[minimizing dual of the proximal problem]
+            Let $\bar v$ be a solution of $\Psi$. 
+            Suppose that $(v_n)_{n \ge 0}$ is a minimizing sequence for $\Psi$. 
+            Let $z_n = y - \lambda A^\top v_n$, and $\bar z = y - \lambda A^\top \bar v$. 
+            If in addition, $\Phi_\lambda$ is $L_1$ Lipschitz continuous, then it has for all $k \ge 0$ the inequality: 
+            \begin{align*}
+                \Phi_{\lambda}(z_n) - \Phi_\lambda(\bar x) 
+                &\le L_1 \Vert z_n - \bar z\Vert 
+                \le L_1\sqrt{2\lambda}(\Psi_\lambda(v_n) - \Psi_\lambda(\bar v))^{1/2}. 
+            \end{align*}
+        \end{fact}
+        We remark that the above fact translates any algorithm that optimizes the function value of the dual problem into optimizing duality gap $\mathbf G(z_n, v_n)$. 
+        For this reasons, the inner loop interation required to achieve $\mathbf G(z_n, v_n) < \epsilon$ is now related to the convergence rate of the algorithms used to optimize $\Psi_\lambda(v_n)$. 
         \todoinline{
             STILL WRITING AND NOT FINISHED YET! 
         }
     \subsection{Literature reviews}
+
     \subsection{Our contributions}
+
 
 \section{The accelerated proximal gradient with controlled errors}
     In this section, we present an accelerated algorithm with controlled error using Definition \ref{def:inxt-pg}, and show that it can have a convergence rate under certain error conditions. 
@@ -330,7 +346,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \item $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, and let $F = f + g$. 
         \end{enumerate}
         Denote $L_k = B_k + \rho_k$ for short. 
-        Given any initial condition $v_{-1}, x_{-1} \in \RR^n$, the algorithm generates the sequences $(y_k, x_k, v_k)_{k \ge 0}$ such that they satisfies for all $k \ge 0$: 
+        Given any initial condition $v_{-1}, x_{-1} \in \RR^n$, the algorithm generates the sequences $(y_k, x_k, v_k)_{k \ge 0}$ such that they satisfy for all $k \ge 0$: 
         \begin{align*}
             & y_k = \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1}, 
             \\
@@ -356,7 +372,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \right)\frac{\alpha_{k - 1}^2L_{k - 1}}{2}\Vert \bar x - v_{k - 1}\Vert^2 
             - \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2. 
         \end{align*}
-        When, $k = 1$ it instead have: 
+        When, $k = 1$ it instead has: 
         \begin{align*}
             & \frac{\rho_0}{2}\Vert x_0 - y_0\Vert^2 - \epsilon_0 
             \\
@@ -438,12 +454,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \le 
             \beta_k \left(
                 \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2
-                + \mathcal E_0 \sum_{i = 1}^{k} \frac{1}{n^p}
+                + \mathcal E_0 \sum_{n = 1}^{k} \frac{1}{n^p}
             \right). 
         \end{align*}
     \end{proposition}
     \begin{proof}
-        Conside results from Lemma \ref{lemma:inxt-apg-cnvg-prep1} has $\forall k \ge 1$: 
+        Consider results from Lemma \ref{lemma:inxt-apg-cnvg-prep1} has $\forall k \ge 1$: 
         \begin{align*}
             & \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k
             \\
@@ -477,7 +493,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         Now, suppose that in addition there is a non-negative sequence $(\mathcal  E_k)_{k \ge 0}$ such that 
         \begin{enumerate}[nosep]
-            \item For all $k \ge 0$, it has $\frac{-\mathcal E_k}{k^p} \le \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k$ where $p \ge 1$, 
+            \item For all $k \ge 0$, it has $\frac{-\mathcal E_k}{k^p} \le (\rho_k/2)\Vert x_k - y_k\Vert^2 - \epsilon_k$ where $p \ge 1$, 
             \item For all $k \ge 1$, it has $\mathcal E_k = \frac{\beta_k}{\beta_{k - 1}}\mathcal E_{k - 1}$, with $\mathcal E_0 \ge 0$. 
         \end{enumerate}
         These conditions are equivalent to the assumption that $\frac{- \mathcal E_0\beta_k}{k^p} \le \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k$. 
@@ -536,14 +552,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 + \mathcal E_0\sum_{n = 1}^{k} \frac{1}{n^p}
             \right). 
         \end{split}\end{align*}
-        Therefore it points to the following inequality: 
+        Therefore, it points to the following inequality: 
         \begin{align*}
             & F(x_k) - F(\bar x) + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
             \\
             &\le 
             \beta_k \left(
                 F(x_0) - F(\bar x) + \frac{\alpha_0^2L_0}{2}\Vert \bar x - v_0\Vert^2
-                + \mathcal E_0 \sum_{i = 1}^{k} \frac{1}{n^p}
+                + \mathcal E_0 \sum_{n = 1}^{k} \frac{1}{n^p}
             \right). 
         \end{align*}
         Finally, when $\alpha_0 = 1$, then the results from \ref{lemma:inxt-apg-cnvg-prep1} with $k = 0$ simplifies the above inequality and give: 
@@ -552,12 +568,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \le 
             \beta_k \left(
                 \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2
-                + \mathcal E_0 \sum_{i = 1}^{k} \frac{1}{n^p}
+                + \mathcal E_0 \sum_{n = 1}^{k} \frac{1}{n^p}
             \right). 
         \end{align*}
     \end{proof}
     \par
     Now, it only remains to determine the sequence $\alpha_k$ to derive a type of convergence rate for the algorithm because from the above theorem, we have the convergence rate $\beta_k$ and, the error parameters $\epsilon_k, \rho_k$ both controlled by the sequence $(\alpha_k)_{k \ge 0}$. 
+
+\section{Linear convergence for the inner loop proximal problem}
+
+
 
 \bibliographystyle{siam}
 \bibliography{references/refs.bib}

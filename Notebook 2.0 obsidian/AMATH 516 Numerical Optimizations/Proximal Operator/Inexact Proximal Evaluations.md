@@ -214,6 +214,10 @@ The following lemma will explain how to get there.
 >    \right)(\exists v \in \text{dom}\; \omega^\star): z = y - \lambda B^\top v. 
 > $$
 
+**Proof**
+
+
+$\square$
 
 #### **Lemma | Duality gap and inexact proximal solution**
 > For all $\epsilon \ge 0$, let $\eta = \lambda^{-1}\epsilon$, $v \in \R^n$. 
@@ -224,6 +228,13 @@ The following lemma will explain how to get there.
 > 
 > They have $(a)\implies (b) \iff (c)$. 
 > If in addition $\omega^\star(v) = g^\star(B^\top v)$, then all three conditions are equivalent. 
+
+**Proof**
+
+$\square$
+
+#### **Lemma | Minimizing sequence of the dual problem**
+> 
 
 
 ---

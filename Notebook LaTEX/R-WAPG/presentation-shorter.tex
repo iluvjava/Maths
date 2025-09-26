@@ -61,8 +61,17 @@
 % \newcommand{\email}{lalala@lala.la}
 \institute[UBCO]{
     University of British Columbia Okanagan
+    \\
+    WCOM 2025
 }
-\date[\today]{\today \\ \vspace{1cm} \tiny{Joint work with Shawn/Xianfu Wang}}
+\date[\today]{
+    \today \\ \vspace{1cm} 
+    \tiny{Joint work with Shawn/Xianfu Wang}\\ 
+    \tiny{The research of HL and XW was partially supported by the NSERC Discovery Grant of Canada.}
+    \tiny{We respectfully acknowledge that the UBC Okanagan academic campus is situated on the traditional, ancestral, unceded territory of the Syilx Okanagan Nation}
+}
+
+
 \subject{Nesterov's acceleration and its applications}
 
 % SLIDES ELEMENTS CUSTOMIZATIONS ===============================================
@@ -228,8 +237,7 @@
 \section{Our theoretical results}
     \begin{frame}{Iterates by R-WAPG has other representations}
         \begin{proposition}[Alternative representations of the iterates]\label{prop:wapg-first-equivalent-repr}
-            If the sequence $(y_k, v_k, x_k)_{k \ge 1}$ is produced by R-WAPG (Definition \ref{def:wapg}), and $\alpha_0 = 1, x_1 = v_1$. 
-            Then they satisfy for all $k\ge 1$: 
+            If the sequence $(y_k, v_k, x_k)_{k \ge 1}$ is produced by R-WAPG (Definition \ref{def:wapg}), and $\alpha_0 = 1, x_1 = v_1$, then they satisfy for all $k\ge 1$: 
             {\footnotesize
             \begin{align}
                 & \begin{aligned}
@@ -280,10 +288,10 @@
     \begin{frame}{Convergence of R-WAPG}
         After six pages of math in the paper, we deduced the following theorem: 
         \begin{proposition}[R-WAPG convergence]\label{prop:wapg-convergence}
-            Fix any arbitrary $x^* \in \RR^n, N \in \mathbb N$.
+            Fix any arbitrary $x^* \in \RR^n$.
             Let $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ be R-WAPG sequences.
             Let vector sequences $(y_k, v_{k}, x_{k})_{k \ge 1}$ be given by Definition \ref{def:wapg}. 
-            Then for all $k = 1, 2, \ldots, N$:
+            Then for all $k \ge 1$:
             {\small
             \begin{align*}
                 & F(x_{k + 1}) - F(x^*) + \frac{L \alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
