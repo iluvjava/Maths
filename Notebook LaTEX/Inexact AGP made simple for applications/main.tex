@@ -60,7 +60,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             When $\bar x \not \in \dom g$, it has $\partial g_\epsilon(\bar x) = \emptyset$. 
         \end{definition}
         \begin{remark}
-            $\partial_\epsilon g$ is a multivalued operator and, it's not monotone, unless $\epsilon = 0$, which makes it equivalent to French subgradient $\partial g$. 
+            $\partial_\epsilon g$ is a multivalued operator and, it's not monotone, unless $\epsilon = 0$, which makes it equivalent to Fenchel subgradient $\partial g$. 
         \end{remark}
         If we assume lsc, proper and convex $g$, we will now introduce results in the literatures that we will use. 
         \begin{fact}[$\epsilon$-Fenchel inequality]\label{fact:esp-fenchel-ineq}
@@ -168,7 +168,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \item $g: \RR^n \rightarrow \overline\RR$ is a convex, proper, and lsc function which we do not have its exact proximal operator. 
             \end{enumerate}
         \end{assumption}
-        We develop the theory based on the use of epsilon subgradient as in Definition \ref{def:esp-subgrad}. 
+        No, we develop the theory based on the use of epsilon subgradient as in Definition \ref{def:esp-subgrad}. 
         \begin{definition}[inexact proximal gradient]\label{def:inxt-pg}
             Let $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}. 
             Let $\epsilon \ge 0, \rho > 0$. 
@@ -180,7 +180,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{remark}
             We assumed that we can get exact evaluation of $\nabla f$ at any points $x \in \RR^n$. 
         \end{remark}
-        \begin{lemma}[other representations of inexact proximal gradient]\;\\
+        \begin{lemma}[other representations of inexact proximal gradient]\;\label{lemma:other-repr-inxt-pg}\\
             Let $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, $\epsilon \ge 0, \rho > 0$, then for all $x \approx_\epsilon T_\rho(x)$, it has the following equivalent representations: 
             \begin{align*}
                 & (x - \rho^{-1}\nabla f(x)) - \tilde x 
@@ -258,8 +258,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             At (2), we used the fact that $f$ is convex hence $- D_f(z, x) \le 0$ always, and in the statement hypothesis we assumed that $B$ has $D_f(\tilde x, x) \le B/2\Vert \tilde x - x\Vert^2$. 
         \end{proof}
+        \begin{remark}
+            When $\epsilon = 0, \rho = 0$, this reduces to proximal gradient inequality in the exact case. 
+        \end{remark}
     \subsection{Optimizing the inexact proximal point problem}
         In this section we will show an optimization problem that allows us to solve for some $\tilde x \approx_\epsilon \hprox_{\lambda g}(z)$. 
+        Eventually we want to evaluate $T_{\rho}(x)$ of some $F = f + g$ inexactly and, by Lemma \ref{lemma:other-repr-inxt-pg}, one can achieve that through inexact evaluation of $\hprox_{\rho^{-1}g}$ in the sense of Definition \ref{def:inxt-pp}. 
         Most of these results are from the literature. 
         To start, we must assume the following about a function $g: \RR^n \rightarrow \overline \RR$, with $g$ closed, convex and proper. 
         \begin{assumption}[for inexact proximal operator]\;\label{ass:for-inxt-prox}\\
@@ -273,11 +277,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{assumption}
         Now, we are ready to discuss how to choose $\tilde x \approx_\epsilon \hprox_{\lambda g}(x)$. 
         Fix $y \in \RR^n, \lambda > 0$, we are ultimately interested in minimizing: 
-        \begin{align}
+        \begin{align}\label{eqn:primal-pp}
             \Phi_\lambda(u) &:= \omega(Au) + \frac{1}{2\lambda} \Vert u - y\Vert^2
         \end{align}
         This problem admits dual objective in $\RR^m$: 
-        \begin{align}
+        \begin{align}\label{eqn:dual-pp}
             \Psi_\lambda(v) &:=
             \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2
             + \omega^\star(v) - \frac{1}{2\lambda}\Vert y\Vert^2. 
@@ -313,22 +317,19 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{theorem}
         The following fact from the literature indicates that it's sufficient to minimize the dual problem $\Psi_\lambda$ to obtain an element of the inexact proximal point operator. 
         The following fact is Proposition \cite[Theorem 5.1]{villa_accelerated_2013}. 
-        \begin{fact}[minimizing dual of the proximal problem]
+        \begin{fact}[minimizing dual of the proximal problem]\label{fact:minimizing-dual-pp}
             Let $\bar v$ be a solution of $\Psi$. 
             Suppose that $(v_n)_{n \ge 0}$ is a minimizing sequence for $\Psi$. 
             Let $z_n = y - \lambda A^\top v_n$, and $\bar z = y - \lambda A^\top \bar v$. 
             If in addition, $\Phi_\lambda$ is $L_1$ Lipschitz continuous, then it has for all $k \ge 0$ the inequality: 
             \begin{align*}
-                \Phi_{\lambda}(z_n) - \Phi_\lambda(\bar x) 
+                \Phi_{\lambda}(z_n) - \Phi_\lambda(\bar z) 
                 &\le L_1 \Vert z_n - \bar z\Vert 
                 \le L_1\sqrt{2\lambda}(\Psi_\lambda(v_n) - \Psi_\lambda(\bar v))^{1/2}. 
             \end{align*}
         \end{fact}
         We remark that the above fact translates any algorithm that optimizes the function value of the dual problem into optimizing duality gap $\mathbf G(z_n, v_n)$. 
-        For this reasons, the inner loop interation required to achieve $\mathbf G(z_n, v_n) < \epsilon$ is now related to the convergence rate of the algorithms used to optimize $\Psi_\lambda(v_n)$. 
-        \todoinline{
-            STILL WRITING AND NOT FINISHED YET! 
-        }
+        For this reason, the number of iterations of the inner loop required to achieve $\mathbf G(z_n, v_n) < \epsilon$ for a given $e$ is related to the convergence rate of the algorithms used to optimize $\Psi_\lambda(v_n)$. 
     \subsection{Literature reviews}
 
     \subsection{Our contributions}
@@ -576,7 +577,141 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     Now, it only remains to determine the sequence $\alpha_k$ to derive a type of convergence rate for the algorithm because from the above theorem, we have the convergence rate $\beta_k$ and, the error parameters $\epsilon_k, \rho_k$ both controlled by the sequence $(\alpha_k)_{k \ge 0}$. 
 
 \section{Linear convergence for the inner loop proximal problem}
+    In this section, we continue the discussion from \textcolor{red}{[REF PREVIOUS SECTION]}. 
+    The inner loop of the algorithm evaluates $x_k \approx_\epsilon T_{(B + \rho)}(y_k)$ for a given value of $\epsilon$. 
+    To attain $x_k$, one approach is to utilise Theorem \ref{thm:dlty-gap-inxt-pp} numerically, usually using iterative algorithms. 
+    \par
+    The following assumption places additional assumption to the proximal problem for the inner loop. 
+    \begin{assumption}[gradient mapping error bound]\;\label{ass:pg-eb}\\
+        The following assumption is about $(F, f, g, L, S, \gamma)$. 
+        Assume that
+        \begin{enumerate}[nosep]
+            \item $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, 
+            \item Let $\tau > 0$ be the step size inverse, let $T_{\tau}$ be the proximal operator of $f + g$ as given by $T_{\tau}(x) := \hprox_{\tau^{-1}g}(x - \tau^{-1}\nabla f(x))$, 
+            \item the gradient mapping $\mathcal G_{\tau}$ be given by: $\mathcal G_t(x) = \tau (x - T_t(x))$, 
+            \item $S= \argmin_{x}{f(x) + g(x)} \neq \emptyset$, 
+            \item the objective function is given by $F = f + g$. 
+        \end{enumerate}        
+        In addition, assume that the optimization problem $F$ satisfies the error bound condition if it has for all $\tau \ge L, x \in \RR^n$ there exists $\gamma > 0$: 
+        \begin{align*}
+            \Vert \mathcal G_\tau(x)\Vert \ge \gamma\dist(x|S). 
+        \end{align*}
+    \end{assumption}
+    \begin{definition}[proximal gradient method]\label{def:ista}
+        Suppose that $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}. 
+        Let $\tau \ge L$, and $x_0 \in \RR^n$. 
+        Then an algorithm is a proximal gradient method if it generates iterates $(x_k)_{k \ge 0}$ such that they satisfies for all $k \ge 1$: 
+        \begin{align*}
+            x_{k + 1} = \hprox_{\tau^{-1} g}\left(x_k + \tau^{-1}\nabla f(x_k)\right). 
+        \end{align*}
+    \end{definition}
+    \begin{assumption}[error bound for proximal problem]\;\label{ass:eb-for-pp}\\
+        This assumption is about $(g, \omega, A, \Psi_\lambda, \gamma)$
+        Here are the assumptions
+        \begin{enumerate}[nosep]
+            \item $(g, \omega, A)$ satisfies Assumption \ref{ass:for-inxt-prox}. 
+            \item In addition, function $\Psi_\lambda$ as given by \eqref{eqn:primal-pp} satifies gradient mapping error bound (Assumption \ref{ass:pg-eb}) where, $f(v) = \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2, g(v) = \omega(A v) - \frac{1}{2\lambda}\Vert y\Vert^2$. 
+        \end{enumerate}
+    \end{assumption}
+    \subsection{error bound and linear convergence}
+        The following theorem characterize linear convergence of the proximal gradient method under gradient mapping error bound condition. 
+        \begin{theorem}[linear convergence under gradient mapping error bound]\;\label{thm:lin-cnvg-ista-eb}\\
+            Assume that $(F, f, g, L, S, \gamma)$ is given by Assumption \ref{ass:pg-eb}. 
+            Under this assumption, the iterates $(x_k)_{k \ge 0}$ given by Definition \ref{def:ista} satisfies for all $k \ge 0, \bar x \in S$ the inequality: 
+            \begin{align*}
+                F(x_{k + 1}) - F(\bar x)
+                &\le 
+                \left(
+                    1 - \frac{\gamma}{2\tau}
+                \right)(F(x_k) - F(\bar x)). 
+            \end{align*}
+            Hence, the algorithm generates $F(x_k) - F(\bar x)\le \mathcal O((1 - \gamma/(2\tau))^k)$. 
+        \end{theorem}
+        \begin{proof}
+            Two important immediate results will be presented first.
+            Consider the proximal gradient inequality from \ref{thm:inxt-pg-ineq}, but with $\rho = 0, \epsilon = 0, B = \tau$, then for all $x$ such that $\Vert \mathcal G_\tau(x)\Vert > 0$ it has for $\tilde x = T_{\tau}(x), z \in \RR^n$ the inequality 
+            \begin{align*}
+                0 &\le 
+                F(z) - F(\tilde x) + \frac{\tau}{2}\Vert x - z\Vert^2 - \frac{\tau}{2}\Vert z - \tilde x\Vert^2
+                \\
+                &=  
+                F(z) - F(\tilde x) - \frac{\tau}{2}\Vert x - \tilde x\Vert^2
+                + \tau\langle x - z, x - \tilde x\rangle
+                \\
+                &= F(z) - F(\tilde x) - \frac{1}{2\tau}\Vert \mathcal G_\tau(x) \Vert^2
+                + \langle x - z, \mathcal G_\tau(x)\rangle
+                \\
+                &\le F(z) - F(\tilde x) - \frac{1}{2\tau}\Vert \mathcal G_\tau(x)\Vert^2 
+                + \Vert x - z\Vert \Vert \mathcal G_\tau(x)\Vert
+                \\
+                &= 
+                F(z) - F(\tilde x) 
+                + \Vert \mathcal G_\tau(x)\Vert^2\left(
+                    \frac{\Vert x - z \Vert}{\Vert \mathcal G_\tau(x)\Vert} - \frac{1}{2\tau}
+                \right). 
+            \end{align*}
+            Now, for all $z = \bar x \in S$, from Assumption \ref{ass:eb-for-pp} it has
+            \begin{align*}
+                \frac{\Vert x - z \Vert}{\Vert \mathcal G_\tau(x)\Vert}
+                \le 
+                \frac{\Vert x - z \Vert}{\gamma \dist(x | S)} \le \frac{1}{\gamma}. 
+            \end{align*}
+            Hence for all $\bar x \in S$ it has 
+            \begin{align}\label{ineq:lin-cnvg-ista-eb-pitem1}
+                0\le F(\tilde x) - F(\bar x)&\le 
+                \Vert \mathcal G_\tau(x)\Vert^2\left(
+                    \frac{1}{\gamma} - \frac{1}{2\tau}
+                \right). 
+            \end{align}
+            Obviously it has $\gamma^{-1} - (1/2)\tau^{-1} > 0$. 
+            When $z = x$, we have the inequality: 
+            \begin{align}\label{ineq:lin-cnvg-ista-eb-pitem2}
+                F(\tilde x) - F(x) &\le - \frac{1}{2\tau}\Vert \mathcal G_\tau(x)\Vert^2. 
+            \end{align}
+            To derive the linear convergence, we use \eqref{ineq:lin-cnvg-ista-eb-pitem1} with $x = x_k, \tilde x = x_{k + 1}$:
+            {\allowdisplaybreaks
+            \begin{align*}
+                0 &\le 
+                \Vert \mathcal G_\tau(x_k)\Vert^2\left(
+                    \frac{1}{\gamma} - \frac{1}{2\tau} 
+                \right)
+                - F(x_{k + 1}) + F(\bar x)
+                \\
+                &= 
+                \frac{1}{2\tau}\Vert \mathcal G_\tau(x_k)\Vert^2\left(
+                    \frac{2\tau}{\gamma} - 1
+                \right)
+                - F(x_{k + 1}) + F(\bar x)
+                \\
+                &\underset{(1)}{\le}
+                \left(
+                    \frac{2\tau}{\gamma} - 1
+                \right)
+                \left(
+                    F(x_k) - F(x_{k + 1})
+                \right)
+                - F(x_{k + 1}) + F(\bar x)
+                \\
+                &= 
+                \left(
+                    \frac{2\tau}{\gamma} - 1
+                \right)
+                \left(
+                    F(x_k) - F(\bar x) + F(\bar x) - F(x_{k + 1})
+                \right)
+                - F(x_{k + 1}) + F(\bar x)
+                \\
+                &= \frac{2\tau}{\gamma}(F(\bar x) - F(x_{k + 1}))
+                + \left(
+                    \frac{2\tau}{\gamma} - 1
+                \right)(F(x_k) - F(\bar x)). 
+            \end{align*}
+            }
+            At (1) we used \eqref{ineq:lin-cnvg-ista-eb-pitem2}. 
+            Multiple bothside by $\frac{\gamma}{2\tau}$ then we are done. 
+        \end{proof}
 
+    \subsection{characterizing linear convergence of the proximal problem}
 
 
 \bibliographystyle{siam}
