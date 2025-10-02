@@ -471,9 +471,11 @@ $$
 \end{aligned}
 $$
 Define $\beta_0 = 1$ as the base case. 
-Observe that the sequence is monotone decreasing and strictly larger than zero, i.e: $0 < \beta_{k + 1} < \beta_k \; \forall k \ge 0$. 
-From these definitions we have for all $k \ge 1$, $(1 - \alpha_k) = \beta_k / \beta_{k - 1}$: 
-Now look, they give these: 
+Observe that 
+> - $(\beta_k)_{k \ge 0}$ is monotone decreasing and strictly larger than zero, i.e: $0 < \beta_{k + 1} < \beta_k \; \forall k \ge 0$. 
+> - We have the equalities $\beta_k/\beta_{k - 1} = (1 - \alpha_k) = \frac{\alpha_k^2L_k}{\alpha_{k - 1}^2 L_{k - 1}}$. 
+
+From these observations we have for all $k \ge 1$: 
 
 $$
 \begin{aligned}
@@ -484,11 +486,19 @@ $$
     \\
     \implies 
     \alpha_k^2 &= (1 - \beta_k / \beta_{k - 1})^2, 
-    \\
+\end{aligned}
+$$
+
+and simultaneously 
+
+$$
+\begin{aligned}
     \alpha_k^2&= (1 - \alpha_k)\alpha_{k - 1}^2L_{k - 1}L_k^{-1}
     \\
     &= 
-    (1 - \alpha_k)(\alpha_{k - 1}^2L_{k - 1}L_0^{-1}\alpha_0^{-2})L_0\alpha_0^2L_k^{-1}
+    (1 - \alpha_k)
+    \frac{\alpha_{k - 1}^2L_{k - 1}}{\alpha_0^2L_0}
+    \frac{L_{k - 1}\alpha_0^2L_0}{L_k}
     \\
     &= 
     (\beta_k\beta_{k - 1}^{-1})\beta_{k - 1}L_0\alpha_0^2L_k^{-1}
@@ -497,47 +507,57 @@ $$
 \end{aligned}
 $$
 
-Combining it has $(1 - \beta_k/\beta_{k - 1})^2 = \beta_k L_0\alpha_0L_k^{-1}$. 
-Using the property that $\beta_k$ is monotone decreasing, it has: 
+Combining it has $(1 - \beta_k/\beta_{k - 1})^2 = \beta_k L_0\alpha_0L_k^{-1}$, and that would imply: 
 
 $$
 \begin{aligned}
-    0 &= (1 - \beta_k/\beta_{k - 1})^2 - \beta_k L_0\alpha_0^2L_k^{-1}
+    L_0 \alpha_0^2 L_k^{-1} &= 
+    \beta_k^{-1}\left(
+        1 - \frac{\beta_k}{\beta_{k - 1}}
+    \right)^2
     \\
-    \iff 
-    0 &= (1 - \beta_k/\beta_{k - 1}) - \alpha_0\sqrt{\beta_k L_0L_k^{-1}}
-    \\
-    \implies
-    0 &= \left(
+    &= 
+    \beta_k \left(
         \beta_k^{-1} - \beta_{k - 1}^{-1}
-    \right) - \alpha_0\sqrt{\beta_k^{-1} L_0L_k^{-1}}
+    \right)^2
     \\
-    &= 
-    \left(\sqrt{\beta_k^{-1}} + \sqrt{\beta_{k - 1}^{-1}}\right)
-    \left(\sqrt{\beta_k^{-1}} - \sqrt{\beta_{k - 1}^{-1}}\right)
-    - \alpha_0\sqrt{\beta_k^{-1} L_0L_k^{-1}}
+    &=
+    \beta_k \left(
+        \beta_k^{-1/2} - \beta_{k - 1}^{-1/2}
+    \right)^2
+    \left(
+        \beta_k^{-1/2} + \beta_{k - 1}^{-1/2}
+    \right)^2
     \\
-    &\le 2\sqrt{\beta_k^{-1}}\left(\sqrt{\beta_k^{-1}} - \sqrt{\beta_{k - 1}^{-1}}\right)
-    - \alpha_0\sqrt{\beta_k^{-1} L_0L_k^{-1}}
+    &\underset{(1)}{\le} 
+    \beta_k \left(
+        \beta_k^{-1/2} - \beta_{k - 1}^{-1/2}
+    \right)^2
+    \left(
+        2\beta_k^{-1/2}
+    \right)^2
+    \\
+    &= 4\left(
+        \beta_k^{-1/2} - \beta_{k - 1}^{-1/2}
+    \right)^2
     \\
     \implies
-    0 &\le 
-    2\left(\sqrt{\beta_k^{-1}} - \sqrt{\beta_{k - 1}^{-1}}\right)
-    - \alpha_0\sqrt{L_0L_k^{-1}}
-    \\
-    \implies 0 
+    \sqrt{\frac{L_0\alpha_0^2}{L_k}} &\le
+    2 \left(
+        \beta_k^{-1/2} - \beta_{k - 1}^{-1/2}
+    \right).
+\end{aligned}
+$$
+
+At (1) we used the fact that $\beta_k$ is a monotone decreasing sequence. 
+From here, telescoping the inequality for all $k \ge 1$ yields: 
+
+$$
+\begin{aligned}
+    \frac{\alpha_0\sqrt{L_0}}{2}\sum_{i = 1}^{k}\sqrt{L^{-1}_k}
     &\le 
-    2\left(
-        \sum_{i = 1}^{k}
-        \sqrt{\beta_i^{-1}} - \sqrt{\beta_{i - 1}^{-1}}
-    \right) - \alpha_0\sum_{i = 1}^{k} \sqrt{L_0L_i^{-1}}
-    \\
-    &= 
-    2\left(\sqrt{\beta_k^{-1}} -\sqrt{\beta_{0}^{-1}}\right) 
-    - \alpha_0\sum_{i = 1}^{k} \sqrt{ L_0L_i^{-1}}
-    \\
-    &= 2\left(\sqrt{\beta_k^{-1}} - 1\right) 
-    - \alpha_0\sqrt{L_0}\sum_{i = 1}^{k} \sqrt{L_i^{-1}}. 
+    \beta_k^{-1/2} - \beta_{0}^{-1/2} = 
+    \beta_k^{-1/2} - 1. 
 \end{aligned}
 $$
 

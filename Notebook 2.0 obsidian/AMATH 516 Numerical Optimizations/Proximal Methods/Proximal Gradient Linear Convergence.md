@@ -114,7 +114,7 @@ $$
 \end{aligned}
 $$
 At (1) we used the error bound conditions.
-Assuming $\gamma - \frac{1}{2\beta} > 0$ it has 
+Assuming $\gamma - \frac{1}{2\beta} > 0$ （which is always true because the LHS of the above inequality is always $> 0$ when $\Vert \mathcal G_t(x_k)\Vert \ge 0$） it has 
 
 $$
 \begin{aligned}
@@ -167,5 +167,11 @@ $$
 
 And, the above inequality is sufficient for a linear convergence rate. 
 $\square$
+
+---
+### **The strange condition proximal mapping error bound**
+
+So, what is this strange condition we called error bound that we used here? 
+
 
 

@@ -12,7 +12,7 @@
 
 
 
-\title{{\fontfamily{ptm}\selectfont Inexect Accelerated Proximal Gradient }}
+\title{{\fontfamily{ptm}\selectfont Inexact Accelerated Proximal Gradient }}
 
 \author{
     Author 1 Name, Author 2 Name
@@ -169,6 +169,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{enumerate}
         \end{assumption}
         No, we develop the theory based on the use of epsilon subgradient as in Definition \ref{def:esp-subgrad}. 
+        Let $\rho > 0$, the exact proximal gradient operator defined for $(f, g, L)$ satisfying Assumption \ref{ass:for-inxt-pg-ineq} has
+        \begin{align*}
+            T_{\rho}(x) &= \argmin_{z\in\RR^n}\left\lbrace g(z) + \langle \nabla f(x), z\rangle + \frac{\rho}{2}\Vert z - x\Vert^2 \right\rbrace
+            \\
+            &= \hprox_{\rho^{-1} g}\left(x - \rho^{-1}\nabla f(x)\right). 
+        \end{align*}
+        The following definition extends the proximal gradient operator to the inexact case using the concept of $\epsilon$-subgradient as given by Definition \ref{def:esp-subgrad}. 
         \begin{definition}[inexact proximal gradient]\label{def:inxt-pg}
             Let $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}. 
             Let $\epsilon \ge 0, \rho > 0$. 
@@ -181,7 +188,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             We assumed that we can get exact evaluation of $\nabla f$ at any points $x \in \RR^n$. 
         \end{remark}
         \begin{lemma}[other representations of inexact proximal gradient]\;\label{lemma:other-repr-inxt-pg}\\
-            Let $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, $\epsilon \ge 0, \rho > 0$, then for all $x \approx_\epsilon T_\rho(x)$, it has the following equivalent representations: 
+            Let $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, $\epsilon \ge 0, \rho > 0$, then for all $\tilde x \approx_\epsilon T_\rho(x)$, it has the following equivalent representations: 
             \begin{align*}
                 & (x - \rho^{-1}\nabla f(x)) - \tilde x 
                 \in \rho^{-1} \partial_\epsilon g(\tilde x)
@@ -257,14 +264,20 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &= -D_f(z, x) + f(z) + D_f(\tilde x, x) - f(\tilde x). 
             \end{align*}
             At (2), we used the fact that $f$ is convex hence $- D_f(z, x) \le 0$ always, and in the statement hypothesis we assumed that $B$ has $D_f(\tilde x, x) \le B/2\Vert \tilde x - x\Vert^2$. 
+            We also used $F = f + g$. 
         \end{proof}
         \begin{remark}
             When $\epsilon = 0, \rho = 0$, this reduces to proximal gradient inequality in the exact case. 
+            In this inequality, observe that the parameter $\epsilon$ controls the inexactiness of the proximal gradient evaluation. 
+            Morespecifically, $\epsilon_k$ controls the absolute pertubatnions of the proximal gradient inequality compared to its exact counterpart. 
+            $\rho$ on the otherhand, it is the over-relaxation of proximal gradient operator and it compensates the pertubations caused by $\epsilon$ relative to the term $\Vert \tilde x - x\Vert^2$. 
         \end{remark}
     \subsection{Optimizing the inexact proximal point problem}
-        In this section we will show an optimization problem that allows us to solve for some $\tilde x \approx_\epsilon \hprox_{\lambda g}(z)$. 
-        Eventually we want to evaluate $T_{\rho}(x)$ of some $F = f + g$ inexactly and, by Lemma \ref{lemma:other-repr-inxt-pg}, one can achieve that through inexact evaluation of $\hprox_{\rho^{-1}g}$ in the sense of Definition \ref{def:inxt-pp}. 
-        Most of these results are from the literature. 
+        In this section we will present the optimization problem that obtains a $\tilde x$ such that $\tilde x \approx_\epsilon \hprox_{\lambda g}(z)$. 
+        Eventually we want to evaluate $T_{\rho}(x)$ of some $F = f + g$ inexactly using Lemma \ref{lemma:other-repr-inxt-pg}. 
+        To do that one would need to evaluate $\hprox_{\rho^{-1}g}$ inexactly which is defined in Definition \ref{def:inxt-pp}. 
+        \par
+        Most of these results that will follow are from the literature. 
         To start, we must assume the following about a function $g: \RR^n \rightarrow \overline \RR$, with $g$ closed, convex and proper. 
         \begin{assumption}[for inexact proximal operator]\;\label{ass:for-inxt-prox}\\
             This assumption is about $(g, \omega, A)$. 
@@ -296,7 +309,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         The following theorem quantifies a sufficient conditions for $\tilde x \approx_\epsilon \hprox_{\lambda g}(x)$. 
         The theorem below is from \cite[Proposition 2.2]{villa_accelerated_2013}. 
-        \begin{theorem}[primal translate to dual]\label{thm:primal-dual-trans}
+        \begin{theorem}[primal translate to dual {\cite[Proposition 2.2]{villa_accelerated_2013}}]\label{thm:primal-dual-trans}
             Let $(g, \omega, A)$ satisfies assumption \ref{ass:for-inxt-prox}, $\epsilon \ge 0$, then 
             \begin{align*}
                 \left(
@@ -304,8 +317,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \right)(\exists v \in \dom \omega^\star): z = y - \lambda A^\top v. 
             \end{align*}
         \end{theorem}
-        This theorem that follows is from Villa et al. \cite[Proposition 2.3]{villa_accelerated_2013}, but put into our symbols and, Definition 
-        \begin{theorem}[duality gap of inexact proximal problem]\label{thm:dlty-gap-inxt-pp}
+        This theorem that follows is from Villa et al. \cite[Proposition 2.3]{villa_accelerated_2013}. 
+        \begin{theorem}[duality gap of inexact proximal problem {\cite[Proposition 2.3]{villa_accelerated_2013}}]\;\label{thm:dlty-gap-inxt-pp}\\
             Let $(g, \omega, A)$ satisfies Assumption \ref{ass:for-inxt-prox}, for all $\epsilon \ge 0$, $v \in \RR^n$ consider the following conditions: 
             \begin{enumerate}[nosep]
                 \item $\mathbf G_\lambda(y - \lambda A^\top v, v) \le \epsilon$. 
@@ -316,10 +329,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             If in addition $\omega^\star(v) = g^\star(A^\top v)$, then all three conditions are equivalent. 
         \end{theorem}
         The following fact from the literature indicates that it's sufficient to minimize the dual problem $\Psi_\lambda$ to obtain an element of the inexact proximal point operator. 
-        The following fact is Proposition \cite[Theorem 5.1]{villa_accelerated_2013}. 
-        \begin{fact}[minimizing dual of the proximal problem]\label{fact:minimizing-dual-pp}
-            Let $\bar v$ be a solution of $\Psi$. 
-            Suppose that $(v_n)_{n \ge 0}$ is a minimizing sequence for $\Psi$. 
+        The following fact is Proposition is from Villa et al. \cite[Theorem 5.1]{villa_accelerated_2013}. 
+        \begin{fact}[minimizing dual of the proximal problem {\cite[Theorem 5.1]{villa_accelerated_2013}}]\label{fact:minimizing-dual-pp}
+            Let $\bar v$ be a solution of $\Psi_\lambda$. 
+            Suppose that $(v_n)_{n \ge 0}$ is a minimizing sequence for $\Psi_\lambda$. 
             Let $z_n = y - \lambda A^\top v_n$, and $\bar z = y - \lambda A^\top \bar v$. 
             If in addition, $\Phi_\lambda$ is $L_1$ Lipschitz continuous, then it has for all $k \ge 0$ the inequality: 
             \begin{align*}
@@ -328,20 +341,21 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \le L_1\sqrt{2\lambda}(\Psi_\lambda(v_n) - \Psi_\lambda(\bar v))^{1/2}. 
             \end{align*}
         \end{fact}
-        We remark that the above fact translates any algorithm that optimizes the function value of the dual problem into optimizing duality gap $\mathbf G(z_n, v_n)$. 
-        For this reason, the number of iterations of the inner loop required to achieve $\mathbf G(z_n, v_n) < \epsilon$ for a given $e$ is related to the convergence rate of the algorithms used to optimize $\Psi_\lambda(v_n)$. 
+        We remark that the above fact translates any algorithm that optimizes the function value of the dual problem $\Psi_\lambda$ into optimizing duality gap $\mathbf G(z_n, v_n)$. 
+        For this reason, the number of iterations of the inner loop required to achieve $\mathbf G(z_n, v_n) < \epsilon$ for a given $\epsilon$ is related to the convergence rate of the algorithms used to optimize $\Psi_\lambda(v_n)$. 
+        With the theorem derived above, and using Theorem \ref{thm:dlty-gap-inxt-pp} it implies that any algorithm which can optimize function value $\Psi_\lambda$ will produce iterates sufficient to achieve $\approx_\epsilon \hprox_{\lambda g}(y)$. 
     \subsection{Literature reviews}
 
     \subsection{Our contributions}
 
 
-\section{The accelerated proximal gradient with controlled errors}
+\section{The inexact accelerated proximal gradient with controlled errors}
     In this section, we present an accelerated algorithm with controlled error using Definition \ref{def:inxt-pg}, and show that it can have a convergence rate under certain error conditions. 
     \begin{definition}[our inexact accelerated proximal gradient]\;\label{def:inxt-apg}\\
         Suppose that $(F, f, g, L)$ and, sequences $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$ satisfies the following
         \begin{enumerate}[nosep]
             \item $(\alpha_k)_{k \ge 0}$ is a sequence such that $\alpha \in (0, 1]$ for all $k \ge 0$. 
-            \item $(B_k)_{k \ge 0}$ is a non-negative sequence, characterizing the potential line search routine. 
+            \item $(B_k)_{k \ge 0}$ is a non-negative sequence, characterizing any potential line search routine. 
             \item $(\rho_k)_{k \ge 0}$ be a sequence such that $\rho_k > 0$, characterizing the over-relaxation of the proximal gradient operator. 
             \item $(\epsilon_k)_{k \ge 0}$ is a non-negative sequence characterizing the errors of inexact proximal evaluation.
             \item $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, and let $F = f + g$. 
@@ -359,7 +373,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
     \end{definition}
     \begin{lemma}[inexact accelerated proximal gradient preparation stage I]\; \label{lemma:inxt-apg-cnvg-prep1}\\
-        Let $(f, g, L)$, and $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, be given by Definition \ref{def:inxt-apg}. 
+        Let $(F, f, g, L)$, and $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, be given by Definition \ref{def:inxt-apg}. 
         Denote $L_k = B_k + \rho_k$. 
         Then, for any $\bar x \in \RR^n$, the sequences $(y_k, x_k, v_k)_{k \ge 0}$ generated satisfy for all $k \ge 1$ the inequality: 
         \begin{align*}
@@ -439,17 +453,29 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
     \end{proof}
     \par
-    The following proposition is a prototype of the convergence rate together with the error schedule that delivers convergence of algorithms satisfying Definition \ref{def:inxt-apg}. 
-    \begin{proposition}[valid error schedule and convergence rate]\;\label{prop:inxt-apg-cnvg-generic}\\
-        Let $(f, g, L)$, $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$ be given by Definition \ref{def:inxt-apg}. 
-        Fix any $\bar x \in \RR^n$ for all $k \ge 0$ and assume that $\alpha_0 = 1$. 
-        Denote for brevity $\beta_0 = 1$, $\beta_k = \prod_{i = 1}^{k} \max\left(1 - \alpha_i, \frac{\alpha_i^2L_i}{\alpha_{i - 1}^2L_{i - 1}}\right)$ and $L_k = B_k + \rho_k$. 
-        If for some fixed $\mathcal E_0 \ge 0, p \ge 1$ the parameter $\rho_k, \epsilon_k$ can satisfy for all $k \ge 0$ the condition
+    The following assumption encapsulate assumptions on the errors such that a near optimal convergence rate is still attainable by an algorithm that satisfies Definition \ref{def:inxt-apg}. 
+    \begin{assumption}[valid error schedule]\label{ass:valid-err-schedule}
+        The following assumption is about an algorithm satisfying Definition \ref{def:inxt-apg}, its parameters $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$ in relation to its iterates $(y_k, x_k, v_k)_{k\ge 0}$ and, some additional parameters $(\beta_k)_{k\ge 0}, \mathcal E_0$ and $p$. 
+        Let 
+        \begin{enumerate}[nosep]
+            \item $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}, (F, f, g, L)$ and $(y_k, x_k, v_k)_{k\ge 0}$ be given by Definition \ref{def:inxt-apg}. 
+            \item $\mathcal E_0 \ge 0$ be arbitrary;
+            \item the sequence $(\beta_k)_{k\ge 0}$ be defined as $\beta_k := \prod_{i = 1}^{k} \max\left(1 - \alpha_i, \frac{\alpha_i^2L_i}{\alpha_{i - 1}^2L_{i - 1}}\right)$ for all $k \ge 1$, with the base case being $\beta_0 = 1$; 
+            \item $p \ge 1$ is some constant which will bound the error $\epsilon_k$ relative to $\rho_k$. 
+        \end{enumerate}
+        In addition, we assume that the error parameter $\epsilon_k$ and over-relaxation parameter $\rho_k$, iterates $x_k, y_k$ and $\beta_k$ together satisfies for all $k \ge 0$ the relations:
         \begin{align*}
             \frac{- \mathcal E_0\beta_k}{k^p} &\le 
             \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k. 
         \end{align*}
-        Then for the sequence generated $(y_k, x_k, v_k)_{k \ge 0}$ by the algorithm, for all $k \ge 0$ they satisfy: 
+        
+    \end{assumption}
+    \par
+    The following proposition is a prototype of the convergence rate together with the error schedule that delivers convergence of algorithms satisfying Definition \ref{def:inxt-apg}. 
+    \begin{proposition}[generic convergence rate under valid error schedule]\;\label{prop:inxt-apg-cnvg-generic}\\
+        Let $(F, f, g, L)$, $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(\beta_k)_{k\ge 0}, \mathcal E_0, p$ as assumed in Assumption \ref{ass:valid-err-schedule}. 
+        Fix any $\bar x \in \RR^n$ for all $k \ge 0$ and assume that $\alpha_0 = 1$. 
+        Then for the iterates generated $(y_k, x_k, v_k)_{k \ge 0}$ by the algorithm, for all $k \ge 0$ they will satisfy: 
         \begin{align*}
             & F(x_k) - F(\bar x) + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
             \le 
@@ -497,7 +523,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \item For all $k \ge 0$, it has $\frac{-\mathcal E_k}{k^p} \le (\rho_k/2)\Vert x_k - y_k\Vert^2 - \epsilon_k$ where $p \ge 1$, 
             \item For all $k \ge 1$, it has $\mathcal E_k = \frac{\beta_k}{\beta_{k - 1}}\mathcal E_{k - 1}$, with $\mathcal E_0 \ge 0$. 
         \end{enumerate}
-        These conditions are equivalent to the assumption that $\frac{- \mathcal E_0\beta_k}{k^p} \le \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k$. 
+        These conditions are equivalent to the assumption that $\frac{- \mathcal E_0\beta_k}{k^p} \le \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k$ (which was stated in Assumption \ref{ass:valid-err-schedule}). 
         One can show that by unrolling recurrence on $\mathcal E_k$. 
         Then \eqref{ineq:inxt-apg-cnvg-generic-pitem-1} implies $\forall k \ge 1$: 
         \begin{align}\label{ineq:inxt-apg-cnvg-generic-pitem-1}
@@ -575,11 +601,137 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{proof}
     \par
     Now, it only remains to determine the sequence $\alpha_k$ to derive a type of convergence rate for the algorithm because from the above theorem, we have the convergence rate $\beta_k$ and, the error parameters $\epsilon_k, \rho_k$ both controlled by the sequence $(\alpha_k)_{k \ge 0}$. 
+    
+    \subsection{convergence results of the outer loop}
+        This section will give specific instances of the error control sequence $(\epsilon_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ and, momentum sequence $(\alpha_k)_{k \ge0}$ such that an optimal convergence rate of $\mathcal O(1/k^2)$ can be achieved. 
+        \begin{proposition}[$\mathcal O(1/k^2)$ optimal convergence rate of the outer loop]\;\label{prop:opt-cnvg-outr-loop}\\
+            Let $(f, g, L)$, $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(\beta_k)_{k\ge 0}, \mathcal E_0, p$ as assumed in Assumption \ref{ass:valid-err-schedule}. 
+            Assume in addition that
+            \begin{enumerate}[nosep]
+                \item there exists $\bar x \in \RR^n$ that is an minimizer of $F = f + g$;
+                \item $\alpha_0 = 1, p > 0$; 
+                \item the sequence $(\alpha_k)_{k\ge 0}$ satisfies for all $k \ge 0$ the equality $(1 - \alpha_k) = \alpha_{k}^2L_k\alpha_{k - 1}^{-2}L_{k - 1}^{-1}$;
+                \item the sequence $L_k := B_k + \rho_k$ is bounded, and there exists an $L_{\max}$ such that for all $k \ge 0$ it has $L_{\max} \ge \max_{k\ge i\ge 0} L_i$. 
+            \end{enumerate}
+            Then, $\alpha_k \in (0, 1]$ hence valid and, it satisfies for all $k \ge 0$: 
+            \begin{align*}
+                & F(x_k) - F(\bar x) + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
+                \le 
+                \left(
+                    1 + \frac{k\alpha_0\sqrt{L_0}}{2\sqrt{L_{\max}}}
+                \right)^{-2}\left(
+                    \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2
+                    + \mathcal E_0 \sum_{n = 1}^{k} \frac{1}{n^p}
+                \right). 
+            \end{align*}
+            Finally, since $p > 0$ the sum is convergent and hence it has an over all convergence rate $\mathcal O(1/k^2)$. 
+        \end{proposition}
+        \begin{proof}
+            From the assumption that $(\alpha_k)_{k \ge 0}$ has $(1 - \alpha_k) = \alpha_k^2L_k \alpha_0^{-2}L_0^{-1}$ for all $k \ge 0$ and, the definition of $\beta_k$, it yields the following equalities: 
+            \begin{align*}
+                \beta_k = \prod_{i = 1}^k \max\left(
+                    1 - \alpha_i, \frac{\alpha_i^2L}{\alpha_{i - 1}^2L_{i - 1}}
+                \right) 
+                = \prod_{i = 1}^k(1 - \alpha_i) 
+                = \prod_{i = 1}^k \frac{\alpha_i^2L}{\alpha_0^2L_0} = \frac{\alpha_k^{2}L_k}{\alpha_0^2L_0}. 
+            \end{align*}
+            With the above relation, and the definitions of the sequences $(\alpha_k)_{k \ge 0}, (\beta_k)_{k\ge 0}$ it satisfies for all $k \ge 1$ the properties: 
+            \begin{enumerate}[nosep]
+                \item $\beta_k$ is nonincreasing and $\beta_k > 0$ for all $k \ge 0$ because $\beta_k = \prod_{i = 1}^{k} (1 - \alpha_i)$ and, $\alpha_k \in (0, 1]$. 
+                \item It has the equalities $\beta_k/\beta_{k - 1} = (1 - \alpha_k) = \frac{\alpha_k^2L_k}{\alpha_{k - 1}^2 L_{k - 1}}$ for all $k \ge 1$. 
+            \end{enumerate}
+            Using the above observations, we can show the chain of equalities $\alpha_k^{2} = (1 - \beta_k/\beta_{k - 1})^2 = \beta_kL_0\alpha_0^2L_k^{-1}$ for all $k \ge 0$. 
+            This is true by first considering the relations $\prod_{i = 1}^k(1 - \alpha_i) = \beta_k$: 
+            \begin{align}\label{eqn:opt-cnvg-outr-loop-pitem1}\begin{split}
+                (1 - \alpha_k) &= \beta_k/\beta_{k - 1}
+                \\
+                \iff 
+                \alpha_k &= 1 - \beta_k / \beta_{k - 1}
+                \\
+                \implies 
+                \alpha_k^2 &= (1 - \beta_k / \beta_{k - 1})^2.     
+            \end{split}\end{align}
+            Next, the recursive relation of $(\alpha_k)_{k \ge 0}$ gives
+            \begin{align}\label{eqn:opt-cnvg-outr-loop-pitem2}\begin{split}
+                \alpha_k^2&= (1 - \alpha_k)\alpha_{k - 1}^2L_{k - 1}L_k^{-1}
+                \\
+                &= 
+                (1 - \alpha_k)
+                \frac{\alpha_{k - 1}^2L_{k - 1}}{\alpha_0^2L_0}
+                \frac{L_{k - 1}\alpha_0^2L_0}{L_k}
+                \\
+                &= 
+                (\beta_k\beta_{k - 1}^{-1})\beta_{k - 1}L_0\alpha_0^2L_k^{-1}
+                \\
+                &= \beta_kL_0\alpha_0^2L_k^{-1}.         
+            \end{split}\end{align}
+            Combining \eqref{eqn:opt-cnvg-outr-loop-pitem1}, \eqref{eqn:opt-cnvg-outr-loop-pitem2} it would mean for all $i \ge 1$ it has: 
+            \begin{align*}
+                L_0 \alpha_0^2 L_i^{-1} &= 
+                \beta_i^{-1}\left(
+                    1 - \frac{\beta_k}{\beta_{k - 1}}
+                \right)^2
+                \\
+                &= 
+                \beta_i \left(
+                    \beta_i^{-1} - \beta_{i - 1}^{-1}
+                \right)^2
+                \\
+                &=
+                \beta_i \left(
+                    \beta_i^{-1/2} - \beta_{i - 1}^{-1/2}
+                \right)^2
+                \left(
+                    \beta_i^{-1/2} + \beta_{i - 1}^{-1/2}
+                \right)^2
+                \\
+                &\underset{(1)}{\le} 
+                \beta_i \left(
+                    \beta_i^{-1/2} - \beta_{i - 1}^{-1/2}
+                \right)^2
+                \left(
+                    2\beta_i^{-1/2}
+                \right)^2
+                \\
+                &= 4\left(
+                    \beta_i^{-1/2} - \beta_{i - 1}^{-1/2}
+                \right)^2
+                \\
+                \implies
+                \sqrt{\frac{L_0\alpha_0^2}{L_i}} &\le
+                2 \left(
+                    \beta_i^{-1/2} - \beta_{i - 1}^{-1/2}
+                \right).
+            \end{align*}
+            Telescope for all $i \ge 1$: 
+            \begin{align*}
+                \frac{\alpha_0\sqrt{L_0}}{2}\sum_{i = 1}^{k}\sqrt{L^{-1}_k}
+                &\le 
+                \beta_k^{-1/2} - \beta_{0}^{-1/2} = 
+                \beta_k^{-1/2} - 1. 
+            \end{align*}
+            Re-arranging, yields: 
+            \begin{align*}
+                \beta_k &\le 
+                \left(
+                    1 + \frac{\alpha_0\sqrt{L_0}}{2}\sum_{i = 1}^{k} \sqrt{L_i^{-1}}
+                \right)^{-2}
+                \le 
+                \left(
+                    1 + \frac{k\alpha_0\sqrt{L_0}}{2\sqrt{L_{\max}}}
+                \right)^{-2}. 
+            \end{align*}
+            Recall that $L_k = B_k + \rho_k$, and by our assumptions, the sequence $(B_k)_{k \ge 0}, (\rho_k)_{k\ge 0}$ are both bounded above, then it's not hard to see that $\beta_k \le \mathcal O(1/k^2)$. 
+            Combine it with Lemma \ref{lemma:inxt-apg-cnvg-prep1}, using $\alpha_0 = 1$ will yield the desired result. 
+            Finally, one can solves for $\alpha_k$ by the recursive equality, and it should yield: 
 
-\section{Linear convergence for the inner loop proximal problem}
+        \end{proof}
+
+
+\section{Linear convergence for the proximal problem}
     In this section, we continue the discussion from \textcolor{red}{[REF PREVIOUS SECTION]}. 
     The inner loop of the algorithm evaluates $x_k \approx_\epsilon T_{(B + \rho)}(y_k)$ for a given value of $\epsilon$. 
-    To attain $x_k$, one approach is to utilise Theorem \ref{thm:dlty-gap-inxt-pp} numerically, usually using iterative algorithms. 
+    To attain $x_k$, one approach is to utilize Theorem \ref{thm:dlty-gap-inxt-pp} numerically, usually using iterative algorithms. 
     \par
     The following assumption places additional assumption to the proximal problem for the inner loop. 
     \begin{assumption}[gradient mapping error bound]\;\label{ass:pg-eb}\\
@@ -587,11 +739,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Assume that
         \begin{enumerate}[nosep]
             \item $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, 
-            \item Let $\tau > 0$ be the step size inverse, let $T_{\tau}$ be the proximal operator of $f + g$ as given by $T_{\tau}(x) := \hprox_{\tau^{-1}g}(x - \tau^{-1}\nabla f(x))$, 
-            \item the gradient mapping $\mathcal G_{\tau}$ be given by: $\mathcal G_t(x) = \tau (x - T_t(x))$, 
+            \item let $\tau > 0$ be the step size inverse, let $T_{\tau}$ be the proximal operator of $f + g$ as given by $T_{\tau}(x) := \hprox_{\tau^{-1}g}(x - \tau^{-1}\nabla f(x))$, 
             \item $S= \argmin_{x}{f(x) + g(x)} \neq \emptyset$, 
             \item the objective function is given by $F = f + g$. 
-        \end{enumerate}        
+        \end{enumerate}   
+        Let the gradient mapping $\mathcal G_{\tau}$ be defined as: $\mathcal G_\tau(x) := \tau (x - T_\tau(x))$     
         In addition, assume that the optimization problem $F$ satisfies the error bound condition if it has for all $\tau \ge L, x \in \RR^n$ there exists $\gamma > 0$: 
         \begin{align*}
             \Vert \mathcal G_\tau(x)\Vert \ge \gamma\dist(x|S). 
@@ -609,8 +761,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         This assumption is about $(g, \omega, A, \Psi_\lambda, \gamma)$
         Here are the assumptions
         \begin{enumerate}[nosep]
-            \item $(g, \omega, A)$ satisfies Assumption \ref{ass:for-inxt-prox}. 
-            \item In addition, function $\Psi_\lambda$ as given by \eqref{eqn:primal-pp} satifies gradient mapping error bound (Assumption \ref{ass:pg-eb}) where, $f(v) = \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2, g(v) = \omega(A v) - \frac{1}{2\lambda}\Vert y\Vert^2$. 
+            \item Let function $\Psi_\lambda$ as given by \eqref{eqn:dual-pp} which satisfies gradient mapping error bound (Assumption \ref{ass:pg-eb}) where, $f(v) = \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2, g(v) = \omega^\star(v) - \frac{1}{2\lambda}\Vert y\Vert^2$. 
+            \item The primal objective $\Phi_\lambda$ is a $L_1$ Lipschitz continuous on its domain. 
+            \item Let $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-prox}, we can do this because $f$ is quadratic and has a Lipschitz continuous gradient. 
         \end{enumerate}
     \end{assumption}
     \subsection{error bound and linear convergence}
@@ -631,26 +784,26 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Two important immediate results will be presented first.
             Consider the proximal gradient inequality from \ref{thm:inxt-pg-ineq}, but with $\rho = 0, \epsilon = 0, B = \tau$, then for all $x$ such that $\Vert \mathcal G_\tau(x)\Vert > 0$ it has for $\tilde x = T_{\tau}(x), z \in \RR^n$ the inequality 
             \begin{align*}
-                0 &\le 
-                F(z) - F(\tilde x) + \frac{\tau}{2}\Vert x - z\Vert^2 - \frac{\tau}{2}\Vert z - \tilde x\Vert^2
+                F(\tilde x) - F(z) 
+                &\le 
+                \frac{\tau}{2}\Vert x - z\Vert^2 - \frac{\tau}{2}\Vert z - \tilde x\Vert^2
                 \\
                 &=  
-                F(z) - F(\tilde x) - \frac{\tau}{2}\Vert x - \tilde x\Vert^2
+                - \frac{\tau}{2}\Vert x - \tilde x\Vert^2
                 + \tau\langle x - z, x - \tilde x\rangle
                 \\
-                &= F(z) - F(\tilde x) - \frac{1}{2\tau}\Vert \mathcal G_\tau(x) \Vert^2
+                &=  - \frac{1}{2\tau}\Vert \mathcal G_\tau(x) \Vert^2
                 + \langle x - z, \mathcal G_\tau(x)\rangle
                 \\
-                &\le F(z) - F(\tilde x) - \frac{1}{2\tau}\Vert \mathcal G_\tau(x)\Vert^2 
+                &\le  - \frac{1}{2\tau}\Vert \mathcal G_\tau(x)\Vert^2 
                 + \Vert x - z\Vert \Vert \mathcal G_\tau(x)\Vert
                 \\
-                &= 
-                F(z) - F(\tilde x) 
-                + \Vert \mathcal G_\tau(x)\Vert^2\left(
+                &=
+                \Vert \mathcal G_\tau(x)\Vert^2\left(
                     \frac{\Vert x - z \Vert}{\Vert \mathcal G_\tau(x)\Vert} - \frac{1}{2\tau}
                 \right). 
             \end{align*}
-            Now, for all $z = \bar x \in S$, from Assumption \ref{ass:eb-for-pp} it has
+            Now, for all $z = \bar x \in S$, from Assumption \ref{ass:eb-for-pp} $\exists \gamma > 0$ such that: 
             \begin{align*}
                 \frac{\Vert x - z \Vert}{\Vert \mathcal G_\tau(x)\Vert}
                 \le 
@@ -712,6 +865,34 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{proof}
 
     \subsection{characterizing linear convergence of the proximal problem}
+        In this section, we will focus on the sufficient characterization of the proximal problem which allows proximal gradient method to achieve linear convergence rate. 
+        We can immediately claim quadratic growth condition when $\omega = \Vert \cdot\Vert_1$. 
+        The next proposition will characterize a precise case where Assumption \ref{ass:eb-for-pp} is true, and it's a case widely available in applications. 
+        \begin{proposition}[1-norm problem]
+            Let $(g, \omega, A)$ satisfies Assumption \ref{ass:for-inxt-prox}. 
+            In addition, if $g := \Vert \cdot\Vert_1$, then the function $\Psi_\lambda$ satisfies Assumption \ref{ass:eb-for-pp}. 
+        \end{proposition}
+        \begin{proof}
+            Take note that the dual has closed form $g^\star(z) =\delta(z | \{x : \Vert x\Vert_1 \le 1\})$. 
+            The $g^\star$ is an indicator function which represents a box constraint. 
+            The objective function $\Psi_\lambda(v) = \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2 + \omega^\star(v) - \frac{1}{2\lambda}\Vert y\Vert^2$ so it's Lipschitz smooth, and it must have a set of minimizers $S$ because its domain is compact. 
+            In addition, $\Psi_\lambda$ fits the assumption of Necoara et al. \cite[Theorem 8]{necoara_linear_2019}. 
+            Therefore, $\Psi_\lambda$ is quasi-strongly convex then by \cite[Theorem 4]{necoara_linear_2019}, and \cite[Theorem 7]{necoara_linear_2019}, it satisfies error bound condition as given in Assumption \ref{ass:pg-eb}, hence Assumption \ref{ass:eb-for-pp} also. 
+            \par
+            Let $\mu_f = \lambda\Vert A\Vert^2/\kappa_f$, let $\kappa_f = \theta^{-2}(A, C)$ be the Hoffman Constant as presented by Necoara et al. in \cite[Section 4]{necoara_linear_2019} where $C$ is the constraint matrix of the inequality set $\delta(z | \{x : \Vert x\Vert_1 \le 1\})$, then the error bound constant can be satisfied with
+            \begin{align*}
+                \gamma = \frac{\kappa_f}{1 + \mu_f + \sqrt{1 + \mu_f}}. 
+            \end{align*}
+
+        \end{proof}
+        The following propositions precisely show that the linear convergence is achievable for the inner loop when $g = \Vert \cdot\Vert_1$ for our optimization objective. 
+        \begin{proposition}[inner loop linear convergence scenario 1]\label{prop:inn-loop-lin-cnvg}
+            
+        \end{proposition}
+    \subsection{inner loop complexity}
+
+\section{Total complexity of the algorithm}
+    This section puts results regarding the total complexity of the proposed inexact proximal gradient algorithm. 
 
 
 \bibliographystyle{siam}

@@ -1,5 +1,8 @@
 \begin{thebibliography}{1}
 
+\bibitem{necoara_linear_2019}
+{\sc I.~Necoara, Y.~Nesterov, and F.~Glineur}, {\em Linear convergence of first order methods for non-strongly convex optimization}, Mathematical Programming, 175 (2019), pp.~69--107.
+
 \bibitem{villa_accelerated_2013}
 {\sc S.~Villa, S.~Salzo, L.~Baldassarre, and A.~Verri}, {\em Accelerated and inexact forward-backward algorithms}, SIAM Journal on Optimization, 23 (2013), pp.~1607--1633.
 
