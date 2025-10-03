@@ -355,9 +355,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Suppose that $(F, f, g, L)$ and, sequences $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$ satisfies the following
         \begin{enumerate}[nosep]
             \item $(\alpha_k)_{k \ge 0}$ is a sequence such that $\alpha \in (0, 1]$ for all $k \ge 0$. 
-            \item $(B_k)_{k \ge 0}$ is a non-negative sequence, characterizing any potential line search routine. 
-            \item $(\rho_k)_{k \ge 0}$ be a sequence such that $\rho_k > 0$, characterizing the over-relaxation of the proximal gradient operator. 
-            \item $(\epsilon_k)_{k \ge 0}$ is a non-negative sequence characterizing the errors of inexact proximal evaluation.
+            \item $(B_k)_{k \ge 0}$ has $B_k > 0\; \forall k$, it characterizes any potential line search, back tracking routine. 
+            \item $(\rho_k)_{k \ge 0}$ be a sequence such that $\rho_k \ge 0$, characterizing the over-relaxation of the proximal gradient operator. 
+            \item $(\epsilon_k)_{k \ge 0}$ has $\epsilon_k > 0$ for all $k \ge 0$, it characterizes the errors of inexact proximal evaluation.
             \item $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, and let $F = f + g$. 
         \end{enumerate}
         Denote $L_k = B_k + \rho_k$ for short. 
@@ -461,9 +461,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \item $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}, (F, f, g, L)$ and $(y_k, x_k, v_k)_{k\ge 0}$ be given by Definition \ref{def:inxt-apg}. 
             \item $\mathcal E_0 \ge 0$ be arbitrary;
             \item the sequence $(\beta_k)_{k\ge 0}$ be defined as $\beta_k := \prod_{i = 1}^{k} \max\left(1 - \alpha_i, \frac{\alpha_i^2L_i}{\alpha_{i - 1}^2L_{i - 1}}\right)$ for all $k \ge 1$, with the base case being $\beta_0 = 1$; 
-            \item $p \ge 1$ is some constant which will bound the error $\epsilon_k$ relative to $\rho_k$. 
+            \item $p \ge 1$ is some constant which will bound the error $\epsilon_k$ relative to $\rho_k\Vert x_k - y_k\Vert^2, \beta_k$ and, $k$. 
         \end{enumerate}
-        In addition, we assume that the error parameter $\epsilon_k$ and over-relaxation parameter $\rho_k$, iterates $x_k, y_k$ and $\beta_k$ together satisfies for all $k \ge 0$ the relations:
+        In addition, we assume that the error parameter $\epsilon_k \ge 0$ and over-relaxation parameter $\rho_k$, iterates $x_k, y_k$ and $\beta_k$ together satisfies for all $k \ge 0$ the relations:
         \begin{align*}
             \frac{- \mathcal E_0\beta_k}{k^p} &\le 
             \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k. 
@@ -520,7 +520,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         Now, suppose that in addition there is a non-negative sequence $(\mathcal  E_k)_{k \ge 0}$ such that 
         \begin{enumerate}[nosep]
-            \item For all $k \ge 0$, it has $\frac{-\mathcal E_k}{k^p} \le (\rho_k/2)\Vert x_k - y_k\Vert^2 - \epsilon_k$ where $p \ge 1$, 
+            \item For all $k \ge 0$, it has $\frac{-\mathcal E_k}{k^p} \le \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k$ where $p \ge 1$, 
             \item For all $k \ge 1$, it has $\mathcal E_k = \frac{\beta_k}{\beta_{k - 1}}\mathcal E_{k - 1}$, with $\mathcal E_0 \ge 0$. 
         \end{enumerate}
         These conditions are equivalent to the assumption that $\frac{- \mathcal E_0\beta_k}{k^p} \le \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k$ (which was stated in Assumption \ref{ass:valid-err-schedule}). 
@@ -604,30 +604,26 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     
     \subsection{convergence results of the outer loop}
         This section will give specific instances of the error control sequence $(\epsilon_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ and, momentum sequence $(\alpha_k)_{k \ge0}$ such that an optimal convergence rate of $\mathcal O(1/k^2)$ can be achieved. 
-        \begin{proposition}[$\mathcal O(1/k^2)$ optimal convergence rate of the outer loop]\;\label{prop:opt-cnvg-outr-loop}\\
-            Let $(f, g, L)$, $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(\beta_k)_{k\ge 0}, \mathcal E_0, p$ as assumed in Assumption \ref{ass:valid-err-schedule}. 
-            Assume in addition that
-            \begin{enumerate}[nosep]
-                \item there exists $\bar x \in \RR^n$ that is an minimizer of $F = f + g$;
-                \item $\alpha_0 = 1, p > 0$; 
-                \item the sequence $(\alpha_k)_{k\ge 0}$ satisfies for all $k \ge 0$ the equality $(1 - \alpha_k) = \alpha_{k}^2L_k\alpha_{k - 1}^{-2}L_{k - 1}^{-1}$;
-                \item the sequence $L_k := B_k + \rho_k$ is bounded, and there exists an $L_{\max}$ such that for all $k \ge 0$ it has $L_{\max} \ge \max_{k\ge i\ge 0} L_i$. 
-            \end{enumerate}
-            Then, $\alpha_k \in (0, 1]$ hence valid and, it satisfies for all $k \ge 0$: 
+        \begin{assumption}[the optimal momentum sequence]\;\label{ass:opt-mmntm-seq}\\
+            Keeping everything assumed in Assumption \ref{ass:valid-err-schedule} about $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(F, f, g, L)$, $(y_k, x_k, v_k)_{k \ge 0}$, $(\beta_k)_{k \ge 0}$, $\mathcal E_0$ and $p$, we assume in addition that the sequence $(\alpha_k)_{k \ge 0}$ satisfies for all $k \ge 0$ the equality: $(1 - \alpha_k) = \alpha_{k}^2L_k\alpha_{k - 1}^{-2}L_{k - 1}^{-1}$. 
+        \end{assumption}
+        \begin{lemma}[the consequencse of optimal momentum sequence]\;\label{lemma:opt-mmntm-seq}\\
+            Let $(\alpha_k)_{k \ge 0}, (\beta_k)_{k \ge 0}$ be given by Assumption \ref{ass:opt-mmntm-seq}, then $\forall k\ge 1\; \alpha_k \in (0, 1)$ and, in addition the sequence $(\beta_k)_{k \ge 0}$ has
             \begin{align*}
-                & F(x_k) - F(\bar x) + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
+                \left(
+                    1 + \alpha_0\sqrt{L_0}\sum_{i = 1}^{k}\sqrt{L_i^{-1}}
+                \right)^{-2}
+                \hspace{-1em}\le 
+                \beta_k
                 \le 
                 \left(
-                    1 + \frac{k\alpha_0\sqrt{L_0}}{2\sqrt{L_{\max}}}
-                \right)^{-2}\left(
-                    \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2
-                    + \mathcal E_0 \sum_{n = 1}^{k} \frac{1}{n^p}
-                \right). 
+                    1 + \frac{\alpha_0\sqrt{L_0}}{2}\sum_{i = 1}^{k}\sqrt{L_i^{-1}}
+                \right)^{-2}. 
             \end{align*}
-            Finally, since $p > 0$ the sum is convergent and hence it has an over all convergence rate $\mathcal O(1/k^2)$. 
-        \end{proposition}
+        \end{lemma}
         \begin{proof}
-            From the assumption that $(\alpha_k)_{k \ge 0}$ has $(1 - \alpha_k) = \alpha_k^2L_k \alpha_0^{-2}L_0^{-1}$ for all $k \ge 0$ and, the definition of $\beta_k$, it yields the following equalities: 
+            Now, we focus on $(\beta_k)_{k \ge 0}$. 
+            From the assumption that $(\alpha_k)_{k \ge 0}$ has $(1 - \alpha_k) = \alpha_k^2L_k \alpha_{k - 1}^{-2}L_{k - 1}^{-1}$ for all $k \ge 0$ and, the definition of $\beta_k$, it yields the following equalities: 
             \begin{align*}
                 \beta_k = \prod_{i = 1}^k \max\left(
                     1 - \alpha_i, \frac{\alpha_i^2L}{\alpha_{i - 1}^2L_{i - 1}}
@@ -637,12 +633,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             With the above relation, and the definitions of the sequences $(\alpha_k)_{k \ge 0}, (\beta_k)_{k\ge 0}$ it satisfies for all $k \ge 1$ the properties: 
             \begin{enumerate}[nosep]
-                \item $\beta_k$ is nonincreasing and $\beta_k > 0$ for all $k \ge 0$ because $\beta_k = \prod_{i = 1}^{k} (1 - \alpha_i)$ and, $\alpha_k \in (0, 1]$. 
-                \item It has the equalities $\beta_k/\beta_{k - 1} = (1 - \alpha_k) = \frac{\alpha_k^2L_k}{\alpha_{k - 1}^2 L_{k - 1}}$ for all $k \ge 1$. 
+                \item[(a)] $\beta_k$ is monotone decreasing and $\beta_k > 0$ for all $k \ge 0$ because $\beta_k = \prod_{i = 1}^{k} (1 - \alpha_i)$ and, $\alpha_k \in (0, 1]$. 
+                \item[(b)] It has the equalities $\beta_k/\beta_{k - 1} = (1 - \alpha_k) = \frac{\alpha_k^2L_k}{\alpha_{k - 1}^2 L_{k - 1}}$ for all $k \ge 1$. 
             \end{enumerate}
             Using the above observations, we can show the chain of equalities $\alpha_k^{2} = (1 - \beta_k/\beta_{k - 1})^2 = \beta_kL_0\alpha_0^2L_k^{-1}$ for all $k \ge 0$. 
             This is true by first considering the relations $\prod_{i = 1}^k(1 - \alpha_i) = \beta_k$: 
-            \begin{align}\label{eqn:opt-cnvg-outr-loop-pitem1}\begin{split}
+            \begin{align}\label{eqn:opt-mmntm-seq-pitem1}\begin{split}
                 (1 - \alpha_k) &= \beta_k/\beta_{k - 1}
                 \\
                 \iff 
@@ -652,7 +648,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \alpha_k^2 &= (1 - \beta_k / \beta_{k - 1})^2.     
             \end{split}\end{align}
             Next, the recursive relation of $(\alpha_k)_{k \ge 0}$ gives
-            \begin{align}\label{eqn:opt-cnvg-outr-loop-pitem2}\begin{split}
+            \begin{align}\label{eqn:opt-mmntm-seq-pitem2}\begin{split}
                 \alpha_k^2&= (1 - \alpha_k)\alpha_{k - 1}^2L_{k - 1}L_k^{-1}
                 \\
                 &= 
@@ -665,7 +661,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &= \beta_kL_0\alpha_0^2L_k^{-1}.         
             \end{split}\end{align}
-            Combining \eqref{eqn:opt-cnvg-outr-loop-pitem1}, \eqref{eqn:opt-cnvg-outr-loop-pitem2} it would mean for all $i \ge 1$ it has: 
+            Combining \eqref{eqn:opt-mmntm-seq-pitem1}, \eqref{eqn:opt-mmntm-seq-pitem2} it would mean for all $i \ge 1$ it has: 
             \begin{align*}
                 L_0 \alpha_0^2 L_i^{-1} &= 
                 \beta_i^{-1}\left(
@@ -685,24 +681,39 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \beta_i^{-1/2} + \beta_{i - 1}^{-1/2}
                 \right)^2
                 \\
-                &\underset{(1)}{\le} 
-                \beta_i \left(
+                &= \left(
                     \beta_i^{-1/2} - \beta_{i - 1}^{-1/2}
-                \right)^2
-                \left(
-                    2\beta_i^{-1/2}
-                \right)^2
-                \\
-                &= 4\left(
-                    \beta_i^{-1/2} - \beta_{i - 1}^{-1/2}
-                \right)^2
-                \\
-                \implies
-                \sqrt{\frac{L_0\alpha_0^2}{L_i}} &\le
-                2 \left(
-                    \beta_i^{-1/2} - \beta_{i - 1}^{-1/2}
-                \right).
+                \right)^2\left(
+                    1 + \beta_i^{1/2}\beta_{i - 1}^{-1/2}
+                \right)^2. 
             \end{align*}
+            Since $\beta_i$ is monotone decreasing, it has $\beta_i^{-1/2}\beta_{i - 1}^{-1/2} \le 1$, and since $\alpha \in (0, 1)$
+            \todoinline{HERE! IT'S NOT FINISHED YET!!!}
+        \end{proof}
+        \begin{proposition}[$\mathcal O(1/k^2)$ optimal convergence rate of the outer loop]\;\label{prop:opt-cnvg-outr-loop}\\
+            Let $(f, g, L)$, $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(\beta_k)_{k\ge 0}, \mathcal E_0, p$ as assumed in Assumption \ref{ass:valid-err-schedule}. 
+            Assume in addition that
+            \begin{enumerate}[nosep]
+                \item there exists $\bar x \in \RR^n$ that is a minimizer of $F = f + g$;
+                \item $\alpha_0 = 1, p > 0$; 
+                \item the sequence $(\alpha_k)_{k\ge 0}$ satisfies for all $k \ge 0$ the equality $(1 - \alpha_k) = \alpha_{k}^2L_k\alpha_{k - 1}^{-2}L_{k - 1}^{-1}$;
+                \item the sequence $L_k := B_k + \rho_k$ is bounded, and there exists an $L_{\max}$ such that for all $k \ge 0$ it has $L_{\max} \ge \max_{k\ge i\ge 0} L_i$. 
+                % \item the sequence $\rho_k$ must also recursively satisfies $\rho_k \ge \max\left(-B_k + \alpha_{k - 1}^4(\rho_{k - 1} + B_{k - 1}), 0\right)$. 
+            \end{enumerate}
+            Then, $\alpha_k \in (0, 1]\;\forall k \ge 0$ hence it's always valid and, it has $\forall k \ge 0$: 
+            \begin{align*}
+                & F(x_k) - F(\bar x) + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
+                \le 
+                \left(
+                    1 + \frac{k\alpha_0\sqrt{L_0}}{2\sqrt{L_{\max}}}
+                \right)^{-2}\left(
+                    \frac{L_0}{2}\Vert \bar x - v_{-1}\Vert^2
+                    + \mathcal E_0 \sum_{n = 1}^{k} \frac{1}{n^p}
+                \right). 
+            \end{align*}
+            Since, $p > 0$ the sum is convergent and hence the above inequality claims an overall convergence rate $\mathcal O(1/k^2)$. 
+        \end{proposition}
+        \begin{proof}
             Telescope for all $i \ge 1$: 
             \begin{align*}
                 \frac{\alpha_0\sqrt{L_0}}{2}\sum_{i = 1}^{k}\sqrt{L^{-1}_k}
@@ -723,9 +734,72 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             Recall that $L_k = B_k + \rho_k$, and by our assumptions, the sequence $(B_k)_{k \ge 0}, (\rho_k)_{k\ge 0}$ are both bounded above, then it's not hard to see that $\beta_k \le \mathcal O(1/k^2)$. 
             Combine it with Lemma \ref{lemma:inxt-apg-cnvg-prep1}, using $\alpha_0 = 1$ will yield the desired result. 
-            Finally, one can solves for $\alpha_k$ by the recursive equality, and it should yield: 
-
+            Finally, one can solve for $\alpha_k$ by the recursive equality, and it should always have one of the strictly positive root: 
+            \begin{align*}
+                \alpha_k &=
+                \frac{L_{k - 1}}{2L_k}\left(
+                    - \alpha_{k - 1}^2 + \left(
+                        \alpha_{k - 1}^4 + 4 \alpha_{k - 1}\frac{L_k}{L_{k - 1}}
+                    \right)^{1/2}
+                \right)
+                \\
+                &= \frac{\alpha_{k - 1}^2L_{k - 1}}{2L_k}\left(
+                    - 1 + \left(
+                        1 + \frac{4 L_k}{L_{k - 1}\alpha_{k-1}^2}
+                    \right)^{1/2}
+                \right)
+                \\
+                &\underset{(1)}{\le} \frac{\alpha_{k - 1}^2L_{k - 1}}{2L_k}\left(
+                    - 1 + 1 + 2 \alpha_{k - 1}^{-2}\frac{L_k}{L_{k - 1}}
+                \right)
+                \\
+                &= 1
+            \end{align*}
+            At (1) we completed a square inside of the radical: 
+            \begin{align*}
+                1 + 4 L_{k}L_{k - 1}^{-1}\alpha_{k - 1}^{-2}
+                &= 
+                1 + 4 L_{k}L_{k - 1}^{-1}\alpha_{k - 1}^{-2}
+                + 2L_k^2L_{k - 1}^{-2}\alpha_{k - 1}^{-4}
+                - 2L_k^2L_{k - 1}^{-2}\alpha_{k - 1}^{-4}
+                \\
+                &= (1 + 2L_kL_{k - 1}^{-1}\alpha_{k - 1}^{-2})^2
+                - 2\alpha_{k - 1}^{-4}L_k^2L_{k - 1}^{-2}
+                \\
+                &\le (1 + 2L_kL_{k - 1}^{-1}\alpha_{k - 1}^{-2})^2. 
+            \end{align*}
+            To see that $\alpha_k > 0$, recall that we had the assumption that $B_k > 0$ making $L_k > 0$. 
+            If we inductively assume that $\alpha_{k - 1} \in (0, 1]$ then $\alpha_k > 0$ because: 
+            \begin{align*}
+                \alpha_k &=
+                \frac{L_{k - 1}}{2L_k}\left(
+                    - \alpha_{k - 1}^2 + \left(
+                        \alpha_{k - 1}^4 + 4 \alpha_{k - 1}\frac{L_k}{L_{k - 1}}
+                    \right)^{1/2}
+                \right) 
+                \\
+                &\ge \frac{L_{k - 1}}{2L_k}\left(
+                    - \alpha_{k - 1}^2 + \left(
+                        \alpha_{k - 1}^4
+                    \right)^{1/2}
+                \right) 
+                \\
+                &> 0. 
+            \end{align*}
         \end{proof}
+        \begin{remark}
+            In this remark, we assert the fact that all assumptions made in the theorem can be satisfied on practice, and we will also bring attention to the current, and future roles played by each of the parameters used in the inexact algorithm. 
+            \par
+            Pay close attention that $\alpha_k$ had been determined in the above theorem, and $(B_k)_{k \le 0}$ is reserved for potential line search routine, the only parameter left undetermined in Definition \ref{def:inxt-apg} is the over-relaxation sequence $(\rho_k)_{k \ge 0}$, we only need the entire sequence is bounded above. 
+            We give the freedom to the practitioners to choose $(\rho_k)_{k \ge 0}$. 
+            However, this sequence $\rho_k$ is not useless because it relaxes the upper bound for $\epsilon_k$, this has huge impact in the earlier stage (the first few iterations) of the algorithm $\Vert x_k - y_k\Vert$ is large. 
+            Of course, the parameter $\mathcal E_0$ is also free to choose. 
+            \par
+            The the next subsection, we will show that under the assumption of the above theorem, there exists an error sequence $\epsilon_k$ such that it can never approach $0$ at an arbitrarily fast rate. 
+        \end{remark}
+    \subsection{the fastest rate of which the error schedule can shrink}
+        To have overall convergence claim of the algorithm, it's necessary to prevent the error schedule $(\epsilon_k)_{k \ge 0}$ from crashing into zero too quickly. 
+        Following Assumption \ref{ass:valid-err-schedule}, in this section, we will provide the lower bound results for $\epsilon_k$ in Theorem \ref{prop:opt-cnvg-outr-loop} to show that in the worst case it cannot approach zero arbitrarily fast, if we choose the largest possible $\epsilon_k$ using $\beta_k$. 
 
 
 \section{Linear convergence for the proximal problem}
@@ -752,7 +826,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{definition}[proximal gradient method]\label{def:ista}
         Suppose that $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}. 
         Let $\tau \ge L$, and $x_0 \in \RR^n$. 
-        Then an algorithm is a proximal gradient method if it generates iterates $(x_k)_{k \ge 0}$ such that they satisfies for all $k \ge 1$: 
+        Then an algorithm is a proximal gradient method if it generates iterates $(x_k)_{k \ge 0}$ such that they satisfy for all $k \ge 1$: 
         \begin{align*}
             x_{k + 1} = \hprox_{\tau^{-1} g}\left(x_k + \tau^{-1}\nabla f(x_k)\right). 
         \end{align*}
@@ -782,7 +856,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{theorem}
         \begin{proof}
             Two important immediate results will be presented first.
-            Consider the proximal gradient inequality from \ref{thm:inxt-pg-ineq}, but with $\rho = 0, \epsilon = 0, B = \tau$, then for all $x$ such that $\Vert \mathcal G_\tau(x)\Vert > 0$ it has for $\tilde x = T_{\tau}(x), z \in \RR^n$ the inequality 
+            Consider the proximal gradient inequality from Theorem \ref{thm:inxt-pg-ineq}, but with $\rho = 0, \epsilon = 0, B = \tau$, then for all $x$ such that $\Vert \mathcal G_\tau(x)\Vert > 0$ it has for $\tilde x = T_{\tau}(x), z \in \RR^n$ the inequality 
             \begin{align*}
                 F(\tilde x) - F(z) 
                 &\le 
@@ -809,7 +883,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \le 
                 \frac{\Vert x - z \Vert}{\gamma \dist(x | S)} \le \frac{1}{\gamma}. 
             \end{align*}
-            Hence for all $\bar x \in S$ it has 
+            Hence, for all $\bar x \in S$ it has 
             \begin{align}\label{ineq:lin-cnvg-ista-eb-pitem1}
                 0\le F(\tilde x) - F(\bar x)&\le 
                 \Vert \mathcal G_\tau(x)\Vert^2\left(
@@ -861,7 +935,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             }
             At (1) we used \eqref{ineq:lin-cnvg-ista-eb-pitem2}. 
-            Multiple bothside by $\frac{\gamma}{2\tau}$ then we are done. 
+            Multiple both side by $\frac{\gamma}{2\tau}$ then we are done. 
         \end{proof}
 
     \subsection{characterizing linear convergence of the proximal problem}
@@ -885,6 +959,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
 
         \end{proof}
+        \par
         The following propositions precisely show that the linear convergence is achievable for the inner loop when $g = \Vert \cdot\Vert_1$ for our optimization objective. 
         \begin{proposition}[inner loop linear convergence scenario 1]\label{prop:inn-loop-lin-cnvg}
             
