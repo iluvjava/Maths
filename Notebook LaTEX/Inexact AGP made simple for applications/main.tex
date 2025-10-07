@@ -607,7 +607,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{assumption}[the optimal momentum sequence]\;\label{ass:opt-mmntm-seq}\\
             Keeping everything assumed in Assumption \ref{ass:valid-err-schedule} about $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(F, f, g, L)$, $(y_k, x_k, v_k)_{k \ge 0}$, $(\beta_k)_{k \ge 0}$, $\mathcal E_0$ and $p$, we assume in addition that the sequence $(\alpha_k)_{k \ge 0}$ satisfies for all $k \ge 0$ the equality: $(1 - \alpha_k) = \alpha_{k}^2L_k\alpha_{k - 1}^{-2}L_{k - 1}^{-1}$. 
         \end{assumption}
-        \begin{lemma}[the consequencse of optimal momentum sequence]\;\label{lemma:opt-mmntm-seq}\\
+        \begin{lemma}[the properties of optimal momentum sequence]\;\label{lemma:opt-mmntm-seq}\\
             Let $(\alpha_k)_{k \ge 0}, (\beta_k)_{k \ge 0}$ be given by Assumption \ref{ass:opt-mmntm-seq}, then $\forall k\ge 1\; \alpha_k \in (0, 1)$ and, in addition the sequence $(\beta_k)_{k \ge 0}$ has
             \begin{align*}
                 \left(
@@ -622,6 +622,61 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
         \end{lemma}
         \begin{proof}
+            Firstly, we will show that for all $\alpha_0 \in (0, 1]$, and $\alpha_k \in (0, 1)\;\forall k \ge 1$. 
+            We prove using induction, inductively assume that $\alpha_k \in (0, 1]$. 
+            We can solve for $\alpha_k$ using the recursive equality which should always have one of the strictly positive root given by: 
+            \begin{align*}
+                \alpha_k &=
+                \frac{L_{k - 1}}{2L_k}\left(
+                    - \alpha_{k - 1}^2 + \left(
+                        \alpha_{k - 1}^4 + 4 \alpha_{k - 1}\frac{L_k}{L_{k - 1}}
+                    \right)^{1/2}
+                \right)
+                \\
+                &= \frac{\alpha_{k - 1}^2L_{k - 1}}{2L_k}\left(
+                    - 1 + \left(
+                        1 + \frac{4 L_k}{L_{k - 1}\alpha_{k-1}^2}
+                    \right)^{1/2}
+                \right)
+                \\
+                &\underset{(1)}{<} \frac{\alpha_{k - 1}^2L_{k - 1}}{2L_k}\left(
+                    - 1 + 1 + 2 \alpha_{k - 1}^{-2}\frac{L_k}{L_{k - 1}}
+                \right)
+                \\
+                &= 1
+            \end{align*}
+            At (1) we completed a square inside of the radical, and use the assumption that $\alpha_k > 0$ and, $L_k > 0, L_{k - 1} > 0$ because we had $B_k > 0$: 
+            \begin{align*}
+                1 + 4 L_{k}L_{k - 1}^{-1}\alpha_{k - 1}^{-2}
+                &= 
+                1 + 4 L_{k}L_{k - 1}^{-1}\alpha_{k - 1}^{-2}
+                + 2L_k^2L_{k - 1}^{-2}\alpha_{k - 1}^{-4}
+                - 2L_k^2L_{k - 1}^{-2}\alpha_{k - 1}^{-4}
+                \\
+                &= (1 + 2L_kL_{k - 1}^{-1}\alpha_{k - 1}^{-2})^2
+                - 2\alpha_{k - 1}^{-4}L_k^2L_{k - 1}^{-2}
+                \\
+                &< \left(1 + 2L_kL_{k - 1}^{-1}\alpha_{k - 1}^{-2}\right)^2. 
+            \end{align*}
+            To see that $\alpha_k > 0$, recall the same fact that $L_k > 0$, and use the inductive hypothesis that $\alpha_{k - 1} \in (0, 1]$ then $\alpha_k > 0$ because: 
+            \begin{align*}
+                \alpha_k &=
+                \frac{L_{k - 1}}{2L_k}\left(
+                    - \alpha_{k - 1}^2 + \left(
+                        \alpha_{k - 1}^4 + 4 \alpha_{k - 1}\frac{L_k}{L_{k - 1}}
+                    \right)^{1/2}
+                \right) 
+                \\
+                &\ge \frac{L_{k - 1}}{2L_k}\left(
+                    - \alpha_{k - 1}^2 + \left(
+                        \alpha_{k - 1}^4
+                    \right)^{1/2}
+                \right) 
+                \\
+                &> 0. 
+            \end{align*}
+            Therefore, inductively it holds that $\alpha_k \in (0, 1)$ too. 
+            \par
             Now, we focus on $(\beta_k)_{k \ge 0}$. 
             From the assumption that $(\alpha_k)_{k \ge 0}$ has $(1 - \alpha_k) = \alpha_k^2L_k \alpha_{k - 1}^{-2}L_{k - 1}^{-1}$ for all $k \ge 0$ and, the definition of $\beta_k$, it yields the following equalities: 
             \begin{align*}
@@ -661,7 +716,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &= \beta_kL_0\alpha_0^2L_k^{-1}.         
             \end{split}\end{align}
-            Combining \eqref{eqn:opt-mmntm-seq-pitem1}, \eqref{eqn:opt-mmntm-seq-pitem2} it would mean for all $i \ge 1$ it has: 
+            Combining \eqref{eqn:opt-mmntm-seq-pitem1}, \eqref{eqn:opt-mmntm-seq-pitem2} and the fact that $\beta_k > 0\;\forall k \ge 0$, it would mean for all $i \ge 1$ it has: 
             \begin{align*}
                 L_0 \alpha_0^2 L_i^{-1} &= 
                 \beta_i^{-1}\left(
@@ -687,18 +742,23 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     1 + \beta_i^{1/2}\beta_{i - 1}^{-1/2}
                 \right)^2. 
             \end{align*}
-            Since $\beta_i$ is monotone decreasing, it has $\beta_i^{-1/2}\beta_{i - 1}^{-1/2} \le 1$, and since $\alpha \in (0, 1)$
-            \todoinline{HERE! IT'S NOT FINISHED YET!!!}
+            Since $\beta_i$ is monotone decreasing, it has $0 < \beta_i^{-1/2}\beta_{i - 1}^{-1/2} \le 1$, this gives: 
+            \begin{align*}
+                \beta_i^{-1/2} - \beta_{i - 1}^{-1/2} 
+                &\le \alpha_0\sqrt{\frac{L_0}{L_i}} 
+                \le 2 \left(
+                    \beta_i^{-1/2} - \beta_{i - 1}^{-1/2}
+                \right).
+            \end{align*}
+            Performing a telescoping sum, use the fact that $\beta_0 = 1$ will yield the desired results after some algebraic manipulations. 
         \end{proof}
         \begin{proposition}[$\mathcal O(1/k^2)$ optimal convergence rate of the outer loop]\;\label{prop:opt-cnvg-outr-loop}\\
-            Let $(f, g, L)$, $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(\beta_k)_{k\ge 0}, \mathcal E_0, p$ as assumed in Assumption \ref{ass:valid-err-schedule}. 
+            Let $(f, g, L)$, $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(\beta_k)_{k\ge 0}, \mathcal E_0, p$ be given by Assumption \ref{ass:opt-mmntm-seq}. 
             Assume in addition that
             \begin{enumerate}[nosep]
                 \item there exists $\bar x \in \RR^n$ that is a minimizer of $F = f + g$;
-                \item $\alpha_0 = 1, p > 0$; 
-                \item the sequence $(\alpha_k)_{k\ge 0}$ satisfies for all $k \ge 0$ the equality $(1 - \alpha_k) = \alpha_{k}^2L_k\alpha_{k - 1}^{-2}L_{k - 1}^{-1}$;
+                \item $\alpha_0 = 1, p > 0$;
                 \item the sequence $L_k := B_k + \rho_k$ is bounded, and there exists an $L_{\max}$ such that for all $k \ge 0$ it has $L_{\max} \ge \max_{k\ge i\ge 0} L_i$. 
-                % \item the sequence $\rho_k$ must also recursively satisfies $\rho_k \ge \max\left(-B_k + \alpha_{k - 1}^4(\rho_{k - 1} + B_{k - 1}), 0\right)$. 
             \end{enumerate}
             Then, $\alpha_k \in (0, 1]\;\forall k \ge 0$ hence it's always valid and, it has $\forall k \ge 0$: 
             \begin{align*}
@@ -714,14 +774,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Since, $p > 0$ the sum is convergent and hence the above inequality claims an overall convergence rate $\mathcal O(1/k^2)$. 
         \end{proposition}
         \begin{proof}
-            Telescope for all $i \ge 1$: 
-            \begin{align*}
-                \frac{\alpha_0\sqrt{L_0}}{2}\sum_{i = 1}^{k}\sqrt{L^{-1}_k}
-                &\le 
-                \beta_k^{-1/2} - \beta_{0}^{-1/2} = 
-                \beta_k^{-1/2} - 1. 
-            \end{align*}
-            Re-arranging, yields: 
+            We use the results from \ref{lemma:opt-mmntm-seq} because the sequence has the same assumption, then using the fact that $L_k$ is bounded then it gives:
             \begin{align*}
                 \beta_k &\le 
                 \left(
@@ -732,60 +785,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     1 + \frac{k\alpha_0\sqrt{L_0}}{2\sqrt{L_{\max}}}
                 \right)^{-2}. 
             \end{align*}
-            Recall that $L_k = B_k + \rho_k$, and by our assumptions, the sequence $(B_k)_{k \ge 0}, (\rho_k)_{k\ge 0}$ are both bounded above, then it's not hard to see that $\beta_k \le \mathcal O(1/k^2)$. 
-            Combine it with Lemma \ref{lemma:inxt-apg-cnvg-prep1}, using $\alpha_0 = 1$ will yield the desired result. 
-            Finally, one can solve for $\alpha_k$ by the recursive equality, and it should always have one of the strictly positive root: 
-            \begin{align*}
-                \alpha_k &=
-                \frac{L_{k - 1}}{2L_k}\left(
-                    - \alpha_{k - 1}^2 + \left(
-                        \alpha_{k - 1}^4 + 4 \alpha_{k - 1}\frac{L_k}{L_{k - 1}}
-                    \right)^{1/2}
-                \right)
-                \\
-                &= \frac{\alpha_{k - 1}^2L_{k - 1}}{2L_k}\left(
-                    - 1 + \left(
-                        1 + \frac{4 L_k}{L_{k - 1}\alpha_{k-1}^2}
-                    \right)^{1/2}
-                \right)
-                \\
-                &\underset{(1)}{\le} \frac{\alpha_{k - 1}^2L_{k - 1}}{2L_k}\left(
-                    - 1 + 1 + 2 \alpha_{k - 1}^{-2}\frac{L_k}{L_{k - 1}}
-                \right)
-                \\
-                &= 1
-            \end{align*}
-            At (1) we completed a square inside of the radical: 
-            \begin{align*}
-                1 + 4 L_{k}L_{k - 1}^{-1}\alpha_{k - 1}^{-2}
-                &= 
-                1 + 4 L_{k}L_{k - 1}^{-1}\alpha_{k - 1}^{-2}
-                + 2L_k^2L_{k - 1}^{-2}\alpha_{k - 1}^{-4}
-                - 2L_k^2L_{k - 1}^{-2}\alpha_{k - 1}^{-4}
-                \\
-                &= (1 + 2L_kL_{k - 1}^{-1}\alpha_{k - 1}^{-2})^2
-                - 2\alpha_{k - 1}^{-4}L_k^2L_{k - 1}^{-2}
-                \\
-                &\le (1 + 2L_kL_{k - 1}^{-1}\alpha_{k - 1}^{-2})^2. 
-            \end{align*}
-            To see that $\alpha_k > 0$, recall that we had the assumption that $B_k > 0$ making $L_k > 0$. 
-            If we inductively assume that $\alpha_{k - 1} \in (0, 1]$ then $\alpha_k > 0$ because: 
-            \begin{align*}
-                \alpha_k &=
-                \frac{L_{k - 1}}{2L_k}\left(
-                    - \alpha_{k - 1}^2 + \left(
-                        \alpha_{k - 1}^4 + 4 \alpha_{k - 1}\frac{L_k}{L_{k - 1}}
-                    \right)^{1/2}
-                \right) 
-                \\
-                &\ge \frac{L_{k - 1}}{2L_k}\left(
-                    - \alpha_{k - 1}^2 + \left(
-                        \alpha_{k - 1}^4
-                    \right)^{1/2}
-                \right) 
-                \\
-                &> 0. 
-            \end{align*}
+            Then, apply Theorem \ref{prop:inxt-apg-cnvg-generic} to obtain the desired results.
         \end{proof}
         \begin{remark}
             In this remark, we assert the fact that all assumptions made in the theorem can be satisfied on practice, and we will also bring attention to the current, and future roles played by each of the parameters used in the inexact algorithm. 
@@ -795,11 +795,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             However, this sequence $\rho_k$ is not useless because it relaxes the upper bound for $\epsilon_k$, this has huge impact in the earlier stage (the first few iterations) of the algorithm $\Vert x_k - y_k\Vert$ is large. 
             Of course, the parameter $\mathcal E_0$ is also free to choose. 
             \par
-            The the next subsection, we will show that under the assumption of the above theorem, there exists an error sequence $\epsilon_k$ such that it can never approach $0$ at an arbitrarily fast rate. 
+            In the next subsection, we will show that under the assumption of the above theorem, there exists an error sequence $\epsilon_k$ such that it can never approach $0$ at an arbitrarily fast rate. 
         \end{remark}
     \subsection{the fastest rate of which the error schedule can shrink}
         To have overall convergence claim of the algorithm, it's necessary to prevent the error schedule $(\epsilon_k)_{k \ge 0}$ from crashing into zero too quickly. 
         Following Assumption \ref{ass:valid-err-schedule}, in this section, we will provide the lower bound results for $\epsilon_k$ in Theorem \ref{prop:opt-cnvg-outr-loop} to show that in the worst case it cannot approach zero arbitrarily fast, if we choose the largest possible $\epsilon_k$ using $\beta_k$. 
+        \begin{lemma}[error schedule lower bound]
+            
+        \end{lemma}
 
 
 \section{Linear convergence for the proximal problem}
