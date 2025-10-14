@@ -21,7 +21,7 @@
 \input{presets/wang/custom_commands.tex} % IMPORT WANG'S LATEX CUSTOM COMMANDS. 
 \setbeamertemplate{theorems}[numbered] % ADD NUMBERING TO ALL AMS THEOREMS. 
 \setbeamertemplate{footline}[frame number] % ADD PAGE NUMBERS ON BOTTOM. 
-\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{blocks}[rounded][shadow=false]
 \setbeamertemplate{navigation symbols}{} 
 % \setbeamercolor{block title}{bg=cyan,fg=black}  % CHANGE THE BLOCK STYLE IN BEAMER. 
 % \setbeamercolor{block body}{bg=lime,fg=black} % CHANGE THE BLOCK STYLE IN BEAMER. 
@@ -61,7 +61,13 @@
 \institute[UBCO]{
     University of British Columbia Okanagan
 }
-\date[\today]{\today \\ \vspace{1cm} \tiny{Joint work with Shawn/Xianfu Wang}}
+\date[\today]{
+    \today 
+    \\
+    2025 Annual Midwest Optimization Meeting
+    \\ 
+    \vspace{1cm} \tiny{Joint work with Shawn/Xianfu Wang}
+}
 \subject{Nesterov's acceleration and its applications}
 
 % SLIDES ELEMENTS CUSTOMIZATIONS ===============================================
@@ -86,7 +92,6 @@
 \section{Introduction and background}
     \subsection{Motivations}
         \begin{frame}{Nesterov's accelerated gradient in 1983}
-            Let's recall a classic. 
             \begin{block}{Nesterov's accelerated gradient in 1983}
                 Initialized $x_0 = y_0 \in \RR^n$. 
                 The original formulation by Nesterov in 1983 \cite{nesterov_method_1983} has
@@ -102,35 +107,57 @@
                 \end{align*}    
                 }
             \end{block}
-            If $F$ is convex and has $L$ Lipschitz smooth gradient and a minimizer $x^+$ exists. 
+            When $F$ is convex and, $L$ Lipschitz smooth. 
+            If minimizer $x^+$ exists, then: 
             \begin{itemize}
                 \item a convergence rate of $\mathcal O(1/k^2)$ for $(F(x_k) - F(x^+))_{k \ge 1}$;
                 \item this convergence rate is optimal in the sense as proposed by Nesterov \cite{nesterov_lectures_2018}.
             \end{itemize}
         \end{frame}
-        \begin{frame}{Other choices for the momentum sequence}
-            Generalized by Beck \cite{beck_fast_2009-1} in 2009, called FISTA, it has $(t_k)_{k}$: 
-            \begin{tcolorbox}\noindent\vspace{-1em}
+        \begin{frame}{Other choices for the momentum sequence part I}
+            Major results from the literature regarding different choices for the momentum sequence $(t_k)_{k \ge 0}$. 
+            \begin{block}{Beck, Teboulle 2009 {\cite[Theorem 4.4]{beck_fast_2009-1}}}
+                Commonly known by the name FISTA, it allows $(t_k)_{k}$: 
                 \begin{align*}
                     (\forall k \ge 1)\quad t_k (t_k - 1) &\le t_{k - 1}^2. 
                 \end{align*}    
-            \end{tcolorbox}
-            Chambolle and Dossal in 2015 \cite{chambolle_convergence_2015}, if $t_k = (k + a -1)/a$, then$(x_k)_{k \ge 0}$ has weak convergence in Hilbert space for all $a > 2$.
-            \par  
-            In Nesterov's book \cite{nesterov_lectures_2018} and Beck's book \cite{beck_first-order_2017} that if in addition, $F:\RR^n \rightarrow \RR$ is $L$ smooth gradient, with Strongly convex with $\mu > 0$, then $(\theta_k)_{k\ge 0}$: 
-            \begin{tcolorbox}
-                \begin{align*}
-                   \theta_k = \frac{\sqrt{L/\mu} - 1}{\sqrt{L/\mu} + 1}. 
-                \end{align*}
-            \end{tcolorbox}
-            It gives $\mathcal O((1 - \sqrt{\mu/L})^k)$ convergence rate for $(F(x_k) - F(x^+))_{k \ge 1}$. 
+                When $t_k (t_k - 1) = t_{k - 1}^2$, it yields $\mathcal O(1/k^2)$ convergence rate of optimality gap
+            \end{block}
+            \begin{block}{Chambolle, Dossal 2015 \cite[Theorem 4.1]{chambolle_convergence_2015}}
+                If $t_k = (k + a -1)/a$ in which case this gives $\theta_{k} = \frac{k - 2}{k + a - 1}$, then $(x_k)_{k \ge 0}$ has weak convergence in Hilbert space for all $a > 2$.    
+            \end{block}
         \end{frame}
+        \begin{frame}{Other choices for the momentum sequence part II}
+            A finetuned constant momentum sequence gives optimal linear convergence rate for specific strongly convex objective. 
+            \begin{block}{
+                Nesterov 2018 {\cite[Theorem 2.2.3]{nesterov_lectures_2018}}, 
+                Beck 2017 {\cite[Theorem 10.42]{beck_first-order_2017}}
+            }
+                If in addition whe $F:\RR^n \rightarrow \RR$ is $L$ smooth gradient, and $\mu > 0$ strongly convex, then for $(\theta_k)_{k\ge 0}$ such that: 
+                \begin{align*}
+                    \theta_k = \frac{\sqrt{L/\mu} - 1}{\sqrt{L/\mu} + 1}, 
+                \end{align*}
+                it gives $\mathcal O\left(\left(1 - \sqrt{\mu/L}\right)^k\right)$ convergence rate for $(F(x_k) - F(x^+))_{k \ge 1}$. 
+            \end{block}
+        \end{frame}
+        \begin{frame}{Other choices for the momentum sequence part III}
+            The cases when the inequality of Nesterov's rule is not satisfied had been investigated as well.
+            \begin{block}{Apidopoulos et al. 2018 \cite{apidopoulos_convergence_2018}}
+                If $\theta_k = \frac{k}{k + b}\;\forall k \ge 0$ where $b \in (0, 3)$ then, the optimality gap has a convergence rate of $\mathcal O(1/k^{2b/3})$. 
+            \end{block}
+        \end{frame}
+    
     \subsection{Our discoveries and inspirations}
-        \begin{frame}{A major question}
-            This is a question that lead our investigation: 
+        \begin{frame}{Relaxed Weak Accelerated Proximal Gradient}
+            We asked the following major question.  
             \begin{tcolorbox}
                 How much can we relax the choice of the sequence $\theta_k$ and still get an upper bound for the convergence rate? 
             \end{tcolorbox}
+            We addressed it by what we called: ``Relaxed Weak Accelerated proximal Gradient'' (R-WAPG). 
+            \begin{enumerate}
+                \item It's interpreted from the Nesterov's estimating sequence technique and based on the proximal gradient inequality. 
+                \item It relaxes the assumption of the momentum sequence parameter while still retaining an upper bound on the optimality gap. 
+            \end{enumerate}
         \end{frame}
         \begin{frame}{The assumptions we make throughout}
             \begin{assumption}[Convex smooth plus nonsmooth]
@@ -139,10 +166,10 @@
                 \begin{enumerate}
                     \item $f: \RR^n \rightarrow \RR$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex.
                     \item $g: \RR^n \rightarrow \overline \RR$ is proper, closed and convex. The extended real is defined as $\overline \RR := \RR \cup \{\infty\}$.
-                    \item A minimizer exists for the optimization problem: $F^+ = \min_x \left\lbrace f(x) + g(x)\right\rbrace$.
+                    \item A minimizer $x^+$ exists for the optimization problem: $F^+ = \min_x \left\lbrace f(x) + g(x)\right\rbrace$.
                 \end{enumerate}
             \end{assumption}
-            \textbf{This assumption the full scope of the theoretical and practical discussion, assume it throughout.}
+            \textbf{This assumption is the full scope of the theoretical and practical discussion.}
         \end{frame}
         \begin{frame}{Theoretical results summary}
             Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be two sequences. 
@@ -152,9 +179,11 @@
                     \rho_k &:= \frac{\alpha_{k + 1}^2 - (\mu/L)\alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2} \quad \forall (k \ge 0).
                 \end{align*}
             \end{tcolorbox}
-            We can show Nesterov's type accelerated proximal gradient algorithm (or equivalently, FISTA with $g \equiv 0$) generates $(F(x_k) - F^+)_{k\ge 1}$ that has an upper bound of: 
+            We can show Nesterov's type accelerated proximal gradient algorithm (or equivalently, FISTA with $g \equiv 0$) has for all $k \ge 1$:
             \begin{tcolorbox}\noindent\vspace{-1em} 
                 \begin{align*}
+                    F(x_k) - F^+ 
+                    \le
                     \mathcal O\left(
                         \left(
                             \prod_{i = 0}^{k - 1} \max(1, \rho_{i})
@@ -165,6 +194,7 @@
             \end{tcolorbox}
         \end{frame}
         \begin{frame}{Unifying variants of FISTA in the literatures}
+            We tried it out on some variants in the literature. 
             Let's label 
             \begin{enumerate}
                 \item[(i)] R-WAPG with $\mu \ge 0$, %\ref{def:wapg} 
@@ -225,17 +255,21 @@
             \end{table}
             Note that in Chambolle and Dossal \cite{chambolle_convergence_2015} and their sequence $t_k = \alpha_k^{-1}$ and $\alpha_k = a/(k + 1)$ satisfies $\alpha_k^{-1} \le \alpha_{k + 1}^{-1} - \alpha_{k + 1}^{-2}$. 
         \end{frame}
-        \begin{frame}{A practical realization inspired by the theories}
-            Our theories suggest that, the upperbound for function value in the R-WAPG algorithm is ultimately described by the sequence $(\alpha_k)_{k \ge 0}$.
-            \textbf{Taking this idea further, this is what we did for numerical experiments}: 
+        \begin{frame}{The numerical experiment that had been inspired}
+            Our theories suggest that the upper bound for $F(x_k) - F(x^+)$ in our R-WAPG framework is ultimately described by the sequence $(\alpha_k)_{k \ge 0}$.
+            Since $\alpha_k \in (\mu/L, 1)$ and all convex function is strongly convex with strong convexity constant $\mu = 0$, this is what we did:
             \begin{tcolorbox}
-                We made a Free R-WAPG algorithm which estimates the strong convexity constant $\mu$ through the Bregman Divergence at two successive iterates while the algorithm is running and, we check the upper bound using our convergence theory. 
+                We made an algorithm which we called ``Free R-WAPG", it estimates the strong convexity constant $\mu$ using the Bregman Divergence at two successive iterates when the algorithm is running. 
+                This information is used to determine the sequence $(\alpha_k)_{k \ge 0}$, and used to visualized our theoretical upper bound. 
             \end{tcolorbox}
         \end{frame}
 
 \section{The R-WAPG framework and convergence rate}
     \subsection{Introducing the R-WAPG framework}
         \begin{frame}{Proximal gradient, gradient mapping}
+            Starting in this section, we will highlight key theoretical results that will allow the unifying convergence rate for Euclidean variants of FISTA in the literature.
+            \par
+            We start off with the following definition. 
             \begin{definition}[The proximal gradient operator]
                 Define for all $x\in \RR^n$: 
                 \begin{align*}
@@ -255,28 +289,22 @@
             $L > 0$ is the Lipschitz smoothness parameter for $f$. 
         \end{frame}
         \begin{frame}{The R-WAPG sequences}
-            In this section, we highlight key theoretical results that allowed us to unify convergence rate for various variants of FISTA in the literature.
-            \begin{definition}{R-WAPG sequences}\label{def:rwapg-seq}
+            \begin{definition}[R-WAPG sequences]\label{def:rwapg-seq}
                 Assume $0 \le \mu < L$. 
-                Let $(\alpha_k)_{k \ge 0}$ be such that: 
-                \begin{align*}
-                    & \alpha_0 \in (0, 1], \\
-                    & \alpha_k \in (\mu/L, 1) \quad (\forall k \ge 1). 
-                \end{align*}    
-                Define $(\rho_k)_{k \ge 0}$
-                \begin{align*}
-                    \rho_k := \frac{\alpha_{k + 1}^2 - (\mu/L) \alpha_{k + 1}}{
-                        (1 - \alpha_{k + 1}) \alpha_k^2.
-                    }
-                \end{align*}
-                We call the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ the R-WAPG sequences. 
+                Let $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ be such that: 
+                \begin{enumerate}
+                    \item $\alpha_0 \in (0, 1]$, 
+                    \item $\alpha_k \in (\mu/L, 1) \quad (\forall k \ge 1)$, 
+                    \item $\rho_k := \frac{\alpha_{k + 1}^2 - (\mu/L) \alpha_{k + 1}}{(1 - \alpha_{k + 1}) \alpha_k^2}$ for all $k \ge 0$. 
+                \end{enumerate}  
+                We call the sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ the R-WAPG sequences. 
             \end{definition}
         \end{frame}
         \begin{frame}{R-WAPG}
             \begin{definition}[R-WAPG]\label{def:wapg}
                 Choose any $x_1 \in \RR^n, v_1 \in \RR^n$.
                 Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be given by Definition \ref{def:rwapg-seq}.
-                The algorithm generates a sequence of vector $(y_k, x_{k + 1}, v_{k + 1})_{k \ge 1}$ for all $k\ge 1$ by such that:
+                The algorithm generates the sequences of vectors $(y_k, x_{k + 1}, v_{k + 1})_{k \ge 1}$ for all $k\ge 1$ by such that:
                 \begin{tcolorbox}\vspace{-1em}
                     \begin{align*}
                         \gamma_k &\defeq \rho_{k -1}L\alpha_{k - 1}^2,
@@ -288,11 +316,9 @@
                         y_k &=
                         (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k),
                         \\
-                        g_k &= \mathcal G_L (y_k),
-                        \\
                         v_{k + 1} &=
                         \hat\gamma^{-1}_{k + 1}
-                        (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k),
+                        \left(\gamma_k(1 - \alpha_k) v_k - \alpha_k \mathcal G_L (y_k) + \mu \alpha_k y_k\right),
                         \\
                         x_{k + 1} &= T_L (y_k).
                     \end{align*}
@@ -300,7 +326,7 @@
             \end{definition}
         \end{frame}
         \begin{frame}{Convergence of R-WAPG}
-            After six pages of math in the paper, we deduced the following theorem: 
+            After six pages of math in the paper (not necessarily dense), we deduced the following theorem: 
             \begin{proposition}[R-WAPG convergence]\label{prop:wapg-convergence}
                 Fix any arbitrary $x^* \in \RR^n, N \in \mathbb N$.
                 Let $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ be R-WAPG sequences.
@@ -332,43 +358,40 @@
                 Then they satisfy for all $k\ge 1$: 
                 {\footnotesize
                 \begin{align}
-                    & \begin{aligned}
-                        y_{k} &=
-                        \left(
-                            1 + \frac{L - L\alpha_{k}}{L\alpha_{k} - \mu}
-                        \right)^{-1}
-                        \left(
-                            v_{k} +
-                            \left(\frac{L - L\alpha_{k}}{L\alpha_{k} - \mu} \right) x_{k}
-                        \right)
-                        \\
-                        &= x_{k} +
-                        \frac{\rho_{k - 1}\alpha_{k - 1}(1 - \alpha_{k - 1})}
-                        {\rho_{k - 1}\alpha_{k - 1}^2 + \alpha_{k}}(x_{k} - x_{k - 1}), 
-                    \end{aligned}
+                    y_{k} &=
+                    \left(
+                        1 + \frac{L - L\alpha_{k}}{L\alpha_{k} - \mu}
+                    \right)^{-1}
+                    \left(
+                        v_{k} +
+                        \left(\frac{L - L\alpha_{k}}{L\alpha_{k} - \mu} \right) x_{k}
+                    \right)
                     % \label{eqn:rwapg-first-equiv-form-eqn-1}
                     \\
-                    & x_{k + 1} =
-                    y_k - L^{-1} \mathcal G_L (y_k),
+                    x_{k + 1} 
+                    &=y_k - L^{-1} \mathcal G_L (y_k),
                     \\
-                    & \begin{aligned}
-                        v_{k + 1} 
-                        &=
-                        \left(
-                            1 + \frac{\mu}{L \alpha_k - \mu}
-                        \right)^{-1}
-                        \left(
-                            v_k +
-                            \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
-                        \right) - \frac{1}{L\alpha_{k}}\mathcal G_L (y_k)
-                        \\
-                        &= 
-                        x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k).
-                    \end{aligned}
+                    v_{k + 1} 
+                    &=
+                    \left(
+                        1 + \frac{\mu}{L \alpha_k - \mu}
+                    \right)^{-1}
+                    \left(
+                        v_k +
+                        \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
+                    \right) - \frac{1}{L\alpha_{k}}\mathcal G_L (y_k)
+                    \\
+                    &= 
+                    x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k), 
+                    \\
+                    y_{k + 1}
+                    &= x_{k + 1} +
+                    \frac{\rho_{k}\alpha_{k}(1 - \alpha_k)}
+                    {\rho_k\alpha_k^2 + \alpha_k}(x_{k + 1} - x_k). 
                 \end{align}
                 }
             \end{proposition}
-            If $\mu = 0$, then it simplifies:
+            When $\mu = 0$, then has:
             {\small
             \begin{align*}
                 (\forall k \ge 1) \quad
@@ -382,16 +405,16 @@
             FISTA algorithm proposed in Chambolle and Dossal \cite{chambolle_convergence_2015} has a function value convergence fully described by Proposition \ref{prop:wapg-convergence}. 
             \begin{lemma}[R-WAPG sequence as inverted FISTA sequence]\label{lemma:inverted-fista-seq}
                 Let R-WAPG sequence $(\rho_k)_{k \ge 0}, (\alpha_k)_{k \ge 0}$ be given by Definition \ref{def:rwapg-seq}.
-                If $\mu = 0, \rho_k \ge 1\; \forall k \ge 0$, and $\alpha_0 = 1$, then:
+                If it has $\mu = 0, \rho_k \ge 1\; \forall k \ge 0$, and $\alpha_0 = 1$, then:
                 \begin{enumerate}
-                    \item $\alpha_k^{-2} \ge \alpha_{k + 1}^{-2} - \alpha_{k + 1}^{-1}\; \forall k \ge 0$.
-                    \item Let $t_k := \alpha_k^{-1}$, then $0 < t_{k + 1} \le (1/2)\left(1 + \sqrt{1 + 4t_k^2}\right)\;\forall k\ge 0$, hence the name: ``inverted FISTA sequence''.
+                    \item $\alpha_k^{-2} \ge \alpha_{k + 1}^{-2} - \alpha_{k + 1}^{-1}\; \forall k \ge 0$. 
+                    \item Let $t_k := \alpha_k^{-1}$, then it would satisfy $0 < t_{k + 1} \le (1/2)\left(1 + \sqrt{1 + 4t_k^2}\right)\;\forall k\ge 0$, hence the name: ``inverted FISTA sequence''.
                     \item $\prod_{i = 1}^k\max(1, \rho_{k - 1})(1 - \alpha_k) = \alpha_k^2 \quad (\forall k \ge 1)$.
                 \end{enumerate}
             \end{lemma}
             Let $\alpha_k = a/(k + 1)$, $a \ge 2$, Applying Proposition \ref{prop:wapg-convergence} yields $\mathcal O(1/k^2)$ convergence rate of $(F(x_k) - F^+)_{k \ge 1}$ after some algebra routine. 
         \end{frame}
-        \begin{frame}{In addition, our theory made a new prediction}
+        \begin{frame}{In addition, our theory made one new prediction}
             \begin{theorem}[fixed momentum APG]\label{thm:fixed-momentum-fista}
                 {\small
                 Assume $L > \mu > 0$, let a pair of constant R-WAPG sequence: $(\alpha_k)_{k \ge0}$ is a constant and $\alpha_k \in (\mu/L, 1)$ for all $k \ge 0$.
@@ -412,14 +435,13 @@
                 }
             \end{theorem}
         \end{frame}
-
 \section{Adaptive momentum sequence and numerical experiments}
     \subsection{Free R-WAPG}
         \begin{frame}{Introducing numerical experiments}
             All convex functions are strongly convex with strong convexity constant $\mu = 0$. 
             With $\mu = 0$, it has from Definition \ref{def:rwapg-seq} that for all $k \ge 0$: 
             \begin{enumerate}
-                \item It allows $\alpha_k \in (0, 1)$. The sequence $(\alpha_k)_{k \ge 1}$ is as loose as possible. 
+                \item It has $\alpha_k \in (0, 1)$. The sequence $(\alpha_k)_{k \ge 1}$ is as loose as possible. 
                 \item It has $\rho_{k - 1} = \alpha_k/((1 - \alpha_k)\alpha_{k - 1}^2)$, hence $(1 - \alpha_k)\rho_{k - 1} = \alpha_k^2/\alpha_{k - 1}^2$. 
             \end{enumerate}
             This simplifies our convergence claim into: 
@@ -435,7 +457,7 @@
                 \max\left(
                 1 - \alpha_{i + 1}, \frac{\alpha_{i + 1}^2}{\alpha_i^2}\right). 
             \end{align*}
-            This insipired our numerical experiments. 
+            This inspired our numerical experiments. 
         \end{frame}
         \begin{frame}{Free R-WAPG}
             \begin{algorithm}[H]
@@ -612,6 +634,11 @@
         \end{frame}
 
 \section{References and draft on arxiv}
+    \begin{frame}{Acknowledgement}
+        The research of HL and XW was partially supported by the NSERC Discovery Grant of Canada.
+        \par
+        The travel of HL to this conference is supported by the NSF grant DMS-2526465.
+    \end{frame}
     \begin{frame}{Thanks for the participations. Merci pour les participations.}
         Our paper can be found on arxiv using the following QR code: 
         \begin{figure}

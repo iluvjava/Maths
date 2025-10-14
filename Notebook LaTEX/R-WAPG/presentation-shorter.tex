@@ -21,7 +21,7 @@
 \input{presets/wang/custom_commands.tex} % IMPORT WANG'S LATEX CUSTOM COMMANDS. 
 \setbeamertemplate{theorems}[numbered] % ADD NUMBERING TO ALL AMS THEOREMS. 
 \setbeamertemplate{footline}[frame number] % ADD PAGE NUMBERS ON BOTTOM. 
-\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{blocks}[rounded][shadow=false]
 \setbeamertemplate{navigation symbols}{} 
 \setbeamertemplate{itemize subitem}{$\circ$}
 % \setbeamercolor{block title}{bg=cyan,fg=black}  % CHANGE THE BLOCK STYLE IN BEAMER. 
@@ -117,27 +117,37 @@
     \end{frame}
     \begin{frame}{Choices of momentum parameters $t_k, \theta_k$}
         \begin{block}{Here are prominent results in the literature}
+            {\footnotesize
             \begin{itemize}
-                \item Beck, Teboulle 2009 \cite{beck_fast_2009}, the FISTA paper: $t_k (t_k - 1) \le t_{k - 1}^2$. 
+                \item Beck, Teboulle 2009 \cite[Theorem 4.4]{beck_fast_2009-1}, the FISTA paper: $t_k (t_k - 1) \le t_{k - 1}^2$. 
                     \begin{itemize}
+                        {\footnotesize
                         \item $(F(x_k) - F(x^+))_{k \ge 0}$ converges at rate $\mathcal O(1/k^2)$ when $t_k(t_k - 1) = t_{k - 1}^2$. 
                         \item $\theta_k$ admits no closed form. 
+                        }
                     \end{itemize}
-                \item Chambolle and Dossal 2015 \cite{chambolle_convergence_2015}: $t_k = (k + a -1)/a$ with $a > 2$. 
+                \item Chambolle and Dossal 2015 \cite[Theorem 4.1]{chambolle_convergence_2015}: $t_k = (k + a -1)/a$ with $a > 2$. 
                     \begin{itemize}
+                        {\footnotesize
                         \item Retains convergence rate $\mathcal O(1/k^2)$ with $\theta_{k} = \frac{k - 2}{k + a - 1}$. 
-                        \item Iterates has weak convergence in Hilbert space. 
+                        \item Iterates converge weakly in Hilbert space. 
+                        }
                     \end{itemize}
-                \item Nesterov \cite{nesterov_lectures_2018} and, Beck \cite{beck_first-order_2017}
-                : $\theta_k = \frac{\sqrt{L/\mu} - 1}{\sqrt{L/\mu} + 1}$.
+                \item Nesterov \cite[Theorem 2.2.3]{nesterov_lectures_2018} and, Beck \cite[Theorem 10.42]{beck_first-order_2017}
+                : $\theta_k = \left(\sqrt{L/\mu} - 1\right)\left(\sqrt{L/\mu} + 1\right)^{-1}$.
                     \begin{itemize}
+                        {\footnotesize
                         \item Converges at rate $\mathcal O\left(\left(1 - \sqrt{\mu/L}\right)^k\right)$, if $f$ is also $\mu$ strongly convex with $\mu > 0$. 
+                        }
                     \end{itemize}
-                \item Apidopoulos et al. 2018 \cite{apidopoulos_convergence_2018}: $\theta_k = \frac{n}{n + b}$ for $b \in (0, 3)$. 
+                \item Apidopoulos et al. 2018 \cite{apidopoulos_convergence_2018}: $\theta_k = \frac{k}{k + b}$ for $b \in (0, 3)$. 
                 \begin{itemize}
+                    {\footnotesize
                     \item Has convergence rate $\mathcal O(1/k^{2b/3})$. 
+                    }
                 \end{itemize}
             \end{itemize}    
+            }
         \end{block}
     \end{frame}
     \begin{frame}{A major question}
@@ -149,7 +159,7 @@
         \begin{itemize}
             \item An upper bound of function value with the weakest assumption on momentum parameter.
             \item A unified analysis with strong convexity $\mu \ge 0$. 
-            \item Various equivalent representation of R-WAPG are given and, convergence results varified for examples in the literature. 
+            \item Various equivalent representation of R-WAPG are given and, convergence results verified for examples in the literature. 
             \item Numerical experiments are conducted to verify the theory. 
         \end{itemize}
     \end{frame}
@@ -162,7 +172,7 @@
             \begin{enumerate}
                 \item $f: \RR^n \rightarrow \RR$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex.
                 \item $g: \RR^n \rightarrow \overline \RR$ is proper, closed and convex. The extended real is defined as $\overline \RR := \RR \cup \{\infty\}$.
-                \item A minimizer exists for the optimization problem: $F^+ = \min_x \left\lbrace f(x) + g(x)\right\rbrace$.
+                \item A minimizer $x^+$ exists for the optimization problem: $F^+ = \min_x \left\lbrace f(x) + g(x)\right\rbrace$.
             \end{enumerate}
         \end{assumption}
         \textbf{This assumption is the full scope of the theoretical and practical discussion. }
@@ -187,21 +197,15 @@
         $L > 0$ is the Lipschitz smoothness parameter for $f$. 
     \end{frame}
     \begin{frame}{The R-WAPG sequences}
-        We highlight key theoretical results that allowed us to unify convergence rate for various variants of FISTA in the literature.
         \begin{definition}[R-WAPG sequences]\label{def:rwapg-seq}
             Assume $0 \le \mu < L$. 
-            Let $(\alpha_k)_{k \ge 0}$ be such that: 
-            \begin{align*}
-                & \alpha_0 \in (0, 1], \\
-                & \alpha_k \in (\mu/L, 1) \quad (\forall k \ge 1). 
-            \end{align*}    
-            Define $(\rho_k)_{k \ge 0}$
-            \begin{align*}
-                \rho_k := \frac{\alpha_{k + 1}^2 - (\mu/L) \alpha_{k + 1}}{
-                    (1 - \alpha_{k + 1}) \alpha_k^2
-                }. 
-            \end{align*}
-            We call the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ the R-WAPG sequences. 
+            Let $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ be such that: 
+            \begin{enumerate}
+                \item $\alpha_0 \in (0, 1]$, 
+                \item $\alpha_k \in (\mu/L, 1) \quad (\forall k \ge 1)$, 
+                \item $\rho_k := \frac{\alpha_{k + 1}^2 - (\mu/L) \alpha_{k + 1}}{(1 - \alpha_{k + 1}) \alpha_k^2}$ for all $k \ge 0$. 
+            \end{enumerate}  
+            We call the sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ the R-WAPG sequences. 
         \end{definition}
     \end{frame}
     \begin{frame}{R-WAPG}
@@ -220,11 +224,9 @@
                     y_k &=
                     (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k),
                     \\
-                    g_k &= \mathcal G_L (y_k),
-                    \\
                     v_{k + 1} &=
                     \hat\gamma^{-1}_{k + 1}
-                    (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k),
+                    \left(\gamma_k(1 - \alpha_k) v_k - \alpha_k \mathcal G_L (y_k) + \mu \alpha_k y_k\right),
                     \\
                     x_{k + 1} &= T_L (y_k).
                 \end{align*}
@@ -235,46 +237,44 @@
 \section{Our theoretical results}
     \begin{frame}{Iterates by R-WAPG has other representations}
         \begin{proposition}[Alternative representations of the iterates]\label{prop:wapg-first-equivalent-repr}
-            If the sequence $(y_k, v_k, x_k)_{k \ge 1}$ is produced by R-WAPG (Definition \ref{def:wapg}), and $\alpha_0 = 1, x_1 = v_1$, then they satisfy for all $k\ge 1$: 
+            If the sequence $(y_k, v_k, x_k)_{k \ge 1}$ is produced by R-WAPG (Definition \ref{def:wapg}), and $\alpha_0 = 1, x_1 = v_1$. 
+            Then they satisfy for all $k\ge 1$: 
             {\footnotesize
             \begin{align}
-                & \begin{aligned}
-                    y_{k} &=
-                    \left(
-                        1 + \frac{L - L\alpha_{k}}{L\alpha_{k} - \mu}
-                    \right)^{-1}
-                    \left(
-                        v_{k} +
-                        \left(\frac{L - L\alpha_{k}}{L\alpha_{k} - \mu} \right) x_{k}
-                    \right)
-                    \\
-                    &= x_{k} +
-                    \frac{\rho_{k - 1}\alpha_{k - 1}(1 - \alpha_{k - 1})}
-                    {\rho_{k - 1}\alpha_{k - 1}^2 + \alpha_{k}}(x_{k} - x_{k - 1}), 
-                \end{aligned}
+                y_{k} &=
+                \left(
+                    1 + \frac{L - L\alpha_{k}}{L\alpha_{k} - \mu}
+                \right)^{-1}
+                \left(
+                    v_{k} +
+                    \left(\frac{L - L\alpha_{k}}{L\alpha_{k} - \mu} \right) x_{k}
+                \right)
                 % \label{eqn:rwapg-first-equiv-form-eqn-1}
                 \\
-                & x_{k + 1} =
-                y_k - L^{-1} \mathcal G_L (y_k),
+                x_{k + 1} 
+                &=y_k - L^{-1} \mathcal G_L (y_k),
                 \\
-                & \begin{aligned}
-                    v_{k + 1} 
-                    &=
-                    \left(
-                        1 + \frac{\mu}{L \alpha_k - \mu}
-                    \right)^{-1}
-                    \left(
-                        v_k +
-                        \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
-                    \right) - \frac{1}{L\alpha_{k}}\mathcal G_L (y_k)
-                    \\
-                    &= 
-                    x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k).
-                \end{aligned}
+                v_{k + 1} 
+                &=
+                \left(
+                    1 + \frac{\mu}{L \alpha_k - \mu}
+                \right)^{-1}
+                \left(
+                    v_k +
+                    \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
+                \right) - \frac{1}{L\alpha_{k}}\mathcal G_L (y_k)
+                \\
+                &= 
+                x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k), 
+                \\
+                y_{k + 1}
+                &= x_{k + 1} +
+                \frac{\rho_{k}\alpha_{k}(1 - \alpha_k)}
+                {\rho_k\alpha_k^2 + \alpha_k}(x_{k + 1} - x_k). 
             \end{align}
             }
         \end{proposition}
-        If $\mu = 0$, then it simplifies:
+        When $\mu = 0$, then has:
         {\small
         \begin{align*}
             (\forall k \ge 1) \quad
@@ -284,7 +284,7 @@
         }
     \end{frame}
     \begin{frame}{Convergence of R-WAPG}
-        After six pages of math in the paper, we deduced the following theorem: 
+        After six pages of math in the paper (not necessarily dense), we deduced the following theorem: 
         \begin{proposition}[R-WAPG convergence]\label{prop:wapg-convergence}
             Fix any arbitrary $x^* \in \RR^n$.
             Let $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ be R-WAPG sequences.

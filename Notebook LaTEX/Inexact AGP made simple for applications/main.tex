@@ -12,7 +12,7 @@
 
 
 
-\title{{\fontfamily{ptm}\selectfont Inexact Accelerated Proximal Gradient }}
+\title{{\fontfamily{ptm}\selectfont Inexact Accelerated Proximal Gradient With Error Bound Conditions gives Near Optimal Convergence Rate }}
 
 \author{
     Author 1 Name, Author 2 Name
@@ -268,9 +268,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{proof}
         \begin{remark}
             When $\epsilon = 0, \rho = 0$, this reduces to proximal gradient inequality in the exact case. 
-            In this inequality, observe that the parameter $\epsilon$ controls the inexactiness of the proximal gradient evaluation. 
-            Morespecifically, $\epsilon_k$ controls the absolute pertubatnions of the proximal gradient inequality compared to its exact counterpart. 
-            $\rho$ on the otherhand, it is the over-relaxation of proximal gradient operator and it compensates the pertubations caused by $\epsilon$ relative to the term $\Vert \tilde x - x\Vert^2$. 
+            In this inequality, observe that the parameter $\epsilon$ controls the inexactness of the proximal gradient evaluation. 
+            More specifically, $\epsilon_k$ controls the absolute perturbations of the proximal gradient inequality compared to its exact counterpart. 
+            $\rho$ on the other hand, it is the over-relaxation of proximal gradient operator, and it compensates the perturbations caused by $\epsilon$ relative to the term $\Vert \tilde x - x\Vert^2$. 
         \end{remark}
     \subsection{Optimizing the inexact proximal point problem}
         In this section we will present the optimization problem that obtains a $\tilde x$ such that $\tilde x \approx_\epsilon \hprox_{\lambda g}(z)$. 
@@ -417,7 +417,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             &= \alpha_k \bar x - \alpha_k v_{k - 1}. 
         \end{split}\end{align}
         Let's denote $L_k = B_k + \rho_k$ for short. 
-        Recall that $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, if we choose $x = y_k$ so $\tilde x = x_k \approx_\epsilon T_{L_k}(y_k)$, and set $z = z_k, \epsilon = \epsilon_k$ then Theorem \ref{thm:inxt-pg-ineq} has: 
+        Recall that $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, if we choose $x = y_k$ so $\tilde x = x_k \approx_{\epsilon_k} T_{L_k}(y_k)$, and set $z = z_k, \epsilon = \epsilon_k$ then Theorem \ref{thm:inxt-pg-ineq} has: 
         \begin{align*}
             & \frac{\rho_k}{2}\Vert x_k - y_k\Vert^2 - \epsilon_k
             \\
@@ -602,13 +602,23 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \par
     Now, it only remains to determine the sequence $\alpha_k$ to derive a type of convergence rate for the algorithm because from the above theorem, we have the convergence rate $\beta_k$ and, the error parameters $\epsilon_k, \rho_k$ both controlled by the sequence $(\alpha_k)_{k \ge 0}$. 
     
-    \subsection{convergence results of the outer loop}
+    \subsection{Convergence results of the outer loop}
         This section will give specific instances of the error control sequence $(\epsilon_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ and, momentum sequence $(\alpha_k)_{k \ge0}$ such that an optimal convergence rate of $\mathcal O(1/k^2)$ can be achieved. 
         \begin{assumption}[the optimal momentum sequence]\;\label{ass:opt-mmntm-seq}\\
             Keeping everything assumed in Assumption \ref{ass:valid-err-schedule} about $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(F, f, g, L)$, $(y_k, x_k, v_k)_{k \ge 0}$, $(\beta_k)_{k \ge 0}$, $\mathcal E_0$ and $p$, we assume in addition that the sequence $(\alpha_k)_{k \ge 0}$ satisfies for all $k \ge 0$ the equality: $(1 - \alpha_k) = \alpha_{k}^2L_k\alpha_{k - 1}^{-2}L_{k - 1}^{-1}$. 
         \end{assumption}
-        \begin{lemma}[the properties of optimal momentum sequence]\;\label{lemma:opt-mmntm-seq}\\
-            Let $(\alpha_k)_{k \ge 0}, (\beta_k)_{k \ge 0}$ be given by Assumption \ref{ass:opt-mmntm-seq}, then $\forall k\ge 1\; \alpha_k \in (0, 1)$ and, in addition the sequence $(\beta_k)_{k \ge 0}$ has
+        \begin{lemma}[the optimal momentum sequence is indeed valid and optimal]\;\label{lemma:opt-mmntm-seq}\\
+            Let $(\alpha_k)_{k \ge 0}, (\beta_k)_{k \ge 0}$ be given by Assumption \ref{ass:opt-mmntm-seq}. 
+            If we choose $\alpha_0 \in (0, 1]\;$ then it satisfies $\alpha_k \in (0, 1)\;\forall k\ge 1$, and it's given by: 
+            \begin{align*}
+                \alpha_k &=
+                \frac{L_{k - 1}}{2L_k}\left(
+                    - \alpha_{k - 1}^2 + \left(
+                        \alpha_{k - 1}^4 + 4 \alpha_{k - 1}\frac{L_k}{L_{k - 1}}
+                    \right)^{1/2}
+                \right). 
+            \end{align*}
+            In addition, the sequence $(\beta_k)_{k \ge 0}$ has
             \begin{align*}
                 \left(
                     1 + \alpha_0\sqrt{L_0}\sum_{i = 1}^{k}\sqrt{L_i^{-1}}
@@ -623,8 +633,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{lemma}
         \begin{proof}
             Firstly, we will show that for all $\alpha_0 \in (0, 1]$, and $\alpha_k \in (0, 1)\;\forall k \ge 1$. 
-            We prove using induction, inductively assume that $\alpha_k \in (0, 1]$. 
-            We can solve for $\alpha_k$ using the recursive equality which should always have one of the strictly positive root given by: 
+            We will prove using induction.
+            Assume inductively that $\alpha_k \in (0, 1]$. 
+            We can solve for $\alpha_k$ using the recursive equality from Assumption \ref{ass:opt-mmntm-seq} which always has one of the strictly positive root given by: 
             \begin{align*}
                 \alpha_k &=
                 \frac{L_{k - 1}}{2L_k}\left(
@@ -645,7 +656,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &= 1
             \end{align*}
-            At (1) we completed a square inside of the radical, and use the assumption that $\alpha_k > 0$ and, $L_k > 0, L_{k - 1} > 0$ because we had $B_k > 0$: 
+            At (1) we completed a square inside the radical, and use the assumption that $\alpha_k > 0$ and, $L_k > 0, L_{k - 1} > 0$ because we had $B_k > 0$: 
             \begin{align*}
                 1 + 4 L_{k}L_{k - 1}^{-1}\alpha_{k - 1}^{-2}
                 &= 
@@ -757,7 +768,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Assume in addition that
             \begin{enumerate}[nosep]
                 \item there exists $\bar x \in \RR^n$ that is a minimizer of $F = f + g$;
-                \item $\alpha_0 = 1, p > 0$;
+                \item it has $p > 0$;
                 \item the sequence $L_k := B_k + \rho_k$ is bounded, and there exists an $L_{\max}$ such that for all $k \ge 0$ it has $L_{\max} \ge \max_{k\ge i\ge 0} L_i$. 
             \end{enumerate}
             Then, $\alpha_k \in (0, 1]\;\forall k \ge 0$ hence it's always valid and, it has $\forall k \ge 0$: 
@@ -780,7 +791,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \left(
                     1 + \frac{\alpha_0\sqrt{L_0}}{2}\sum_{i = 1}^{k} \sqrt{L_i^{-1}}
                 \right)^{-2}
-                \le 
+                \hspace{-0.7em}\le 
                 \left(
                     1 + \frac{k\alpha_0\sqrt{L_0}}{2\sqrt{L_{\max}}}
                 \right)^{-2}. 
@@ -790,19 +801,50 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{remark}
             In this remark, we assert the fact that all assumptions made in the theorem can be satisfied on practice, and we will also bring attention to the current, and future roles played by each of the parameters used in the inexact algorithm. 
             \par
-            Pay close attention that $\alpha_k$ had been determined in the above theorem, and $(B_k)_{k \le 0}$ is reserved for potential line search routine, the only parameter left undetermined in Definition \ref{def:inxt-apg} is the over-relaxation sequence $(\rho_k)_{k \ge 0}$, we only need the entire sequence is bounded above. 
+            Pay attention that $\alpha_k$ had been determined in the above theorem (as seemed in Lemma \ref{lemma:opt-mmntm-seq}), and $(B_k)_{k \le 0}$ is reserved for potential line search routine, the only parameter left undetermined in Definition \ref{def:inxt-apg} is the over-relaxation sequence $(\rho_k)_{k \ge 0}$, we only need the entire sequence to be bounded above. 
             We give the freedom to the practitioners to choose $(\rho_k)_{k \ge 0}$. 
             However, this sequence $\rho_k$ is not useless because it relaxes the upper bound for $\epsilon_k$, this has huge impact in the earlier stage (the first few iterations) of the algorithm $\Vert x_k - y_k\Vert$ is large. 
             Of course, the parameter $\mathcal E_0$ is also free to choose. 
             \par
-            In the next subsection, we will show that under the assumption of the above theorem, there exists an error sequence $\epsilon_k$ such that it can never approach $0$ at an arbitrarily fast rate. 
+            Finally, observe that from the above proof, in case when $p = 1$, the convergence rate would be $\mathcal O(\log(k)/k^2)$. 
         \end{remark}
-    \subsection{the fastest rate of which the error schedule can shrink}
+        In the next subsection, we will show that under the assumption of the above theorem, there exists an error sequence $\epsilon_k$ such that it can never approach $0$ at an arbitrarily fast rate. 
+    \subsection{The fastest rate of which the error schedule can shrink}
         To have overall convergence claim of the algorithm, it's necessary to prevent the error schedule $(\epsilon_k)_{k \ge 0}$ from crashing into zero too quickly. 
         Following Assumption \ref{ass:valid-err-schedule}, in this section, we will provide the lower bound results for $\epsilon_k$ in Theorem \ref{prop:opt-cnvg-outr-loop} to show that in the worst case it cannot approach zero arbitrarily fast, if we choose the largest possible $\epsilon_k$ using $\beta_k$. 
-        \begin{lemma}[error schedule lower bound]
-            
+        \begin{lemma}[error schedule lower bound]\;\label{lemma:err-schedule-lbnd}\\
+            Let, $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(\beta_k)_{k\ge 0}, \mathcal E_0, p$ be given by Assumption \ref{ass:opt-mmntm-seq}, $L_k := \rho_k + B_k$. 
+            Let $(\epsilon_k)_{k \ge 0}$ be given by $\epsilon_k := \frac{\mathcal E_0 \beta_k}{k^p} + \rho_k \frac{\Vert x_k - y_k\Vert^2}{2}$, then it will be a valid error sequence and so that it satisfies the assumption. 
+            If in addition, there exists $L_{\min}$ such that for all $k\ge 0$ such that it has $L_{\min} \le \min_{1 \le i \le k}L_i$ and, we assume $\mathcal E > 0$, then $\epsilon_k$ admits the non-trivial lower bound: 
+            \begin{align*}
+                \epsilon_k \ge \frac{\mathcal E_0}{k^p}\left(
+                    1 + k \alpha_0 \sqrt{L_0} \sqrt{L_{\min}^{-1}}
+                \right)^{-2} \ge \mathcal O(k^{-2-p}). 
+            \end{align*}
         \end{lemma}
+        \begin{proof}
+            Recall Assumption \ref{ass:valid-err-schedule}, the largest valid error schedule is $\epsilon_k = \frac{\mathcal E_0 \beta_k}{k^p} + \rho_k \frac{\Vert x_k - y_k\Vert^2}{2}$. 
+            Then it has 
+            \begin{align*}
+                \epsilon_k &\ge \frac{\mathcal E_0 \beta_k}{k^p}
+                \\
+                &\underset{(1)}{\ge} 
+                \left(
+                    1 + \alpha_0\sqrt{L_0}\sum_{i = 1}^{k}\sqrt{L_i^{-1}}
+                \right)^{-2} 
+                \frac{\mathcal E_0\beta_k}{k^p}
+                \\
+                &\underset{(2)}{\ge}
+                \frac{\mathcal E_0\beta_k}{k^p}
+                \left(
+                    1 + k\alpha_0\sqrt{L_0}\sqrt{L_{\min}^{-1}}
+                \right)^{-2} 
+                \\
+                &\ge \mathcal O(k^{-2-p}). 
+            \end{align*}
+            At (1), we used Lemma \ref{lemma:opt-mmntm-seq}. 
+            At (2), we used that $L_{\min} \le L_i$ for all $i = 0, 1, 2, \ldots$. 
+        \end{proof}
 
 
 \section{Linear convergence for the proximal problem}
@@ -835,19 +877,19 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
     \end{definition}
     \begin{assumption}[error bound for proximal problem]\;\label{ass:eb-for-pp}\\
-        This assumption is about $(g, \omega, A, \Psi_\lambda, \gamma)$
+        This assumption is about $(g, \omega, A, \Psi_\lambda, \gamma_\lambda)$
         Here are the assumptions
         \begin{enumerate}[nosep]
-            \item Let function $\Psi_\lambda$ as given by \eqref{eqn:dual-pp} which satisfies gradient mapping error bound (Assumption \ref{ass:pg-eb}) where, $f(v) = \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2, g(v) = \omega^\star(v) - \frac{1}{2\lambda}\Vert y\Vert^2$. 
+            \item Let function $\Psi_\lambda$ as given by \eqref{eqn:dual-pp} which satisfies gradient mapping error bound (Assumption \ref{ass:pg-eb}) where, $f(v) = \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2 - \frac{1}{2\lambda}\Vert y\Vert^2, g(v) = \omega^\star(v)$. 
             \item The primal objective $\Phi_\lambda$ is a $L_1$ Lipschitz continuous on its domain. 
-            \item Let $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-prox}, we can do this because $f$ is quadratic and has a Lipschitz continuous gradient. 
+            \item Let $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-prox}, with $\gamma = \gamma_\lambda$ we can do this because $f$ is quadratic and has a Lipschitz continuous gradient. 
         \end{enumerate}
     \end{assumption}
-    \subsection{error bound and linear convergence}
-        The following theorem characterize linear convergence of the proximal gradient method under gradient mapping error bound condition. 
+    \subsection{Error bound and linear convergence}
+        The following theorem characterizes linear convergence of the proximal gradient method under gradient mapping error bound condition. 
         \begin{theorem}[linear convergence under gradient mapping error bound]\;\label{thm:lin-cnvg-ista-eb}\\
             Assume that $(F, f, g, L, S, \gamma)$ is given by Assumption \ref{ass:pg-eb}. 
-            Under this assumption, the iterates $(x_k)_{k \ge 0}$ given by Definition \ref{def:ista} satisfies for all $k \ge 0, \bar x \in S$ the inequality: 
+            Under this assumption, the iterates $(x_k)_{k \ge 0}$ given by Definition \ref{def:ista} satisfies for all $k \ge 0, \bar x \in S$ and $\tau \ge L$ the inequality: 
             \begin{align*}
                 F(x_{k + 1}) - F(\bar x)
                 &\le 
@@ -941,11 +983,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Multiple both side by $\frac{\gamma}{2\tau}$ then we are done. 
         \end{proof}
 
-    \subsection{characterizing linear convergence of the proximal problem}
+    \subsection{Conditions for linear convergence of the proximal problem}
         In this section, we will focus on the sufficient characterization of the proximal problem which allows proximal gradient method to achieve linear convergence rate. 
         We can immediately claim quadratic growth condition when $\omega = \Vert \cdot\Vert_1$. 
         The next proposition will characterize a precise case where Assumption \ref{ass:eb-for-pp} is true, and it's a case widely available in applications. 
-        \begin{proposition}[1-norm problem]
+        \begin{proposition}[1-norm problem]\label{prop:1nrm-prox-problem}
             Let $(g, \omega, A)$ satisfies Assumption \ref{ass:for-inxt-prox}. 
             In addition, if $g := \Vert \cdot\Vert_1$, then the function $\Psi_\lambda$ satisfies Assumption \ref{ass:eb-for-pp}. 
         \end{proposition}
@@ -956,18 +998,27 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             In addition, $\Psi_\lambda$ fits the assumption of Necoara et al. \cite[Theorem 8]{necoara_linear_2019}. 
             Therefore, $\Psi_\lambda$ is quasi-strongly convex then by \cite[Theorem 4]{necoara_linear_2019}, and \cite[Theorem 7]{necoara_linear_2019}, it satisfies error bound condition as given in Assumption \ref{ass:pg-eb}, hence Assumption \ref{ass:eb-for-pp} also. 
             \par
-            Let $\mu_f = \lambda\Vert A\Vert^2/\kappa_f$, let $\kappa_f = \theta^{-2}(A, C)$ be the Hoffman Constant as presented by Necoara et al. in \cite[Section 4]{necoara_linear_2019} where $C$ is the constraint matrix of the inequality set $\delta(z | \{x : \Vert x\Vert_1 \le 1\})$, then the error bound constant can be satisfied with
+            Let $\mu_f = \Vert A\Vert^2/\kappa_f$, let $\kappa_f = \theta^{-2}(A, C)$ be the Hoffman Constant as presented by Necoara et al. in \cite[Section 4]{necoara_linear_2019} where $C$ is the constraint matrix of the inequality set $\delta(z | \{x : \Vert x\Vert_1 \le 1\})$, then the error bound constant can be satisfied with
             \begin{align*}
-                \gamma = \frac{\kappa_f}{1 + \mu_f + \sqrt{1 + \mu_f}}. 
+                \gamma_\lambda = \frac{\kappa_f}{1 + \lambda\mu_f + \sqrt{1 + \lambda\mu_f}}. 
             \end{align*}
-
         \end{proof}
+        \begin{remark}
+            The error bound constant $\gamma$ is very difficult to obtain an lower estimate in practice. 
+        \end{remark}
         \par
         The following propositions precisely show that the linear convergence is achievable for the inner loop when $g = \Vert \cdot\Vert_1$ for our optimization objective. 
-        \begin{proposition}[inner loop linear convergence scenario 1]\label{prop:inn-loop-lin-cnvg}
+        \begin{proposition}[inner loop linear convergence scenario I]\label{prop:inn-loop-lin-cnvg}
             
         \end{proposition}
-    \subsection{inner loop complexity}
+        The following proposition characterizes another case where error bound conditions of problem problem holds. 
+        \begin{proposition}[nonsmooth PLQ linear composite]\label{prop:plq-prox-problem}
+            
+        \end{proposition}
+    \subsection{Inner loop complexity}
+        In this section, we will estimate the total number of iterations in the inner loop to achieve a certain accuracies $\epsilon$ on primal objective $\Phi_\lambda$ of the proximal problem for some given $\lambda > 0$. 
+        We will specify the context for parameters $\epsilon, \lambda$ in relation to the outer problem of obtaining $x_k \approx_{\epsilon_k} T_{B_k + \rho_k}(y_k)$. 
+
 
 \section{Total complexity of the algorithm}
     This section puts results regarding the total complexity of the proposed inexact proximal gradient algorithm. 
