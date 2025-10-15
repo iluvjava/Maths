@@ -12,7 +12,11 @@
 
 
 
-\title{{\fontfamily{ptm}\selectfont Inexact Accelerated Proximal Gradient With Error Bound Conditions gives Near Optimal Convergence Rate }}
+\title{{
+    \fontfamily{ptm}\selectfont 
+    Error Bound Can Give Near Optimal Convergence Rate for Inexact Accelerated Proximal Gradient Method
+    }
+}
 
 \author{
     Author 1 Name, Author 2 Name
@@ -272,7 +276,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             More specifically, $\epsilon_k$ controls the absolute perturbations of the proximal gradient inequality compared to its exact counterpart. 
             $\rho$ on the other hand, it is the over-relaxation of proximal gradient operator, and it compensates the perturbations caused by $\epsilon$ relative to the term $\Vert \tilde x - x\Vert^2$. 
         \end{remark}
-    \subsection{Optimizing the inexact proximal point problem}
+    \subsection{Optimizing the inexact proximal point problem}\label{sec:optz-inxt-pp-problem}
         In this section we will present the optimization problem that obtains a $\tilde x$ such that $\tilde x \approx_\epsilon \hprox_{\lambda g}(z)$. 
         Eventually we want to evaluate $T_{\rho}(x)$ of some $F = f + g$ inexactly using Lemma \ref{lemma:other-repr-inxt-pg}. 
         To do that one would need to evaluate $\hprox_{\rho^{-1}g}$ inexactly which is defined in Definition \ref{def:inxt-pp}. 
@@ -846,10 +850,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             At (2), we used that $L_{\min} \le L_i$ for all $i = 0, 1, 2, \ldots$. 
         \end{proof}
 
-
 \section{Linear convergence for the proximal problem}
-    In this section, we continue the discussion from \textcolor{red}{[REF PREVIOUS SECTION]}. 
-    The inner loop of the algorithm evaluates $x_k \approx_\epsilon T_{(B + \rho)}(y_k)$ for a given value of $\epsilon$. 
+    In this section, we continue the discussion from Section \ref{sec:optz-inxt-pp-problem}. 
+    The inner loop of the algorithm evaluates $x_k \approx_\epsilon T_{(B + \rho)}(y_k)$ for a given value of $\epsilon, B + \rho$ and $y_k$. 
+    In this section, we will derive the sufficient conditions for linear convergence rate of the proximal gradient method can attain linear convergence rate for optimizing the dual formulation $\Psi_\lambda$ \eqref{eqn:dual-pp} of the proximal point problem. 
+    \par
     To attain $x_k$, one approach is to utilize Theorem \ref{thm:dlty-gap-inxt-pp} numerically, usually using iterative algorithms. 
     \par
     The following assumption places additional assumption to the proximal problem for the inner loop. 
@@ -880,9 +885,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         This assumption is about $(g, \omega, A, \Psi_\lambda, \gamma_\lambda)$
         Here are the assumptions
         \begin{enumerate}[nosep]
-            \item Let function $\Psi_\lambda$ as given by \eqref{eqn:dual-pp} which satisfies gradient mapping error bound (Assumption \ref{ass:pg-eb}) where, $f(v) = \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2 - \frac{1}{2\lambda}\Vert y\Vert^2, g(v) = \omega^\star(v)$. 
-            \item The primal objective $\Phi_\lambda$ is a $L_1$ Lipschitz continuous on its domain. 
-            \item Let $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-prox}, with $\gamma = \gamma_\lambda$ we can do this because $f$ is quadratic and has a Lipschitz continuous gradient. 
+            \item Assume function $\Psi_\lambda$ as given by \eqref{eqn:dual-pp} which satisfies gradient mapping error bound (Assumption \ref{ass:pg-eb}) where, $f(v) = \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2 - \frac{1}{2\lambda}\Vert y\Vert^2, g(v) = \omega^\star(v)$. 
+            \item Assume the primal objective $\Phi_\lambda$ is a $L_1$ Lipschitz continuous on its domain. 
+            \item Assume $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-prox}, with $\gamma = \gamma_\lambda$ we can do this because $f$ is quadratic and has a Lipschitz continuous gradient. 
         \end{enumerate}
     \end{assumption}
     \subsection{Error bound and linear convergence}
@@ -982,7 +987,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             At (1) we used \eqref{ineq:lin-cnvg-ista-eb-pitem2}. 
             Multiple both side by $\frac{\gamma}{2\tau}$ then we are done. 
         \end{proof}
-
     \subsection{Conditions for linear convergence of the proximal problem}
         In this section, we will focus on the sufficient characterization of the proximal problem which allows proximal gradient method to achieve linear convergence rate. 
         We can immediately claim quadratic growth condition when $\omega = \Vert \cdot\Vert_1$. 
@@ -1008,13 +1012,23 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{remark}
         \par
         The following propositions precisely show that the linear convergence is achievable for the inner loop when $g = \Vert \cdot\Vert_1$ for our optimization objective. 
-        \begin{proposition}[inner loop linear convergence scenario I]\label{prop:inn-loop-lin-cnvg}
+        \begin{proposition}[scenario I, 1-norm penalization]\label{prop:inn-loop-lin-cnvg}
             
         \end{proposition}
+        \begin{definition}[piecewise linear-quadratic function {\cite[Definition 10.20]{rockafellar_variational_1998}}]
+            A function $f: \RR^n \rightarrow \overline \RR$ is piecewise linear-quadratic when $\dom f$ is the union of finitely many piecewise polyhedral set, such that on each polyhedral partition of $f$ there exists $\alpha \in \RR, a \in \RR^n$, $C\in \RR^{n \times n}$ as a symmetric matrix is where $f$ has the representation $x \rightarrow \langle x, Cx\rangle + \langle a, x\rangle + c$. 
+        \end{definition}
         The following proposition characterizes another case where error bound conditions of problem problem holds. 
-        \begin{proposition}[nonsmooth PLQ linear composite]\label{prop:plq-prox-problem}
+        \begin{proposition}[convex PLQ proximal problem]\label{prop:plq-pp}
             
         \end{proposition}
+        \begin{proposition}[scenario II, convex PLQ linear composite]\label{prop:plq-prox-problem}
+            
+        \end{proposition}
+
+        \begin{example}[inner loop linear convergence rate examples]\label{example:inn-lp-lin-cnvg}
+            
+        \end{example}
     \subsection{Inner loop complexity}
         In this section, we will estimate the total number of iterations in the inner loop to achieve a certain accuracies $\epsilon$ on primal objective $\Phi_\lambda$ of the proximal problem for some given $\lambda > 0$. 
         We will specify the context for parameters $\epsilon, \lambda$ in relation to the outer problem of obtaining $x_k \approx_{\epsilon_k} T_{B_k + \rho_k}(y_k)$. 
