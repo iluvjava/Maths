@@ -2,3 +2,4 @@ Fenchel
 Zalinascu
 subgradient
 Necoara
+polytope

@@ -6,7 +6,7 @@
 
 In this file, we show the weakest assumptions needed to derive a linear convergence rate of the proximal gradient method for smooth plus nonsmooth composite objective. 
 We are following results from the paper: 
-> [1]: D. Drusvyatskiy and A. S. Lewis, “Error bounds, quadratic growth, and linear convergence of proximal methods,” June 27, 2016, arXiv: arXiv:1602.06661. doi: 10.48550/arXiv.1602.06661.
+> [1] D. Drusvyatskiy and A. S. Lewis, “Error bounds, quadratic growth, and linear convergence of proximal methods,” June 27, 2016, arXiv: arXiv:1602.06661. doi: 10.48550/arXiv.1602.06661.
 
 We note that, the linear convergence of just gradient descent, and proximal gradient can be very different. 
 
@@ -169,10 +169,9 @@ And, the above inequality is sufficient for a linear convergence rate.
 $\square$
 
 ---
-### **The strange condition of proximal mapping error bound**
+### **The strange condition proximal mapping error bound**
 
 So, what is this strange condition we called error bound that we used here? 
-
 
 
 

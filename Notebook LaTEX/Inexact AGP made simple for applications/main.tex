@@ -113,7 +113,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 (I + T)^{-1} = (I - (I + T^{-1})^{-1}).
             \end{align*}
         \end{fact}
-        \begin{theorem}[inexact Moreau decomposition]
+        \begin{theorem}[inexact Moreau decomposition]\label{thm:inxt-moreau-decomp}
             Let $g: \RR^n \rightarrow \overline \RR$ be a closed, convex and proper function. 
             It has the equivalence
             \begin{align*}
@@ -304,7 +304,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             + \omega^\star(v) - \frac{1}{2\lambda}\Vert y\Vert^2. 
         \end{align}
         We define the duality gap
-        \begin{align}
+        \begin{align}\label{eqn:duality-gap-pp}
             \mathbf G_\lambda(u, v) &:= \Phi_\lambda(u) + \Psi_\lambda(v). 
         \end{align}
         If strong duality holds, it exists $(\hat u, \hat v)$ such that we have the following: 
@@ -332,6 +332,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             They have $(a)\implies (b) \iff (c)$. 
             If in addition $\omega^\star(v) = g^\star(A^\top v)$, then all three conditions are equivalent. 
         \end{theorem}
+        \begin{proof}
+            The proof of $(a) \implies (b)$, and the case when $(a)\iff (b)$, we refer readers to Villa et al. \cite[ Proposition 2.3]{villa_accelerated_2013}, and to show $(b) \iff (c)$ use Theorem \ref{thm:inxt-moreau-decomp}. 
+        \end{proof}
+        \par
         The following fact from the literature indicates that it's sufficient to minimize the dual problem $\Psi_\lambda$ to obtain an element of the inexact proximal point operator. 
         The following fact is Proposition is from Villa et al. \cite[Theorem 5.1]{villa_accelerated_2013}. 
         \begin{fact}[minimizing dual of the proximal problem {\cite[Theorem 5.1]{villa_accelerated_2013}}]\label{fact:minimizing-dual-pp}
@@ -850,14 +854,20 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             At (2), we used that $L_{\min} \le L_i$ for all $i = 0, 1, 2, \ldots$. 
         \end{proof}
 
-\section{Linear convergence for the proximal problem}
+\section{Linear convergence for the proximal problem in the inner loop}
     In this section, we continue the discussion from Section \ref{sec:optz-inxt-pp-problem}. 
-    The inner loop of the algorithm evaluates $x_k \approx_\epsilon T_{(B + \rho)}(y_k)$ for a given value of $\epsilon, B + \rho$ and $y_k$. 
-    In this section, we will derive the sufficient conditions for linear convergence rate of the proximal gradient method can attain linear convergence rate for optimizing the dual formulation $\Psi_\lambda$ \eqref{eqn:dual-pp} of the proximal point problem. 
+    As an important reminder, we will fix the vector $y \in \RR^n$, which is in the inexact proximal problem as a constant in this entire section. 
     \par
-    To attain $x_k$, one approach is to utilize Theorem \ref{thm:dlty-gap-inxt-pp} numerically, usually using iterative algorithms. 
+    The inner loop of the algorithm is another algorithm that evaluates $x_k \approx_\epsilon T_{(B_k + \rho_k)}(y_k)$ for a given value of $\epsilon, B + \rho$ and at the point $y_k$. 
+    To accomplish, let $\lambda = (B_k + \rho_k)^{-1}$, the algorithm needs to resolve the following equivalent inexact proximal point problem: 
+    \begin{align*}
+        x_k \approx_\epsilon \hprox_{\lambda g}(y_k - \lambda \nabla f(y_k)). 
+    \end{align*}
+    Unfortunately recall that $g = \omega \circ A$ in the context of the outer loop hence it's impossible to directly evaluate the proximal operator of $g$ and hence we optimize the function $\Phi_\lambda$ as given by \eqref{eqn:primal-pp}. 
     \par
-    The following assumption places additional assumption to the proximal problem for the inner loop. 
+    In this section, we will show that there exists an algorithm generating the sequences $z_n, v_n$ such that $\mathbf G_\lambda (z_n, v_n)$ converges linearly if $\Psi_\lambda$ satisfies the error bound conditions. 
+    Using results available in the literature, we will characterize the exact scenarios of $\omega \circ A$ when this is possible to achieve. 
+    To start, the following assumption is the general error bound condition of a convex with additive composite structure. 
     \begin{assumption}[gradient mapping error bound]\;\label{ass:pg-eb}\\
         The following assumption is about $(F, f, g, L, S, \gamma)$. 
         Assume that
@@ -997,7 +1007,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{proposition}
         \begin{proof}
             Take note that the dual has closed form $g^\star(z) =\delta(z | \{x : \Vert x\Vert_1 \le 1\})$. 
-            The $g^\star$ is an indicator function which represents a box constraint. 
+            The $g^\star$ is an indicator of a polytope constraint. 
             The objective function $\Psi_\lambda(v) = \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2 + \omega^\star(v) - \frac{1}{2\lambda}\Vert y\Vert^2$ so it's Lipschitz smooth, and it must have a set of minimizers $S$ because its domain is compact. 
             In addition, $\Psi_\lambda$ fits the assumption of Necoara et al. \cite[Theorem 8]{necoara_linear_2019}. 
             Therefore, $\Psi_\lambda$ is quasi-strongly convex then by \cite[Theorem 4]{necoara_linear_2019}, and \cite[Theorem 7]{necoara_linear_2019}, it satisfies error bound condition as given in Assumption \ref{ass:pg-eb}, hence Assumption \ref{ass:eb-for-pp} also. 
@@ -1008,17 +1018,95 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
         \end{proof}
         \begin{remark}
-            The error bound constant $\gamma$ is very difficult to obtain an lower estimate in practice. 
+            It is very difficult to obtain a lower estimate for $\gamma$ in practice. 
         \end{remark}
         \par
         The following propositions precisely show that the linear convergence is achievable for the inner loop when $g = \Vert \cdot\Vert_1$ for our optimization objective. 
-        \begin{proposition}[scenario I, 1-norm penalization]\label{prop:inn-loop-lin-cnvg}
-            
+        \begin{proposition}[sufficient conditions of linear convergence of the inner loop]\;\label{prop:inn-loop-lin-cnvg}\\
+            Let $(g, \omega, A)$ satisfies Assumption \ref{ass:for-inxt-prox}. 
+            Consider the following proximal problem: 
+            \begin{enumerate}[nosep]
+                \item The primal proximal problem $\Phi_\lambda(u) = \frac{1}{2\lambda}\Vert u - y\Vert^2 + \omega(Au)$.
+                \item The dual proximal problem $\Psi_\lambda(v) = f(v) + g(v)$ where \\ $f(v) := \frac{1}{2\lambda}\left\Vert \lambda A^\top v - y\right\Vert^2 - \frac{1}{2\lambda}\Vert y\Vert^2, g(v) := \omega^\star(v)$. 
+            \end{enumerate}
+            If, $\Psi_\lambda$ satisfies Assumption \ref{ass:eb-for-pp}. 
+            Let $L_1$ be the global Lipschitz continuity constant of $\Phi_\lambda$ which it has in this case. 
+            Let $\tau \ge L, \epsilon \ge 0$, $v_0 \in \dom \Psi_\lambda$ be an initial condition for an algorithm that satisfies Definition \ref{def:ista} with $F(v) = f(v) + g(v)$ and let the iterates $(v_n)_{n \ge 0}$ be generated by it. 
+            Then, there exists a minimizer $\bar v$ for $\Psi_\lambda$, and the followings are true: 
+            \begin{enumerate}[nosep]
+                \item The sequence $\Psi_\lambda(v_n) - \Psi_\lambda(\bar v)$ converges linearly to zero. \label{prop:inn-looplin-cnvg-item1}
+                \item If we choose $z_n := y - \lambda A^\top v_n$, and $\bar z := y - \lambda A^\top \bar v$, then $\Phi_\lambda(z_n) - \Phi_\lambda(\bar z)$ converges linearly. \label{prop:inn-looplin-cnvg-item2}
+                \item The duality gap satisfies for all $n \ge 0$ the inequality 
+                $$\mathbf G_\lambda(z_n, v_n) \le \left(1 - \frac{\gamma_\lambda}{2\tau}\right)^{n/2}\left(1 + L_1\sqrt{2 \lambda}\right)(\Psi_\lambda(v_0) - \Psi_\lambda(\bar v)).$$
+                \label{prop:inn-looplin-cnvg-item3}
+                \item If $\mathbf G_\lambda(z_n, v_n) \le \epsilon$, then $z_n \approx_\epsilon \hprox_{\lambda g}(y)$. 
+                \label{prop:inn-looplin-cnvg-item4}
+            \end{enumerate}
         \end{proposition}
+        \begin{proof}
+            To see \ref{prop:inn-looplin-cnvg-item1}, the sequence $\Psi_\lambda(v_n) - \Psi_\lambda(\bar v)$ has linear convergence by Proposition \ref{prop:1nrm-prox-problem} because we assumed that $\Psi_\lambda$ satisfies Assumption \ref{ass:eb-for-pp}. 
+            More precisely it has: 
+            \begin{align}\label{ineq:inn-loop-lin-cnvg-pitem1}
+                \Psi_\lambda(v_n) - \Psi_\lambda(\bar v) &\le 
+                \left(
+                    1 - \frac{\gamma_\lambda}{2\tau}
+                \right)^n
+                \left(
+                    \Psi_\lambda(v_0) - \Psi_\lambda(\bar v)
+                \right). 
+            \end{align}
+            \par
+            We will now proceed to proving \ref{prop:inn-looplin-cnvg-item2}. 
+            Because the iterates are given by $z_n = y - \lambda A^\top v_n$, and $\bar z = y - \lambda A^\top \bar v$, it provides $\Phi_\lambda(z_n) - \Phi_\lambda(v_0)$, we can use Theorem \ref{fact:minimizing-dual-pp} which gives: 
+            \begin{align*}
+                \Phi_\lambda(z_n) - \Phi_\lambda(\bar z) &\le L_1 \sqrt{2\lambda}\left(
+                    \Psi_\lambda(v_n) - \Psi_\lambda (\bar v)
+                \right)^{1/2}
+                \\
+                &\underset{(1)}{\le} 
+                L_1\sqrt{2\lambda} \left(
+                    1 - \frac{\gamma_\lambda}{2\tau}
+                \right)^{n/2}\left(
+                    \Psi_\lambda(v_0) - \Psi_\lambda(\bar v)
+                \right)^{1/2}. 
+            \end{align*}
+            At (1), we used convergence results from Theorem \ref{thm:lin-cnvg-ista-eb}. 
+            \par
+            To prove \ref{prop:inn-looplin-cnvg-item3}, by definition of duality gap in \eqref{eqn:duality-gap-pp} we have:
+            \begin{align*}
+                \mathbf G_\lambda(z_n, v_n) 
+                &\underset{(?)}{=} \Phi_\lambda(z_n) + \Psi_\lambda(v_n) + 0
+                \\
+                &= \Phi_\lambda(z_n) + \Psi_\lambda(v_n) - \Phi_\lambda(\bar z) - \Psi_\lambda(\bar v)
+                \\
+                &= \Phi_\lambda(z_n)- \Phi_\lambda(\bar z) + \Psi_\lambda(v_n) - \Psi_\lambda(\bar v)
+                \\
+                &\underset{(2)}{\le} 
+                L_1 \sqrt{2\lambda}\left(
+                    1 - \frac{\gamma_\lambda}{2\tau}
+                \right)^{n/2}\left(
+                    \Psi_\lambda(v_0) - \Psi_\lambda(\bar v)
+                \right)^{1/2}
+                + \left(
+                    1 - \frac{\gamma_\lambda}{2\tau}
+                \right)^{n}\left(
+                    \Psi_\lambda(v_0) - \Psi_\lambda(\bar v)
+                \right)
+                \\
+                &= \left(
+                \right)
+            \end{align*}
+        \end{proof}
+        \begin{remark}
+            To choose a feasible $v_0$, we can...
+            \todoinline{
+                REMEMBER TO FINISH IT. 
+            }
+        \end{remark}
         \begin{definition}[piecewise linear-quadratic function {\cite[Definition 10.20]{rockafellar_variational_1998}}]
             A function $f: \RR^n \rightarrow \overline \RR$ is piecewise linear-quadratic when $\dom f$ is the union of finitely many piecewise polyhedral set, such that on each polyhedral partition of $f$ there exists $\alpha \in \RR, a \in \RR^n$, $C\in \RR^{n \times n}$ as a symmetric matrix is where $f$ has the representation $x \rightarrow \langle x, Cx\rangle + \langle a, x\rangle + c$. 
         \end{definition}
-        The following proposition characterizes another case where error bound conditions of problem problem holds. 
+        The following proposition characterizes another case where error bound conditions of problem holds. 
         \begin{proposition}[convex PLQ proximal problem]\label{prop:plq-pp}
             
         \end{proposition}
@@ -1030,7 +1118,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             
         \end{example}
     \subsection{Inner loop complexity}
-        In this section, we will estimate the total number of iterations in the inner loop to achieve a certain accuracies $\epsilon$ on primal objective $\Phi_\lambda$ of the proximal problem for some given $\lambda > 0$. 
+        In this section, we will estimate the total number of iterations in the inner loop to achieve a given accuracy $\epsilon$ on primal objective $\Phi_\lambda$ of the proximal problem for some given $\lambda > 0$. 
         We will specify the context for parameters $\epsilon, \lambda$ in relation to the outer problem of obtaining $x_k \approx_{\epsilon_k} T_{B_k + \rho_k}(y_k)$. 
 
 
