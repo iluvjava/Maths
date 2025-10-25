@@ -211,7 +211,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             It's direct. 
         \end{proof}
         \begin{theorem}[inexact over-regularized proximal gradient inequality]\;\label{thm:inxt-pg-ineq}\\
-            Let $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, $\epsilon \ge 0, B \ge 0, \rho > 0$. 
+            Let $(F, f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, $\epsilon \ge 0, B \ge 0, \rho > 0$. 
             Consider $\tilde x \approx_\epsilon T_{B + \rho}(x)$. 
             Denote $F = f + g$. 
             If in addition, $\tilde x, B$ satisfies the line search condition $D_f(\tilde x, x) \le B/2\Vert x - \tilde x\Vert^2$, then it has $\forall z \in \RR^n$: 
@@ -275,7 +275,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             When $\epsilon = 0, \rho = 0$, this reduces to proximal gradient inequality in the exact case. 
             In this inequality, observe that the parameter $\epsilon$ controls the inexactness of the proximal gradient evaluation. 
             More specifically, $\epsilon_k$ controls the absolute perturbations of the proximal gradient inequality compared to its exact counterpart. 
-            $\rho$ on the other hand, it is the over-relaxation of proximal gradient operator, and it compensates the perturbations caused by $\epsilon$ relative to the term $\Vert \tilde x - x\Vert^2$. 
+            $\rho$ on the other hand, it is the over-relaxation of proximal gradient operator, and it compensates the perturbations caused by $\approx_\epsilon$ relative to the term $\Vert \tilde x - x\Vert^2$. 
         \end{remark}
     \subsection{Optimizing the inexact proximal point problem}\label{sec:optz-inxt-pp-problem}
         In this section we will present the optimization problem that obtains a $\tilde x$ such that $\tilde x \approx_\epsilon \hprox_{\lambda g}(z)$. 
@@ -343,14 +343,23 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Let $\bar v$ be a solution of $\Psi_\lambda$. 
             Suppose that $(v_n)_{n \ge 0}$ is a minimizing sequence for $\Psi_\lambda$. 
             Let $z_n = y - \lambda A^\top v_n$, and $\bar z = y - \lambda A^\top \bar v$. 
-            If in addition, $\Phi_\lambda$ is $L_1$ Lipschitz continuous, then it has for all $k \ge 0$ the inequality: 
-            \begin{align*}
-                \Phi_{\lambda}(z_n) - \Phi_\lambda(\bar z) 
-                &\le L_1 \Vert z_n - \bar z\Vert 
-                \le L_1\sqrt{2\lambda}(\Psi_\lambda(v_n) - \Psi_\lambda(\bar v))^{1/2}. 
-            \end{align*}
+            Then the following are true: 
+            \begin{enumerate}[nosep]
+                \item The sequence $z_n \rightarrow \bar z$ as well. 
+                \item There exists a constant $K$ that depends on the sequence $z_n$, and $\Phi_\lambda$ such that for all $k \ge 0$ the inequality: 
+                \begin{align*}
+                    \Phi_{\lambda}(z_n) - \Phi_\lambda(\bar z) 
+                    &\le K \Vert z_n - \bar z\Vert 
+                    \le K \sqrt{2\lambda}(\Psi_\lambda(v_n) - \Psi_\lambda(\bar v))^{1/2}. 
+                \end{align*}
+            \end{enumerate}
+            
         \end{fact}
-        We remark that the above fact translates any algorithm that optimizes the function value of the dual problem $\Psi_\lambda$ into optimizing duality gap $\mathbf G(z_n, v_n)$. 
+        We remark that the above fact translates any algorithm that optimizes the dual problem $\Psi_\lambda$ into optimizing the duality gap $\mathbf G(z_n, v_n)$ because it shows the primal is bounded by the dual through a Lipschitz-like inequality. 
+        \par
+        With the proof back in Villa et al. \cite[Theorem 5.1]{villa_accelerated_2013}, pay close attention to the constant $L_\Phi$ exists by the virtue of $\Psi$ being convex, and the sequence $v_n \rightarrow \bar v$ which allows the sequence $z_n \rightarrow \bar z_n$ to be bounded inside the domain of $\Phi_\lambda$. 
+        By convexity, $\Phi_\lambda$ is locally Lipschitz on $\reli \dom \Phi_\lambda$, by convergence of $z_n$ the sequence is in a compact set in $\reli\dom \Phi_\lambda$ hence a Lipschitz bound with constant $K$ exists. 
+        \par
         For this reason, the number of iterations of the inner loop required to achieve $\mathbf G(z_n, v_n) < \epsilon$ for a given $\epsilon$ is related to the convergence rate of the algorithms used to optimize $\Psi_\lambda(v_n)$. 
         With the theorem derived above, and using Theorem \ref{thm:dlty-gap-inxt-pp} it implies that any algorithm which can optimize function value $\Psi_\lambda$ will produce iterates sufficient to achieve $\approx_\epsilon \hprox_{\lambda g}(y)$. 
     \subsection{Literature reviews}
@@ -614,21 +623,22 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \subsection{Convergence results of the outer loop}
         This section will give specific instances of the error control sequence $(\epsilon_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ and, momentum sequence $(\alpha_k)_{k \ge0}$ such that an optimal convergence rate of $\mathcal O(1/k^2)$ can be achieved. 
         \begin{assumption}[the optimal momentum sequence]\;\label{ass:opt-mmntm-seq}\\
-            Keeping everything assumed in Assumption \ref{ass:valid-err-schedule} about $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(F, f, g, L)$, $(y_k, x_k, v_k)_{k \ge 0}$, $(\beta_k)_{k \ge 0}$, $\mathcal E_0$ and $p$, we assume in addition that the sequence $(\alpha_k)_{k \ge 0}$ satisfies for all $k \ge 0$ the equality: $(1 - \alpha_k) = \alpha_{k}^2L_k\alpha_{k - 1}^{-2}L_{k - 1}^{-1}$. 
+            Keeping everything assumed in Assumption \ref{ass:valid-err-schedule} about $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(F, f, g, L)$, $(y_k, x_k, v_k)_{k \ge 0}$, $(\beta_k)_{k \ge 0}$, $\mathcal E_0$ and $p$. 
+            We assume in addition that the sequence $(\alpha_k)_{k \ge 0}$ satisfies for all $k \ge 0$ the equality: $(1 - \alpha_k) = \alpha_{k}^2L_k\alpha_{k - 1}^{-2}L_{k - 1}^{-1}$ and, $p > 1$. 
         \end{assumption}
         \begin{lemma}[the optimal momentum sequence is indeed valid and optimal]\;\label{lemma:opt-mmntm-seq}\\
             Let $(\alpha_k)_{k \ge 0}, (\beta_k)_{k \ge 0}$ be given by Assumption \ref{ass:opt-mmntm-seq}. 
-            If we choose $\alpha_0 \in (0, 1]\;$ then it satisfies $\alpha_k \in (0, 1)\;\forall k\ge 1$, and it's given by: 
-            \begin{align*}
+            If we choose $\alpha_0 \in (0, 1]\;$ then for all $k \ge 1$ it has: 
+            \begin{align}\label{eqn:lemma:opt-mmntm-seq-result1}
                 \alpha_k &=
                 \frac{L_{k - 1}}{2L_k}\left(
                     - \alpha_{k - 1}^2 + \left(
                         \alpha_{k - 1}^4 + 4 \alpha_{k - 1}\frac{L_k}{L_{k - 1}}
                     \right)^{1/2}
-                \right). 
-            \end{align*}
-            In addition, the sequence $(\beta_k)_{k \ge 0}$ has
-            \begin{align*}
+                \right) \in (0, 1)
+            \end{align}
+            For the sequence $(\beta_k)_{k \ge 0}$ it has $\forall k \ge 1$
+            \begin{align}\label{ineq:lemma:opt-mmntm-seq-result2}
                 \left(
                     1 + \alpha_0\sqrt{L_0}\sum_{i = 1}^{k}\sqrt{L_i^{-1}}
                 \right)^{-2}
@@ -638,10 +648,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \left(
                     1 + \frac{\alpha_0\sqrt{L_0}}{2}\sum_{i = 1}^{k}\sqrt{L_i^{-1}}
                 \right)^{-2}. 
-            \end{align*}
+            \end{align}
         \end{lemma}
         \begin{proof}
-            Firstly, we will show that for all $\alpha_0 \in (0, 1]$, and $\alpha_k \in (0, 1)\;\forall k \ge 1$. 
+            Firstly, we will show \eqref{eqn:lemma:opt-mmntm-seq-result1}. 
             We will prove using induction.
             Assume inductively that $\alpha_k \in (0, 1]$. 
             We can solve for $\alpha_k$ using the recursive equality from Assumption \ref{ass:opt-mmntm-seq} which always has one of the strictly positive root given by: 
@@ -697,7 +707,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             Therefore, inductively it holds that $\alpha_k \in (0, 1)$ too. 
             \par
-            Now, we focus on $(\beta_k)_{k \ge 0}$. 
+            We will now show \eqref{ineq:lemma:opt-mmntm-seq-result2}. 
             From the assumption that $(\alpha_k)_{k \ge 0}$ has $(1 - \alpha_k) = \alpha_k^2L_k \alpha_{k - 1}^{-2}L_{k - 1}^{-1}$ for all $k \ge 0$ and, the definition of $\beta_k$, it yields the following equalities: 
             \begin{align*}
                 \beta_k = \prod_{i = 1}^k \max\left(
@@ -777,10 +787,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Assume in addition that
             \begin{enumerate}[nosep]
                 \item there exists $\bar x \in \RR^n$ that is a minimizer of $F = f + g$;
-                \item it has $p > 0$;
                 \item the sequence $L_k := B_k + \rho_k$ is bounded, and there exists an $L_{\max}$ such that for all $k \ge 0$ it has $L_{\max} \ge \max_{k\ge i\ge 0} L_i$. 
             \end{enumerate}
-            Then, $\alpha_k \in (0, 1]\;\forall k \ge 0$ hence it's always valid and, it has $\forall k \ge 0$: 
+            Then, it has $\forall k \ge 0$: 
             \begin{align*}
                 & F(x_k) - F(\bar x) + \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
                 \le 
@@ -794,7 +803,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Since, $p > 0$ the sum is convergent and hence the above inequality claims an overall convergence rate $\mathcal O(1/k^2)$. 
         \end{proposition}
         \begin{proof}
-            We use the results from \ref{lemma:opt-mmntm-seq} because the sequence has the same assumption, then using the fact that $L_k$ is bounded then it gives:
+            We use the results from Lemma \ref{lemma:opt-mmntm-seq} because of the same assumption on $(\alpha_k)_{k 
+            \ge 0}$, then using the fact that $L_k$ is bounded: 
             \begin{align*}
                 \beta_k &\le 
                 \left(
@@ -808,11 +818,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Then, apply Theorem \ref{prop:inxt-apg-cnvg-generic} to obtain the desired results.
         \end{proof}
         \begin{remark}
-            In this remark, we assert the fact that all assumptions made in the theorem can be satisfied on practice, and we will also bring attention to the current, and future roles played by each of the parameters used in the inexact algorithm. 
+            In this remark, we assert the fact that all assumptions made in the theorem can be satisfied on practice, and we will also bring attention to the current, and future roles played by some parameters used in the inexact algorithm. 
             \par
-            Pay attention that $\alpha_k$ had been determined in the above theorem (as seemed in Lemma \ref{lemma:opt-mmntm-seq}), and $(B_k)_{k \le 0}$ is reserved for potential line search routine, the only parameter left undetermined in Definition \ref{def:inxt-apg} is the over-relaxation sequence $(\rho_k)_{k \ge 0}$, we only need the entire sequence to be bounded above. 
-            We give the freedom to the practitioners to choose $(\rho_k)_{k \ge 0}$. 
-            However, this sequence $\rho_k$ is not useless because it relaxes the upper bound for $\epsilon_k$, this has huge impact in the earlier stage (the first few iterations) of the algorithm $\Vert x_k - y_k\Vert$ is large. 
+            Pay attention that $\alpha_k$ had been determined in the above theorem (as seemed in Lemma \ref{lemma:opt-mmntm-seq}), and $(B_k)_{k \le 0}$ is reserved for potential line search routine, the only parameter left undetermined in Definition \ref{def:inxt-apg} is the over-relaxation sequence $(\rho_k)_{k \ge 0}$.
+            Since we only need the entire sequence $L_k = \rho_k + B_k$ to be bounded above, we give the freedom to the practitioners to choose $(\rho_k)_{k \ge 0}$. 
+            However, this sequence $\rho_k$ is not useless because it counters $\epsilon_k$ in the proximal gradient inequality, this has huge impact in the earlier stage (the first few iterations) of the algorithm $\Vert x_k - y_k\Vert$ is large. 
             Of course, the parameter $\mathcal E_0$ is also free to choose. 
             \par
             Finally, observe that from the above proof, in case when $p = 1$, the convergence rate would be $\mathcal O(\log(k)/k^2)$. 
@@ -841,10 +851,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \left(
                     1 + \alpha_0\sqrt{L_0}\sum_{i = 1}^{k}\sqrt{L_i^{-1}}
                 \right)^{-2} 
-                \frac{\mathcal E_0\beta_k}{k^p}
+                \frac{\mathcal E_0}{k^p}
                 \\
                 &\underset{(2)}{\ge}
-                \frac{\mathcal E_0\beta_k}{k^p}
+                \frac{\mathcal E_0}{k^p}
                 \left(
                     1 + k\alpha_0\sqrt{L_0}\sqrt{L_{\min}^{-1}}
                 \right)^{-2} 
@@ -989,35 +999,57 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             At (1) we used \eqref{ineq:lin-cnvg-ista-eb-pitem2}. 
             Multiple both side by $\frac{\gamma}{2\tau}$ then we are done. 
         \end{proof}
-    \subsection{Conditions for linear convergence of the proximal problem}
+    \subsection{Conditions for linear convergence of the proximal problem}\label{sec:conds-lin-cnvg-pp}
         In this section, we will focus on the sufficient characterization of the proximal problem which allows proximal gradient method to achieve linear convergence rate. 
         The following assumption characterizes a set of sufficient conditions of the proximal problem such that linear convergence rate of applying ISTA to dual proximal objective $\Psi_\lambda$ can be achieved. 
         \begin{assumption}[conditions for linear convergence of proximal problem]\;\label{ass:lin-cnvg-for-pp}\\
-            This assumption is about $(g, \omega, A, \Phi_\lambda, \Psi_\lambda, L^\lambda_{\Phi} ,\gamma_\lambda)$. 
+            This assumption is about $(g, \omega, A, y, \Phi_\lambda, \Psi_\lambda, L^\lambda_{\Phi} ,\gamma_\lambda)$. 
             Here are the assumptions
             \begin{enumerate}[nosep]
-                \item Assume $(g, \omega, A)$ satisfies Assumption \ref{ass:for-inxt-prox}. The primal objective $\Phi_\lambda$ is given by \eqref{eqn:primal-pp}, and dual $\Psi_\lambda$ by \eqref{eqn:dual-pp}. This means if we let $f(v) := \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2 - \frac{1}{2\lambda}\Vert y\Vert^2, g(v) := \omega^\star(v)$, then $\Psi_\lambda = f + g$. 
-                \item Next, assume $\Psi_\lambda = f + g$ satisfies Assumption \ref{ass:pg-eb} by viewing $\Psi_\lambda = F$ and denote $\gamma_\lambda := \gamma$. Note that we can do this because $f$ is obviously Lipschitz smooth. 
-                \item Assume the primal objective $\Phi_\lambda$ is $L_\Phi^\lambda$ Lipschitz continuous. 
+                \item $y \in \RR^n$ is the vector of which the proximal problem is anchored at, fixed it to be an arbitrary vector. 
+                \item Assume $(g, \omega, A)$ satisfies Assumption \ref{ass:for-inxt-prox}. The primal objective $\Phi_\lambda$ is given by \eqref{eqn:primal-pp}, and dual $\Psi_\lambda$ by \eqref{eqn:dual-pp}. This means if we let $h(v) := \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2 - \frac{1}{2\lambda}\Vert y\Vert^2$, then $\Psi_\lambda(v) = h(v) + \omega^\star(v)$. 
+                \item Next, assume $\Psi_\lambda = h + \omega^\star$ satisfies error bound condition (Assumption \ref{ass:pg-eb}) with $\Psi_\lambda = F$ and, $\gamma = \gamma_\lambda$ and $f = h$. Note that we can do this because $h$ is quadratic hence obviously Lipschitz continuous and Lipschitz smooth. 
+                \item We assume in addition, the primal objective $\Phi_\lambda$ of proximal problem is $L_\Phi^\lambda$ Lipschitz continuous on its domain $\dom \Phi_\lambda = \dom (g\circ A)$. 
             \end{enumerate}
         \end{assumption}
+        The following definition specifies the algorithm that can achieve linear convergence rate with the assumptions above. 
+        \begin{definition}[the ISTA inner loop algorithm]\;\label{def:ista-inner-lp}\\
+            Let $\lambda > 0, \epsilon > 0$, and $(g, \omega, A, y, \Phi_\lambda, \Psi_\lambda, L^\lambda_{\Phi} ,\gamma_\lambda)$ satisfies Assumption \ref{ass:lin-cnvg-for-pp}. 
+            \begin{enumerate}[nosep]
+                \item Let $v_0\in\dom \omega^\star$ be a feasible initial guess of $\Psi_{\lambda}$, and let $\tau > \Vert AA^\top\Vert$ be the inverse stepsize. 
+                \item Define $z_0 = y - \lambda A^\top v_0$ and smooth part of $\Psi_\lambda$ as $h := v \mapsto \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2$. 
+            \end{enumerate}
+            The algorithm that solves the proximal problem generates the primal dual sequences $(z_n, v_n)$ such that for all $n = 0, 1, 2, \cdots$, by the rules: 
+            \begin{align*}
+                v_{n + 1} &= \hprox_{\tau^{-1} \omega^\star}\left(
+                    v_{n} - \tau^{-1}\nabla h(v_n)
+                \right), 
+                \\
+                z_{n + 1} &= y - \lambda A^\top v_{n + 1}. 
+            \end{align*}
+            Terminates if $\mathbf G_\lambda(z_n, v_n) \le \epsilon$ where $\mathbf G_\lambda$ is given by \eqref{eqn:duality-gap-pp}. 
+        \end{definition}
+        \begin{remark}
+            The value of $\mathbf G_\lambda(z_n, v_n)$ is easy to compute, it only requires access to matrix $A, A^\top$, and the function $\omega$. 
+            In case when the proximal operator for $\omega^\star$ is nontrivial, we can use the Moreau identity and the proximal operator of $\omega$ instead. 
+            The gradient $\nabla f(v)$ is easy to compute, and it is: $AA^T v - Ay$.
+        \end{remark}
         \par
         The following propositions precisely show that the linear convergence is achievable when Assumption \ref{ass:lin-cnvg-for-pp} holds. 
         \begin{proposition}[sufficient conditions of linear convergence of the inner loop]\;\label{prop:inn-loop-lin-cnvg}\\
-            Let the parameters $(g, \omega, A, \Phi_\lambda, \Psi_\lambda, L^\lambda_{\Phi} ,\gamma_\lambda)$ of a proximal problem satisfy Assumption \ref{ass:lin-cnvg-for-pp}. 
-            Let $\tau \ge L_\Psi^\lambda$, and let $v_0 \in \dom \Psi_\lambda$ be an initial condition for an algorithm that satisfies Definition \ref{def:ista} with $F(v) = f(v) + g(v)$ and suppose that it generates iterates $(v_n)_{n \ge 0}$. 
-            Let $\bar v$ be a minimizer of $\Psi_\lambda$, then the followings are true for all $\epsilon \ge 0$: 
+            Let the parameters $(g, \omega, A, y, \Phi_\lambda, \Psi_\lambda, L^\lambda_{\Phi} ,\gamma_\lambda)$ of a proximal problem satisfy Assumption \ref{ass:lin-cnvg-for-pp}. 
+            Let $\tau$, $v_0, \epsilon$ be given by an algorithm that satisfies Definition \ref{def:ista-inner-lp} and, it generates iterates $(z_n, v_n)_{n \ge 0}$. 
+            Let $\bar v$ be a minimizer of $\Psi_\lambda$, then the followings are true: 
             \begin{enumerate}[nosep]
                 \item The sequence $\Psi_\lambda(v_n) - \Psi_\lambda(\bar v)$ converges linearly to zero. \label{prop:inn-looplin-cnvg-item1}
-                \item If we let $z_n := y - \lambda A^\top v_n$, and $\bar z := y - \lambda A^\top \bar v$, then $\Phi_\lambda(z_n) - \Phi_\lambda(\bar z)$ converges linearly. \label{prop:inn-looplin-cnvg-item2}
+                \item If we let $\bar z := y - \lambda A^\top \bar v$, then $\Phi_\lambda(z_n) - \Phi_\lambda(\bar z)$ converges linearly to zero. \label{prop:inn-looplin-cnvg-item2}
                 \item The duality gap has convergence $\mathbf G_\lambda(z_n, v_n) \le \mathcal O\left(\left(1 - \frac{\gamma_\lambda}{2\tau}\right)^{n/2}\right)$. \label{prop:inn-looplin-cnvg-item3}
-                \item If $\mathbf G_\lambda(z_n, v_n) \le \epsilon$, then $z_n \approx_\epsilon \hprox_{\lambda g}(y)$. 
-                \label{prop:inn-looplin-cnvg-item4}
+                \item If $\mathbf G_\lambda(z_n, v_n) \le \epsilon$, then $z_n \approx_\epsilon \hprox_{\lambda g}(y)$. \label{prop:inn-looplin-cnvg-item4}
             \end{enumerate}
         \end{proposition}
         \begin{proof}
-            To see \ref{prop:inn-looplin-cnvg-item1}, the sequence $\Psi_\lambda(v_n) - \Psi_\lambda(\bar v)$ has linear convergence by Theorem \ref{thm:lin-cnvg-ista-eb} because we assumed that $\Psi_\lambda$ satisfies Assumption \ref{ass:lin-cnvg-for-pp}. 
-            More precisely it has: 
+            Note that $\Psi_\lambda$ satisfies error bound condition in Assumption \ref{ass:lin-cnvg-for-pp}, and Definition \ref{def:ista-inner-lp} has $\tau \ge \Vert A^TA\Vert$ which satisfies Definition \ref{def:ista} therefore the linear convergence results of Theorem \ref{thm:lin-cnvg-ista-eb} applies to $\Psi_\lambda(v_n) - \Psi_\lambda(\bar v)$. 
+            Therefore, we claim: 
             \begin{align}\label{ineq:inn-loop-lin-cnvg-pitem1}
                 \Psi_\lambda(v_n) - \Psi_\lambda(\bar v) &\le 
                 \left(
@@ -1029,7 +1061,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align}
             \par
             We will now proceed to proving \ref{prop:inn-looplin-cnvg-item2}. 
-            Because the iterates are given by $z_n = y - \lambda A^\top v_n$, and $\bar z = y - \lambda A^\top \bar v$, due assumed Lipschitz continuity of $\Phi_\lambda$, we can use Theorem \ref{fact:minimizing-dual-pp} which gives: 
+            Recall that the iterates $z_n = y - \lambda A^\top v_n$, and $\bar z = y - \lambda A^\top \bar v$, and we have Lipschitz continuity of $\Phi_\lambda$, hence Theorem \ref{fact:minimizing-dual-pp} applies, in addition since $\Phi_\lambda$ were assumed to be globally Lipschitz on $\dom \Phi_\lambda$ in Assumption \ref{ass:lin-cnvg-for-pp}, this means that we can replace $K$ regardless of $\bar v$, and convergent primal sequence $z_n \rightarrow \bar z$ with $L_\Phi^\lambda$ which gives: 
             \begin{align}\label{ineq:inn-loop-lin-cnvg-pitem2}
                 \begin{split}
                     \Phi_\lambda(z_n) - \Phi_\lambda(\bar z) &\le L_\Phi^\lambda \sqrt{2\lambda}\left(
@@ -1078,24 +1110,44 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \left(
                         1 - \frac{\gamma_\lambda}{2\tau}
                     \right)^{n/2} (\Psi_\lambda(v_0) - \Psi_\lambda(\bar v))
-                \right). 
+                \right)
+                \\
+                &\le 
+                \left(
+                    1 - \frac{\gamma_\lambda}{2\tau}
+                \right)^{n/2}\left(
+                    L_\Phi^\lambda \sqrt{2\lambda}
+                    + 
+                    (\Psi_\lambda(v_0) - \Psi_\lambda(\bar v))^{1/2}
+                \right)
+                \left(
+                        \Psi_\lambda(v_0) - \Psi_\lambda(\bar v)
+                    \right)^{1/2} . 
             \end{align*}
             At (1) we used strong duality because constraint qualification is in Assumption \ref{ass:for-inxt-prox}. 
             At (2) we used \eqref{ineq:inn-loop-lin-cnvg-pitem1}, \eqref{ineq:inn-loop-lin-cnvg-pitem2}. 
             To see \ref{prop:inn-looplin-cnvg-item4}, apply Theorem \ref{thm:dlty-gap-inxt-pp}. 
         \end{proof}
         \begin{remark}
-            In pratice, use the proximal operator of $\omega^\star$ choose a feasible $v_0$. 
+            In practice, use the proximal operator of $\omega^\star$ to choose a feasible $v_0$, equivalently we can translate any primal feasible solution into a dual feasible solution using Theorem \ref{thm:primal-dual-trans}. 
+            \par
+            As a prelude, to have a global convergence rate it requires an upper bound of the initial optimally gap of $\Psi_\lambda$ of for all iterations of the outer loop. 
+            Suppose for each outer iteration $k$, the inner loop is initialized to start on $v_0^{(k)}$, then there must be an upper bound for all $\Psi_\lambda\left(v_0^{(k)}\right) - \Psi_\lambda(\bar v)$. 
         \end{remark}
         The next proposition will characterize a precise case where Assumption \ref{ass:lin-cnvg-for-pp} is true, and it's a case widely available in applications. 
         \begin{proposition}[1-norm problem]\label{prop:1nrm-prox-problem}
             Let $(g, \omega, A)$ satisfies Assumption \ref{ass:for-inxt-prox}. 
-            In addition, if $g := \Vert \cdot\Vert_1$, then the function $\Psi_\lambda, \Psi_\lambda$ satisfies Assumption \ref{ass:lin-cnvg-for-pp}. 
+            In addition, if $g := \Vert \cdot\Vert_1$, then the function $\Psi_\lambda, \Phi_\lambda$ satisfies Assumption \ref{ass:lin-cnvg-for-pp}. 
         \end{proposition}
         \begin{proof}
+            To verify, it requires that
+            \begin{enumerate}[nosep]
+                \item The function $\Psi_\lambda$ satisfies the error bound condition as specified in Assumption \ref{ass:pg-eb}; 
+                \item $\Psi_\lambda$ is also a Lipschitz continuous function. 
+            \end{enumerate}
             Take note that the dual has closed form $g^\star(z) =\delta(z | \{x : \Vert x\Vert_1 \le 1\})$. 
             The $g^\star$ is an indicator of a polytope constraint. 
-            The objective function $\Psi_\lambda(v) = \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2 + \omega^\star(v) - \frac{1}{2\lambda}\Vert y\Vert^2$ so it's Lipschitz smooth, and it must have a set of minimizers $S$ because its domain is compact. 
+            The objective function $\Psi_\lambda(v) = \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2 + \omega^\star(v) - \frac{1}{2\lambda}\Vert y\Vert^2$ so it's Lipschitz continuous on its domain, and it must have a set of minimizers $S$ because its domain is compact. 
             In addition, $\Psi_\lambda$ fits the assumption of Necoara et al. \cite[Theorem 8]{necoara_linear_2019}. 
             Therefore, $\Psi_\lambda$ is quasi-strongly convex then by \cite[Theorem 4]{necoara_linear_2019}, and \cite[Theorem 7]{necoara_linear_2019}, it satisfies error bound condition as given in Assumption \ref{ass:pg-eb}, hence Assumption \ref{ass:lin-cnvg-for-pp} also. 
             \par
@@ -1117,17 +1169,100 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{proposition}[scenario II, convex PLQ linear composite]\label{prop:plq-prox-problem}
             
         \end{proposition}
-
         \begin{example}[inner loop linear convergence rate examples]\label{example:inn-lp-lin-cnvg}
             
         \end{example}
-    \subsection{Inner loop complexity}
-        In this section, we will estimate the total number of iterations in the inner loop to achieve a given accuracy $\epsilon$ on primal objective $\Phi_\lambda$ of the proximal problem for some given $\lambda > 0$. 
-        We will specify the context for parameters $\epsilon, \lambda$ in relation to the outer problem of obtaining $x_k \approx_{\epsilon_k} T_{B_k + \rho_k}(y_k)$. 
+
 
 
 \section{Total complexity of the algorithm}
     This section puts results regarding the total complexity of the proposed inexact proximal gradient algorithm. 
+    \subsection{Inner loop complexity}
+        We remind that the parameters in the inner loop will change depending on the outer loop's iteration. 
+        To discuss the convergence we unfortunately have to re-introduce the proximal problem in the context of the accelerated proximal gradient method of the outer loop. 
+        \par
+        Let $(F, f, g, L)$ and sequence $(\alpha_k, B_k, \rho_k,\epsilon_k)_{k \ge0}$ satisfies Definition \ref{def:inxt-apg}. 
+        Fix any $k \ge 0$ to be the iteration counter of the outer loop. 
+        Let $(g, \omega, A)$ satisfies Assumption \ref{ass:for-inxt-prox}. 
+        The inner loop is an algorithm that solves the inexact proximal gradient problem $x \approx_{\epsilon_k} T_{B_k + \rho_k}(y_k)$ which is equivalent to evaluating: 
+        \begin{align*}
+            x_k \approx_{\epsilon_k} \hprox_{L_k^{-1} g}(y_k - L_k^{-1}\nabla f(y_k)).
+        \end{align*}
+        Where, $L_k := B_k + \rho_k$. 
+        Let $\lambda^{(k)} := L_k^{-1}, \tilde y_k := y_k - L_k^{-1}\nabla f(y_k)$, the proximal problem boils down to optimizing the following function $\Phi_\lambda^{(k)}$ as defined by: 
+        \begin{align}\label{eqn:primal-pp-k}
+            \Phi_\lambda^{(k)}(u) &:= \frac{1}{2\lambda^{(k)}} \Vert u - \tilde y_k \Vert^2 + \omega(A u). 
+        \end{align}
+        And its dual which is 
+        \begin{align}\label{eqn:dual-pp-k}
+            \Psi_\lambda^{(k)}(v) &:=
+            \frac{1}{2\lambda}
+            \left\Vert \lambda^{(k)}A^\top v - \tilde y_k
+            \right\Vert^2
+            + \omega^\star(v) 
+            - \frac{1}{2\lambda^{(k)}}\Vert \tilde y_k\Vert^2. 
+        \end{align}
+        The primal dual gap is $\mathbf G_\lambda^{(k)}(u, v) = \Phi_\lambda^{(k)}(u) + \Psi_\lambda^{(k)}(v)$. 
+        The above are identical to proximal problem defined in Section \ref{sec:optz-inxt-pp-problem} except for the introduction of iteration counter $k$ from the outer loop, and we had specified $\tilde y_k$ in relation to the outer loop. 
+        Finally, the inner loop algorithm is responsible for optimizing the optimality gap, it satisfies that $\mathbf G_\lambda^{(k)}(u, v) \le \epsilon_k$ and all results from Section \ref{sec:conds-lin-cnvg-pp} applies. 
+        \par
+        The following assumption specifies conditions where the complexity of the inner using ISTA can be globally bounded for all iteration of the accelerated proximal gradient algorithm of the outer loop. 
+        This is crucial for analyzing the global convergence rate of the algorithm. 
+        \begin{assumption}[globally bounded inner loop complexity]\;\label{ass:bounded-inn-cmplx}\\
+            For any integer $k \ge 0$, this assumption is about parameters of the proximal problem $\left(g, \omega, A, \tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}\right)$ introduced at the beginning of this section, iterates $\left(z_n^{(k)}, v_n^{(k)}\right)_{n\ge0}$, the primal dual solutions $\left(\bar z^{(k)}, \bar v^{(k)}\right)$ and additional parameters $\bar \lambda, \underline \lambda, \gamma^\circ$. 
+            The assumptions now follow. 
+            \begin{enumerate}[nosep]
+                \item As specified in this section, the parameter $\lambda^{(k)} = (B_k + \rho_k)^{-1}$ are from the outer loop. We denote $L_k = B_k + \rho_k$ for short. We assume in addition, there exists $\lambda^{\min}, \lambda^{\max}$ such that: 
+                $$
+                    - \infty < \lambda^{\min} \le \inf_{k \in \N \cup \{0\}} \lambda^{(k)} \le \sup_{k \in \N \cup \{0\}} \lambda^{(k)} \le \lambda^{\max} < \infty. 
+                $$ 
+                \item All the initial guesses given by an algorithm in the outer loop $v_0^{(k)}$ and minimizers $\bar v^{(k)}$ must have $\sup_{k \in \N \cup \{0\}}\left\Vert v_0^{(k)} - \bar v^{(k)}\right\Vert < \infty$. 
+                \item There exists smallest error bound constant $\gamma^{\min}$ such that it lower bound all the constants for the proximal problem, i.e: $\exists \gamma_{\min}:\;0 < \gamma^{\min} \le \inf_{k \in \N \cup \{0\}} \gamma^{(k)}_\lambda$. 
+                \item $\tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}$ all satisfies error bound conditions (Assumption \ref{ass:lin-cnvg-for-pp}) with $y = \tilde y_k, \Phi_\lambda = \Phi_\lambda^{(k)}, \Psi_\lambda = \Psi_\lambda^{(k)}, L_\Phi^\lambda = L^{\lambda, (k)}_{\Phi}$ and $\gamma_\lambda = \gamma_\lambda^{(k)}$. 
+                \item The iterates of the inner loop $(z_n^{(k)}, v_n^{(k)})_{k \ge 0}$ are produced by an algorithm that satisfies Definition \ref{def:ista-inner-lp}. 
+            \end{enumerate}
+        \end{assumption}
+        \par
+        The proposition that follows characterize the bare minimum requirements so that the inner loop's complexity depends only on required accuracies $\epsilon$, and parameter $\lambda$ for all initial guess of the outer loop. 
+        \begin{proposition}[inner loop complexity can be bounded globally]\;\label{prop:inner-lp-cmplx}\\
+            Let $\left(g, \omega, A, \tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}\right)$, $\left(z_n^{(k)}, v_{n}^{(k)}\right)_{n \ge 0}$, $\left(\bar z^{(k)}, \bar v^{(k)}\right)$ and $C_1$ satisfies Assumption \ref{ass:bounded-inn-cmplx}. 
+            \begin{enumerate}[nosep]
+                \item\label{prop:inner-lp-cmplx-result1} 
+                If $\lambda_1 > \lambda_2$ then $\Psi_{\lambda_1}(v) \ge \Psi_{\lambda_2}(v)$ for all $v \in \dom \omega^\star$. 
+                \item\label{prop:inner-lp-cmplx-result2}  As a consequence of the former, the sequence $L_\Phi^{\lambda, (k)}$ as specified back in Fact \ref{fact:minimizing-dual-pp} is bounded above so $\sup_{k \in \N \cup \{0\}}L_\Phi^{\lambda, (k)} < \infty$. 
+                \item There exists a constant $C_1$ that bounds the optimality gap of all initial guesses: 
+                \begin{align*}
+                    \infty > C_1 \ge  \sup_{k \in \N \cup \{0\}}\left\lbrace
+                        \Psi_{\lambda}^{(k)}(v^{(k)}_0) - \Psi_\lambda^{(k)}(\bar v^{(k)})
+                    \right\rbrace. 
+                \end{align*}
+                \item\label{prop:inner-lp-cmplx-result3} 
+                There exists a constant $\infty > C_2 \ge \sqrt{C_1}\sup_{k \in \N \cup \{0\}}\left\lbrace L_\Phi^{\lambda, (k)}\sqrt{2\lambda^{(k)}} + \sqrt{C_1}\right\rbrace$. 
+                \item\label{prop:inner-lp-cmplx-result4} 
+                Denote $N_\epsilon$ to be the total number of iteration of inner loop needed to achieve $\mathbf G_\lambda^{(k)}(z_n, v_n) \le \epsilon$, then it's sufficient to have 
+                \begin{align*}
+                    N_{\epsilon} = \left\lceil 
+                        2\frac{\log(\epsilon/C_2)}{
+                            \log\left(
+                                1 - \frac{\gamma^{\min}}{2\lambda^{\max}}
+                            \right)
+                        }
+                    \right\rceil. 
+                \end{align*}
+            \end{enumerate}
+        \end{proposition}
+        \begin{proof}
+            We will start with \ref{prop:inner-lp-cmplx-result1}. 
+            After some algebra it can be shown that $\Psi_\lambda^{(k)}(v) = \frac{\lambda}{2}\Vert A^\top v\Vert^2 - \langle A^\top v, \tilde y_k\rangle + \omega^\star(v)$.
+            From then on it's direct and it has $\Psi_{\lambda_1}(v) - \Psi_{\lambda_2}(v) = \frac{\lambda_1 - \lambda_2}{2}\Vert A^\top v\Vert^2 \ge 0$. 
+            \par
+            To see \ref{prop:inner-lp-cmplx-result2}, observe that $\Phi_\lambda^{(k)}$ is $L_{\Phi}^{\lambda, (k)}$ Lipschitz continuous from Assumption \ref{ass:lin-cnvg-for-pp}, \ref{ass:bounded-inn-cmplx}. 
+            By its definition in \eqref{eqn:primal-pp-k}, $\forall k \ge 0$ it satisfies $L_{\Phi}^{\lambda, (k)}$ is the largest when $\lambda = \lambda^{\min}$. 
+            And since $\lambda^{(k)}$ is finite, it has $\sup_{k \in \N \cup \{0\}}L_{\Phi}^{\lambda, (k)} < \infty$ too. 
+            \par
+            To see \ref{prop:inn-looplin-cnvg-item3}, we use \ref{prop:inn-looplin-cnvg-item1} and it's sufficient to have $C_1 = \Psi_{\lambda^{\max}}^{(k)}$
+        \end{proof}
+            
 
 
 \bibliographystyle{siam}

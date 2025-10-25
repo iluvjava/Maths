@@ -3,3 +3,4 @@ Zalinascu
 subgradient
 Necoara
 polytope
+optimality

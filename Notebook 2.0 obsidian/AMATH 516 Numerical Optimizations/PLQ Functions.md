@@ -5,7 +5,7 @@
 ### **Intro**
 
 **Piecewise Linear-Quadratic Functions (PLQ)**. 
-This type of function seems to have key interests for applications related tasks. 
+This type of function seems to have key interest for applications related tasks. 
 
 #### **Def | Piecewise Linear Quadratic Function ^[:1 Rockafellar, Wetts Definition 10.20]**
 > Function $F:\R^n \rightarrow \overline \R$ is PLQ when 
