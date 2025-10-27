@@ -617,6 +617,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \right). 
         \end{align*}
     \end{proof}
+    \begin{proposition}[generic convergence rate of the gradient mapping]\;\label{prop:apg-cnvg-gm-generic}\\
+        \todoinline{Cette propositions ira démontrer que le séquence de ``Inexact Gradient Mapping" converge. }
+    \end{proposition}
+    \begin{proof}
+        
+    \end{proof}
     \par
     Now, it only remains to determine the sequence $\alpha_k$ to derive a type of convergence rate for the algorithm because from the above theorem, we have the convergence rate $\beta_k$ and, the error parameters $\epsilon_k, \rho_k$ both controlled by the sequence $(\alpha_k)_{k \ge 0}$. 
     
@@ -1016,7 +1022,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{definition}[the ISTA inner loop algorithm]\;\label{def:ista-inner-lp}\\
             Let $\lambda > 0, \epsilon > 0$, and $(g, \omega, A, y, \Phi_\lambda, \Psi_\lambda, L^\lambda_{\Phi} ,\gamma_\lambda)$ satisfies Assumption \ref{ass:lin-cnvg-for-pp}. 
             \begin{enumerate}[nosep]
-                \item Let $v_0\in\dom \omega^\star$ be a feasible initial guess of $\Psi_{\lambda}$, and let $\tau > \Vert AA^\top\Vert$ be the inverse stepsize. 
+                \item Let $v_0\in\dom \omega^\star$ be a feasible initial guess of $\Psi_{\lambda}$, and let $\tau \ge \lambda\Vert AA^\top\Vert$ be the inverse step size. 
                 \item Define $z_0 = y - \lambda A^\top v_0$ and smooth part of $\Psi_\lambda$ as $h := v \mapsto \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2$. 
             \end{enumerate}
             The algorithm that solves the proximal problem generates the primal dual sequences $(z_n, v_n)$ such that for all $n = 0, 1, 2, \cdots$, by the rules: 
@@ -1048,7 +1054,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{enumerate}
         \end{proposition}
         \begin{proof}
-            Note that $\Psi_\lambda$ satisfies error bound condition in Assumption \ref{ass:lin-cnvg-for-pp}, and Definition \ref{def:ista-inner-lp} has $\tau \ge \Vert A^TA\Vert$ which satisfies Definition \ref{def:ista} therefore the linear convergence results of Theorem \ref{thm:lin-cnvg-ista-eb} applies to $\Psi_\lambda(v_n) - \Psi_\lambda(\bar v)$. 
+            Note that $\Psi_\lambda$ satisfies error bound condition in Assumption \ref{ass:lin-cnvg-for-pp}, and Definition \ref{def:ista-inner-lp} has $\tau \ge \lambda\Vert A^TA\Vert$ which satisfies Definition \ref{def:ista} therefore the linear convergence results of Theorem \ref{thm:lin-cnvg-ista-eb} applies to $\Psi_\lambda(v_n) - \Psi_\lambda(\bar v)$. 
             Therefore, we claim: 
             \begin{align}\label{ineq:inn-loop-lin-cnvg-pitem1}
                 \Psi_\lambda(v_n) - \Psi_\lambda(\bar v) &\le 
@@ -1209,15 +1215,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         The following assumption specifies conditions where the complexity of the inner using ISTA can be globally bounded for all iteration of the accelerated proximal gradient algorithm of the outer loop. 
         This is crucial for analyzing the global convergence rate of the algorithm. 
         \begin{assumption}[globally bounded inner loop complexity]\;\label{ass:bounded-inn-cmplx}\\
-            For any integer $k \ge 0$, this assumption is about parameters of the proximal problem $\left(g, \omega, A, \tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}\right)$ introduced at the beginning of this section, iterates $\left(z_n^{(k)}, v_n^{(k)}\right)_{n\ge0}$, the primal dual solutions $\left(\bar z^{(k)}, \bar v^{(k)}\right)$ and additional parameters $\bar \lambda, \underline \lambda, \gamma^\circ$. 
+            For any integer $k \ge 0$, this assumption is about parameters of the proximal problem $\left(g, \omega, A, \tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}\right)$ introduced at the beginning of this section, iterates $\left(z_n^{(k)}, v_n^{(k)}\right)_{n\ge0}$, the primal dual solutions $\left(\bar z^{(k)}, \bar v^{(k)}\right)$ and additional parameters $\lambda^{\min}, \lambda^{\max}, \gamma^{\min}, C_0$. 
             The assumptions now follow. 
             \begin{enumerate}[nosep]
                 \item As specified in this section, the parameter $\lambda^{(k)} = (B_k + \rho_k)^{-1}$ are from the outer loop. We denote $L_k = B_k + \rho_k$ for short. We assume in addition, there exists $\lambda^{\min}, \lambda^{\max}$ such that: 
                 $$
                     - \infty < \lambda^{\min} \le \inf_{k \in \N \cup \{0\}} \lambda^{(k)} \le \sup_{k \in \N \cup \{0\}} \lambda^{(k)} \le \lambda^{\max} < \infty. 
                 $$ 
-                \item All the initial guesses given by an algorithm in the outer loop $v_0^{(k)}$ and minimizers $\bar v^{(k)}$ must have $\sup_{k \in \N \cup \{0\}}\left\Vert v_0^{(k)} - \bar v^{(k)}\right\Vert < \infty$. 
-                \item There exists smallest error bound constant $\gamma^{\min}$ such that it lower bound all the constants for the proximal problem, i.e: $\exists \gamma_{\min}:\;0 < \gamma^{\min} \le \inf_{k \in \N \cup \{0\}} \gamma^{(k)}_\lambda$. 
+                \item There exists a constant $C_0$ such that all the initial guesses given by an algorithm in the outer loop $v_0^{(k)}$ and minimizers $\bar v^{(k)}$ satisfies $C_0 = \sup_{k \in \N \cup \{0\}}\left\Vert v_0^{(k)} - \bar v^{(k)}\right\Vert < \infty$. 
+                \item There exists the smallest error bound constant $\gamma^{\min}$ such that it lower bound all the constants for the proximal problem, i.e: $\exists \gamma_{\min}:\;0 < \gamma^{\min} \le \inf_{k \in \N \cup \{0\}} \gamma^{(k)}_\lambda$. 
                 \item $\tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}$ all satisfies error bound conditions (Assumption \ref{ass:lin-cnvg-for-pp}) with $y = \tilde y_k, \Phi_\lambda = \Phi_\lambda^{(k)}, \Psi_\lambda = \Psi_\lambda^{(k)}, L_\Phi^\lambda = L^{\lambda, (k)}_{\Phi}$ and $\gamma_\lambda = \gamma_\lambda^{(k)}$. 
                 \item The iterates of the inner loop $(z_n^{(k)}, v_n^{(k)})_{k \ge 0}$ are produced by an algorithm that satisfies Definition \ref{def:ista-inner-lp}. 
             \end{enumerate}
@@ -1225,43 +1231,90 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \par
         The proposition that follows characterize the bare minimum requirements so that the inner loop's complexity depends only on required accuracies $\epsilon$, and parameter $\lambda$ for all initial guess of the outer loop. 
         \begin{proposition}[inner loop complexity can be bounded globally]\;\label{prop:inner-lp-cmplx}\\
-            Let $\left(g, \omega, A, \tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}\right)$, $\left(z_n^{(k)}, v_{n}^{(k)}\right)_{n \ge 0}$, $\left(\bar z^{(k)}, \bar v^{(k)}\right)$ and $C_1$ satisfies Assumption \ref{ass:bounded-inn-cmplx}. 
+            Let $\left(g, \omega, A, \tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}\right)$, $\left(z_n^{(k)}, v_{n}^{(k)}\right)_{n \ge 0}$, $\left(\bar z^{(k)}, \bar v^{(k)}\right)$ and additional parameters $\lambda^{\min}, \lambda^{\max}, \gamma^{\min}, C_0$ such that they satisfy Assumption \ref{ass:bounded-inn-cmplx}. 
             \begin{enumerate}[nosep]
                 \item\label{prop:inner-lp-cmplx-result1} 
                 If $\lambda_1 > \lambda_2$ then $\Psi_{\lambda_1}(v) \ge \Psi_{\lambda_2}(v)$ for all $v \in \dom \omega^\star$. 
-                \item\label{prop:inner-lp-cmplx-result2}  As a consequence of the former, the sequence $L_\Phi^{\lambda, (k)}$ as specified back in Fact \ref{fact:minimizing-dual-pp} is bounded above so $\sup_{k \in \N \cup \{0\}}L_\Phi^{\lambda, (k)} < \infty$. 
-                \item There exists a constant $C_1$ that bounds the optimality gap of all initial guesses: 
+                \item\label{prop:inner-lp-cmplx-result2}  As a consequence of the former, the sequence $L_\Phi^{\lambda, (k)}$ as specified back in Fact \ref{fact:minimizing-dual-pp} is bounded above so, there exists $L_\Phi^{\max}$ such that $L_\Phi^{\max} = \sup_{k \in \N \cup \{0\}}L_\Phi^{\lambda, (k)} < \infty$. 
+                \item\label{prop:inner-lp-cmplx-result3} There exists a constant $C_1$ that bounds the optimality gap of all initial guesses: 
                 \begin{align*}
-                    \infty > C_1 \ge  \sup_{k \in \N \cup \{0\}}\left\lbrace
+                    \infty > C_1 \ge  \sup_{k \in \N \cup \{0\}}
+                    \left\lbrace
                         \Psi_{\lambda}^{(k)}(v^{(k)}_0) - \Psi_\lambda^{(k)}(\bar v^{(k)})
                     \right\rbrace. 
                 \end{align*}
-                \item\label{prop:inner-lp-cmplx-result3} 
-                There exists a constant $\infty > C_2 \ge \sqrt{C_1}\sup_{k \in \N \cup \{0\}}\left\lbrace L_\Phi^{\lambda, (k)}\sqrt{2\lambda^{(k)}} + \sqrt{C_1}\right\rbrace$. 
                 \item\label{prop:inner-lp-cmplx-result4} 
+                There exists a constant $\infty > C_2 \ge \sqrt{C_1}\sup_{k \in \N \cup \{0\}}\left\lbrace L_\Phi^{\lambda, (k)}\sqrt{2\lambda^{(k)}} + \sqrt{C_1}\right\rbrace$. 
+                \item\label{prop:inner-lp-cmplx-result5} 
                 Denote $N_\epsilon$ to be the total number of iteration of inner loop needed to achieve $\mathbf G_\lambda^{(k)}(z_n, v_n) \le \epsilon$, then it's sufficient to have 
                 \begin{align*}
                     N_{\epsilon} = \left\lceil 
-                        2\frac{\log(\epsilon/C_2)}{
-                            \log\left(
-                                1 - \frac{\gamma^{\min}}{2\lambda^{\max}}
+                        \frac{2\ln(\epsilon/C_2)}{
+                            \ln\left(
+                                1 - \frac{\gamma^{\min}}{2\lambda^{\max}\left\Vert AA^\top\right\Vert}
                             \right)
                         }
                     \right\rceil. 
                 \end{align*}
             \end{enumerate}
+
         \end{proposition}
         \begin{proof}
             We will start with \ref{prop:inner-lp-cmplx-result1}. 
-            After some algebra it can be shown that $\Psi_\lambda^{(k)}(v) = \frac{\lambda}{2}\Vert A^\top v\Vert^2 - \langle A^\top v, \tilde y_k\rangle + \omega^\star(v)$.
-            From then on it's direct and it has $\Psi_{\lambda_1}(v) - \Psi_{\lambda_2}(v) = \frac{\lambda_1 - \lambda_2}{2}\Vert A^\top v\Vert^2 \ge 0$. 
+            After some algebra it can be shown that $\Psi_\lambda(v) = \frac{\lambda}{2}\Vert A^\top v\Vert^2 - \langle A^\top v, \tilde y_k\rangle + \omega^\star(v)$.
+            From then on it's direct, and it has $\Psi_{\lambda_1}(v) - \Psi_{\lambda_2}(v) = \frac{\lambda_1 - \lambda_2}{2}\Vert A^\top v\Vert^2 \ge 0$. 
             \par
             To see \ref{prop:inner-lp-cmplx-result2}, observe that $\Phi_\lambda^{(k)}$ is $L_{\Phi}^{\lambda, (k)}$ Lipschitz continuous from Assumption \ref{ass:lin-cnvg-for-pp}, \ref{ass:bounded-inn-cmplx}. 
-            By its definition in \eqref{eqn:primal-pp-k}, $\forall k \ge 0$ it satisfies $L_{\Phi}^{\lambda, (k)}$ is the largest when $\lambda = \lambda^{\min}$. 
-            And since $\lambda^{(k)}$ is finite, it has $\sup_{k \in \N \cup \{0\}}L_{\Phi}^{\lambda, (k)} < \infty$ too. 
+            By its definition in \eqref{eqn:primal-pp-k}, $\forall k \ge 0$ it satisfies $L_{\Phi}^{\lambda, (k)}$ is the largest when $\lambda = \lambda^{\max}$. 
+            And since $\lambda^{(k)}$ is finite, it has $L^{\max}_\Phi = \sup_{k \in \N \cup \{0\}}L_{\Phi}^{\lambda, (k)} < \infty$ too. 
             \par
-            To see \ref{prop:inn-looplin-cnvg-item3}, we use \ref{prop:inn-looplin-cnvg-item1} and it's sufficient to have $C_1 = \Psi_{\lambda^{\max}}^{(k)}$
+            To see \ref{prop:inn-looplin-cnvg-item3}, we use \ref{prop:inn-looplin-cnvg-item1}, \ref{prop:inn-looplin-cnvg-item2} and, $C_0 = \sup_{k \in \{0\}\cup \N} \left\Vert v_0^{(k)} - \bar v^{(k)} \right\Vert < \infty$ from Assumption \ref{ass:bounded-inn-cmplx}, then it's sufficient to have: $C_1 = L_{\Phi}^{\max} C_0$ by $L^{(k)}_\Phi$ Lipschitz continuity of $\Phi_\lambda^{(k)}$. 
+            \par
+            To see \ref{prop:inn-looplin-cnvg-item4}, use all previous results \ref{prop:inn-looplin-cnvg-item3}, \ref{prop:inn-looplin-cnvg-item2} and, then it's sufficient to have $C_2 = \sqrt{C_1}\left(L^{\max}_\Phi\sqrt{2\lambda^{\max}} + \sqrt{C_1}\right)$. 
+            \par
+            And finally, we are ready to show \ref{prop:inner-lp-cmplx-result5}, it has for all $k \ge 0$: 
+            \begin{align*}
+                & \mathbf G_\lambda^{(k)}(z_n^{(k)}, v_n^{(k)}) 
+                \\
+                &\underset{(1)}{\le} 
+                \left(
+                    1 - \frac{\gamma_\lambda^{(k)}}{2 \tau^{(k)}}
+                \right)^{n/2}
+                \left(
+                    L_\Phi^{\lambda, (k)} \sqrt{2 \lambda^{(k)}} + 
+                    \sqrt{\Psi_{\lambda}^{(k)}(v^{(k)}_0) - \Psi_\lambda^{(k)}(\bar v^{(k)})}
+                \right)\left(
+                    \Psi_{\lambda}^{(k)}(v^{(k)}_0) - \Psi_\lambda^{(k)}(\bar v^{(k)})
+                \right)^{1/2}
+                \\
+                &\underset{(2)}{\le}
+                \left(
+                    1 - \frac{\gamma_\lambda^{(k)}}{2 \tau^{(k)}}
+                \right)^{n/2}
+                \left(
+                    L_\Phi^{\lambda, (k)} \sqrt{2 \lambda^{(k)}} + 
+                    \sqrt{C_1}
+                \right)\sqrt{C_1}
+                \\
+                &\underset{(3)}{\le}
+                \left(
+                    1 - \frac{\gamma_\lambda^{(k)}}{2 \tau^{(k)}}
+                \right)^{n/2} C_2
+                \\
+                &\underset{(4)}{\le}
+                \left(
+                    1 - \frac{\gamma^{\min}}{2 \lambda^{\max}\Vert AA^\top\Vert}
+                \right)^{n/2} C_2. 
+            \end{align*}
+            At (1), we used Theorem \ref{prop:inn-loop-lin-cnvg}. 
+            At (2), we used results form \ref{prop:inner-lp-cmplx-result3} and, at (3) we used \ref{prop:inner-lp-cmplx-result4}. 
+            Finally, at (4), we use the fact that the step size $\tau$ in Definition \ref{def:ista-inner-lp} which translate into our context, it has $\tau^{(k)} \ge \lambda^{(k)}\Vert AA^\top\Vert$, and hence it can be upper bounded by $\tau^{\max} := \sup_{k \in \N \cup \{0\}}\lambda^{(k)}\Vert AA^\top\Vert < \infty$. 
+            Now, substitute $n = N_\epsilon$ then it's prominent that $\mathbf G_\lambda^{(k)}\left(z_n^{(k)}, v_n^{(k)}\right) \le \epsilon$ by using the log of base formula. 
         \end{proof}
+    \subsection{Overall complexity}
+        In this section we combine the complexity of the inner loop with the convergence rate of the outer loop to deduce the rate of convergence. 
+        Details will be given to the assumptions needed to obtain globally bounded complexity of the inner loop. 
+
             
 
 
