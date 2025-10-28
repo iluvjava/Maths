@@ -151,12 +151,12 @@
         \begin{frame}{Relaxed Weak Accelerated Proximal Gradient}
             We asked the following major question.  
             \begin{tcolorbox}
-                How much can we relax the choice of the sequence $\theta_k$ and still get an upper bound for the convergence rate? 
+                How much can we relax the choice of the sequence $\theta_k$ and retain an upper bound for the convergence rate? 
             \end{tcolorbox}
             We addressed it by what we called: ``Relaxed Weak Accelerated proximal Gradient'' (R-WAPG). 
             \begin{enumerate}
                 \item It's interpreted from the Nesterov's estimating sequence technique and based on the proximal gradient inequality. 
-                \item It relaxes the assumption of the momentum sequence parameter while still retaining an upper bound on the optimality gap. 
+                \item It relaxes the assumption of the momentum sequence parameter while retaining an upper bound on the optimality gap. 
             \end{enumerate}
         \end{frame}
         \begin{frame}{The assumptions we make throughout}
@@ -387,7 +387,7 @@
                     y_{k + 1}
                     &= x_{k + 1} +
                     \frac{\rho_{k}\alpha_{k}(1 - \alpha_k)}
-                    {\rho_k\alpha_k^2 + \alpha_k}(x_{k + 1} - x_k). 
+                    {\rho_k\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
                 \end{align}
                 }
             \end{proposition}
@@ -478,7 +478,7 @@
                             $\alpha_{k + 1} := (1/2)\left(\mu_k/L_k - \alpha_{k}^2 + \sqrt{(\mu_k/L_k - \alpha_{k}^2)^2 + 4\alpha_{k}^2}\right)$;
                         }
                     }
-                    \STATE{$\theta_{k + 1} := \alpha_k(1 - \alpha_k)/(\alpha_k^2 + \alpha_{k + 1})$;}
+                    \STATE{$\theta_{k + 1} := \alpha_{k + 1}(\alpha_k^{-1} - 1)$;}
                     \STATE{$y_{k + 1}:= x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$; }
                     \STATE{\textbf{Compute: } $f(y_{k + 1})$}
                     \STATE{
@@ -578,12 +578,13 @@
             The problem of LASSO from Tibshirani \cite{tibshirani_regression_1996} is the optimization problem $\min_{x \in \RR^n}\{(1/2)\Vert Ax - b\Vert^2 - \lambda\Vert x\Vert_1\}$. 
             \begin{enumerate}
                 \item $A \in \RR^{N \times N}$, full of i.i.d random variable from a standard normal distribution. 
+                \item $\lambda = 0.1$. 
                 \item Computed in prior, $L, \mu$ are parameters estimated by $\mu = 1/\Vert (A^TA)^{-1}\Vert$ and $L = \Vert A^TA\Vert$. The norm is the spectral norm. 
-                \item The smallest value of $F(x_k)$, for all algorithms, over all tries are taken as an estimate of $F^+$. 
+                \item Let $F_{\min}$ be the smallest value of $F(x_k)$, for all algorithms, over all trials, we estimate $F^+$ by $F^+ = F_{\min}*(1 - 2^{53})$. 
             \end{enumerate}
         \end{frame}
-        \begin{frame}{Results plotted}
-            With $A\in \RR^{N\times N}$ fixed, for each $x_0 \sim \mathcal N(I, \mathbf 0)$ realized, 30 experiments are preformed and the medium, minimum and maximum of $\delta_k$ are recorded for M-FISTA, Free R-WAPG, and V-FISTA. 
+        \begin{frame}{LASSO Results plotted}
+            With $A\in \RR^{N\times N}$ fixed, for each $x_0 \sim \mathcal N(I, \mathbf 0)$ realized, 20 experiments are preformed and the medium, minimum and maximum of $\delta_k$ are recorded for M-FISTA, Free R-WAPG, and V-FISTA. 
             \begin{figure}[H]
                 \begin{subfigure}[b]{0.47\textwidth}
                     \centering

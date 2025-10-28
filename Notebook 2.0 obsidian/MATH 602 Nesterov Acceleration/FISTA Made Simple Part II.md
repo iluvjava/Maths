@@ -801,8 +801,6 @@ Nesterov's monotone variant brings additional convergence results.
 > $$
 
 
-
-
 #### **Theorem | Convergence of Nestrov's Monotone FISTA variants under convexity**
 > Let $F = f + g$ satisfy Assumption Set 1. 
 > Initialize Nesterov's Monotone Accelerated Gradient scheme with $x_0 = v_0 = T_{L_0}(x_{-1})$, $\alpha_0 = 1$ and let it satisfy $\rho_{k - 1}\alpha_{k - 1}^2(1 - \alpha_k) = \alpha_k^2$ with $\rho_{k - 1} = L_{k}^{-1}L_{k - 1}$. 
