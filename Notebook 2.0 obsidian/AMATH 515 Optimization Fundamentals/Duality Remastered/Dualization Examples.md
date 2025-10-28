@@ -131,10 +131,10 @@ $g(x)$ is convex, strong duality applies and hence the objective of the dual and
 
 **Interpretations**
 
-* Each dual variable, $z_i$ is multiplied with $\tilde{b}$, it's controling the amount of resources used for the primal problem. 
+* Each dual variable, $z_i$ is multiplied with $\tilde{b}$, it's controlling the amount of resources used for the primal problem. 
 * Given any dual variable, $z$ and primal variable $x$, we have $z^T\tilde{A}x = c^Tx$. 
-  * $z^T$ arrages row of matrix $\tilde{A}$, the resource constraints to matches the primal objective, $c^Tx$. 
-  * $z^T$ arrages the of constraints so that primal objective is exactly ON the arranged constraints. 
+  * $z^T$ arranges row of matrix $\tilde{A}$, the resource constraints to matches the primal objective, $c^Tx$. 
+  * $z^T$ arranges the of constraints so that primal objective is exactly ON the arranged constraints. 
 * Dual objective is $z^Tb$, assuming $b_i > 0$, then we want to make $z_i$ close to 0, else we want to drive up $z_i$. 
 * For positive resources $b_i > 0$, we want to use as little resources as possible, hence setting $z_i = 0$. 
 

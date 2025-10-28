@@ -45,7 +45,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     Let $g: \RR^n \rightarrow\overline \RR$, we denote $g^\star$ to be the Fenchel conjugate. 
     $I: \RR^n \rightarrow \RR^n$ denotes the identity operator.
     For a multivalued mapping $T: \RR^n \rightarrow 2^{\RR^n}$, $\gra T$ denotes the graph of the operator, defined as $\{(x, y)\in \RR^n \times \RR^n : y \in Tx\}$. 
-    \subsection{Epsilon subgradient and inexact proximal point}
+    \subsection{Preliminaries}
         \begin{definition}[$\epsilon$-subgradient]\label{def:esp-subgrad}
             Let $g: \RR^n \rightarrow \overline \RR$ be proper, lsc. 
             Let $\epsilon \ge 0$. 
@@ -162,7 +162,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             At (1) we can use Fact \ref{fact:resv-identity}, and it has $(\lambda^{-1}\partial_\epsilon g^\star)^{-1} = \partial_\epsilon g\circ(\lambda I)$ by Fact \ref{fact:esp-fenchel-ineq} and the assumption that $g$ is closed, convex and proper. 
         \end{proof}
-
+        \begin{fact}[Fenchel Rockafellar duality]
+            
+        \end{fact}
     \subsection{Inexact proximal gradient inequality}
         \begin{assumption}[for inexact proximal gradient]\label{ass:for-inxt-pg-ineq}
             The assumption is about $(F, f, g, L)$. 
@@ -298,17 +300,40 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{align}\label{eqn:primal-pp}
             \Phi_\lambda(u) &:= \omega(Au) + \frac{1}{2\lambda} \Vert u - y\Vert^2
         \end{align}
-        This problem admits dual objective in $\RR^m$: 
+        Observe that $\rng A \cap \reli\dom g \neq\emptyset$ in Assumption \ref{ass:for-inxt-prox} shows $g$ is also closed convex and proper. 
+        The function $\Phi_\lambda$ is coersive due to its quadratic term and hence it must admit a minimizer \cite[Theorem 1.9]{rockafellar_variational_1998}. 
+        Recall the following famous theoretical result in the convex programming literature that we had adapted into our context. 
+        \begin{fact}[French Rockafellar Duality {\cite[Proposition 15.22]{bauschke_convex_2017}}]\;\label{fact:fn-rck-duality}\\
+            Let $f:\RR^n \rightarrow \overline \RR$ be closed convex and proper, $g: \RR^m \rightarrow \overline \RR$, $A \in \RR^{m \times n}$. 
+            If ${\mathbf 0 \in \inte(\dom g - A \dom f)}$, then 
+            \begin{align*}
+                \inf_{u\in \RR^n}\left\lbrace
+                    f(u) + g(Au)
+                \right\rbrace 
+                + \min_{v \in \RR^m}\left\lbrace
+                    f^\star\circ(-A^\top) + g^\star(v)
+                \right\rbrace = 0. 
+            \end{align*}
+        \end{fact}
+        \begin{remark}
+            The theorem is not exactly the same as what is claimed in the original text, since we are in a finite dimensional setting.
+            To see the original theorem cited in the finite dimension, we need the space $\mathcal H = \RR^n$ and then use \cite[Proposition 6.12]{bauschke_convex_2017}. 
+        \end{remark}
+        In our context, we are interested in the dual of the proximal problem $\Phi_\lambda$ which makes $f = u \mapsto \frac{1}{2\lambda}\Vert u - y\Vert^2$, and $g = \omega$, and it has $f^\star(v) = \frac{1}{2\lambda}\Vert \lambda v + y\Vert^2 - \frac{1}{2\lambda}\Vert y\Vert^2$ (see Apendix \ref{lemma:chore1}). 
+        Consequently, $[f^\star \circ (- A^\top)](v) = \frac{1}{2\lambda}\Vert -\lambda A^\top v  + y\Vert^2 - \frac{1}{2\lambda}\Vert y\Vert^2$. 
+        And therefore, $\Phi_\lambda$ admits Fenchel Rockafellar dual (or simply the dual) objective in $\RR^m$: 
         \begin{align}\label{eqn:dual-pp}
-            \Psi_\lambda(v) &:=
-            \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2
+            \Psi_\lambda(v) &:= f^\star\circ(-A^\top) + g^\star(v) 
+            = \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2
             + \omega^\star(v) - \frac{1}{2\lambda}\Vert y\Vert^2. 
         \end{align}
         We define the duality gap
         \begin{align}\label{eqn:duality-gap-pp}
             \mathbf G_\lambda(u, v) &:= \Phi_\lambda(u) + \Psi_\lambda(v). 
         \end{align}
-        If strong duality holds, it exists $(\hat u, \hat v)$ such that we have the following: 
+        Note that in this case the smooth part is quadratic and, $\dom f = \RR^n$, hence it translates to ${\mathbf 0 \in \inte(\dom g - A \dom f) = \inte(\dom g - \rng A)}$. 
+        This will hold because of $\rng A \cap \reli\dom g \neq\emptyset$ in Assumption \ref{ass:for-inxt-prox}.
+        Therefore strong duality holds and it exists $(\hat u, \hat v)$ such that we have the following: 
         \begin{align*}
             \mathbf G_\lambda(\hat u, \hat v) = 0 = \min_{u} \Phi_\lambda(u) + \min_v \Psi_\lambda(v)
         \end{align*}
@@ -618,7 +643,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
     \end{proof}
     \begin{proposition}[generic convergence rate of the gradient mapping]\;\label{prop:apg-cnvg-gm-generic}\\
-        \todoinline{Cette propositions ira démontrer que le séquence de ``Inexact Gradient Mapping" converge. }
+        \todoinline{Cette proposition ira démontrer que le séquence de ``Inexact Gradient Mapping" converge. }
     \end{proposition}
     \begin{proof}
         
@@ -659,58 +684,43 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{proof}
             Firstly, we will show \eqref{eqn:lemma:opt-mmntm-seq-result1}. 
             We will prove using induction.
-            Assume inductively that $\alpha_k \in (0, 1]$. 
-            We can solve for $\alpha_k$ using the recursive equality from Assumption \ref{ass:opt-mmntm-seq} which always has one of the strictly positive root given by: 
+            Fix any $k \ge 1$. 
+            Assume inductively that $\alpha_{k - 1} \in (0, 1]$. 
+            We can solve for $\alpha_k$ using the recursive equality $(1 - \alpha_k) = \alpha_{k}^2L_k\alpha_{k - 1}^{-2}L_{k - 1}^{-1}$ from Assumption \ref{ass:opt-mmntm-seq}.
+            Writing $\alpha_{k - 1}$ as $\alpha$, and $L_k/L_{k - 1}$ as $q$.
+            We then solve for $\alpha_{k}$, the quadratic equation always admits one root that is strictly positive which is given as: 
             \begin{align*}
-                \alpha_k &=
-                \frac{L_{k - 1}}{2L_k}\left(
-                    - \alpha_{k - 1}^2 + \left(
-                        \alpha_{k - 1}^4 + 4 \alpha_{k - 1}\frac{L_k}{L_{k - 1}}
-                    \right)^{1/2}
+                \alpha_k &= \frac{1}{2}\left(
+                    - \frac{\alpha^2}{q} + \sqrt{
+                        \frac{\alpha^4}{q^2} + \frac{4\alpha^2}{q}
+                    }
                 \right)
                 \\
-                &= \frac{\alpha_{k - 1}^2L_{k - 1}}{2L_k}\left(
-                    - 1 + \left(
-                        1 + \frac{4 L_k}{L_{k - 1}\alpha_{k-1}^2}
-                    \right)^{1/2}
+                &= \frac{\alpha^2}{2q}\left(
+                    - 1 + \sqrt{1 + \frac{4q}{\alpha^2}}
                 \right)
                 \\
-                &\underset{(1)}{<} \frac{\alpha_{k - 1}^2L_{k - 1}}{2L_k}\left(
-                    - 1 + 1 + 2 \alpha_{k - 1}^{-2}\frac{L_k}{L_{k - 1}}
+                &\underset{(1)}{<}
+                \frac{\alpha^2}{2q}\left(
+                    -1 + 1 + \frac{2q}{\alpha^2}
                 \right)
                 \\
                 &= 1
             \end{align*}
-            At (1) we completed a square inside the radical, and use the assumption that $\alpha_k > 0$ and, $L_k > 0, L_{k - 1} > 0$ because we had $B_k > 0$: 
+            At (1) we completed a square in the radical, and we used the assumption $\alpha_k > 0$ and, $L_k > 0, L_{k - 1} > 0$ because we had $B_k > 0$, therefore the following chain of inequality holds: 
             \begin{align*}
-                1 + 4 L_{k}L_{k - 1}^{-1}\alpha_{k - 1}^{-2}
-                &= 
-                1 + 4 L_{k}L_{k - 1}^{-1}\alpha_{k - 1}^{-2}
-                + 2L_k^2L_{k - 1}^{-2}\alpha_{k - 1}^{-4}
-                - 2L_k^2L_{k - 1}^{-2}\alpha_{k - 1}^{-4}
+                1 + \frac{4q}{\alpha^2} &= 
+                1 + \frac{4q}{\alpha^2} + \frac{4q^2}{\alpha^4} - \frac{4\alpha^2}{\alpha^2}
                 \\
-                &= (1 + 2L_kL_{k - 1}^{-1}\alpha_{k - 1}^{-2})^2
-                - 2\alpha_{k - 1}^{-4}L_k^2L_{k - 1}^{-2}
+                &= \left(
+                    1 + \frac{2q}{\alpha^2}
+                \right)^2 - \frac{4q^2}{\alpha^4} 
                 \\
-                &< \left(1 + 2L_kL_{k - 1}^{-1}\alpha_{k - 1}^{-2}\right)^2. 
+                &< \left(
+                    1 + \frac{2q}{\alpha^2}  
+                \right)^2. 
             \end{align*}
-            To see that $\alpha_k > 0$, recall the same fact that $L_k > 0$, and use the inductive hypothesis that $\alpha_{k - 1} \in (0, 1]$ then $\alpha_k > 0$ because: 
-            \begin{align*}
-                \alpha_k &=
-                \frac{L_{k - 1}}{2L_k}\left(
-                    - \alpha_{k - 1}^2 + \left(
-                        \alpha_{k - 1}^4 + 4 \alpha_{k - 1}\frac{L_k}{L_{k - 1}}
-                    \right)^{1/2}
-                \right) 
-                \\
-                &\ge \frac{L_{k - 1}}{2L_k}\left(
-                    - \alpha_{k - 1}^2 + \left(
-                        \alpha_{k - 1}^4
-                    \right)^{1/2}
-                \right) 
-                \\
-                &> 0. 
-            \end{align*}
+            To see that $\alpha_k > 0$, recall the same fact that $L_k > 0$, and the inductive hypothesis $\alpha_{k - 1} \in (0, 1]$ then $4q/\alpha^2 > 0$ so obviously $\alpha_k = \frac{\alpha^2}{2q}\left(-1 + \sqrt{1 + 4q/\alpha^2}\right) > 0$ because the quantity inside the radical is strictly larger than $1$. 
             Therefore, inductively it holds that $\alpha_k \in (0, 1)$ too. 
             \par
             We will now show \eqref{ineq:lemma:opt-mmntm-seq-result2}. 
@@ -736,7 +746,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \alpha_k &= 1 - \beta_k / \beta_{k - 1}
                 \\
                 \implies 
-                \alpha_k^2 &= (1 - \beta_k / \beta_{k - 1})^2.     
+                \alpha_k^2 &= (1 - \beta_k / \beta_{k - 1})^2. 
             \end{split}\end{align}
             Next, the recursive relation of $(\alpha_k)_{k \ge 0}$ gives
             \begin{align}\label{eqn:opt-mmntm-seq-pitem2}\begin{split}
@@ -744,11 +754,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &= 
                 (1 - \alpha_k)
-                \frac{\alpha_{k - 1}^2L_{k - 1}}{\alpha_0^2L_0}
-                \frac{L_{k - 1}\alpha_0^2L_0}{L_k}
+                \left(
+                    \frac{\alpha_{k - 1}^2L_{k - 1}}{\alpha_0^2L_0}
+                \right)
+                \frac{\alpha_0^2L_0}{L_k}
                 \\
                 &= 
-                (\beta_k\beta_{k - 1}^{-1})\beta_{k - 1}L_0\alpha_0^2L_k^{-1}
+                (\beta_k\beta_{k - 1}^{-1})\left(
+                    \beta_{k - 1}
+                \right)L_0\alpha_0^2L_k^{-1}
                 \\
                 &= \beta_kL_0\alpha_0^2L_k^{-1}.         
             \end{split}\end{align}
@@ -778,7 +792,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     1 + \beta_i^{1/2}\beta_{i - 1}^{-1/2}
                 \right)^2. 
             \end{align*}
-            Since $\beta_i$ is monotone decreasing, it has $0 < \beta_i^{-1/2}\beta_{i - 1}^{-1/2} \le 1$, this gives: 
+            Since $\beta_i$ is monotone decreasing, it has $0 < \beta_i^{1/2}\beta_{i - 1}^{-1/2} \le 1$, this gives: 
             \begin{align*}
                 \beta_i^{-1/2} - \beta_{i - 1}^{-1/2} 
                 &\le \alpha_0\sqrt{\frac{L_0}{L_i}} 
@@ -786,8 +800,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \beta_i^{-1/2} - \beta_{i - 1}^{-1/2}
                 \right).
             \end{align*}
-            Performing a telescoping sum, use the fact that $\beta_0 = 1$ will yield the desired results after some algebraic manipulations. 
+            Performing a telescoping sum for $i = 1, 2, \ldots, k$, use the fact that $\beta_0 = 1$ will yield the desired results after some algebraic manipulations. 
         \end{proof}
+        \begin{remark}
+        \end{remark}
         \begin{proposition}[$\mathcal O(1/k^2)$ optimal convergence rate of the outer loop]\;\label{prop:opt-cnvg-outr-loop}\\
             Let $(f, g, L)$, $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(\beta_k)_{k\ge 0}, \mathcal E_0, p$ be given by Assumption \ref{ass:opt-mmntm-seq}. 
             Assume in addition that
@@ -844,7 +860,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \begin{align*}
                 \epsilon_k \ge \frac{\mathcal E_0}{k^p}\left(
                     1 + k \alpha_0 \sqrt{L_0} \sqrt{L_{\min}^{-1}}
-                \right)^{-2} \ge \mathcal O(k^{-2-p}). 
+                \right)^{-2} = \mathcal O(k^{-2-p}). 
             \end{align*}
         \end{lemma}
         \begin{proof}
@@ -865,7 +881,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     1 + k\alpha_0\sqrt{L_0}\sqrt{L_{\min}^{-1}}
                 \right)^{-2} 
                 \\
-                &\ge \mathcal O(k^{-2-p}). 
+                &= \mathcal O(k^{-2-p}). 
             \end{align*}
             At (1), we used Lemma \ref{lemma:opt-mmntm-seq}. 
             At (2), we used that $L_{\min} \le L_i$ for all $i = 0, 1, 2, \ldots$. 
@@ -875,8 +891,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     In this section, we continue the discussion from Section \ref{sec:optz-inxt-pp-problem}. 
     As an important reminder, we will fix the vector $y \in \RR^n$, which is in the inexact proximal problem as a constant in this entire section. 
     \par
-    The inner loop of the algorithm is another algorithm that evaluates $x_k \approx_\epsilon T_{(B_k + \rho_k)}(y_k)$ for a given value of $\epsilon, B + \rho$ and at the point $y_k$. 
-    To accomplish, let $\lambda = (B_k + \rho_k)^{-1}$, the algorithm needs to resolve the following equivalent inexact proximal point problem: 
+    The inner loop is another algorithm that evaluates $x_k \approx_\epsilon T_{(B_k + \rho_k)}(y_k)$ for a given value of $\epsilon, B + \rho$ and at the point $y_k$. 
+    To accomplish let's assume that the outer loop iteration $k$ is fixed throughout this entire section.
+    Now let $\lambda = (B_k + \rho_k)^{-1}$, the algorithm needs to resolve the following equivalent inexact proximal point problem: 
     \begin{align*}
         x_k \approx_\epsilon \hprox_{\lambda g}(y_k - \lambda \nabla f(y_k)). 
     \end{align*}
@@ -896,11 +913,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{enumerate}   
         Let the gradient mapping $\mathcal G_{\tau}$ be defined as: $\mathcal G_\tau(x) := \tau (x - T_\tau(x))$     
         In addition, assume that the optimization problem $F$ satisfies the error bound condition if it has for all $\tau \ge L, x \in \RR^n$ there exists $\gamma > 0$: 
-        \begin{align*}
+        \begin{align}\label{ineq:pg-eb}
             \Vert \mathcal G_\tau(x)\Vert \ge \gamma\dist(x|S). 
-        \end{align*}
+        \end{align}
     \end{assumption}
-    \begin{definition}[proximal gradient method]\label{def:ista}
+    \begin{definition}[proximal gradient method]\;\label{def:ista}\\
         Suppose that $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}. 
         Let $\tau \ge L$, and $x_0 \in \RR^n$. 
         Then an algorithm is a proximal gradient method if it generates iterates $(x_k)_{k \ge 0}$ such that they satisfy for all $k \ge 1$: 
@@ -1025,59 +1042,59 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \item Let $v_0\in\dom \omega^\star$ be a feasible initial guess of $\Psi_{\lambda}$, and let $\tau \ge \lambda\Vert AA^\top\Vert$ be the inverse step size. 
                 \item Define $z_0 = y - \lambda A^\top v_0$ and smooth part of $\Psi_\lambda$ as $h := v \mapsto \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2$. 
             \end{enumerate}
-            The algorithm that solves the proximal problem generates the primal dual sequences $(z_n, v_n)$ such that for all $n = 0, 1, 2, \cdots$, by the rules: 
+            The algorithm that solves the proximal problem generates the primal dual sequences $(z_j, v_j)$ such that for all $j = 0, 1, 2, \cdots$, they satisfy: 
             \begin{align*}
-                v_{n + 1} &= \hprox_{\tau^{-1} \omega^\star}\left(
-                    v_{n} - \tau^{-1}\nabla h(v_n)
+                v_{j + 1} &= \hprox_{\tau^{-1} \omega^\star}\left(
+                    v_{j} - \tau^{-1}\nabla h(v_j)
                 \right), 
                 \\
-                z_{n + 1} &= y - \lambda A^\top v_{n + 1}. 
+                z_{j + 1} &= y - \lambda A^\top v_{j + 1}. 
             \end{align*}
-            Terminates if $\mathbf G_\lambda(z_n, v_n) \le \epsilon$ where $\mathbf G_\lambda$ is given by \eqref{eqn:duality-gap-pp}. 
+            Terminates if $\mathbf G_\lambda(z_j, v_j) \le \epsilon$ where $\mathbf G_\lambda$ is given by \eqref{eqn:duality-gap-pp}. 
         \end{definition}
         \begin{remark}
-            The value of $\mathbf G_\lambda(z_n, v_n)$ is easy to compute, it only requires access to matrix $A, A^\top$, and the function $\omega$. 
+            The value of $\mathbf G_\lambda(z_j, v_j)$ is easy to compute, it only requires access to matrix $A, A^\top$, and the function $\omega$. 
             In case when the proximal operator for $\omega^\star$ is nontrivial, we can use the Moreau identity and the proximal operator of $\omega$ instead. 
-            The gradient $\nabla f(v)$ is easy to compute, and it is: $AA^T v - Ay$.
+            The gradient $\nabla f(v)$ is easy to compute, and it is: $AA^\top v - Ay$.
         \end{remark}
         \par
         The following propositions precisely show that the linear convergence is achievable when Assumption \ref{ass:lin-cnvg-for-pp} holds. 
         \begin{proposition}[sufficient conditions of linear convergence of the inner loop]\;\label{prop:inn-loop-lin-cnvg}\\
             Let the parameters $(g, \omega, A, y, \Phi_\lambda, \Psi_\lambda, L^\lambda_{\Phi} ,\gamma_\lambda)$ of a proximal problem satisfy Assumption \ref{ass:lin-cnvg-for-pp}. 
-            Let $\tau$, $v_0, \epsilon$ be given by an algorithm that satisfies Definition \ref{def:ista-inner-lp} and, it generates iterates $(z_n, v_n)_{n \ge 0}$. 
+            Let $\tau$, $v_0, \epsilon$ be given by an algorithm that satisfies Definition \ref{def:ista-inner-lp} and, it generates iterates $(z_j, v_j)_{j \ge 0}$. 
             Let $\bar v$ be a minimizer of $\Psi_\lambda$, then the followings are true: 
             \begin{enumerate}[nosep]
-                \item The sequence $\Psi_\lambda(v_n) - \Psi_\lambda(\bar v)$ converges linearly to zero. \label{prop:inn-looplin-cnvg-item1}
-                \item If we let $\bar z := y - \lambda A^\top \bar v$, then $\Phi_\lambda(z_n) - \Phi_\lambda(\bar z)$ converges linearly to zero. \label{prop:inn-looplin-cnvg-item2}
-                \item The duality gap has convergence $\mathbf G_\lambda(z_n, v_n) \le \mathcal O\left(\left(1 - \frac{\gamma_\lambda}{2\tau}\right)^{n/2}\right)$. \label{prop:inn-looplin-cnvg-item3}
-                \item If $\mathbf G_\lambda(z_n, v_n) \le \epsilon$, then $z_n \approx_\epsilon \hprox_{\lambda g}(y)$. \label{prop:inn-looplin-cnvg-item4}
+                \item The sequence $\Psi_\lambda(v_j) - \Psi_\lambda(\bar v)$ converges linearly to zero. \label{prop:inn-looplin-cnvg-item1}
+                \item If we let $\bar z := y - \lambda A^\top \bar v$, then $\Phi_\lambda(z_j) - \Phi_\lambda(\bar z)$ converges linearly to zero. \label{prop:inn-looplin-cnvg-item2}
+                \item The duality gap has convergence $\mathbf G_\lambda(z_j, v_j) \le \mathcal O\left(\left(1 - \frac{\gamma_\lambda}{2\tau}\right)^{j/2}\right)$. \label{prop:inn-looplin-cnvg-item3}
+                \item If $\mathbf G_\lambda(z_j, v_j) \le \epsilon$, then $z_j \approx_\epsilon \hprox_{\lambda g}(y)$. \label{prop:inn-looplin-cnvg-item4}
             \end{enumerate}
         \end{proposition}
         \begin{proof}
-            Note that $\Psi_\lambda$ satisfies error bound condition in Assumption \ref{ass:lin-cnvg-for-pp}, and Definition \ref{def:ista-inner-lp} has $\tau \ge \lambda\Vert A^TA\Vert$ which satisfies Definition \ref{def:ista} therefore the linear convergence results of Theorem \ref{thm:lin-cnvg-ista-eb} applies to $\Psi_\lambda(v_n) - \Psi_\lambda(\bar v)$. 
+            Note that $\Psi_\lambda$ satisfies error bound condition in Assumption \ref{ass:lin-cnvg-for-pp}, and Definition \ref{def:ista-inner-lp} has $\tau \ge \lambda\Vert A^TA\Vert$ which satisfies Definition \ref{def:ista} therefore the linear convergence results of Theorem \ref{thm:lin-cnvg-ista-eb} applies to $\Psi_\lambda(v_j) - \Psi_\lambda(\bar v)$. 
             Therefore, we claim: 
             \begin{align}\label{ineq:inn-loop-lin-cnvg-pitem1}
-                \Psi_\lambda(v_n) - \Psi_\lambda(\bar v) &\le 
+                \Psi_\lambda(v_j) - \Psi_\lambda(\bar v) &\le 
                 \left(
                     1 - \frac{\gamma_\lambda}{2\tau}
-                \right)^n
+                \right)^j
                 \left(
                     \Psi_\lambda(v_0) - \Psi_\lambda(\bar v)
                 \right). 
             \end{align}
             \par
             We will now proceed to proving \ref{prop:inn-looplin-cnvg-item2}. 
-            Recall that the iterates $z_n = y - \lambda A^\top v_n$, and $\bar z = y - \lambda A^\top \bar v$, and we have Lipschitz continuity of $\Phi_\lambda$, hence Theorem \ref{fact:minimizing-dual-pp} applies, in addition since $\Phi_\lambda$ were assumed to be globally Lipschitz on $\dom \Phi_\lambda$ in Assumption \ref{ass:lin-cnvg-for-pp}, this means that we can replace $K$ regardless of $\bar v$, and convergent primal sequence $z_n \rightarrow \bar z$ with $L_\Phi^\lambda$ which gives: 
+            Recall that the iterates $z_j = y - \lambda A^\top v_j$, and $\bar z = y - \lambda A^\top \bar v$, and we have Lipschitz continuity of $\Phi_\lambda$, hence Theorem \ref{fact:minimizing-dual-pp} applies, in addition since $\Phi_\lambda$ were assumed to be globally Lipschitz on $\dom \Phi_\lambda$ in Assumption \ref{ass:lin-cnvg-for-pp}, this means that we can replace $K$ regardless of $\bar v$, and convergent primal sequence $z_j \rightarrow \bar z$ with $L_\Phi^\lambda$ which gives: 
             \begin{align}\label{ineq:inn-loop-lin-cnvg-pitem2}
                 \begin{split}
-                    \Phi_\lambda(z_n) - \Phi_\lambda(\bar z) &\le L_\Phi^\lambda \sqrt{2\lambda}\left(
-                    \Psi_\lambda(v_n) - \Psi_\lambda (\bar v)
+                    \Phi_\lambda(z_j) - \Phi_\lambda(\bar z) &\le L_\Phi^\lambda \sqrt{2\lambda}\left(
+                    \Psi_\lambda(v_j) - \Psi_\lambda (\bar v)
                     \right)^{1/2}
                     \\
                     &\underset{(1)}{\le} 
                     L_\Phi^\lambda\sqrt{2\lambda} \left(
                         1 - \frac{\gamma_\lambda}{2\tau}
-                    \right)^{n/2}\left(
+                    \right)^{j/2}\left(
                         \Psi_\lambda(v_0) - \Psi_\lambda(\bar v)
                     \right)^{1/2}. 
                 \end{split}
@@ -1086,42 +1103,42 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \par
             To prove \ref{prop:inn-looplin-cnvg-item3}, by definition of duality gap in \eqref{eqn:duality-gap-pp} we have:
             \begin{align*}
-                & \mathbf G_\lambda(z_n, v_n) 
+                & \mathbf G_\lambda(z_j, v_j) 
                 \\
-                &\underset{(1)}{=} \Phi_\lambda(z_n) + \Psi_\lambda(v_n) + 0
+                &\underset{(1)}{=} \Phi_\lambda(z_j) + \Psi_\lambda(v_n) + 0
                 \\
-                &= \Phi_\lambda(z_n) + \Psi_\lambda(v_n) - \Phi_\lambda(\bar z) - \Psi_\lambda(\bar v)
+                &= \Phi_\lambda(z_j) + \Psi_\lambda(v_j) - \Phi_\lambda(\bar z) - \Psi_\lambda(\bar v)
                 \\
-                &= \Phi_\lambda(z_n)- \Phi_\lambda(\bar z) + \Psi_\lambda(v_n) - \Psi_\lambda(\bar v)
+                &= \Phi_\lambda(z_j)- \Phi_\lambda(\bar z) + \Psi_\lambda(v_n) - \Psi_\lambda(\bar v)
                 \\
                 &\underset{(2)}{\le} 
                 L_\Phi^\lambda \sqrt{2\lambda}\left(
                     1 - \frac{\gamma_\lambda}{2\tau}
-                \right)^{n/2}\left(
+                \right)^{j/2}\left(
                     \Psi_\lambda(v_0) - \Psi_\lambda(\bar v)
                 \right)^{1/2}
                 + \left(
                     1 - \frac{\gamma_\lambda}{2\tau}
-                \right)^{n}\left(
+                \right)^{j}\left(
                     \Psi_\lambda(v_0) - \Psi_\lambda(\bar v)
                 \right)
                 \\
                 &= \left(
                     1 - \frac{\gamma_\lambda}{2\tau}
-                \right)^{n/2}\left(
+                \right)^{j/2}\left(
                     L_\Phi^\lambda \sqrt{2\lambda}\left(
                         \Psi_\lambda(v_0) - \Psi_\lambda(\bar v)
                     \right)^{1/2} 
                     + 
                     \left(
                         1 - \frac{\gamma_\lambda}{2\tau}
-                    \right)^{n/2} (\Psi_\lambda(v_0) - \Psi_\lambda(\bar v))
+                    \right)^{j/2} (\Psi_\lambda(v_0) - \Psi_\lambda(\bar v))
                 \right)
                 \\
                 &\le 
                 \left(
                     1 - \frac{\gamma_\lambda}{2\tau}
-                \right)^{n/2}\left(
+                \right)^{j/2}\left(
                     L_\Phi^\lambda \sqrt{2\lambda}
                     + 
                     (\Psi_\lambda(v_0) - \Psi_\lambda(\bar v))^{1/2}
@@ -1140,6 +1157,20 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             As a prelude, to have a global convergence rate it requires an upper bound of the initial optimally gap of $\Psi_\lambda$ of for all iterations of the outer loop. 
             Suppose for each outer iteration $k$, the inner loop is initialized to start on $v_0^{(k)}$, then there must be an upper bound for all $\Psi_\lambda\left(v_0^{(k)}\right) - \Psi_\lambda(\bar v)$. 
         \end{remark}
+    \subsection{Concrete examples where we can have linear convergence}
+        Some results in the literature ensuite.  
+        \begin{definition}[quasi-strongly convex function]
+            
+        \end{definition}
+        \begin{definition}[quadratic growth]
+            
+        \end{definition}
+        \begin{fact}[error bound quadratic growth equivalence]
+            
+        \end{fact}
+        \begin{fact}[Hoffman error bound]
+            
+        \end{fact}
         The next proposition will characterize a precise case where Assumption \ref{ass:lin-cnvg-for-pp} is true, and it's a case widely available in applications. 
         \begin{proposition}[1-norm problem]\label{prop:1nrm-prox-problem}
             Let $(g, \omega, A)$ satisfies Assumption \ref{ass:for-inxt-prox}. 
@@ -1215,7 +1246,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         The following assumption specifies conditions where the complexity of the inner using ISTA can be globally bounded for all iteration of the accelerated proximal gradient algorithm of the outer loop. 
         This is crucial for analyzing the global convergence rate of the algorithm. 
         \begin{assumption}[globally bounded inner loop complexity]\;\label{ass:bounded-inn-cmplx}\\
-            For any integer $k \ge 0$, this assumption is about parameters of the proximal problem $\left(g, \omega, A, \tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}\right)$ introduced at the beginning of this section, iterates $\left(z_n^{(k)}, v_n^{(k)}\right)_{n\ge0}$, the primal dual solutions $\left(\bar z^{(k)}, \bar v^{(k)}\right)$ and additional parameters $\lambda^{\min}, \lambda^{\max}, \gamma^{\min}, C_0$. 
+            For any integer $k \ge 0$, this assumption is about parameters of the proximal problem $\left(g, \omega, A, \tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}\right)$ introduced at the beginning of this section, iterates $\left(z_j^{(k)}, v_j^{(k)}\right)_{j\ge0}$, the primal dual solutions $\left(\bar z^{(k)}, \bar v^{(k)}\right)$ and additional constants $\lambda^{\min}, \lambda^{\max}, \gamma^{\min}, C_0$. 
             The assumptions now follow. 
             \begin{enumerate}[nosep]
                 \item As specified in this section, the parameter $\lambda^{(k)} = (B_k + \rho_k)^{-1}$ are from the outer loop. We denote $L_k = B_k + \rho_k$ for short. We assume in addition, there exists $\lambda^{\min}, \lambda^{\max}$ such that: 
@@ -1225,13 +1256,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \item There exists a constant $C_0$ such that all the initial guesses given by an algorithm in the outer loop $v_0^{(k)}$ and minimizers $\bar v^{(k)}$ satisfies $C_0 = \sup_{k \in \N \cup \{0\}}\left\Vert v_0^{(k)} - \bar v^{(k)}\right\Vert < \infty$. 
                 \item There exists the smallest error bound constant $\gamma^{\min}$ such that it lower bound all the constants for the proximal problem, i.e: $\exists \gamma_{\min}:\;0 < \gamma^{\min} \le \inf_{k \in \N \cup \{0\}} \gamma^{(k)}_\lambda$. 
                 \item $\tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}$ all satisfies error bound conditions (Assumption \ref{ass:lin-cnvg-for-pp}) with $y = \tilde y_k, \Phi_\lambda = \Phi_\lambda^{(k)}, \Psi_\lambda = \Psi_\lambda^{(k)}, L_\Phi^\lambda = L^{\lambda, (k)}_{\Phi}$ and $\gamma_\lambda = \gamma_\lambda^{(k)}$. 
-                \item The iterates of the inner loop $(z_n^{(k)}, v_n^{(k)})_{k \ge 0}$ are produced by an algorithm that satisfies Definition \ref{def:ista-inner-lp}. 
+                \item The iterates of the inner loop $(z_j^{(k)}, v_j^{(k)})_{k \ge 0}$ are produced by an algorithm that satisfies Definition \ref{def:ista-inner-lp}. 
             \end{enumerate}
         \end{assumption}
         \par
         The proposition that follows characterize the bare minimum requirements so that the inner loop's complexity depends only on required accuracies $\epsilon$, and parameter $\lambda$ for all initial guess of the outer loop. 
         \begin{proposition}[inner loop complexity can be bounded globally]\;\label{prop:inner-lp-cmplx}\\
-            Let $\left(g, \omega, A, \tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}\right)$, $\left(z_n^{(k)}, v_{n}^{(k)}\right)_{n \ge 0}$, $\left(\bar z^{(k)}, \bar v^{(k)}\right)$ and additional parameters $\lambda^{\min}, \lambda^{\max}, \gamma^{\min}, C_0$ such that they satisfy Assumption \ref{ass:bounded-inn-cmplx}. 
+            Let $\left(g, \omega, A, \tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}\right)$, $\left(z_j^{(k)}, v_{j}^{(k)}\right)_{j \ge 0}$, $\left(\bar z^{(k)}, \bar v^{(k)}\right)$ and additional parameters $\lambda^{\min}, \lambda^{\max}, \gamma^{\min}, C_0$ such that they satisfy Assumption \ref{ass:bounded-inn-cmplx}. 
             \begin{enumerate}[nosep]
                 \item\label{prop:inner-lp-cmplx-result1} 
                 If $\lambda_1 > \lambda_2$ then $\Psi_{\lambda_1}(v) \ge \Psi_{\lambda_2}(v)$ for all $v \in \dom \omega^\star$. 
@@ -1246,7 +1277,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \item\label{prop:inner-lp-cmplx-result4} 
                 There exists a constant $\infty > C_2 \ge \sqrt{C_1}\sup_{k \in \N \cup \{0\}}\left\lbrace L_\Phi^{\lambda, (k)}\sqrt{2\lambda^{(k)}} + \sqrt{C_1}\right\rbrace$. 
                 \item\label{prop:inner-lp-cmplx-result5} 
-                Denote $N_\epsilon$ to be the total number of iteration of inner loop needed to achieve $\mathbf G_\lambda^{(k)}(z_n, v_n) \le \epsilon$, then it's sufficient to have 
+                Denote $N_\epsilon$ to be the total number of iteration of inner loop needed to achieve $\mathbf G_\lambda^{(k)}(z_j, v_j) \le \epsilon$, then it's sufficient to have 
                 \begin{align*}
                     N_{\epsilon} = \left\lceil 
                         \frac{2\ln(\epsilon/C_2)}{
@@ -1274,12 +1305,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \par
             And finally, we are ready to show \ref{prop:inner-lp-cmplx-result5}, it has for all $k \ge 0$: 
             \begin{align*}
-                & \mathbf G_\lambda^{(k)}(z_n^{(k)}, v_n^{(k)}) 
+                & \mathbf G_\lambda^{(k)}(z_j^{(k)}, v_j^{(k)}) 
                 \\
                 &\underset{(1)}{\le} 
                 \left(
                     1 - \frac{\gamma_\lambda^{(k)}}{2 \tau^{(k)}}
-                \right)^{n/2}
+                \right)^{j/2}
                 \left(
                     L_\Phi^{\lambda, (k)} \sqrt{2 \lambda^{(k)}} + 
                     \sqrt{\Psi_{\lambda}^{(k)}(v^{(k)}_0) - \Psi_\lambda^{(k)}(\bar v^{(k)})}
@@ -1290,7 +1321,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &\underset{(2)}{\le}
                 \left(
                     1 - \frac{\gamma_\lambda^{(k)}}{2 \tau^{(k)}}
-                \right)^{n/2}
+                \right)^{j/2}
                 \left(
                     L_\Phi^{\lambda, (k)} \sqrt{2 \lambda^{(k)}} + 
                     \sqrt{C_1}
@@ -1299,25 +1330,84 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &\underset{(3)}{\le}
                 \left(
                     1 - \frac{\gamma_\lambda^{(k)}}{2 \tau^{(k)}}
-                \right)^{n/2} C_2
+                \right)^{j/2} C_2
                 \\
                 &\underset{(4)}{\le}
                 \left(
                     1 - \frac{\gamma^{\min}}{2 \lambda^{\max}\Vert AA^\top\Vert}
-                \right)^{n/2} C_2. 
+                \right)^{j/2} C_2. 
             \end{align*}
             At (1), we used Theorem \ref{prop:inn-loop-lin-cnvg}. 
             At (2), we used results form \ref{prop:inner-lp-cmplx-result3} and, at (3) we used \ref{prop:inner-lp-cmplx-result4}. 
             Finally, at (4), we use the fact that the step size $\tau$ in Definition \ref{def:ista-inner-lp} which translate into our context, it has $\tau^{(k)} \ge \lambda^{(k)}\Vert AA^\top\Vert$, and hence it can be upper bounded by $\tau^{\max} := \sup_{k \in \N \cup \{0\}}\lambda^{(k)}\Vert AA^\top\Vert < \infty$. 
-            Now, substitute $n = N_\epsilon$ then it's prominent that $\mathbf G_\lambda^{(k)}\left(z_n^{(k)}, v_n^{(k)}\right) \le \epsilon$ by using the log of base formula. 
+            Now, substitute $j = N_\epsilon$ then it's prominent that $\mathbf G_\lambda^{(k)}\left(z_j^{(k)}, v_j^{(k)}\right) \le \epsilon$ by using the log of base formula. 
         \end{proof}
     \subsection{Overall complexity}
         In this section we combine the complexity of the inner loop with the convergence rate of the outer loop to deduce the rate of convergence. 
         Details will be given to the assumptions needed to obtain globally bounded complexity of the inner loop. 
 
-            
-
-
+\appendix
+    \section{Super boring chores}
+        Super boring stuff that I just want to skip but somehow necessary. 
+        \begin{lemma}[That conjugate for the dual of proximal problem]\;\label{lemma:chore1}\\
+            Let $f:\RR^n \rightarrow \overline \RR:= \frac{1}{2\lambda}\Vert u - v\Vert^2$, then its conjugate is given by
+            \begin{align*}
+                f^\star(v) = \frac{1}{2\lambda}\Vert \lambda v + y\Vert^2 - \frac{1}{2\lambda}\Vert y\Vert^2. 
+            \end{align*}
+        \end{lemma}
+        \begin{proof}
+            Recall the following properties for any closed, proper convex function $f: \RR^n \rightarrow \overline \RR$. 
+            Let $a \in \RR^n$ be any vector, let $\alpha \in \RR, c \in\RR$ be some scalar, then we have these three properties of conjugating convex funtion. 
+            \begin{enumerate}[nosep]
+                \item $(\alpha f)^\star = \alpha f^\star \circ (\alpha^{-1}I)$. 
+                \item $(f + c)^\star(y) = f^\star(y) - c$. 
+                \item $\left(x \mapsto f(x) + \langle x, y\rangle\right)^\star(y) = f^\star(y - a)$. 
+            \end{enumerate}
+            From here we have: 
+            \begin{align*}
+                f^\star(v) 
+                &= 
+                \left(
+                   u \mapsto \lambda^{-1}\left(\frac{1}{2}\Vert u\Vert^2 - \langle u, y\rangle\right) 
+                    + \frac{1}{2\lambda} \Vert y\Vert^2
+                \right)^\star(v)
+                \\
+                &= \left(
+                    u \mapsto \lambda^{-1}\left(\frac{1}{2}\Vert u\Vert^2 - \langle u, y\rangle\right) 
+                \right)^\star(v)
+                - \frac{1}{2\lambda} \Vert y\Vert^2
+                \\
+                &= 
+                \left[
+                    \lambda^{-1}\left(
+                    u \mapsto \left(\frac{1}{2}\Vert u\Vert^2 - \langle u, y\rangle\right) 
+                \right)^\star\circ(\lambda I)
+                \right](v)
+                - \frac{1}{2\lambda} \Vert y\Vert^2
+                \\
+                &= \left[
+                    \lambda^{-1}\left(
+                    u \mapsto \left(
+                        \frac{\Vert \cdot\Vert^2}{2}
+                    \right)^\star(u + y)
+                \right)\circ(\lambda I)
+                \right](v)
+                - \frac{1}{2\lambda} \Vert y\Vert^2
+                \\
+                &= \left[
+                    \lambda^{-1}\left(
+                        u \mapsto \frac{\Vert u + y\Vert^2}{2}
+                    \right)\circ(\lambda I)
+                \right](v)
+                - \frac{1}{2\lambda} \Vert y\Vert^2
+                \\
+                &= \lambda^{-1}\left(
+                    \frac{1}{2}\Vert \lambda v + y\Vert^2
+                \right) 
+                - \frac{1}{2\lambda} \Vert y\Vert^2. 
+            \end{align*}
+        \end{proof}
+        
 \bibliographystyle{siam}
 \bibliography{references/refs.bib}
 \end{document}
