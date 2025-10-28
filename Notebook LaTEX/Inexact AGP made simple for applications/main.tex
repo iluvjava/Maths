@@ -902,6 +902,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     In this section, we will show that there exists an algorithm generating the sequences $z_n, v_n$ such that $\mathbf G_\lambda (z_n, v_n)$ converges linearly if $\Psi_\lambda$ satisfies the error bound conditions. 
     Using results available in the literature, we will characterize the exact scenarios of $\omega \circ A$ when this is possible to achieve. 
     To start, the following assumption is the general error bound condition of a convex with additive composite structure. 
+
     \begin{assumption}[gradient mapping error bound]\;\label{ass:pg-eb}\\
         The following assumption is about $(F, f, g, L, S, \gamma)$. 
         Assume that
@@ -1158,7 +1159,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Suppose for each outer iteration $k$, the inner loop is initialized to start on $v_0^{(k)}$, then there must be an upper bound for all $\Psi_\lambda\left(v_0^{(k)}\right) - \Psi_\lambda(\bar v)$. 
         \end{remark}
     \subsection{Concrete examples where we can have linear convergence}
-        Some results in the literature ensuite.  
+        Some results in the literature now en suite.  
         \begin{definition}[quasi-strongly convex function]
             
         \end{definition}
@@ -1169,6 +1170,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             
         \end{fact}
         \begin{fact}[Hoffman error bound]
+            
+        \end{fact}
+        \begin{fact}[A characterization of quasi strongly convex function]
             
         \end{fact}
         The next proposition will characterize a precise case where Assumption \ref{ass:lin-cnvg-for-pp} is true, and it's a case widely available in applications. 
