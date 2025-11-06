@@ -2286,6 +2286,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
         \begin{enumerate}[nosep]
             \item It allows $\alpha_k \in (0, 1)$. The sequence $(\alpha_k)_{k \ge 1}$ is as loose as possible. 
             \item It has $\rho_{k - 1} = \alpha_k/((1 - \alpha_k)\alpha_{k - 1}^2)$, hence $(1 - \alpha_k)\rho_{k - 1} = \alpha_k^2/\alpha_{k - 1}^2$. 
+            \item Since $\mu = 0$, by Proposition \ref{prop:wapg-first-equivalent-repr}, the extrapolated iterate has $y_k = x_{k + 1} + \alpha_{k + 1}(\alpha_k^{-1} - 1)$
         \end{enumerate}
         Hence, the big product in Proposition \ref{prop:wapg-convergence} simplifies into
         \begin{align*}
@@ -2300,7 +2301,8 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             \max\left(
                 1 - \alpha_{i + 1}, \frac{\alpha_{i + 1}^2}{\alpha_i^2}\right). 
         \end{align*}
-        Finally, since $\mu = 0$, Proposition \ref{prop:r-wapg-momentum-repr} applies with the momentum term simplifies into $\alpha_{k + 1}(\alpha_k^{-1} - 1)$. 
+        It remains to verify whether the sequence $\alpha_k$ is still valid, by which it means that $\alpha_k \in (0, 1)$ for all $k \ge 1$. 
+        We will soon reveal that it will be true in the part that comes. 
     }
     \par
     Below, we define \emph{Free R-WAPG}. 
@@ -2318,7 +2320,7 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
             \ENDWHILE
             \STATE{$x_{k + 1} := x^+$;}
             \STATE{$\alpha_{k + 1} := (1/2)\left(\mu_k/L_k - \alpha_{k}^2 + \sqrt{(\mu_k/L_k - \alpha_{k}^2)^2 + 4\alpha_{k}^2}\right)$;}
-            \STATE{$\theta_{k + 1} := \alpha_k(1 - \alpha_k)/(\alpha_k^2 + \alpha_{k + 1})$;}
+            \STATE{$\theta_{k + 1} := \alpha_{k + 1}(\alpha_k^{-1} - 1)$;}
             \STATE{$y_{k + 1}:= x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$; }
             \STATE{\textbf{Compute: } $f(y_{k + 1})$}
             \STATE{$\mu_{k + 1} := D_f(y_{k + 1}, y_{k})/\Vert y_{k + 1} - y_k\Vert^2 + (1/2)\mu_k$;}
@@ -2376,31 +2378,29 @@ Convex optimization, Nesterov's acceleration, Proximal gradient, Convergence rat
     To prevent the case $\alpha_k = 1$, we may always force the estimate $\mu = L/2$ whenever $\mu > L/2$.
     % In the very unlikely case when $q = 1$, Algorithm \ref{alg:free-rwapg} has $\theta_k = 0$, and it performs one step of proximal gradient descent.
     \subsection{Numerical experiments}
-        This section showcases results for the numerical experiments conducted using FR-WAPG algorithm (Algorithm \ref{alg:free-rwapg}), and compare with other APG algorithms in the literatures: the V-FISTA, and M-FISTA algorithm described in Section (10.7.7, 10.7.6) by Beck \cite{beck_first-order_2017}.
+        In this section, we will show the numerical experiments results of algorithm (Algorithm \ref{alg:free-rwapg}) in this section then, we compare with other APG algorithms in the literatures: the V-FISTA, and FISTA algorithm described in Section (10.7.7, 10.7.6) by Beck \cite{beck_first-order_2017}.
         We implemented in Julia \cite{bezanson_julia_2017}.
-        The equivalences highlighted in Proposition \ref{prop:r-wapg-momentum-repr} allows us to compare the sequence of iterates $(x_k)_{k \ge 1}, (y_k)_{k \ge0}$ for R-WAPG, V-FISTA and M-FISTA.
+        % The equivalences highlighted in Proposition \ref{prop:r-wapg-momentum-repr} allows us to compare the sequence of iterates $(x_k)_{k \ge 1}, (y_k)_{k \ge0}$ for R-WAPG, V-FISTA and M-FISTA.
         \par
-        We measure the aggregate statistics of the base two logarithms of the normalized optimality gap (NOG), at each iteration $k$ with the same initialization conditions given for all algorithms.
-        Given $x_k$, and minimum $F^*$, we define the normalized optimality gap:
-        \newcommand{\NOG}{\text{\textbf{NOG}}}
+        We will now introduce the global setup of our numerical experiments. 
+        To compare the convergence of different algorithms, we measure the logarithm of the relative optimaity gap $\delta_k$ which we defined: 
+        % \newcommand{\NOG}{\text{\textbf{NOG}}}
         \begin{align*}
             \delta_k := \log_2\left(
-                \NOG_k
-            \right)
-            \text{ with }
-            \NOG_k := \frac{F(x_k) - F^*}{F(x_0) - F^*}.
+                \frac{F(x_k) - F^*}{F(x_0) - F^*}
+            \right). 
         \end{align*}
-        Since it's not the case that $F^*$ is always known in prior, we will use the minimum of all $F(x_k)$ across all algorithms, all iterations $k$ as the surrogate for $F^*$ when the true value is unavailable.
+        We give the same inigial guess $x_0$ for all algorithms.
+        Since $F^*$ is not always known in prior, we used the minimum of all $F(x_k)(1 - 2^{53})$ across all algorithms to estimate the minimum $F^*$ when it's not avaiable. 
         \par
-        We consider the norm of the gradient mapping $\Vert \mathcal G_L(y_k)\Vert < \epsilon$ as a termination conditions for all test algorithms.
-        The $L$ can change during each iteration if it's obtained through the specified Lipschitz line search routine.
-        \subsubsection{Simple convex quadratic}
-            Consider $\min_{x \in \RR^n} \{F(x):= f(x) + 0\}$ where
-            \begin{align*}
-                f(x) = (1/2)\langle x, A x\rangle.
-            \end{align*}
-            $A$ is set to be a positive semi-definite diagonal matrix, so the problem admits the minimizer $x^* = \mathbf 0$ (which is not unique) with minimum being zero.
-            We apply Algorithm \ref{alg:free-rwapg}, M-FISTA, and V-FISTA.
+        Fix some $\epsilon > 0$. 
+        The termination condition is $\Vert \mathcal G_L(y_k)\Vert < \epsilon$ for all algorithms.
+        We implemented line search for Lipschitz smoothness constant $L$ only for FISTA. 
+        For FR-WAPG and V-FISTA, an over estimate of the Lipschitz modules is given. 
+        \subsubsection{Experiments with a simple convex quadratic function}
+            Consider $\min_{x \in \RR^n} \{F(x):= f(x) + 0\}$ given by $f(x) = (1/2)\langle x, A x\rangle$. 
+            Here, $A$ is set to be a positive semi-definite diagonal matrix, hence problem is a convex quadratic and one of its minimizer is $x^* = \mathbf 0$,  with minimum being zero.
+            We repeat the same experiment for Algorithm \ref{alg:free-rwapg}, M-FISTA, and V-FISTA for 30 times with different initial guesses. 
             The following parameters are used to set up the numerical experiments:
             \begin{enumerate}
                 \item $N$, the dimension of the problem which defines $A \in \RR^{N\times N}$, a diagonal matrix given by $N- 1$ linearly spaced with equal increment on the interval $[\mu, L]$, and an extra number $0$, i.e.,

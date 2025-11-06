@@ -391,7 +391,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
     \subsection{Our contributions}
 
-
 \section{The inexact accelerated proximal gradient with controlled errors}
     In this section, we present an accelerated algorithm with controlled error using Definition \ref{def:inxt-pg}, and show that it can have a convergence rate under certain error conditions. 
     \begin{definition}[our inexact accelerated proximal gradient]\;\label{def:inxt-apg}\\
@@ -902,7 +901,23 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     In this section, we will show that there exists an algorithm generating the sequences $z_n, v_n$ such that $\mathbf G_\lambda (z_n, v_n)$ converges linearly if $\Psi_\lambda$ satisfies the error bound conditions. 
     Using results available in the literature, we will characterize the exact scenarios of $\omega \circ A$ when this is possible to achieve. 
     To start, the following assumption is the general error bound condition of a convex with additive composite structure. 
-
+    \begin{definition}[the exact proximal gradient and gradient mapping]\;\label{def:pg-and-gm}\\
+        Let $F = f + g$ where $f:\RR^n \rightarrow \RR$ is a differentiable function and, $g: \RR^n \rightarrow \overline \RR$ is closed convex and proper. 
+        We define the exact proximal gradient mapping and, gradient mapping: 
+        \begin{enumerate}[nosep]
+            \item The proximal gradient operator $T_{\tau}(x) := \hprox_{\tau^{-1}g}(x - \tau^{-1}\nabla f(x))$,
+            \item and the gradient mapping operator $\mathcal G_\tau(x) := \tau (x - T_\tau(x))$. 
+        \end{enumerate}
+    \end{definition}
+    \begin{definition}[error bound]\;\label{def:err-bnd}\\
+        Let $F = f + g$ where $f:\RR^n \rightarrow \RR$ is a differentiable function and, $g: \RR^n \rightarrow \overline \RR$ is closed convex and proper. 
+        Assume the set of minimizers $S = \argmin_{x} F \neq \emptyset$. 
+        Let $\gamma> 0$, and let proximal gradient mapping $T_\tau$, gradient mapping $\mathcal G_\tau$ of $F = f + g$ as given by Definition \ref{def:pg-and-gm}. 
+        Then their sum $F = f + g$ satisfies the error bound condition if there exists $\gamma > 0$ such that 
+        \begin{align}\label{ineq:pg-eb}
+            \Vert \mathcal G_\tau(x)\Vert \ge \gamma\dist(x|S). 
+        \end{align}
+    \end{definition}
     \begin{assumption}[gradient mapping error bound]\;\label{ass:pg-eb}\\
         The following assumption is about $(F, f, g, L, S, \gamma)$. 
         Assume that
@@ -910,13 +925,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \item $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, 
             \item let $\tau > 0$ be the step size inverse, let $T_{\tau}$ be the proximal operator of $f + g$ as given by $T_{\tau}(x) := \hprox_{\tau^{-1}g}(x - \tau^{-1}\nabla f(x))$, 
             \item $S= \argmin_{x}{f(x) + g(x)} \neq \emptyset$, 
-            \item the objective function is given by $F = f + g$. 
-        \end{enumerate}   
-        Let the gradient mapping $\mathcal G_{\tau}$ be defined as: $\mathcal G_\tau(x) := \tau (x - T_\tau(x))$     
-        In addition, assume that the optimization problem $F$ satisfies the error bound condition if it has for all $\tau \ge L, x \in \RR^n$ there exists $\gamma > 0$: 
-        \begin{align}\label{ineq:pg-eb}
-            \Vert \mathcal G_\tau(x)\Vert \ge \gamma\dist(x|S). 
-        \end{align}
+            \item the objective function is given by $F = f + g$ and, it satisfis error bound (Definition \ref{def:err-bnd}). 
+        \end{enumerate} 
     \end{assumption}
     \begin{definition}[proximal gradient method]\;\label{def:ista}\\
         Suppose that $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}. 
@@ -1160,19 +1170,104 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{remark}
     \subsection{Concrete examples where we can have linear convergence}
         Some results in the literature now follow.  
-        \begin{definition}[quasi-strongly convex function]
-            
+        The goal of this section is to show that specific type of nonsmooth function $\omega$ that common appear in applications satisfies the error bound condition for the proximal problem, and hence the results from the previous section are applicable. 
+        \begin{definition}[quasi-strongly convex function {\cite[Definition 1]{necoara_linear_2019}}]
+            Let $f:\RR^n \rightarrow \RR$ be differentiable. 
+            Let $X \subseteq \RR^n$ and suppose that the set of minimizers $X^+=\argmin_{x \in X} f(x) \neq \emptyset$ exists and, denote $f^+$ to be the minimum of $f$ on $X$. 
+            It is quasi strongly-convex on the set $X \subseteq \RR^n$ if $\exists \kappa > 0$ such that $\forall x \in X$, let $\bar x = \Pi_{X^+} x$, it satisfies
+            \begin{align*}
+                f^+ - f(x) - \langle \nabla f(x), \bar x - x\rangle + \frac{\kappa}{2}\Vert x - \bar x\Vert^2 \quad \left(\forall x \in X\right). 
+            \end{align*}
         \end{definition}
-        \begin{definition}[quadratic growth]
-            
+        \begin{definition}[quadratic growth]\label{def:q-growth}
+            Let $F = f + g$ where $f: \RR^n \rightarrow \RR$ be differentiable and, $g: \RR^n \rightarrow \overline \RR$ be closed convex and, proper. 
+            Assume in addition that the set of minimizer $S := \argmin_{x\in \RR^n} F \neq \emptyset$, denote $F^+$ to be the minimum, then it satisfies the quadratic growth conditions if there exists $\kappa > 0$ such that
+            \begin{align*}
+                (\forall x \in \RR^n)\; F(x) \ge F^+ + \frac{\kappa}{2}\dist^2(x | S).
+            \end{align*}
         \end{definition}
-        \begin{fact}[error bound quadratic growth equivalence]
-            
-        \end{fact}
+        The following theorem shows that under the standard framework of smooth nonsmooth additive compsitive objective function, the quadratic growth condition implies error bound.
+        \begin{theorem}[quadratic growth implies error bound]\;\label{thm:qfg-means-eb}\\
+            Let $f: \RR^n \rightarrow $
+        \end{theorem}
+        \begin{proof}
+            Denote $x^+ = T_\tau(x)$, $\bar x = \Pi_{S}x$, and $\bar x ^+ = \Pi_{S} x^+$. 
+            We use the exact proximal gradient inequality by applying Theorem \ref{thm:inxt-pg-ineq} with $\epsilon = 0, \rho = 0$ and, $z = \bar x^+$ gives: 
+            \begin{align*}
+                0 &\ge F(x^+) - F(\bar x^+) - \tau \langle \bar x^+ - x^+, x^+ - x\rangle - \frac{\tau}{2}\Vert x - x^+\Vert^2
+                \\
+                &\underset{(1)}{\ge} \frac{\kappa}{2}\Vert x^+ - \bar x^+\Vert^2
+                - \Vert \tau(\bar x^+ - x^+)\Vert \Vert x^+ - x\Vert - \frac{1}{2\tau }\Vert \tau(x - x^+)\Vert^2
+                \\
+                &= \frac{\kappa}{2}\left\Vert
+                    x^+ - \bar x^+
+                \right\Vert^2 
+                - \frac{\tau}{2}\left(
+                    2\left\Vert
+                        \bar x^+ - x^+
+                    \right\Vert \left\Vert
+                        x^+ - x
+                    \right\Vert
+                    + \Vert x - x^+\Vert^2
+                \right)
+                \\
+                &\underset{(2)}{=}
+                \frac{\kappa + \tau}{2}\left\Vert x^+ - \bar x^+ \right\Vert^2 
+                - \frac{\tau}{2}(
+                    \Vert \bar x^+ - x^+\Vert + \Vert x^+ - x\Vert
+                )^2
+                \\
+                &\underset{(3)}{\ge}
+                \frac{\kappa + \tau}{2}\left(
+                    \Vert x - \bar x\Vert - \Vert x - x^+\Vert
+                \right)^2
+                - \frac{\tau}{2}(\Vert x - \bar x\Vert)^2
+                \\
+                \iff 
+                0 &\ge
+                \sqrt{\kappa + \tau}\left(
+                    \Vert x - \bar x\Vert - \Vert x - x^+\Vert
+                \right)
+                - \sqrt{\tau}(\Vert x - \bar x\Vert)
+                \\
+                &= (\sqrt{\kappa + \tau} - \sqrt{\tau})\Vert x - \bar x \Vert
+                - \sqrt{\kappa + \tau} \Vert x - x^+\Vert. 
+            \end{align*}
+            At (1), we used quadratic growth assumption and substitute the inequality of Definition \ref{def:q-growth}, and the Cauchy inequality. 
+            At (2), consider substituting $a = \bar x^+ - x^+, b = x^+ - x$, so the second terms with the parenthesis has inside $2\Vert a\Vert\Vert b\Vert + \Vert b\Vert^2 = (\Vert a\Vert + \Vert b\Vert)^2 - \Vert a\Vert^2$. 
+            At (3), we used the properties of projecting onto the set set of minimizer $S$, which gives:
+            \begin{align*}
+                & \Vert x - \bar x\Vert \le 
+                \Vert x - \bar x^+\Vert 
+                \le \Vert x - x^+\Vert + \Vert x^+ - \bar x^+\Vert
+                \\
+                \implies
+                & \Vert x - \bar x\Vert - \Vert x - x^+\Vert
+                \le \Vert x^+ - \bar x^+\Vert
+            \end{align*}
+            Finally, re-arranging the results it should yield the following inequality: 
+            \begin{align*}
+                \Vert \mathcal G_\tau(x)\Vert 
+                &= \Vert \tau(x - x^+)\Vert 
+                \\
+                &\ge \tau\left(
+                    \frac{\sqrt{\kappa + \tau} - \sqrt{\tau}}{\sqrt{\kappa + \tau}}
+                \right)\Vert x - \bar x\Vert
+                \\
+                &= \frac{\tau\kappa}{\kappa + \tau + \sqrt{\tau(\kappa + \tau)}}
+                \Vert x - \bar x\Vert. 
+            \end{align*}
+            The above is error bound conditions as defined in Definition \ref{def:err-bnd}, with $\gamma = \frac{\tau\kappa}{\kappa + \tau + \sqrt{\tau(\kappa + \tau)}}$. 
+        \end{proof}
+        \begin{remark}
+            This theorem is not exactly a new result. 
+            We adapted claim and the proof here so the notations stays consistent and to make it self contained. 
+
+        \end{remark}
         \begin{fact}[Hoffman error bound]
             
         \end{fact}
-        \begin{fact}[A characterization of quasi strongly convex function]
+        \begin{fact}[a type of quasi strongly convex function]
             
         \end{fact}
         The next proposition will characterize a precise case where Assumption \ref{ass:lin-cnvg-for-pp} is true, and it's a case widely available in applications. 

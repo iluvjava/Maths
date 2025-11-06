@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1761617531.49625 "main.aux" "main.bbl" "main" 1761618002.7026 0
+["bibtex main"] 1762423037.65812 "main.aux" "main.bbl" "main" 1762423038.60007 0
   "./references/refs.bib" 1761603606.35734 16675 eb2c8a0eb54136acdd34ae93e5be2cea ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/siam.bst" 1292289607 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1761618002.32702 10431 1d1c6802215e6381ace146e83b93ec9b "pdflatex"
+  "main.aux" 1762423038.3859 10908 513ac489d841991781847ac60e63bd71 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1761618001.28325 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Inexact AGP made simple for applications/main.tex" "main.pdf" "main" 1761618002.70284 0
-  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Inexact AGP made simple for applications/main.tex" 1761618001.07312 89510 697f2aa8ed3b54efb6d0670fb981cdf4 ""
+["pdflatex"] 1762423037.73385 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/EB is the key to IAGP/main.tex" "main.pdf" "main" 1762423038.60018 0
+  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/EB is the key to IAGP/main.tex" 1762423036.46168 95909 679828300d773e09a18b7f196b79df93 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -230,10 +230,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1716844513.00476 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1716844504 8221424 900989947c23303b742a586f0df8c087 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "main.aux" 1761618002.32702 10431 1d1c6802215e6381ace146e83b93ec9b "pdflatex"
-  "main.bbl" 1761617531.61115 1317 d0da281bbc9d2391112a076b33bd39fe "bibtex main"
-  "main.out" 1761618002.32828 4125 8fe539cbb8b2aaaadef3702d87688adf "pdflatex"
-  "main.tex" 1761618001.07312 89510 697f2aa8ed3b54efb6d0670fb981cdf4 ""
+  "main.aux" 1762423038.3859 10908 513ac489d841991781847ac60e63bd71 "pdflatex"
+  "main.bbl" 1762423037.73131 1317 d0da281bbc9d2391112a076b33bd39fe "bibtex main"
+  "main.out" 1762423038.38682 4125 8fe539cbb8b2aaaadef3702d87688adf "pdflatex"
+  "main.tex" 1762423036.46168 95909 679828300d773e09a18b7f196b79df93 ""
   "presets/julia_lstlisting.tex" 1734912471.75532 795 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1734912471.75575 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1737688388.3909 8751 43b1f87d5e2ad43f60c8e67f03e69d1f ""

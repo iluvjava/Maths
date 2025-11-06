@@ -28,11 +28,11 @@
 
 % BIB STYLES SETTINGS ----------------------------------------------------------
 \setbeamertemplate{bibliography item}{\insertbiblabel}
-\setbeamerfont{bibliography item}{size=\footnotesize}
-\setbeamerfont{bibliography entry author}{size=\footnotesize}
-\setbeamerfont{bibliography entry title}{size=\footnotesize}
-\setbeamerfont{bibliography entry location}{size=\footnotesize}
-\setbeamerfont{bibliography entry note}{size=\footnotesize}
+\setbeamerfont{bibliography item}{size=\tiny}
+\setbeamerfont{bibliography entry author}{size=\tiny}
+\setbeamerfont{bibliography entry title}{size=\tiny}
+\setbeamerfont{bibliography entry location}{size=\tiny}
+\setbeamerfont{bibliography entry note}{size=\tiny}
 % \setbeamercovered{transparent}  % GREY OUT PAUSED FUTURE ITEMS IN SLID. 
 \bibliographystyle{siam}
 
@@ -117,7 +117,7 @@
         \begin{frame}{Other choices for the momentum sequence part I}
             Major results from the literature regarding different choices for the momentum sequence $(t_k)_{k \ge 0}$. 
             \begin{block}{Beck, Teboulle 2009 {\cite[Theorem 4.4]{beck_fast_2009-1}}}
-                Commonly known by the name FISTA, it allows $(t_k)_{k}$: 
+                Commonly known by the name FISTA, it allows $(t_k)_{k \ge 0}$: 
                 \begin{align*}
                     (\forall k \ge 1)\quad t_k (t_k - 1) &\le t_{k - 1}^2. 
                 \end{align*}    
@@ -142,7 +142,7 @@
         \end{frame}
         \begin{frame}{Other choices for the momentum sequence part III}
             The cases when the inequality of Nesterov's rule is not satisfied had been investigated as well.
-            \begin{block}{Apidopoulos et al. 2018 \cite{apidopoulos_convergence_2018}}
+            \begin{block}{Apidopoulos et al. 2018 \cite{apidopoulos_convergence_2020}}
                 If $\theta_k = \frac{k}{k + b}\;\forall k \ge 0$ where $b \in (0, 3)$ then, the optimality gap has a convergence rate of $\mathcal O(1/k^{2b/3})$. 
             \end{block}
         \end{frame}
@@ -151,7 +151,7 @@
         \begin{frame}{Relaxed Weak Accelerated Proximal Gradient}
             We asked the following major question.  
             \begin{tcolorbox}
-                How much can we relax the choice of the sequence $\theta_k$ and retain an upper bound for the convergence rate? 
+                How much can we relax the choice of the sequence $(t_k)_{k \ge 0}, (\theta_k)_{k \ge 0}$ and retain an upper bound for the convergence rate? 
             \end{tcolorbox}
             We addressed it by what we called: ``Relaxed Weak Accelerated proximal Gradient'' (R-WAPG). 
             \begin{enumerate}
@@ -259,15 +259,17 @@
             Our theories suggest that the upper bound for $F(x_k) - F(x^+)$ in our R-WAPG framework is ultimately described by the sequence $(\alpha_k)_{k \ge 0}$.
             Since $\alpha_k \in (\mu/L, 1)$ and all convex function is strongly convex with strong convexity constant $\mu = 0$, this is what we did:
             \begin{tcolorbox}
-                We made an algorithm which we called ``Free R-WAPG", it estimates the strong convexity constant $\mu$ using the Bregman Divergence at two successive iterates when the algorithm is running. 
-                This information is used to determine the sequence $(\alpha_k)_{k \ge 0}$, and used to visualized our theoretical upper bound. 
+                We made an algorithm which we called ``Free R-WAPG", it estimates the strong convexity constant $\mu$ using the "Bregman Divergence" at two successive iterates when the algorithm is running. 
+                This information is then used to determine the sequence $(\alpha_k)_{k \ge 0}$ while the algorithm is running. 
             \end{tcolorbox}
+            This will come at the last section. 
+            The quoted "Bregman Divergence" will be explained in a future slide. 
         \end{frame}
 
 \section{The R-WAPG framework and convergence rate}
     \subsection{Introducing the R-WAPG framework}
         \begin{frame}{Proximal gradient, gradient mapping}
-            Starting in this section, we will highlight key theoretical results that will allow the unifying convergence rate for Euclidean variants of FISTA in the literature.
+            Starting in this section, we will highlight key theoretical results that unify the convergence rate for Euclidean variants of FISTA in the literature.
             \par
             We start off with the following definition. 
             \begin{definition}[The proximal gradient operator]
@@ -287,6 +289,20 @@
             \end{definition}
             Note, the $I$ here is the identity operator in $\RR^n$. 
             $L > 0$ is the Lipschitz smoothness parameter for $f$. 
+        \end{frame}
+        \begin{frame}{The Bregman Divergence}
+            We will now explain the "Bregman Divergence" that will be used in our numerical experiment in a later section. 
+            \begin{definition}[Bregman Divergence]
+                Let $f: \RR^n \rightarrow \RR$ be a differentiable function. 
+                We define the Bregman divergence to be: 
+                \begin{align}
+                    D_f(x, y): \RR^n \times \RR^n \rightarrow \RR
+                    \defeq (x, y)\mapsto f(x) - f(y) - \langle \nabla f(y), x - y\rangle.
+                \end{align}
+            \end{definition}
+            \begin{remark}
+                Here, $f$ is not necessarily Legendre \cite[Definition 1]{bauschke_descent_2017}, as in the Legendre Transformation of convex analysis. 
+            \end{remark}
         \end{frame}
         \begin{frame}{The R-WAPG sequences}
             \begin{definition}[R-WAPG sequences]\label{def:rwapg-seq}
@@ -499,7 +515,7 @@
             We are measuring: 
             \begin{align*}
                 \delta_k := \log_2\left(
-                    \frac{F(x) - F^+}{F(x_0) - F^+}\right).  
+                    \frac{F(x_k) - F^+}{F(x_0) - F^+}\right).  
             \end{align*}
             Here are the parameters. 
             \begin{enumerate}
@@ -511,13 +527,13 @@
                         \mu + \frac{(i - 1)(L - \mu)}{N - 1} & i \ge 2
                     \end{cases}
                 \end{align*}
-                \item $L = 1, \mu = 10^{-5}$ are known in prior. 
+                \item $L = 1, \mu = 10^{-5}$ are known in prior. Feed $L, \mu$ to V-FISTA and, $L$ to Free R-WAPG. 
                 \item All algorithm terminates after $\Vert \mathcal G_L(y_k) \Vert \le 10^{-10}$. 
                 \item Initial conditions $x_0 \sim \mathcal N(I, \mathbf 0)$, i.i.d. 
             \end{enumerate}
         \end{frame}
         \begin{frame}{Experiment results 1}
-            A realization of $x_0 \sim \mathcal N(I, \mathbf 0)$ is used for V-FISTA, M-FISTA (Monotone restarted FISTA) and Free R-WAPG. 
+            A realization of $x_0 \sim \mathcal N(I, \mathbf 0)$ is used for V-FISTA, FISTA and Free R-WAPG. 
             Below are plots of the medium, minimum, and maximum of $\delta_k$: 
             \begin{figure}[H]
                 \begin{subfigure}[b]{0.47\textwidth}
@@ -532,7 +548,7 @@
                     \caption{$N = 1024$, simple convex quadratic. }
                 \end{subfigure}
                 \caption{
-                    Statistics for experiments with simple convex quadratic for V-FISTA, M-FISTA, and R-WAPG.
+                    Statistics for experiments with simple convex quadratic for V-FISTA, FISTA, and R-WAPG.
                 }
                 \label{fig:simple-quadratic-NOG}
             \end{figure}
@@ -580,11 +596,11 @@
                 \item $A \in \RR^{N \times N}$, full of i.i.d random variable from a standard normal distribution. 
                 \item $\lambda = 0.1$. 
                 \item Computed in prior, $L, \mu$ are parameters estimated by $\mu = 1/\Vert (A^TA)^{-1}\Vert$ and $L = \Vert A^TA\Vert$. The norm is the spectral norm. 
-                \item Let $F_{\min}$ be the smallest value of $F(x_k)$, for all algorithms, over all trials, we estimate $F^+$ by $F^+ = F_{\min}*(1 - 2^{53})$. 
+                \item Let $F_{\min}$ be the smallest value of $F(x_k)$, for all algorithms, over all trials, we estimate $F^+$ by $F^+ = (1 - 2^{53})F_{\min}$. 
             \end{enumerate}
         \end{frame}
-        \begin{frame}{LASSO Results plotted}
-            With $A\in \RR^{N\times N}$ fixed, for each $x_0 \sim \mathcal N(I, \mathbf 0)$ realized, 20 experiments are preformed and the medium, minimum and maximum of $\delta_k$ are recorded for M-FISTA, Free R-WAPG, and V-FISTA. 
+        \begin{frame}{Convergence}
+            With $A\in \RR^{N\times N}$ fixed, for each $x_0 \sim \mathcal N(\mathbf 0, I)$ realized, 20 experiments are preformed and the medium, minimum and maximum of $\delta_k$ are recorded for FISTA, Free R-WAPG, and V-FISTA. 
             \begin{figure}[H]
                 \begin{subfigure}[b]{0.47\textwidth}
                     \centering
@@ -648,8 +664,10 @@
         \end{figure}
         Questions?
     \end{frame}
-    \begin{frame}{References}        
+    \begin{frame}[allowframebreaks]{References}        
+        \tiny
         \bibliography{references/R-WAPG.bib}
+        
     \end{frame}
 
 \end{document}
