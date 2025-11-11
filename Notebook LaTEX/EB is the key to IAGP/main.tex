@@ -45,6 +45,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     Let $g: \RR^n \rightarrow\overline \RR$, we denote $g^\star$ to be the Fenchel conjugate. 
     $I: \RR^n \rightarrow \RR^n$ denotes the identity operator.
     For a multivalued mapping $T: \RR^n \rightarrow 2^{\RR^n}$, $\gra T$ denotes the graph of the operator, defined as $\{(x, y)\in \RR^n \times \RR^n : y \in Tx\}$. 
+    $\Pi_S$ denotes the projection onto a set $S \subseteq \RR^n$. 
     \subsection{Preliminaries}
         \begin{definition}[$\epsilon$-subgradient]\label{def:esp-subgrad}
             Let $g: \RR^n \rightarrow \overline \RR$ be proper, lsc. 
@@ -77,25 +78,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{remark}
             The above fact is taken from Zalinascu \cite[Theorem 2.4.2]{zalinescu_convex_2002}. 
         \end{remark}
-        % \begin{fact}[strong epsilon subgradient sum rule]\label{fact:esp-subgrad-sum-rule}
-        %     Take both $f, g: \RR^n\rightarrow \overline \RR$. 
-        %     Let $\epsilon \ge 0$. 
-        %     Then the epsilon subgradient sum rule states that 
-        %     \begin{align*}
-        %         \partial_\epsilon[f + g](\bar x) = 
-        %         \bigcup \left\lbrace
-        %             \partial_{\epsilon_1} f(\bar x) + 
-        %             \partial_{\epsilon_2} g(\bar x) \left|\; 
-        %                 \min(\epsilon_1, \epsilon_2) \ge 0\wedge 
-        %                 \epsilon_1 + \epsilon_2 = \epsilon
-        %             \right.
-        %         \right\rbrace
-        %     \end{align*}
-        %     Under the scenario that: $\reli\dom f \cap \reli\dom g \neq \emptyset$. 
-        % \end{fact}
-        % \begin{remark}
-        %     The above is taken from Morduchovich, Mau Nam \cite[Theorem 5.19]{mordukhovich_convex_2022}. 
-        % \end{remark}
         We will now define inexact proximal point based on $\epsilon$-subgradient
         \begin{definition}[inexact proximal point]\label{def:inxt-pp}
             For all $x \in \RR^n, \epsilon \ge 0, \lambda > 0$, $\tilde x$ is an inexact evaluation of proximal point at $x$, if and only if it satisfies: 
@@ -162,9 +144,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             At (1) we can use Fact \ref{fact:resv-identity}, and it has $(\lambda^{-1}\partial_\epsilon g^\star)^{-1} = \partial_\epsilon g\circ(\lambda I)$ by Fact \ref{fact:esp-fenchel-ineq} and the assumption that $g$ is closed, convex and proper. 
         \end{proof}
-        \begin{fact}[Fenchel Rockafellar duality]
-            
-        \end{fact}
     \subsection{Inexact proximal gradient inequality}
         \begin{assumption}[for inexact proximal gradient]\label{ass:for-inxt-pg-ineq}
             The assumption is about $(F, f, g, L)$. 
@@ -279,7 +258,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             More specifically, $\epsilon_k$ controls the absolute perturbations of the proximal gradient inequality compared to its exact counterpart. 
             $\rho$ on the other hand, it is the over-relaxation of proximal gradient operator, and it compensates the perturbations caused by $\approx_\epsilon$ relative to the term $\Vert \tilde x - x\Vert^2$. 
         \end{remark}
-    \subsection{Optimizing the inexact proximal point problem}\label{sec:optz-inxt-pp-problem}
+    \subsection{Optimizing an inexact proximal point problem}\label{sec:optz-inxt-pp-problem}
         In this section we will present the optimization problem that obtains a $\tilde x$ such that $\tilde x \approx_\epsilon \hprox_{\lambda g}(z)$. 
         Eventually we want to evaluate $T_{\rho}(x)$ of some $F = f + g$ inexactly using Lemma \ref{lemma:other-repr-inxt-pg}. 
         To do that one would need to evaluate $\hprox_{\rho^{-1}g}$ inexactly which is defined in Definition \ref{def:inxt-pp}. 
@@ -287,12 +266,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Most of these results that will follow are from the literature. 
         To start, we must assume the following about a function $g: \RR^n \rightarrow \overline \RR$, with $g$ closed, convex and proper. 
         \begin{assumption}[linear composite of convex nonsmooth function]\;\label{ass:for-inxt-prox}\\
-            This assumption is about $(g, \omega, A)$. 
+            This assumption is about $(g, \omega, A, K_\omega, K_{\omega^\star})$. 
             Let $m \in \N, n \in \RR^n$, we assume that 
             \begin{enumerate}[nosep]
                 \item $A\in \RR^{m \times n}$ is a matrix. 
                 \item $\omega: \RR^n \rightarrow \overline \RR$ is a closed and convex function such that it admits proximal operator $\hprox_{\lambda\omega}$ and, its conjugate $\omega^\star$ is known. 
                 \item $g := \omega(Ax)$ such that $\rng A \cap \reli\dom g \neq\emptyset$. 
+                \item $\omega$ is $K_\omega$ Lipschitz continuous, and $\omega^\star$ is $K_{\omega^\star}$ Lipschitz continuous and in addition, $\dom \omega^\star$ is a compact set. 
             \end{enumerate}
         \end{assumption}
         Now, we are ready to discuss how to choose $\tilde x \approx_\epsilon \hprox_{\lambda g}(x)$. 
@@ -303,7 +283,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Observe that $\rng A \cap \reli\dom g \neq\emptyset$ in Assumption \ref{ass:for-inxt-prox} shows $g$ is also closed convex and proper. 
         The function $\Phi_\lambda$ is coersive due to its quadratic term and hence it must admit a minimizer \cite[Theorem 1.9]{rockafellar_variational_1998}. 
         Recall the following famous theoretical result in the convex programming literature that we had adapted into our context. 
-        \begin{fact}[French Rockafellar Duality {\cite[Proposition 15.22]{bauschke_convex_2017}}]\;\label{fact:fn-rck-duality}\\
+        \begin{fact}[Fenchel Rockafellar Duality {\cite[Proposition 15.22]{bauschke_convex_2017}}]\;\label{fact:fn-rck-duality}\\
             Let $f:\RR^n \rightarrow \overline \RR$ be closed convex and proper, $g: \RR^m \rightarrow \overline \RR$, $A \in \RR^{m \times n}$. 
             If ${\mathbf 0 \in \inte(\dom g - A \dom f)}$, then 
             \begin{align*}
@@ -362,31 +342,185 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             The proof of $(a) \implies (b)$, and the case when $(a)\iff (b)$, we refer readers to Villa et al. \cite[ Proposition 2.3]{villa_accelerated_2013}, and to show $(b) \iff (c)$ use Theorem \ref{thm:inxt-moreau-decomp}. 
         \end{proof}
         \par
-        The following fact from the literature indicates that it's sufficient to minimize the dual problem $\Psi_\lambda$ to obtain an element of the inexact proximal point operator. 
-        The following fact is Proposition is from Villa et al. \cite[Theorem 5.1]{villa_accelerated_2013}. 
-        \begin{fact}[minimizing dual of the proximal problem {\cite[Theorem 5.1]{villa_accelerated_2013}}]\label{fact:minimizing-dual-pp}
-            Let $\bar v$ be a solution of $\Psi_\lambda$. 
-            Suppose that $(v_n)_{n \ge 0}$ is a minimizing sequence for $\Psi_\lambda$. 
-            Let $z_n = y - \lambda A^\top v_n$, and $\bar z = y - \lambda A^\top \bar v$. 
-            Then the following are true: 
+        The following theorem is enhenced from Villa et al. \cite[Theorem 5.1]{villa_accelerated_2013}. 
+        % \begin{fact}[minimizing dual of the proximal problem {\cite[Theorem 5.1]{villa_accelerated_2013}}]\;\label{fact:minimizing-dual-pp}\\
+        %     Let $\bar v$ be a solution of $\Psi_\lambda$. 
+        %     Suppose that $(v_j)_{j \ge 0}$ is a minimizing sequence for $\Psi_\lambda$. 
+        %     Let $z_j = y - \lambda A^\top v_j$, and $\bar z = y - \lambda A^\top \bar v$. 
+        %     Then the following are true: 
+        %     \begin{enumerate}[nosep]
+        %         \item The sequence $z_j \rightarrow \bar z$ as well. 
+        %         \item There exists a constant $K$ that depends on the sequence $z_j$, and $\Phi_\lambda$ such that for all $j \ge 0$ it has the inequality: 
+        %         \begin{align*}
+        %             \Phi_{\lambda}(z_j) - \Phi_\lambda(\bar z) 
+        %             &\le K \Vert z_j - \bar z\Vert 
+        %             \le K \sqrt{2\lambda}(\Psi_\lambda(v_j) - \Psi_\lambda(\bar v))^{1/2}. 
+        %         \end{align*}
+        %     \end{enumerate}
+        % \end{fact}
+        % We remark that the above fact translates any algorithm that optimizes the dual problem $\Psi_\lambda$ into optimizing the duality gap $\mathbf G(z_j, v_j)$ by this inequality. 
+        % \par
+        % With the proof back in Villa et al. \cite[Theorem 5.1]{villa_accelerated_2013}, pay close attention to the constant $L_\Phi$ exists by the virtue of $\Psi$ being convex, and the sequence $v_j \rightarrow \bar v$ which allows the sequence $z_j \rightarrow \bar z_j$ to be bounded inside the domain of $\Phi_\lambda$. 
+        % By convexity, $\Phi_\lambda$ is locally Lipschitz on $\reli \dom \Phi_\lambda$, by convergence of $z_j$ the sequence is in a compact set in $\reli\dom \Phi_\lambda$ hence a Lipschitz bound with constant $K$ exists. 
+        % \par
+        % For this reason, the number of iterations of the inner loop required to achieve $\mathbf G(z_j, v_j) < \epsilon$ for a given $\epsilon$ is related to the convergence rate of the algorithms used to optimize $\Psi_\lambda(v_j)$. 
+        % With the theorem derived above, and using Theorem \ref{thm:dlty-gap-inxt-pp} it implies that any algorithm which can optimize function value $\Psi_\lambda$ will produce iterates sufficient to achieve $\approx_\epsilon \hprox_{\lambda g}(y)$. 
+        \todoinline{
+            Un nouvel candidat ce que remplace le denière théorem suivant. 
+        }
+        
+        \begin{theorem}[minimizing the dual of the proximal problem]\;\label{thm:minimizing-dual-pp}\\
+            Assume that we have $(g, \omega, A)$ given by Assumption \ref{ass:for-inxt-prox}. 
+            Let the $\Phi_\lambda$ be given by \eqref{eqn:primal-pp}, and dual $\Psi_\lambda$ by \eqref{eqn:dual-pp}. 
+            Let $\bar v$ be a minimizer of $\Psi_\lambda$ and suppose that sequence $(v_j)_{j\ge 0}$ minimizes dual $\Psi_\lambda$. 
+            Then, the followings are true: 
             \begin{enumerate}[nosep]
-                \item The sequence $z_n \rightarrow \bar z$ as well. 
-                \item There exists a constant $K$ that depends on the sequence $z_n$, and $\Phi_\lambda$ such that for all $k \ge 0$ the inequality: 
+                \item\label{thm:minimizing-dual-pp:item1} If $\bar v$ is an minimizer of dual $\Psi_\lambda$, then $\bar z = y - \lambda A^\top \bar v$ is a minimizer of primal $\Phi_\lambda$. 
+                \item\label{thm:minimizing-dual-pp:item2} Let $z_j = y - \lambda A^\top v_j$, it has $\Psi_\lambda(v_j) - \Psi_\lambda(\bar v) \ge \frac{1}{2 \lambda} \Vert z_j - \bar z\Vert^2$, and therefore it has $z_j \rightarrow \bar z$. 
+                \item\label{thm:minimizing-dual-pp:item3} And, by our assumption, the primal optimality gap is bounded by dual for all $v \in \RR^m$ by the inequality: 
                 \begin{align*}
-                    \Phi_{\lambda}(z_n) - \Phi_\lambda(\bar z) 
-                    &\le K \Vert z_n - \bar z\Vert 
-                    \le K \sqrt{2\lambda}(\Psi_\lambda(v_n) - \Psi_\lambda(\bar v))^{1/2}. 
+                    & \Phi_\lambda(z_j) - \Phi_\lambda(\bar z) 
+                    \\
+                    &\le 
+                    \sqrt{2\lambda(\Psi_\lambda(v_j) - \Psi_\lambda(\bar v))}\left(
+                        K_\omega \Vert A\Vert 
+                        + \lambda^{-1}\Vert z_j - y\Vert 
+                        + \frac{1}{2\lambda}\sqrt{2\lambda(\Psi_\lambda(v_j) - \Psi_\lambda(\bar v))}
+                    \right).
                 \end{align*}
             \end{enumerate}
+        \end{theorem}
+        \begin{proof}
+            There are two intermediate results to prior to proving the items in the theorem. 
+            In preparations, for all $v \in \RR^m$, it's obvious that we have: 
+            \begin{align}\label{eqn:thm:minimizing-dual-pp:pitem1}
+                \begin{split}
+                    & \frac{1}{2\lambda}\left\Vert \lambda A^\top v - y\right\Vert^2
+                    - \frac{1}{2\lambda}\left\Vert \lambda A^\top \bar v - y\right\Vert^2 
+                    + \langle A \bar z, v - \bar v\rangle 
+                    \\
+                    &= 
+                    \frac{1}{2\lambda}
+                    \left\Vert 
+                        \lambda A^\top v - \lambda A^\top \bar v  + \lambda A^\top \bar v - y
+                    \right\Vert^2
+                    - \frac{1}{2\lambda}\left\Vert \lambda A^\top \bar v - y\right\Vert^2 
+                    + \langle A \bar z, v - \bar v\rangle 
+                    \\
+                    &= 
+                    \frac{1}{2\lambda} \left\Vert \lambda A^\top(v - \bar v)\right\Vert^2
+                    + \frac{1}{\lambda}\left\langle \lambda A^\top(v - \bar v), \lambda A^\top \bar v - y \right\rangle
+                    + \left\langle \bar z, A^\top(v - \bar v)\right\rangle 
+                    \\
+                    &\underset{\text{(1)}}{=} 
+                    \frac{1}{2\lambda} \left\Vert \lambda A^\top(v - \bar v)\right\Vert^2
+                    - \frac{1}{\lambda}\left\langle \lambda A^\top(v - \bar v), \bar z \right\rangle
+                    + \left\langle \bar z, A^\top(v - \bar v)\right\rangle 
+                    \\
+                    &= \frac{1}{2\lambda} \left\Vert \lambda A^\top(v - \bar v)\right\Vert^2. 
+                \end{split}
+            \end{align}
+            At (1), we assumed for the theorem statement that $\bar z = y - \lambda A^\top \bar v$. 
+            By the optimality of $\bar v$ on the dual problem, we have the following: 
+            \begin{align}\label{eqn:thm:minimizing-dual-pp:pitem2}
+                \begin{split}
+                    & \mathbf 0 \in 
+                    A \left(\lambda A^\top \bar v - y\right) + \partial \omega^\star(\bar v)
+                    \\
+                    \iff &
+                    A\bar z \in \partial \omega^\star(\bar v)
+                    \\
+                    \iff &
+                    \omega^\star(v) - \omega^\star(\bar v) 
+                    \ge \langle A \bar z, v_n - \bar v\rangle. 
+                \end{split}
+            \end{align}
+            \par
+            We will now prove \ref{thm:minimizing-dual-pp:item1}, because $A \bar z \in \partial \omega^\star (\bar v) \iff \partial \omega(A \bar z) \ni \bar v$, we can derive that $\bar z = y - \lambda A^\top \bar v$ is primal optimal because 
+            \begin{align*}
+                y - \bar z &= \lambda A^\top \bar v \in \lambda A^\top\partial \omega (A \bar z). 
+            \end{align*}
+            Re-arranging yields: $\mathbf 0 \in \bar z - y + \lambda A^\top \partial \omega (A \bar z) = \partial \Phi_\lambda(\bar z)$. 
+            \par
+            Now we will prove \ref{thm:minimizing-dual-pp:item2}. 
+            Recall that $z_j = y - \lambda A^\top v_j$, therefore it has: 
+            \begin{align*}
+                \Phi_\lambda(v_j) - \Phi_\lambda(\bar v)
+                &= \frac{1}{2\lambda}\left\Vert
+                    \lambda A^\top v_j - y
+                \right\Vert^2 
+                - \frac{1}{2\lambda}\left\Vert
+                    \lambda A^\top \bar v - y
+                \right\Vert^2
+                + \omega^\star(v_j) - \omega^\star(\bar v)
+                \\
+                &\underset{(2)}{\ge}
+                \frac{1}{2\lambda}\left\Vert
+                    \lambda A^\top v_j - y
+                \right\Vert^2 
+                - \frac{1}{2\lambda}\left\Vert
+                    \lambda A^\top \bar v - y
+                \right\Vert^2
+                + \langle A\bar z, v_j - \bar v\rangle
+                \\
+                &\underset{(3)}{=} \frac{1}{2\lambda}\Vert \lambda A^\top(v_j - \bar v)\Vert^2
+                \\
+                &\underset{(4)}{=} \frac{1}{2\lambda}\Vert z_j - \bar z\Vert^2. 
+            \end{align*}
+            At (2) we used \eqref{eqn:thm:minimizing-dual-pp:pitem2}, at (3) we used \eqref{eqn:thm:minimizing-dual-pp:pitem1}. 
+            At (4), we again $\bar z = y - \lambda A^\top \bar v$. 
+            We have $\bar z$ being the optimal solution of primal $\Phi_\lambda$. 
+            Now, if we set $v = v_j$, and then: 
+            \begin{align*}
+                0 = \lim_{j \rightarrow \infty} \Psi_\lambda(v_j) - \Psi_{\lambda} (\bar v) \ge \lim_{j \rightarrow \infty}\Vert z_j - \bar z \Vert^2. 
+            \end{align*}
+            Implying that $z_j \rightarrow \bar z$ also. 
+            \par
+            We will now prove \ref{thm:minimizing-dual-pp:item3}. 
+            We have for all $z \in \RR^n$, the following: 
+            \begin{align*}
+                & \Phi_\lambda(z_j) - \Phi_\lambda(\bar z) 
+                \\
+                &= \omega(Az_j) - \omega(A \bar z)
+                + \frac{1}{2\lambda}(\Vert z_j - y \Vert^2 - \Vert \bar z - y\Vert^2)
+                \\
+                &\le 
+                K_\omega\Vert A\Vert \Vert z_j - \bar z\Vert 
+                + \frac{1}{2\lambda}\left(
+                    \Vert z_j - y\Vert + \Vert \bar z_j - y\Vert
+                \right)\left(
+                    \Vert z_j - y\Vert - \Vert \bar z - y\Vert
+                \right)
+                \\
+                &\le
+                K_\omega\Vert A\Vert \Vert z_j - \bar z\Vert 
+                + \frac{1}{2\lambda}\left(
+                    \Vert z_j - y\Vert + \Vert \bar z - y\Vert
+                \right)\Vert z_j - \bar z\Vert
+                \\
+                &\le 
+                K_\omega\Vert A\Vert \Vert z_j - \bar z\Vert 
+                + \frac{1}{2\lambda}\left(
+                    2\Vert z_j - y\Vert + \Vert \bar z - z_j\Vert 
+                \right)\Vert z_j - \bar z\Vert
+                \\
+                &= \Vert z_j - \bar z\Vert\left(
+                    K_\omega \Vert A\Vert 
+                    + \lambda^{-1}\Vert z_j - y\Vert 
+                    + \frac{1}{2\lambda}\Vert \bar z - z_j\Vert
+                \right)
+                \\
+                &\underset{\text{\ref{thm:minimizing-dual-pp:item2}}}{\le} 
+                \sqrt{2\lambda(\Psi_\lambda(v_j) - \Psi_\lambda(\bar v))}\left(
+                    K_\omega \Vert A\Vert 
+                    + \lambda^{-1}\Vert z_j - y\Vert 
+                    + \frac{1}{2\lambda}\sqrt{2\lambda(\Psi_\lambda(v_j) - \Psi_\lambda(\bar v))}
+                \right). 
+            \end{align*}
             
-        \end{fact}
-        We remark that the above fact translates any algorithm that optimizes the dual problem $\Psi_\lambda$ into optimizing the duality gap $\mathbf G(z_n, v_n)$ because it shows the primal is bounded by the dual through a Lipschitz-like inequality. 
-        \par
-        With the proof back in Villa et al. \cite[Theorem 5.1]{villa_accelerated_2013}, pay close attention to the constant $L_\Phi$ exists by the virtue of $\Psi$ being convex, and the sequence $v_n \rightarrow \bar v$ which allows the sequence $z_n \rightarrow \bar z_n$ to be bounded inside the domain of $\Phi_\lambda$. 
-        By convexity, $\Phi_\lambda$ is locally Lipschitz on $\reli \dom \Phi_\lambda$, by convergence of $z_n$ the sequence is in a compact set in $\reli\dom \Phi_\lambda$ hence a Lipschitz bound with constant $K$ exists. 
-        \par
-        For this reason, the number of iterations of the inner loop required to achieve $\mathbf G(z_n, v_n) < \epsilon$ for a given $\epsilon$ is related to the convergence rate of the algorithms used to optimize $\Psi_\lambda(v_n)$. 
-        With the theorem derived above, and using Theorem \ref{thm:dlty-gap-inxt-pp} it implies that any algorithm which can optimize function value $\Psi_\lambda$ will produce iterates sufficient to achieve $\approx_\epsilon \hprox_{\lambda g}(y)$. 
+        \end{proof}
+
+
     \subsection{Literature reviews}
 
     \subsection{Our contributions}
@@ -642,7 +776,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
     \end{proof}
     \begin{proposition}[generic convergence rate of the gradient mapping]\;\label{prop:apg-cnvg-gm-generic}\\
-        \todoinline{Cette proposition ira démontrer que le séquence de ``Inexact Gradient Mapping" converge. }
+        \todoinline{
+            \par 
+            Cette proposition ira démontrer que ce séquence de ``Inexact Gradient Mapping" converge. \\
+            N'oubliez pas de finir. 
+        }
     \end{proposition}
     \begin{proof}
         
@@ -891,34 +1029,32 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     As an important reminder, we will fix the vector $y \in \RR^n$, which is in the inexact proximal problem as a constant in this entire section. 
     \par
     The inner loop is another algorithm that evaluates $x_k \approx_\epsilon T_{(B_k + \rho_k)}(y_k)$ for a given value of $\epsilon, B + \rho$ and at the point $y_k$. 
-    To accomplish let's assume that the outer loop iteration $k$ is fixed throughout this entire section.
-    Now let $\lambda = (B_k + \rho_k)^{-1}$, the algorithm needs to resolve the following equivalent inexact proximal point problem: 
+    Let's assume that the outer loop iteration $k$ is fixed throughout this entire section to simplify our discussion since, in this section we will only focus on the convergence rate of the inner loop for one specific iteration of the outer loop. 
+    \par
+    Let $\lambda = (B_k + \rho_k)^{-1}$, the algorithm needs to resolve the following equivalent inexact proximal point problem: 
     \begin{align*}
         x_k \approx_\epsilon \hprox_{\lambda g}(y_k - \lambda \nabla f(y_k)). 
     \end{align*}
     Unfortunately recall that $g = \omega \circ A$ in the context of the outer loop hence it's impossible to directly evaluate the proximal operator of $g$ and hence we optimize the function $\Phi_\lambda$ as given by \eqref{eqn:primal-pp}. 
     \par
-    In this section, we will show that there exists an algorithm generating the sequences $z_n, v_n$ such that $\mathbf G_\lambda (z_n, v_n)$ converges linearly if $\Psi_\lambda$ satisfies the error bound conditions. 
+    We will show that there exists an algorithm generating the sequences $z_j, v_j$ such that $\mathbf G_\lambda (z_j, v_j)$ converges linearly if $\Psi_\lambda$ satisfies the error bound conditions. 
     Using results available in the literature, we will characterize the exact scenarios of $\omega \circ A$ when this is possible to achieve. 
     To start, the following assumption is the general error bound condition of a convex with additive composite structure. 
     \begin{definition}[the exact proximal gradient and gradient mapping]\;\label{def:pg-and-gm}\\
         Let $F = f + g$ where $f:\RR^n \rightarrow \RR$ is a differentiable function and, $g: \RR^n \rightarrow \overline \RR$ is closed convex and proper. 
-        We define the exact proximal gradient mapping and, gradient mapping: 
+        For all $\tau > 0$, we define the exact proximal gradient mapping and, gradient mapping: 
         \begin{enumerate}[nosep]
             \item The proximal gradient operator $T_{\tau}(x) := \hprox_{\tau^{-1}g}(x - \tau^{-1}\nabla f(x))$,
             \item and the gradient mapping operator $\mathcal G_\tau(x) := \tau (x - T_\tau(x))$. 
         \end{enumerate}
     \end{definition}
-    \begin{definition}[error bound]\;\label{def:err-bnd}\\
-        Let $F = f + g$ where $f:\RR^n \rightarrow \RR$ is a differentiable function and, $g: \RR^n \rightarrow \overline \RR$ is closed convex and proper. 
-        Assume the set of minimizers $S = \argmin_{x} F \neq \emptyset$. 
-        Let $\gamma> 0$, and let proximal gradient mapping $T_\tau$, gradient mapping $\mathcal G_\tau$ of $F = f + g$ as given by Definition \ref{def:pg-and-gm}. 
-        Then their sum $F = f + g$ satisfies the error bound condition if there exists $\gamma > 0$ such that 
+    \begin{definition}[the error bound condition]\;\label{def:err-bnd}\\
+        Under the same assumptions in Definition \ref{def:pg-and-gm}, the function $F = f + g$ satisfies the error bound condition if there exists $\gamma > 0$ such that 
         \begin{align}\label{ineq:pg-eb}
             \Vert \mathcal G_\tau(x)\Vert \ge \gamma\dist(x|S). 
         \end{align}
     \end{definition}
-    \begin{assumption}[gradient mapping error bound]\;\label{ass:pg-eb}\\
+    \begin{assumption}[problem with proximal gradient and error bound]\;\label{ass:pg-eb}\\
         The following assumption is about $(F, f, g, L, S, \gamma)$. 
         Assume that
         \begin{enumerate}[nosep]
@@ -928,7 +1064,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \item the objective function is given by $F = f + g$ and, it satisfis error bound (Definition \ref{def:err-bnd}). 
         \end{enumerate} 
     \end{assumption}
-    \begin{definition}[proximal gradient method]\;\label{def:ista}\\
+    \begin{definition}[the proximal gradient method]\;\label{def:ista}\\
         Suppose that $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}. 
         Let $\tau \ge L$, and $x_0 \in \RR^n$. 
         Then an algorithm is a proximal gradient method if it generates iterates $(x_k)_{k \ge 0}$ such that they satisfy for all $k \ge 1$: 
@@ -940,13 +1076,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         The following theorem characterizes linear convergence of the proximal gradient method under gradient mapping error bound condition. 
         \begin{theorem}[linear convergence under gradient mapping error bound]\;\label{thm:lin-cnvg-ista-eb}\\
             Assume that $(F, f, g, L, S, \gamma)$ is given by Assumption \ref{ass:pg-eb}. 
-            Under this assumption, the iterates $(x_k)_{k \ge 0}$ given by Definition \ref{def:ista} satisfies for all $k \ge 0, \bar x \in S$ and $\tau \ge L$ the inequality: 
+            Under this assumption, the iterates $(x_k)_{k \ge 0}$ given by Definition \ref{def:ista} satisfies for all $k \ge 0, \bar x \in S$ and $\tau \ge L$: 
             \begin{align*}
                 F(x_{k + 1}) - F(\bar x)
                 &\le 
                 \left(
                     1 - \frac{\gamma}{2\tau}
-                \right)(F(x_k) - F(\bar x)). 
+                \right)(F(x_k) - F(\bar x)), \text{where } \frac{\gamma}{2\tau} \in (0, 1)
             \end{align*}
             Hence, the algorithm generates $F(x_k) - F(\bar x)\le \mathcal O((1 - \gamma/(2\tau))^k)$. 
         \end{theorem}
@@ -1037,18 +1173,23 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         In this section, we will focus on the sufficient characterization of the proximal problem which allows proximal gradient method to achieve linear convergence rate. 
         The following assumption characterizes a set of sufficient conditions of the proximal problem such that linear convergence rate of applying ISTA to dual proximal objective $\Psi_\lambda$ can be achieved. 
         \begin{assumption}[conditions for linear convergence of proximal problem]\;\label{ass:lin-cnvg-for-pp}\\
-            This assumption is about $(g, \omega, A, y, \Phi_\lambda, \Psi_\lambda, L^\lambda_{\Phi} ,\gamma_\lambda)$. 
+            This assumption is about $(g, \omega, A, y, \Phi_\lambda,\Psi_\lambda,\gamma_\lambda)$. 
             Here are the assumptions
             \begin{enumerate}[nosep]
-                \item $y \in \RR^n$ is the vector of which the proximal problem is anchored at, fixed it to be an arbitrary vector. 
-                \item Assume $(g, \omega, A)$ satisfies Assumption \ref{ass:for-inxt-prox}. The primal objective $\Phi_\lambda$ is given by \eqref{eqn:primal-pp}, and dual $\Psi_\lambda$ by \eqref{eqn:dual-pp}. This means if we let $h(v) := \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2 - \frac{1}{2\lambda}\Vert y\Vert^2$, then $\Psi_\lambda(v) = h(v) + \omega^\star(v)$. 
-                \item Next, assume $\Psi_\lambda = h + \omega^\star$ satisfies error bound condition (Assumption \ref{ass:pg-eb}) with $\Psi_\lambda = F$ and, $\gamma = \gamma_\lambda$ and $f = h$. Note that we can do this because $h$ is quadratic hence obviously Lipschitz continuous and Lipschitz smooth. 
-                \item We assume in addition, the primal objective $\Phi_\lambda$ of proximal problem is $L_\Phi^\lambda$ Lipschitz continuous on its domain $\dom \Phi_\lambda = \dom (g\circ A)$. 
+                \item\label{ass:lin-cnvg-for-pp:item1} $y \in \RR^n$ is the vector of which the proximal problem is anchored at, fixed it to be an arbitrary vector. 
+                \item\label{ass:lin-cnvg-for-pp:item2} Assume $(g, \omega, A)$ satisfies Assumption \ref{ass:for-inxt-prox}. The primal objective $\Phi_\lambda$ is given by \eqref{eqn:primal-pp}, and dual $\Psi_\lambda$ by \eqref{eqn:dual-pp}. This means if we let $h(v) := \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2 - \frac{1}{2\lambda}\Vert y\Vert^2$, then $\Psi_\lambda(v) = h(v) + \omega^\star(v)$. 
+                \item\label{ass:lin-cnvg-for-pp:item3} Next, assume $\Psi_\lambda = h + \omega^\star$ satisfies error bound condition (Assumption \ref{ass:pg-eb}) with $\Psi_\lambda = F$ and, $\gamma = \gamma_\lambda$ and $f = h$. Note that we can do this because $h$ is quadratic hence obviously Lipschitz continuous and Lipschitz smooth. 
+                % \item\label{ass:lin-cnvg-for-pp:item4} Assume that there exists the constant $C_\Psi^\lambda < \infty$ such that 
+                % $$
+                %     C_\Psi^\lambda = \sup_{v\in \RR^m} \Psi_\lambda(v) - \inf_{v\in \RR^m}\Psi_\lambda(v). 
+                % $$
+                % \item\label{ass:lin-cnvg-for-pp:item5} Assume that $\omega$ is a $K_\omega$ Lipschitz continuous function on $\dom \omega$. 
             \end{enumerate}
         \end{assumption}
+        \par
         The following definition specifies the algorithm that can achieve linear convergence rate with the assumptions above. 
         \begin{definition}[the ISTA inner loop algorithm]\;\label{def:ista-inner-lp}\\
-            Let $\lambda > 0, \epsilon > 0$, and $(g, \omega, A, y, \Phi_\lambda, \Psi_\lambda, L^\lambda_{\Phi} ,\gamma_\lambda)$ satisfies Assumption \ref{ass:lin-cnvg-for-pp}. 
+            Let $\lambda > 0, \epsilon > 0$, and $(g, \omega, A, y, \Phi_\lambda,\Psi_\lambda,\gamma_\lambda)$ satisfies Assumption \ref{ass:lin-cnvg-for-pp}. 
             \begin{enumerate}[nosep]
                 \item Let $v_0\in\dom \omega^\star$ be a feasible initial guess of $\Psi_{\lambda}$, and let $\tau \ge \lambda\Vert AA^\top\Vert$ be the inverse step size. 
                 \item Define $z_0 = y - \lambda A^\top v_0$ and smooth part of $\Psi_\lambda$ as $h := v \mapsto \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2$. 
@@ -1071,19 +1212,36 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \par
         The following propositions precisely show that the linear convergence is achievable when Assumption \ref{ass:lin-cnvg-for-pp} holds. 
         \begin{proposition}[sufficient conditions of linear convergence of the inner loop]\;\label{prop:inn-loop-lin-cnvg}\\
-            Let the parameters $(g, \omega, A, y, \Phi_\lambda, \Psi_\lambda, L^\lambda_{\Phi} ,\gamma_\lambda)$ of a proximal problem satisfy Assumption \ref{ass:lin-cnvg-for-pp}. 
-            Let $\tau$, $v_0, \epsilon$ be given by an algorithm that satisfies Definition \ref{def:ista-inner-lp} and, it generates iterates $(z_j, v_j)_{j \ge 0}$. 
+            Let the parameters $(g, \omega, A, y, \Phi_\lambda, \Psi_\lambda, \gamma_\lambda)$ of a proximal problem satisfy Assumption \ref{ass:lin-cnvg-for-pp}. 
+            Let $\tau$, $v_0, \epsilon > 0$ be given by Definition \ref{def:ista-inner-lp} along with iterates $(z_j, v_j)_{j \ge 0}$. 
             Let $\bar v$ be a minimizer of $\Psi_\lambda$, then the followings are true: 
             \begin{enumerate}[nosep]
-                \item The sequence $\Psi_\lambda(v_j) - \Psi_\lambda(\bar v)$ converges linearly to zero. \label{prop:inn-looplin-cnvg-item1}
-                \item If we let $\bar z := y - \lambda A^\top \bar v$, then $\Phi_\lambda(z_j) - \Phi_\lambda(\bar z)$ converges linearly to zero. \label{prop:inn-looplin-cnvg-item2}
-                \item The duality gap has convergence $\mathbf G_\lambda(z_j, v_j) \le \mathcal O\left(\left(1 - \frac{\gamma_\lambda}{2\tau}\right)^{j/2}\right)$. \label{prop:inn-looplin-cnvg-item3}
-                \item If $\mathbf G_\lambda(z_j, v_j) \le \epsilon$, then $z_j \approx_\epsilon \hprox_{\lambda g}(y)$. \label{prop:inn-looplin-cnvg-item4}
+                \item\label{prop:inn-loop-lin-cnvg:item1} Let $\bar v$ be minimizer of $\Psi_\lambda$, the sequence $\Psi_\lambda(v_j) - \Psi_\lambda(\bar v)$ converges linearly to zero. 
+                \item\label{prop:inn-loop-lin-cnvg:item2} There exists constants $K_\Psi^\lambda$ such that $\Psi_\lambda$ is $K_\Psi^\lambda$ Lipschitz continuous on $\dom \Psi_\lambda$, as a consequence there exists constant $C_\Psi^\lambda$ such that, $\sup_{v \in \RR^m}\Phi_\lambda(v) - \Phi_\lambda(\bar v) \le K_\Psi^\lambda\sup_{v \in \dom\Psi_\lambda}\Vert v - \bar v \Vert = C_\Psi^\lambda < \infty$. 
+                \item\label{prop:inn-loop-lin-cnvg:item3} The duality gap has a linear convergence rate vy the inequality: 
+                $$
+                    \mathbf G_\lambda(z_j, v_j) \le
+                    \left(
+                        1 - \frac{\gamma_\lambda}{2\tau}
+                    \right)^{j/2}\sqrt{2\lambda C_\Psi^\lambda}
+                    \left(
+                        K_\omega \Vert A\Vert 
+                        + \lambda^{-1}\Vert z_j - y\Vert 
+                        + \frac{\sqrt{2\lambda C_\Psi^\lambda}}{\lambda}
+                    \right). 
+                $$
+                \item\label{prop:inn-loop-lin-cnvg:item4} If $\mathbf G_\lambda(z_j, v_j) \le \epsilon$, then $z_j \approx_\epsilon \hprox_{\lambda g}(y)$. If we let $\tau = \lambda \Vert AA^\top\Vert$, then a sufficient number of iteration needed to achieve the optimality is given by: 
+                \todoinline{
+                    N'obliez pas de finir! 
+                }
             \end{enumerate}
         \end{proposition}
         \begin{proof}
-            Note that $\Psi_\lambda$ satisfies error bound condition in Assumption \ref{ass:lin-cnvg-for-pp}, and Definition \ref{def:ista-inner-lp} has $\tau \ge \lambda\Vert A^TA\Vert$ which satisfies Definition \ref{def:ista} therefore the linear convergence results of Theorem \ref{thm:lin-cnvg-ista-eb} applies to $\Psi_\lambda(v_j) - \Psi_\lambda(\bar v)$. 
-            Therefore, we claim: 
+            To start, we prove \ref{prop:inn-loop-lin-cnvg:item1}. 
+            Recall that it has $\Psi_\lambda = h + \omega^\star$ with $h$ being Lipschitz smooth and, $\omega^\star$ closed convex proper from item \ref{ass:lin-cnvg-for-pp:item2} in Assumption \ref{ass:lin-cnvg-for-pp}. 
+            In addition $\Psi_\lambda$ also satisfies error bound in item \ref{ass:lin-cnvg-for-pp:item3} of Assumption \ref{ass:lin-cnvg-for-pp} with $\gamma = \gamma_\lambda$. 
+            Finally, $(z_j, v_j)_{j \ge 0}$ given by Definition \ref{def:ista-inner-lp} has $\tau \ge \lambda\Vert A^\top A\Vert$ so it's essntially Definition \ref{def:ista} with $x_j = v_j$. 
+            Therefore results from Theorem \ref{thm:lin-cnvg-ista-eb} applies with $F = \Psi_\lambda, x_j= v_j$ and it has: 
             \begin{align}\label{ineq:inn-loop-lin-cnvg-pitem1}
                 \Psi_\lambda(v_j) - \Psi_\lambda(\bar v) &\le 
                 \left(
@@ -1094,73 +1252,65 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \right). 
             \end{align}
             \par
-            We will now proceed to proving \ref{prop:inn-looplin-cnvg-item2}. 
-            Recall that the iterates $z_j = y - \lambda A^\top v_j$, and $\bar z = y - \lambda A^\top \bar v$, and we have Lipschitz continuity of $\Phi_\lambda$, hence Theorem \ref{fact:minimizing-dual-pp} applies, in addition since $\Phi_\lambda$ were assumed to be globally Lipschitz on $\dom \Phi_\lambda$ in Assumption \ref{ass:lin-cnvg-for-pp}, this means that we can replace $K$ regardless of $\bar v$, and convergent primal sequence $z_j \rightarrow \bar z$ with $L_\Phi^\lambda$ which gives: 
-            \begin{align}\label{ineq:inn-loop-lin-cnvg-pitem2}
-                \begin{split}
-                    \Phi_\lambda(z_j) - \Phi_\lambda(\bar z) &\le L_\Phi^\lambda \sqrt{2\lambda}\left(
-                    \Psi_\lambda(v_j) - \Psi_\lambda (\bar v)
-                    \right)^{1/2}
-                    \\
-                    &\underset{(1)}{\le} 
-                    L_\Phi^\lambda\sqrt{2\lambda} \left(
-                        1 - \frac{\gamma_\lambda}{2\tau}
-                    \right)^{j/2}\left(
-                        \Psi_\lambda(v_0) - \Psi_\lambda(\bar v)
-                    \right)^{1/2}. 
-                \end{split}
-            \end{align}
-            At (1), we used \eqref{ineq:inn-loop-lin-cnvg-pitem1}.
+            Next, we show \ref{prop:inn-loop-lin-cnvg:item2}. 
+            The smooth part of $\Phi$ is the quadratic $h(v) = \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2 - \frac{1}{2\lambda}\Vert y\Vert^2$, it's locally Lipschitz on the compact the domain of $\dom\Psi_\lambda = \dom \omega^\star$ is compact by Assumption \ref{ass:for-inxt-prox}, hence the smooth part is Lipschitz on $\dom \omega^\star$. 
+            In addition, $\omega^\star$ is assumed to be Lipschitz on $\dom \omega^\star$, therefore the entire function $\Psi$ is Lipschitz on $\omega^\star$, we denote the Lipschitz constant by $K_\Psi^\lambda$. 
+            Because $\omega^\star$ is bounded, therefore there exists constant $C_\Psi^\lambda$ such that.
+            \begin{align*}
+                \sup_{v \in \RR^m}\Phi_\lambda(v) - \Phi_\lambda(\bar v) \le K_\Psi^\lambda\sup_{v \in \dom\Psi_\lambda}\Vert v - \bar v \Vert = C_\Psi^\lambda < \infty. 
+            \end{align*}
             \par
-            To prove \ref{prop:inn-looplin-cnvg-item3}, by definition of duality gap in \eqref{eqn:duality-gap-pp} we have:
+            To see the duality gap, Theorem \ref*{thm:minimizing-dual-pp}\ref{thm:minimizing-dual-pp:item3} applies because $v_j$ by \eqref{ineq:inn-loop-lin-cnvg-pitem1} provides us the sequence $(v_j)_{j \ge 0}$ such $\Psi_\lambda(v_j) - \Psi_\lambda(\bar v)$ converges. 
+            {\small
             \begin{align*}
                 & \mathbf G_\lambda(z_j, v_j) 
                 \\
-                &\underset{(1)}{=} \Phi_\lambda(z_j) + \Psi_\lambda(v_n) + 0
+                &= \Phi_\lambda(z_j) - \Phi_\lambda(\bar z) + 0
                 \\
-                &= \Phi_\lambda(z_j) + \Psi_\lambda(v_j) - \Phi_\lambda(\bar z) - \Psi_\lambda(\bar v)
+                &= \Phi_\lambda(z_j) - \Phi_\lambda(\bar z) + \Psi_\lambda(v_j) - \Psi_\lambda(\bar v)
                 \\
-                &= \Phi_\lambda(z_j)- \Phi_\lambda(\bar z) + \Psi_\lambda(v_n) - \Psi_\lambda(\bar v)
+                &\le \sqrt{2\lambda(\Psi_\lambda(v_j) - \Psi_\lambda(\bar v))}\left(
+                    K_\omega \Vert A\Vert 
+                    + \lambda^{-1}\Vert z_j - y\Vert 
+                    + \frac{1}{2\lambda}\sqrt{2\lambda\left(\Psi_\lambda(v_j) - \Psi_\lambda(\bar v)\right)}
+                \right) 
+                \\&\quad 
+                    + \Psi_\lambda(v_j) - \Psi_\lambda(\bar v)
+                \\
+                &=
+                \sqrt{2\lambda(\Psi_\lambda(v_j) - \Psi_\lambda(\bar v))}\left(
+                    K_\omega \Vert A\Vert 
+                    + \lambda^{-1}\Vert z_j - y\Vert 
+                    + \frac{\sqrt{2\lambda}}{\lambda}\sqrt{\left(\Psi_\lambda(v_j) - \Psi_\lambda(\bar v)\right)}
+                \right) 
+                \\
+                &\underset{(1)}{\le} 
+                \left(
+                    1 - \frac{\gamma_\lambda}{2\tau}
+                \right)^{j/2}\sqrt{2\lambda(\Psi_\lambda(v_0) - \Psi_\lambda(\bar v))}
+                \left(
+                    K_\omega \Vert A\Vert 
+                    + \lambda^{-1}\Vert z_j - y\Vert 
+                    + \frac{\sqrt{2\lambda}}{\lambda}\sqrt{\left(\Psi_\lambda(v_j) - \Psi_\lambda(\bar v)\right)}
+                \right) 
                 \\
                 &\underset{(2)}{\le} 
-                L_\Phi^\lambda \sqrt{2\lambda}\left(
-                    1 - \frac{\gamma_\lambda}{2\tau}
-                \right)^{j/2}\left(
-                    \Psi_\lambda(v_0) - \Psi_\lambda(\bar v)
-                \right)^{1/2}
-                + \left(
-                    1 - \frac{\gamma_\lambda}{2\tau}
-                \right)^{j}\left(
-                    \Psi_\lambda(v_0) - \Psi_\lambda(\bar v)
-                \right)
-                \\
-                &= \left(
-                    1 - \frac{\gamma_\lambda}{2\tau}
-                \right)^{j/2}\left(
-                    L_\Phi^\lambda \sqrt{2\lambda}\left(
-                        \Psi_\lambda(v_0) - \Psi_\lambda(\bar v)
-                    \right)^{1/2} 
-                    + 
-                    \left(
-                        1 - \frac{\gamma_\lambda}{2\tau}
-                    \right)^{j/2} (\Psi_\lambda(v_0) - \Psi_\lambda(\bar v))
-                \right)
-                \\
-                &\le 
                 \left(
                     1 - \frac{\gamma_\lambda}{2\tau}
-                \right)^{j/2}\left(
-                    L_\Phi^\lambda \sqrt{2\lambda}
-                    + 
-                    (\Psi_\lambda(v_0) - \Psi_\lambda(\bar v))^{1/2}
-                \right)
+                \right)^{j/2}\sqrt{2\lambda C_\Psi^\lambda}
                 \left(
-                        \Psi_\lambda(v_0) - \Psi_\lambda(\bar v)
-                    \right)^{1/2} . 
+                    K_\omega \Vert A\Vert 
+                    + \lambda^{-1}\Vert z_j - y\Vert 
+                    + \frac{\sqrt{2\lambda C_\Psi^\lambda}}{\lambda}
+                \right). 
             \end{align*}
-            At (1) we used strong duality because constraint qualification is in Assumption \ref{ass:for-inxt-prox}. 
-            At (2) we used \eqref{ineq:inn-loop-lin-cnvg-pitem1}, \eqref{ineq:inn-loop-lin-cnvg-pitem2}. 
-            To see \ref{prop:inn-looplin-cnvg-item4}, apply Theorem \ref{thm:dlty-gap-inxt-pp}. 
+            }
+            At (1) we used \eqref{ineq:inn-loop-lin-cnvg-pitem1}. 
+            At (2) we used \ref{prop:inn-loop-lin-cnvg:item2}. 
+            \par
+            \todoinline{
+                N'obliez pas à finir la demonstration d'article (iv). 
+            }
         \end{proof}
         \begin{remark}
             In practice, use the proximal operator of $\omega^\star$ to choose a feasible $v_0$, equivalently we can translate any primal feasible solution into a dual feasible solution using Theorem \ref{thm:primal-dual-trans}. 
@@ -1169,30 +1319,42 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Suppose for each outer iteration $k$, the inner loop is initialized to start on $v_0^{(k)}$, then there must be an upper bound for all $\Psi_\lambda\left(v_0^{(k)}\right) - \Psi_\lambda(\bar v)$. 
         \end{remark}
     \subsection{Concrete examples where we can have linear convergence}
-        Some results in the literature now follow.  
-        The goal of this section is to show that specific type of nonsmooth function $\omega$ that common appear in applications satisfies the error bound condition for the proximal problem, and hence the results from the previous section are applicable. 
-        \begin{definition}[quasi-strongly convex function {\cite[Definition 1]{necoara_linear_2019}}]
-            Let $f:\RR^n \rightarrow \RR$ be differentiable. 
+        The goal of this section is to show that specific type of nonsmooth function $\omega$ that common appear in applications satisfies the error bound condition for the proximal problem, and hence the results from the previous section are applicable and relevant to practical applications. 
+        \par
+        Our major results are stated in Proposition \ref{prop:1nrm-prox-problem}. 
+        \begin{definition}[smooth quasi strongly convex {\cite[Definition 1]{necoara_linear_2019}}]\;\label{def:q-scnvx}\\
+            Let $f:\RR^n \rightarrow \RR$ be convex, differentiable and, $L$ lipschitz smooth. 
             Let $X \subseteq \RR^n$ and suppose that the set of minimizers $X^+=\argmin_{x \in X} f(x) \neq \emptyset$ exists and, denote $f^+$ to be the minimum of $f$ on $X$. 
-            It is quasi strongly-convex on the set $X \subseteq \RR^n$ if $\exists \kappa > 0$ such that $\forall x \in X$, let $\bar x = \Pi_{X^+} x$, it satisfies
+            It is smooth quasi strongly convex (SQSC) on the set $X \subseteq \RR^n$ if $\exists \kappa > 0$ such that $\forall x \in X$, let $\bar x = \Pi_{X^+} x$, it satisfies
             \begin{align*}
-                f^+ - f(x) - \langle \nabla f(x), \bar x - x\rangle + \frac{\kappa}{2}\Vert x - \bar x\Vert^2 \quad \left(\forall x \in X\right). 
+                0 &\le f^+ - f(x) - \langle \nabla f(x), \bar x - x\rangle 
+                - \frac{\kappa}{2}\Vert x - \bar x\Vert^2 \quad \left(\forall x \in X\right). 
             \end{align*}
         \end{definition}
-        \begin{definition}[quadratic growth]\label{def:q-growth}
-            Let $F = f + g$ where $f: \RR^n \rightarrow \RR$ be differentiable and, $g: \RR^n \rightarrow \overline \RR$ be closed convex and, proper. 
+        \begin{definition}[quadratic growth condition]\;\label{def:q-grwth}\\
+            Let $F = f + g$ where $f: \RR^n \rightarrow \RR$ be convex differentiable and, $g: \RR^n \rightarrow \overline \RR$ be closed convex and, proper. 
             Assume in addition that the set of minimizer $S := \argmin_{x\in \RR^n} F \neq \emptyset$, denote $F^+$ to be the minimum, then it satisfies the quadratic growth conditions if there exists $\kappa > 0$ such that
             \begin{align*}
                 (\forall x \in \RR^n)\; F(x) \ge F^+ + \frac{\kappa}{2}\dist^2(x | S).
             \end{align*}
         \end{definition}
+        Obviously, 
         The following theorem shows that under the standard framework of smooth nonsmooth additive compsitive objective function, the quadratic growth condition implies error bound.
         \begin{theorem}[quadratic growth implies error bound]\;\label{thm:qfg-means-eb}\\
-            Let $f: \RR^n \rightarrow $
+            Suppose $(f, g, L)$ satisfies Assumption \ref{ass:for-inxt-pg-ineq}, let $F = f + g$. 
+            In addition, let's assume that
+            \begin{enumerate}[nosep, label=(\roman*)]
+                \item the set of minimizers $S = \argmin_{x} F\neq \emptyset$, 
+                \item the function $F$ satisfies quadratic growth (Definition \ref{def:q-grwth}) with some parameter $\kappa > 0$. 
+            \end{enumerate}
+            Then, by choosing any $\tau \ge L$, the function $F$ also satisfies error bound (Definition \ref{def:err-bnd}) with: 
+            \begin{align*}
+                \gamma = \frac{\tau\kappa}{\kappa + \tau + \sqrt{\tau(\kappa + \tau)}}. 
+            \end{align*}
         \end{theorem}
         \begin{proof}
             Denote $x^+ = T_\tau(x)$, $\bar x = \Pi_{S}x$, and $\bar x ^+ = \Pi_{S} x^+$. 
-            We use the exact proximal gradient inequality by applying Theorem \ref{thm:inxt-pg-ineq} with $\epsilon = 0, \rho = 0$ and, $z = \bar x^+$ gives: 
+            We use the exact proximal gradient inequality by applying Theorem \ref{thm:inxt-pg-ineq} with $\epsilon = 0, \rho = 0$ and, $z = \bar x^+$ (we can apply this because $\tau \ge L$) which gives: 
             \begin{align*}
                 0 &\ge F(x^+) - F(\bar x^+) - \tau \langle \bar x^+ - x^+, x^+ - x\rangle - \frac{\tau}{2}\Vert x - x^+\Vert^2
                 \\
@@ -1233,18 +1395,21 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &= (\sqrt{\kappa + \tau} - \sqrt{\tau})\Vert x - \bar x \Vert
                 - \sqrt{\kappa + \tau} \Vert x - x^+\Vert. 
             \end{align*}
-            At (1), we used quadratic growth assumption and substitute the inequality of Definition \ref{def:q-growth}, and the Cauchy inequality. 
+            At (1), we used quadratic growth assumption and substitute the inequality of Definition \ref{def:q-grwth}, and the Cauchy inequality. 
             At (2), consider substituting $a = \bar x^+ - x^+, b = x^+ - x$, so the second terms with the parenthesis has inside $2\Vert a\Vert\Vert b\Vert + \Vert b\Vert^2 = (\Vert a\Vert + \Vert b\Vert)^2 - \Vert a\Vert^2$. 
             At (3), we used the properties of projecting onto the set set of minimizer $S$, which gives:
             \begin{align*}
-                & \Vert x - \bar x\Vert \le 
+                & \Vert x - \bar x\Vert 
+                \underset{(4)}{\le}
                 \Vert x - \bar x^+\Vert 
-                \le \Vert x - x^+\Vert + \Vert x^+ - \bar x^+\Vert
+                \le
+                 \Vert x - x^+\Vert + \Vert x^+ - \bar x^+\Vert
                 \\
                 \implies
                 & \Vert x - \bar x\Vert - \Vert x - x^+\Vert
                 \le \Vert x^+ - \bar x^+\Vert
             \end{align*}
+            At (4) we used the fact that $\bar x = \Pi_S(x)$ is closer to $S$ than the point $\bar x^+$. 
             Finally, re-arranging the results it should yield the following inequality: 
             \begin{align*}
                 \Vert \mathcal G_\tau(x)\Vert 
@@ -1260,51 +1425,78 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             The above is error bound conditions as defined in Definition \ref{def:err-bnd}, with $\gamma = \frac{\tau\kappa}{\kappa + \tau + \sqrt{\tau(\kappa + \tau)}}$. 
         \end{proof}
         \begin{remark}
-            This theorem is not exactly a new result. 
+            This theorem is not a new result, and the converse of the statement remainds true and is not hard to show. 
             We adapted claim and the proof here so the notations stays consistent and to make it self contained. 
-
         \end{remark}
-        \begin{fact}[Hoffman error bound]
-            
+        \begin{fact}[quasi strongly convex implies quadratic growth {\cite[Theorem 4]{necoara_linear_2019}}]\;\label{fact:qscnvx-q-growth}\\
+            Let $f, X, \kappa$ be given by Definiton \ref{def:q-scnvx}. 
+            Then the function $F = f + \delta_X$ satisfies Definition \ref{def:q-grwth} (quadratic growth) with the same $\kappa$.
         \end{fact}
-        \begin{fact}[a type of quasi strongly convex function]
-            
+        Paraphrased in Necoara et al. \cite{necoara_linear_2019} is the following classic fact on Hoffman error bound. 
+        \begin{fact}[Hoffman error bound]\label{fact:hoffm-eb}
+            Consider a nonempty polyhedral set $P = \{x \in \RR^n:Ax = b, Cx \le d\}$ defined via some $A \in \RR^{p \times n}, C \in \RR^{m\times n}, b \in \RR^m, d \in \RR^m$. 
+            Then there exists a constant $\theta > 0$ which only depends on $A, C$ such that: 
+            \begin{align*}
+                (\forall x \in \RR^n) \quad \dist(x | P) 
+                \le \theta \dist\left(
+                    (Ax - b, Cx - d) \;|\; 
+                    \{\mathbf 0\}\times \RR^m_-
+                \right). 
+            \end{align*}
         \end{fact}
-        The next proposition will characterize a precise case where Assumption \ref{ass:lin-cnvg-for-pp} is true, and it's a case widely available in applications. 
-        \begin{proposition}[1-norm problem]\label{prop:1nrm-prox-problem}
+        \begin{remark}
+            In the literature, the exact, the smallest value of $\theta$ is a big topic. 
+            It has something do with the angle and geometric between a cone, or an affine space of two convex sets. 
+            Here, we will only state its existence without giving it a precise expression. 
+        \end{remark}
+        \begin{fact}[a type of smooth quasi strongly convex function {\cite[Theorem 8]{necoara_linear_2019}}]\;\label{fact:polyhedral-qscnvx-fxn}\\
+            Consider any $C \in \RR^{m\times n}, d \in \RR^m$ such that it defines nonempty polyhedral set $X = \{x : Cx \le d\}$. 
+            Let $h$ be $\sigma > 0$ strongly convex and $L_g$ Lipschitz smooth, consider $f = h\circ A$ where $A \in \RR^{p \times n}$. 
+            Then
+            \begin{enumerate}[nosep]
+                \item The set of minimizer $X^+$ is nonempty and it's a polyhedral which its definition involves matrices $C, A$. 
+                \item The function $f$ is quasi strongly convex with $\kappa = \sigma/\theta^2, L_f = L_h \Vert A\Vert^2$ where $\theta$ is the Hoffman constant as given by Fact \ref{fact:hoffm-eb} of the polyhedral set $X^+$.
+            \end{enumerate}
+        \end{fact}
+        Now, we give our first major results of this section. 
+        The proposition that follows characterizes a precise case where Assumption \ref{ass:lin-cnvg-for-pp} is true, and it's a case widely available in applications. 
+        \begin{proposition}[1-norm problem has a linear convergence rate]\;\label{prop:1nrm-prox-problem}\\
             Let $(g, \omega, A)$ satisfies Assumption \ref{ass:for-inxt-prox}. 
-            In addition, if $g := \Vert \cdot\Vert_1$, then the function $\Psi_\lambda, \Phi_\lambda$ satisfies Assumption \ref{ass:lin-cnvg-for-pp}. 
+            In addition, if $\omega = \Vert \cdot\Vert_1$, then the function $\Psi_\lambda, \Phi_\lambda$ as given by \eqref{eqn:primal-pp}, \eqref{eqn:dual-pp} satisfies Assumption \ref{ass:lin-cnvg-for-pp} and progressively it can be breakdown into: 
+            \begin{enumerate}[nosep]
+                \item\label{prop:1nrm-prox-problem:result1} 
+                $\Psi$ is quasi strongly convex, with $\kappa =\lambda/\theta^2$ where $\theta$ is Hoffman constant of polyhedral set $X^+ = \argmin_{x\in \RR^n}\Psi_\lambda$, and Lipschitz smoothness constant $L_\Psi = \lambda \Vert A^\top\Vert^2$. 
+                \item\label{prop:1nrm-prox-problem:result2} 
+                $\Psi$ satisfies quadratic growth condition (Definition \ref{def:q-grwth}), with the same constant $\kappa$ from its quasi strong convexity. 
+                \item\label{prop:1nrm-prox-problem:result3} 
+                $\Psi$ satisfies the error bound condition (Definition \ref{def:err-bnd}) for all step size $\tau \ge L_\Psi$. 
+                And the error bound constant has 
+                \begin{align*}
+                    \gamma = \frac{\frac{\lambda}{\theta^2}}{\frac{\lambda}{\tau\theta^2} + 1 + \sqrt{\frac{\lambda}{\theta^2 \tau} + 1}}. 
+                \end{align*}
+                \item\label{prop:1nrm-prox-problem:result4} The primal, and dual statisfies Assumption \ref{ass:lin-cnvg-for-pp}, hence Proposition \ref{prop:inn-loop-lin-cnvg} applies and, a linear convergence rate is possible. 
+            \end{enumerate}
+            And they have the relation $(i) \implies (ii)\implies (iii)$. 
         \end{proposition}
         \begin{proof}
-            To verify, it requires that
-            \begin{enumerate}[nosep]
-                \item The function $\Psi_\lambda$ satisfies the error bound condition as specified in Assumption \ref{ass:pg-eb}; 
-                \item $\Psi_\lambda$ is also a Lipschitz continuous function. 
-            \end{enumerate}
-            Take note that the dual has closed form $g^\star(z) =\delta(z | \{x : \Vert x\Vert_1 \le 1\})$. 
-            The $g^\star$ is an indicator of a polytope constraint. 
-            The objective function $\Psi_\lambda(v) = \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2 + \omega^\star(v) - \frac{1}{2\lambda}\Vert y\Vert^2$ so it's Lipschitz continuous on its domain, and it must have a set of minimizers $S$ because its domain is compact. 
-            In addition, $\Psi_\lambda$ fits the assumption of Necoara et al. \cite[Theorem 8]{necoara_linear_2019}. 
-            Therefore, $\Psi_\lambda$ is quasi-strongly convex then by \cite[Theorem 4]{necoara_linear_2019}, and \cite[Theorem 7]{necoara_linear_2019}, it satisfies error bound condition as given in Assumption \ref{ass:pg-eb}, hence Assumption \ref{ass:lin-cnvg-for-pp} also. 
+            We first show \ref{prop:1nrm-prox-problem:result1}. 
+            Recall $\Psi_\lambda(v) = \frac{1}{2\lambda}\Vert \lambda A^\top v - y\Vert^2 + \omega^\star(v) - \frac{1}{2\lambda}\Vert y\Vert^2$ where $\omega^\star = \delta(z | \{x : \Vert x\Vert_1 \le 1\})$ so it's a quadratic function with a polyhedral constraint. 
+            Observe that that $\Psi_\lambda(v) = h(A^\top v) + \delta_{X}$, and here it has $h = z \mapsto (\lambda/2)\left\Vert z - \lambda^{-1}y\right\Vert^2$ so $h$ is a $\lambda$ strongly convex and smooth function, and $X = \{x : \Vert x\Vert_1 \le 1\}$ which can be represented by a polyhedral set characterized by linear inequalities. 
+            Therefore, Fact \ref{fact:polyhedral-qscnvx-fxn} applies, and $\Psi_\lambda$ is quasi strongly convex with $\kappa = \lambda/\theta^2, L_\Phi = \lambda\Vert A^\top\Vert^2$. 
             \par
-            Let $\mu_f = \Vert A\Vert^2/\kappa_f$, let $\kappa_f = \theta^{-2}(A, C)$ be the Hoffman Constant as presented by Necoara et al. in \cite[Section 4]{necoara_linear_2019} where $C$ is the constraint matrix of the inequality set $\delta(z | \{x : \Vert x\Vert_1 \le 1\})$, then the error bound constant can be satisfied with
-            \begin{align*}
-                \gamma_\lambda = \frac{\kappa_f}{1 + \lambda\mu_f + \sqrt{1 + \lambda\mu_f}}. 
-            \end{align*}
+            To see \ref{prop:1nrm-prox-problem:result2}, use Fact \ref{fact:qscnvx-q-growth}. 
+            To see \ref{prop:1nrm-prox-problem:result3}, use Theorem \ref{thm:qfg-means-eb}. 
+            To see \ref{prop:1nrm-prox-problem:result4}, we already have most of the results from the assumption and \ref{prop:1nrm-prox-problem:result3}, and it remains to verify that $\Phi_\lambda$ is Lipschitz continuous on $\dom(\omega \circ A)$ with is true because $\Phi_\lambda = \Vert Au\Vert_1 + \frac{1}{2\lambda}\Vert u - y\Vert^2$, it's the sum of a quadratic and a Lipschitz continuous function $\Vert Au\Vert_1$. 
         \end{proof}
         \begin{remark}
             It is very difficult to obtain a lower estimate for $\gamma$ in practice. 
+            
         \end{remark}
-        \begin{definition}[piecewise linear-quadratic function {\cite[Definition 10.20]{rockafellar_variational_1998}}]
+        \begin{definition}[piecewise linear-quadratic function {\cite[Definition 10.20]{rockafellar_variational_1998}}]\;\\
             A function $f: \RR^n \rightarrow \overline \RR$ is piecewise linear-quadratic when $\dom f$ is the union of finitely many piecewise polyhedral set, such that on each polyhedral partition of $f$ there exists $\alpha \in \RR, a \in \RR^n$, $C\in \RR^{n \times n}$ as a symmetric matrix is where $f$ has the representation $x \rightarrow \langle x, Cx\rangle + \langle a, x\rangle + c$. 
         \end{definition}
         The following proposition characterizes another case where error bound conditions of problem holds. 
-        \begin{proposition}[convex PLQ proximal problem]\label{prop:plq-pp}
-            
-        \end{proposition}
-        \begin{proposition}[scenario II, convex PLQ linear composite]\label{prop:plq-prox-problem}
-            
-        \end{proposition}
+        
         \begin{example}[inner loop linear convergence rate examples]\label{example:inn-lp-lin-cnvg}
             
         \end{example}
@@ -1332,7 +1524,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         And its dual which is 
         \begin{align}\label{eqn:dual-pp-k}
             \Psi_\lambda^{(k)}(v) &:=
-            \frac{1}{2\lambda}
+            \frac{1}{2\lambda^{(k)}}
             \left\Vert \lambda^{(k)}A^\top v - \tilde y_k
             \right\Vert^2
             + \omega^\star(v) 
@@ -1344,27 +1536,37 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \par
         The following assumption specifies conditions where the complexity of the inner using ISTA can be globally bounded for all iteration of the accelerated proximal gradient algorithm of the outer loop. 
         This is crucial for analyzing the global convergence rate of the algorithm. 
-        \begin{assumption}[globally bounded inner loop complexity]\;\label{ass:bounded-inn-cmplx}\\
+        \begin{assumption}[globally bounded inner loop complexity]\;\label{ass:inn-cmplx}\\
             For any integer $k \ge 0$, this assumption is about parameters of the proximal problem $\left(g, \omega, A, \tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}\right)$ introduced at the beginning of this section, iterates $\left(z_j^{(k)}, v_j^{(k)}\right)_{j\ge0}$, the primal dual solutions $\left(\bar z^{(k)}, \bar v^{(k)}\right)$ and additional constants $\lambda^{\min}, \lambda^{\max}, \gamma^{\min}, C_0$. 
             The assumptions now follow. 
             \begin{enumerate}[nosep]
-                \item As specified in this section, the parameter $\lambda^{(k)} = (B_k + \rho_k)^{-1}$ are from the outer loop. We denote $L_k = B_k + \rho_k$ for short. We assume in addition, there exists $\lambda^{\min}, \lambda^{\max}$ such that: 
+                \item\label{ass:inn-cmplx:item1} As specified in this section, the parameter $\lambda^{(k)} = (B_k + \rho_k)^{-1}$ are from the outer loop. We denote $L_k = B_k + \rho_k$ for short. We assume in addition, there exists $\lambda^{\min}, \lambda^{\max}$ such that: 
                 $$
                     - \infty < \lambda^{\min} \le \inf_{k \in \N \cup \{0\}} \lambda^{(k)} \le \sup_{k \in \N \cup \{0\}} \lambda^{(k)} \le \lambda^{\max} < \infty. 
                 $$ 
-                \item There exists a constant $C_0$ such that all the initial guesses given by an algorithm in the outer loop $v_0^{(k)}$ and minimizers $\bar v^{(k)}$ satisfies $C_0 = \sup_{k \in \N \cup \{0\}}\left\Vert v_0^{(k)} - \bar v^{(k)}\right\Vert < \infty$. 
-                \item There exists the smallest error bound constant $\gamma^{\min}$ such that it lower bound all the constants for the proximal problem, i.e: $\exists \gamma_{\min}:\;0 < \gamma^{\min} \le \inf_{k \in \N \cup \{0\}} \gamma^{(k)}_\lambda$. 
-                \item $\tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}$ all satisfies error bound conditions (Assumption \ref{ass:lin-cnvg-for-pp}) with $y = \tilde y_k, \Phi_\lambda = \Phi_\lambda^{(k)}, \Psi_\lambda = \Psi_\lambda^{(k)}, L_\Phi^\lambda = L^{\lambda, (k)}_{\Phi}$ and $\gamma_\lambda = \gamma_\lambda^{(k)}$. 
-                \item The iterates of the inner loop $(z_j^{(k)}, v_j^{(k)})_{k \ge 0}$ are produced by an algorithm that satisfies Definition \ref{def:ista-inner-lp}. 
+                \item\label{ass:inn-cmplx:item2} There exists a constant $C_0$ such that all the initial guesses given by an algorithm in the outer loop $v_0^{(k)}$ and minimizers $\bar v^{(k)}$ satisfies $C_0 = \sup_{k \in \N \cup \{0\}}\left\Vert v_0^{(k)} - \bar v^{(k)}\right\Vert < \infty$. 
+                \item\label{ass:inn-cmplx:item3} There exists the smallest error bound constant $\gamma^{\min}$ such that it lower bound all the constants for the proximal problem, i.e: $\exists \gamma_{\min}:\;0 < \gamma^{\min} \le \inf_{k \in \N \cup \{0\}} \gamma^{(k)}_\lambda$. 
+                \item\label{ass:inn-cmplx:item4} $\tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}$ all satisfies error bound conditions (Assumption \ref{ass:lin-cnvg-for-pp}) with $y = \tilde y_k, \Phi_\lambda = \Phi_\lambda^{(k)}, \Psi_\lambda = \Psi_\lambda^{(k)}, L_\Phi^\lambda = L^{\lambda, (k)}_{\Phi}$ and $\gamma_\lambda = \gamma_\lambda^{(k)}$. 
+                \item\label{ass:inn-cmplx:item5} The iterates of the inner loop $(z_j^{(k)}, v_j^{(k)})_{k \ge 0}$ are produced by an algorithm that satisfies Definition \ref{def:ista-inner-lp}. 
+                \item\label{ass:inn-cmplx:item6}
             \end{enumerate}
         \end{assumption}
         \par
+        Here, we discuss shorter which assumption are easy to satisfies, and which are more demanding. 
+        Item \ref{ass:inn-cmplx:item1} is easy to satisfies since popular line search and backtracking method ensures that $B_k$ will be bounded above and blow, and $\rho_k$ is entirely to the choice of the practitioner so any bounded sequence works. 
+        Item \ref{ass:inn-cmplx:item2} requires some extra argument but one example of $\omega$ remains feasible. 
+        Observe that it is trivially true if the domain of $\Psi_\lambda^{(k)}$ is always bounded because initial guess $v_0^{(k)} \in \text{dom}\Psi_\lambda^{(k)}$, which is equivalent to $\omega^\star$ has a bounded domain which can be satisfied if $\omega = \Vert \cdot\Vert_1$.
+        In addition, the results of Proposition \ref{prop:1nrm-prox-problem}\ref{prop:1nrm-prox-problem:result3}, \ref{prop:1nrm-prox-problem}\ref{prop:1nrm-prox-problem:result4}, item \ref{ass:inn-cmplx:item3} can be satisfied because $\gamma^{(k)}_\lambda$ only depends $\lambda^{(k)}$ it would be bounded from \ref{ass:inn-cmplx:item1}. 
+        \todoinline{
+            N'obliez pas se faire ici. 
+        }
+        \par
         The proposition that follows characterize the bare minimum requirements so that the inner loop's complexity depends only on required accuracies $\epsilon$, and parameter $\lambda$ for all initial guess of the outer loop. 
         \begin{proposition}[inner loop complexity can be bounded globally]\;\label{prop:inner-lp-cmplx}\\
-            Let $\left(g, \omega, A, \tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}\right)$, $\left(z_j^{(k)}, v_{j}^{(k)}\right)_{j \ge 0}$, $\left(\bar z^{(k)}, \bar v^{(k)}\right)$ and additional parameters $\lambda^{\min}, \lambda^{\max}, \gamma^{\min}, C_0$ such that they satisfy Assumption \ref{ass:bounded-inn-cmplx}. 
+            Let $\left(g, \omega, A, \tilde y_k, \Phi_\lambda^{(k)}, \Psi_\lambda^{(k)}, L^{\lambda, (k)}_{\Phi} ,\gamma_\lambda^{(k)}\right)$, $\left(z_j^{(k)}, v_{j}^{(k)}\right)_{j \ge 0}$, $\left(\bar z^{(k)}, \bar v^{(k)}\right)$ and additional parameters $\lambda^{\min}, \lambda^{\max}, \gamma^{\min}, C_0$ such that they satisfy Assumption \ref{ass:inn-cmplx}. 
             \begin{enumerate}[nosep]
-                \item\label{prop:inner-lp-cmplx-result1} 
-                If $\lambda_1 > \lambda_2$ then $\Psi_{\lambda_1}(v) \ge \Psi_{\lambda_2}(v)$ for all $v \in \dom \omega^\star$. 
+                % \item\label{prop:inner-lp-cmplx-result1} 
+                % If $\lambda_1 > \lambda_2$ then $\Psi_{\lambda_1}(v) \ge \Psi_{\lambda_2}(v)$ for all $v \in \dom \omega^\star$. 
                 \item\label{prop:inner-lp-cmplx-result2}  As a consequence of the former, the sequence $L_\Phi^{\lambda, (k)}$ as specified back in Fact \ref{fact:minimizing-dual-pp} is bounded above so, there exists $L_\Phi^{\max}$ such that $L_\Phi^{\max} = \sup_{k \in \N \cup \{0\}}L_\Phi^{\lambda, (k)} < \infty$. 
                 \item\label{prop:inner-lp-cmplx-result3} There exists a constant $C_1$ that bounds the optimality gap of all initial guesses: 
                 \begin{align*}
@@ -1387,18 +1589,19 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \right\rceil. 
                 \end{align*}
             \end{enumerate}
-
         \end{proposition}
         \begin{proof}
-            We will start with \ref{prop:inner-lp-cmplx-result1}. 
-            After some algebra it can be shown that $\Psi_\lambda(v) = \frac{\lambda}{2}\Vert A^\top v\Vert^2 - \langle A^\top v, \tilde y_k\rangle + \omega^\star(v)$.
-            From then on it's direct, and it has $\Psi_{\lambda_1}(v) - \Psi_{\lambda_2}(v) = \frac{\lambda_1 - \lambda_2}{2}\Vert A^\top v\Vert^2 \ge 0$. 
+            % We will start with \ref{prop:inner-lp-cmplx-result1}. 
+            % After some algebra it can be shown that $\Psi_\lambda(v) = \frac{\lambda}{2}\Vert A^\top v\Vert^2 - \langle A^\top v, \tilde y_k\rangle + \omega^\star(v)$.
+            % From then on it's direct, and it has $\Psi_{\lambda_1}(v) - \Psi_{\lambda_2}(v) = \frac{\lambda_1 - \lambda_2}{2}\Vert A^\top v\Vert^2 \ge 0$. 
             \par
-            To see \ref{prop:inner-lp-cmplx-result2}, observe that $\Phi_\lambda^{(k)}$ is $L_{\Phi}^{\lambda, (k)}$ Lipschitz continuous from Assumption \ref{ass:lin-cnvg-for-pp}, \ref{ass:bounded-inn-cmplx}. 
-            By its definition in \eqref{eqn:primal-pp-k}, $\forall k \ge 0$ it satisfies $L_{\Phi}^{\lambda, (k)}$ is the largest when $\lambda = \lambda^{\max}$. 
-            And since $\lambda^{(k)}$ is finite, it has $L^{\max}_\Phi = \sup_{k \in \N \cup \{0\}}L_{\Phi}^{\lambda, (k)} < \infty$ too. 
+            Before we start, note that $\Phi_\lambda^{(k)}$ is $L_{\Phi}^{\lambda, (k)}$ Lipschitz continuous from Assumption \ref{ass:lin-cnvg-for-pp} because it's assumed in item \ref{ass:inn-cmplx:item4} of Assumption \ref{ass:inn-cmplx}, and the Lipschitz constant only depends on $\lambda^{(k)}$. 
             \par
-            To see \ref{prop:inn-looplin-cnvg-item3}, we use \ref{prop:inn-looplin-cnvg-item1}, \ref{prop:inn-looplin-cnvg-item2} and, $C_0 = \sup_{k \in \{0\}\cup \N} \left\Vert v_0^{(k)} - \bar v^{(k)} \right\Vert < \infty$ from Assumption \ref{ass:bounded-inn-cmplx}, then it's sufficient to have: $C_1 = L_{\Phi}^{\max} C_0$ by $L^{(k)}_\Phi$ Lipschitz continuity of $\Phi_\lambda^{(k)}$. 
+            To see \ref{prop:inner-lp-cmplx-result2},
+            Recall the definition of $\Phi_\lambda^{(k)}$ from \eqref{eqn:primal-pp-k} which implies $\forall k \ge 0$, $L_{\Phi}^{\lambda, (k)}$ is the largest when $\lambda = \lambda^{\max}$. 
+            We had $\lambda^{\max}$ is finite, so it has $L^{\max}_\Phi = \sup_{k \in \N \cup \{0\}}L_{\Phi}^{\lambda, (k)} < \infty$ too. 
+            \par
+            To see \ref{prop:inn-looplin-cnvg-item3}, we use \ref{prop:inn-looplin-cnvg-item2} and, $C_0 = \sup_{k \in \{0\}\cup \N} \left\Vert v_0^{(k)} - \bar v^{(k)} \right\Vert < \infty$ from Assumption \ref{ass:inn-cmplx}, then it's sufficient to have: $C_1 = L_{\Phi}^{\max} C_0$ by $L^{(k)}_\Phi$ Lipschitz continuity of $\Phi_\lambda^{(k)}$ as assumed in Assumption \ref{ass:lin-cnvg-for-pp}. 
             \par
             To see \ref{prop:inn-looplin-cnvg-item4}, use all previous results \ref{prop:inn-looplin-cnvg-item3}, \ref{prop:inn-looplin-cnvg-item2} and, then it's sufficient to have $C_2 = \sqrt{C_1}\left(L^{\max}_\Phi\sqrt{2\lambda^{\max}} + \sqrt{C_1}\right)$. 
             \par
@@ -1439,11 +1642,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             At (1), we used Theorem \ref{prop:inn-loop-lin-cnvg}. 
             At (2), we used results form \ref{prop:inner-lp-cmplx-result3} and, at (3) we used \ref{prop:inner-lp-cmplx-result4}. 
             Finally, at (4), we use the fact that the step size $\tau$ in Definition \ref{def:ista-inner-lp} which translate into our context, it has $\tau^{(k)} \ge \lambda^{(k)}\Vert AA^\top\Vert$, and hence it can be upper bounded by $\tau^{\max} := \sup_{k \in \N \cup \{0\}}\lambda^{(k)}\Vert AA^\top\Vert < \infty$. 
-            Now, substitute $j = N_\epsilon$ then it's prominent that $\mathbf G_\lambda^{(k)}\left(z_j^{(k)}, v_j^{(k)}\right) \le \epsilon$ by using the log of base formula. 
+            Now, substitute $j = N_\epsilon$ then it's prominent that $\mathbf G_\lambda^{(k)}\left(z_j^{(k)}, v_j^{(k)}\right) \le \epsilon$ by using a logarithmic formula. 
         \end{proof}
     \subsection{Overall complexity}
-        In this section we combine the complexity of the inner loop with the convergence rate of the outer loop to deduce the rate of convergence. 
-        Details will be given to the assumptions needed to obtain globally bounded complexity of the inner loop. 
+        We derive the overall complexity in this section. 
+        Before we start, it's necessary to discuss the best initial guess vector $v^{(k)}_0$ of the inner loop so that item \ref{ass:inn-cmplx:item2} in Assumption \ref{ass:inn-cmplx} can be satisfied for as many objective functions as possible. 
 
 \appendix
     \section{Super boring chores}

@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1762423037.65812 "main.aux" "main.bbl" "main" 1762423038.60007 0
+["bibtex main"] 1762855921.19818 "main.aux" "main.bbl" "main" 1762855922.20816 0
   "./references/refs.bib" 1761603606.35734 16675 eb2c8a0eb54136acdd34ae93e5be2cea ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/siam.bst" 1292289607 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1762423038.3859 10908 513ac489d841991781847ac60e63bd71 "pdflatex"
+  "main.aux" 1762855921.95737 13381 3f270b08d509b1e4e3576ac378535ea0 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1762423037.73385 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/EB is the key to IAGP/main.tex" "main.pdf" "main" 1762423038.60018 0
-  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/EB is the key to IAGP/main.tex" 1762423036.46168 95909 679828300d773e09a18b7f196b79df93 ""
+["pdflatex"] 1762855921.2705 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/EB is the key to IAGP/main.tex" "main.pdf" "main" 1762855922.20827 0
+  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/EB is the key to IAGP/main.tex" 1762855920.06892 110873 7a095a49b12f0114d00d94b1ad54e088 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -33,6 +33,7 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm" 1136768653 1332 1fde11373e221473104d6cc5993f046e ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm" 1136768653 1300 63a6111ee6274895728663cf4b4e7e81 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmex10.tfm" 1136768653 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm" 1136768653 1528 abec98dbc43e172678c11b3b9031252a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm" 1136768653 1512 f21f83efb36853c0b70002322c1ab3ad ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm" 1136768653 1520 eccf95517727cb11801f4f1aee3a21b4 ""
@@ -46,11 +47,14 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1136768653 1120 8b7d695260f3cff42e636090a8002094 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1136768653 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmti12.tfm" 1136768653 1484 ed72f8f5cf654cda15ecc8e32bfcbee5 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmti7.tfm" 1136768653 1492 86331993fe614793f5e7e755835c31c5 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmti8.tfm" 1136768653 1504 1747189e0441d1c18f3ea56fafc1c480 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm" 1136768653 768 1321e9409b4137d6fb428ac9dc956269 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1248133631 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1248133631 32080 340ef9bf63678554ee606688e7b5339d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb" 1248133631 32001 6aeea3afe875097b1eb0da29acd61e28 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1248133631 30251 6afa5cb1d0204815a708a080681d4674 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1248133631 36741 fa121aac0049305630cf160b86157ee4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1248133631 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
@@ -230,10 +234,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1716844513.00476 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1716844504 8221424 900989947c23303b742a586f0df8c087 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "main.aux" 1762423038.3859 10908 513ac489d841991781847ac60e63bd71 "pdflatex"
-  "main.bbl" 1762423037.73131 1317 d0da281bbc9d2391112a076b33bd39fe "bibtex main"
-  "main.out" 1762423038.38682 4125 8fe539cbb8b2aaaadef3702d87688adf "pdflatex"
-  "main.tex" 1762423036.46168 95909 679828300d773e09a18b7f196b79df93 ""
+  "main.aux" 1762855921.95737 13381 3f270b08d509b1e4e3576ac378535ea0 "pdflatex"
+  "main.bbl" 1762855921.26796 1317 d0da281bbc9d2391112a076b33bd39fe "bibtex main"
+  "main.out" 1762855921.95834 4120 969094cca3ef1a3ca0fe2eb3610215dc "pdflatex"
+  "main.tex" 1762855920.06892 110873 7a095a49b12f0114d00d94b1ad54e088 ""
   "presets/julia_lstlisting.tex" 1734912471.75532 795 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1734912471.75575 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1737688388.3909 8751 43b1f87d5e2ad43f60c8e67f03e69d1f ""
