@@ -538,15 +538,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{enumerate}
         Denote $L_k = B_k + \rho_k$ for short. 
         Given any initial condition $v_{-1}, x_{-1} \in \RR^n$, the algorithm generates the sequences $(y_k, x_k, v_k)_{k \ge 0}$ such that they satisfy for all $k \ge 0$: 
-        \begin{align*}
-            & y_k = \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1}, 
+        \begin{align}
+            & y_k = \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1}, \label{def:inxt-apg:yk}
             \\
-            & x_k \approx_{\epsilon_k} T_{L_k}(y_k), 
+            & x_k \approx_{\epsilon_k} T_{L_k}(y_k), \label{def:inxt-apg:xk}
             \\
             & D_f(x_k, y_k) \le \frac{B_k}{2}\Vert x_k - y_k\Vert^2, 
             \\
-            & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). 
-        \end{align*}
+            & v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}). \label{def:inxt-apg:vk}
+        \end{align}
     \end{definition}
     \begin{lemma}[inexact accelerated proximal gradient preparation stage I]\; \label{lemma:inxt-apg-cnvg-prep1}\\
         Let $(F, f, g, L)$, and $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, be given by Definition \ref{def:inxt-apg}. 
@@ -648,7 +648,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{assumption}
     \par
     The following proposition is a prototype of the convergence rate together with the error schedule that delivers convergence of algorithms satisfying Definition \ref{def:inxt-apg}. 
-    \begin{proposition}[generic convergence rate under valid error schedule]\;\label{prop:inxt-apg-cnvg-generic}\\
+    \begin{proposition}[convergence with valid error schedule]\;\label{prop:inxt-apg-cnvg-generic}\\
         Let $(F, f, g, L)$, $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(\beta_k)_{k\ge 0}, \mathcal E_0, p$ as assumed in Assumption \ref{ass:valid-err-schedule}. 
         Fix any $\bar x \in \RR^n$ for all $k \ge 0$ and assume that $\alpha_0 = 1$. 
         Then for the iterates generated $(y_k, x_k, v_k)_{k \ge 0}$ by the algorithm, for all $k \ge 0$ they will satisfy: 
@@ -775,17 +775,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \right). 
         \end{align*}
     \end{proof}
-    \begin{proposition}[generic convergence rate of the gradient mapping]\;\label{prop:apg-cnvg-gm-generic}\\
-        \todoinline{
-            \par 
-            Cette proposition ira démontrer que ce séquence de ``Inexact Gradient Mapping" converge. \\
-            N'oubliez pas de finir. 
-        }
-    \end{proposition}
-    \begin{proof}
-        
-    \end{proof}
-    \par
+    \par 
     Now, it only remains to determine the sequence $\alpha_k$ to derive a type of convergence rate for the algorithm because from the above theorem, we have the convergence rate $\beta_k$ and, the error parameters $\epsilon_k, \rho_k$ both controlled by the sequence $(\alpha_k)_{k \ge 0}$. 
     
     \subsection{Convergence results of the outer loop}
@@ -811,7 +801,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     1 + \alpha_0\sqrt{L_0}\sum_{i = 1}^{k}\sqrt{L_i^{-1}}
                 \right)^{-2}
                 \hspace{-1em}\le 
-                \beta_k
+                \beta_k = \frac{\alpha_k^2L_k}{\alpha_0^2L_0}
                 \le 
                 \left(
                     1 + \frac{\alpha_0\sqrt{L_0}}{2}\sum_{i = 1}^{k}\sqrt{L_i^{-1}}
@@ -941,7 +931,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{proof}
         \begin{remark}
         \end{remark}
-        \begin{proposition}[$\mathcal O(1/k^2)$ optimal convergence rate of the outer loop]\;\label{prop:opt-cnvg-outr-loop}\\
+        \begin{proposition}[$\mathcal O(1/k^2)$ outer loop function value convergence]\;\label{prop:opt-cnvg-outr-loop}\\
             Let $(f, g, L)$, $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(\beta_k)_{k\ge 0}, \mathcal E_0, p$ be given by Assumption \ref{ass:opt-mmntm-seq}. 
             Assume in addition that
             \begin{enumerate}[nosep]
@@ -1023,7 +1013,81 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             At (1), we used Lemma \ref{lemma:opt-mmntm-seq}. 
             At (2), we used that $L_{\min} \le L_i$ for all $i = 0, 1, 2, \ldots$. 
         \end{proof}
+    \subsection{The gradient mapping also shrinks}
+        In this section, we show one extremely favorable properties and its assumptions such that, successive iterates $v_k, v_{k - 1}$ converges to zero as $k \rightarrow \infty$, and hence the norm of the gradient mapping converges at a rate of $\mathcal O(1/k)$. 
+        This property will be crucial for analyzing the total complexity for the algorithm as a whole. 
+        \begin{proposition}[iterates $v_k$ and gradient mapping]\;\label{prop:vk-gm}\\
+            Let $(F, f, g, L)$, $(\alpha_k, B_k, \rho_k, \epsilon_k)_{k \ge 0}$, $(\beta_k)_{k\ge 0}, \mathcal E_0, p$ as assumed in Assumption \ref{ass:valid-err-schedule}. 
+            Assume there exists $\bar x \in \RR^n$ which is the minimizer of $F$ and, we set $\alpha_0 = 1$. 
+            Then for the iterates generated $(y_k, x_k, v_k)_{k \ge 0}$ by the algorithm, for all $k \ge 0$ all followings are true. 
+            \begin{enumerate}[nosep]
+                \item\label{prop:vk-gm:result1} it has $v_k - v_{k - 1} = \alpha_k^{-1}(x_k - y_k) = \alpha_k^{-1}L_k^{-1} \mathcal G_{L_k}(y_k)$. 
+                \item\label{prop:vk-gm:result2} as a consequence of the former, we have the following bound: 
+                $$
+                    \Vert \bar x - v_k\Vert \le \Vert \bar x - v_{- 1}\Vert
+                    + \left(
+                        \frac{2 \mathcal E_0}{L_0} 
+                        \sum_{n = 1}^{k} \frac{1}{n^p}
+                    \right)^{1/2}. 
+                $$
+            \end{enumerate}
+        \end{proposition}
+        \begin{proof}
+            \textbf{Our first result follows. }
+            It has $y_k = \alpha_k v_{k - 1} + (1 - \alpha_k)x_{k - 1}$ from \eqref{def:inxt-apg:yk}, and $v_k = x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1})$ from \eqref{def:inxt-apg:vk}. 
+            Using this information we have 
+            {\allowdisplaybreaks
+            \begin{align*}
+                v_k - v_{k - 1} &=
+                x_{k - 1} + \alpha_k^{-1}(x_k - x_{k - 1}) 
+                - \alpha_k^{-1}(y_k - (1 - \alpha_k)x_{k - 1})
+                \\
+                &= (1 - \alpha_k^{-1})x_{k - 1} + \alpha_k^{-1}x_k - \alpha_k^{-1}y_k + (\alpha_k^{-1} - 1)x_{k - 1}
+                \\
+                &= \alpha_k^{-1}(x_k - y_k) = \alpha_k^{-1}L_k^{-1}L_k(x_k - y_k) = \alpha_k^{-1}L_k^{-1}\mathcal G_{L_k}(y_k). 
+            \end{align*}
+            }
+            \textbf{Our second result follows. }
+            The assumption for Proposition \ref{prop:inxt-apg-cnvg-generic} are satisfied here hence: 
+            \begin{align*}
+                0 &\le \beta_k\left(
+                    \frac{L_0}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                    + \mathcal E_0 \sum_{n = 1}^{k} \frac{1}{n^p}
+                \right) 
+                - \frac{\alpha_k^2L_k}{2}\Vert \bar x - v_k\Vert^2
+                - (F(x_k) - F(\bar x))
+                \\
+                \underset{(1)}\implies
+                0 &\le 
+                \frac{L_0}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                + \mathcal E_0 \sum_{n = 1}^{k} \frac{1}{n^p}
+                - \frac{\alpha_k^2L_k}{2\beta_k}\Vert \bar x - v_k\Vert^2
+                \\
+                &\underset{(2)}= 
+                \frac{L_0}{2}\Vert \bar x - v_{k - 1}\Vert^2
+                + \mathcal E_0 \sum_{n = 1}^{k} \frac{1}{n^p}
+                - \frac{L_0}{2}\Vert \bar x - v_k\Vert^2
+                \\
+                \iff 
+                0 &\le \Vert \bar x - v_{-1}\Vert - \Vert \bar x - v_k\Vert
+                + \left(
+                    \frac{2 \mathcal E_0}{L_0}\sum_{n = 1}^{k}\frac{1}{n^p}
+                \right)^{1/2}. 
+            \end{align*}
+            At (1), we assumed $\bar x$ is the minimizer so $- F(x_k) + F(\bar x) < 0$ and so we replaced it with a zero, and since $\beta_k > 0$ always we can divided on both side of the inequality without changing the sign. 
+            At (2), we used $\beta_k = \frac{\alpha_k^2 L_k}{\alpha_0^2 L_0}$ from \eqref{ineq:lemma:opt-mmntm-seq-result2}, since we assumed $\alpha_0 = 1$ here it has $\beta_k = \alpha_k^2L_k/L_0$ hence the coefficient $\frac{\alpha_k^2L_k}{2 \beta_k} = \frac{L_0}{2}$. 
+        \end{proof}
+        \par
+        Now, we will show the convergence rate of the normed gradient mapping is $\mathcal O(1/k)$ for the best chosen sequence. 
+        The theorem that follows will acomplish that 
+        \begin{theorem}[$\mathcal O(1/k)$ convergence of the gradient mapping]
+            
+        \end{theorem}
+        \begin{proof}
+            
+        \end{proof}
 
+        
 \section{Linear convergence for the proximal problem in the inner loop}
     In this section, we continue the discussion from Section \ref{sec:optz-inxt-pp-problem}. 
     As an important reminder, we will fix the vector $y \in \RR^n$, which is in the inexact proximal problem as a constant in this entire section. 
@@ -1082,7 +1146,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &\le 
                 \left(
                     1 - \frac{\gamma}{2\tau}
-                \right)(F(x_k) - F(\bar x)), \text{where } \frac{\gamma}{2\tau} \in (0, 1)
+                \right)(F(x_k) - F(\bar x)), \text{ where } \frac{\gamma}{2\tau} \in (0, 1)
             \end{align*}
             Hence, the algorithm generates $F(x_k) - F(\bar x)\le \mathcal O((1 - \gamma/(2\tau))^k)$. 
         \end{theorem}
@@ -1218,7 +1282,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \begin{enumerate}[nosep]
                 \item\label{prop:inn-loop-lin-cnvg:item1} Let $\bar v$ be minimizer of $\Psi_\lambda$, the sequence $\Psi_\lambda(v_j) - \Psi_\lambda(\bar v)$ converges linearly to zero. 
                 \item\label{prop:inn-loop-lin-cnvg:item2} There exists constants $K_\Psi^\lambda$ such that $\Psi_\lambda$ is $K_\Psi^\lambda$ Lipschitz continuous on $\dom \Psi_\lambda$, as a consequence there exists constant $C_\Psi^\lambda$ such that, $\sup_{v \in \RR^m}\Phi_\lambda(v) - \Phi_\lambda(\bar v) \le K_\Psi^\lambda\sup_{v \in \dom\Psi_\lambda}\Vert v - \bar v \Vert = C_\Psi^\lambda < \infty$. 
-                \item\label{prop:inn-loop-lin-cnvg:item3} The duality gap has a linear convergence rate vy the inequality: 
+                \item\label{prop:inn-loop-lin-cnvg:item3} The duality gap has a linear convergence rate by the inequality: 
                 $$
                     \mathbf G_\lambda(z_j, v_j) \le
                     \left(
@@ -1230,10 +1294,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                         + \frac{\sqrt{2\lambda C_\Psi^\lambda}}{\lambda}
                     \right). 
                 $$
-                \item\label{prop:inn-loop-lin-cnvg:item4} If $\mathbf G_\lambda(z_j, v_j) \le \epsilon$, then $z_j \approx_\epsilon \hprox_{\lambda g}(y)$. If we let $\tau = \lambda \Vert AA^\top\Vert$, then a sufficient number of iteration needed to achieve the optimality is given by: 
-                \todoinline{
-                    N'obliez pas de finir! 
-                }
+                \item\label{prop:inn-loop-lin-cnvg:item4} If $\mathbf G_\lambda(z_j, v_j) \le \epsilon$, then $z_j \approx_\epsilon \hprox_{\lambda g}(y)$. 
             \end{enumerate}
         \end{proposition}
         \begin{proof}
@@ -1496,7 +1557,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             A function $f: \RR^n \rightarrow \overline \RR$ is piecewise linear-quadratic when $\dom f$ is the union of finitely many piecewise polyhedral set, such that on each polyhedral partition of $f$ there exists $\alpha \in \RR, a \in \RR^n$, $C\in \RR^{n \times n}$ as a symmetric matrix is where $f$ has the representation $x \rightarrow \langle x, Cx\rangle + \langle a, x\rangle + c$. 
         \end{definition}
         The following proposition characterizes another case where error bound conditions of problem holds. 
-        
         \begin{example}[inner loop linear convergence rate examples]\label{example:inn-lp-lin-cnvg}
             
         \end{example}
